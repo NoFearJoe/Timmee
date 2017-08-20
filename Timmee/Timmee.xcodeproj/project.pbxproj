@@ -8,10 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		34638CA1E9A08C2EF7EDCA4B /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */; };
+		96A5F0F91F49F26300F94553 /* Array+IndexOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F0F21F49F26300F94553 /* Array+IndexOf.swift */; };
+		96A5F0FA1F49F26300F94553 /* Array+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F0F31F49F26300F94553 /* Array+Item.swift */; };
+		96A5F0FB1F49F26300F94553 /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F0F41F49F26300F94553 /* Array+RemoveObject.swift */; };
+		96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F0F61F49F26300F94553 /* Array+Unique.swift */; };
+		96A5F0FE1F49F26300F94553 /* Sequence+Categorised.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F0F71F49F26300F94553 /* Sequence+Categorised.swift */; };
+		96A5F0FF1F49F26300F94553 /* Sequence+Dictionarised.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F0F81F49F26300F94553 /* Sequence+Dictionarised.swift */; };
+		96A5F1031F49F2F300F94553 /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1011F49F2F300F94553 /* UIColor+HEX.swift */; };
+		96A5F1041F49F2F300F94553 /* UIImage+one-colored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1021F49F2F300F94553 /* UIImage+one-colored.swift */; };
+		96A5F1071F49FA3C00F94553 /* String+capitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1061F49FA3C00F94553 /* String+capitalizeFirst.swift */; };
+		96A5F10A1F49FA4B00F94553 /* UIColor+Interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1081F49FA4B00F94553 /* UIColor+Interpolate.swift */; };
+		96A5F10B1F49FA4B00F94553 /* UIImage+tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1091F49FA4B00F94553 /* UIImage+tint.swift */; };
+		96A5F10E1F49FC3F00F94553 /* SKProduct+localizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F10D1F49FC3F00F94553 /* SKProduct+localizedPrice.swift */; };
 		96E543531F49EBB20081C6F0 /* TimmeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E543521F49EBB20081C6F0 /* TimmeeTests.swift */; };
 		96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E5435F1F49ED890081C6F0 /* Assets.xcassets */; };
 		96E543791F49ED890081C6F0 /* Timmee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96E543611F49ED890081C6F0 /* Timmee.xcdatamodeld */; };
-		96E5437A1F49ED890081C6F0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96E543651F49ED890081C6F0 /* Info.plist */; };
 		96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E543681F49ED890081C6F0 /* LaunchScreen.storyboard */; };
 		96E5437C1F49ED890081C6F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E543691F49ED890081C6F0 /* Main.storyboard */; };
 		96E5437D1F49ED890081C6F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5436D1F49ED890081C6F0 /* AppDelegate.swift */; };
@@ -30,6 +41,18 @@
 /* Begin PBXFileReference section */
 		548C5722BCCB07A0FFED4983 /* Pods-Timmee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.debug.xcconfig"; sourceTree = "<group>"; };
 		6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A5F0F21F49F26300F94553 /* Array+IndexOf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+IndexOf.swift"; sourceTree = "<group>"; };
+		96A5F0F31F49F26300F94553 /* Array+Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Item.swift"; sourceTree = "<group>"; };
+		96A5F0F41F49F26300F94553 /* Array+RemoveObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+RemoveObject.swift"; sourceTree = "<group>"; };
+		96A5F0F61F49F26300F94553 /* Array+Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
+		96A5F0F71F49F26300F94553 /* Sequence+Categorised.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Categorised.swift"; sourceTree = "<group>"; };
+		96A5F0F81F49F26300F94553 /* Sequence+Dictionarised.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Dictionarised.swift"; sourceTree = "<group>"; };
+		96A5F1011F49F2F300F94553 /* UIColor+HEX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
+		96A5F1021F49F2F300F94553 /* UIImage+one-colored.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+one-colored.swift"; sourceTree = "<group>"; };
+		96A5F1061F49FA3C00F94553 /* String+capitalizeFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+capitalizeFirst.swift"; sourceTree = "<group>"; };
+		96A5F1081F49FA4B00F94553 /* UIColor+Interpolate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Interpolate.swift"; sourceTree = "<group>"; };
+		96A5F1091F49FA4B00F94553 /* UIImage+tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+tint.swift"; sourceTree = "<group>"; };
+		96A5F10D1F49FC3F00F94553 /* SKProduct+localizedPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+localizedPrice.swift"; sourceTree = "<group>"; };
 		96E543371F49EBB20081C6F0 /* Timmee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timmee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E5434E1F49EBB20081C6F0 /* TimmeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimmeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E543521F49EBB20081C6F0 /* TimmeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimmeeTests.swift; sourceTree = "<group>"; };
@@ -69,6 +92,46 @@
 				FA9D4E103927E9235B2BD08D /* Pods-Timmee.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		96A5F0F11F49F26300F94553 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				96A5F0F21F49F26300F94553 /* Array+IndexOf.swift */,
+				96A5F0F31F49F26300F94553 /* Array+Item.swift */,
+				96A5F0F41F49F26300F94553 /* Array+RemoveObject.swift */,
+				96A5F0F61F49F26300F94553 /* Array+Unique.swift */,
+				96A5F0F71F49F26300F94553 /* Sequence+Categorised.swift */,
+				96A5F0F81F49F26300F94553 /* Sequence+Dictionarised.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		96A5F1001F49F2F300F94553 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				96A5F1011F49F2F300F94553 /* UIColor+HEX.swift */,
+				96A5F1021F49F2F300F94553 /* UIImage+one-colored.swift */,
+				96A5F1081F49FA4B00F94553 /* UIColor+Interpolate.swift */,
+				96A5F1091F49FA4B00F94553 /* UIImage+tint.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		96A5F1051F49FA3C00F94553 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				96A5F1061F49FA3C00F94553 /* String+capitalizeFirst.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		96A5F10C1F49FC3F00F94553 /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				96A5F10D1F49FC3F00F94553 /* SKProduct+localizedPrice.swift */,
+			);
+			path = StoreKit;
 			sourceTree = "<group>";
 		};
 		96E5432E1F49EBB20081C6F0 = {
@@ -225,6 +288,10 @@
 		96E543711F49ED890081C6F0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				96A5F1001F49F2F300F94553 /* UIKit */,
+				96A5F0F11F49F26300F94553 /* Collections */,
+				96A5F1051F49FA3C00F94553 /* String */,
+				96A5F10C1F49FC3F00F94553 /* StoreKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */,
-				96E5437A1F49ED890081C6F0 /* Info.plist in Resources */,
 				96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */,
 				96E5437C1F49ED890081C6F0 /* Main.storyboard in Resources */,
 			);
@@ -438,8 +504,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96A5F0FA1F49F26300F94553 /* Array+Item.swift in Sources */,
+				96A5F1041F49F2F300F94553 /* UIImage+one-colored.swift in Sources */,
+				96A5F1031F49F2F300F94553 /* UIColor+HEX.swift in Sources */,
+				96A5F0FF1F49F26300F94553 /* Sequence+Dictionarised.swift in Sources */,
+				96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */,
+				96A5F1071F49FA3C00F94553 /* String+capitalizeFirst.swift in Sources */,
+				96A5F0FE1F49F26300F94553 /* Sequence+Categorised.swift in Sources */,
+				96A5F10E1F49FC3F00F94553 /* SKProduct+localizedPrice.swift in Sources */,
+				96A5F0FB1F49F26300F94553 /* Array+RemoveObject.swift in Sources */,
 				96E5437D1F49ED890081C6F0 /* AppDelegate.swift in Sources */,
+				96A5F0F91F49F26300F94553 /* Array+IndexOf.swift in Sources */,
 				96E543791F49ED890081C6F0 /* Timmee.xcdatamodeld in Sources */,
+				96A5F10A1F49FA4B00F94553 /* UIColor+Interpolate.swift in Sources */,
+				96A5F10B1F49FA4B00F94553 /* UIImage+tint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +714,7 @@
 				96E543591F49EBB20081C6F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96E5435A1F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "TimmeeTests" */ = {
 			isa = XCConfigurationList;
@@ -644,6 +723,7 @@
 				96E5435C1F49EBB20081C6F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
