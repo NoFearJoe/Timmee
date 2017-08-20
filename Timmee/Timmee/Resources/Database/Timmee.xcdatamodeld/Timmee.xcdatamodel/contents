@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
+        <attribute name="coverImagePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coverTintColor" attributeType="String" defaultValueString="112BFF" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="tasks" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Task" inverseName="list" inverseEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="category" attributeType="Integer 16" defaultValueString="3" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationMask" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeatMask" attributeType="String" defaultValueString="noRepeat" syncable="YES"/>
+        <attribute name="shouldNotifyByLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="tasks" inverseEntity="List" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="List" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Task" positionX="-54" positionY="18" width="128" height="210"/>
+    </elements>
 </model>
