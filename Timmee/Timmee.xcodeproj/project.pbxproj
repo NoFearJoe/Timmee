@@ -21,6 +21,9 @@
 		96A5F10B1F49FA4B00F94553 /* UIImage+tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1091F49FA4B00F94553 /* UIImage+tint.swift */; };
 		96A5F10E1F49FC3F00F94553 /* SKProduct+localizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F10D1F49FC3F00F94553 /* SKProduct+localizedPrice.swift */; };
 		96A5F1121F4A0AD800F94553 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1111F4A0AD800F94553 /* UserProperties.swift */; };
+		96A5F1141F4A174600F94553 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1131F4A174600F94553 /* TaskCategory.swift */; };
+		96A5F1161F4A18EE00F94553 /* RepeatMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1151F4A18EE00F94553 /* RepeatMask.swift */; };
+		96A5F1181F4A1A5100F94553 /* NotificationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5F1171F4A1A5100F94553 /* NotificationMask.swift */; };
 		96E543531F49EBB20081C6F0 /* TimmeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E543521F49EBB20081C6F0 /* TimmeeTests.swift */; };
 		96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E5435F1F49ED890081C6F0 /* Assets.xcassets */; };
 		96E543791F49ED890081C6F0 /* Timmee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96E543611F49ED890081C6F0 /* Timmee.xcdatamodeld */; };
@@ -55,6 +58,9 @@
 		96A5F1091F49FA4B00F94553 /* UIImage+tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+tint.swift"; sourceTree = "<group>"; };
 		96A5F10D1F49FC3F00F94553 /* SKProduct+localizedPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+localizedPrice.swift"; sourceTree = "<group>"; };
 		96A5F1111F4A0AD800F94553 /* UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
+		96A5F1131F4A174600F94553 /* TaskCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
+		96A5F1151F4A18EE00F94553 /* RepeatMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatMask.swift; sourceTree = "<group>"; };
+		96A5F1171F4A1A5100F94553 /* NotificationMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMask.swift; sourceTree = "<group>"; };
 		96E543371F49EBB20081C6F0 /* Timmee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timmee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E5434E1F49EBB20081C6F0 /* TimmeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimmeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E543521F49EBB20081C6F0 /* TimmeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimmeeTests.swift; sourceTree = "<group>"; };
@@ -140,6 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				96A5F1111F4A0AD800F94553 /* UserProperties.swift */,
+				96A5F1131F4A174600F94553 /* TaskCategory.swift */,
+				96A5F1151F4A18EE00F94553 /* RepeatMask.swift */,
+				96A5F1171F4A1A5100F94553 /* NotificationMask.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -525,10 +534,13 @@
 				96A5F10E1F49FC3F00F94553 /* SKProduct+localizedPrice.swift in Sources */,
 				96A5F0FB1F49F26300F94553 /* Array+RemoveObject.swift in Sources */,
 				96E5437D1F49ED890081C6F0 /* AppDelegate.swift in Sources */,
+				96A5F1181F4A1A5100F94553 /* NotificationMask.swift in Sources */,
 				96A5F0F91F49F26300F94553 /* Array+IndexOf.swift in Sources */,
 				96A5F1121F4A0AD800F94553 /* UserProperties.swift in Sources */,
+				96A5F1161F4A18EE00F94553 /* RepeatMask.swift in Sources */,
 				96E543791F49ED890081C6F0 /* Timmee.xcdatamodeld in Sources */,
 				96A5F10A1F49FA4B00F94553 /* UIColor+Interpolate.swift in Sources */,
+				96A5F1141F4A174600F94553 /* TaskCategory.swift in Sources */,
 				96A5F10B1F49FA4B00F94553 /* UIImage+tint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
