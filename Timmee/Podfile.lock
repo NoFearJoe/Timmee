@@ -1,0 +1,21 @@
+PODS:
+  - Hero (0.3.6)
+  - MTDates (1.0.3)
+  - Result (3.2.3)
+  - SugarRecord/CoreData+iCloud (3.1.2):
+    - Result (~> 3.0)
+
+DEPENDENCIES:
+  - Hero
+  - MTDates
+  - SugarRecord/CoreData+iCloud
+
+SPEC CHECKSUMS:
+  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
+  MTDates: c65affdfb7b34001c5c9e3fe0beac4b1b8334a58
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  SugarRecord: be6aa5c18b4a4dec0de4c1f49fc61c85eabb5328
+
+PODFILE CHECKSUM: ecfcbafd41e58471f757261deacc2feec4ba0e7f
+
+COCOAPODS: 1.2.1

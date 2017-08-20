@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'Timmee' do
+  pod 'Hero'
+  pod 'MTDates'
+  pod 'SugarRecord/CoreData+iCloud'
+end
