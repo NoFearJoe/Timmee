@@ -1,0 +1,127 @@
+/* 
+  Localizable.strings
+  Timmee
+
+  Created by Ilya Kharabet on 05.09.17.
+  Copyright © 2017 Mesterra. All rights reserved.
+*/
+
+"all_tasks" = "All tasks";
+"yesterday" = "Yeasterday";
+"today" = "Today";
+"tomorrow" = "Tomorrow";
+"week" = "Week";
+"new_list" = "New list";
+"import_tasks" = "Import tasks";
+"no_tasks_to_import" = "No tasks to import";
+"tasks_without_list" = "Not in a list";
+"no_searched_tasks" = "No tasks";
+
+"no_tasks" = "No tasks";
+"new_task" = "New task";
+"no_tasks_hint" = "Add a task by pressing on the pen above";
+
+"important_and_urgent" = "Important and urgent";
+"important" = "Important";
+"urgent" = "Urgent";
+"onther" = "Other";
+
+"reminder" = "Reminder";
+"remind" = "Remind"; // в среду
+"location" = "Location";
+"remind_in_location" = "Remind in location";
+"due_date" = "Due date";
+"finish" = "Finish"; // сегодня в 21:00
+"repeat_ending_date" = "Ending date";
+"tags_picker" = "Tags";
+"input_tag" = "Input tag...";
+"no_tags" = "No tags";
+"no_tags_hint" = "Input title and pick color to add tag";
+
+"repeat" = "Repeat";
+"everyday" = "Everyday";
+"weekly" = "Weekly";
+"on_weekdays" = "On weekdays";
+"on_weekends" = "On weekends";
+"weekdays" = "weekdays";
+"weekends" = "weekends";
+"monthly" = "Monthly";
+"every_year" = "Every year";
+"at" = "at"; // 21:00
+"upon" = ""; // 15 минут
+"no_repeat" = "No repeat";
+
+"hours" = "hours";
+"minutes" = "minutes";
+
+"choose_interval" = "Choose interval";
+"choose_days" = "Choose days";
+
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+"mon" = "mon";
+"tue" = "tue";
+"wed" = "wed";
+"thu" = "thu";
+"fri" = "fri";
+"sat" = "sat";
+"sun" = "sun";
+
+"on_monday" = "On monday";
+"on_tuesday" = "On tuesday";
+"on_wednesday" = "On wednesday";
+"on_thursday" = "On thursday";
+"on_friday" = "On friday";
+"on_saturday" = "On saturday";
+"on_sunday" = "On sunday";
+
+"settings" = "Settings";
+"background_color" = "Background color";
+"password_protection" = "Password protection";
+"licenses" = "Licenses";
+"give_feedback" = "Send feedback";
+"additional_features" = "Additional features";
+
+"remove_list" = "Remove list";
+"are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Are you sure you want to remove the list with all tasks?";
+"i_am_sure" = "Yes, I'm sure";
+"cancel" = "Cancel";
+
+"remove" = "Remove";
+"edit" = "Edit";
+"done" = "Done";
+"close" = "Close";
+"back" = "Back";
+"continue" = "Continue";
+
+"create_password" = "Create password";
+"enter_password" = "Enter password";
+"wrong_password" = "Wrong password";
+"repeat_password" = "Repeat password";
+"passwords_are_not_equal" = "Passwords are not equal";
+
+"enter_with" = "Enter with";
+"device_is_not_support_biometrics" = "Your device is not support biometrics enter"; // TODO: translate
+"touch_id" = "TouchID";
+"face_id" = "FaceID";
+"enter_with_touch_id" = "Enter with TouchID";
+"enter_with_face_id" = "Enter with FaceID";
+"enter_with_touch_id_question" = "Do you want to activate the TouchID?";
+"enter_with_face_id_question" = "Do you want to activate the FaceID?";
+"activate" = "Activate";
+"no_thanks" = "No, thanks";
+"touch_id_reason" = "Use touchID to enter";
+"face_id_reason" = "Use faceID to enter";
+
+"every_n_units" = "n %lu";
+"every_n_weeks" = "n %lu";
+"n_days" = "%lu n";
+"n_weeks" = "%lu n";
+"n_months" = "%lu n";
+"n_years" = "%lu n";
+"imported_n_tasks" = "%lu n";

@@ -12,11 +12,18 @@ enum UserProperty: String {
     case isFirstLoad
     case isEducationShown
     case isProtected
+    
+    case appTheme
+    
+    case listSorting
+    
+    case pinCode
+    case biometricsAuthenticationEnabled
 }
 
 extension UserProperty {
 
-    func setValue(_ value: Any) {
+    func setValue(_ value: Any?) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
     }
     
@@ -38,6 +45,14 @@ extension UserProperty {
     
     func int() -> Int {
         return UserDefaults.standard.integer(forKey: self.rawValue)
+    }
+    
+    func setString(_ value: String) {
+        UserDefaults.standard.set(value, forKey: self.rawValue)
+    }
+    
+    func string() -> String {
+        return UserDefaults.standard.string(forKey: self.rawValue) ?? ""
     }
 
 }
