@@ -274,6 +274,7 @@ final class AddTagView: BarView {
             }
         }
     }
+    @IBOutlet fileprivate weak var colorPickerHeightConstraint: NSLayoutConstraint!
     
     fileprivate func addTapGestureRecognizer(to view: UIView) {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapToColor))
@@ -283,7 +284,11 @@ final class AddTagView: BarView {
     @objc fileprivate func tapToColor() {
         guard let colorPicker = colorPicker else { return }
         colorPicker.selectedColorIndex = colors.index(of: color) ?? -1
-        colorPicker.isHidden = !colorPicker.isHidden
+        
+        colorPickerHeightConstraint.constant = colorPickerHeightConstraint.constant == 0 ? 52 : 0
+        UIView.animate(withDuration: 0.2) {
+            self.superview?.layoutIfNeeded()
+        }
     }
     
 }

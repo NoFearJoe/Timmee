@@ -17,13 +17,10 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     @IBOutlet fileprivate weak var subtasksLabel: UILabel!
     @IBOutlet fileprivate weak var importancyContainerView: UIView!
     @IBOutlet fileprivate weak var importancyIconView: UIImageView!
-    @IBOutlet fileprivate weak var attachmentsIconView: UIImageView!
     
     @IBOutlet fileprivate weak var tagsView: UIScrollView!
     
     @IBOutlet fileprivate weak var subtasksLabelLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var attachmentsViewLeadingConstraint: NSLayoutConstraint!
-    
     @IBOutlet fileprivate weak var tagsViewHeightConstraint: NSLayoutConstraint!
     
     var title: String? {
@@ -35,55 +32,19 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     }
     
     var dueDate: String? {
-        didSet {
-            dueDateLabel.text = dueDate
-            if let dueDate = dueDate, !dueDate.isEmpty {
-                subtasksLabelLeadingConstraint.constant = 10
-            } else {
-                subtasksLabelLeadingConstraint.constant = 0
-            }
-            updateAttachmentsViewLeadingConstraint()
-        }
+        didSet { updateDueDateView(with: dueDate) }
     }
     
     var subtasksInfo: (done: Int, total: Int)? {
-        didSet {
-            if let info = subtasksInfo, info.total != 0 {
-                subtasksLabel.text = "\(info.done)/\(info.total) подзадач" // TODO: убрать подзадач? поставить иконку???
-            } else {
-                subtasksLabel.text = nil
-            }
-            updateAttachmentsViewLeadingConstraint()
-        }
-    }
-    
-    func updateAttachmentsViewLeadingConstraint() {
-        if dueDate == nil && subtasksInfo == nil {
-            attachmentsViewLeadingConstraint.constant = 0
-        } else {
-            attachmentsViewLeadingConstraint.constant = 10
-        }
+        didSet { updateSubtasksView(with: subtasksInfo) }
     }
     
     var isImportant: Bool = false {
-        didSet {
-            importancyIconView.alpha = isImportant ? 1 : 0.5
-        }
-    }
-    
-    var containsAttachments: Bool = false {
-        didSet {
-            attachmentsIconView.isHidden = !containsAttachments // TODO
-        }
+        didSet { importancyIconView.image = isImportant ? #imageLiteral(resourceName: "important_active") : #imageLiteral(resourceName: "important_inactive") }
     }
     
     var isDone: Bool = false {
-        didSet {
-            containerView.alpha = isDone ? 0.75 : 1
-            
-            guard let title = title else { return }
-            updateTitle(title)
-        }
+        didSet { updateDoneState(with: isDone) }
     }
     
     func updateTagColors(with colors: [UIColor]) {
@@ -105,9 +66,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     }
     
     var maxTitleLinesCount: Int = 1 {
-        didSet {
-            titleLabel.numberOfLines = maxTitleLinesCount // FIXME: Bug - иногда отображается одна линия
-        }
+        didSet { titleLabel.numberOfLines = maxTitleLinesCount }
     }
     
     var onTapToImportancy: (() -> Void)?
@@ -124,23 +83,49 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         containerView.setNeedsDisplay()
         
         isImportant = false
-        containsAttachments = false
         isDone = false
         
         maxTitleLinesCount = 1
     }
     
+}
+
+fileprivate extension TableListRepresentationCell {
     
-    fileprivate func updateTitle(_ title: String) {
+    func updateDueDateView(with dueDate: String?) {
+        dueDateLabel.text = dueDate
+        if let dueDate = dueDate, !dueDate.isEmpty {
+            subtasksLabelLeadingConstraint.constant = 10
+        } else {
+            subtasksLabelLeadingConstraint.constant = 0
+        }
+    }
+    
+    func updateSubtasksView(with subtasksInfo: (done: Int, total: Int)?) {
+        if let info = subtasksInfo, info.total != 0 {
+            subtasksLabel.text = "\(info.done)/\(info.total) подзадач" // TODO: убрать подзадач? поставить иконку???
+        } else {
+            subtasksLabel.text = nil
+        }
+    }
+    
+    func updateDoneState(with isDone: Bool) {
+        containerView.alpha = isDone ? 0.75 : 1
+        
+        guard let title = title else { return }
+        updateTitle(title)
+    }
+    
+    func updateTitle(_ title: String) {
         titleLabel.text = title
     }
     
-    fileprivate func addTapToImportancyGestureRecognizer() {
+    func addTapToImportancyGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapImportancyView))
         importancyContainerView.addGestureRecognizer(recognizer)
     }
     
-    @objc fileprivate func tapImportancyView() {
+    @objc func tapImportancyView() {
         onTapToImportancy?()
     }
     
@@ -159,7 +144,7 @@ final class TableListRepersentationCellContainerView: UIView {
         
         context.setFillColor(fillColor.cgColor)
         
-        let path = UIBezierPath(roundedRect: rect.insetBy(dx: 0, dy: 1),
+        let path = UIBezierPath(roundedRect: rect.insetBy(dx: 0, dy: 2),
                                 cornerRadius: cornerRadius)
         path.fill()
     }

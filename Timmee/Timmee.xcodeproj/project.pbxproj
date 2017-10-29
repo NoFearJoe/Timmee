@@ -183,6 +183,8 @@
 		96115F601F72E3BB0050D7A3 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		96115F621F72E4060050D7A3 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		96115F641F72E7350050D7A3 /* TaskDueDateEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDueDateEditor.swift; sourceTree = "<group>"; };
+		961D67691FA65F3900511042 /* NextGrowingInternalTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGrowingInternalTextView.swift; sourceTree = "<group>"; };
+		961D676A1FA65F3900511042 /* NextGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGrowingTextView.swift; sourceTree = "<group>"; };
 		962C7B361F58810500639DD6 /* ListSorting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSorting.swift; sourceTree = "<group>"; };
 		9631790C1F513BFC007F7F53 /* ListIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
 		9631790E1F515A4A007F7F53 /* RandomStringGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomStringGenerator.swift; sourceTree = "<group>"; };
@@ -413,6 +415,15 @@
 				96115F5C1F7198AF0050D7A3 /* FadeBackgroundModalTransition.swift */,
 			);
 			path = TaskParameterEditorContainer;
+			sourceTree = "<group>";
+		};
+		961D67681FA65F3900511042 /* GrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				961D67691FA65F3900511042 /* NextGrowingInternalTextView.swift */,
+				961D676A1FA65F3900511042 /* NextGrowingTextView.swift */,
+			);
+			path = GrowingTextView;
 			sourceTree = "<group>";
 		};
 		963D6A281F59EBBB0063E295 /* ListRepresentations */ = {
@@ -1072,6 +1083,7 @@
 		96E543751F49ED890081C6F0 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				961D67681FA65F3900511042 /* GrowingTextView */,
 				96A5F12C1F507AC500F94553 /* GradientView.swift */,
 				96A5F12E1F507AC500F94553 /* NumPadButton.swift */,
 				96A5F12F1F507AC500F94553 /* PageControl.swift */,

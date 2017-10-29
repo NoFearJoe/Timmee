@@ -39,6 +39,7 @@ class SwipeTableActionsProvider {
         deleteAction.image = UIImage(named: "trash")
         deleteAction.textColor = AppTheme.current.scheme.redColor
         deleteAction.title = nil
+        deleteAction.accessibilityValue = ""
         deleteAction.backgroundColor = type(of: self).backgroundColor
         deleteAction.transitionDelegate = nil
         return deleteAction
@@ -55,6 +56,7 @@ class SwipeTableActionsProvider {
         editAction.image = UIImage(named: "edit")
         editAction.textColor = AppTheme.current.scheme.blueColor
         editAction.title = nil
+        editAction.accessibilityValue = ""
         editAction.backgroundColor = type(of: self).backgroundColor
         editAction.transitionDelegate = nil
         return editAction

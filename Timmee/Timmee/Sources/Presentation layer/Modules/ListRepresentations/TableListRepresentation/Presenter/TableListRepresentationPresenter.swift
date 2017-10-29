@@ -76,20 +76,10 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
         } else {
             view.hideNoTasksPlaceholder()
         }
-        
-        if interactor.sectionInfo(forSectionWithName: "0") == nil
-            || interactor.sectionInfo(forSectionWithName: "0")!.numberOfItems == 0 {
-            state.isCompletedTasksVisible = true
-        }
-        view.reloadCompletedTasks()
     }
     
     func operationCompleted() {
         view.setInteractionsEnabled(true)
-    }
-    
-    func shouldShowCompletedTasks() -> Bool {
-        return state.isCompletedTasksVisible
     }
     
     func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble) {
@@ -140,15 +130,6 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
     func didPressComplete(task: Task) {
         view.setInteractionsEnabled(false)
         interactor.completeTask(task)
-    }
-    
-    func toggleCompletedTasksVisibility() {
-        state.isCompletedTasksVisible = !state.isCompletedTasksVisible
-        view.reloadCompletedTasks()
-    }
-    
-    func isCompletedTasksVisible() -> Bool {
-        return state.isCompletedTasksVisible
     }
     
     func toggleImportancy(of task: Task) {

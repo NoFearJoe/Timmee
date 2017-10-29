@@ -18,8 +18,6 @@ protocol TableListRepresentationViewInput: class {
     
     func connect(with tableViewManagable: TableViewManageble)
     
-    func reloadCompletedTasks()
-    
     func resetOffset()
     
     func setInteractionsEnabled(_ isEnabled: Bool)
@@ -35,9 +33,6 @@ protocol TableListRepresentationViewOutput: class {
     func didPressEdit(for task: Task)
     func didPressDelete(task: Task)
     func didPressComplete(task: Task)
-    
-    func toggleCompletedTasksVisibility()
-    func isCompletedTasksVisible() -> Bool
     
     func toggleImportancy(of task: Task)
 }
@@ -174,19 +169,6 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         tableViewManagable.setTableView(tableView)
     }
     
-    func reloadCompletedTasks() {
-        let section0 = dataSource.sectionInfo(forSectionWithName: "0")
-        let section1 = dataSource.sectionInfo(forSectionWithName: "1")
-        
-        UIView.performWithoutAnimation {
-            if section0 != nil && section1 != nil {
-                self.tableView.reloadSections(IndexSet(integer: 1), with: .none)
-            } else if section1 != nil {
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
-            }
-        }
-    }
-    
     func resetOffset() {
         if dataSource.totalObjectsCount() > 0 {
             tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
@@ -194,7 +176,7 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
     }
     
     func setInteractionsEnabled(_ isEnabled: Bool) {
-        view.isUserInteractionEnabled = isEnabled
+        tableView.isUserInteractionEnabled = isEnabled
     }
 
     func setTaskTitleFieldFirstResponder() {
@@ -216,29 +198,32 @@ extension TableListRepresentationView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let sectionInfo = dataSource.sectionInfo(forSectionAt: indexPath.section),
-            sectionInfo.name == "1",
-            !output.isCompletedTasksVisible() {
-            return UITableViewCell()
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationCell",
                                                  for: indexPath) as! TableListRepresentationCell
         
         if let item = dataSource.item(at: indexPath.row, in: indexPath.section) {
-            cell.title = item.title
-            cell.dueDate = item.dueDate?.asDayMonthTime
-            cell.subtasksInfo = (item.subtasks.filter { $0.isDone }.count, item.subtasks.count)
-            cell.isImportant = item.isImportant
-            cell.containsAttachments = false // TODO
-            cell.isDone = item.isDone
             cell.updateTagColors(with:
                 item.tags
                     .sorted(by: { $0.0.title < $0.1.title })
                     .map { $0.color }
             )
             
-            cell.maxTitleLinesCount = item.subtasks.count > 0 || item.isDone || item.dueDate != nil /*|| attachments*/ ? 1 : 2
+            let hasParameters = item.subtasks.count > 0 || item.dueDate != nil
+            cell.maxTitleLinesCount = hasParameters || item.isDone ? 1 : 2
+            
+            cell.title = item.title
+            
+            cell.isDone = item.isDone
+            
+            if !item.isDone {
+                cell.dueDate = item.dueDate?.asDayMonthTime
+                cell.subtasksInfo = (item.subtasks.filter { $0.isDone }.count, item.subtasks.count)
+            } else {
+                cell.dueDate = nil
+                cell.subtasksInfo = nil
+            }
+            
+            cell.isImportant = item.isImportant
             
             cell.onTapToImportancy = { [weak self] in
                 guard let indexPath = tableView.indexPath(for: cell) else { return }
@@ -258,7 +243,6 @@ extension TableListRepresentationView: UITableViewDataSource {
 extension TableListRepresentationView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Перенести в SwipeActions
         if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
             output.didPressEdit(for: task)
         }
@@ -267,9 +251,7 @@ extension TableListRepresentationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
             // Если это секция незавершенных задач && есть секция завершенных задач и секция завершенных задач не пустая -> показывать кнопку
         if let sectionInfo = dataSource.sectionInfo(forSectionAt: section), sectionInfo.name == "1", sectionInfo.numberOfItems > 0 {
-            if let activeSectionInfo = dataSource.sectionInfo(forSectionWithName: "0"), activeSectionInfo.numberOfItems > 0 {
-                return 72
-            }
+            return 40
         }
         return 8
     }
@@ -279,40 +261,26 @@ extension TableListRepresentationView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if dataSource.sectionInfo(forSectionAt: indexPath.section)?.name == "1", !output.isCompletedTasksVisible() {
-            return 0
-        }
+        var height: CGFloat = 56
         
-        if let item = dataSource.item(at: indexPath.row, in: indexPath.section), item.tags.count > 0 {
-            return 58
+        if let item = dataSource.item(at: indexPath.row, in: indexPath.section) {
+            if item.isDone { height -= 15 }
+            if item.tags.count > 0 { height += 6 }
+            return height
         }
-        return 52
+        return height
     }
-    
-    static var titleAttributes: [String: Any] = {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .byWordWrapping
-        return [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16),
-            NSParagraphStyleAttributeName: paragraphStyle
-        ]
-    }()
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             // Если это секция незавершенных задач && есть секция завершенных задач и секция завершенных задач не пустая -> показывать кнопку
             if let sectionInfo = dataSource.sectionInfo(forSectionAt: section), sectionInfo.name == "1", sectionInfo.numberOfItems > 0 {
-                if let activeSectionInfo = dataSource.sectionInfo(forSectionWithName: "0"), activeSectionInfo.numberOfItems > 0 {
-                    let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableListRepresentationFooter") as! TableListRepresentationFooter
-                    
-                    view.title = output.isCompletedTasksVisible() ? "Скрыть завершенные задачи" : "Показать завершенные задачи"  // TODO
-                    view.onTap = {
-                        self.output.toggleCompletedTasksVisibility()
-                    }
-                    
-                    view.applyAppearance()
-                    
-                    return view
-                }
+                let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableListRepresentationFooter") as! TableListRepresentationFooter
+                
+                view.title = "Завершенные задачи"
+                
+                view.applyAppearance()
+                
+                return view
             }
         return UIView()
     }
@@ -407,10 +375,10 @@ final class TableListRepresentationFooter: UITableViewHeaderFooterView {
         button = UIButton(forAutoLayout: ())
         self.addSubview(button)
         button.autoSetDimension(.height, toSize: 32)
-        button.autoAlignAxis(.horizontal, toSameAxisOf: self, withOffset: -8)
+        button.autoAlignAxis(.horizontal, toSameAxisOf: self)
         button.autoAlignAxis(toSuperviewAxis: .vertical)
-        button.backgroundColor = AppTheme.current.scheme.panelColor
-        button.setTitleColor(AppTheme.current.scheme.tintColor, for: .normal)
+        button.backgroundColor = AppTheme.current.scheme.backgroundColor
+        button.setTitleColor(AppTheme.current.scheme.secondaryTintColor, for: .normal)
         button.layer.cornerRadius = 4
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         button.clipsToBounds = true

@@ -28,6 +28,7 @@ final class SwipeTaskActionsProvider: SwipeTableActionsProvider {
         })
         doneAction.textColor = AppTheme.current.scheme.greenColor
         doneAction.title = nil
+        doneAction.accessibilityValue = ""
         doneAction.backgroundColor = type(of: self).backgroundColor
         doneAction.transitionDelegate = nil
         return doneAction

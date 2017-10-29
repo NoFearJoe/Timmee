@@ -29,9 +29,7 @@ protocol TableListRepresentationInteractorInput: class {
 protocol TableListRepresentationInteractorOutput: class {
     func initialTasksFetched()
     func tasksCountChanged(count: Int)
-    
-    func shouldShowCompletedTasks() -> Bool
-    
+        
     func operationCompleted()
     
     func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
@@ -45,7 +43,7 @@ final class TableListRepresentationInteractor {
     
     fileprivate var tasksObserver: CoreDataObserver<Task>!
     fileprivate var lastListID: String?
-
+    
 }
 
 extension TableListRepresentationInteractor: TableListRepresentationInteractorInput {
@@ -119,7 +117,8 @@ extension TableListRepresentationInteractor: TableListRepresentationViewDataSour
     }
     
     func item(at index: Int, in section: Int) -> Task? {
-        return tasksObserver?.item(at: IndexPath(row: index, section: section))
+        let indexPath = IndexPath(row: index, section: section)
+        return tasksObserver?.item(at: indexPath)
     }
     
     func sectionInfo(forSectionAt index: Int) -> (name: String, numberOfItems: Int)? {
@@ -158,7 +157,7 @@ fileprivate extension TableListRepresentationInteractor {
         let context = (DefaultStorage.instance.storage as! CoreDataDefaultStorage).mainContext as! NSManagedObjectContext
         tasksObserver = CoreDataObserver(request: request,
                                          section: "isDone",
-                                         cacheName: nil,
+                                         cacheName: "tasks\(listID)",
                                          context: context)
         
         tasksObserver.mapping = { entity in

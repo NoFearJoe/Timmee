@@ -8,6 +8,7 @@
 
 import struct Foundation.Data
 import struct Foundation.Date
+import class Foundation.NSOrderedSet
 import class Foundation.NSKeyedUnarchiver
 import class CoreLocation.CLLocation
 
@@ -51,7 +52,7 @@ class Task {
         creationDate = task.creationDate! as Date
         
         tags = (Array(task.tags as? Set<TagEntity> ?? Set())).map { Tag(entity: $0) }
-        subtasks = (task.subtasks?.array as? [SubtaskEntity] ?? []).map { Subtask(entity: $0) }
+        subtasks = (task.subtasks!.array as! [SubtaskEntity]).map { Subtask(entity: $0) }
     }
     
     init(id: String,

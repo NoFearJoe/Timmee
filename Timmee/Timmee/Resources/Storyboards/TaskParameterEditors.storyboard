@@ -710,6 +710,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="colorPicker" destination="cdv-fr-KRq" id="GLX-D0-bQ1"/>
+                                    <outlet property="colorPickerHeightConstraint" destination="xT0-Oi-LsC" id="tSn-9c-GYZ"/>
                                     <outlet property="colorView" destination="6CU-bG-uRB" id="DiR-Od-sl3"/>
                                     <outlet property="textField" destination="XP7-lg-oax" id="3LN-bO-Wn4"/>
                                 </connections>
@@ -781,11 +782,11 @@
                                     <outlet property="delegate" destination="eie-4J-J8n" id="hgE-eU-LVF"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdv-fr-KRq" customClass="ColorPicker" customModule="Timmee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="52" width="375" height="52"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdv-fr-KRq" customClass="ColorPicker" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="52" width="375" height="0.0"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rbu-Ma-TaP">
-                                        <rect key="frame" x="0.0" y="6" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="90y-MW-nCn">
                                             <size key="itemSize" width="40" height="40"/>
@@ -795,14 +796,12 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorPickerCell" id="MIS-cd-uYj" customClass="ColorPickerCell" customModule="Timmee" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="0.0" width="40" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="DMY-lo-fzi">
-                                                            <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                                            <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                                         </imageView>
                                                     </subviews>
                                                 </view>
@@ -830,10 +829,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Rbu-Ma-TaP" secondAttribute="trailing" id="4IA-1h-0f5"/>
-                                    <constraint firstItem="Rbu-Ma-TaP" firstAttribute="top" secondItem="cdv-fr-KRq" secondAttribute="top" constant="6" id="hTc-nv-7ii"/>
+                                    <constraint firstItem="Rbu-Ma-TaP" firstAttribute="centerY" secondItem="cdv-fr-KRq" secondAttribute="centerY" id="BtV-Xy-IFT"/>
+                                    <constraint firstItem="Rbu-Ma-TaP" firstAttribute="top" secondItem="cdv-fr-KRq" secondAttribute="top" priority="750" constant="6" id="hTc-nv-7ii"/>
                                     <constraint firstItem="Rbu-Ma-TaP" firstAttribute="leading" secondItem="cdv-fr-KRq" secondAttribute="leading" id="mqR-LW-33Y"/>
-                                    <constraint firstAttribute="bottom" secondItem="Rbu-Ma-TaP" secondAttribute="bottom" constant="6" id="vpx-B2-9xR"/>
-                                    <constraint firstAttribute="height" constant="52" id="xT0-Oi-LsC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rbu-Ma-TaP" secondAttribute="bottom" priority="750" constant="6" id="vpx-B2-9xR"/>
+                                    <constraint firstAttribute="height" id="xT0-Oi-LsC"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="colorsCollectionView" destination="Rbu-Ma-TaP" id="Mif-f0-wUd"/>
@@ -846,12 +846,12 @@
                             <constraint firstItem="TIy-YK-QFE" firstAttribute="leading" secondItem="xSt-lS-jfF" secondAttribute="leading" id="Bi3-iZ-5ye"/>
                             <constraint firstAttribute="trailing" secondItem="cdv-fr-KRq" secondAttribute="trailing" id="Cha-lJ-R7w"/>
                             <constraint firstAttribute="bottom" secondItem="TIy-YK-QFE" secondAttribute="bottom" id="KtV-sO-aIJ"/>
-                            <constraint firstItem="TIy-YK-QFE" firstAttribute="top" secondItem="hSm-c4-Vqg" secondAttribute="bottom" id="R4l-QV-Yns"/>
                             <constraint firstItem="cdv-fr-KRq" firstAttribute="top" secondItem="hSm-c4-Vqg" secondAttribute="bottom" id="Zr8-3z-Em7"/>
                             <constraint firstItem="hSm-c4-Vqg" firstAttribute="top" secondItem="xSt-lS-jfF" secondAttribute="top" id="a5b-fX-3y4"/>
                             <constraint firstItem="hSm-c4-Vqg" firstAttribute="leading" secondItem="xSt-lS-jfF" secondAttribute="leading" id="f26-cg-lGC"/>
                             <constraint firstAttribute="trailing" secondItem="TIy-YK-QFE" secondAttribute="trailing" id="fG4-Z6-VTY"/>
                             <constraint firstItem="cdv-fr-KRq" firstAttribute="leading" secondItem="xSt-lS-jfF" secondAttribute="leading" id="swG-Qx-EpW"/>
+                            <constraint firstItem="TIy-YK-QFE" firstAttribute="top" secondItem="cdv-fr-KRq" secondAttribute="bottom" id="ywV-GN-wN4"/>
                         </constraints>
                     </view>
                     <connections>
@@ -861,7 +861,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zqd-c2-rzx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6582" y="152"/>
+            <point key="canvasLocation" x="6581.6000000000004" y="151.57421289355324"/>
         </scene>
         <!--Task Repeating Editor-->
         <scene sceneID="5XD-Pg-F6C">

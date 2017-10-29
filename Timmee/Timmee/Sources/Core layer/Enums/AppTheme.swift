@@ -71,17 +71,15 @@ struct AppThemeScheme {
     let greenColor: UIColor = UIColor(rgba: "42EC62")
     
     fileprivate static let whiteThemeTagColors: [UIColor] = [
-        UIColor(rgba: "EB4949"), UIColor(rgba: "0EAEE4"), UIColor(rgba: "42EC62"),
-        UIColor(rgba: "999999"), UIColor(rgba: "FFD700"), UIColor(rgba: "EB4949"),
-        UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949"),
-        UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949")
+        UIColor(rgba: "FF3B30"), UIColor(rgba: "FF9500"), UIColor(rgba: "FFCC00"),
+        UIColor(rgba: "4CF964"), UIColor(rgba: "5AC8FA"), UIColor(rgba: "007AFF"),
+        UIColor(rgba: "5856D6"), UIColor(rgba: "FF2D55"), UIColor(rgba: "999999")
     ]
     
     fileprivate static let blackThemeTagColors: [UIColor] = [
-        UIColor(rgba: "EB4949"), UIColor(rgba: "0EAEE4"), UIColor(rgba: "42EC62"),
-        UIColor(rgba: "999999"), UIColor(rgba: "FFD700"), UIColor(rgba: "EB4949"),
-        UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949"),
-        UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949"), UIColor(rgba: "EB4949")
+        UIColor(rgba: "FF3B30"), UIColor(rgba: "FF9500"), UIColor(rgba: "FFCC00"),
+        UIColor(rgba: "4CF964"), UIColor(rgba: "5AC8FA"), UIColor(rgba: "007AFF"),
+        UIColor(rgba: "5856D6"), UIColor(rgba: "FF2D55"), UIColor(rgba: "999999")
     ]
 
 }
