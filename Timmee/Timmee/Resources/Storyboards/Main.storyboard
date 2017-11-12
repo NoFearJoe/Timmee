@@ -1,26 +1,65 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5mz-D7-g42">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--TaskEditorView-->
+        <scene sceneID="zit-Ma-bHF">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="TaskEditor" referencedIdentifier="TaskEditorView" id="puo-ga-MGQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kx7-oE-3zf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="-305"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="4ci-Hk-AAy">
+            <objects>
+                <viewController id="5mz-D7-g42" customClass="MainViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="sxb-5N-eNx"/>
+                        <viewControllerLayoutGuide type="bottom" id="nXo-ZA-CpX"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="RpN-Nf-xHn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hl3-ih-8t1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQI-FR-TFf" customClass="PassthrowView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hl3-ih-8t1" firstAttribute="leading" secondItem="RpN-Nf-xHn" secondAttribute="leading" id="0XK-Wg-lzd"/>
+                            <constraint firstAttribute="trailing" secondItem="Hl3-ih-8t1" secondAttribute="trailing" id="90M-iC-oKO"/>
+                            <constraint firstAttribute="trailing" secondItem="qQI-FR-TFf" secondAttribute="trailing" id="BYZ-eZ-Pqf"/>
+                            <constraint firstItem="nXo-ZA-CpX" firstAttribute="top" secondItem="Hl3-ih-8t1" secondAttribute="bottom" id="XYK-DE-wXT"/>
+                            <constraint firstItem="qQI-FR-TFf" firstAttribute="leading" secondItem="RpN-Nf-xHn" secondAttribute="leading" id="bXw-JL-HGR"/>
+                            <constraint firstAttribute="bottom" secondItem="qQI-FR-TFf" secondAttribute="bottom" id="bvp-I4-iVT"/>
+                            <constraint firstItem="qQI-FR-TFf" firstAttribute="top" secondItem="RpN-Nf-xHn" secondAttribute="top" id="icF-dc-XzS"/>
+                            <constraint firstItem="Hl3-ih-8t1" firstAttribute="top" secondItem="sxb-5N-eNx" secondAttribute="bottom" id="pSC-F4-38v"/>
+                        </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="contentContainerView" destination="Hl3-ih-8t1" id="fL6-Z9-Y3b"/>
+                        <outlet property="mainTopViewContainer" destination="qQI-FR-TFf" id="k9x-iy-HHl"/>
+                        <segue destination="puo-ga-MGQ" kind="presentation" identifier="ShowTaskEditor" id="j1q-qa-cWI"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iz3-xZ-uSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="901.60000000000002" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>

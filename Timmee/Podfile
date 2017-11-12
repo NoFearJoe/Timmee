@@ -2,7 +2,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Timmee' do
-  pod 'Hero'
   pod 'MTDates'
   pod 'SugarRecord/CoreData+iCloud'
+  pod 'PureLayout'
+  pod 'SwipeCellKit', '1.9.1'
 end

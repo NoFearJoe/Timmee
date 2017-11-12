@@ -1,0 +1,166 @@
+/* 
+  Localizable.strings
+  Timmee
+
+  Created by Ilya Kharabet on 05.09.17.
+  Copyright © 2017 Mesterra. All rights reserved.
+*/
+
+"all_tasks" = "Все задачи";
+"yesterday" = "Вчера";
+"today" = "Сегодня";
+"tomorrow" = "Завтра";
+"week" = "Неделя";
+"new_list" = "Новый список...";
+"import_tasks" = "Добавить задачи";
+"no_tasks_to_import" = "Нет задач для импорта";
+"tasks_without_list" = "Не в списке";
+"no_searched_tasks" = "Задач не найдено";
+"input_task_title" = "Название задачи...";
+"input_task_note" = "Описание...";
+"search" = "Поиск...";
+"initial_search_title" = "Поиск задач";
+"initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
+
+"no_tasks" = "Нет задач";
+"new_task" = "Новая задача...";
+"no_tasks_hint" = "Добавьте задачу нажав на иконку ручки вверху";
+
+"important_and_urgent" = "Важные и срочные";
+"important" = "Важные";
+"urgent" = "Срочные";
+"onther" = "Остальные";
+
+"reminder" = "Напоминание";
+"remind" = "Напомнить"; // в среду
+"location" = "Место";
+"remind_in_location" = "Напомнить по месту";
+"due_date" = "Дата выполнения";
+"finish" = "Выполнить"; // сегодня в 21:00
+"repeat_ending_date" = "Дата окончания";
+"tags_picker" = "Тэги";
+"input_tag" = "Введите тэг...";
+"no_tags" = "Нет тэгов";
+"no_tags_hint" = "Введите название и выберите цвет чтобы создать тэг";
+"in_progress" = "В процессе";
+
+"repeat" = "Повтор";
+"everyday" = "Ежедневно";
+"weekly" = "Еженедельно";
+"on_weekdays" = "По будням";
+"on_weekends" = "По выходным";
+"weekdays" = "будни";
+"weekends" = "выходные";
+"monthly" = "Ежемесячно";
+"every_year" = "Ежегодно";
+"at" = "в"; // 21:00
+"upon" = "За"; // 15 минут
+"no_repeat" = "Не повторять";
+"until" = "до";
+
+"hours" = "часы";
+"minutes" = "минуты";
+
+"choose_interval" = "Выбрать интервал";
+"choose_days" = "Выбрать дни";
+
+"monday" = "Понедельник";
+"tuesday" = "Вторник";
+"wednesday" = "Среда";
+"thursday" = "Четверг";
+"friday" = "Пятница";
+"saturday" = "Суббота";
+"sunday" = "Воскресенье";
+"mon" = "пн";
+"tue" = "вт";
+"wed" = "ср";
+"thu" = "чт";
+"fri" = "пт";
+"sat" = "сб";
+"sun" = "вс";
+
+"on_monday" = "В понедельник";
+"on_tuesday" = "Во вторник";
+"on_wednesday" = "В среду";
+"on_thursday" = "В четверг";
+"on_friday" = "В пятницу";
+"on_saturday" = "В субботу";
+"on_sunday" = "В воскресенье";
+
+"settings" = "Настройки";
+"background_color" = "Цвет фона";
+"password_protection" = "Защита паролем";
+"licenses" = "Лицензии";
+"give_feedback" = "Оставить отзыв";
+"additional_features" = "Дополнительные функции";
+
+"remove_list" = "Удаление списка";
+"remove_tasks" = "Удаление задач";
+"move_tasks" = "Перенос задач";
+"are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Вы уверены, что хотите удалить список со всеми задачами?";
+"are_you_sure_you_want_to_delete_tasks" = "Вы уверены, что хотите удалить задачи?";
+"are_you_sure_you_want_to_move_tasks" = "Вы уверены, что хотите перенести задачи в список";
+"i_am_sure" = "Да, уверен";
+"cancel" = "Отмена";
+
+"remove" = "Удалить";
+"edit" = "Изменить";
+"done" = "Готово";
+"close" = "Закрыть";
+"back" = "Назад";
+"continue" = "Далее";
+"complete" = "Завершить";
+"restore" = "Восстановить";
+"move" = "Переместить";
+
+"create_password" = "Придумайте пароль";
+"enter_password" = "Введите пароль";
+"wrong_password" = "Неверный пароль";
+"repeat_password" = "Повторите пароль";
+"passwords_are_not_equal" = "Пароли не совпадают";
+
+"enter_with" = "Вход по";
+"device_is_not_support_biometrics" = "Ваше устройство не поддерживает вход по биометрическим параметрам"; // TODO: translate
+"touch_id" = "TouchID";
+"face_id" = "FaceID";
+"enter_with_touch_id" = "Вход по TouchID";
+"enter_with_face_id" = "Вход по FaceID";
+"enter_with_touch_id_question" = "Хотите активировать вход по TouchID?";
+"enter_with_face_id_question" = "Хотите активировать вход по FaceID?";
+"activate" = "Активировать";
+"no_thanks" = "Нет, спасибо";
+"touch_id_reason" = "Используйте отпечаток пальца для входа";
+"face_id_reason" = "Используйте сканирование лица для входа";
+
+"general_section" = "Основные";
+"security_section" = "Безопасность";
+"about_section" = "Дополнительно";
+"pin_code_protection" = "Защита паролем";
+"is_on" = "Включена";
+"is_off" = "Выключена";
+"rate" = "Оценить приложение";
+"license" = "Лицензия";
+"restore_purchases" = "Восстановить покупки";
+"list_sorting" = "Сортировка списков";
+"sort_by_creation_date" = "По дате создания";
+"sort_by_tasks_count" = "По количеству задач";
+"sort_by_title" = "По алфавиту";
+"theme" = "Тема";
+"white_theme" = "Светлая";
+"black_theme" = "Темная";
+
+"every_n_units" = "n %lu";
+"every_n_weeks" = "n %lu";
+"n_days" = "%lu n";
+"n_weeks" = "%lu n";
+"n_months" = "%lu n";
+"n_years" = "%lu n";
+"imported_n_tasks" = "%lu n";
+
+
+"dark_theme_inapp_title" = "Темная тема";
+"dark_theme_inapp_description" = "Черная как негретянский мальчик";
+"tags_inapp_title" = "Тэги";
+"tags_inapp_description" = "Активируйте тэги для повышения удобства при работе с задачами";
+"date_templates_inapp_title" = "Временные шаблоны";
+"date_templates_inapp_description" = "Часто выполняете задачи в определенное время? Временные шаблоны позволят упростить создание задач";
