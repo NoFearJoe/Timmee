@@ -30,15 +30,15 @@ final class TasksImportCell: UITableViewCell {
     
     var isDone: Bool = false {
         didSet {
-            titleLabel.textColor = AppTheme.current.scheme.cellTintColor.withAlphaComponent(isDone ? 0.5 : 1)
+            titleLabel.textColor = AppTheme.current.tintColor.withAlphaComponent(isDone ? 0.5 : 1)
             titleLabel.numberOfLines = isDone ? 1 : 2
         }
     }
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.backgroundColor = AppTheme.current.scheme.cellBackgroundColor
-        titleLabel.textColor = AppTheme.current.scheme.cellTintColor
+        containerView.backgroundColor = AppTheme.current.foregroundColor
+        titleLabel.textColor = AppTheme.current.tintColor
     }
 
 }

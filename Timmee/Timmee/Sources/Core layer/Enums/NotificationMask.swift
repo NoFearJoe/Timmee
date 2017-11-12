@@ -40,5 +40,16 @@ extension NotificationMask {
         case .till1day: return "Напомнить за день"
         }
     }
+    
+    var minutes: Int {
+        switch self {
+        case .doNotNotify: return 0
+        case .justInTime: return 0
+        case .till10minutes: return 10
+        case .till30minutes: return 30
+        case .till1hour: return 60
+        case .till1day: return 60 * 24
+        }
+    }
 
 }

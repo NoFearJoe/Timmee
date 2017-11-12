@@ -12,40 +12,61 @@ import SwipeCellKit
 protocol MainTopViewControllerOutput: class {
     func currentListChanged(to list: List)
     func listCreated()
+    func willShowLists()
 }
 
 final class MainTopViewController: UIViewController {
 
     @IBOutlet fileprivate weak var overlayView: UIView!
     @IBOutlet fileprivate weak var controlPanel: ControlPanel!
+    
+    @IBOutlet fileprivate weak var listsViewContainer: BarView!
+    @IBOutlet fileprivate weak var addListView: AddListView!
     @IBOutlet fileprivate weak var listsView: UITableView!
+    
+    @IBOutlet fileprivate var addListViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var listsViewHeightConstrint: NSLayoutConstraint!
     
     weak var output: MainTopViewControllerOutput?
+    weak var editingInput: ListRepresentationEditingInput?
     
     fileprivate let listsInteractor = ListsInteractor()
     fileprivate var currentListIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     
-    fileprivate var isListsVisible: Bool = false {
+    fileprivate var isListsVisible: Bool = true {
         didSet {
             listsView.hideSwipeCell()
         }
     }
     
-    fileprivate let swipeTableActionsProvider = SwipeTableActionsProvider()
+    fileprivate var isGroupEditing: Bool = false
+    
+    fileprivate var isPickingList: Bool = false {
+        didSet {
+            addListViewHeightConstraint.constant = isPickingList ? 0 : 44
+        }
+    }
+    fileprivate var pickingListCompletion: ((List) -> Void)?
+    
+    fileprivate let swipeTableActionsProvider = ListsSwipeTableActionsProvider()
     
     
     @IBAction fileprivate func didPressSettingsButton() {
-        // Show settings
+        let viewController = ViewControllersFactory.settings
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction fileprivate func didPressSearchButton() {
-//        hideLists(animated: true)
-//        // Show add list VC
+        hideLists(animated: true)
+        let viewController = ViewControllersFactory.search
+        SearchAssembly.assembly(with: viewController)
+        present(viewController, animated: true, completion: nil)
     }
     
-    @IBAction fileprivate func didPressAddListButton() {
-        showListEditor(with: nil)
+    @IBAction fileprivate func didPressEditButton() {
+        controlPanel.setGroupEditingButtonEnabled(false)
+        editingInput?.toggleGroupEditing()
+        hideLists(animated: true)
     }
     
     @IBAction fileprivate func didPressOverlayView() {
@@ -55,6 +76,7 @@ final class MainTopViewController: UIViewController {
     }
     
     @IBAction fileprivate func didPressControlPanel() {
+        guard !isGroupEditing else { return }
         isListsVisible ? hideLists(animated: true) : showLists(animated: true)
     }
     
@@ -75,6 +97,10 @@ final class MainTopViewController: UIViewController {
             }
         }
         
+        addListView.onTap = { [unowned self] in
+            self.showListEditor(with: nil)
+        }
+                
         hideLists(animated: false)
     }
     
@@ -82,32 +108,45 @@ final class MainTopViewController: UIViewController {
         super.viewWillAppear(animated)
         
         controlPanel.applyAppearance()
-        listsView.separatorColor = AppTheme.current.scheme.panelColor
+        listsView.separatorColor = AppTheme.current.panelColor
+        addListView.barColor = AppTheme.current.foregroundColor
+        listsViewContainer.barColor = AppTheme.current.foregroundColor
         
         listsView.hideSwipeCell(animated: false)
     }
     
     func showLists(animated: Bool) {
-        listsView.reloadData()
+        guard !isListsVisible else { return }
         
-        isListsVisible = true
+        output?.willShowLists()
+        
+        listsView.reloadData()
+        listsView.setContentOffset(.zero, animated: false)
+        
         (view as? PassthrowView)?.shouldPassTouches = false
         overlayView.isHidden = false
         
-        listsViewHeightConstrint.constant = max(view.frame.height * 0.5, 256)
+        let estimatedHeight = view.frame.height * 0.75
+        let extraHeight = estimatedHeight.truncatingRemainder(dividingBy: 44)
+        listsViewHeightConstrint.constant = estimatedHeight - extraHeight
         
         if animated {
-            UIView.animate(withDuration: 0.25) {
+            UIView.animate(withDuration: 0.25, animations: {
                 self.overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
                 self.view.layoutIfNeeded()
+            }) { _ in
+                self.isListsVisible = true
             }
         } else {
             overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
+            isListsVisible = true
         }
     }
     
     func hideLists(animated: Bool) {
-        isListsVisible = false
+        guard isListsVisible else { return }
+        
+        isPickingList = false
         (view as? PassthrowView)?.shouldPassTouches = true
         
         listsViewHeightConstrint.constant = 0
@@ -118,10 +157,12 @@ final class MainTopViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }) { _ in
                 self.overlayView.isHidden = true
+                self.isListsVisible = false
             }
         } else {
             view.backgroundColor = .clear
             overlayView.isHidden = true
+            isListsVisible = false
         }
     }
     
@@ -146,14 +187,6 @@ extension MainTopViewController: ListsInteractorOutput {
     
     func didFetchInitialLists() {
         setCurrentList(IndexPath(row: 0, section: 0))
-    }
-    
-    func didUpdateListsCount(_ count: Int) {
-        if count == 0 {
-            // TODO
-        } else {
-            
-        }
     }
     
     func didUpdateLists(with change: CoreDataItemChange) {
@@ -197,8 +230,9 @@ extension MainTopViewController: UITableViewDataSource {
             cell.setListSelected(indexPath == currentListIndexPath)
             
             if !(list is SmartList) {
-                cell.delegate = swipeTableActionsProvider
+                cell.delegate = isPickingList ? nil : swipeTableActionsProvider
             } else {
+                cell.contentView.alpha = isPickingList ? 0.5 : 1
                 cell.delegate = nil
             }
         }
@@ -211,13 +245,29 @@ extension MainTopViewController: UITableViewDataSource {
 extension MainTopViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        setCurrentList(indexPath)
-        tableView.reloadData()
-        hideLists(animated: true)
+        if isPickingList {
+            if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
+                guard !(list is SmartList) else { return }
+                pickingListCompletion?(list)
+                hideLists(animated: true) // TODO: Может сначала алерт?
+            }
+        } else {
+            setCurrentList(indexPath)
+            tableView.reloadData()
+            hideLists(animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? ListCell)?.applyAppearance()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 0 ? 1 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return ListsSeparatorView()
     }
     
 }
@@ -229,6 +279,26 @@ extension MainTopViewController: ListEditorOutput {
         output?.listCreated()
     }
 
+}
+
+extension MainTopViewController: ListRepresentationEditingOutput {
+    
+    func groupEditingToggled(to isEditing: Bool) {
+        isGroupEditing = isEditing
+        controlPanel.setGroupEditingButtonEnabled(true)
+        controlPanel.changeGroupEditingState(to: isEditing)
+    }
+    
+    func didAskToShowListsForMoveTasks(completion: @escaping (List) -> Void) {
+        isPickingList = true
+        pickingListCompletion = completion
+        showLists(animated: true)
+    }
+    
+    func setGroupEditingVisible(_ isVisible: Bool) {
+        controlPanel.setGroupEditingVisible(isVisible)
+    }
+    
 }
 
 fileprivate extension MainTopViewController {
@@ -272,4 +342,32 @@ fileprivate extension MainTopViewController {
         listsInteractor.removeList(list)
     }
 
+}
+
+final class ListsSeparatorView: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        backgroundColor = .clear
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
+        context.setStrokeColor(AppTheme.current.panelColor.cgColor)
+        context.setLineWidth(1)
+        context.setLineDash(phase: 2, lengths: [4, 4])
+        
+        context.move(to: CGPoint(x: 0, y: 0.5))
+        context.addLine(to: CGPoint(x: rect.width, y: 0.5))
+        context.strokePath()
+    }
+    
 }

@@ -11,14 +11,19 @@
 "today" = "Сегодня";
 "tomorrow" = "Завтра";
 "week" = "Неделя";
-"new_list" = "Новый список";
+"new_list" = "Новый список...";
 "import_tasks" = "Добавить задачи";
 "no_tasks_to_import" = "Нет задач для импорта";
 "tasks_without_list" = "Не в списке";
 "no_searched_tasks" = "Задач не найдено";
+"input_task_title" = "Название задачи...";
+"input_task_note" = "Описание...";
+"search" = "Поиск...";
+"initial_search_title" = "Поиск задач";
+"initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
 
 "no_tasks" = "Нет задач";
-"new_task" = "Новая задача";
+"new_task" = "Новая задача...";
 "no_tasks_hint" = "Добавьте задачу нажав на иконку ручки вверху";
 
 "important_and_urgent" = "Важные и срочные";
@@ -37,6 +42,7 @@
 "input_tag" = "Введите тэг...";
 "no_tags" = "Нет тэгов";
 "no_tags_hint" = "Введите название и выберите цвет чтобы создать тэг";
+"in_progress" = "В процессе";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";
@@ -50,6 +56,7 @@
 "at" = "в"; // 21:00
 "upon" = "За"; // 15 минут
 "no_repeat" = "Не повторять";
+"until" = "до";
 
 "hours" = "часы";
 "minutes" = "минуты";
@@ -87,8 +94,12 @@
 "give_feedback" = "Оставить отзыв";
 "additional_features" = "Дополнительные функции";
 
-"remove_list" = "Удалить список";
+"remove_list" = "Удаление списка";
+"remove_tasks" = "Удаление задач";
+"move_tasks" = "Перенос задач";
 "are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Вы уверены, что хотите удалить список со всеми задачами?";
+"are_you_sure_you_want_to_delete_tasks" = "Вы уверены, что хотите удалить задачи?";
+"are_you_sure_you_want_to_move_tasks" = "Вы уверены, что хотите перенести задачи в список";
 "i_am_sure" = "Да, уверен";
 "cancel" = "Отмена";
 
@@ -98,6 +109,9 @@
 "close" = "Закрыть";
 "back" = "Назад";
 "continue" = "Далее";
+"complete" = "Завершить";
+"restore" = "Восстановить";
+"move" = "Переместить";
 
 "create_password" = "Придумайте пароль";
 "enter_password" = "Введите пароль";
@@ -118,6 +132,23 @@
 "touch_id_reason" = "Используйте отпечаток пальца для входа";
 "face_id_reason" = "Используйте сканирование лица для входа";
 
+"general_section" = "Основные";
+"security_section" = "Безопасность";
+"about_section" = "Дополнительно";
+"pin_code_protection" = "Защита паролем";
+"is_on" = "Включена";
+"is_off" = "Выключена";
+"rate" = "Оценить приложение";
+"license" = "Лицензия";
+"restore_purchases" = "Восстановить покупки";
+"list_sorting" = "Сортировка списков";
+"sort_by_creation_date" = "По дате создания";
+"sort_by_tasks_count" = "По количеству задач";
+"sort_by_title" = "По алфавиту";
+"theme" = "Тема";
+"white_theme" = "Светлая";
+"black_theme" = "Темная";
+
 "every_n_units" = "n %lu";
 "every_n_weeks" = "n %lu";
 "n_days" = "%lu n";
@@ -125,3 +156,11 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 "imported_n_tasks" = "%lu n";
+
+
+"dark_theme_inapp_title" = "Темная тема";
+"dark_theme_inapp_description" = "Черная как негретянский мальчик";
+"tags_inapp_title" = "Тэги";
+"tags_inapp_description" = "Активируйте тэги для повышения удобства при работе с задачами";
+"date_templates_inapp_title" = "Временные шаблоны";
+"date_templates_inapp_description" = "Часто выполняете задачи в определенное время? Временные шаблоны позволят упростить создание задач";

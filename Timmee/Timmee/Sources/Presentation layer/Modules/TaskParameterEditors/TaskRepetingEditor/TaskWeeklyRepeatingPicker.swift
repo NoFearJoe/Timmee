@@ -33,29 +33,29 @@ final class TaskWeeklyRepeatingPicker: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.scheme.blueColor.withAlphaComponent(0.5),
+        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.blueColor.withAlphaComponent(0.5),
                                                     for: .normal)
-        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.scheme.redColor.withAlphaComponent(0.5),
+        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.redColor.withAlphaComponent(0.5),
                                                     for: .normal)
-        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.scheme.blueColor,
+        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.blueColor,
                                                     for: .selected)
-        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.scheme.redColor,
+        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.redColor,
                                                     for: .selected)
-        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.scheme.blueColor,
+        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.blueColor,
                                                     for: .highlighted)
-        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.scheme.redColor,
+        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.redColor,
                                                     for: .highlighted)
         weekDaysPicker.dayButtons.prefix(upTo: 5).forEach {
-            $0.titleNormalColor = AppTheme.current.scheme.tintColor
-            $0.titleSelectedColor = AppTheme.current.scheme.backgroundColor
-            $0.backgroundNormalColor = AppTheme.current.scheme.panelColor
-            $0.backgroundSelectedColor = AppTheme.current.scheme.blueColor
+            $0.titleNormalColor = AppTheme.current.tintColor
+            $0.titleSelectedColor = AppTheme.current.backgroundColor
+            $0.backgroundNormalColor = AppTheme.current.panelColor
+            $0.backgroundSelectedColor = AppTheme.current.blueColor
         }
         weekDaysPicker.dayButtons.suffix(2).forEach {
-            $0.titleNormalColor = AppTheme.current.scheme.tintColor
-            $0.titleSelectedColor = AppTheme.current.scheme.backgroundColor
-            $0.backgroundNormalColor = AppTheme.current.scheme.panelColor
-            $0.backgroundSelectedColor = AppTheme.current.scheme.redColor
+            $0.titleNormalColor = AppTheme.current.tintColor
+            $0.titleSelectedColor = AppTheme.current.backgroundColor
+            $0.backgroundNormalColor = AppTheme.current.panelColor
+            $0.backgroundSelectedColor = AppTheme.current.redColor
         }
     }
 

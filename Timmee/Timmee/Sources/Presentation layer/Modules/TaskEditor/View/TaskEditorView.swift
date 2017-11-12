@@ -83,31 +83,31 @@ protocol TaskEditorSubtasksDataSource: class {
 
 final class TaskEditorView: UIViewController {
 
-    @IBOutlet fileprivate weak var contentContainerView: BarView!
-    @IBOutlet fileprivate weak var contentScrollView: UIScrollView!
-    @IBOutlet fileprivate weak var contentView: UIView!
+    @IBOutlet fileprivate var contentContainerView: BarView!
+    @IBOutlet fileprivate var contentScrollView: UIScrollView!
+    @IBOutlet fileprivate var contentView: UIView!
     
-    @IBOutlet fileprivate weak var taskTitleField: GrowingTextView!
-    @IBOutlet fileprivate weak var taskNoteField: GrowingTextView!
+    @IBOutlet fileprivate var taskTitleField: GrowingTextView!
+    @IBOutlet fileprivate var taskNoteField: GrowingTextView!
     
-    @IBOutlet fileprivate weak var closeButton: UIButton!
-    @IBOutlet fileprivate weak var doneButton: UIButton!
+    @IBOutlet fileprivate var closeButton: UIButton!
+    @IBOutlet fileprivate var doneButton: UIButton!
     
-    @IBOutlet fileprivate weak var dueDateView: TaskParameterView!
-    @IBOutlet fileprivate weak var reminderView: TaskParameterView!
-    @IBOutlet fileprivate weak var repeatView: TaskParameterView!
-    @IBOutlet fileprivate weak var repeatEndingDateView: TaskParameterView!
+    @IBOutlet fileprivate var dueDateView: TaskParameterView!
+    @IBOutlet fileprivate var reminderView: TaskParameterView!
+    @IBOutlet fileprivate var repeatView: TaskParameterView!
+    @IBOutlet fileprivate var repeatEndingDateView: TaskParameterView!
     
-    @IBOutlet fileprivate weak var locationView: TaskParameterView!
-    @IBOutlet fileprivate weak var locationReminderView: TaskCheckableParameterView!
+    @IBOutlet fileprivate var locationView: TaskParameterView!
+    @IBOutlet fileprivate var locationReminderView: TaskCheckableParameterView!
     
-    @IBOutlet fileprivate weak var taskTagsView: TaskTagsView!
+    @IBOutlet fileprivate var taskTagsView: TaskTagsView!
     
-    @IBOutlet fileprivate weak var taskImportancyPicker: TaskImportancyPicker!
+    @IBOutlet fileprivate var taskImportancyPicker: TaskImportancyPicker!
     
-    @IBOutlet fileprivate weak var addSubtaskView: AddSubtaskView!
-    @IBOutlet fileprivate weak var subtasksView: UITableView!
-    @IBOutlet fileprivate weak var subtasksViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var addSubtaskView: AddSubtaskView!
+    @IBOutlet fileprivate var subtasksView: ReorderableTableView!
+    @IBOutlet fileprivate var subtasksViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet fileprivate var separators: [UIView]!
     
@@ -124,7 +124,7 @@ final class TaskEditorView: UIViewController {
     fileprivate let keyboardManager = KeyboardManager()
     
     fileprivate let subtaskCellActionsProvider = SubtaskCellActionsProvider()
-        
+    
     @IBAction fileprivate func closeButtonPressed() {
         output.closeButtonPressed()
     }
@@ -140,6 +140,27 @@ final class TaskEditorView: UIViewController {
         setupTitleObserver()
         setupNoteObserver()
         setupSubtasksContentSizeObserver()
+        
+        taskTitleField.textView.delegate = self
+        taskTitleField.textView.textContainerInset = UIEdgeInsets(top: 3.5, left: 0, bottom: 3.5, right: 0)
+        taskTitleField.textView.font = UIFont.systemFont(ofSize: 24)
+        taskTitleField.maxNumberOfLines = 3
+        taskTitleField.showsVerticalScrollIndicator = false
+        taskTitleField.placeholderAttributedText
+            = NSAttributedString(string: "input_task_title".localized,
+                                 attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 24),
+                                              NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
+        
+        taskNoteField.textView.delegate = self
+        taskNoteField.textView.textContainerInset = .zero
+        taskNoteField.textView.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightLight)
+        taskNoteField.maxNumberOfLines = 5
+        taskNoteField.showsVerticalScrollIndicator = false
+        taskNoteField.placeholderAttributedText
+            = NSAttributedString(string: "input_task_note".localized,
+                                 attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16,
+                                                                                     weight: UIFontWeightLight),
+                                              NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
         
         dueDateView.didChangeFilledState = { [weak self] isFilled in
             self?.reminderView.isHidden = !isFilled
@@ -190,9 +211,7 @@ final class TaskEditorView: UIViewController {
             self?.output.locationReminderSelectionChanged(to: isChecked)
         }
         
-//        taskTagsView.didChangeFilledState = { [weak self] isFilled in
-//
-//        }
+
         taskTagsView.didTouchedUp = { [weak self] in
             self?.showTagsPicker()
         }
@@ -211,12 +230,13 @@ final class TaskEditorView: UIViewController {
         }
         
         addSubtaskView.didEndEditing = { [weak self] title in
-            if !title.isEmpty {
+            if !title.trimmed.isEmpty {
                 self?.output.addSubtask(with: title)
             }
         }
         subtasksView.estimatedRowHeight = 36
         subtasksView.rowHeight = UITableViewAutomaticDimension
+        subtasksView.longPressReorderDelegate = self
         
         keyboardManager.keyboardWillAppear = { [weak self] frame, duration in
             guard let `self` = self else { return }
@@ -236,20 +256,28 @@ final class TaskEditorView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        contentContainerView.barColor = AppTheme.current.scheme.backgroundColor
-        closeButton.tintColor = AppTheme.current.scheme.backgroundColor
-        doneButton.tintColor = AppTheme.current.scheme.greenColor
+        view.backgroundColor = AppTheme.current.backgroundColor
         
-        taskTitleField.textColor = AppTheme.current.scheme.specialColor
-        taskTitleField.tintColor = AppTheme.current.scheme.tintColor
-        taskNoteField.textColor = AppTheme.current.scheme.tintColor
-        taskNoteField.tintColor = AppTheme.current.scheme.tintColor
+        contentContainerView.barColor = AppTheme.current.foregroundColor
+        closeButton.tintColor = AppTheme.current.redColor
+        doneButton.tintColor = AppTheme.current.greenColor
         
-        if taskTitleField.text.isEmpty {
+        taskTitleField.textView.textColor = AppTheme.current.specialColor
+        taskTitleField.tintColor = AppTheme.current.tintColor
+        taskNoteField.textView.textColor = AppTheme.current.tintColor
+        taskNoteField.tintColor = AppTheme.current.tintColor
+        
+        if taskTitleField.textView.text.isEmpty {
             taskTitleField.becomeFirstResponder()
         }
         
+        taskTitleField.disableAutomaticScrollToBottom = true
+        taskNoteField.disableAutomaticScrollToBottom = true
+        
         output.viewDidAppear()
+        
+        taskTitleField.updateMinimumAndMaximumHeight()
+        taskNoteField.updateMinimumAndMaximumHeight()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -289,21 +317,21 @@ final class TaskEditorView: UIViewController {
 extension TaskEditorView: TaskEditorViewInput {
     
     func getTaskTitle() -> String {
-        return taskTitleField.text.trimmed
+        return taskTitleField.textView.text.trimmed
     }
     
     func getTaskNote() -> String {
-        return taskNoteField.text.trimmed
+        return taskNoteField.textView.text.trimmed
     }
     
 
     func setTaskTitle(_ title: String) {
-        taskTitleField.text = title
-        setInterfaceEnabled(!title.isEmpty)
+        taskTitleField.textView.text = title
+        setInterfaceEnabled(!title.trimmed.isEmpty)
     }
     
     func setTaskNote(_ note: String) {
-        taskNoteField.text = note
+        taskNoteField.textView.text = note
     }
     
     func setDueDate(_ dueDate: String?) {
@@ -357,24 +385,28 @@ extension TaskEditorView: TaskEditorViewInput {
     
     func batchReloadSubtask(insertions: [Int], deletions: [Int], updates: [Int]) {
         UIView.performWithoutAnimation {
+            let contentOffset = self.contentScrollView.contentOffset
+            
             self.subtasksView.beginUpdates()
             
             deletions.forEach { index in
                 self.subtasksView.deleteRows(at: [IndexPath(row: index, section: 0)],
-                                             with: .automatic)
+                                             with: .none)
             }
             
             insertions.forEach { index in
                 self.subtasksView.insertRows(at: [IndexPath(row: index, section: 0)],
-                                             with: .automatic)
+                                             with: .none)
             }
             
             updates.forEach { index in
                 self.subtasksView.reloadRows(at: [IndexPath(row: index, section: 0)],
-                                             with: .automatic)
+                                             with: .none)
             }
             
             self.subtasksView.endUpdates()
+            
+            self.contentScrollView.contentOffset = contentOffset
         }
     }
 
@@ -393,23 +425,10 @@ extension TaskEditorView: TaskEditorViewInput {
     
     func setCloseButtonVisible(_ isVisible: Bool) {
         self.closeButton.isHidden = !isVisible
+        self.closeButton.alpha = isVisible ? 1 : 0
+        self.closeButton.isEnabled = isVisible
     }
     
-}
-
-extension TaskEditorView: GrowingTextViewDelegate {
-
-    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-//        UIView.animate(withDuration: 0.2) {
-//            self.view.layoutIfNeeded()
-//        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        textView.layoutIfNeeded()
-        return true
-    }
-
 }
 
 extension TaskEditorView: UIViewControllerTransitioningDelegate {
@@ -574,30 +593,32 @@ extension TaskEditorView: UITableViewDataSource {
         if let subtask = dataSource?.subtask(at: indexPath.row) {
             cell.title = subtask.title
             cell.isDone = subtask.isDone
-            cell.onBeginEditing = { [weak self] in
+            
+            cell.onBeginEditing = { [unowned self] in
                 let frame = cell.frame
-                let normalFrame = self?.contentScrollView.convert(frame, from: cell) ?? .zero
+                let normalFrame = self.contentScrollView.convert(frame, from: tableView)
                 UIView.animate(withDuration: 0.2, animations: {
-                    self?.contentScrollView.contentOffset = CGPoint(x: 0, y: normalFrame.minY)
+                    self.contentScrollView.contentOffset = CGPoint(x: 0, y: normalFrame.minY)
                 })
             }
-            cell.onDone = { [weak self] in
-                self?.output?.doneSubtask(at: indexPath.row)
+            cell.onDone = { [unowned self] in
+                self.output?.doneSubtask(at: indexPath.row)
             }
-            cell.onChangeTitle = { [weak self] title in
-                self?.output?.updateSubtask(at: indexPath.row, newTitle: title)
-                UIView.performWithoutAnimation {
-                    self?.subtasksView.reloadRows(at: [indexPath], with: .none)
-                }
+            cell.onChangeTitle = { [unowned self] title in
+                self.output?.updateSubtask(at: indexPath.row, newTitle: title)
             }
-            cell.onChangeHeight = { [weak self] height in
-                guard let `self` = self else { return }
+            cell.onChangeHeight = { [unowned self] height in
                 let currentOffset = self.contentScrollView.contentOffset
                 UIView.performWithoutAnimation {
-                    self.subtasksView.reloadRows(at: [indexPath], with: .none)
+                    self.subtasksView.beginUpdates()
+                    self.subtasksView.endUpdates()
+
+                    if currentOffset != .zero {
+                        self.contentScrollView.contentOffset = currentOffset
+                    }
                 }
-                self.contentScrollView.contentOffset = currentOffset
             }
+            
             cell.delegate = subtaskCellActionsProvider
         }
         
@@ -612,19 +633,37 @@ extension TaskEditorView: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath) as! SubtaskCell
         cell.beginEditing()
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        output.exchangeSubtasks(at: (sourceIndexPath.row, destinationIndexPath.row))
-    }
 
+}
+
+extension TaskEditorView: ReorderableTableViewDelegate {
+    
+    func tableView(_ tableView: UITableView,
+                   reorderRowsFrom fromIndexPath: IndexPath,
+                   to toIndexPath: IndexPath) {
+        output.exchangeSubtasks(at: (fromIndexPath.row, toIndexPath.row))
+    }
+    
+    func tableView(_ tableView: UITableView, showDraggingView view: UIView, at indexPath: IndexPath) {
+        view.backgroundColor = AppTheme.current.foregroundColor
+    }
+    
+    func tableView(_ tableView: UITableView, hideDraggingView view: UIView, at indexPath: IndexPath) {
+        view.backgroundColor = .clear
+    }
+    
+}
+
+extension TaskEditorView: UITextViewDelegate {
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView === taskTitleField.textView {
+            taskTitleField.setContentOffset(.zero, animated: true)
+        } else if textView === taskNoteField.textView {
+            taskNoteField.setContentOffset(.zero, animated: true)
+        }
+    }
+    
 }
 
 fileprivate extension TaskEditorView {
@@ -633,14 +672,14 @@ fileprivate extension TaskEditorView {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(taskTitleDidChange),
                                                name: .UITextViewTextDidChange,
-                                               object: taskTitleField)
+                                               object: taskTitleField.textView)
     }
     
     func setupNoteObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(taskNoteDidChange),
                                                name: .UITextViewTextDidChange,
-                                               object: taskNoteField)
+                                               object: taskNoteField.textView)
     }
     
     func setupSubtasksContentSizeObserver() {
@@ -652,7 +691,7 @@ fileprivate extension TaskEditorView {
         
         output.taskTitleChanged(to: text)
         
-        setInterfaceEnabled(!text.isEmpty)
+        setInterfaceEnabled(!text.trimmed.isEmpty)
     }
     
     @objc func taskNoteDidChange(notification: Notification) {
@@ -730,13 +769,13 @@ final class AddSubtaskView: UIView {
 
     @IBOutlet fileprivate weak var decorationView: UIImageView! {
         didSet {
-            decorationView.tintColor = AppTheme.current.scheme.secondaryTintColor
+            decorationView.tintColor = AppTheme.current.secondaryTintColor
         }
     }
     @IBOutlet fileprivate weak var titleField: UITextField! {
         didSet {
             titleField.delegate = self
-            titleField.textColor = AppTheme.current.scheme.tintColor
+            titleField.textColor = AppTheme.current.tintColor
         }
     }
     

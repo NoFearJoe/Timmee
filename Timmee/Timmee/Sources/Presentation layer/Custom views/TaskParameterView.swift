@@ -14,7 +14,7 @@ final class TaskParameterView: HiddingParameterView {
     @IBOutlet fileprivate weak var titleView: UILabel!
     @IBOutlet fileprivate weak var clearButton: UIButton! {
         didSet {
-            clearButton.tintColor = AppTheme.current.scheme.tintColor.withAlphaComponent(0.5)
+            clearButton.tintColor = AppTheme.current.secondaryTintColor
         }
     }
     
@@ -34,11 +34,11 @@ final class TaskParameterView: HiddingParameterView {
         set { titleView.text = newValue }
     }
     
-    fileprivate let filledIconColor = AppTheme.current.scheme.blueColor
-    fileprivate let filledTitleColor = AppTheme.current.scheme.tintColor
+    fileprivate let filledIconColor = AppTheme.current.blueColor
+    fileprivate let filledTitleColor = AppTheme.current.tintColor
     
-    fileprivate let notFilledIconColor = AppTheme.current.scheme.secondaryTintColor
-    fileprivate let notFilledTitleColor = AppTheme.current.scheme.secondaryTintColor
+    fileprivate let notFilledIconColor = AppTheme.current.secondaryTintColor
+    fileprivate let notFilledTitleColor = AppTheme.current.secondaryTintColor
     
     fileprivate func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) { 

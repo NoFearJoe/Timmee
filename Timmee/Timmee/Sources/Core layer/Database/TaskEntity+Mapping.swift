@@ -32,6 +32,7 @@ extension TaskEntity {
         
         shouldNotifyAtLocation = entity.shouldNotifyAtLocation
         isDone = entity.isDone
+        inProgress = entity.inProgress
         creationDate = entity.creationDate as NSDate
     }
 

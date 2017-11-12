@@ -78,18 +78,19 @@ final class TasksImportView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        closeButton.tintColor = AppTheme.current.scheme.backgroundColor
-        doneButton.tintColor = AppTheme.current.scheme.greenColor
+        closeButton.tintColor = AppTheme.current.backgroundTintColor
+        doneButton.tintColor = AppTheme.current.greenColor
         
-        containerView.barColor = AppTheme.current.scheme.backgroundColor
+        containerView.barColor = AppTheme.current.middlegroundColor
+        tableView.backgroundColor = AppTheme.current.middlegroundColor
         
         tableView.tableHeaderView?.backgroundColor = .clear
-        searchController.searchBar.tintColor = AppTheme.current.scheme.blueColor
-        searchController.searchBar.barTintColor = AppTheme.current.scheme.panelColor
+        searchController.searchBar.tintColor = AppTheme.current.blueColor
+        searchController.searchBar.barTintColor = AppTheme.current.panelColor
         searchController.searchBar.backgroundColor = .clear
         searchController.searchBar.backgroundImage = UIImage.plain(color: .clear)
         
-        errorLabel.textColor = AppTheme.current.scheme.tintColor
+        errorLabel.textColor = AppTheme.current.tintColor
         
         output.viewWillAppear()
     }
@@ -272,13 +273,13 @@ final class TasksImportHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupTitleLabel()
-        contentView.backgroundColor = AppTheme.current.scheme.backgroundColor
+        contentView.backgroundColor = AppTheme.current.middlegroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupTitleLabel()
-        contentView.backgroundColor = AppTheme.current.scheme.backgroundColor
+        contentView.backgroundColor = AppTheme.current.middlegroundColor
     }
     
     private func setupTitleLabel() {
@@ -286,7 +287,7 @@ final class TasksImportHeaderView: UITableViewHeaderFooterView {
         addSubview(titleLabel)
         titleLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 22, bottom: 4, right: 22))
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = AppTheme.current.scheme.secondaryTintColor
+        titleLabel.textColor = AppTheme.current.secondaryTintColor
     }
     
 }

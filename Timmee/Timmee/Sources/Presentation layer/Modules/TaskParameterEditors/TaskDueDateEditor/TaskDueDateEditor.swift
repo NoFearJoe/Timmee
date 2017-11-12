@@ -83,11 +83,11 @@ final class TaskDueDateEditor: UIViewController {
         hourHintLabel.text = "hours".localized
         minuteHintLabel.text = "minutes".localized
         
-        hourHintLabel.textColor = AppTheme.current.scheme.secondaryTintColor
-        minuteHintLabel.textColor = AppTheme.current.scheme.secondaryTintColor
+        hourHintLabel.textColor = AppTheme.current.secondaryTintColor
+        minuteHintLabel.textColor = AppTheme.current.secondaryTintColor
         
         timeSeparators.forEach { view in
-            view.backgroundColor = AppTheme.current.scheme.tintColor
+            view.backgroundColor = AppTheme.current.tintColor
         }
     }
 

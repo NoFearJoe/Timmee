@@ -18,11 +18,17 @@ import class Foundation.DispatchQueue
 
 protocol TableListRepresentationInteractorInput: class {
     func fetchTasks(by listID: String?)
-    func addShortTask(with title: String, dueDate: Date?)
+    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool)
     func deleteTask(_ task: Task)
+    func deleteTasks(_ tasks: [Task])
     func completeTask(_ task: Task)
+    func completeTasks(_ tasks: [Task])
+    func toggleTaskProgressState(_ task: Task)
+    func toggleTasksProgressState(_ tasks: [Task])
     func toggleImportancy(of task: Task)
+    func moveTasks(_ tasks: [Task], toList list: List)
     
+    func item(at index: Int, in section: Int) -> Task?
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)?
 }
 
@@ -31,6 +37,7 @@ protocol TableListRepresentationInteractorOutput: class {
     func tasksCountChanged(count: Int)
         
     func operationCompleted()
+    func groupEditingOperationCompleted()
     
     func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
 }
@@ -59,7 +66,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         }
     }
     
-    func addShortTask(with title: String, dueDate: Date?) {
+    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool) {
         guard let listID = lastListID else { return }
         
         let task = Task(id: RandomStringGenerator.randomString(length: 24),
@@ -68,6 +75,8 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         if let dueDate = dueDate {
             task.dueDate = dueDate
         }
+        task.inProgress = inProgress
+        task.isImportant = isImportant
         
         tasksService.addTask(task, listID: listID, completion: { [weak self] error in
             DispatchQueue.main.async {
@@ -84,12 +93,60 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         })
     }
     
+    func deleteTasks(_ tasks: [Task]) {
+        tasksService.removeTasks(tasks) { [weak self] error in
+            DispatchQueue.main.async {
+                self?.output.operationCompleted()
+            }
+        }
+    }
+    
     func completeTask(_ task: Task) {
         task.isDone = !task.isDone
+        if task.isDone {
+            task.inProgress = false
+        }
         
         tasksService.updateTask(task) { [weak self] error in
             DispatchQueue.main.async {
                 self?.output.operationCompleted()
+            }
+        }
+    }
+    
+    func completeTasks(_ tasks: [Task]) {
+        let willDone = tasks.contains(where: { !$0.isDone })
+        tasks.forEach {
+            $0.isDone = willDone
+            if $0.isDone {
+                $0.inProgress = false
+            }
+        }
+        
+        tasksService.updateTasks(tasks) { [weak self] error in
+            DispatchQueue.main.async {
+                self?.output.groupEditingOperationCompleted()
+            }
+        }
+    }
+    
+    func toggleTaskProgressState(_ task: Task) {
+        task.inProgress = !task.inProgress
+        
+        tasksService.updateTask(task) { [weak self] error in
+            DispatchQueue.main.async {
+                self?.output.operationCompleted()
+            }
+        }
+    }
+    
+    func toggleTasksProgressState(_ tasks: [Task]) {
+        let willInProgress = tasks.contains(where: { !$0.inProgress })
+        tasks.forEach { $0.inProgress = willInProgress }
+        
+        tasksService.updateTasks(tasks) { [weak self] error in
+            DispatchQueue.main.async {
+                self?.output.groupEditingOperationCompleted()
             }
         }
     }
@@ -100,6 +157,14 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         tasksService.updateTask(task) { [weak self] error in
             DispatchQueue.main.async {
                 self?.output.operationCompleted()
+            }
+        }
+    }
+    
+    func moveTasks(_ tasks: [Task], toList list: List) {
+        tasksService.updateTasks(tasks, listID: list.id) { [weak self] error in
+            DispatchQueue.main.async {
+                self?.output.groupEditingOperationCompleted()
             }
         }
     }
@@ -151,6 +216,7 @@ fileprivate extension TableListRepresentationInteractor {
         request.sortDescriptors = [
             NSSortDescriptor(key: "isDone", ascending: true),
             NSSortDescriptor(key: "isImportant", ascending: false),
+            NSSortDescriptor(key: "inProgress", ascending: false),
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
         

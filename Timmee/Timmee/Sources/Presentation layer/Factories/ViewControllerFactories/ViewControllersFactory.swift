@@ -8,6 +8,7 @@
 
 import class UIKit.UIStoryboard
 import class UIKit.UIViewController
+import class UIKit.UINavigationController
 
 final class ViewControllersFactory {
 
@@ -75,7 +76,21 @@ final class ViewControllersFactory {
     static var biometricsActivation: BiometricsActivationController {
         return StoryboardsFactory.pin.viewController(id: "BiometricsActivation")
     }
+    
+    
+    static var settings: UINavigationController {
+        return StoryboardsFactory.settings.initialViewController()
+    }
+    
+    static var inApp: InAppPurchaseViewController {
+        return StoryboardsFactory.settings.viewController(id: "InAppPurchaseViewController")
+    }
 
+    
+    static var search: SearchViewController {
+        return StoryboardsFactory.search.initialViewController()
+    }
+    
 }
 
 fileprivate extension UIStoryboard {

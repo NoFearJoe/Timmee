@@ -14,6 +14,8 @@ final class ListRepresentationManager {
     weak var containerViewController: UIViewController!
     weak var listsContainerView: UIView!
     
+    weak var output: ListRepresentationManagerOutput?
+    
     fileprivate var representation: ListRepresentation = .table
     
     fileprivate var currentListRepresentationInput: ListRepresentationInput?
@@ -37,7 +39,27 @@ extension ListRepresentationManager: ListRepresentationManagerInput {
     func forceTaskCreation() {
         currentListRepresentationInput?.forceTaskCreation()
     }
+    
+    func finishShortTaskEditing() {
+        currentListRepresentationInput?.finishShortTaskEditing()
+    }
 
+}
+
+extension ListRepresentationManager: MainTopViewControllerOutput {
+    
+    func currentListChanged(to list: List) {
+        setList(list)
+    }
+    
+    func listCreated() {
+        forceTaskCreation()
+    }
+    
+    func willShowLists() {
+        finishShortTaskEditing()
+    }
+    
 }
 
 extension ListRepresentationManager: ListRepresentationOutput {
@@ -77,6 +99,8 @@ fileprivate extension ListRepresentationManager {
         case .eisenhower:
             newPresentation = "" as! ListRepresentationInput
         }
+        
+        output?.configureListRepresentation(newPresentation)
         
         let toView = newPresentation.viewController.view!
 

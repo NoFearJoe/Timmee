@@ -13,28 +13,45 @@ protocol TableListRepresentationViewInput: class {
     func showNoTasksPlaceholder()
     func hideNoTasksPlaceholder()
     
-    func setTaskTitleFieldFirstResponder()
+    func setTaskTitleFieldFirstResponder(_ isFirstResponder: Bool)
     func clearTaskTitleInput()
+    
+    func toggleGroupEditing()
+    func setGroupEditingActionsEnabled(_ isEnabled: Bool)
+    func setCompletionGroupEditingAction(_ action: GroupEditingCompletionAction)
     
     func connect(with tableViewManagable: TableViewManageble)
     
     func resetOffset()
     
     func setInteractionsEnabled(_ isEnabled: Bool)
+    
+    func showConfirmationAlert(title: String, message: String, success: @escaping () -> Void)
 }
 
 protocol TableListRepresentationViewOutput: class {
     func viewDidLoad()
     func viewWillAppear()
     
+    func didToggleImportancyInShortTaskEditor(to isImportant: Bool)
     func didInputTaskTitle(_ title: String?)
     func didPressAddTaskButton()
     func didPressMoreButton()
+    
     func didPressEdit(for task: Task)
     func didPressDelete(task: Task)
     func didPressComplete(task: Task)
+    func didPressStart(task: Task)
+    func didPressStop(task: Task)
     
     func toggleImportancy(of task: Task)
+    
+    func didCheckTask(_ task: Task)
+    func didUncheckTask(_ task: Task)
+    func taskIsChecked(_ task: Task) -> Bool
+    
+    func groupEditingToggled(to isEditing: Bool)
+    func didSelectGroupEditingAction(_ action: GroupEditingAction)
 }
 
 protocol TableListRepresentationViewDataSource: class {
@@ -51,15 +68,23 @@ final class TableListRepresentationView: UIViewController {
     weak var dataSource: TableListRepresentationViewDataSource!
     var output: TableListRepresentationViewOutput!
     
-    @IBOutlet fileprivate weak var tableContainerView: BarView!
-    @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate var tableContainerView: UIView!
+    @IBOutlet fileprivate var tableView: UITableView!
     
-    @IBOutlet fileprivate weak var newTaskTitleTextField: UITextField!
-    @IBOutlet fileprivate weak var rightBarButton: UIButton!
+    @IBOutlet fileprivate var shortTaskEditorView: UIView!
+    @IBOutlet fileprivate var importancyView: UIImageView!
+    @IBOutlet fileprivate var newTaskTitleTextField: UITextField!
+    @IBOutlet fileprivate var rightBarButton: UIButton!
+    
+    @IBOutlet fileprivate var groupEditingActionsView: GroupEditingActionsView!
+    
+    @IBOutlet fileprivate var bottomContainerConstraint: NSLayoutConstraint!
     
     fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
     fileprivate let swipeTableActionsProvider = SwipeTaskActionsProvider()
+    
+    fileprivate let keyboardManager = KeyboardManager()
     
     fileprivate var isTaskTitleEntered: Bool {
         if let text = newTaskTitleTextField.text, !text.isEmpty,
@@ -69,6 +94,22 @@ final class TableListRepresentationView: UIViewController {
         return false
     }
     
+    var isGroupEditing: Bool = false {
+        didSet {
+            tableView.hideSwipeCell(animated: true)
+            tableView.visibleCells
+                .map { $0 as! TableListRepresentationCell }
+                .forEach {
+                    $0.setGroupEditing(isGroupEditing, animated: true)
+                    $0.delegate = isGroupEditing ? nil : swipeTableActionsProvider
+                    
+                    if isGroupEditing {
+                        $0.isChecked = false
+                    }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,31 +117,65 @@ final class TableListRepresentationView: UIViewController {
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(UINib(nibName: "TableListRepresentationCell", bundle: nil),
+                           forCellReuseIdentifier: "TableListRepresentationCell")
         tableView.register(TableListRepresentationFooter.self,
                            forHeaderFooterViewReuseIdentifier: "TableListRepresentationFooter")
         
-        swipeTableActionsProvider.onDelete = { [weak self] indexPath in
-            if let task = self?.dataSource?.item(at: indexPath.row, in: indexPath.section) {
-                self?.output.didPressDelete(task: task)
+        swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                self.output.didPressDelete(task: task)
             }
         }
-        swipeTableActionsProvider.onEdit = { [weak self] indexPath in
-            if let task = self?.dataSource?.item(at: indexPath.row, in: indexPath.section) {
-                self?.output.didPressEdit(for: task)
+        swipeTableActionsProvider.onStart = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                self.output.didPressStart(task: task)
             }
         }
-        swipeTableActionsProvider.onDone = { [weak self] indexPath in
-            if let task = self?.dataSource?.item(at: indexPath.row, in: indexPath.section) {
-                self?.output.didPressComplete(task: task)
+        swipeTableActionsProvider.onStop = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                self.output.didPressStop(task: task)
             }
         }
-        swipeTableActionsProvider.isDone = { [weak self] indexPath in
-            if let task = self?.dataSource.item(at: indexPath.row, in: indexPath.section) {
+        swipeTableActionsProvider.onDone = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                self.output.didPressComplete(task: task)
+            }
+        }
+        swipeTableActionsProvider.isDone = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
                 return task.isDone
             }
             return false
         }
+        swipeTableActionsProvider.progressActionForRow = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                if task.isDone { return .none }
+                else { return task.inProgress ? .stop : .start }
+            }
+            return .none
+        }
         
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.bottomContainerConstraint.constant = frame.height
+            
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.bottomContainerConstraint.constant = 0
+            
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        groupEditingActionsView.onAction = { [unowned self] action in
+            self.output.didSelectGroupEditingAction(action)
+        }
+        
+        addTapGestureRecognizerToImportancyView()
         subscribeToTaskTitleChange()
         output.viewDidLoad()
     }
@@ -108,17 +183,21 @@ final class TableListRepresentationView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableContainerView.barColor = AppTheme.current.scheme.backgroundColor
+        tableContainerView.backgroundColor = AppTheme.current.middlegroundColor
         
-        newTaskTitleTextField.textColor = AppTheme.current.scheme.backgroundColor
-        newTaskTitleTextField.tintColor = AppTheme.current.scheme.backgroundColor.withAlphaComponent(0.75)
+        newTaskTitleTextField.textColor = AppTheme.current.backgroundTintColor
+        newTaskTitleTextField.tintColor = AppTheme.current.backgroundTintColor.withAlphaComponent(0.75)
         newTaskTitleTextField.attributedPlaceholder = NSAttributedString(string: "new_task".localized,
                                                                          attributes:
         [
-            NSForegroundColorAttributeName: AppTheme.current.scheme.backgroundColor.withAlphaComponent(0.5)
+            NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor.withAlphaComponent(0.5)
         ])
         
-        rightBarButton.tintColor = AppTheme.current.scheme.blueColor
+        rightBarButton.tintColor = AppTheme.current.blueColor
+        
+        groupEditingActionsView.setVisible(false, animated: false)
+        
+        tableView.reloadData()
 
         output.viewWillAppear()
     }
@@ -165,6 +244,28 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         updateRightBarButton()
     }
     
+    func toggleGroupEditing() {
+        isGroupEditing = !isGroupEditing
+        newTaskTitleTextField.resignFirstResponder()
+        groupEditingActionsView.setEnabled(false)
+        groupEditingActionsView.setVisible(isGroupEditing, animated: true)
+        UIView.animate(withDuration: 0.33, animations: {
+            self.shortTaskEditorView.alpha = self.isGroupEditing ? 0 : 1
+        }) { _ in
+            self.output.groupEditingToggled(to: self.isGroupEditing)
+        }
+    }
+    
+    func setGroupEditingActionsEnabled(_ isEnabled: Bool) {
+        groupEditingActionsView.setEnabled(isEnabled)
+    }
+    
+    func setCompletionGroupEditingAction(_ action: GroupEditingCompletionAction) {
+        groupEditingActionsView.updateAction(.complete,
+                                             withTitle: action.title,
+                                             andImage: action.image)
+    }
+    
     func connect(with tableViewManagable: TableViewManageble) {
         tableViewManagable.setTableView(tableView)
     }
@@ -179,10 +280,24 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         tableView.isUserInteractionEnabled = isEnabled
     }
 
-    func setTaskTitleFieldFirstResponder() {
-        if !newTaskTitleTextField.isFirstResponder {
+    func setTaskTitleFieldFirstResponder(_ isFirstResponder: Bool) {
+        if isFirstResponder && !newTaskTitleTextField.isFirstResponder {
             newTaskTitleTextField.becomeFirstResponder()
+        } else if newTaskTitleTextField.isFirstResponder {
+            newTaskTitleTextField.resignFirstResponder()
         }
+    }
+    
+    func showConfirmationAlert(title: String, message: String, success: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "i_am_sure".localized,
+                                      style: .default) { _ in success() })
+        alert.addAction(UIAlertAction(title: "cancel".localized,
+                                      style: .cancel,
+                                      handler: nil))
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -201,39 +316,27 @@ extension TableListRepresentationView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationCell",
                                                  for: indexPath) as! TableListRepresentationCell
         
-        if let item = dataSource.item(at: indexPath.row, in: indexPath.section) {
-            cell.updateTagColors(with:
-                item.tags
-                    .sorted(by: { $0.0.title < $0.1.title })
-                    .map { $0.color }
-            )
+        if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
+            cell.setTask(task)
             
-            let hasParameters = item.subtasks.count > 0 || item.dueDate != nil
-            cell.maxTitleLinesCount = hasParameters || item.isDone ? 1 : 2
+            cell.setGroupEditing(isGroupEditing)
             
-            cell.title = item.title
+            cell.isChecked = output.taskIsChecked(task)
             
-            cell.isDone = item.isDone
-            
-            if !item.isDone {
-                cell.dueDate = item.dueDate?.asDayMonthTime
-                cell.subtasksInfo = (item.subtasks.filter { $0.isDone }.count, item.subtasks.count)
-            } else {
-                cell.dueDate = nil
-                cell.subtasksInfo = nil
+            cell.onTapToImportancy = { [unowned self] in
+                guard let indexPath = tableView.indexPath(for: cell) else { return }
+                if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                    self.output.toggleImportancy(of: task)
+                }
             }
             
-            cell.isImportant = item.isImportant
-            
-            cell.onTapToImportancy = { [weak self] in
-                guard let indexPath = tableView.indexPath(for: cell) else { return }
-                if let task = self?.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                    self?.output.toggleImportancy(of: task)
-                }
+            cell.onCheck = { [unowned self] isChecked in
+                if isChecked { self.output.didCheckTask(task) }
+                else { self.output.didUncheckTask(task) }
             }
         }
         
-        cell.delegate = swipeTableActionsProvider
+        cell.delegate = isGroupEditing ? nil : swipeTableActionsProvider
         
         return cell
     }
@@ -243,6 +346,7 @@ extension TableListRepresentationView: UITableViewDataSource {
 extension TableListRepresentationView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !isGroupEditing else { return }
         if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
             output.didPressEdit(for: task)
         }
@@ -288,17 +392,25 @@ extension TableListRepresentationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as? TableListRepresentationCell)?.applyAppearance()
+    }
 
 }
 
 extension TableListRepresentationView: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return !isGroupEditing
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateRightBarButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text, !text.isEmpty {
+        if let text = textField.text, !text.trimmed.isEmpty {
             output.didInputTaskTitle(text)
             output.didPressAddTaskButton()
             
@@ -329,7 +441,7 @@ fileprivate extension TableListRepresentationView {
         if isTaskTitleEntered {
             rightBarButton.setImage(UIImage(named: "checkmark"), for: .normal)
         } else {
-            rightBarButton.setImage(UIImage(named: "edit"), for: .normal)
+            rightBarButton.setImage(UIImage(named: "plus"), for: .normal)
         }
     }
     
@@ -343,6 +455,16 @@ fileprivate extension TableListRepresentationView {
         placeholder.title = "no_tasks".localized
         placeholder.subtitle = "no_tasks_hint".localized
         placeholder.isHidden = true
+    }
+    
+    func addTapGestureRecognizerToImportancyView() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(toggleImportancy))
+        importancyView.addGestureRecognizer(recognizer)
+    }
+    
+    @objc func toggleImportancy() {
+        importancyView.isHighlighted = !importancyView.isHighlighted
+        output.didToggleImportancyInShortTaskEditor(to: importancyView.isHighlighted)
     }
 
 }
@@ -377,8 +499,8 @@ final class TableListRepresentationFooter: UITableViewHeaderFooterView {
         button.autoSetDimension(.height, toSize: 32)
         button.autoAlignAxis(.horizontal, toSameAxisOf: self)
         button.autoAlignAxis(toSuperviewAxis: .vertical)
-        button.backgroundColor = AppTheme.current.scheme.backgroundColor
-        button.setTitleColor(AppTheme.current.scheme.secondaryTintColor, for: .normal)
+        button.backgroundColor = AppTheme.current.middlegroundColor
+        button.setTitleColor(AppTheme.current.secondaryTintColor, for: .normal)
         button.layer.cornerRadius = 4
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         button.clipsToBounds = true

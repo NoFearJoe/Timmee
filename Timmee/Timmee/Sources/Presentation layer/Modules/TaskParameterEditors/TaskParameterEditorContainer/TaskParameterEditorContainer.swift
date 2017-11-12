@@ -99,9 +99,10 @@ final class TaskParameterEditorContainer: UIViewController {
         
         transitioningDelegate = self
         
-        titleLabel.textColor = AppTheme.current.scheme.backgroundColor
-        closeButton.tintColor = AppTheme.current.scheme.redColor
-        doneButton.tintColor = AppTheme.current.scheme.greenColor
+        editorContainer.barColor = AppTheme.current.foregroundColor
+        titleLabel.textColor = AppTheme.current.backgroundTintColor
+        closeButton.tintColor = AppTheme.current.redColor
+        doneButton.tintColor = AppTheme.current.greenColor
         editorContainerUnderlyingView.shadowRadius = 44
         editorContainerUnderlyingView.showShadow = true
     }
@@ -219,7 +220,7 @@ fileprivate extension TaskParameterEditorContainer {
                            options: .curveEaseOut,
                            animations: {
                             self.setEditorTitle(type.editorTitle)
-                            self.closeButton.tintColor = AppTheme.current.scheme.backgroundColor
+                            self.closeButton.tintColor = AppTheme.current.backgroundColor
                             self.closeButton.setImage(#imageLiteral(resourceName: "back"), for: .normal)
                             fromView.transform = CGAffineTransform(translationX: 0, y: -offset)
                             viewController.view.frame.origin.y = 0
@@ -250,7 +251,7 @@ fileprivate extension TaskParameterEditorContainer {
                        options: .curveEaseOut,
                        animations: {
                         self.setEditorTitle(self.type.title)
-                        self.closeButton.tintColor = AppTheme.current.scheme.redColor
+                        self.closeButton.tintColor = AppTheme.current.redColor
                         self.closeButton.setImage(#imageLiteral(resourceName: "trash"), for: .normal)
                         toView.view.transform = CGAffineTransform(translationX: 0, y: 0)
                         fromView.view.transform = CGAffineTransform(translationX: 0, y: -offset)

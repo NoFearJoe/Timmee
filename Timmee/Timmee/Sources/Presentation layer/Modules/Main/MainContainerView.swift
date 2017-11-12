@@ -6,64 +6,61 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import UIKit
-import PureLayout
+import class UIKit.UIView
+import class UIKit.UIViewController
+import enum UIKit.UIStatusBarStyle
 
-final class MainContainerView: UIViewController {
+final class MainViewController: UIViewController {
 
-    @IBOutlet fileprivate weak var contentContainerView: BarView!
-    @IBOutlet fileprivate weak var mainTopViewContainer: PassthrowView!
+    @IBOutlet fileprivate var contentContainerView: UIView!
+    @IBOutlet fileprivate var mainTopViewContainer: PassthrowView!
     
-    fileprivate lazy var mainTopView: MainTopViewController = {
-        let mainTopView = ViewControllersFactory.mainTop
-        mainTopView.output = self
-        return mainTopView
-    }()
+    fileprivate lazy var mainTopView: MainTopViewController = ViewControllersFactory.mainTop
     
     fileprivate let representationManager = ListRepresentationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        representationManager.containerViewController = self
-        representationManager.listsContainerView = contentContainerView
-        representationManager.setRepresentation(.table, animated: false)
-        
+        setupRepresentationManager()
         setupMainTopView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        view.backgroundColor = AppTheme.current.scheme.tintColor
-//        contentContainerView.barColor = AppTheme.current.scheme.backgroundColor
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        view.backgroundColor = AppTheme.current.backgroundColor
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+
+}
+
+extension MainViewController: ListRepresentationManagerOutput {
     
-    fileprivate func setupMainTopView() {
+    func configureListRepresentation(_ representation: ListRepresentationInput) {
+        representation.editingOutput = mainTopView
+        mainTopView.editingInput = representation
+    }
+    
+}
+
+fileprivate extension MainViewController {
+    
+    func setupMainTopView() {
+        mainTopView.output = representationManager
         addChildViewController(mainTopView)
         mainTopViewContainer.addSubview(mainTopView.view)
         mainTopView.view.autoPinEdgesToSuperviewEdges()
         mainTopView.didMove(toParentViewController: self)
     }
-
-}
-
-extension MainContainerView: MainTopViewControllerOutput {
-
-    func currentListChanged(to list: List) {
-        representationManager.setList(list)
+    
+    func setupRepresentationManager() {
+        representationManager.output = self
+        representationManager.containerViewController = self
+        representationManager.listsContainerView = contentContainerView
+        representationManager.setRepresentation(.table, animated: false)
     }
     
-    func listCreated() {
-        representationManager.forceTaskCreation()
-    }
-
 }

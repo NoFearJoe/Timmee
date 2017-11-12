@@ -6,76 +6,40 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import UIKit
-import SwipeCellKit
+import class UIKit.UIView
+import class UIKit.UILabel
+import class UIKit.UIImageView
+import class SwipeCellKit.SwipeTableViewCell
 
 final class ListCell: SwipeTableViewCell {
-    
-    enum SeparatorStyle {
-        case topAndBottom
-        case top
-        case bottom
-        case none
-    }
 
-    @IBOutlet fileprivate weak var listIconView: UIImageView!
-    @IBOutlet fileprivate weak var listTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var selectedListIndicator: UIView!
-    
-    fileprivate var separatorStyle: SeparatorStyle = .none {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    
-    var separatorColor: UIColor = AppTheme.current.scheme.panelColor
+    @IBOutlet fileprivate var listIconView: UIImageView!
+    @IBOutlet fileprivate var listTitleLabel: UILabel!
+    @IBOutlet fileprivate var selectedListIndicator: UIView!
     
     func setList(_ list: List) {
         listIconView.image = list.icon.image
         listTitleLabel.text = list.title
-    }
-    
-    func setSeparatorStyle(_ style: SeparatorStyle) {
-        separatorStyle = style
+        
+        if list is SmartList {
+            listTitleLabel.textColor = AppTheme.current.specialColor
+        } else {
+            listTitleLabel.textColor = AppTheme.current.tintColor
+        }
     }
     
     func setListSelected(_ selected: Bool) {
         selectedListIndicator.isHidden = !selected
     }
+
+}
+
+extension ListCell {
     
     func applyAppearance() {
-        backgroundColor = AppTheme.current.scheme.backgroundColor
-        listTitleLabel.textColor = AppTheme.current.scheme.cellTintColor
-        listIconView.tintColor = AppTheme.current.scheme.tintColor
-        selectedListIndicator.backgroundColor = AppTheme.current.scheme.blueColor
+        backgroundColor = AppTheme.current.foregroundColor
+        listIconView.tintColor = AppTheme.current.secondaryTintColor
+        selectedListIndicator.backgroundColor = AppTheme.current.blueColor
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-        
-        context.setFillColor(separatorColor.cgColor)
-        
-        func drawSeparator(y: CGFloat) {
-            let rect = CGRect(x: separatorInset.left,
-                              y: y,
-                              width: rect.width - (separatorInset.left + separatorInset.right),
-                              height: 1)
-            let path = UIBezierPath(roundedRect: rect,
-                                    cornerRadius: 1)
-            context.addPath(path.cgPath)
-            context.fillPath()
-        }
-        
-//        switch separatorStyle {
-//        case .none: break
-//        case .top: drawSeparator(y: -0.5)
-        drawSeparator(y: rect.height - 1)
-//        case .topAndBottom:
-//            drawSeparator(y: -0.5)
-//            drawSeparator(y: rect.height - 0.5)
-//        }
-    }
-
 }

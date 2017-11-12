@@ -118,7 +118,7 @@ final class NumberPickerCell: UICollectionViewCell {
 
     @IBOutlet fileprivate weak var numberLabel: UILabel! {
         didSet {
-            numberLabel.textColor = AppTheme.current.scheme.blueColor
+            numberLabel.textColor = AppTheme.current.blueColor
         }
     }
     

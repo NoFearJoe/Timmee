@@ -10,6 +10,8 @@ protocol TaskEditorInteractorInput: class {
     func createTask() -> Task
     func saveTask(_ task: Task, listID: String?, success: (() -> Void)?, fail: (() -> Void)?)
     
+    func scheduleTask(_ task: Task)
+    
     func createSubtask(sortPosition: Int) -> Subtask
     func addSubtask(_ subtask: Subtask, task: Task, completion: (() -> Void)?)
     func saveSubtask(_ subtask: Subtask, completion: (() -> Void)?)
@@ -23,7 +25,8 @@ final class TaskEditorInteractor {
     weak var output: TaskEditorInteractorOutput!
     
     let tasksService = TasksService()
-    let subtasksService = SubtasksService()    
+    let subtasksService = SubtasksService()
+    let taskSchedulerService = TaskSchedulerService()
 
 }
 
@@ -49,6 +52,13 @@ extension TaskEditorInteractor: TaskEditorInteractorInput {
         }
     }
     
+    
+    func scheduleTask(_ task: Task) {
+        let listTitle = tasksService.retrieveList(of: task)?.title
+        taskSchedulerService.scheduleTask(task, listTitle: listTitle ?? "all_tasks".localized)
+    }
+    
+    
     func createSubtask(sortPosition: Int) -> Subtask {
         return Subtask(id: RandomStringGenerator.randomString(length: 24),
                        title: "",
@@ -72,7 +82,7 @@ extension TaskEditorInteractor: TaskEditorInteractorInput {
 fileprivate extension TaskEditorInteractor {
 
     func isValidTask(_ task: Task) -> Bool {
-        return !task.title.isEmpty
+        return !task.title.trimmed.isEmpty
     }
 
 }

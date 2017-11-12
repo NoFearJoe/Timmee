@@ -26,9 +26,9 @@ final class SwipeTaskActionsProvider: SwipeTableActionsProvider {
             self?.onDone?(indexPath)
             action.fulfill(with: .delete)
         })
-        doneAction.textColor = AppTheme.current.scheme.greenColor
+        doneAction.textColor = AppTheme.current.greenColor
         doneAction.title = nil
-        doneAction.accessibilityValue = ""
+        doneAction.accessibilityLabel = ""
         doneAction.backgroundColor = type(of: self).backgroundColor
         doneAction.transitionDelegate = nil
         return doneAction
@@ -42,8 +42,12 @@ final class SwipeTaskActionsProvider: SwipeTableActionsProvider {
         return [doneAction]
     }
     
-    override static var expansionStyle: SwipeExpansionStyle? {
+    override static var rightExpansionStyle: SwipeExpansionStyle? {
         return SwipeExpansionStyle.selection
+    }
+    
+    override static var leftExpansionStyle: SwipeExpansionStyle? {
+        return SwipeExpansionStyle(target: SwipeExpansionStyle.Target.percentage(0))
     }
 
 }

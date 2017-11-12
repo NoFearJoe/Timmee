@@ -25,7 +25,7 @@ import UIKit
 
 // MARK: - NextGrowingTextView: UIScrollView
 
-open class NextGrowingTextView: UIScrollView {
+open class GrowingTextView: UIScrollView {
   
   // MARK: - Nested types
   
@@ -92,11 +92,11 @@ open class NextGrowingTextView: UIScrollView {
     return _textView.isFirstResponder
   }
   
-  open override func becomeFirstResponder() -> Bool {
+  @discardableResult open override func becomeFirstResponder() -> Bool {
     return _textView.becomeFirstResponder()
   }
   
-  open override func resignFirstResponder() -> Bool {
+  @discardableResult open override func resignFirstResponder() -> Bool {
     return _textView.resignFirstResponder()
   }
   
@@ -219,7 +219,7 @@ open class NextGrowingTextView: UIScrollView {
     contentOffset.y = contentSize.height - frame.height
   }
 
-  private func updateMinimumAndMaximumHeight() {
+  func updateMinimumAndMaximumHeight() {
     _minHeight = simulateHeight(1)
     _maxHeight = simulateHeight(maxNumberOfLines)
     fitToScrollView()

@@ -74,14 +74,15 @@ final class ListEditorView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        contentView.barColor = AppTheme.current.scheme.backgroundColor
-        listTitleTextField.textColor = AppTheme.current.scheme.specialColor
-        listTitleTextField.tintColor = AppTheme.current.scheme.tintColor
-        listNoteTextView.textColor = AppTheme.current.scheme.tintColor
-        listNoteTextView.tintColor = AppTheme.current.scheme.tintColor
-        closeButton.tintColor = AppTheme.current.scheme.backgroundColor
-        doneButton.tintColor = AppTheme.current.scheme.greenColor
-        importTasksButton.setTitleColor(AppTheme.current.scheme.blueColor, for: .normal)
+        view.backgroundColor = AppTheme.current.backgroundColor
+        contentView.barColor = AppTheme.current.foregroundColor
+        listTitleTextField.textColor = AppTheme.current.specialColor
+        listTitleTextField.tintColor = AppTheme.current.tintColor
+        listNoteTextView.textColor = AppTheme.current.tintColor
+        listNoteTextView.tintColor = AppTheme.current.tintColor
+        closeButton.tintColor = AppTheme.current.backgroundTintColor
+        doneButton.tintColor = AppTheme.current.greenColor
+        importTasksButton.setTitleColor(AppTheme.current.blueColor, for: .normal)
         
         if !listTitleTextField.isFirstResponder {
             listTitleTextField.becomeFirstResponder()
@@ -142,7 +143,7 @@ extension ListEditorView: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard !shouldForceResignFirstResponder else { return }
-        guard let text = textField.text, !text.isEmpty else { return }
+        guard let text = textField.text, !text.trimmed.isEmpty else { return }
         output.listTitleEntered(text)
         
         textField.setNeedsLayout()
@@ -151,7 +152,7 @@ extension ListEditorView: UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         guard !shouldForceResignFirstResponder else { return true }
-        return textField.text != nil && !textField.text!.isEmpty
+        return textField.text != nil && !textField.text!.trimmed.isEmpty
     }
 
 }
@@ -253,7 +254,7 @@ fileprivate extension ListEditorView {
     }
     
     @objc func listTitleDidChange(notification: Notification) {
-        if let text = listTitleTextField.text, !text.isEmpty {
+        if let text = listTitleTextField.text, !text.trimmed.isEmpty {
             setInterfaceEnabled(true)
         } else {
             setInterfaceEnabled(false)

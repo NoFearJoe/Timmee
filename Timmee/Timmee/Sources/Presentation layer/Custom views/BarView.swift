@@ -22,20 +22,28 @@ class BarView: UIView {
     
     var showShadow: Bool = false {
         didSet {
-            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowColor = showShadow ? UIColor.black.cgColor : UIColor.clear.cgColor
             layer.shadowOffset = CGSize(width: 0, height: -1)
             layer.shadowRadius = shadowRadius
             layer.shadowOpacity = 0.4
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentMode = .redraw
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        guard showShadow else { return }
-        layer.shadowPath = UIBezierPath(roundedRect: bounds,
-                                        byRoundingCorners: [.topRight, .topLeft],
-                                        cornerRadii: CGSize(width: 8, height: 8)).cgPath
+        if showShadow {
+            layer.shadowPath = UIBezierPath(roundedRect: bounds,
+                                            byRoundingCorners: [.topRight, .topLeft],
+                                            cornerRadii: CGSize(width: 8, height: 8)).cgPath
+        } else {
+            layer.shadowPath = nil
+        }
     }
     
     override func draw(_ rect: CGRect) {
@@ -45,8 +53,7 @@ class BarView: UIView {
                                 byRoundingCorners: [.topLeft, .topRight],
                                 cornerRadii: CGSize(width: cornerRadius,
                                                     height: cornerRadius))
-        context.addPath(clip.cgPath)
-        context.clip()
+        clip.addClip()
         
         context.setFillColor(barColor.cgColor)
         context.fill(rect)

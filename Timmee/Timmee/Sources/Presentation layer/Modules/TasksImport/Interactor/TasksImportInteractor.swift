@@ -86,13 +86,13 @@ extension TasksImportInteractor: TasksImportDataSource {
 fileprivate extension TasksImportInteractor {
     
     func fetchTasks(predicate: NSPredicate?) {
-        let request = tasksService.allTasksFetchRequest()
+        let request = tasksService.allTasksFetchRequest() as! NSFetchRequest<NSFetchRequestResult>
         request.predicate = predicate
-        let context = (DefaultStorage.instance.storage as! CoreDataDefaultStorage).mainContext as! NSManagedObjectContext
-        tasksObserver = CoreDataObserver<Task>.init(request: request as! NSFetchRequest<NSFetchRequestResult>,
-                                                    section: "list.title",
-                                                    cacheName: nil,
-                                                    context: context)
+        let context = DefaultStorage.instance.mainContext
+        tasksObserver = CoreDataObserver<Task>(request: request,
+                                               section: "list.title",
+                                               cacheName: nil,
+                                               context: context)
         
         tasksObserver.mapping = { entity in
             let entity = entity as! TaskEntity

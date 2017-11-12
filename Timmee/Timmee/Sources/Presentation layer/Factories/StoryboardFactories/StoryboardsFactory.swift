@@ -37,6 +37,14 @@ final class StoryboardsFactory {
     static var pin: UIStoryboard {
         return StoryboardsFactory.storyboard(named: "Pin")
     }
+    
+    static var settings: UIStoryboard {
+        return StoryboardsFactory.storyboard(named: "Settings")
+    }
+    
+    static var search: UIStoryboard {
+        return StoryboardsFactory.storyboard(named: "Search")
+    }
 
 }
 

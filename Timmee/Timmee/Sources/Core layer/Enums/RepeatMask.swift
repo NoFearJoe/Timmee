@@ -6,6 +6,8 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import class Foundation.NSCalendar
+
 enum RepeatType {
     case never
     case every(RepeatUnit)
@@ -109,6 +111,15 @@ enum RepeatUnit: String {
         case .year: return "n_years".localized(with: number)
         }
     }
+    
+    var calendarUnit: NSCalendar.Unit {
+        switch self {
+        case .day: return .day
+        case .week: return .weekOfYear
+        case .month: return .month
+        case .year: return .year
+        }
+    }
 }
 
 enum WeekRepeatUnit {
@@ -150,6 +161,15 @@ enum WeekRepeatUnit {
     var isEveryday: Bool {
         if case .custom(let days) = self { return days.count == 7 }
         return false
+    }
+    
+    var dayNumbers: [Int] {
+        switch self {
+        case .weekdays: return (0...4).map { $0 }
+        case .weekends: return (5...6).map { $0 }
+        case .custom(let dayUnits):
+            return dayUnits.map { $0.number }
+        }
     }
 }
 

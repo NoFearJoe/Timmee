@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pinWindow: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        NotificationsConfigurator.registerForLocalNotifications(application: application)
 //
 //        NSDate.mt_setTimeZone(TimeZone.current)
 //        NSDate.mt_setLocale(Locale.current)
@@ -24,27 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserProperty.appTheme.setInt(AppTheme.white.code)
         }
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = AppTheme.current.scheme.panelColor
-        
-        // TODO: remove!!!
-//        UserProperty.pinCode.setValue(nil)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = AppTheme.current.panelColor
         
         pinWindow = UIWindow()
         pinWindow?.windowLevel = UIWindowLevelStatusBar
         if UserProperty.pinCode.value() != nil {
             let pinViewController = ViewControllersFactory.pinAuthentication
-            pinViewController.onComplete = {
-                UIView.animate(withDuration: 0.25, animations: {
-                    self.pinWindow?.alpha = 0
-                }, completion: { _ in
-                    self.pinWindow?.isHidden = true
-                    self.pinWindow = nil
-                })
-            }
-            pinWindow?.rootViewController = pinViewController
-        } else {
-            // TODO: Это не будет здесь вызываться
-            let pinViewController = ViewControllersFactory.pinCreation
             pinViewController.onComplete = {
                 UIView.animate(withDuration: 0.25, animations: {
                     self.pinWindow?.alpha = 0
@@ -85,6 +72,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Save coredata context
     }
 
-    // MARK: - Core Data stack
 }
-

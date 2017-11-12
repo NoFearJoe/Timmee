@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import class UIKit.UIDevice
 import class UIKit.UILabel
 import class UIKit.UICollectionView
 import class UIKit.UIViewController
@@ -39,19 +40,7 @@ final class PinAuthenticationViewController: UIViewController {
     }()
     
     fileprivate lazy var biometricsType: BiometricsType = {
-        let localAuthenticationContext = LAContext()
-        guard localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-            else { return .none }
-        
-        if #available(iOS 11.0, *) {
-            switch localAuthenticationContext.biometryType {
-            case .typeFaceID: return .faceID
-            case .typeTouchID: return .touchID
-            case .none: return .none
-            }
-        } else {
-            return .touchID
-        }
+        return UIDevice.current.biometricsType
     }()
     
     fileprivate lazy var localAuthenticationContext = LAContext()
@@ -185,13 +174,13 @@ fileprivate extension PinAuthenticationViewController {
 fileprivate extension PinAuthenticationViewController {
 
     func setupAppearance() {
-        view.backgroundColor = AppTheme.current.scheme.backgroundColor
-        messageLabel.textColor = AppTheme.current.scheme.tintColor
+        view.backgroundColor = AppTheme.current.middlegroundColor
+        messageLabel.textColor = AppTheme.current.tintColor
         
-        pinCodeView.emptyDotColor = AppTheme.current.scheme.panelColor
-        pinCodeView.filledDotColor = AppTheme.current.scheme.tintColor
-        pinCodeView.wrongPinCodeDotColor = AppTheme.current.scheme.redColor
-        pinCodeView.rightPinCodeDotColor = AppTheme.current.scheme.greenColor
+        pinCodeView.emptyDotColor = AppTheme.current.panelColor
+        pinCodeView.filledDotColor = AppTheme.current.tintColor
+        pinCodeView.wrongPinCodeDotColor = AppTheme.current.redColor
+        pinCodeView.rightPinCodeDotColor = AppTheme.current.greenColor
     }
 
 }

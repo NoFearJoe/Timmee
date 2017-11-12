@@ -21,6 +21,10 @@ final class TableListRepresentationPresenter {
         var isCompletedTasksVisible: Bool = false
         var shouldResetOffsetAfterReload: Bool = false
         
+        var checkedTasks: [Task] = []
+        
+        var shouldCreateImportantTask: Bool = false
+        
         mutating func reset() {
             isCompletedTasksVisible = false
             shouldResetOffsetAfterReload = false
@@ -28,6 +32,7 @@ final class TableListRepresentationPresenter {
     }
     
     weak var output: ListRepresentationOutput?
+    weak var editingOutput: ListRepresentationEditingOutput?
     
     var interactor: TableListRepresentationInteractorInput!
     weak var view: TableListRepresentationViewInput!
@@ -56,9 +61,21 @@ extension TableListRepresentationPresenter: ListRepresentationInput {
     }
     
     func forceTaskCreation() {
-        view.setTaskTitleFieldFirstResponder()
+        view.setTaskTitleFieldFirstResponder(true)
     }
+    
+    func finishShortTaskEditing() {
+        view.setTaskTitleFieldFirstResponder(false)
+    }
+    
+}
 
+extension TableListRepresentationPresenter: ListRepresentationEditingInput {
+    
+    func toggleGroupEditing() {
+        view.toggleGroupEditing()
+    }
+    
 }
 
 extension TableListRepresentationPresenter: TableListRepresentationInteractorOutput {
@@ -73,13 +90,20 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
     func tasksCountChanged(count: Int) {
         if count == 0 {
             view.showNoTasksPlaceholder()
+            editingOutput?.setGroupEditingVisible(false)
         } else {
             view.hideNoTasksPlaceholder()
+            editingOutput?.setGroupEditingVisible(true)
         }
     }
     
     func operationCompleted() {
         view.setInteractionsEnabled(true)
+    }
+    
+    func groupEditingOperationCompleted() {
+        view.setInteractionsEnabled(true)
+        view.setGroupEditingActionsEnabled(false) // TODO: Или закончить изменения???
     }
     
     func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble) {
@@ -103,10 +127,17 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
         state.enteredTaskTitle = title
     }
     
+    func didToggleImportancyInShortTaskEditor(to isImportant: Bool) {
+        state.shouldCreateImportantTask = isImportant
+    }
+    
     func didPressAddTaskButton() {
         if let title = state.enteredTaskTitle {
             view.setInteractionsEnabled(false)
-            interactor.addShortTask(with: title, dueDate: dateForTodaySmartList())
+            interactor.addShortTask(with: title,
+                                    dueDate: dateForTodaySmartList(),
+                                    inProgress: progressStateForInProgressSmartList(),
+                                    isImportant: state.shouldCreateImportantTask)
         }
     }
     
@@ -132,9 +163,80 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
         interactor.completeTask(task)
     }
     
+    func didPressStart(task: Task) {
+        view.setInteractionsEnabled(false)
+        interactor.toggleTaskProgressState(task)
+    }
+    
+    func didPressStop(task: Task) {
+        view.setInteractionsEnabled(false)
+        interactor.toggleTaskProgressState(task)
+    }
+    
     func toggleImportancy(of task: Task) {
         view.setInteractionsEnabled(false)
         interactor.toggleImportancy(of: task)
+    }
+    
+    func didCheckTask(_ task: Task) {
+        state.checkedTasks.append(task)
+        view.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
+        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
+            view.setCompletionGroupEditingAction(.complete)
+        } else {
+            view.setCompletionGroupEditingAction(.recover)
+        }
+    }
+    
+    func didUncheckTask(_ task: Task) {
+        state.checkedTasks.remove(object: task)
+        view.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
+        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
+            view.setCompletionGroupEditingAction(.complete)
+        } else {
+            view.setCompletionGroupEditingAction(.recover)
+        }
+    }
+    
+    func taskIsChecked(_ task: Task) -> Bool {
+        return state.checkedTasks.contains(task)
+    }
+    
+    func groupEditingToggled(to isEditing: Bool) {
+        editingOutput?.groupEditingToggled(to: isEditing)
+        state.checkedTasks = []
+    }
+    
+    func didSelectGroupEditingAction(_ action: GroupEditingAction) {
+        let tasks = state.checkedTasks
+        
+        switch action {
+        case .delete:
+            let message = "are_you_sure_you_want_to_delete_tasks".localized
+            view.showConfirmationAlert(title: "remove_tasks".localized,
+                                       message: message) { [weak self] in
+                self?.view.setInteractionsEnabled(false)
+                self?.interactor.deleteTasks(tasks)
+                self?.state.checkedTasks = []
+                self?.view.toggleGroupEditing()
+            }
+        case .complete:
+            view.setInteractionsEnabled(false)
+            interactor.completeTasks(tasks)
+            state.checkedTasks = []
+            view.toggleGroupEditing()
+        case .move:
+            editingOutput?.didAskToShowListsForMoveTasks { [weak self] list in
+                let message = "are_you_sure_you_want_to_move_tasks".localized + " \"\(list.title)\""
+                self?.view.showConfirmationAlert(title: "move_tasks".localized,
+                                                 message: message) { [weak self] in
+                    self?.view.setInteractionsEnabled(false)
+                    self?.interactor.moveTasks(tasks, toList: list)
+                    self?.state.checkedTasks = []
+                    self?.view.toggleGroupEditing()
+                }
+            }
+        }
     }
     
 }
@@ -146,6 +248,13 @@ fileprivate extension TableListRepresentationPresenter {
             return Date.startOfNextHour
         }
         return nil
+    }
+    
+    func progressStateForInProgressSmartList() -> Bool {
+        if let smartList = state.list as? SmartList, smartList.smartListType == .inProgress {
+            return true
+        }
+        return false
     }
 
 }

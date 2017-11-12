@@ -12,7 +12,9 @@ enum AppTheme {
     case white
     case black
     
-    static let current = AppTheme(code: UserProperty.appTheme.int())
+    static var current: AppThemeScheme {
+        return AppTheme(code: UserProperty.appTheme.int()).scheme
+    }
     
     init(code: Int) {
         switch code {
@@ -28,39 +30,61 @@ enum AppTheme {
         }
     }
     
+    var title: String {
+        switch self {
+        case .white: return "white_theme".localized
+        case .black: return "black_theme".localized
+        }
+    }
+    
     var scheme: AppThemeScheme {
         switch self {
         case .white: return AppThemeScheme.white
         case .black: return AppThemeScheme.black
         }
     }
+    
+    var next: AppTheme {
+        switch self {
+        case .white: return .black
+        case .black: return .white
+        }
+    }
 }
 
 struct AppThemeScheme {
 
-    static let white = AppThemeScheme(backgroundColor: UIColor(rgba: "FFFFFF"),
-                                      cellBackgroundColor: UIColor(rgba: "E1E5E5"),
+    static let white = AppThemeScheme(backgroundColor: UIColor(rgba: "303737"),
+                                      middlegroundColor: UIColor(rgba: "E0E0E0"),
+                                      foregroundColor: UIColor(rgba: "FFFFFF"),
                                       tintColor: UIColor(rgba: "2C3539"),
-                                      secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.75),
-                                      cellTintColor: UIColor(rgba: "2C3539"),
+                                      secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.5),
+                                      backgroundTintColor: .white,
+                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.5),
                                       specialColor: UIColor(rgba: "0EAEE4"),
                                       panelColor: UIColor(rgba: "EEEEEE"),
                                       tagColors: whiteThemeTagColors)
     
-    static let black = AppThemeScheme(backgroundColor: UIColor(rgba: "202020"),
-                                      cellBackgroundColor: .white,
-                                      tintColor: .white,
-                                      secondaryTintColor: UIColor.white.withAlphaComponent(0.75),
-                                      cellTintColor: UIColor(rgba: "202020"),
+    static let black = AppThemeScheme(backgroundColor: UIColor(rgba: "141311"),
+                                      middlegroundColor: UIColor(rgba: "686766"),
+                                      foregroundColor: UIColor(rgba: "B7B7B6"),
+                                      tintColor: UIColor(rgba: "141311"),
+                                      secondaryTintColor: UIColor(rgba: "141311").withAlphaComponent(0.5),
+                                      backgroundTintColor: .white,
+                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.5),
                                       specialColor: UIColor(rgba: "FFD700"),
                                       panelColor: UIColor(rgba: "EEEEEE"),
                                       tagColors: blackThemeTagColors)
     
     let backgroundColor: UIColor
-    let cellBackgroundColor: UIColor
+    let middlegroundColor: UIColor
+    let foregroundColor: UIColor
+    
     let tintColor: UIColor
     let secondaryTintColor: UIColor
-    let cellTintColor: UIColor
+    let backgroundTintColor: UIColor
+    let secondaryBackgroundTintColor: UIColor
+    
     let specialColor: UIColor
     let panelColor: UIColor
     

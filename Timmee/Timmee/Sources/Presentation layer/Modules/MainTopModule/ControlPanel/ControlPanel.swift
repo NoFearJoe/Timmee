@@ -6,16 +6,18 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import UIKit
+import class UIKit.UILabel
+import class UIKit.UIButton
+import class UIKit.UIImageView
 
 final class ControlPanel: BarView {
 
-    @IBOutlet fileprivate weak var listIconView: UIImageView!
-    @IBOutlet fileprivate weak var listTitleLabel: UILabel!
+    @IBOutlet fileprivate var listIconView: UIImageView!
+    @IBOutlet fileprivate var listTitleLabel: UILabel!
     
-    @IBOutlet fileprivate weak var settingsButton: UIButton!
-    @IBOutlet fileprivate weak var searchButton: UIButton!
-    @IBOutlet fileprivate weak var addListButton: UIButton!
+    @IBOutlet fileprivate var settingsButton: UIButton!
+    @IBOutlet fileprivate var searchButton: UIButton!
+    @IBOutlet fileprivate var editButton: UIButton!
     
     func showList(_ list: List) {
         setListIcon(list.icon)
@@ -30,16 +32,38 @@ final class ControlPanel: BarView {
         listTitleLabel.text = title
     }
     
-    func applyAppearance() {
-        showShadow = true
+    func setGroupEditingButtonEnabled(_ isEnabled: Bool) {
+        editButton.isEnabled = isEnabled
+    }
+    
+    func setGroupEditingVisible(_ isVisible: Bool) {
+        editButton.isHidden = !isVisible
+    }
+    
+    func changeGroupEditingState(to isEditing: Bool) {
+        editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .normal)
+        editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .disabled)
+        editButton.tintColor = isEditing ? AppTheme.current.greenColor : AppTheme.current.backgroundTintColor
         
-        barColor = AppTheme.current.scheme.panelColor
-        listTitleLabel.textColor = AppTheme.current.scheme.tintColor
-        listIconView.tintColor = AppTheme.current.scheme.specialColor
-        
-        settingsButton.tintColor = AppTheme.current.scheme.tintColor
-        searchButton.tintColor = AppTheme.current.scheme.tintColor
-        addListButton.tintColor = AppTheme.current.scheme.tintColor
+        settingsButton.isUserInteractionEnabled = !isEditing
+        searchButton.isUserInteractionEnabled = !isEditing
     }
 
+}
+
+extension ControlPanel {
+    
+    func applyAppearance() {
+        showShadow = false
+        separatorColor = .clear
+        
+        barColor = .clear
+        listTitleLabel.textColor = AppTheme.current.backgroundTintColor
+        listIconView.tintColor = AppTheme.current.specialColor
+        
+        settingsButton.tintColor = AppTheme.current.backgroundTintColor
+        searchButton.tintColor = AppTheme.current.backgroundTintColor
+        editButton.tintColor = AppTheme.current.backgroundTintColor
+    }
+    
 }

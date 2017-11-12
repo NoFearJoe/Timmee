@@ -29,7 +29,7 @@ final class FadeInBackgroundModalTransition: NSObject, UIViewControllerAnimatedT
                            options: [.curveEaseInOut],
                            animations:
                 {
-                    backgroundView.backgroundColor = AppTheme.current.scheme.secondaryTintColor
+                    backgroundView.backgroundColor = AppTheme.current.secondaryTintColor
                 },
                 completion: { (complete) in
                     transitionContext.completeTransition(complete)

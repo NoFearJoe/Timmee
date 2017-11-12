@@ -26,10 +26,13 @@ class Task {
     var address: String?
     var shouldNotifyAtLocation: Bool
     var isDone: Bool
+    var inProgress: Bool
     let creationDate: Date
     
     var tags: [Tag] = []
     var subtasks: [Subtask] = []
+    
+    var timeTemplate: TimeTemplate?
     
     init(task: TaskEntity) {
         id = task.id!
@@ -49,10 +52,15 @@ class Task {
         
         shouldNotifyAtLocation = task.shouldNotifyAtLocation
         isDone = task.isDone
+        inProgress = task.inProgress
         creationDate = task.creationDate! as Date
         
         tags = (Array(task.tags as? Set<TagEntity> ?? Set())).map { Tag(entity: $0) }
         subtasks = (task.subtasks!.array as! [SubtaskEntity]).map { Subtask(entity: $0) }
+        
+        if let template = task.timeTemplate {
+            timeTemplate = TimeTemplate(entity: template)
+        }
     }
     
     init(id: String,
@@ -67,6 +75,7 @@ class Task {
          address: String?,
          shouldNotifyAtLocation: Bool,
          isDone: Bool,
+         inProgress: Bool,
          creationDate: Date) {
         self.id = id
         self.title = title
@@ -80,6 +89,7 @@ class Task {
         self.address = address
         self.shouldNotifyAtLocation = shouldNotifyAtLocation
         self.isDone = isDone
+        self.inProgress = inProgress
         self.creationDate = creationDate
     }
     
@@ -97,6 +107,7 @@ class Task {
                   address: nil,
                   shouldNotifyAtLocation: false,
                   isDone: false,
+                  inProgress: false,
                   creationDate: Date())
     }
     
@@ -113,10 +124,13 @@ class Task {
                         address: address,
                         shouldNotifyAtLocation: shouldNotifyAtLocation,
                         isDone: isDone,
+                        inProgress: inProgress,
                         creationDate: creationDate)
         
         task.tags = tags
         task.subtasks = subtasks
+        
+        task.timeTemplate = timeTemplate
         
         return task
     }

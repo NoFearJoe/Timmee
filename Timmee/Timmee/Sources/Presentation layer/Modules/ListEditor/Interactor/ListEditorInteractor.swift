@@ -56,7 +56,7 @@ extension ListEditorInteractor: ListEditorInteractorInput {
 fileprivate extension ListEditorInteractor {
 
     func isValidList(_ list: List) -> Bool {
-        return !list.title.isEmpty
+        return !list.title.trimmed.isEmpty
     }
 
 }

@@ -11,17 +11,28 @@ import SwipeCellKit
 
 final class TableListRepresentationCell: SwipeTableViewCell {
     
-    @IBOutlet fileprivate weak var containerView: TableListRepersentationCellContainerView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var dueDateLabel: UILabel!
-    @IBOutlet fileprivate weak var subtasksLabel: UILabel!
-    @IBOutlet fileprivate weak var importancyContainerView: UIView!
-    @IBOutlet fileprivate weak var importancyIconView: UIImageView!
+    @IBOutlet fileprivate var containerView: TableListRepersentationCellContainerView!
+    @IBOutlet fileprivate var titleLabel: UILabel!
+    @IBOutlet fileprivate var dueDateLabel: UILabel!
+    @IBOutlet fileprivate var subtasksLabel: UILabel!
+    @IBOutlet fileprivate var importancyContainerView: UIView!
+    @IBOutlet fileprivate var importancyIconView: UIImageView!
     
-    @IBOutlet fileprivate weak var tagsView: UIScrollView!
+    @IBOutlet fileprivate var tagsView: UIScrollView!
     
-    @IBOutlet fileprivate weak var subtasksLabelLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var tagsViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var checkBox: CheckBox! {
+        didSet {
+            checkBox.didChangeCkeckedState = { [unowned self] isChecked in
+                self.onCheck?(isChecked)
+            }
+        }
+    }
+    
+    @IBOutlet fileprivate var subtasksLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var tagsViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet fileprivate var containerViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var containerViewTrailingConstraint: NSLayoutConstraint!
     
     var title: String? {
         get { return titleLabel.attributedText?.string }
@@ -32,19 +43,40 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     }
     
     var dueDate: String? {
-        didSet { updateDueDateView(with: dueDate) }
+        didSet {
+            guard dueDate != oldValue || dueDate == nil else { return }
+            updateDueDateView(with: dueDate)
+        }
     }
     
     var subtasksInfo: (done: Int, total: Int)? {
-        didSet { updateSubtasksView(with: subtasksInfo) }
+        didSet {
+            if let subtasksInfo = subtasksInfo, let oldValue = oldValue {
+                if subtasksInfo.done == oldValue.done,
+                    subtasksInfo.total == oldValue.total { return }
+            }
+            updateSubtasksView(with: subtasksInfo)
+        }
     }
     
     var isImportant: Bool = false {
-        didSet { importancyIconView.image = isImportant ? #imageLiteral(resourceName: "important_active") : #imageLiteral(resourceName: "important_inactive") }
+        didSet {
+            guard isImportant != oldValue else { return }
+            importancyIconView.image = isImportant ? #imageLiteral(resourceName: "important_active") : #imageLiteral(resourceName: "important_inactive")
+        }
     }
     
     var isDone: Bool = false {
-        didSet { updateDoneState(with: isDone) }
+        didSet {
+            guard isDone != oldValue else { return }
+            updateDoneState(with: isDone)
+        }
+    }
+    
+    var inProgress: Bool = false {
+        didSet {
+            updateProgressState(with: inProgress)
+        }
     }
     
     func updateTagColors(with colors: [UIColor]) {
@@ -66,26 +98,97 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     }
     
     var maxTitleLinesCount: Int = 1 {
-        didSet { titleLabel.numberOfLines = maxTitleLinesCount }
+        didSet {
+            guard maxTitleLinesCount != oldValue else { return }
+            titleLabel.numberOfLines = maxTitleLinesCount
+        }
     }
     
     var onTapToImportancy: (() -> Void)?
     
+    fileprivate var _isGroupEditing: Bool = false
+    func setGroupEditing(_ isGroupEditing: Bool,
+                         animated: Bool = false,
+                         completion: (() -> Void)? = nil) {
+        guard isGroupEditing != _isGroupEditing else { return }
+        
+        _isGroupEditing = isGroupEditing
+        
+        containerView.isUserInteractionEnabled = !isGroupEditing
+        
+        containerViewLeadingConstraint.constant = isGroupEditing ? 44 : 8
+        containerViewTrailingConstraint.constant = isGroupEditing ? -28 : 8
+        
+        if animated {
+            if isGroupEditing {
+                checkBox.isHidden = false
+            }
+            
+            UIView.animate(withDuration: 0.33, animations: {
+                self.contentView.layoutIfNeeded()
+            }) { finished in
+                if finished && !isGroupEditing {
+                    self.checkBox.isHidden = true
+                }
+                completion?()
+            }
+        } else {
+            checkBox.isHidden = !isGroupEditing
+            contentView.layoutIfNeeded()
+            completion?()
+        }
+    }
+    
+    var isChecked: Bool = false {
+        didSet {
+            checkBox.isChecked = isChecked
+        }
+    }
+    
+    
+    var onCheck: ((Bool) -> Void)?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.fillColor = AppTheme.current.scheme.cellBackgroundColor
-        titleLabel.textColor = AppTheme.current.scheme.cellTintColor
+        applyAppearance()
+        checkBox.isHidden = true
+        importancyIconView.image = #imageLiteral(resourceName: "important_inactive")
         addTapToImportancyGestureRecognizer()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        containerView.setNeedsDisplay()
+    func setTask(_ task: Task) {
+        updateTagColors(with:
+            task.tags
+                .sorted(by: { $0.0.title < $0.1.title })
+                .map { $0.color }
+        )
         
-        isImportant = false
-        isDone = false
+        let hasParameters = task.subtasks.count > 0 || task.dueDate != nil
+        maxTitleLinesCount = hasParameters || task.isDone ? 1 : 2
         
-        maxTitleLinesCount = 1
+        title = task.title
+        
+        isDone = task.isDone
+        
+        inProgress = task.inProgress
+        
+        if !task.isDone {
+            dueDate = task.dueDate?.asDayMonthTime
+            subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
+        } else {
+            dueDate = nil
+            subtasksInfo = nil
+        }
+        
+        isImportant = task.isImportant
+    }
+    
+    func applyAppearance() {
+        containerView.fillColor = AppTheme.current.foregroundColor
+        titleLabel.textColor = AppTheme.current.tintColor
+        dueDateLabel.textColor = AppTheme.current.secondaryTintColor
+        subtasksLabel.textColor = AppTheme.current.secondaryTintColor
     }
     
 }
@@ -116,6 +219,10 @@ fileprivate extension TableListRepresentationCell {
         updateTitle(title)
     }
     
+    func updateProgressState(with inProgress: Bool) {
+        containerView.shouldDrawProgressIndicator = inProgress
+    }
+    
     func updateTitle(_ title: String) {
         titleLabel.text = title
     }
@@ -133,8 +240,12 @@ fileprivate extension TableListRepresentationCell {
 
 final class TableListRepersentationCellContainerView: UIView {
     
-    var fillColor: UIColor = AppTheme.current.scheme.cellBackgroundColor
+    var fillColor: UIColor = AppTheme.current.foregroundColor
     var cornerRadius: CGFloat = 4
+    
+    var shouldDrawProgressIndicator: Bool = false {
+        didSet { setNeedsDisplay() }
+    }
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else {
@@ -147,6 +258,13 @@ final class TableListRepersentationCellContainerView: UIView {
         let path = UIBezierPath(roundedRect: rect.insetBy(dx: 0, dy: 2),
                                 cornerRadius: cornerRadius)
         path.fill()
+        path.addClip()
+        
+        if shouldDrawProgressIndicator {
+            context.setFillColor(AppTheme.current.blueColor.cgColor)
+            let indicatorRect = CGRect(x: 0, y: 0, width: 2, height: rect.height)
+            context.fill(indicatorRect)
+        }
     }
     
 }

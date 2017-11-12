@@ -21,8 +21,8 @@ class CheckBox: UIView {
         }
     }
     
-    var checkedColor: UIColor { return AppTheme.current.scheme.blueColor }
-    var uncheckedColor: UIColor { return AppTheme.current.scheme.secondaryTintColor}
+    var checkedColor: UIColor { return AppTheme.current.blueColor }
+    var uncheckedColor: UIColor { return AppTheme.current.secondaryTintColor}
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +54,7 @@ class CheckBox: UIView {
             
             context.fillEllipse(in: rect.insetBy(dx: 1, dy: 1))
             
-            context.setFillColor(AppTheme.current.scheme.backgroundColor.cgColor)
+            context.setFillColor(AppTheme.current.backgroundTintColor.cgColor)
             
             let image = UIImage(named: "checkmark")!
             let imageInset = rect.width * 0.25
@@ -72,7 +72,7 @@ class CheckBox: UIView {
 
 final class InversedCheckBox: CheckBox {
 
-    override var checkedColor: UIColor { return AppTheme.current.scheme.secondaryTintColor }
-    override var uncheckedColor: UIColor { return AppTheme.current.scheme.blueColor }
+    override var checkedColor: UIColor { return AppTheme.current.secondaryTintColor }
+    override var uncheckedColor: UIColor { return AppTheme.current.blueColor }
 
 }

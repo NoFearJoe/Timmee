@@ -8,10 +8,10 @@
 
 import class Foundation.UserDefaults
 
-enum UserProperty: String {
+enum UserProperty {
     case isFirstLoad
     case isEducationShown
-    case isProtected
+    case isAppRated
     
     case appTheme
     
@@ -19,6 +19,22 @@ enum UserProperty: String {
     
     case pinCode
     case biometricsAuthenticationEnabled
+    
+    case inApp(String)
+    
+    var rawValue: String {
+        switch self {
+        case .isFirstLoad: return "isFirstLoad"
+        case .isEducationShown: return "isEducationShown"
+        case .isAppRated: return "isAppRated"
+        case .appTheme: return "appTheme"
+        case .listSorting: return "listSorting"
+        case .pinCode: return "pinCode"
+        case .biometricsAuthenticationEnabled: return "biometricsAuthenticationEnabled"
+        case .inApp(let id): return "inApp_\(id)"
+        }
+    }
+    
 }
 
 extension UserProperty {

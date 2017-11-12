@@ -59,7 +59,7 @@ final class TaskTagsPicker: UIViewController {
         tagsView.reloadData()
         
         addTagView.placeholder = "input_tag".localized
-        addTagView.barColor = AppTheme.current.scheme.panelColor
+        addTagView.barColor = AppTheme.current.panelColor
         addTagView.color = addTagView.colors.first!
         addTagView.onCreateTag = { [weak self] title, color in
             let tagID = RandomStringGenerator.randomString(length: 16)
@@ -248,25 +248,25 @@ final class AddTagView: BarView {
     
     var placeholder: String = "" {
         didSet {
-            let color = AppTheme.current.scheme.secondaryTintColor
+            let color = AppTheme.current.secondaryTintColor
             textField.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                  attributes: [NSForegroundColorAttributeName: color])
         }
     }
     
-    var color: UIColor = AppTheme.current.scheme.tagColors.first! {
+    var color: UIColor = AppTheme.current.tagColors.first! {
         didSet {
             colorView.backgroundColor = color
         }
     }
     
-    var colors: [UIColor] = AppTheme.current.scheme.tagColors
+    var colors: [UIColor] = AppTheme.current.tagColors
     
     var onCreateTag: ((String, UIColor) -> Void)?
     
     @IBOutlet fileprivate weak var colorPicker: ColorPicker? {
         didSet {
-            colorPicker?.backgroundColor = AppTheme.current.scheme.panelColor
+            colorPicker?.backgroundColor = AppTheme.current.panelColor
             colorPicker?.colors = colors
             colorPicker?.selectedColorIndex = colors.index(of: color) ?? -1
             colorPicker?.onSelectColor = { [weak self] color in

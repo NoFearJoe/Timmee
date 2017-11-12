@@ -15,7 +15,7 @@ import class UIKit.UIColor
 class BasePadCell: UICollectionViewCell {
 
     var defaultBackgroundColor: UIColor = UIColor.clear
-    var highlightedBackgroundColor: UIColor = AppTheme.current.scheme.panelColor
+    var highlightedBackgroundColor: UIColor = AppTheme.current.panelColor
     
     var item: NumberPadItem!
     
@@ -52,7 +52,7 @@ final class NumberPadCell: BasePadCell {
     
     @IBOutlet fileprivate var titleLabel: UILabel! {
         didSet {
-            titleLabel.textColor = AppTheme.current.scheme.tintColor
+            titleLabel.textColor = AppTheme.current.tintColor
         }
     }
     
@@ -72,7 +72,7 @@ final class IconPadCell: BasePadCell {
     
     @IBOutlet fileprivate var iconView: UIImageView! {
         didSet {
-            iconView.tintColor = AppTheme.current.scheme.tintColor
+            iconView.tintColor = AppTheme.current.tintColor
         }
     }
     

@@ -20,7 +20,7 @@ final class ListIconCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            iconView.tintColor = isSelected ? AppTheme.current.scheme.blueColor : AppTheme.current.scheme.panelColor
+            iconView.tintColor = isSelected ? AppTheme.current.blueColor : AppTheme.current.panelColor
         }
     }
     

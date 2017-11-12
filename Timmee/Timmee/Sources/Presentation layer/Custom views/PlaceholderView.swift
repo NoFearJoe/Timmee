@@ -47,8 +47,8 @@ extension PlaceholderView {
 fileprivate extension PlaceholderView {
     
     func setupAppearance() {
-        titleLabel.textColor = AppTheme.current.scheme.tintColor
-        subtitleLabel.textColor = AppTheme.current.scheme.secondaryTintColor
+        titleLabel.textColor = AppTheme.current.tintColor
+        subtitleLabel.textColor = AppTheme.current.secondaryTintColor
     }
     
 }

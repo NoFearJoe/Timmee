@@ -11,14 +11,19 @@
 "today" = "Today";
 "tomorrow" = "Tomorrow";
 "week" = "Week";
-"new_list" = "New list";
+"new_list" = "New list...";
 "import_tasks" = "Import tasks";
 "no_tasks_to_import" = "No tasks to import";
 "tasks_without_list" = "Not in a list";
 "no_searched_tasks" = "No tasks";
+"input_task_title" = "Task title...";
+"input_task_note" = "Note...";
+"search" = "Search...";
+"initial_search_title" = "Tasks search";
+"initial_search_subtitle" = "Start to typing task title in search field";
 
 "no_tasks" = "No tasks";
-"new_task" = "New task";
+"new_task" = "New task...";
 "no_tasks_hint" = "Add a task by pressing on the pen above";
 
 "important_and_urgent" = "Important and urgent";
@@ -37,6 +42,7 @@
 "input_tag" = "Input tag...";
 "no_tags" = "No tags";
 "no_tags_hint" = "Input title and pick color to add tag";
+"in_progress" = "In progress";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
@@ -50,6 +56,7 @@
 "at" = "at"; // 21:00
 "upon" = ""; // 15 минут
 "no_repeat" = "No repeat";
+"until" = "Until";
 
 "hours" = "hours";
 "minutes" = "minutes";
@@ -88,7 +95,11 @@
 "additional_features" = "Additional features";
 
 "remove_list" = "Remove list";
+"remove_tasks" = "Remove tasks";
+"move_tasks" = "Move tasks";
 "are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Are you sure you want to remove the list with all tasks?";
+"are_you_sure_you_want_to_delete_tasks" = "Are you sure you want to remove tasks?";
+"are_you_sure_you_want_to_move_tasks" = "Are you sure you want to move tasks to";
 "i_am_sure" = "Yes, I'm sure";
 "cancel" = "Cancel";
 
@@ -98,6 +109,9 @@
 "close" = "Close";
 "back" = "Back";
 "continue" = "Continue";
+"complete" = "Complete";
+"restore" = "Restore";
+"move" = "Move";
 
 "create_password" = "Create password";
 "enter_password" = "Enter password";
@@ -117,6 +131,23 @@
 "no_thanks" = "No, thanks";
 "touch_id_reason" = "Use touchID to enter";
 "face_id_reason" = "Use faceID to enter";
+"pin_code_protection" = "Pin code protection";
+
+"general_section" = "General";
+"security_section" = "Security";
+"about_section" = "Additional";
+"is_on" = "Enabled";
+"is_off" = "Not set";
+"rate" = "Rate the App";
+"license" = "License";
+"restore_purchases" = "Restore purchases";
+"list_sorting" = "Lists sorting";
+"sort_by_creation_date" = "By creation date";
+"sort_by_tasks_count" = "By tasks count";
+"sort_by_title" = "By alphabet";
+"theme" = "App theme";
+"white_theme" = "Light";
+"black_theme" = "Dark";
 
 "every_n_units" = "n %lu";
 "every_n_weeks" = "n %lu";
@@ -125,3 +156,11 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 "imported_n_tasks" = "%lu n";
+
+
+"dark_theme_inapp_title" = "Dark theme";
+"dark_theme_inapp_description" = "";
+"tags_inapp_title" = "Tags";
+"tags_inapp_description" = "";
+"date_templates_inapp_title" = "Date templates";
+"date_templates_inapp_description" = "";

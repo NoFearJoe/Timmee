@@ -14,7 +14,7 @@ final class TaskTagsView: UIView {
     @IBOutlet fileprivate var placeholderLabel: UILabel! {
         didSet {
             placeholderLabel.text = "tags_picker".localized
-            placeholderLabel.textColor = AppTheme.current.scheme.secondaryTintColor
+            placeholderLabel.textColor = AppTheme.current.secondaryTintColor
             placeholderLabel.isHidden = true
         }
     }
@@ -44,8 +44,8 @@ final class TaskTagsView: UIView {
     
     var sortedTags: [Tag] = []
     
-    fileprivate let filledIconColor = AppTheme.current.scheme.blueColor
-    fileprivate let notFilledIconColor = AppTheme.current.scheme.secondaryTintColor
+    fileprivate let filledIconColor = AppTheme.current.blueColor
+    fileprivate let notFilledIconColor = AppTheme.current.secondaryTintColor
     
     fileprivate func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) {

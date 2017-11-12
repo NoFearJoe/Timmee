@@ -35,7 +35,7 @@ final class TaskIntervalRepeatingPicker: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        topLabel.textColor = AppTheme.current.scheme.tintColor
+        topLabel.textColor = AppTheme.current.tintColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -200,7 +200,7 @@ final class TaskIntervalRepeatingPickerUnitCell: UICollectionViewCell {
     
     var isPicked: Bool = false {
         didSet {
-            unitLabel.textColor = isPicked ? AppTheme.current.scheme.blueColor : AppTheme.current.scheme.tintColor
+            unitLabel.textColor = isPicked ? AppTheme.current.blueColor : AppTheme.current.tintColor
         }
     }
 

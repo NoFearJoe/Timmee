@@ -17,7 +17,9 @@ enum SmartListType {
     case tomorrow
     case week
     
-    static let allValues: [SmartListType] = [.all, .today, .tomorrow, .week]
+    case inProgress
+    
+    static let allValues: [SmartListType] = [.all, .today, .tomorrow, .week, inProgress]
     
     static func isSmartListID(_ id: String) -> Bool {
         return SmartListType.allValues.first(where: { $0.id == id }) != nil
@@ -28,6 +30,7 @@ enum SmartListType {
         case SmartListType.today.id: self = .today
         case SmartListType.tomorrow.id: self = .tomorrow
         case SmartListType.week.id: self = .week
+        case SmartListType.inProgress.id: self = .inProgress
         default: self = .all
         }
     }
@@ -38,6 +41,7 @@ enum SmartListType {
         case .today: return "Smart.Today"
         case .tomorrow: return "Smart.Tomorrow"
         case .week: return "Smart.Week"
+        case .inProgress: return "Smart.InProgress"
         }
     }
     
@@ -54,6 +58,7 @@ enum SmartListType {
         case .week: return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
                                        now.mt_startOfCurrentDay() as NSDate,
                                        (now.mt_oneWeekNext() as NSDate).mt_endOfCurrentDay() as NSDate)
+        case .inProgress: return NSPredicate(format: "inProgress == true && isDone == false")
         }
     }
 }
@@ -88,6 +93,12 @@ final class SmartList: List {
                       icon: .default,
                       creationDate: Date(),
                       smartListType: .week)
+        case .inProgress:
+            self.init(id: type.id,
+                      title: "in_progress".localized,
+                      icon: .mail,
+                      creationDate: Date(),
+                      smartListType: .inProgress)
         }
     }
     

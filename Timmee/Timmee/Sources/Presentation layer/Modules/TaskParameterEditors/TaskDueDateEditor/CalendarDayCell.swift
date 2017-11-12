@@ -35,9 +35,9 @@ final class DayNameLabel: UILabel {
     
     func setupAppearance(isWeekend: Bool) {
         if isWeekend {
-            color = AppTheme.current.scheme.redColor
+            color = AppTheme.current.redColor
         } else {
-            color = AppTheme.current.scheme.tintColor
+            color = AppTheme.current.tintColor
         }
     }
     
@@ -60,8 +60,8 @@ final class DayNumberLabel: UILabel {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = AppTheme.current.scheme.panelColor
-        selectedTextColor = AppTheme.current.scheme.backgroundColor
+        backgroundColor = AppTheme.current.panelColor
+        selectedTextColor = AppTheme.current.backgroundColor
     }
     
     
@@ -74,9 +74,9 @@ final class DayNumberLabel: UILabel {
     
     func setupAppearance(isWeekend: Bool) {
         if isWeekend {
-            color = AppTheme.current.scheme.redColor
+            color = AppTheme.current.redColor
         } else {
-            color = AppTheme.current.scheme.tintColor
+            color = AppTheme.current.tintColor
         }
     }
     

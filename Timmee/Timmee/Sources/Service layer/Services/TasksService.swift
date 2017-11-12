@@ -47,20 +47,24 @@ final class TasksService {
         return request
     }
     
+    func tasksSearchRequest(string: String) -> NSFetchRequest<TaskEntity> {
+        let request = allTasksFetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", string)
+        return request
+    }
+    
     func allTasksFetchRequest() -> NSFetchRequest<TaskEntity> {
         let request = NSFetchRequest<TaskEntity>(entityName: TaskEntity.entityName)
-//        request.predicate = NSPredicate(format: "list == nil")
         
         request.sortDescriptors = [
-            NSSortDescriptor(key: "list.title", ascending: false),
+            NSSortDescriptor(key: "list.title", ascending: true),
             NSSortDescriptor(key: "isDone", ascending: true),
             NSSortDescriptor(key: "isImportant", ascending: false),
+            NSSortDescriptor(key: "inProgress", ascending: false),
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
         
         return request
-//        let entities = fetchTaskEntities(with: request)
-//        return entities.map({ Task(task: $0) })
     }
 
 }
@@ -74,6 +78,11 @@ extension TasksService {
     
     func fetchTasks(smartListID: String) -> [Task] {
         let entities = fetchTaskEntities(smartListID: smartListID)
+        return entities.map({ Task(task: $0) })
+    }
+    
+    func searchTasks(by string: String) -> [Task] {
+        let entities = fetchTaskEntities(with: tasksSearchRequest(string: string))
         return entities.map({ Task(task: $0) })
     }
     
@@ -109,6 +118,10 @@ extension TasksService {
                 newTask.list = context.fetchList(id: listID)
                 newTask.subtasks = NSOrderedSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
                                                                                     in: context))
+                newTask.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
+                                                                        in: context))
+                newTask.timeTemplate = self.retrieveTimeTemplateEntity(from: task.timeTemplate,
+                                                                          in: context)
                 save()
             }
         }) { error in
@@ -117,50 +130,91 @@ extension TasksService {
     }
     
     func updateTask(_ task: Task, listID: String? = nil, completion: @escaping (Error?) -> Void) {
+        updateTasks([task], listID: listID, completion: completion)
+    }
+    
+    func updateTasks(_ tasks: [Task], listID: String? = nil, completion: @escaping (Error?) -> Void) {
+        guard !tasks.isEmpty else {
+            completion(nil)
+            return
+        }
+        
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
-            if let existingTask = context.fetchTask(id: task.id) {
-                existingTask.map(from: task)
-                if let listID = listID {
-                    existingTask.list = context.fetchList(id: listID)
+            tasks.forEach { task in
+                if let taskEntity = context.fetchTask(id: task.id) ?? context.createTask() {
+                    taskEntity.map(from: task)
+                    
+                    if let listID = listID {
+                        taskEntity.list = context.fetchList(id: listID)
+                    }
+                    
+                    taskEntity.subtasks = NSOrderedSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
+                                                                                           in: context))
+                    taskEntity.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
+                                                                            in: context))
+                    
+                    taskEntity.timeTemplate = self.retrieveTimeTemplateEntity(from: task.timeTemplate,
+                                                                              in: context)
                 }
-                existingTask.subtasks = NSOrderedSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
-                                                                                         in: context))
-                existingTask.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
-                                                                          in: context))
-                
-                save()
-            } else if let newTask = context.createTask() {
-                newTask.map(from: task)
-                if let listID = listID {
-                    newTask.list = context.fetchList(id: listID)
-                }
-                newTask.subtasks = NSOrderedSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
-                                                                                    in: context))
-                newTask.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
-                                                                     in: context))
-                
-                save()
-            } else {
-                completion(.taskUpdatingError)
             }
+            save()
         }) { error in
             completion(error != nil ? .taskUpdatingError : nil)
         }
     }
     
     func removeTask(_ task: Task, completion: @escaping (Error?) -> Void) {
+        removeTasks([task], completion: completion)
+    }
+    
+    func removeTasks(_ tasks: [Task], completion: @escaping (Error?) -> Void) {
+        guard !tasks.isEmpty else {
+            completion(nil)
+            return
+        }
+        
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
-            if let existingTask = context.fetchTask(id: task.id) {
-                try? context.remove(existingTask)
-                save()
-            } else {
-                completion(.taskIsNotExist)
+            tasks.forEach { task in
+                if let existingTask = context.fetchTask(id: task.id) {
+                    try? context.remove(existingTask)
+                }
             }
+            save()
         }) { error in
             completion(error != nil ?.taskRemovingError : nil)
         }
     }
 
+}
+
+extension TasksService {
+    
+    func doneTask(withID id: String, completion: @escaping () -> Void) {
+        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+            guard let task = context.fetchTask(id: id) else {
+                completion()
+                return
+            }
+            
+            task.isDone = true
+            
+            save()
+        }) { _ in
+            completion()
+        }
+    }
+    
+}
+
+extension TasksService {
+    
+    func retrieveList(of task: Task) -> List? {
+        if let taskEntity = DefaultStorage.instance.mainContext.fetchTask(id: task.id), let listEntity = taskEntity.list {
+            return List(listEntity: listEntity)
+        }
+        return nil
+    }
+    
 }
 
 fileprivate extension TasksService {
@@ -181,6 +235,14 @@ fileprivate extension TasksService {
             entity?.map(from: tag)
             return entity
         }
+    }
+    
+    func retrieveTimeTemplateEntity(from template: TimeTemplate?,
+                                      in context: Context) -> TimeTemplateEntity? {
+        guard let template = template else { return nil }
+        let entity = context.fetchTimeTemplate(id: template.id) ?? context.createTimeTemplate()
+        entity?.map(from: template)
+        return entity
     }
 
 }

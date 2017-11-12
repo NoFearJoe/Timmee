@@ -9,11 +9,6 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Light</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Task Editor View-->
         <scene sceneID="UJB-6F-STr">
@@ -62,74 +57,38 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pek-DW-aOB">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="466.5"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddW-UN-jqO" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="15" width="309" height="24.5"/>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdv-8n-clW" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="10" width="309" height="25"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="APY-9h-ov3"/>
+                                                            <constraint firstAttribute="height" constant="25" placeholder="YES" id="cG6-qM-7Rf"/>
                                                         </constraints>
-                                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Новая задача..."/>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="deviceRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeHolderLeftMargin">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
-                                                                <real key="value" value="73"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="k03-vf-k1c" id="Rdm-8r-4ow"/>
-                                                        </connections>
-                                                    </textView>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78Y-WW-ifn">
-                                                        <rect key="frame" x="15" y="54.5" width="345" height="1"/>
+                                                        <rect key="frame" x="15" y="45" width="345" height="1"/>
                                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="inX-3v-4r2"/>
                                                         </constraints>
                                                     </view>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGV-zB-Bdg" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="70.5" width="345" height="36"/>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adC-OE-TP5" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
+                                                        <rect key="frame" x="15" y="56" width="345" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="36" id="9EZ-qE-qTx"/>
+                                                            <constraint firstAttribute="height" constant="20" placeholder="YES" id="VYp-ta-MSc"/>
                                                         </constraints>
-                                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Описание..."/>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="deviceRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="placeHolderLeftMargin">
-                                                                <real key="value" value="2"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
-                                                                <real key="value" value="96"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="k03-vf-k1c" id="25p-Nu-YLf"/>
-                                                        </connections>
-                                                    </textView>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcV-Si-5DD">
-                                                        <rect key="frame" x="15" y="121.5" width="345" height="1"/>
+                                                        <rect key="frame" x="15" y="86" width="345" height="1"/>
                                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="rD9-t0-T3n"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vk6-A2-JlL" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="130.5" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="95" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="21x-HF-SBl">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -175,7 +134,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvB-oo-DZe" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="170.5" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="135" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm" translatesAutoresizingMaskIntoConstraints="NO" id="0Xm-hI-X7o">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -221,7 +180,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8B-lw-7Lt" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="210.5" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="175" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="repeat" translatesAutoresizingMaskIntoConstraints="NO" id="FxF-Bk-DUe">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -267,7 +226,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXS-L9-9eo" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="250.5" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="215" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="m5c-35-1Qc">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -313,14 +272,14 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76p-hB-vY6">
-                                                        <rect key="frame" x="15" y="298.5" width="345" height="1"/>
+                                                        <rect key="frame" x="15" y="263" width="345" height="1"/>
                                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="qul-2P-A91"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYI-cf-lbN" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="307.5" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="272" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="HLy-kg-aN8">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -366,7 +325,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mc0-JB-APZ" customClass="TaskCheckableParameterView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="347.5" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="312" width="345" height="40"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напомнить по месту" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-KQ-DdU">
                                                                 <rect key="frame" x="35" y="10" width="310" height="21"/>
@@ -399,14 +358,14 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWF-eD-hM2">
-                                                        <rect key="frame" x="15" y="395.5" width="345" height="1"/>
+                                                        <rect key="frame" x="15" y="360" width="345" height="1"/>
                                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="xEz-ZG-E79"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YxF-cS-tYv" customClass="TaskTagsView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="405" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="369.5" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" translatesAutoresizingMaskIntoConstraints="NO" id="rX9-jf-I4X">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -497,14 +456,14 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="att-iW-ArN">
-                                                        <rect key="frame" x="15" y="453" width="345" height="1"/>
+                                                        <rect key="frame" x="15" y="417.5" width="345" height="1"/>
                                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="deviceRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="a0Z-gI-grJ"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-dB-RXn" customClass="AddSubtaskView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="462" width="345" height="40"/>
+                                                        <rect key="frame" x="15" y="426.5" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_thin" translatesAutoresizingMaskIntoConstraints="NO" id="QoX-2V-CAb">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
@@ -540,8 +499,8 @@
                                                             <outlet property="titleField" destination="5x9-E0-ypE" id="4Uo-FM-XFE"/>
                                                         </connections>
                                                     </view>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ym9-dy-PPp">
-                                                        <rect key="frame" x="0.0" y="502" width="375" height="0.0"/>
+                                                    <tableView contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ym9-dy-PPp" customClass="ReorderableTableView" customModule="Timmee" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="466.5" width="375" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="lHU-aH-mFU"/>
@@ -562,29 +521,24 @@
                                                                                 <constraint firstAttribute="width" constant="20" id="oiT-fG-Jnu"/>
                                                                             </constraints>
                                                                         </view>
-                                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vf-ya-dek" customClass="TextView" customModule="Timmee" customModuleProvider="target">
-                                                                            <rect key="frame" x="50" y="7" width="325" height="30"/>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMt-bn-ugA" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
+                                                                            <rect key="frame" x="50" y="0.0" width="325" height="44"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Подзадача"/>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                        </textView>
+                                                                        </view>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="5Vf-ya-dek" firstAttribute="top" secondItem="u8N-aT-FWl" secondAttribute="top" constant="7" id="7mv-dH-qKa"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="5Vf-ya-dek" secondAttribute="trailing" id="Ahb-hG-vtf"/>
+                                                                        <constraint firstItem="cMt-bn-ugA" firstAttribute="top" secondItem="u8N-aT-FWl" secondAttribute="top" id="52V-qm-ipf"/>
                                                                         <constraint firstItem="GJe-4y-GXn" firstAttribute="centerY" secondItem="u8N-aT-FWl" secondAttribute="centerY" id="BOQ-nF-tqg"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="5Vf-ya-dek" secondAttribute="bottom" constant="7" id="Sfx-jT-x9p"/>
+                                                                        <constraint firstItem="cMt-bn-ugA" firstAttribute="leading" secondItem="GJe-4y-GXn" secondAttribute="trailing" constant="15" id="THV-Na-iDk"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="cMt-bn-ugA" secondAttribute="bottom" id="XGL-oB-6tg"/>
                                                                         <constraint firstItem="GJe-4y-GXn" firstAttribute="leading" secondItem="u8N-aT-FWl" secondAttribute="leading" constant="15" id="Ygx-HE-Vf5"/>
-                                                                        <constraint firstItem="5Vf-ya-dek" firstAttribute="leading" secondItem="GJe-4y-GXn" secondAttribute="trailing" constant="15" id="nsl-ge-9md"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="cMt-bn-ugA" secondAttribute="trailing" id="sGQ-Pq-eCg"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
                                                                     <outlet property="checkBox" destination="GJe-4y-GXn" id="c78-CO-XW4"/>
-                                                                    <outlet property="titleView" destination="5Vf-ya-dek" id="3p4-iV-Jk5"/>
+                                                                    <outlet property="titleView" destination="cMt-bn-ugA" id="oeA-fA-ahp"/>
                                                                 </connections>
                                                             </tableViewCell>
                                                         </prototypes>
@@ -616,20 +570,18 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="Tdv-8n-clW" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="006-I9-SgP"/>
                                                     <constraint firstItem="BvB-oo-DZe" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="01Z-7z-7LE"/>
-                                                    <constraint firstItem="78Y-WW-ifn" firstAttribute="top" secondItem="ddW-UN-jqO" secondAttribute="bottom" constant="15" id="0bk-5e-yPc"/>
                                                     <constraint firstAttribute="trailing" secondItem="76p-hB-vY6" secondAttribute="trailing" constant="15" id="0bv-Ue-6V0"/>
                                                     <constraint firstItem="iXS-L9-9eo" firstAttribute="top" secondItem="P8B-lw-7Lt" secondAttribute="bottom" id="1RF-f1-iS7"/>
-                                                    <constraint firstItem="ddW-UN-jqO" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="1lB-F6-Iqs"/>
-                                                    <constraint firstItem="vGV-zB-Bdg" firstAttribute="top" secondItem="78Y-WW-ifn" secondAttribute="bottom" constant="15" id="2h0-D1-c85"/>
                                                     <constraint firstAttribute="trailing" secondItem="Vk6-A2-JlL" secondAttribute="trailing" constant="15" id="3Cq-14-uf2"/>
                                                     <constraint firstAttribute="trailing" secondItem="Mc0-JB-APZ" secondAttribute="trailing" constant="15" id="3HQ-zX-NUw"/>
                                                     <constraint firstAttribute="trailing" secondItem="ym9-dy-PPp" secondAttribute="trailing" id="5HN-6R-6up"/>
+                                                    <constraint firstItem="YcV-Si-5DD" firstAttribute="top" secondItem="adC-OE-TP5" secondAttribute="bottom" constant="10" id="5oi-PR-KQe"/>
                                                     <constraint firstItem="BvB-oo-DZe" firstAttribute="top" secondItem="Vk6-A2-JlL" secondAttribute="bottom" id="63w-4j-3BQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="rWF-eD-hM2" secondAttribute="trailing" constant="15" id="AAW-Or-lDV"/>
                                                     <constraint firstItem="YcV-Si-5DD" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="AyM-q9-A1k"/>
                                                     <constraint firstItem="ym9-dy-PPp" firstAttribute="top" secondItem="bXr-dB-RXn" secondAttribute="bottom" id="D6x-Zz-Xe1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="vGV-zB-Bdg" secondAttribute="trailing" constant="15" id="DD5-Qd-eQ9"/>
                                                     <constraint firstItem="iXS-L9-9eo" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Esb-1b-mfQ"/>
                                                     <constraint firstItem="76p-hB-vY6" firstAttribute="top" secondItem="iXS-L9-9eo" secondAttribute="bottom" constant="8" id="FIC-Wa-zSf"/>
                                                     <constraint firstAttribute="trailing" secondItem="iXS-L9-9eo" secondAttribute="trailing" constant="15" id="Fqc-BT-yx9"/>
@@ -646,24 +598,26 @@
                                                     <constraint firstItem="rWF-eD-hM2" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="TSx-UA-xWN"/>
                                                     <constraint firstItem="yJA-YM-A5a" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="10" id="W4u-Mj-5O6"/>
                                                     <constraint firstItem="YxF-cS-tYv" firstAttribute="top" secondItem="rWF-eD-hM2" secondAttribute="bottom" constant="8" id="WsP-PI-HN2"/>
-                                                    <constraint firstItem="vGV-zB-Bdg" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="X4j-QC-06f"/>
                                                     <constraint firstItem="bXr-dB-RXn" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Z35-nf-EUu"/>
                                                     <constraint firstItem="78Y-WW-ifn" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Zbw-zw-TTB"/>
                                                     <constraint firstItem="76p-hB-vY6" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Zgi-AE-uqC"/>
                                                     <constraint firstAttribute="trailing" secondItem="P8B-lw-7Lt" secondAttribute="trailing" constant="15" id="aSX-cR-CZO"/>
+                                                    <constraint firstItem="yJA-YM-A5a" firstAttribute="leading" secondItem="Tdv-8n-clW" secondAttribute="trailing" constant="4" id="aVu-RY-eMN"/>
+                                                    <constraint firstItem="adC-OE-TP5" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="c4H-MI-121"/>
                                                     <constraint firstAttribute="bottom" secondItem="ym9-dy-PPp" secondAttribute="bottom" id="cjs-1U-pKo"/>
                                                     <constraint firstAttribute="trailing" secondItem="att-iW-ArN" secondAttribute="trailing" constant="15" id="dav-rG-WzH"/>
                                                     <constraint firstAttribute="trailing" secondItem="yJA-YM-A5a" secondAttribute="trailing" constant="11" id="eFT-i4-2dV"/>
-                                                    <constraint firstItem="yJA-YM-A5a" firstAttribute="leading" secondItem="ddW-UN-jqO" secondAttribute="trailing" constant="4" id="etb-kM-mKY"/>
-                                                    <constraint firstItem="YcV-Si-5DD" firstAttribute="top" secondItem="vGV-zB-Bdg" secondAttribute="bottom" constant="15" id="hOa-yu-tp9"/>
+                                                    <constraint firstItem="78Y-WW-ifn" firstAttribute="top" secondItem="Tdv-8n-clW" secondAttribute="bottom" constant="10" id="iVn-z3-Kdj"/>
+                                                    <constraint firstAttribute="trailing" secondItem="adC-OE-TP5" secondAttribute="trailing" constant="15" id="k7j-WV-TK8"/>
                                                     <constraint firstAttribute="trailing" secondItem="BvB-oo-DZe" secondAttribute="trailing" constant="15" id="kFE-DP-0gX"/>
                                                     <constraint firstItem="aYI-cf-lbN" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="kIa-cP-77H"/>
                                                     <constraint firstAttribute="trailing" secondItem="bXr-dB-RXn" secondAttribute="trailing" constant="15" id="moJ-V9-gqV"/>
                                                     <constraint firstItem="YxF-cS-tYv" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="oF2-Mh-Bb0"/>
                                                     <constraint firstItem="Vk6-A2-JlL" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="pDV-5t-fgI"/>
-                                                    <constraint firstItem="ddW-UN-jqO" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="15" id="rym-tP-kHk"/>
+                                                    <constraint firstItem="Tdv-8n-clW" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="10" id="pzM-ck-WiL"/>
                                                     <constraint firstItem="Mc0-JB-APZ" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="skh-Oi-RY1"/>
                                                     <constraint firstItem="P8B-lw-7Lt" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="t1A-Yz-dOJ"/>
+                                                    <constraint firstItem="adC-OE-TP5" firstAttribute="top" secondItem="78Y-WW-ifn" secondAttribute="bottom" constant="10" id="uXo-38-CVm"/>
                                                     <constraint firstItem="Mc0-JB-APZ" firstAttribute="top" secondItem="aYI-cf-lbN" secondAttribute="bottom" id="wus-74-c3M"/>
                                                     <constraint firstAttribute="trailing" secondItem="aYI-cf-lbN" secondAttribute="trailing" constant="15" id="xuh-oD-3hm"/>
                                                     <constraint firstItem="P8B-lw-7Lt" firstAttribute="top" secondItem="BvB-oo-DZe" secondAttribute="bottom" id="ywv-se-Cw6"/>
@@ -728,9 +682,9 @@
                         <outlet property="subtasksView" destination="ym9-dy-PPp" id="uJ5-p9-xlo"/>
                         <outlet property="subtasksViewHeightConstraint" destination="lHU-aH-mFU" id="hAe-XA-Kgc"/>
                         <outlet property="taskImportancyPicker" destination="yJA-YM-A5a" id="Kk5-X2-SFI"/>
-                        <outlet property="taskNoteField" destination="vGV-zB-Bdg" id="UNC-b5-nbV"/>
+                        <outlet property="taskNoteField" destination="adC-OE-TP5" id="fWz-CT-Y51"/>
                         <outlet property="taskTagsView" destination="YxF-cS-tYv" id="jV7-0k-xSE"/>
-                        <outlet property="taskTitleField" destination="ddW-UN-jqO" id="cnd-Se-wfu"/>
+                        <outlet property="taskTitleField" destination="Tdv-8n-clW" id="y9c-ab-x5i"/>
                         <outletCollection property="separators" destination="78Y-WW-ifn" collectionClass="NSMutableArray" id="QSR-AL-x94"/>
                         <outletCollection property="separators" destination="YcV-Si-5DD" collectionClass="NSMutableArray" id="zxx-4w-aM1"/>
                         <outletCollection property="separators" destination="76p-hB-vY6" collectionClass="NSMutableArray" id="Q8f-81-i2j"/>

@@ -74,7 +74,7 @@ final class ColorPickerCell: UICollectionViewCell {
     
     @IBOutlet fileprivate weak var pickedImageView: UIImageView! {
         didSet {
-            pickedImageView.tintColor = AppTheme.current.scheme.backgroundColor
+            pickedImageView.tintColor = AppTheme.current.foregroundColor
         }
     }
     

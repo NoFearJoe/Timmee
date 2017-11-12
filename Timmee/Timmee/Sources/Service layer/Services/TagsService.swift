@@ -20,8 +20,17 @@ final class TagsService {}
 extension TagsService {
     
     func fetchTags() -> [Tag] {
-        let entities = (try? DefaultStorage.instance.mainContext.fetch(tagsFetchRequest())) ?? []
+        let entities = fetch(with: tagsFetchRequest())
         return entities.map { Tag(entity: $0) }
+    }
+    
+    func searchTags(by string: String) -> [Tag] {
+        let entities = fetch(with: tagsSearchRequest(string: string))
+        return entities.map { Tag(entity: $0) }
+    }
+    
+    private func fetch(with request: NSFetchRequest<TagEntity>) -> [TagEntity] {
+        return (try? DefaultStorage.instance.mainContext.fetch(request)) ?? []
     }
     
 }
@@ -79,6 +88,12 @@ fileprivate extension TagsService {
         let fetchRequest: NSFetchRequest<TagEntity> = TagEntity.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         return fetchRequest
+    }
+    
+    func tagsSearchRequest(string: String) -> NSFetchRequest<TagEntity> {
+        let request = tagsFetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", string)
+        return request
     }
     
 }

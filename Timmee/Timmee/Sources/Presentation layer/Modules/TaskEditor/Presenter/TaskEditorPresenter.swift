@@ -103,7 +103,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func closeButtonPressed() {
-        
         router.close()
     }
     
@@ -111,9 +110,13 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.title = view.getTaskTitle()
         task.note = view.getTaskNote()
         
-        interactor.saveTask(task, listID: isNewTask ? listID : nil, success: {
+        interactor.saveTask(task, listID: isNewTask ? listID : nil, success: { [weak self] in
+            guard let `self` = self else { return }
             DispatchQueue.main.async {
-                self.output?.taskCreated()
+                self.interactor.scheduleTask(self.task)
+                if self.isNewTask {
+                    self.output?.taskCreated()
+                }
             }
         }, fail: nil)
         
@@ -196,8 +199,8 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         if let subtask = sortedSubtasks.item(at: index) {
             interactor.removeSubtask(subtask, completion: { [weak self] in
                 guard let `self` = self else { return }
-                guard self.task.subtasks.indices.contains(index) else { return }
-                self.task.subtasks.remove(at: index)
+                guard let deletionIndex = self.task.subtasks.index(where: { $0.id == subtask.id }) else { return }
+                self.task.subtasks.remove(at: deletionIndex)
                 self.view.batchReloadSubtask(insertions: [],
                                               deletions: [index],
                                               updates: [])
@@ -206,14 +209,30 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func exchangeSubtasks(at indexes: (Int, Int)) {
+        guard indexes.0 != indexes.1 else { return }
         if let fromSubtask = sortedSubtasks.item(at: indexes.0),
            let toSubtask = sortedSubtasks.item(at: indexes.1) {
-            let tempSortPosition = fromSubtask.sortPosition
-            fromSubtask.sortPosition = toSubtask.sortPosition
-            toSubtask.sortPosition = tempSortPosition
+            
+            let targetPosition = toSubtask.sortPosition
+            
+            let range = Int(min(indexes.0, indexes.1))...Int(max(indexes.0, indexes.1))
+            let subtasks = sortedSubtasks
+            range.forEach { index in
+                guard index != indexes.0 else { return }
+                if let subtask = subtasks.item(at: index) {
+                    if indexes.0 > indexes.1 {
+                        subtask.sortPosition += 1
+                    } else {
+                        subtask.sortPosition -= 1
+                    }
+                }
+            }
+            
+            fromSubtask.sortPosition = targetPosition
+            
             view.batchReloadSubtask(insertions: [],
                                     deletions: [],
-                                    updates: [indexes.0, indexes.1])
+                                    updates: range.map { $0 })
         }
     }
     
@@ -345,7 +364,11 @@ fileprivate extension TaskEditorPresenter {
     }
     
     func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {
-        view.setRepeatEndingDate(makeFormattedString(from: repeatEndingDate))
+        if let dateString = makeFormattedString(from: repeatEndingDate) {
+            view.setRepeatEndingDate("until".localized + " " + dateString)
+        } else {
+            view.setRepeatEndingDate(nil)
+        }
     }
     
     func makeFormattedString(from date: Date?) -> String? {
@@ -408,7 +431,7 @@ fileprivate extension TaskEditorPresenter {
 fileprivate extension TaskEditorPresenter {
 
     func nextSubtaskSortPosition() -> Int {
-        return sortedSubtasks.last?.sortPosition ?? 0
+        return (sortedSubtasks.last?.sortPosition ?? 0) + 1
     }
 
 }

@@ -22,8 +22,8 @@ final class TaskCheckableParameterView: HiddingParameterView {
         }
     }
     
-    fileprivate let checkedTitleColor = AppTheme.current.scheme.tintColor
-    fileprivate let uncheckedTitleColor = AppTheme.current.scheme.secondaryTintColor
+    fileprivate let checkedTitleColor = AppTheme.current.tintColor
+    fileprivate let uncheckedTitleColor = AppTheme.current.secondaryTintColor
     
     
     override init(frame: CGRect) {

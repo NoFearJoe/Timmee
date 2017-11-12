@@ -7,6 +7,7 @@
 //
 
 import class Foundation.NSOrderedSet
+import class CoreData.NSPredicate
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSCompoundPredicate
 import struct SugarRecord.FetchRequest
@@ -28,10 +29,15 @@ final class ListsService {
         return FetchRequest<ListEntity>().sorted(with: sortDescriptor)
     }()
     
+    fileprivate func listsSearchRequest(string: String) -> FetchRequest<ListEntity> {
+        return listsFetchRequest.filtered(with: NSPredicate(format: "title CONTAINS[cd] %@", string))
+    }
+    
     lazy var smartLists: [SmartList] = {
         return [
             SmartList(type: .all),
-            SmartList(type: .today)
+            SmartList(type: .today),
+            SmartList(type: .inProgress)
         ]
     }()
     
@@ -101,8 +107,17 @@ fileprivate extension ListsService {
         return entities.map({ List(listEntity: $0) })
     }
     
+    func searchLists(by string: String) -> [List] {
+        let entities = searchListEntities(by: string)
+        return entities.map({ List(listEntity: $0) })
+    }
+    
     func fetchListEntities() -> [ListEntity] {
         return (try? DefaultStorage.instance.storage.fetch(listsFetchRequest)) ?? []
+    }
+    
+    func searchListEntities(by string: String) -> [ListEntity] {
+        return (try? DefaultStorage.instance.storage.fetch(listsSearchRequest(string: string))) ?? []
     }
     
     static func listFetchRequest(with id: String) -> FetchRequest<ListEntity> {

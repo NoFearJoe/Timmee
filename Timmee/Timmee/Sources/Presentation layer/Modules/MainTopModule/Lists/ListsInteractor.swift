@@ -7,17 +7,16 @@
 //
 
 import struct Foundation.Date
-import class Foundation.DispatchQueue
 import struct Foundation.IndexPath
+import class Foundation.DispatchQueue
 import class CoreData.NSFetchRequest
+import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
 import class SugarRecord.CoreDataDefaultStorage
-import class CoreData.NSManagedObjectContext
 
 protocol ListsInteractorOutput: class {
     func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
     func didFetchInitialLists()
-    func didUpdateListsCount(_ count: Int)
     func didUpdateLists(with change: CoreDataItemChange)
 }
 
@@ -28,12 +27,15 @@ final class ListsInteractor {
     
     fileprivate var listsObserver: CoreDataObserver<List>!
     
-    var output: ListsInteractorOutput!
+    weak var output: ListsInteractorOutput!
+    
+    init() {
+        setupListsObserver() /// ????? ctrl+z ???
+    }
     
     func requestLists() {
-        if listsObserver == nil {
-            setupListsObserver()
-        }
+        output.prepareCoreDataObserver(listsObserver)
+        listsObserver.fetchInitialEntities()
     }
     
     func createListEntity() -> List {
@@ -56,56 +58,27 @@ final class ListsInteractor {
     func removeList(_ list: List) {
         listsService.removeList(list) { error in }
     }
-    
-    func setupListsObserver() {
-        let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ListEntity.entityName)
-        request.sortDescriptors = [sortDescriptor]
-        let context = (DefaultStorage.instance.storage as! CoreDataDefaultStorage).mainContext as! NSManagedObjectContext
-        listsObserver = CoreDataObserver(request: request, section: nil, cacheName: nil, context: context)
-        listsObserver.sectionOffset = 1
-        
-        listsObserver.mapping = { entity in
-            let listEntity = entity as! ListEntity
-            return List(listEntity: listEntity)
-        }
-        
-        listsObserver.onInitialFetch = { [weak self] in
-            self?.output.didFetchInitialLists()
-        }
-        listsObserver.onFetchedObjectsCountChange = { [weak self] count in
-            self?.output.didUpdateListsCount(count)
-        }
-        
-        listsObserver.onItemChange = { [weak self] change in
-            self?.output.didUpdateLists(with: change)
-        }
-        
-        output.prepareCoreDataObserver(listsObserver)
-        
-        listsObserver.fetchInitialEntities()
-    }
 
 }
 
 extension ListsInteractor {
 
     func numberOfSections() -> Int {
-        return (listsObserver?.numberOfSections() ?? 0) + 1
+        return listsObserver.numberOfSections() + 1
     }
     
     func numberOfItems(in section: Int) -> Int {
         if section == 0 {
             return listsService.smartLists.count
         }
-        return listsObserver?.numberOfItems(in: section) ?? 0
+        return listsObserver.numberOfItems(in: section)
     }
     
     func list(at index: Int, in section: Int) -> List? {
         if section == 0 {
             return listsService.smartLists.item(at: index)
         }
-        return listsObserver?.item(at: IndexPath(row: index, section: section))
+        return listsObserver.item(at: IndexPath(row: index, section: section))
     }
     
     func totalListsCount() -> Int {
@@ -122,4 +95,42 @@ extension ListsInteractor {
         return tasksService.fetchTasks(listID: list.id).count
     }
 
+}
+
+fileprivate extension ListsInteractor {
+    
+    func setupListsObserver() {
+        listsObserver = makeListsObserver()
+        
+        listsObserver.mapping = { entity in
+            let listEntity = entity as! ListEntity
+            return List(listEntity: listEntity)
+        }
+        
+        listsObserver.onInitialFetch = { [weak self] in
+            self?.output.didFetchInitialLists()
+        }
+        
+        listsObserver.onItemChange = { [weak self] change in
+            self?.output.didUpdateLists(with: change)
+        }
+    }
+    
+    func makeListsObserver() -> CoreDataObserver<List> {
+        let observer: CoreDataObserver<List>
+        observer = CoreDataObserver(request: makeListsFetchRequest(),
+                                    section: nil,
+                                    cacheName: "lists",
+                                    context: DefaultStorage.instance.mainContext)
+        observer.sectionOffset = 1
+        return observer
+    }
+    
+    func makeListsFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: ListEntity.entityName)
+        request.sortDescriptors = [sortDescriptor]
+        return request
+    }
+    
 }

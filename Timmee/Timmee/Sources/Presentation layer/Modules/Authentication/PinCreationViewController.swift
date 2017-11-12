@@ -205,13 +205,13 @@ fileprivate extension PinCreationViewController {
 fileprivate extension PinCreationViewController {
     
     func setupAppearance() {
-        view.backgroundColor = AppTheme.current.scheme.backgroundColor
-        messageLabel.textColor = AppTheme.current.scheme.tintColor
+        view.backgroundColor = AppTheme.current.middlegroundColor
+        messageLabel.textColor = AppTheme.current.tintColor
         
-        pinCodeView.emptyDotColor = AppTheme.current.scheme.panelColor
-        pinCodeView.filledDotColor = AppTheme.current.scheme.tintColor
-        pinCodeView.wrongPinCodeDotColor = AppTheme.current.scheme.redColor
-        pinCodeView.rightPinCodeDotColor = AppTheme.current.scheme.greenColor
+        pinCodeView.emptyDotColor = AppTheme.current.panelColor
+        pinCodeView.filledDotColor = AppTheme.current.tintColor
+        pinCodeView.wrongPinCodeDotColor = AppTheme.current.redColor
+        pinCodeView.rightPinCodeDotColor = AppTheme.current.greenColor
     }
     
 }

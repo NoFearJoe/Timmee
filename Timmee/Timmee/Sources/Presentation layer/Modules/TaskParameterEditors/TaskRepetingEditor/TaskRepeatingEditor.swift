@@ -73,7 +73,7 @@ final class TaskRepeatingEditor: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.backgroundColor = .clear
-        tableView.separatorColor = AppTheme.current.scheme.panelColor
+        tableView.separatorColor = AppTheme.current.panelColor
     }
 
 }
@@ -201,8 +201,8 @@ final class TaskRepeatingCell: UITableViewCell {
     }
     
     func setupAppearance() {
-        titleView.textColor = AppTheme.current.scheme.tintColor
-        selectedIndicator.backgroundColor = AppTheme.current.scheme.blueColor
+        titleView.textColor = AppTheme.current.tintColor
+        selectedIndicator.backgroundColor = AppTheme.current.blueColor
     }
     
 }

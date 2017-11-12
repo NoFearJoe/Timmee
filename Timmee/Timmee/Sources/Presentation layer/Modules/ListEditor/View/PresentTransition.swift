@@ -33,7 +33,7 @@ final class ModalPresentationTransition: NSObject, UIViewControllerAnimatedTrans
                            options: [.curveEaseInOut],
                            animations:
                 {
-                    backgroundView.backgroundColor = AppTheme.current.scheme.tintColor
+                    backgroundView.backgroundColor = AppTheme.current.tintColor
                     toViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 },
                 completion: { (complete) in

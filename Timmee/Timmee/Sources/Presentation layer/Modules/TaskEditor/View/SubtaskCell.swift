@@ -18,12 +18,15 @@ final class SubtaskCell: SwipeTableViewCell {
             }
         }
     }
-    @IBOutlet fileprivate weak var titleView: TextView! {
+    @IBOutlet fileprivate weak var titleView: GrowingTextView! {
         didSet {
-            titleView.delegate = self
-            titleView.onChangeContentHeight = { [weak self] height in
-                self?.onChangeHeight?(height)
+            titleView.textView.delegate = self
+            titleView.textView.isEditable = false
+            titleView.textView.isSelectable = false
+            titleView.delegates.didChangeHeight = { [unowned self] height in
+                self.onChangeHeight?(height)
             }
+            addTapGestureRecognizer()
         }
     }
     
@@ -36,7 +39,7 @@ final class SubtaskCell: SwipeTableViewCell {
     }
     
     var title: String {
-        get { return titleView.attributedText.string }
+        get { return titleView.textView.attributedText.string }
         set { updateTitle(newValue) }
     }
     
@@ -47,28 +50,29 @@ final class SubtaskCell: SwipeTableViewCell {
     var onChangeTitle: ((String) -> Void)?
     var onChangeHeight: ((CGFloat) -> Void)?
     
-    func beginEditing() {
-        titleView.isEditable = true
-        titleView.isSelectable = true
+    @objc func beginEditing() {
+        self.hideSwipe(animated: true)
+        titleView.textView.isEditable = true
+        titleView.textView.isSelectable = true
         titleView.becomeFirstResponder()
         onBeginEditing?()
     }
     
     fileprivate func updateTitle(_ title: String) {
         let attributes = isDone ? SubtaskCell.doneAttributes : SubtaskCell.activeAttributes
-        titleView.attributedText = NSAttributedString(string: title,
-                                                      attributes: attributes)
+        titleView.textView.attributedText = NSAttributedString(string: title,
+                                                               attributes: attributes)
     }
     
     static var doneAttributes: [String: Any] = [
         NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight),
-        NSForegroundColorAttributeName: AppTheme.current.scheme.secondaryTintColor,
+        NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor,
         NSStrikethroughStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
     ]
     
     static var activeAttributes = [
         NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight),
-        NSForegroundColorAttributeName: AppTheme.current.scheme.tintColor
+        NSForegroundColorAttributeName: AppTheme.current.tintColor
     ]
     
 }
@@ -80,19 +84,23 @@ extension SubtaskCell: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        titleView.isEditable = false
-        titleView.isSelectable = false
+        titleView.textView.isEditable = false
+        titleView.textView.isSelectable = false
         if textView.attributedText.string.isEmpty {
             title = titleBeforeEditing ?? ""
         }
         onChangeTitle?(textView.attributedText.string)
     }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        textView.layoutIfNeeded()
-        return true
-    }
 
+}
+
+fileprivate extension SubtaskCell {
+    
+    func addTapGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(beginEditing))
+        titleView.addGestureRecognizer(recognizer)
+    }
+    
 }
 
 
@@ -121,7 +129,7 @@ final class SubtaskCellActionsProvider {
                 action.fulfill(with: .delete)
         })
         deleteAction.image = UIImage(named: "trash")
-        deleteAction.textColor = AppTheme.current.scheme.redColor
+        deleteAction.textColor = AppTheme.current.redColor
         deleteAction.title = nil
         deleteAction.backgroundColor = SubtaskCellActionsProvider.backgroundColor
         deleteAction.transitionDelegate = nil
