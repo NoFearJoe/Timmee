@@ -24,9 +24,6 @@ protocol TaskEditorViewInput: class {
     func setLocationReminderIsSelected(_ isSelected: Bool)
     func setTaskImportant(_ isImportant: Bool)
     
-    func reloadSubtasks()
-    func batchReloadSubtask(insertions: [Int], deletions: [Int], updates: [Int])
-    
     func setTags(_ tags: [Tag])
     
     func setTopButtonsVisible(_ isVisible: Bool)
@@ -48,12 +45,6 @@ protocol TaskEditorViewOutput: class {
     func locationReminderSelectionChanged(to isSelected: Bool)
     func taskImportantChanged(to isImportant: Bool)
     
-    func addSubtask(with title: String)
-    func updateSubtask(at index: Int, newTitle: String)
-    func removeSubtask(at index: Int)
-    func exchangeSubtasks(at indexes: (Int, Int))
-    func doneSubtask(at index: Int)
-    
     func tagSelected(_ tag: Tag)
     func tagDeselected(_ tag: Tag)
     func tagRemoved(_ tag: Tag)
@@ -74,11 +65,6 @@ protocol TaskEditorViewOutput: class {
     func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
     func willPresentTagsPicker(_ input: TaskTagsPickerInput)
-}
-
-protocol TaskEditorSubtasksDataSource: class {
-    func subtasksCount() -> Int
-    func subtask(at index: Int) -> Subtask?
 }
 
 final class TaskEditorView: UIViewController {
@@ -105,14 +91,12 @@ final class TaskEditorView: UIViewController {
     
     @IBOutlet fileprivate var taskImportancyPicker: TaskImportancyPicker!
     
-    @IBOutlet fileprivate var addSubtaskView: AddSubtaskView!
-    @IBOutlet fileprivate var subtasksView: ReorderableTableView!
+    @IBOutlet fileprivate var subtasksContainer: UIView!
     @IBOutlet fileprivate var subtasksViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet fileprivate var separators: [UIView]!
     
-    var output: TaskEditorViewOutput!
-    weak var dataSource: TaskEditorSubtasksDataSource?
+    var output: (TaskEditorViewOutput & SubtasksEditorTaskProvider)!
     
     fileprivate var shouldForceResignFirstResponder = false
     
@@ -120,11 +104,7 @@ final class TaskEditorView: UIViewController {
     fileprivate var repeatEndingDateEditorHandler = TaskDueDateEditorHandler()
     
     fileprivate weak var taskParameterEditorContainer: TaskParameterEditorContainer?
-    
-    fileprivate let keyboardManager = KeyboardManager()
-    
-    fileprivate let subtaskCellActionsProvider = SubtaskCellActionsProvider()
-    
+        
     @IBAction fileprivate func closeButtonPressed() {
         output.closeButtonPressed()
     }
@@ -139,7 +119,6 @@ final class TaskEditorView: UIViewController {
         
         setupTitleObserver()
         setupNoteObserver()
-        setupSubtasksContentSizeObserver()
         
         taskTitleField.textView.delegate = self
         taskTitleField.textView.textContainerInset = UIEdgeInsets(top: 3.5, left: 0, bottom: 3.5, right: 0)
@@ -228,29 +207,6 @@ final class TaskEditorView: UIViewController {
         repeatEndingDateEditorHandler.onDateChange = { [weak self] date in
             self?.output.repeatEndingDateChanged(to: date)
         }
-        
-        addSubtaskView.didEndEditing = { [weak self] title in
-            if !title.trimmed.isEmpty {
-                self?.output.addSubtask(with: title)
-            }
-        }
-        subtasksView.estimatedRowHeight = 36
-        subtasksView.rowHeight = UITableViewAutomaticDimension
-        subtasksView.longPressReorderDelegate = self
-        
-        keyboardManager.keyboardWillAppear = { [weak self] frame, duration in
-            guard let `self` = self else { return }
-            guard self.addSubtaskView.titleField.isFirstResponder else { return }
-            
-            let offsetY = self.addSubtaskView.frame.minY
-            UIView.animate(withDuration: duration, animations: { 
-                self.contentScrollView.contentOffset = CGPoint(x: 0, y: offsetY)
-            })
-        }
-        
-        subtaskCellActionsProvider.onDelete = { [weak self] indexPath in
-            self?.output.removeSubtask(at: indexPath.row)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -292,24 +248,14 @@ final class TaskEditorView: UIViewController {
         return .lightContent
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let keyPath = keyPath, keyPath == "contentSize" {
-            if let contentSizeValue = change?[.newKey] as? NSValue {
-                let contentHeight = max(0, contentSizeValue.cgSizeValue.height)
-                subtasksViewHeightConstraint.constant = contentHeight
-                let offsetY = addSubtaskView.frame.minY
-                UIView.animate(withDuration: 0.2) {
-                    self.view.layoutIfNeeded()
-                    
-                    guard self.addSubtaskView.titleField.isFirstResponder else { return }
-                    self.contentScrollView.contentOffset = CGPoint(x: 0, y: offsetY)
-                }
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SubtasksEditor", let subtasksEditor = segue.destination as? SubtasksEditor {
+            subtasksEditor.taskProvider = output
+            subtasksEditor.contentScrollView = contentScrollView
+            subtasksEditor.containerViewHeightConstraint = subtasksViewHeightConstraint
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
-    }
-    
-    deinit {
-        subtasksView.removeObserver(self, forKeyPath: "contentSize")
     }
 
 }
@@ -376,38 +322,6 @@ extension TaskEditorView: TaskEditorViewInput {
     
     func setTaskImportant(_ isImportant: Bool) {
         taskImportancyPicker.isPicked = isImportant
-    }
-    
-    
-    func reloadSubtasks() {
-        subtasksView.reloadData()
-    }
-    
-    func batchReloadSubtask(insertions: [Int], deletions: [Int], updates: [Int]) {
-        UIView.performWithoutAnimation {
-            let contentOffset = self.contentScrollView.contentOffset
-            
-            self.subtasksView.beginUpdates()
-            
-            deletions.forEach { index in
-                self.subtasksView.deleteRows(at: [IndexPath(row: index, section: 0)],
-                                             with: .none)
-            }
-            
-            insertions.forEach { index in
-                self.subtasksView.insertRows(at: [IndexPath(row: index, section: 0)],
-                                             with: .none)
-            }
-            
-            updates.forEach { index in
-                self.subtasksView.reloadRows(at: [IndexPath(row: index, section: 0)],
-                                             with: .none)
-            }
-            
-            self.subtasksView.endUpdates()
-            
-            self.contentScrollView.contentOffset = contentOffset
-        }
     }
 
     func setTags(_ tags: [Tag]) {
@@ -576,84 +490,6 @@ extension TaskEditorView: TaskTagsPickerOutput {
     
 }
 
-extension TaskEditorView: UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource?.subtasksCount() ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SubtaskCell",
-                                                     for: indexPath) as! SubtaskCell
-            
-        if let subtask = dataSource?.subtask(at: indexPath.row) {
-            cell.title = subtask.title
-            cell.isDone = subtask.isDone
-            
-            cell.onBeginEditing = { [unowned self] in
-                let frame = cell.frame
-                let normalFrame = self.contentScrollView.convert(frame, from: tableView)
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.contentScrollView.contentOffset = CGPoint(x: 0, y: normalFrame.minY)
-                })
-            }
-            cell.onDone = { [unowned self] in
-                self.output?.doneSubtask(at: indexPath.row)
-            }
-            cell.onChangeTitle = { [unowned self] title in
-                self.output?.updateSubtask(at: indexPath.row, newTitle: title)
-            }
-            cell.onChangeHeight = { [unowned self] height in
-                let currentOffset = self.contentScrollView.contentOffset
-                UIView.performWithoutAnimation {
-                    self.subtasksView.beginUpdates()
-                    self.subtasksView.endUpdates()
-
-                    if currentOffset != .zero {
-                        self.contentScrollView.contentOffset = currentOffset
-                    }
-                }
-            }
-            
-            cell.delegate = subtaskCellActionsProvider
-        }
-        
-        return cell
-    }
-
-}
-
-extension TaskEditorView: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! SubtaskCell
-        cell.beginEditing()
-    }
-
-}
-
-extension TaskEditorView: ReorderableTableViewDelegate {
-    
-    func tableView(_ tableView: UITableView,
-                   reorderRowsFrom fromIndexPath: IndexPath,
-                   to toIndexPath: IndexPath) {
-        output.exchangeSubtasks(at: (fromIndexPath.row, toIndexPath.row))
-    }
-    
-    func tableView(_ tableView: UITableView, showDraggingView view: UIView, at indexPath: IndexPath) {
-        view.backgroundColor = AppTheme.current.foregroundColor
-    }
-    
-    func tableView(_ tableView: UITableView, hideDraggingView view: UIView, at indexPath: IndexPath) {
-        view.backgroundColor = .clear
-    }
-    
-}
-
 extension TaskEditorView: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -682,10 +518,6 @@ fileprivate extension TaskEditorView {
                                                object: taskNoteField.textView)
     }
     
-    func setupSubtasksContentSizeObserver() {
-        subtasksView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-    }
-    
     @objc func taskTitleDidChange(notification: Notification) {
         let text = getTaskTitle()
         
@@ -709,8 +541,8 @@ fileprivate extension TaskEditorView {
         let viewsToHide: [UIView] = [taskNoteField, dueDateView,
                                      reminderView, repeatView,
                                      locationView, locationReminderView,
-                                     taskImportancyPicker, addSubtaskView,
-                                     subtasksView, taskTagsView]
+                                     taskImportancyPicker,
+                                     subtasksContainer, taskTagsView]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 
                 view.isUserInteractionEnabled = isEnabled
@@ -761,39 +593,6 @@ fileprivate extension TaskEditorView {
         present(taskParameterEditorContainer,
                 animated: true,
                 completion: nil)
-    }
-
-}
-
-final class AddSubtaskView: UIView {
-
-    @IBOutlet fileprivate weak var decorationView: UIImageView! {
-        didSet {
-            decorationView.tintColor = AppTheme.current.secondaryTintColor
-        }
-    }
-    @IBOutlet fileprivate weak var titleField: UITextField! {
-        didSet {
-            titleField.delegate = self
-            titleField.textColor = AppTheme.current.tintColor
-        }
-    }
-    
-    var title: String {
-        get { return titleField.text ?? "" }
-        set { titleField.text = newValue }
-    }
-    
-    var didEndEditing: ((String) -> Void)?
-
-}
-
-extension AddSubtaskView: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        didEndEditing?(title)
-        textField.text = nil
-        return true
     }
 
 }

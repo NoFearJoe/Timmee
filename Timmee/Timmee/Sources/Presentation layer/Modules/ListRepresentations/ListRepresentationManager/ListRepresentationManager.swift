@@ -159,11 +159,12 @@ fileprivate extension ListRepresentationManager {
     
     private func showTaskEditor(configuration: (TaskEditorInput) -> Void) {
         let taskEditorView = ViewControllersFactory.taskEditor
-        taskEditorView.loadViewIfNeeded()
         
         let taskEditorInput = TaskEditorAssembly.assembly(with: taskEditorView)
         taskEditorInput.output = self
         taskEditorInput.setListID(currentList?.id)
+        
+        taskEditorView.loadViewIfNeeded()
         
         configuration(taskEditorInput)
         

@@ -57,7 +57,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pek-DW-aOB">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="466.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdv-8n-clW" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="10" width="309" height="25"/>
@@ -462,91 +462,6 @@
                                                             <constraint firstAttribute="height" constant="1" id="a0Z-gI-grJ"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-dB-RXn" customClass="AddSubtaskView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="15" y="426.5" width="345" height="40"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_thin" translatesAutoresizingMaskIntoConstraints="NO" id="QoX-2V-CAb">
-                                                                <rect key="frame" x="0.0" y="10" width="20" height="20"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="QoX-2V-CAb" secondAttribute="height" multiplier="1:1" id="1g7-PA-1Fm"/>
-                                                                    <constraint firstAttribute="width" constant="20" id="Gs9-vR-a72"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Добавить подзадачу" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5x9-E0-ypE">
-                                                                <rect key="frame" x="35" y="0.0" width="310" height="40"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                                <connections>
-                                                                    <outlet property="delegate" destination="bXr-dB-RXn" id="jbK-Ge-Key"/>
-                                                                </connections>
-                                                            </textField>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstItem="5x9-E0-ypE" firstAttribute="top" secondItem="bXr-dB-RXn" secondAttribute="top" id="7bv-s2-4XX"/>
-                                                            <constraint firstItem="QoX-2V-CAb" firstAttribute="leading" secondItem="bXr-dB-RXn" secondAttribute="leading" id="cuH-Pn-qVW"/>
-                                                            <constraint firstAttribute="height" constant="40" id="gFJ-Dh-i4s"/>
-                                                            <constraint firstItem="5x9-E0-ypE" firstAttribute="centerY" secondItem="bXr-dB-RXn" secondAttribute="centerY" id="kVZ-GM-He6"/>
-                                                            <constraint firstItem="5x9-E0-ypE" firstAttribute="leading" secondItem="QoX-2V-CAb" secondAttribute="trailing" constant="15" id="oKD-qj-5HS"/>
-                                                            <constraint firstItem="QoX-2V-CAb" firstAttribute="centerY" secondItem="bXr-dB-RXn" secondAttribute="centerY" id="qvN-1k-Hoo"/>
-                                                            <constraint firstAttribute="bottom" secondItem="5x9-E0-ypE" secondAttribute="bottom" id="sig-w1-0pQ"/>
-                                                            <constraint firstAttribute="trailing" secondItem="5x9-E0-ypE" secondAttribute="trailing" id="yIe-Rf-HMz"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="decorationView" destination="QoX-2V-CAb" id="MQM-7x-3Y1"/>
-                                                            <outlet property="titleField" destination="5x9-E0-ypE" id="4Uo-FM-XFE"/>
-                                                        </connections>
-                                                    </view>
-                                                    <tableView contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ym9-dy-PPp" customClass="ReorderableTableView" customModule="Timmee" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="466.5" width="375" height="0.0"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" id="lHU-aH-mFU"/>
-                                                        </constraints>
-                                                        <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubtaskCell" id="JHZ-lo-43u" customClass="SubtaskCell" customModule="Timmee" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="1" width="375" height="44"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JHZ-lo-43u" id="u8N-aT-FWl">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <subviews>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJe-4y-GXn" customClass="InversedCheckBox" customModule="Timmee" customModuleProvider="target">
-                                                                            <rect key="frame" x="15" y="12" width="20" height="20"/>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" secondItem="GJe-4y-GXn" secondAttribute="height" multiplier="1:1" id="1KI-by-I0x"/>
-                                                                                <constraint firstAttribute="width" constant="20" id="oiT-fG-Jnu"/>
-                                                                            </constraints>
-                                                                        </view>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMt-bn-ugA" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
-                                                                            <rect key="frame" x="50" y="0.0" width="325" height="44"/>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        </view>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="cMt-bn-ugA" firstAttribute="top" secondItem="u8N-aT-FWl" secondAttribute="top" id="52V-qm-ipf"/>
-                                                                        <constraint firstItem="GJe-4y-GXn" firstAttribute="centerY" secondItem="u8N-aT-FWl" secondAttribute="centerY" id="BOQ-nF-tqg"/>
-                                                                        <constraint firstItem="cMt-bn-ugA" firstAttribute="leading" secondItem="GJe-4y-GXn" secondAttribute="trailing" constant="15" id="THV-Na-iDk"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="cMt-bn-ugA" secondAttribute="bottom" id="XGL-oB-6tg"/>
-                                                                        <constraint firstItem="GJe-4y-GXn" firstAttribute="leading" secondItem="u8N-aT-FWl" secondAttribute="leading" constant="15" id="Ygx-HE-Vf5"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="cMt-bn-ugA" secondAttribute="trailing" id="sGQ-Pq-eCg"/>
-                                                                    </constraints>
-                                                                </tableViewCellContentView>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <connections>
-                                                                    <outlet property="checkBox" destination="GJe-4y-GXn" id="c78-CO-XW4"/>
-                                                                    <outlet property="titleView" destination="cMt-bn-ugA" id="oeA-fA-ahp"/>
-                                                                </connections>
-                                                            </tableViewCell>
-                                                        </prototypes>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="k03-vf-k1c" id="RyP-vn-CmE"/>
-                                                            <outlet property="delegate" destination="k03-vf-k1c" id="cy4-Za-zhr"/>
-                                                        </connections>
-                                                    </tableView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJA-YM-A5a" customClass="TaskImportancyPicker" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="328" y="10" width="36" height="36"/>
                                                         <subviews>
@@ -567,6 +482,15 @@
                                                             <outlet property="iconView" destination="fML-vj-g0v" id="yif-bU-AIA"/>
                                                         </connections>
                                                     </view>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-gE-l8g">
+                                                        <rect key="frame" x="0.0" y="427" width="375" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="jtV-ke-jBC"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <segue destination="J5T-B3-DLw" kind="embed" identifier="SubtasksEditor" id="c1K-0g-tUN"/>
+                                                        </connections>
+                                                    </containerView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -576,12 +500,12 @@
                                                     <constraint firstItem="iXS-L9-9eo" firstAttribute="top" secondItem="P8B-lw-7Lt" secondAttribute="bottom" id="1RF-f1-iS7"/>
                                                     <constraint firstAttribute="trailing" secondItem="Vk6-A2-JlL" secondAttribute="trailing" constant="15" id="3Cq-14-uf2"/>
                                                     <constraint firstAttribute="trailing" secondItem="Mc0-JB-APZ" secondAttribute="trailing" constant="15" id="3HQ-zX-NUw"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ym9-dy-PPp" secondAttribute="trailing" id="5HN-6R-6up"/>
                                                     <constraint firstItem="YcV-Si-5DD" firstAttribute="top" secondItem="adC-OE-TP5" secondAttribute="bottom" constant="10" id="5oi-PR-KQe"/>
                                                     <constraint firstItem="BvB-oo-DZe" firstAttribute="top" secondItem="Vk6-A2-JlL" secondAttribute="bottom" id="63w-4j-3BQ"/>
+                                                    <constraint firstItem="bDW-gE-l8g" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" id="7Lx-Ov-IIW"/>
+                                                    <constraint firstItem="bDW-gE-l8g" firstAttribute="top" secondItem="att-iW-ArN" secondAttribute="bottom" constant="8" id="A92-ID-MTv"/>
                                                     <constraint firstAttribute="trailing" secondItem="rWF-eD-hM2" secondAttribute="trailing" constant="15" id="AAW-Or-lDV"/>
                                                     <constraint firstItem="YcV-Si-5DD" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="AyM-q9-A1k"/>
-                                                    <constraint firstItem="ym9-dy-PPp" firstAttribute="top" secondItem="bXr-dB-RXn" secondAttribute="bottom" id="D6x-Zz-Xe1"/>
                                                     <constraint firstItem="iXS-L9-9eo" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Esb-1b-mfQ"/>
                                                     <constraint firstItem="76p-hB-vY6" firstAttribute="top" secondItem="iXS-L9-9eo" secondAttribute="bottom" constant="8" id="FIC-Wa-zSf"/>
                                                     <constraint firstAttribute="trailing" secondItem="iXS-L9-9eo" secondAttribute="trailing" constant="15" id="Fqc-BT-yx9"/>
@@ -590,31 +514,28 @@
                                                     <constraint firstItem="att-iW-ArN" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Ki0-4C-b54"/>
                                                     <constraint firstAttribute="trailing" secondItem="YcV-Si-5DD" secondAttribute="trailing" constant="15" id="N3V-EA-NEY"/>
                                                     <constraint firstItem="rWF-eD-hM2" firstAttribute="top" secondItem="Mc0-JB-APZ" secondAttribute="bottom" constant="8" id="NEa-gF-v13"/>
-                                                    <constraint firstItem="bXr-dB-RXn" firstAttribute="top" secondItem="att-iW-ArN" secondAttribute="bottom" constant="8" id="NQl-dV-Uvr"/>
                                                     <constraint firstItem="Vk6-A2-JlL" firstAttribute="top" secondItem="YcV-Si-5DD" secondAttribute="bottom" constant="8" id="Nyi-ns-mDc"/>
-                                                    <constraint firstItem="ym9-dy-PPp" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" id="OYL-tL-gx9"/>
                                                     <constraint firstAttribute="trailing" secondItem="78Y-WW-ifn" secondAttribute="trailing" constant="15" id="OkZ-4Q-OcE"/>
                                                     <constraint firstAttribute="trailing" secondItem="YxF-cS-tYv" secondAttribute="trailing" constant="15" id="Q8D-yK-tf9"/>
                                                     <constraint firstItem="rWF-eD-hM2" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="TSx-UA-xWN"/>
+                                                    <constraint firstAttribute="bottom" secondItem="bDW-gE-l8g" secondAttribute="bottom" constant="8" id="V40-kd-UPF"/>
                                                     <constraint firstItem="yJA-YM-A5a" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="10" id="W4u-Mj-5O6"/>
                                                     <constraint firstItem="YxF-cS-tYv" firstAttribute="top" secondItem="rWF-eD-hM2" secondAttribute="bottom" constant="8" id="WsP-PI-HN2"/>
-                                                    <constraint firstItem="bXr-dB-RXn" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Z35-nf-EUu"/>
                                                     <constraint firstItem="78Y-WW-ifn" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Zbw-zw-TTB"/>
                                                     <constraint firstItem="76p-hB-vY6" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Zgi-AE-uqC"/>
                                                     <constraint firstAttribute="trailing" secondItem="P8B-lw-7Lt" secondAttribute="trailing" constant="15" id="aSX-cR-CZO"/>
                                                     <constraint firstItem="yJA-YM-A5a" firstAttribute="leading" secondItem="Tdv-8n-clW" secondAttribute="trailing" constant="4" id="aVu-RY-eMN"/>
                                                     <constraint firstItem="adC-OE-TP5" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="c4H-MI-121"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ym9-dy-PPp" secondAttribute="bottom" id="cjs-1U-pKo"/>
                                                     <constraint firstAttribute="trailing" secondItem="att-iW-ArN" secondAttribute="trailing" constant="15" id="dav-rG-WzH"/>
                                                     <constraint firstAttribute="trailing" secondItem="yJA-YM-A5a" secondAttribute="trailing" constant="11" id="eFT-i4-2dV"/>
                                                     <constraint firstItem="78Y-WW-ifn" firstAttribute="top" secondItem="Tdv-8n-clW" secondAttribute="bottom" constant="10" id="iVn-z3-Kdj"/>
                                                     <constraint firstAttribute="trailing" secondItem="adC-OE-TP5" secondAttribute="trailing" constant="15" id="k7j-WV-TK8"/>
                                                     <constraint firstAttribute="trailing" secondItem="BvB-oo-DZe" secondAttribute="trailing" constant="15" id="kFE-DP-0gX"/>
                                                     <constraint firstItem="aYI-cf-lbN" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="kIa-cP-77H"/>
-                                                    <constraint firstAttribute="trailing" secondItem="bXr-dB-RXn" secondAttribute="trailing" constant="15" id="moJ-V9-gqV"/>
                                                     <constraint firstItem="YxF-cS-tYv" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="oF2-Mh-Bb0"/>
                                                     <constraint firstItem="Vk6-A2-JlL" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="pDV-5t-fgI"/>
                                                     <constraint firstItem="Tdv-8n-clW" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="10" id="pzM-ck-WiL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bDW-gE-l8g" secondAttribute="trailing" id="qVJ-8X-mVX"/>
                                                     <constraint firstItem="Mc0-JB-APZ" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="skh-Oi-RY1"/>
                                                     <constraint firstItem="P8B-lw-7Lt" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="t1A-Yz-dOJ"/>
                                                     <constraint firstItem="adC-OE-TP5" firstAttribute="top" secondItem="78Y-WW-ifn" secondAttribute="bottom" constant="10" id="uXo-38-CVm"/>
@@ -667,7 +588,6 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="addSubtaskView" destination="bXr-dB-RXn" id="rRK-hu-4Br"/>
                         <outlet property="closeButton" destination="9LH-30-Pcv" id="T9J-6p-fjS"/>
                         <outlet property="contentContainerView" destination="2G4-B0-pZA" id="T2U-Pn-X2A"/>
                         <outlet property="contentScrollView" destination="g3p-60-8Fd" id="h03-Oq-9EK"/>
@@ -679,8 +599,8 @@
                         <outlet property="reminderView" destination="BvB-oo-DZe" id="Dc1-45-bPL"/>
                         <outlet property="repeatEndingDateView" destination="iXS-L9-9eo" id="7GJ-RM-BeH"/>
                         <outlet property="repeatView" destination="P8B-lw-7Lt" id="zQo-pY-Jmr"/>
-                        <outlet property="subtasksView" destination="ym9-dy-PPp" id="uJ5-p9-xlo"/>
-                        <outlet property="subtasksViewHeightConstraint" destination="lHU-aH-mFU" id="hAe-XA-Kgc"/>
+                        <outlet property="subtasksContainer" destination="bDW-gE-l8g" id="FZb-60-eQa"/>
+                        <outlet property="subtasksViewHeightConstraint" destination="jtV-ke-jBC" id="uot-VF-fPe"/>
                         <outlet property="taskImportancyPicker" destination="yJA-YM-A5a" id="Kk5-X2-SFI"/>
                         <outlet property="taskNoteField" destination="adC-OE-TP5" id="fWz-CT-Y51"/>
                         <outlet property="taskTagsView" destination="YxF-cS-tYv" id="jV7-0k-xSE"/>
@@ -695,6 +615,124 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLC-vn-kb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="288.80000000000001" y="61.619190404797607"/>
+        </scene>
+        <!--Subtasks Editor-->
+        <scene sceneID="ZXa-S5-VPe">
+            <objects>
+                <viewController storyboardIdentifier="SubtasksEditor" id="J5T-B3-DLw" customClass="SubtasksEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R3k-5S-HOR"/>
+                        <viewControllerLayoutGuide type="bottom" id="x5B-Ch-vqR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bKg-vp-wze">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-dB-RXn" customClass="AddSubtaskView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="15" y="0.0" width="345" height="40"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_thin" translatesAutoresizingMaskIntoConstraints="NO" id="QoX-2V-CAb">
+                                        <rect key="frame" x="0.0" y="10" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="QoX-2V-CAb" secondAttribute="height" multiplier="1:1" id="1g7-PA-1Fm"/>
+                                            <constraint firstAttribute="width" constant="20" id="Gs9-vR-a72"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Добавить подзадачу" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5x9-E0-ypE">
+                                        <rect key="frame" x="35" y="0.0" width="310" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="bXr-dB-RXn" id="jbK-Ge-Key"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5x9-E0-ypE" firstAttribute="top" secondItem="bXr-dB-RXn" secondAttribute="top" id="7bv-s2-4XX"/>
+                                    <constraint firstItem="QoX-2V-CAb" firstAttribute="leading" secondItem="bXr-dB-RXn" secondAttribute="leading" id="cuH-Pn-qVW"/>
+                                    <constraint firstAttribute="height" constant="40" id="gFJ-Dh-i4s"/>
+                                    <constraint firstItem="5x9-E0-ypE" firstAttribute="centerY" secondItem="bXr-dB-RXn" secondAttribute="centerY" id="kVZ-GM-He6"/>
+                                    <constraint firstItem="5x9-E0-ypE" firstAttribute="leading" secondItem="QoX-2V-CAb" secondAttribute="trailing" constant="15" id="oKD-qj-5HS"/>
+                                    <constraint firstItem="QoX-2V-CAb" firstAttribute="centerY" secondItem="bXr-dB-RXn" secondAttribute="centerY" id="qvN-1k-Hoo"/>
+                                    <constraint firstAttribute="bottom" secondItem="5x9-E0-ypE" secondAttribute="bottom" id="sig-w1-0pQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="5x9-E0-ypE" secondAttribute="trailing" id="yIe-Rf-HMz"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="decorationView" destination="QoX-2V-CAb" id="MQM-7x-3Y1"/>
+                                    <outlet property="titleField" destination="5x9-E0-ypE" id="4Uo-FM-XFE"/>
+                                </connections>
+                            </view>
+                            <tableView contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ym9-dy-PPp" customClass="ReorderableTableView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="40" width="375" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="lHU-aH-mFU"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubtaskCell" id="JHZ-lo-43u" customClass="SubtaskCell" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JHZ-lo-43u" id="u8N-aT-FWl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJe-4y-GXn" customClass="InversedCheckBox" customModule="Timmee" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="12" width="20" height="20"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="GJe-4y-GXn" secondAttribute="height" multiplier="1:1" id="1KI-by-I0x"/>
+                                                        <constraint firstAttribute="width" constant="20" id="oiT-fG-Jnu"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMt-bn-ugA" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
+                                                    <rect key="frame" x="50" y="0.0" width="325" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cMt-bn-ugA" firstAttribute="top" secondItem="u8N-aT-FWl" secondAttribute="top" id="52V-qm-ipf"/>
+                                                <constraint firstItem="GJe-4y-GXn" firstAttribute="centerY" secondItem="u8N-aT-FWl" secondAttribute="centerY" id="BOQ-nF-tqg"/>
+                                                <constraint firstItem="cMt-bn-ugA" firstAttribute="leading" secondItem="GJe-4y-GXn" secondAttribute="trailing" constant="15" id="THV-Na-iDk"/>
+                                                <constraint firstAttribute="bottom" secondItem="cMt-bn-ugA" secondAttribute="bottom" id="XGL-oB-6tg"/>
+                                                <constraint firstItem="GJe-4y-GXn" firstAttribute="leading" secondItem="u8N-aT-FWl" secondAttribute="leading" constant="15" id="Ygx-HE-Vf5"/>
+                                                <constraint firstAttribute="trailing" secondItem="cMt-bn-ugA" secondAttribute="trailing" id="sGQ-Pq-eCg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="checkBox" destination="GJe-4y-GXn" id="c78-CO-XW4"/>
+                                            <outlet property="titleView" destination="cMt-bn-ugA" id="oeA-fA-ahp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="J5T-B3-DLw" id="Klh-uE-ZJg"/>
+                                    <outlet property="delegate" destination="J5T-B3-DLw" id="IgM-JU-en0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bXr-dB-RXn" firstAttribute="top" secondItem="bKg-vp-wze" secondAttribute="top" id="4P9-uV-7x1"/>
+                            <constraint firstItem="bXr-dB-RXn" firstAttribute="leading" secondItem="bKg-vp-wze" secondAttribute="leading" constant="15" id="ALa-Wf-2qt"/>
+                            <constraint firstItem="ym9-dy-PPp" firstAttribute="top" secondItem="bXr-dB-RXn" secondAttribute="bottom" id="MRv-Gk-4UA"/>
+                            <constraint firstItem="ym9-dy-PPp" firstAttribute="leading" secondItem="bKg-vp-wze" secondAttribute="leading" id="bdN-Yl-v5C"/>
+                            <constraint firstAttribute="trailing" secondItem="ym9-dy-PPp" secondAttribute="trailing" id="c5J-3m-QjX"/>
+                            <constraint firstAttribute="trailing" secondItem="bXr-dB-RXn" secondAttribute="trailing" constant="15" id="txk-Kd-phN"/>
+                            <constraint firstAttribute="bottom" secondItem="ym9-dy-PPp" secondAttribute="bottom" id="yl7-Mz-oOC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addSubtaskView" destination="bXr-dB-RXn" id="RT4-lK-Itw"/>
+                        <outlet property="tableView" destination="ym9-dy-PPp" id="huP-fa-vLU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SJA-rU-nqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="219"/>
         </scene>
     </scenes>
     <resources>

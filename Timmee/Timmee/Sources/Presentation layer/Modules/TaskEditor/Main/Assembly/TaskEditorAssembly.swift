@@ -14,7 +14,6 @@ final class TaskEditorAssembly {
         let router = TaskEditorRouter()
         
         view.output = presenter
-        view.dataSource = presenter
         
         presenter.interactor = interactor
         presenter.router = router
