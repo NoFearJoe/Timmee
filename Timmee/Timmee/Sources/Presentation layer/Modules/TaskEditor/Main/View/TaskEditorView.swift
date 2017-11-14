@@ -10,63 +10,6 @@ import UIKit
 import class CoreLocation.CLLocation
 import SwipeCellKit
 
-protocol TaskEditorViewInput: class {
-    func getTaskTitle() -> String
-    func getTaskNote() -> String
-    
-    func setTaskTitle(_ title: String)
-    func setTaskNote(_ note: String)
-    func setDueDate(_ dueDate: String?)
-    func setReminder(_ reminder: NotificationMask)
-    func setRepeatEndingDate(_ repeatEndingDate: String?)
-    func setRepeat(_ repeat: RepeatMask)
-    func setLocation(_ location: String?)
-    func setLocationReminderIsSelected(_ isSelected: Bool)
-    func setTaskImportant(_ isImportant: Bool)
-    
-    func setTags(_ tags: [Tag])
-    
-    func setTopButtonsVisible(_ isVisible: Bool)
-    func setCloseButtonVisible(_ isVisible: Bool)
-}
-
-protocol TaskEditorViewOutput: class {
-    func viewDidAppear()
-    func doneButtonPressed()
-    func closeButtonPressed()
-
-    func taskTitleChanged(to taskTitle: String)
-    func taskNoteChanged(to taskNote: String)
-    func dueDateChanged(to dueDate: Date?)
-    func reminderChanged(to reminder: NotificationMask)
-    func repeatChanged(to repeat: RepeatMask)
-    func repeatEndingDateChanged(to repeatEndingDate: Date?)
-    func locationChanged(to location: CLLocation?)
-    func locationReminderSelectionChanged(to isSelected: Bool)
-    func taskImportantChanged(to isImportant: Bool)
-    
-    func tagSelected(_ tag: Tag)
-    func tagDeselected(_ tag: Tag)
-    func tagRemoved(_ tag: Tag)
-    func tagUpdated(_ tag: Tag)
-    
-    func dueDateCleared()
-    func reminderCleared()
-    func repeatCleared()
-    func repeatEndingDateCleared()
-    func locationCleared()
-    func tagsCleared()
-    
-    func willPresentDueDateEditor(_ input: TaskDueDateEditorInput)
-    func willPresentReminderEditor(_ input: TaskReminderEditorInput)
-    func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput)
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateEditorInput)
-    func willPresentLocationEditor(_ input: TaskLocationEditorInput)
-    func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
-    func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
-    func willPresentTagsPicker(_ input: TaskTagsPickerInput)
-}
-
 final class TaskEditorView: UIViewController {
 
     @IBOutlet fileprivate var contentContainerView: BarView!
@@ -141,71 +84,71 @@ final class TaskEditorView: UIViewController {
                                                                                      weight: UIFontWeightLight),
                                               NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
         
-        dueDateView.didChangeFilledState = { [weak self] isFilled in
-            self?.reminderView.isHidden = !isFilled
-            self?.repeatView.isHidden = !isFilled
+        dueDateView.didChangeFilledState = { [unowned self] isFilled in
+            self.reminderView.isHidden = !isFilled
+            self.repeatView.isHidden = !isFilled
         }
-        dueDateView.didClear = { [weak self] in
-            self?.output.dueDateCleared()
+        dueDateView.didClear = { [unowned self] in
+            self.output.dueDateCleared()
         }
-        dueDateView.didTouchedUp = { [weak self] in
-            self?.showDueDatePicker()
-        }
-        
-        reminderView.didClear = { [weak self] in
-            self?.output.reminderCleared()
-        }
-        reminderView.didTouchedUp = { [weak self] in
-            self?.showReminderPicker()
+        dueDateView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .dueDate)
         }
         
-        repeatView.didChangeFilledState = { [weak self] isFilled in
-            self?.repeatEndingDateView.isHidden = !isFilled
+        reminderView.didClear = { [unowned self] in
+            self.output.reminderCleared()
         }
-        repeatView.didClear = { [weak self] in
-            self?.output.repeatCleared()
-        }
-        repeatView.didTouchedUp = { [weak self] in
-            self?.showRepeatingPicker()
+        reminderView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .reminder)
         }
         
-        repeatEndingDateView.didClear = { [weak self] in
-            self?.output.repeatEndingDateCleared()
+        repeatView.didChangeFilledState = { [unowned self] isFilled in
+            self.repeatEndingDateView.isHidden = !isFilled
         }
-        repeatEndingDateView.didTouchedUp = { [weak self] in
-            self?.showRepeatEndingDatePicker()
+        repeatView.didClear = { [unowned self] in
+            self.output.repeatCleared()
         }
-        
-        locationView.didChangeFilledState = { [weak self] isFilled in
-            self?.locationReminderView.isHidden = !isFilled
-        }
-        locationView.didClear = { [weak self] in
-            self?.output.locationCleared()
-        }
-        locationView.didTouchedUp = { [weak self] in
-            self?.showLocationEditor()
+        repeatView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .repeating)
         }
         
-        locationReminderView.didChangeCkeckedState = { [weak self] isChecked in
-            self?.output.locationReminderSelectionChanged(to: isChecked)
+        repeatEndingDateView.didClear = { [unowned self] in
+            self.output.repeatEndingDateCleared()
+        }
+        repeatEndingDateView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .repeatEndingDate)
+        }
+        
+        locationView.didChangeFilledState = { [unowned self] isFilled in
+            self.locationReminderView.isHidden = !isFilled
+        }
+        locationView.didClear = { [unowned self] in
+            self.output.locationCleared()
+        }
+        locationView.didTouchedUp = { [unowned self] in
+            self.showLocationEditor()
+        }
+        
+        locationReminderView.didChangeCkeckedState = { [unowned self] isChecked in
+            self.output.locationReminderSelectionChanged(to: isChecked)
         }
         
 
-        taskTagsView.didTouchedUp = { [weak self] in
-            self?.showTagsPicker()
+        taskTagsView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .tags)
         }
         
-        taskImportancyPicker.onPick = { [weak self] isImportant in
-            self?.output.taskImportantChanged(to: isImportant)
+        taskImportancyPicker.onPick = { [unowned self] isImportant in
+            self.output.taskImportantChanged(to: isImportant)
         }
         
         
-        dueDateEditorHandler.onDateChange = { [weak self] date in
-            self?.output.dueDateChanged(to: date)
+        dueDateEditorHandler.onDateChange = { [unowned self] date in
+            self.output.dueDateChanged(to: date)
         }
         
-        repeatEndingDateEditorHandler.onDateChange = { [weak self] date in
-            self?.output.repeatEndingDateChanged(to: date)
+        repeatEndingDateEditorHandler.onDateChange = { [unowned self] date in
+            self.output.repeatEndingDateChanged(to: date)
         }
     }
     
@@ -269,7 +212,6 @@ extension TaskEditorView: TaskEditorViewInput {
     func getTaskNote() -> String {
         return taskNoteField.textView.text.trimmed
     }
-    
 
     func setTaskTitle(_ title: String) {
         taskTitleField.textView.text = title
@@ -413,7 +355,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
         case .tags:
             let viewController = ViewControllersFactory.taskTagsPicker
             viewController.loadViewIfNeeded()
-            viewController.output = self
+            viewController.output = output
             output.willPresentTagsPicker(viewController)
             return viewController
         }
@@ -468,26 +410,6 @@ extension TaskEditorView: TaskLocationEditorOutput {
         output.locationChanged(to: location)
     }
 
-}
-
-extension TaskEditorView: TaskTagsPickerOutput {
-    
-    func tagSelected(_ tag: Tag) {
-        output.tagSelected(tag)
-    }
-    
-    func tagDeselected(_ tag: Tag) {
-        output.tagDeselected(tag)
-    }
-    
-    func tagRemoved(_ tag: Tag) {
-        output.tagRemoved(tag)
-    }
-    
-    func tagUpdated(_ tag: Tag) {
-        output.tagUpdated(tag)
-    }
-    
 }
 
 extension TaskEditorView: UITextViewDelegate {
@@ -554,34 +476,13 @@ fileprivate extension TaskEditorView {
 }
 
 fileprivate extension TaskEditorView {
-
-    func showDueDatePicker() {
-        showTaskParameterEditor(with: .dueDate)
-    }
-    
-    func showReminderPicker() {
-        showTaskParameterEditor(with: .reminder)
-    }
-    
-    func showRepeatingPicker() {
-        showTaskParameterEditor(with: .repeating)
-    }
-    
-    func showRepeatEndingDatePicker() {
-        showTaskParameterEditor(with: .repeatEndingDate)
-    }
     
     func showLocationEditor() {
         showTaskParameterEditor(with: .location)
         setTopButtonsVisible(false)
     }
     
-    func showTagsPicker() {
-        showTaskParameterEditor(with: .tags)
-    }
-    
-    
-    func showTaskParameterEditor(with type: TaskParameterEditorType) {
+    private func showTaskParameterEditor(with type: TaskParameterEditorType) {
         let taskParameterEditorContainer = ViewControllersFactory.taskParameterEditorContainer
         taskParameterEditorContainer.loadViewIfNeeded()
         
