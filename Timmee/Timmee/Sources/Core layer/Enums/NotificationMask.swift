@@ -30,6 +30,7 @@ enum NotificationMask: Int16 {
 
 extension NotificationMask {
 
+    // TODO: Localize
     var title: String {
         switch self {
         case .doNotNotify: return "Не напоминать"

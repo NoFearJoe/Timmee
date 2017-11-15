@@ -55,6 +55,8 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setTaskTitle(self.task.title)
         view.setTaskNote(self.task.note)
         
+        view.setTimeTemplate(self.task.timeTemplate)
+        
         showFormattedDueDate(self.task.dueDate)
         
         view.setReminder(self.task.notification)
@@ -126,6 +128,11 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.note = taskNote
     }
     
+    func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
+        task.timeTemplate = timeTemplate
+        view.setTimeTemplate(timeTemplate)
+    }
+    
     func dueDateChanged(to dueDate: Date?) {
         task.dueDate = dueDate
         showFormattedDueDate(dueDate)
@@ -186,6 +193,13 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         }
     }
     
+    func timeTemplateCleared() {
+        task.timeTemplate = nil
+        
+        // DueDate, notification clear ???
+        
+        view.setTimeTemplate(nil)
+    }
     
     func dueDateCleared() {
         task.dueDate = nil
@@ -218,6 +232,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func tagsCleared() {
         task.tags = []
+    }
+    
+    func willPresentTimeTemplatePicker(_ input: TaskTimeTemplatePickerInput) {
+        input.setSelectedTimeTemplate(task.timeTemplate)
     }
     
     func willPresentDueDateEditor(_ input: TaskDueDateEditorInput) {

@@ -15,6 +15,7 @@ protocol TaskEditorViewInput: class {
     
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
+    func setTimeTemplate(_ timeTemplate: TimeTemplate?)
     func setDueDate(_ dueDate: String?)
     func setReminder(_ reminder: NotificationMask)
     func setRepeatEndingDate(_ repeatEndingDate: String?)
@@ -31,7 +32,7 @@ protocol TaskEditorViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: class, TaskEditorViewDueDateOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput {
+protocol TaskEditorViewOutput: class, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -40,6 +41,7 @@ protocol TaskEditorViewOutput: class, TaskEditorViewDueDateOutput, TaskEditorVie
     func taskNoteChanged(to taskNote: String)
     func taskImportantChanged(to isImportant: Bool)
     
+    func willPresentTimeTemplatePicker(_ input: TaskTimeTemplatePickerInput)
     func willPresentDueDateEditor(_ input: TaskDueDateEditorInput)
     func willPresentReminderEditor(_ input: TaskReminderEditorInput)
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput)
@@ -48,6 +50,11 @@ protocol TaskEditorViewOutput: class, TaskEditorViewDueDateOutput, TaskEditorVie
     func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
     func willPresentTagsPicker(_ input: TaskTagsPickerInput)
+}
+
+protocol TaskEditorViewTimeTemplateOutput: class {
+    func timeTemplateChanged(to timeTemplate: TimeTemplate?)
+    func timeTemplateCleared()
 }
 
 protocol TaskEditorViewDueDateOutput: class {

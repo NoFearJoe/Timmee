@@ -22,6 +22,7 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var closeButton: UIButton!
     @IBOutlet fileprivate var doneButton: UIButton!
     
+    @IBOutlet fileprivate var timeTemplateView: TaskParameterView!
     @IBOutlet fileprivate var dueDateView: TaskParameterView!
     @IBOutlet fileprivate var reminderView: TaskParameterView!
     @IBOutlet fileprivate var repeatView: TaskParameterView!
@@ -83,6 +84,18 @@ final class TaskEditorView: UIViewController {
                                  attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16,
                                                                                      weight: UIFontWeightLight),
                                               NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
+        
+        timeTemplateView.isHidden = false//!UserProperty.inApp(InAppPurchaseItem.dateTemplates.id).bool()
+        
+        timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
+            
+        }
+        timeTemplateView.didClear = { [unowned self] in
+            self.output.timeTemplateCleared()
+        }
+        timeTemplateView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .timeTemplates)
+        }
         
         dueDateView.didChangeFilledState = { [unowned self] isFilled in
             self.reminderView.isHidden = !isFilled
@@ -223,6 +236,12 @@ extension TaskEditorView: TaskEditorViewInput {
         taskNoteField.textView.text = note
     }
     
+    func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
+        timeTemplateView.text = timeTemplate?.title ?? "time_template".localized
+        
+        timeTemplateView.isFilled = timeTemplate != nil
+    }
+    
     func setDueDate(_ dueDate: String?) {
         dueDateView.text = dueDate ?? "due_date".localized
         
@@ -313,6 +332,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             setTopButtonsVisible(true)
             output?.locationCleared()
         case .tags: output?.tagsCleared()
+        case .timeTemplates: output?.timeTemplateCleared()
         }
     }
 
@@ -359,6 +379,12 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.output = output
             output.willPresentTagsPicker(viewController)
             return viewController
+        case .timeTemplates:
+            let viewController = ViewControllersFactory.taskTimeTemplatePicker
+            viewController.loadViewIfNeeded()
+            viewController.output = self
+            output.willPresentTimeTemplatePicker(viewController)
+            return viewController
         }
     }
     
@@ -387,6 +413,14 @@ final class TaskDueDateEditorHandler: TaskDueDateEditorOutput {
         onDateChange?(dueDate)
     }
 
+}
+
+extension TaskEditorView: TaskTimeTemplatePickerOutput {
+    
+    func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
+        output.timeTemplateChanged(to: timeTemplate)
+    }
+    
 }
 
 extension TaskEditorView: TaskReminderEditorOutput {
@@ -464,7 +498,7 @@ fileprivate extension TaskEditorView {
         let viewsToHide: [UIView] = [taskNoteField, dueDateView,
                                      reminderView, repeatView,
                                      locationView, locationReminderView,
-                                     taskImportancyPicker,
+                                     taskImportancyPicker, timeTemplateView,
                                      subtasksContainer, taskTagsView]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 

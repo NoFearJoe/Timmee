@@ -32,3 +32,9 @@ final class TimeTemplate {
         notification = NotificationMask(mask: entity.notification)
     }
 }
+
+extension TimeTemplate: Equatable {
+    static func ==(lhs: TimeTemplate, rhs: TimeTemplate) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

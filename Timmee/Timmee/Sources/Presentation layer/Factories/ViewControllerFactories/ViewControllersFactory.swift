@@ -68,6 +68,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskTagsPicker")
     }
     
+    static var taskTimeTemplatePicker: TaskTimeTemplatePicker {
+        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskTimeTemplatePicker")
+    }
+    
     
     static var pinCreation: PinCreationViewController {
         return StoryboardsFactory.pin.viewController(id: "PinCreation")

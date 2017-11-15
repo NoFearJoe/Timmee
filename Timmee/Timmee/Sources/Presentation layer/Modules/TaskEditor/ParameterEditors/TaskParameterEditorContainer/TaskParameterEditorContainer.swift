@@ -15,6 +15,7 @@ enum TaskParameterEditorType {
     case repeatEndingDate
     case location
     case tags
+    case timeTemplates
     
     var title: String {
         switch self {
@@ -24,6 +25,7 @@ enum TaskParameterEditorType {
         case .repeatEndingDate: return "repeat_ending_date".localized
         case .location: return "location".localized
         case .tags: return "tags_picker".localized
+        case .timeTemplates: return "time_templates".localized
         }
     }
 }
