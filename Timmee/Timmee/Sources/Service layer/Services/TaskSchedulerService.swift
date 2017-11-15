@@ -16,6 +16,8 @@ import class CoreLocation.CLCircularRegion
 final class TaskSchedulerService {
 
     func scheduleTask(_ task: Task, listTitle: String) {
+        removeNotification(for: task)
+        
         let location = task.shouldNotifyAtLocation ? task.location : nil
         
         if let dueDate = task.dueDate, task.notification != .doNotNotify {
@@ -74,6 +76,23 @@ final class TaskSchedulerService {
                                       location: location)
         }
     }
+    
+    func removeNotification(for task: Task) {
+        if let notifications = UIApplication.shared.scheduledLocalNotifications {
+            if let index = notifications.index(where: {
+                if let taskID = $0.userInfo?["task_id"] as? String {
+                    return taskID == task.id
+                }
+                return false
+            }) {
+//                if #available(iOS 10.0, *) {
+//                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [])
+//                } else {
+                UIApplication.shared.cancelLocalNotification(notifications[index])
+//                }
+            }
+        }
+    }
 
 }
 
@@ -111,25 +130,7 @@ fileprivate extension TaskSchedulerService {
             notification.regionTriggersOnce = false
         }
         
-        if let notifications = UIApplication.shared.scheduledLocalNotifications {
-            if let index = notifications.index(where: {
-                if let taskID = $0.userInfo?["task_id"] as? String {
-                    return taskID == id
-                }
-                return false
-            }) {
-//                if #available(iOS 10.0, *) {
-//                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [])
-//                } else {
-                    UIApplication.shared.cancelLocalNotification(notifications[index])
-//                }
-            }
-        }
         UIApplication.shared.scheduleLocalNotification(notification)
-    }
-    
-    func scheduleLocationNotification() {
-        
     }
 
 }

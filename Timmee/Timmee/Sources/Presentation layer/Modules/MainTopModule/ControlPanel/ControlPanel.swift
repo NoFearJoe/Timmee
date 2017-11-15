@@ -9,6 +9,7 @@
 import class UIKit.UILabel
 import class UIKit.UIButton
 import class UIKit.UIImageView
+import class UIKit.NSLayoutConstraint
 
 final class ControlPanel: BarView {
 
@@ -18,6 +19,8 @@ final class ControlPanel: BarView {
     @IBOutlet fileprivate var settingsButton: UIButton!
     @IBOutlet fileprivate var searchButton: UIButton!
     @IBOutlet fileprivate var editButton: UIButton!
+    
+    @IBOutlet fileprivate var editButtonWidthConstraint: NSLayoutConstraint!
     
     func showList(_ list: List) {
         setListIcon(list.icon)
@@ -38,6 +41,8 @@ final class ControlPanel: BarView {
     
     func setGroupEditingVisible(_ isVisible: Bool) {
         editButton.isHidden = !isVisible
+        editButtonWidthConstraint.constant = isVisible ? 32 : 0
+        layoutIfNeeded()
     }
     
     func changeGroupEditingState(to isEditing: Bool) {

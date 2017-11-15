@@ -26,14 +26,16 @@ final class ListsInteractor {
     fileprivate let tasksService = TasksService()
     
     fileprivate var listsObserver: CoreDataObserver<List>!
+    fileprivate var currentListsSorting: ListSorting!
     
     weak var output: ListsInteractorOutput!
     
     init() {
-        setupListsObserver() /// ????? ctrl+z ???
+        setupListsObserver()
     }
     
     func requestLists() {
+        setupListsObserver()
         output.prepareCoreDataObserver(listsObserver)
         listsObserver.fetchInitialEntities()
     }
@@ -100,7 +102,13 @@ extension ListsInteractor {
 fileprivate extension ListsInteractor {
     
     func setupListsObserver() {
-        listsObserver = makeListsObserver()
+        let listSorting = ListSorting(value: UserProperty.listSorting.int())
+        
+        guard currentListsSorting != listSorting else { return }
+        
+        currentListsSorting = listSorting
+        
+        listsObserver = makeListsObserver(sorting: listSorting)
         
         listsObserver.mapping = { entity in
             let listEntity = entity as! ListEntity
@@ -116,9 +124,9 @@ fileprivate extension ListsInteractor {
         }
     }
     
-    func makeListsObserver() -> CoreDataObserver<List> {
+    func makeListsObserver(sorting: ListSorting) -> CoreDataObserver<List> {
         let observer: CoreDataObserver<List>
-        observer = CoreDataObserver(request: makeListsFetchRequest(),
+        observer = CoreDataObserver(request: makeListsFetchRequest(sorting: sorting),
                                     section: nil,
                                     cacheName: "lists",
                                     context: DefaultStorage.instance.mainContext)
@@ -126,8 +134,8 @@ fileprivate extension ListsInteractor {
         return observer
     }
     
-    func makeListsFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
+    func makeListsFetchRequest(sorting: ListSorting) -> NSFetchRequest<NSFetchRequestResult> {
+        let sortDescriptor = sorting.sortDescriptor
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: ListEntity.entityName)
         request.sortDescriptors = [sortDescriptor]
         return request

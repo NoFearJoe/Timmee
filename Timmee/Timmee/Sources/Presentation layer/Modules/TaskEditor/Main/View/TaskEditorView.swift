@@ -87,6 +87,7 @@ final class TaskEditorView: UIViewController {
         dueDateView.didChangeFilledState = { [unowned self] isFilled in
             self.reminderView.isHidden = !isFilled
             self.repeatView.isHidden = !isFilled
+            self.repeatEndingDateView.isHidden = !isFilled || !self.repeatView.isFilled
         }
         dueDateView.didClear = { [unowned self] in
             self.output.dueDateCleared()
@@ -482,7 +483,7 @@ fileprivate extension TaskEditorView {
         setTopButtonsVisible(false)
     }
     
-    private func showTaskParameterEditor(with type: TaskParameterEditorType) {
+    func showTaskParameterEditor(with type: TaskParameterEditorType) {
         let taskParameterEditorContainer = ViewControllersFactory.taskParameterEditorContainer
         taskParameterEditorContainer.loadViewIfNeeded()
         

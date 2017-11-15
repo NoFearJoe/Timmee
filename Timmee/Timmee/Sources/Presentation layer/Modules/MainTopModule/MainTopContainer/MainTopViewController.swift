@@ -52,12 +52,19 @@ final class MainTopViewController: UIViewController {
     
     
     @IBAction fileprivate func didPressSettingsButton() {
+        if isListsVisible {
+            hideLists(animated: true)
+        }
+        
         let viewController = ViewControllersFactory.settings
         present(viewController, animated: true, completion: nil)
     }
     
     @IBAction fileprivate func didPressSearchButton() {
-        hideLists(animated: true)
+        if isListsVisible {
+            hideLists(animated: true)
+        }
+        
         let viewController = ViewControllersFactory.search
         SearchAssembly.assembly(with: viewController)
         present(viewController, animated: true, completion: nil)
@@ -66,7 +73,10 @@ final class MainTopViewController: UIViewController {
     @IBAction fileprivate func didPressEditButton() {
         controlPanel.setGroupEditingButtonEnabled(false)
         editingInput?.toggleGroupEditing()
-        hideLists(animated: true)
+        
+        if isListsVisible {
+            hideLists(animated: true)
+        }
     }
     
     @IBAction fileprivate func didPressOverlayView() {
@@ -120,7 +130,7 @@ final class MainTopViewController: UIViewController {
         
         output?.willShowLists()
         
-        listsView.reloadData()
+        listsInteractor.requestLists()
         listsView.setContentOffset(.zero, animated: false)
         
         (view as? PassthrowView)?.shouldPassTouches = false
@@ -186,7 +196,7 @@ extension MainTopViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialLists() {
-        setCurrentList(IndexPath(row: 0, section: 0))
+        setCurrentList(currentListIndexPath)
     }
     
     func didUpdateLists(with change: CoreDataItemChange) {
