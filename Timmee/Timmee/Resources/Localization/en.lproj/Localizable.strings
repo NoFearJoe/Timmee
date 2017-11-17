@@ -43,6 +43,11 @@
 "no_tags" = "No tags";
 "no_tags_hint" = "Input title and pick color to add tag";
 "in_progress" = "In progress";
+"time_templates" = "Time templates";
+"time_template_placeholder" = "Time template is not selected";
+"no_time_templates" = "No time templates";
+"no_time_templates_hint" = "Time templates helps you to clarify the tasks";
+"add_time_template" = "Create time template...";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";

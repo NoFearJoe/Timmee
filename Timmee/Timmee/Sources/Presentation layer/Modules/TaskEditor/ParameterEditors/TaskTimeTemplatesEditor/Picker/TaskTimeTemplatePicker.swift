@@ -20,6 +20,7 @@ final class TaskTimeTemplatePicker: UIViewController {
     
     weak var output: TaskTimeTemplatePickerOutput?
     
+    @IBOutlet fileprivate var addTimeTemplateView: AddTimeTemplateView!
     @IBOutlet fileprivate var tableView: UITableView!
     
     fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
@@ -31,7 +32,11 @@ final class TaskTimeTemplatePicker: UIViewController {
     fileprivate let cellActionsProvider = SubtaskCellActionsProvider()
     
     fileprivate var selectedTimeTemplate: TimeTemplate?
-    fileprivate var timeTemplates: [TimeTemplate] = []
+    fileprivate var timeTemplates: [TimeTemplate] = [] {
+        didSet {
+            timeTemplates.isEmpty ? showNoTimeTemplatesPlaceholder() : hideNoTimeTemplatesPlaceholder()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,10 @@ final class TaskTimeTemplatePicker: UIViewController {
         
         timeTemplates = timeTemplatesService.fetchTimeTemplates()
         tableView.reloadData()
+    }
+    
+    @IBAction func showTimeTemplateEditor() {
+        
     }
     
 }
@@ -154,7 +163,7 @@ fileprivate extension TaskTimeTemplatePicker {
 
 fileprivate extension TaskTimeTemplatePicker {
     
-    func showNoTagsPlaceholder() {
+    func showNoTimeTemplatesPlaceholder() {
         guard placeholder.isHidden else { return }
         self.placeholder.alpha = 0
         UIView.animate(withDuration: 0.2, animations: {
@@ -164,7 +173,7 @@ fileprivate extension TaskTimeTemplatePicker {
         })
     }
     
-    func hideNoTagsPlaceholder() {
+    func hideNoTimeTemplatesPlaceholder() {
         guard !placeholder.isHidden else { return }
         self.placeholder.alpha = 1
         UIView.animate(withDuration: 0.2, animations: {
@@ -177,8 +186,8 @@ fileprivate extension TaskTimeTemplatePicker {
     func setupPlaceholder() {
         placeholder.setup(into: view)
         placeholder.icon = #imageLiteral(resourceName: "faceIDBig")
-        placeholder.title = "no_tags".localized
-        placeholder.subtitle = "no_tags_hint".localized
+        placeholder.title = "no_time_templates".localized
+        placeholder.subtitle = "no_time_templates_hint".localized
         placeholder.isHidden = true
     }
     
@@ -186,7 +195,7 @@ fileprivate extension TaskTimeTemplatePicker {
 
 extension TaskTimeTemplatePicker: TaskParameterEditorInput {
     var requiredHeight: CGFloat {
-        return CGFloat(6) * TaskTimeTemplatePicker.rowHeight + 52
+        return CGFloat(6) * TaskTimeTemplatePicker.rowHeight + 44
     }
 }
 

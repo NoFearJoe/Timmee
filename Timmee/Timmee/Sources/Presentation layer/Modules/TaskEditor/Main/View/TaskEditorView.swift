@@ -237,7 +237,7 @@ extension TaskEditorView: TaskEditorViewInput {
     }
     
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
-        timeTemplateView.text = timeTemplate?.title ?? "time_template".localized
+        timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
         timeTemplateView.isFilled = timeTemplate != nil
     }

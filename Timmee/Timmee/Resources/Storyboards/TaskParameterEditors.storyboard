@@ -875,9 +875,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Azn-H6-v0L">
-                                <rect key="frame" x="0.0" y="52" width="375" height="615"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Azn-H6-v0L">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="PLg-AO-3NT">
                                     <rect key="frame" x="0.0" y="80" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -948,12 +948,38 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSp-FE-yn9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSp-FE-yn9" customClass="AddTimeTemplateView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add time template..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm9-uv-Low">
+                                        <rect key="frame" x="36" y="12" width="324" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_thin" translatesAutoresizingMaskIntoConstraints="NO" id="F7g-2H-Sbu">
+                                        <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="F7g-2H-Sbu" secondAttribute="height" multiplier="1:1" id="mG2-fv-DaD"/>
+                                            <constraint firstAttribute="width" constant="20" id="w6W-k1-EMp"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="eCl-03-xP8"/>
+                                    <constraint firstItem="Lm9-uv-Low" firstAttribute="centerY" secondItem="kSp-FE-yn9" secondAttribute="centerY" id="Jd8-hg-ilh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lm9-uv-Low" secondAttribute="trailing" constant="15" id="NUo-vg-nzT"/>
+                                    <constraint firstItem="F7g-2H-Sbu" firstAttribute="centerY" secondItem="kSp-FE-yn9" secondAttribute="centerY" id="cS2-Fj-bjp"/>
+                                    <constraint firstAttribute="height" constant="44" id="eCl-03-xP8"/>
+                                    <constraint firstItem="F7g-2H-Sbu" firstAttribute="leading" secondItem="kSp-FE-yn9" secondAttribute="leading" constant="8" id="oua-dE-6JM"/>
+                                    <constraint firstItem="Lm9-uv-Low" firstAttribute="leading" secondItem="F7g-2H-Sbu" secondAttribute="trailing" constant="8" id="rUv-WM-qCD"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="iconView" destination="F7g-2H-Sbu" id="742-0b-RMA"/>
+                                    <outlet property="titleLabel" destination="Lm9-uv-Low" id="coC-o9-4Vf"/>
+                                    <outletCollection property="gestureRecognizers" destination="8IB-Z4-lwQ" appends="YES" id="6Hb-Pf-K0y"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -968,10 +994,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addTimeTemplateView" destination="kSp-FE-yn9" id="dQD-Bg-PFM"/>
                         <outlet property="tableView" destination="Azn-H6-v0L" id="shS-Ca-5Jn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nS5-WW-JOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8IB-Z4-lwQ">
+                    <connections>
+                        <action selector="showTimeTemplateEditor" destination="McA-jA-62e" id="uCM-Hb-Rvd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="7559" y="155"/>
         </scene>
@@ -1335,6 +1367,7 @@
     </scenes>
     <resources>
         <image name="checkmark" width="20" height="20"/>
+        <image name="plus_thin" width="20" height="20"/>
         <image name="trash" width="20" height="20"/>
     </resources>
 </document>
