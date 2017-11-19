@@ -138,14 +138,14 @@ extension SearchViewController: SearchViewInput {
     func setInitialPlaceholderVisible(_ isVisible: Bool) {
         configurePlaceholder(with: "initial_search_title".localized,
                              subtitle: "initial_search_subtitle".localized,
-                             image: #imageLiteral(resourceName: "touchIDBig"))
+                             image: #imageLiteral(resourceName: "search_placeholder"))
         placeholder.isHidden = !isVisible
     }
     
     func setNoSearchResultsPlaceholderVisible(_ isVisible: Bool) {
         configurePlaceholder(with: "no_searched_tasks".localized,
                              subtitle: "",
-                             image: #imageLiteral(resourceName: "faceIDBig"))
+                             image: #imageLiteral(resourceName: "search_placeholder"))
         placeholder.isHidden = !isVisible
     }
     

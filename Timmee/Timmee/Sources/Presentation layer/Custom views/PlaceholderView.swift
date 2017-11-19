@@ -6,8 +6,10 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import UIKit
-import PureLayout
+import class UIKit.UIView
+import class UIKit.UILabel
+import class UIKit.UIImage
+import class UIKit.UIImageView
 
 final class PlaceholderView: UIView {
     
@@ -37,9 +39,10 @@ extension PlaceholderView {
     func setup(into view: UIView) {
         view.addSubview(self)
         view.bringSubview(toFront: self)
-        self.autoCenterInSuperview()
-        self.autoPinEdge(toSuperviewEdge: .leading, withInset: 20)
-        self.autoPinEdge(toSuperviewEdge: .trailing, withInset: 20)
+        
+        [centerX(), centerY(), leading(20), trailing(20)].toSuperview()
+        
+        setupAppearance()
     }
     
 }
@@ -47,6 +50,7 @@ extension PlaceholderView {
 fileprivate extension PlaceholderView {
     
     func setupAppearance() {
+        iconView.tintColor = AppTheme.current.secondaryTintColor
         titleLabel.textColor = AppTheme.current.tintColor
         subtitleLabel.textColor = AppTheme.current.secondaryTintColor
     }

@@ -274,7 +274,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXS-L9-9eo" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="255" width="345" height="40"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="m5c-35-1Qc">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="finish" translatesAutoresizingMaskIntoConstraints="NO" id="m5c-35-1Qc">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="Zrh-Sk-vyN"/>
@@ -790,6 +790,7 @@
         <image name="checkmark" width="20" height="20"/>
         <image name="clock" width="20" height="20"/>
         <image name="cross" width="20" height="20"/>
+        <image name="finish" width="20" height="20"/>
         <image name="important_and_urgent" width="44" height="44"/>
         <image name="location" width="20" height="20"/>
         <image name="plus_thin" width="20" height="20"/>

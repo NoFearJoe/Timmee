@@ -7,7 +7,7 @@
 //
 
 import SugarRecord
-import class CoreData.NSManagedObjectContext
+import CoreData
 
 final class DefaultStorage {
     

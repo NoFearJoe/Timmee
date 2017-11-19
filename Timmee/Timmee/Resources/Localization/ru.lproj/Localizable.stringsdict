@@ -67,4 +67,14 @@
 			one = "\U043a\U0430\U0436\U0434\U044b\U0439";
 		};
 	};
+	"n_attachments" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = lu;
+			few = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0445 \U0444\U0430\U0439\U043b\U0430";
+			one = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0439 \U0444\U0430\U0439\U043b";
+			other = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0445 \U0444\U0430\U0439\U043b\U043e\U0432";
+		};
+	};
 }

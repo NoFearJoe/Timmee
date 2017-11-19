@@ -48,6 +48,8 @@
 "no_time_templates" = "No time templates";
 "no_time_templates_hint" = "Time templates helps you to clarify the tasks";
 "add_time_template" = "Create time template...";
+"attachments" = "Attachments";
+"no_attachments" = "No attachments";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
@@ -161,7 +163,7 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 "imported_n_tasks" = "%lu n";
-
+"n_attachments" = "%lu n";
 
 "dark_theme_inapp_title" = "Dark theme";
 "dark_theme_inapp_description" = "";

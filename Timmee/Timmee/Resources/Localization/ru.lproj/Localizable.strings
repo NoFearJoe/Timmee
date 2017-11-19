@@ -12,7 +12,7 @@
 "tomorrow" = "Завтра";
 "week" = "Неделя";
 "new_list" = "Новый список...";
-"import_tasks" = "Добавить задачи";
+"import_tasks" = "Импортировать задачи";
 "no_tasks_to_import" = "Нет задач для импорта";
 "tasks_without_list" = "Не в списке";
 "no_searched_tasks" = "Задач не найдено";
@@ -22,9 +22,9 @@
 "initial_search_title" = "Поиск задач";
 "initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
 
-"no_tasks" = "Нет задач";
+"no_tasks" = "Список пуст";
 "new_task" = "Новая задача...";
-"no_tasks_hint" = "Добавьте задачу нажав на иконку ручки вверху";
+"no_tasks_hint" = "В этом списке нет задач";
 
 "important_and_urgent" = "Важные и срочные";
 "important" = "Важные";
@@ -41,13 +41,15 @@
 "tags_picker" = "Тэги";
 "input_tag" = "Введите тэг...";
 "no_tags" = "Нет тэгов";
-"no_tags_hint" = "Введите название и выберите цвет чтобы создать тэг";
+"no_tags_hint" = "Для создания тэга выберите цвет и введите название";
 "in_progress" = "В процессе";
 "time_templates" = "Временные шаблоны";
 "time_template_placeholder" = "Временной шаблон не выбран";
 "no_time_templates" = "Нет временных шаблонов";
 "no_time_templates_hint" = "Временные шаблоны помогают лучше разбираться в поставленных задачах";
 "add_time_template" = "Создать временной шаблон...";
+"attachments" = "Прикрепленные файлы";
+"no_attachments" = "Нет прикрепленных файлов";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";
@@ -67,7 +69,7 @@
 "minutes" = "минуты";
 
 "choose_interval" = "Выбрать интервал";
-"choose_days" = "Выбрать дни";
+"choose_days" = "Выбрать дни повтора";
 
 "monday" = "Понедельник";
 "tuesday" = "Вторник";
@@ -102,11 +104,9 @@
 "remove_list" = "Удаление списка";
 "remove_tasks" = "Удаление задач";
 "move_tasks" = "Перенос задач";
-"are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Вы уверены, что хотите удалить список со всеми задачами?";
-"are_you_sure_you_want_to_delete_tasks" = "Вы уверены, что хотите удалить задачи?";
-"are_you_sure_you_want_to_move_tasks" = "Вы уверены, что хотите перенести задачи в список";
-"i_am_sure" = "Да, уверен";
-"cancel" = "Отмена";
+"are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Удалить список со всеми задачами?";
+"are_you_sure_you_want_to_delete_tasks" = "Удалить выбранные задачи?";
+"are_you_sure_you_want_to_move_tasks" = "Перенести выбранные задачи в список";
 
 "remove" = "Удалить";
 "edit" = "Изменить";
@@ -117,6 +117,7 @@
 "complete" = "Завершить";
 "restore" = "Восстановить";
 "move" = "Переместить";
+"cancel" = "Отмена";
 
 "create_password" = "Придумайте пароль";
 "enter_password" = "Введите пароль";
@@ -161,7 +162,7 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 "imported_n_tasks" = "%lu n";
-
+"n_attachments" = "%lu n";
 
 "dark_theme_inapp_title" = "Темная тема";
 "dark_theme_inapp_description" = "Черная как негретянский мальчик";
