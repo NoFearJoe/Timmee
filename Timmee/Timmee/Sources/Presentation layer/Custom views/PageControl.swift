@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PureLayout
 
 protocol PageControlDelegate: class {
     func pageControl(_ pageControl: PageControl, selectedPageChangedTo page: Int, isPlus: Bool)
@@ -177,21 +176,17 @@ final class PageControl: UIView {
     fileprivate func layoutLabel(_ label: UILabel, after leftLabel: UILabel?, isLast: Bool = false) {
         guard label.superview != nil else { return }
         
-        label.autoPinEdge(toSuperviewEdge: .top)
-        label.autoPinEdge(toSuperviewEdge: .bottom)
-        label.autoSetDimension(.width, toSize: maxWidth, relation: .lessThanOrEqual)
+        [label.top(), label.bottom()].toSuperview()
+        label.width(lessOrEqual: maxWidth)
         
         if let leftLabel = leftLabel {
-            label.autoPinEdge(.leading,
-                              to: .trailing,
-                              of: leftLabel,
-                              withOffset: interitemSpacing)
+            label.leadingToTrailing(interitemSpacing).to(leftLabel)
         } else {
-            label.autoPinEdge(toSuperviewEdge: .leading)
+            label.leading().toSuperview()
         }
         
         if isLast {
-            label.autoPinEdge(toSuperviewEdge: .trailing)
+            label.trailing().toSuperview()
         }
     }
     

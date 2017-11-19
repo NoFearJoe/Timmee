@@ -149,6 +149,8 @@
 		96B0B9BE1FB895C20009BA3B /* TimeTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9BD1FB895C20009BA3B /* TimeTemplate.swift */; };
 		96B0B9C01FB89A430009BA3B /* TimeTemplatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9BF1FB89A430009BA3B /* TimeTemplatesService.swift */; };
 		96B0B9C21FB89C340009BA3B /* TimeTemplateEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C11FB89C340009BA3B /* TimeTemplateEntity+Mapping.swift */; };
+		96B0B9C41FC166F00009BA3B /* LayoutKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C31FC166F00009BA3B /* LayoutKit.swift */; };
+		96B0B9C61FC18B4D0009BA3B /* DatesKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C51FC18B4D0009BA3B /* DatesKit.swift */; };
 		96BE0A2E1F6314AE0041FBEA /* ListEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BE0A2D1F6314AE0041FBEA /* ListEditor.storyboard */; };
 		96BE0A301F63C3A50041FBEA /* ListEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE0A2F1F63C3A50041FBEA /* ListEditorView.swift */; };
 		96BE0A321F65B79C0041FBEA /* ListEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE0A311F65B79C0041FBEA /* ListEditorPresenter.swift */; };
@@ -327,6 +329,8 @@
 		96B0B9BD1FB895C20009BA3B /* TimeTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTemplate.swift; sourceTree = "<group>"; };
 		96B0B9BF1FB89A430009BA3B /* TimeTemplatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTemplatesService.swift; sourceTree = "<group>"; };
 		96B0B9C11FB89C340009BA3B /* TimeTemplateEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTemplateEntity+Mapping.swift"; sourceTree = "<group>"; };
+		96B0B9C31FC166F00009BA3B /* LayoutKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutKit.swift; sourceTree = "<group>"; };
+		96B0B9C51FC18B4D0009BA3B /* DatesKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesKit.swift; sourceTree = "<group>"; };
 		96BE0A2D1F6314AE0041FBEA /* ListEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListEditor.storyboard; sourceTree = "<group>"; };
 		96BE0A2F1F63C3A50041FBEA /* ListEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEditorView.swift; sourceTree = "<group>"; };
 		96BE0A311F65B79C0041FBEA /* ListEditorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEditorPresenter.swift; sourceTree = "<group>"; };
@@ -1170,6 +1174,8 @@
 				96115F621F72E4060050D7A3 /* Calendar.swift */,
 				96477A571F8112E8005C3520 /* KeyboardManager.swift */,
 				96AAA58F1FB0676800F547A0 /* InAppPurchase.swift */,
+				96B0B9C31FC166F00009BA3B /* LayoutKit.swift */,
+				96B0B9C51FC18B4D0009BA3B /* DatesKit.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1419,6 +1425,7 @@
 				963D6A4F1F5AE77F0063E295 /* TasksService.swift in Sources */,
 				963D6A6F1F5EF48F0063E295 /* String+Localized.swift in Sources */,
 				96477A621F8135E3005C3520 /* TasksImportCell.swift in Sources */,
+				96B0B9C41FC166F00009BA3B /* LayoutKit.swift in Sources */,
 				965798D71F91340100F65019 /* PinCreationViewController.swift in Sources */,
 				96115F3A1F6E89000050D7A3 /* TaskCategoryPicker.swift in Sources */,
 				96BE0A341F65B8760041FBEA /* ListEditorInteractor.swift in Sources */,
@@ -1512,6 +1519,7 @@
 				969219D31F9CCEA4006E47B4 /* ColorPicker.swift in Sources */,
 				963D6A731F5EF9790063E295 /* AppTheme.swift in Sources */,
 				96115F5F1F72E35C0050D7A3 /* CalendarDayCell.swift in Sources */,
+				96B0B9C61FC18B4D0009BA3B /* DatesKit.swift in Sources */,
 				96A821831F7B818A00F2AA68 /* TaskIntervalRepeatingPicker.swift in Sources */,
 				96115F321F6E6EBE0050D7A3 /* TaskParameterView.swift in Sources */,
 				965798D61F91340100F65019 /* PinAuthenticationViewController.swift in Sources */,

@@ -120,14 +120,8 @@ final class CoreDataObserver<T>: NSObject, NSFetchedResultsControllerDelegate, T
             if tableView.numberOfSections - 1 < newIndexPathWithOffset!.section {
                 tableView.deleteRows(at: [indexPathWithOffset!], with: .fade)
             } else {
-//                if indexPathWithOffset == newIndexPathWithOffset {
-//                    tableView.reloadRows(at: [indexPathWithOffset!], with: .fade)
-//                } else {
-                    tableView.deleteRows(at: [indexPathWithOffset!], with: .fade)
-                    tableView.insertRows(at: [newIndexPathWithOffset!], with: .fade)
-//                    tableView.moveRow(at: indexPathWithOffset!, to: newIndexPathWithOffset!)
-//                    tableView.reloadRows(at: [newIndexPathWithOffset!], with: .fade)
-//                }
+                tableView.deleteRows(at: [indexPathWithOffset!], with: .fade)
+                tableView.insertRows(at: [newIndexPathWithOffset!], with: .fade)
             }
         }
     }

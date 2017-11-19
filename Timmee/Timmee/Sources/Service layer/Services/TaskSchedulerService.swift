@@ -7,7 +7,6 @@
 //
 
 import struct Foundation.Date
-import MTDates
 import NotificationCenter
 import UserNotifications
 import class CoreLocation.CLLocation
@@ -16,12 +15,14 @@ import class CoreLocation.CLCircularRegion
 final class TaskSchedulerService {
 
     func scheduleTask(_ task: Task, listTitle: String) {
+        guard !task.isDone else { return }
+        
         let location = task.shouldNotifyAtLocation ? task.location : nil
         
         if let dueDate = task.dueDate, task.notification != .doNotNotify {
             switch task.repeating.type {
             case .never:
-                let fireDate = (dueDate as NSDate).mt_dateMinutes(before: task.notification.minutes)
+                let fireDate = dueDate - task.notification.minutes.asMinutes
                 scheduleLocalNotification(withID: task.id,
                                           title: listTitle,
                                           message: task.title,
@@ -34,13 +35,13 @@ final class TaskSchedulerService {
                 (0..<task.repeating.value).forEach { index in
                     if index > 0 {
                         switch unit {
-                        case .day: date = (date as NSDate).mt_dateDays(after: index)
-                        case .week: date = (date as NSDate).mt_dateWeeks(after: index)
-                        case .month: date = (date as NSDate).mt_dateMonths(after: index)
-                        case .year: date = (date as NSDate).mt_dateYears(after: index)
+                        case .day: date = date + index.asDays
+                        case .week: date = date + index.asWeeks
+                        case .month: date = date + index.asMonths
+                        case .year: date = date + index.asYears
                         }
                     }
-                    let fireDate = (date as NSDate).mt_dateMinutes(before: task.notification.minutes)
+                    let fireDate = date - task.notification.minutes.asMinutes
                     scheduleLocalNotification(withID: task.id,
                                               title: listTitle,
                                               message: task.title,
@@ -51,8 +52,8 @@ final class TaskSchedulerService {
                 }
             case .on(let unit):
                 (0..<7).forEach { day in
-                    guard let fireDate = (dueDate as NSDate).mt_dateDays(after: day) else { return }
-                    let dayNumber = (fireDate as NSDate).mt_weekdayOfWeek()
+                    let fireDate = dueDate + day.asDays
+                    let dayNumber = fireDate.weekday
                     if unit.dayNumbers.contains(dayNumber) {
                         scheduleLocalNotification(withID: task.id,
                                                   title: listTitle,

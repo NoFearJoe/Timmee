@@ -7,8 +7,6 @@
 //
 
 import struct Foundation.Date
-import MTDates
-
 
 /// Представляет собой ограниченный отрезок времени, который можно использовать для построения календаря
 final class Calendar {
@@ -65,8 +63,8 @@ final class Calendar {
      */
     func dataSource() -> [Calendar.Entry] {
         return dates.map {
-            let dayName = $0.nsDate.mt_stringFromDateWithShortWeekdayTitle() ?? ""
-            let dayNumber = $0.nsDate.mt_dayOfMonth()
+            let dayName = $0.asShortWeekday
+            let dayNumber = $0.dayOfMonth
             let isEnabled = self.isEnabled(day: $0)
             let isWeekend = self.isWeekend(day: $0)
             
@@ -117,29 +115,28 @@ final class Calendar {
      - Returns: Номер дня в календаре
      */
     func index(of date: Date) -> Int {
-        return dates.index(of: date.nsDate.mt_startOfCurrentDay()) ?? -1
+        return dates.index(of: date.startOfDay) ?? -1
     }
     
     
     fileprivate class func build(start: Date, shift: Int, daysCount: Int) -> DateRange {
-        var first = start.nsDate.mt_startOfCurrentDay().nsDate
+        var first = start
         if shift < 0 {
-            first = first.mt_dateDays(after: shift).nsDate
+            first = first + shift.asDays
         } else if shift > 0 {
-            first = first.mt_dateDays(before: shift).nsDate
+            first = first - shift.asDays
         }
         
-        return DateRange(startDate: first.mt_startOfCurrentDay(), daysCount: daysCount)
+        return DateRange(startDate: first.startOfDay, daysCount: daysCount)
     }
     
     
     fileprivate func isEnabled(day date: Date) -> Bool {
-        let today = startDate.nsDate.mt_startOfCurrentDay()
-        return date.nsDate.mt_isOnOr(after: today)
+        return date >= startDate.startOfDay
     }
     
     fileprivate func isWeekend(day date: Date) -> Bool {
-        return date.nsDate.mt_weekdayOfWeek() > 5
+        return date.weekday > 5
     }
     
 }
@@ -166,7 +163,7 @@ extension DateRange {
     }
     
     subscript(index: Index) -> Iterator.Element {
-        return (startDate as NSDate).mt_dateDays(after: index)
+        return startDate + index.asDays
     }
     
     public func index(after i: Int) -> Int {
@@ -192,11 +189,9 @@ extension DateRange: Sequence {
         }
         
         mutating func next() -> Date? {
-            guard let nextDate = range.startDate.nsDate.mt_dateDays(after: index),
-                index >= range.daysCount
-            else {
-                return nil
-            }
+            guard index >= range.daysCount else { return nil }
+            
+            let nextDate = range.startDate + index.asDays
             
             index += 1
             

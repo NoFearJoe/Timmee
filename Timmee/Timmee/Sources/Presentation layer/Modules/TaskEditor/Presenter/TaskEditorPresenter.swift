@@ -7,7 +7,7 @@
 //
 
 import struct Foundation.Date
-import MTDates
+import class Foundation.DispatchQueue
 import class CoreLocation.CLGeocoder
 import class CoreLocation.CLLocation
 
@@ -317,7 +317,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentRepeatEndingDateEditor(_ input: TaskDueDateEditorInput) {
-        let minimumDate = task.dueDate?.nsDate.mt_dateDays(after: 1)
+        let minimumDate = task.dueDate + 1.asDays
         input.setMinimumDate(minimumDate)
         input.setDueDate(task.repeatEndingDate ?? minimumDate)
     }

@@ -252,7 +252,7 @@ fileprivate extension TasksImportView {
     
     func setupPlaceholder() {
         placeholder.setup(into: containerView)
-        placeholder.icon = #imageLiteral(resourceName: "faceIDBig")
+        placeholder.icon = #imageLiteral(resourceName: "search_placeholder")
         placeholder.subtitle = nil
         placeholder.isHidden = true
         
@@ -283,9 +283,9 @@ final class TasksImportHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupTitleLabel() {
-        titleLabel = UILabel(forAutoLayout: ())
+        titleLabel = UILabel(frame: .zero)
         addSubview(titleLabel)
-        titleLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 22, bottom: 4, right: 22))
+        [titleLabel.top(12), titleLabel.bottom(4), titleLabel.leading(22), titleLabel.trailing(22)].toSuperview()
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = AppTheme.current.secondaryTintColor
     }

@@ -7,8 +7,6 @@
 //
 
 import struct Foundation.Date
-import class Foundation.NSDate
-import MTDates
 
 enum NearestDate {
     case yeasterday
@@ -17,13 +15,12 @@ enum NearestDate {
     case custom(date: Date)
     
     init(date: Date) {
-        let nsDate = date as NSDate
-        switch nsDate {
-        case let date where date.mt_is(withinSameDay: NSDate().mt_dateDays(before: 1)):
+        switch date {
+        case let date where date.isWithinSameDay(of: Date() - 1.asDays):
             self = .yeasterday
-        case let date where date.mt_is(withinSameDay: Date()):
+        case let date where date.isWithinSameDay(of: Date()):
             self = .today
-        case let date where date.mt_is(withinSameDay: NSDate().mt_dateDays(after: 1)):
+        case let date where date.isWithinSameDay(of: Date() + 1.asDays):
             self = .tomorrow
         default:
             self = .custom(date: date)
@@ -41,9 +38,9 @@ enum NearestDate {
     
     var date: Date {
         switch self {
-        case .yeasterday: return NSDate().mt_dateDays(before: 1)
+        case .yeasterday: return Date() - 1.asDays
         case .today: return Date()
-        case .tomorrow: return NSDate().mt_dateDays(after: 1)
+        case .tomorrow: return Date() + 1.asDays
         case .custom(let date): return date
         }
     }

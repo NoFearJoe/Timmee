@@ -52,7 +52,7 @@ fileprivate extension MainViewController {
         mainTopView.output = representationManager
         addChildViewController(mainTopView)
         mainTopViewContainer.addSubview(mainTopView.view)
-        mainTopView.view.autoPinEdgesToSuperviewEdges()
+        mainTopView.view.allEdges().toSuperview()
         mainTopView.didMove(toParentViewController: self)
     }
     

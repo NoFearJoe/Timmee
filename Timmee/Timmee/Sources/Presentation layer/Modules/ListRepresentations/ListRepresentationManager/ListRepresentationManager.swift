@@ -6,8 +6,9 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import struct Foundation.Date
 import class UIKit.UIView
-import PureLayout
+import class UIKit.UIViewController
 
 final class ListRepresentationManager {
 
@@ -141,7 +142,7 @@ fileprivate extension ListRepresentationManager {
     }
     
     func layoutRepresentationView(_ view: UIView) {
-        view.autoPinEdgesToSuperviewEdges()
+        view.allEdges().toSuperview()
     }
     
     func showTaskEditor(with task: Task?) {
@@ -168,7 +169,7 @@ fileprivate extension ListRepresentationManager {
         configuration(taskEditorInput)
         
         if let smartList = currentList as? SmartList, smartList.smartListType == .today {
-            taskEditorInput.setDueDate(Date.startOfNextHour)
+            taskEditorInput.setDueDate(Date().startOfHour + 1.asHours)
         }
         
         containerViewController.present(taskEditorView, animated: true, completion: nil)

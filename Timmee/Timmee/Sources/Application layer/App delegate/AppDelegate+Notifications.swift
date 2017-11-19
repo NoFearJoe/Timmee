@@ -6,7 +6,6 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import MTDates
 import struct Foundation.Date
 import class UIKit.UIApplication
 import class UIKit.UILocalNotification
@@ -23,7 +22,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if notification.category == NotificationCategories.task.rawValue {
             if let endDate = notification.userInfo?["end_date"] as? Date {
-                if (endDate as NSDate).mt_isOnOr(before: Date()) {
+                if endDate <= Date() {
                     application.cancelLocalNotification(notification)
                 }
             }
@@ -93,7 +92,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
             if let endDate = notification.request.content.userInfo["end_date"] as? Date {
-                if (endDate as NSDate).mt_isOnOr(before: Date()) {
+                if endDate <= Date() {
                     center.removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
                     center.removePendingNotificationRequests(withIdentifiers: [notification.request.identifier])
                 }
@@ -108,7 +107,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
             if let endDate = response.notification.request.content.userInfo["end_date"] as? Date {
-                if (endDate as NSDate).mt_isOnOr(before: Date()) {
+                if endDate <= Date() {
                     center.removeDeliveredNotifications(withIdentifiers: [response.notification.request.identifier])
                     center.removePendingNotificationRequests(withIdentifiers: [response.notification.request.identifier])
                 }
