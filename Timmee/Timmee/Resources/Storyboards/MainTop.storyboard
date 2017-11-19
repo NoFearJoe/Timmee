@@ -49,7 +49,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bb1-eE-tOL">
-                                        <rect key="frame" x="40" y="15" width="191" height="21.5"/>
+                                        <rect key="frame" x="40" y="15" width="199" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <color key="textColor" red="0.27058823529411763" green="0.27843137254901962" blue="0.34901960784313724" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
@@ -94,7 +94,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="Vez-4U-BE9" firstAttribute="leading" secondItem="bb1-eE-tOL" secondAttribute="trailing" constant="8" id="CdQ-12-Xj1"/>
+                                    <constraint firstItem="Vez-4U-BE9" firstAttribute="leading" secondItem="bb1-eE-tOL" secondAttribute="trailing" id="CdQ-12-Xj1"/>
                                     <constraint firstItem="1pc-7A-646" firstAttribute="centerY" secondItem="yMc-7Q-9cF" secondAttribute="centerY" id="IQe-Z5-JEc"/>
                                     <constraint firstItem="Vez-4U-BE9" firstAttribute="centerY" secondItem="yMc-7Q-9cF" secondAttribute="centerY" id="K1C-9p-zvh"/>
                                     <constraint firstItem="Vez-4U-BE9" firstAttribute="leading" secondItem="Lnu-jJ-DUp" secondAttribute="trailing" id="Lec-bI-4W4"/>
@@ -115,6 +115,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="editButton" destination="Vez-4U-BE9" id="tMq-cK-AZS"/>
+                                    <outlet property="editButtonWidthConstraint" destination="Xbr-bK-sht" id="YjJ-lH-iEe"/>
                                     <outlet property="listIconView" destination="O2K-bu-47a" id="1bT-us-XZx"/>
                                     <outlet property="listTitleLabel" destination="bb1-eE-tOL" id="Q0M-hn-KLd"/>
                                     <outlet property="searchButton" destination="OUE-aR-gew" id="7zA-d7-pAJ"/>

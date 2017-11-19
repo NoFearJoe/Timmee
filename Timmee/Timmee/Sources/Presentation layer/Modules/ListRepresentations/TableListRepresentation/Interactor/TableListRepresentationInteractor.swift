@@ -47,6 +47,7 @@ final class TableListRepresentationInteractor {
     weak var output: TableListRepresentationInteractorOutput!
     
     fileprivate let tasksService = TasksService()
+    fileprivate let taskSchedulerService = TaskSchedulerService()
     
     fileprivate var tasksObserver: CoreDataObserver<Task>!
     fileprivate var lastListID: String?
@@ -88,6 +89,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     func deleteTask(_ task: Task) {
         tasksService.removeTask(task, completion: { [weak self] error in
             DispatchQueue.main.async {
+                
                 self?.output.operationCompleted()
             }
         })
@@ -109,7 +111,16 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.updateTask(task) { [weak self] error in
             DispatchQueue.main.async {
-                self?.output.operationCompleted()
+                guard let `self` = self else { return }
+                
+                if task.isDone {
+                    self.taskSchedulerService.removeNotification(for: task)
+                } else {
+                    let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
+                    self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
+                }
+                
+                self.output.operationCompleted()
             }
         }
     }
@@ -125,7 +136,17 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.updateTasks(tasks) { [weak self] error in
             DispatchQueue.main.async {
-                self?.output.groupEditingOperationCompleted()
+                guard let `self` = self else { return }
+
+                tasks.forEach { task in
+                    if task.isDone {
+                        self.taskSchedulerService.removeNotification(for: task)
+                    } else {
+                        let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
+                        self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
+                    }
+                }
+                self.output.groupEditingOperationCompleted()
             }
         }
     }
@@ -135,6 +156,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.updateTask(task) { [weak self] error in
             DispatchQueue.main.async {
+                self?.taskSchedulerService.removeNotification(for: task)
                 self?.output.operationCompleted()
             }
         }
@@ -146,6 +168,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.updateTasks(tasks) { [weak self] error in
             DispatchQueue.main.async {
+                tasks.forEach { self?.taskSchedulerService.removeNotification(for: $0) }
                 self?.output.groupEditingOperationCompleted()
             }
         }
@@ -220,7 +243,7 @@ fileprivate extension TableListRepresentationInteractor {
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
         
-        let context = (DefaultStorage.instance.storage as! CoreDataDefaultStorage).mainContext as! NSManagedObjectContext
+        let context = DefaultStorage.instance.mainContext
         tasksObserver = CoreDataObserver(request: request,
                                          section: "isDone",
                                          cacheName: "tasks\(listID)",

@@ -32,6 +32,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.taskEditor.initialViewController()
     }
     
+    static var subtasksEditor: SubtasksEditor {
+        return StoryboardsFactory.taskEditor.viewController(id: "SubtasksEditor")
+    }
+    
     static var taskParameterEditorContainer: TaskParameterEditorContainer {
         return StoryboardsFactory.taskParameterEditors.initialViewController()
     }

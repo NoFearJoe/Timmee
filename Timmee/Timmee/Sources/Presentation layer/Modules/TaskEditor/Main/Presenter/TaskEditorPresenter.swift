@@ -32,14 +32,10 @@ final class TaskEditorPresenter {
     
     weak var output: TaskEditorOutput?
     
-    fileprivate var task: Task!
+    var task: Task!
     fileprivate var listID: String?
     
     fileprivate var isNewTask = true
-    
-    fileprivate var sortedSubtasks: [Subtask] {
-        return task.subtasks.sorted(by: { $0.0.sortPosition < $0.1.sortPosition })
-    }
 
 }
 
@@ -78,8 +74,6 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setLocationReminderIsSelected(self.task.shouldNotifyAtLocation)
         
         view.setTaskImportant(self.task.isImportant)
-        
-        view.reloadSubtasks()
         
         view.setTags(self.task.tags)
     }
@@ -167,84 +161,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func taskImportantChanged(to isImportant: Bool) {
         task.isImportant = isImportant
-    }
-    
-    
-    func addSubtask(with title: String) {
-        let subtask = interactor.createSubtask(sortPosition: nextSubtaskSortPosition())
-        subtask.title = title
-        task.subtasks.append(subtask)
-        
-        interactor.addSubtask(subtask, task: task) { [weak self] in
-            if let index = self?.sortedSubtasks.index(where: { $0.id == subtask.id }) {
-                self?.view.batchReloadSubtask(insertions: [index],
-                                              deletions: [],
-                                              updates: [])
-            }
-        }
-    }
-    
-    func updateSubtask(at index: Int, newTitle: String) {
-        if let subtask = sortedSubtasks.item(at: index) {
-            subtask.title = newTitle
-            interactor.saveSubtask(subtask, completion: { [weak self] in
-                self?.view.batchReloadSubtask(insertions: [],
-                                              deletions: [],
-                                              updates: [index])
-            })
-        }
-    }
-    
-    func removeSubtask(at index: Int) {
-        if let subtask = sortedSubtasks.item(at: index) {
-            interactor.removeSubtask(subtask, completion: { [weak self] in
-                guard let `self` = self else { return }
-                guard let deletionIndex = self.task.subtasks.index(where: { $0.id == subtask.id }) else { return }
-                self.task.subtasks.remove(at: deletionIndex)
-                self.view.batchReloadSubtask(insertions: [],
-                                              deletions: [index],
-                                              updates: [])
-            })
-        }
-    }
-    
-    func exchangeSubtasks(at indexes: (Int, Int)) {
-        guard indexes.0 != indexes.1 else { return }
-        if let fromSubtask = sortedSubtasks.item(at: indexes.0),
-           let toSubtask = sortedSubtasks.item(at: indexes.1) {
-            
-            let targetPosition = toSubtask.sortPosition
-            
-            let range = Int(min(indexes.0, indexes.1))...Int(max(indexes.0, indexes.1))
-            let subtasks = sortedSubtasks
-            range.forEach { index in
-                guard index != indexes.0 else { return }
-                if let subtask = subtasks.item(at: index) {
-                    if indexes.0 > indexes.1 {
-                        subtask.sortPosition += 1
-                    } else {
-                        subtask.sortPosition -= 1
-                    }
-                }
-            }
-            
-            fromSubtask.sortPosition = targetPosition
-            
-            view.batchReloadSubtask(insertions: [],
-                                    deletions: [],
-                                    updates: range.map { $0 })
-        }
-    }
-    
-    func doneSubtask(at index: Int) {
-        if let subtask = sortedSubtasks.item(at: index) {
-            subtask.isDone = !subtask.isDone
-            interactor.saveSubtask(subtask, completion: { [weak self] in
-                self?.view.batchReloadSubtask(insertions: [],
-                                              deletions: [],
-                                              updates: [index])
-            })
-        }
     }
     
     
@@ -343,19 +259,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
 
 }
 
+extension TaskEditorPresenter: SubtasksEditorTaskProvider {}
+
 extension TaskEditorPresenter: TaskEditorInteractorOutput {}
-
-extension TaskEditorPresenter: TaskEditorSubtasksDataSource {
-
-    func subtasksCount() -> Int {
-        return sortedSubtasks.count
-    }
-    
-    func subtask(at index: Int) -> Subtask? {
-        return sortedSubtasks.item(at: index)
-    }
-
-}
 
 fileprivate extension TaskEditorPresenter {
 
@@ -424,14 +330,6 @@ fileprivate extension TaskEditorPresenter {
                 completion(nil)
             }
         })
-    }
-
-}
-
-fileprivate extension TaskEditorPresenter {
-
-    func nextSubtaskSortPosition() -> Int {
-        return (sortedSubtasks.last?.sortPosition ?? 0) + 1
     }
 
 }

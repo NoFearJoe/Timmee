@@ -11,11 +11,6 @@ protocol TaskEditorInteractorInput: class {
     func saveTask(_ task: Task, listID: String?, success: (() -> Void)?, fail: (() -> Void)?)
     
     func scheduleTask(_ task: Task)
-    
-    func createSubtask(sortPosition: Int) -> Subtask
-    func addSubtask(_ subtask: Subtask, task: Task, completion: (() -> Void)?)
-    func saveSubtask(_ subtask: Subtask, completion: (() -> Void)?)
-    func removeSubtask(_ subtask: Subtask, completion: (() -> Void)?)
 }
 
 protocol TaskEditorInteractorOutput: class {}
@@ -25,7 +20,6 @@ final class TaskEditorInteractor {
     weak var output: TaskEditorInteractorOutput!
     
     let tasksService = TasksService()
-    let subtasksService = SubtasksService()
     let taskSchedulerService = TaskSchedulerService()
 
 }
@@ -56,25 +50,6 @@ extension TaskEditorInteractor: TaskEditorInteractorInput {
     func scheduleTask(_ task: Task) {
         let listTitle = tasksService.retrieveList(of: task)?.title
         taskSchedulerService.scheduleTask(task, listTitle: listTitle ?? "all_tasks".localized)
-    }
-    
-    
-    func createSubtask(sortPosition: Int) -> Subtask {
-        return Subtask(id: RandomStringGenerator.randomString(length: 24),
-                       title: "",
-                       sortPosition: sortPosition)
-    }
-    
-    func addSubtask(_ subtask: Subtask, task: Task, completion: (() -> Void)?) {
-        subtasksService.addSubtask(subtask, to: task, completion: completion)
-    }
-    
-    func saveSubtask(_ subtask: Subtask, completion: (() -> Void)?) {
-        subtasksService.updateSubtask(subtask, completion: completion)
-    }
-    
-    func removeSubtask(_ subtask: Subtask, completion: (() -> Void)?) {
-        subtasksService.removeSubtask(subtask, completion: completion)
     }
 
 }
