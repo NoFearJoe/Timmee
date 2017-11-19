@@ -6,10 +6,9 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import class Foundation.NSDate
+import struct Foundation.Date
 import class Foundation.NSPredicate
 import class Foundation.NSCompoundPredicate
-import MTDates
 
 enum SmartListType {
     case all
@@ -46,18 +45,18 @@ enum SmartListType {
     }
     
     var fetchPredicate: NSPredicate? {
-        let now = NSDate()
+        let now = Date()
         switch self {
         case .all: return nil
         case .today: return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
-                                        now.mt_startOfCurrentDay() as NSDate,
-                                        now.mt_endOfCurrentDay() as NSDate)
+                                        now.startOfDay.nsDate,
+                                        now.endOfDay.nsDate)
         case .tomorrow: return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
-                                           now.mt_startOfNextDay() as NSDate,
-                                           now.mt_endOfNextDay() as NSDate)
+                                           (now.startOfDay + 1.asDays).nsDate,
+                                           (now.endOfDay + 1.asDays).nsDate)
         case .week: return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
-                                       now.mt_startOfCurrentDay() as NSDate,
-                                       (now.mt_oneWeekNext() as NSDate).mt_endOfCurrentDay() as NSDate)
+                                       now.startOfDay.nsDate,
+                                       (now.endOfDay + 1.asWeeks).nsDate)
         case .inProgress: return NSPredicate(format: "inProgress == true && isDone == false")
         }
     }

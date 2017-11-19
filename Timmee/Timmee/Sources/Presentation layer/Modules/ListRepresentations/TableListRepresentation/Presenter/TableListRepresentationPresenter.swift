@@ -214,7 +214,8 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
         case .delete:
             let message = "are_you_sure_you_want_to_delete_tasks".localized
             view.showConfirmationAlert(title: "remove_tasks".localized,
-                                       message: message) { [weak self] in
+                                       message: message,
+                                       confirmationTitle: "remove".localized) { [weak self] in
                 self?.view.setInteractionsEnabled(false)
                 self?.interactor.deleteTasks(tasks)
                 self?.state.checkedTasks = []
@@ -229,7 +230,8 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
             editingOutput?.didAskToShowListsForMoveTasks { [weak self] list in
                 let message = "are_you_sure_you_want_to_move_tasks".localized + " \"\(list.title)\""
                 self?.view.showConfirmationAlert(title: "move_tasks".localized,
-                                                 message: message) { [weak self] in
+                                                 message: message,
+                                                 confirmationTitle: "move".localized) { [weak self] in
                     self?.view.setInteractionsEnabled(false)
                     self?.interactor.moveTasks(tasks, toList: list)
                     self?.state.checkedTasks = []
@@ -245,7 +247,8 @@ fileprivate extension TableListRepresentationPresenter {
 
     func dateForTodaySmartList() -> Date? {
         if let smartList = state.list as? SmartList, smartList.smartListType == .today {
-            return Date.startOfNextHour
+            let startOfNextHour = Date().startOfHour + 1.asHours
+            return startOfNextHour
         }
         return nil
     }

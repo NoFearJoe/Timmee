@@ -44,6 +44,7 @@
 		};
 	};
 	"n_days" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
 		n = {
 			"NSStringFormatValueTypeKey" = lu;
 			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
@@ -57,6 +58,15 @@
 			"NSStringFormatValueTypeKey" = lu;
 			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
 			other = every;
+		};
+	};
+	"n_attachments" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = lu;
+			other = attachments;
+			one = attachment;
 		};
 	};
 }

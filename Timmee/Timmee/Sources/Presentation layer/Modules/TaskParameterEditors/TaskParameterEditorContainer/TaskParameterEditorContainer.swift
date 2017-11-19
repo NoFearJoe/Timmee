@@ -185,7 +185,7 @@ fileprivate extension TaskParameterEditorContainer {
         // TODO: Вынести в отдельный метод
         addChildViewController(viewController)
         editorContainer.addSubview(viewController.view)
-        viewController.view.autoPinEdgesToSuperviewEdges()
+        viewController.view.allEdges().toSuperview()
         viewController.didMove(toParentViewController: self)
         
         if let editorInput = viewController as? TaskParameterEditorInput {
@@ -243,7 +243,7 @@ fileprivate extension TaskParameterEditorContainer {
         }
         
         editorContainer.addSubview(toView.view)
-        toView.view.autoPinEdgesToSuperviewEdges()
+        toView.view.allEdges().toSuperview()
         toView.view.transform = CGAffineTransform(translationX: 0, y: offset)
         
         UIView.animate(withDuration: 0.2,
@@ -257,7 +257,7 @@ fileprivate extension TaskParameterEditorContainer {
                         fromView.view.transform = CGAffineTransform(translationX: 0, y: -offset)
                         self.view.layoutIfNeeded()
         }, completion: { _ in
-            toView.view.autoPinEdgesToSuperviewEdges()
+            toView.view.allEdges().toSuperview()
             fromView.view.removeFromSuperview()
             fromView.removeFromParentViewController()
             self.viewControllers.remove(object: fromView)

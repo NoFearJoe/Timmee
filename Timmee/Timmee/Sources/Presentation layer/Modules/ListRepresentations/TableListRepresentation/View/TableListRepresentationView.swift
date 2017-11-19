@@ -26,7 +26,7 @@ protocol TableListRepresentationViewInput: class {
     
     func setInteractionsEnabled(_ isEnabled: Bool)
     
-    func showConfirmationAlert(title: String, message: String, success: @escaping () -> Void)
+    func showConfirmationAlert(title: String, message: String, confirmationTitle: String, success: @escaping () -> Void)
 }
 
 protocol TableListRepresentationViewOutput: class {
@@ -288,10 +288,13 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         }
     }
     
-    func showConfirmationAlert(title: String, message: String, success: @escaping () -> Void) {
+    func showConfirmationAlert(title: String,
+                               message: String,
+                               confirmationTitle: String,
+                               success: @escaping () -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "i_am_sure".localized,
+        alert.addAction(UIAlertAction(title: confirmationTitle,
                                       style: .default) { _ in success() })
         alert.addAction(UIAlertAction(title: "cancel".localized,
                                       style: .cancel,
@@ -494,11 +497,11 @@ final class TableListRepresentationFooter: UITableViewHeaderFooterView {
     }
     
     fileprivate func addButton() {
-        button = UIButton(forAutoLayout: ())
+        button = UIButton(frame: .zero)
         self.addSubview(button)
-        button.autoSetDimension(.height, toSize: 32)
-        button.autoAlignAxis(.horizontal, toSameAxisOf: self)
-        button.autoAlignAxis(toSuperviewAxis: .vertical)
+        button.height(32)
+        button.centerY().to(self)
+        button.centerX().toSuperview()
         button.backgroundColor = AppTheme.current.middlegroundColor
         button.setTitleColor(AppTheme.current.secondaryTintColor, for: .normal)
         button.layer.cornerRadius = 4

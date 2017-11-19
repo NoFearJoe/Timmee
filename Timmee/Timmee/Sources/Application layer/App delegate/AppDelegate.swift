@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MTDates
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         NotificationsConfigurator.registerForLocalNotifications(application: application)
-//
-//        NSDate.mt_setTimeZone(TimeZone.current)
-//        NSDate.mt_setLocale(Locale.current)
         
         if UserProperty.appTheme.value() == nil {
             UserProperty.appTheme.setInt(AppTheme.white.code)

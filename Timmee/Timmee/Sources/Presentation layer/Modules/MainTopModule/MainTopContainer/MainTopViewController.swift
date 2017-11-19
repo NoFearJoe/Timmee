@@ -329,7 +329,7 @@ fileprivate extension MainTopViewController {
                                       message: "are_you_sure_you_want_to_delete_the_list_with_all_tasks".localized,
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "i_am_sure".localized, style: .destructive, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "remove".localized, style: .destructive, handler: { [weak self] _ in
             self?.removeList(list)
         }))
         

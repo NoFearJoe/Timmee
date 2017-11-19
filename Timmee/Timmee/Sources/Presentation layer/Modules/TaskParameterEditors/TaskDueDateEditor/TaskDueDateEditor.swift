@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MTDates
 
 protocol TaskDueDateEditorInput: class {
     func setDueDate(_ dueDate: Date?)
@@ -98,8 +97,8 @@ extension TaskDueDateEditor: TaskDueDateEditorInput {
     func setDueDate(_ dueDate: Date?) {
         let date = dueDate ?? Date()
         
-        hours = date.nsDate.mt_hourOfDay()
-        minutes = roundMinute(date.nsDate.mt_minuteOfHour())
+        hours = date.hours
+        minutes = roundMinute(date.minutes)
         
         selectedDueDate = self.date(date, withHours: hours, minutes: minutes)
         
@@ -126,20 +125,23 @@ fileprivate extension TaskDueDateEditor {
     func roundMinute(_ minute: Int) -> Int {
         let reminder = Double(minute).truncatingRemainder(dividingBy: 5)
         
-        let roundedMinute: Int
+        var roundedMinute: Int
         if reminder < 3 {
             roundedMinute = minute - Int(reminder)
         } else {
             roundedMinute = minute - Int(reminder) + 5
         }
         
+        // Rounded minute should be greather than minute
+        if roundedMinute < minute {
+            roundedMinute += 5
+        }
+        
         return min(60, max(0, roundedMinute))
     }
     
     func date(_ date: Date, withHours hours: Int, minutes: Int) -> Date {
-        return date.nsDate.mt_startOfCurrentDay()
-                   .nsDate.mt_dateHours(after: hours)
-                   .nsDate.mt_dateMinutes(after: minutes)
+        return date.startOfDay + hours.asHours + minutes.asMinutes
     }
 
 }

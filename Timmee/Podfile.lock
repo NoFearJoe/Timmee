@@ -1,24 +1,18 @@
 PODS:
-  - MTDates (1.0.3)
-  - PureLayout (3.0.2)
   - Result (3.2.4)
   - SugarRecord/CoreData+iCloud (3.1.2):
     - Result (~> 3.0)
   - SwipeCellKit (1.9.1)
 
 DEPENDENCIES:
-  - MTDates
-  - PureLayout
   - SugarRecord/CoreData+iCloud
   - SwipeCellKit (= 1.9.1)
 
 SPEC CHECKSUMS:
-  MTDates: c65affdfb7b34001c5c9e3fe0beac4b1b8334a58
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SugarRecord: be6aa5c18b4a4dec0de4c1f49fc61c85eabb5328
   SwipeCellKit: e9ff953c820394a4e641cfb0118b6c959506aec2
 
-PODFILE CHECKSUM: d3fd7bdf7f79609d6dfcba18bf6a8516894ce861
+PODFILE CHECKSUM: 9121bf3abffaacc5265833a082d6dd085d103f83
 
 COCOAPODS: 1.2.1

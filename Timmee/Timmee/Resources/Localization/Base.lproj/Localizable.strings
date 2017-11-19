@@ -43,6 +43,8 @@
 "no_tags" = "No tags";
 "no_tags_hint" = "Input title and pick color to add tag";
 "in_progress" = "In progress";
+"attachments" = "Attachments";
+"no_attachments" = "No attachments";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
@@ -156,7 +158,7 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 "imported_n_tasks" = "%lu n";
-
+"n_attachments" = "%lu n";
 
 "dark_theme_inapp_title" = "Dark theme";
 "dark_theme_inapp_description" = "";
