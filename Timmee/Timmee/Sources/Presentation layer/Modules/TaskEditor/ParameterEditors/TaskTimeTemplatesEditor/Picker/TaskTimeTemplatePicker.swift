@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 protocol TaskTimeTemplatePickerInput: class {
     func setSelectedTimeTemplate(_ timeTemplate: TimeTemplate?)
@@ -16,9 +17,15 @@ protocol TaskTimeTemplatePickerOutput: class {
     func timeTemplateChanged(to timeTemplate: TimeTemplate?)
 }
 
+protocol TaskTimeTemplatePickerTransitionOutput: class {
+    func didAskToShowTimeTemplateEditor(completion: @escaping  (TaskTimeTemplateEditor) -> Void)
+    func didCompleteTimeTemplateEditing()
+}
+
 final class TaskTimeTemplatePicker: UIViewController {
     
     weak var output: TaskTimeTemplatePickerOutput?
+    weak var transitionOutput: TaskTimeTemplatePickerTransitionOutput?
     
     @IBOutlet fileprivate var addTimeTemplateView: AddTimeTemplateView!
     @IBOutlet fileprivate var tableView: UITableView!
@@ -29,12 +36,13 @@ final class TaskTimeTemplatePicker: UIViewController {
     
     fileprivate var timeTemplatesService = TimeTemplatesService()
     
-    fileprivate let cellActionsProvider = SubtaskCellActionsProvider()
+    fileprivate let cellActionsProvider = ListsSwipeTableActionsProvider()
     
     fileprivate var selectedTimeTemplate: TimeTemplate?
     fileprivate var timeTemplates: [TimeTemplate] = [] {
         didSet {
             timeTemplates.isEmpty ? showNoTimeTemplatesPlaceholder() : hideNoTimeTemplatesPlaceholder()
+            tableView.reloadData()
         }
     }
     
@@ -48,13 +56,25 @@ final class TaskTimeTemplatePicker: UIViewController {
                 self.removeTimeTemplate(timeTemplate)
             }
         }
-        
-        timeTemplates = timeTemplatesService.fetchTimeTemplates()
-        tableView.reloadData()
+        cellActionsProvider.onEdit = { [unowned self] indexPath in
+            if let timeTemplate = self.timeTemplates.item(at: indexPath.row) {
+                self.transitionOutput?.didAskToShowTimeTemplateEditor { editor in
+                    editor.setTimeTemplate(timeTemplate)
+                }
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateTimeTemplates()
     }
     
     @IBAction func showTimeTemplateEditor() {
-        
+        transitionOutput?.didAskToShowTimeTemplateEditor { [unowned self] editor in
+            editor.output = self
+            editor.setTimeTemplate(nil)
+        }
     }
     
 }
@@ -87,6 +107,7 @@ extension TaskTimeTemplatePicker: UITableViewDataSource {
         if let timeTemplate = timeTemplates.item(at: indexPath.row) {
             cell.setTimeTemplate(timeTemplate)
             cell.isPicked = selectedTimeTemplate == timeTemplate
+            cell.delegate = cellActionsProvider
         }
         
         return cell
@@ -99,12 +120,20 @@ extension TaskTimeTemplatePicker: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectTimeTemplate(at: indexPath.row)
         UIView.performWithoutAnimation {
-            tableView.reloadRows(at: [indexPath], with: .none)
+            tableView.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return TaskTimeTemplatePicker.rowHeight
+    }
+    
+}
+
+fileprivate extension TaskTimeTemplatePicker {
+    
+    func updateTimeTemplates() {
+        timeTemplates = timeTemplatesService.fetchTimeTemplates()
     }
     
 }
@@ -159,6 +188,14 @@ fileprivate extension TaskTimeTemplatePicker {
     
 }
 
+extension TaskTimeTemplatePicker: TaskTimeTemplateEditorOutput {
+    
+    func timeTemplateCreated() {
+        transitionOutput?.didCompleteTimeTemplateEditing()
+    }
+    
+}
+
 // MARK: - Placeholder
 
 fileprivate extension TaskTimeTemplatePicker {
@@ -199,7 +236,7 @@ extension TaskTimeTemplatePicker: TaskParameterEditorInput {
     }
 }
 
-final class TimeTemplateTableCell: UITableViewCell {
+final class TimeTemplateTableCell: SwipeTableViewCell {
     
     @IBOutlet fileprivate var titleLabel: UILabel!
     @IBOutlet fileprivate var subtitleLabel: UILabel!
@@ -212,8 +249,10 @@ final class TimeTemplateTableCell: UITableViewCell {
     }
     
     func setTimeTemplate(_ timeTemplate: TimeTemplate) {
+        setupAppearance()
+        
         titleLabel.text = timeTemplate.title
-        subtitleLabel.text = timeTemplate.dueDate.asDayMonthTime + ", " + timeTemplate.notification.title
+        subtitleLabel.text = timeTemplate.dueDate!.asDayMonthTime + ", " + timeTemplate.notification.title
     }
     
     func setupAppearance() {

@@ -12,12 +12,12 @@ import class Foundation.NSDate
 final class TimeTemplate {
     var id: String
     var title: String
-    var dueDate: Date
+    var dueDate: Date?
     var notification: NotificationMask
     
     init(id: String,
          title: String,
-         dueDate: Date,
+         dueDate: Date?,
          notification: NotificationMask) {
         self.id = id
         self.title = title

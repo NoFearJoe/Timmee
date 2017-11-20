@@ -13,7 +13,7 @@ extension TimeTemplateEntity {
     func map(from timeTemplate: TimeTemplate) {
         id = timeTemplate.id
         title = timeTemplate.title
-        dueDate = timeTemplate.dueDate as NSDate
+        dueDate = timeTemplate.dueDate as NSDate?
         notification = timeTemplate.notification.rawValue
     }
     

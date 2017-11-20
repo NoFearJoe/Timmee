@@ -295,6 +295,7 @@ fileprivate extension TaskEditorPresenter {
         }
     }
     
+    // TODO: Refactoring cause of reuse in TaskTimeTemplateEditor
     func makeFormattedString(from date: Date?) -> String? {
         if let date = date {
             let nearestDate = NearestDate(date: date)

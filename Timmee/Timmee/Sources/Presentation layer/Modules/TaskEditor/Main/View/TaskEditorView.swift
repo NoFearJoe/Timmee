@@ -383,6 +383,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             let viewController = ViewControllersFactory.taskTimeTemplatePicker
             viewController.loadViewIfNeeded()
             viewController.output = self
+            viewController.transitionOutput = taskParameterEditorContainer// TODO: Сделать присваивание в taskParameterEditorContainer
             output.willPresentTimeTemplatePicker(viewController)
             return viewController
         }

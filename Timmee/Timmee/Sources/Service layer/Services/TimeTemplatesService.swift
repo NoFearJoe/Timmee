@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import struct Foundation.Date
 import class Foundation.NSPredicate
 import class Foundation.NSSortDescriptor
 import class Foundation.DispatchQueue
@@ -36,6 +37,13 @@ extension TimeTemplatesService {
 }
 
 extension TimeTemplatesService {
+    
+    func createTimeTemplate() -> TimeTemplate {
+        return TimeTemplate(id: RandomStringGenerator.randomString(length: 12),
+                            title: "",
+                            dueDate: Date(),
+                            notification: .justInTime)
+    }
     
     func createOrUpdateTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?) {
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in

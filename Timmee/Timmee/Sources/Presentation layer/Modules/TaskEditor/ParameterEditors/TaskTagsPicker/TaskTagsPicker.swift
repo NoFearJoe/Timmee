@@ -248,9 +248,7 @@ final class AddTagView: BarView {
     
     var placeholder: String = "" {
         didSet {
-            let color = AppTheme.current.secondaryTintColor
-            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                                 attributes: [NSForegroundColorAttributeName: color])
+            textField.attributedPlaceholder = placeholder.asForegroundPlaceholder
         }
     }
     

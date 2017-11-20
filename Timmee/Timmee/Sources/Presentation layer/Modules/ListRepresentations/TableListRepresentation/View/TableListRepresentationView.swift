@@ -187,11 +187,7 @@ final class TableListRepresentationView: UIViewController {
         
         newTaskTitleTextField.textColor = AppTheme.current.backgroundTintColor
         newTaskTitleTextField.tintColor = AppTheme.current.backgroundTintColor.withAlphaComponent(0.75)
-        newTaskTitleTextField.attributedPlaceholder = NSAttributedString(string: "new_task".localized,
-                                                                         attributes:
-        [
-            NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor.withAlphaComponent(0.5)
-        ])
+        newTaskTitleTextField.attributedPlaceholder = "new_task".localized.asPlaceholder
         
         rightBarButton.tintColor = AppTheme.current.blueColor
         

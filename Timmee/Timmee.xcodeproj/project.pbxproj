@@ -159,6 +159,7 @@
 		96B0B9C21FB89C340009BA3B /* TimeTemplateEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C11FB89C340009BA3B /* TimeTemplateEntity+Mapping.swift */; };
 		96B0B9C41FC166F00009BA3B /* LayoutKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C31FC166F00009BA3B /* LayoutKit.swift */; };
 		96B0B9C61FC18B4D0009BA3B /* DatesKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C51FC18B4D0009BA3B /* DatesKit.swift */; };
+		96B0B9C81FC1F5D40009BA3B /* String+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0B9C71FC1F5D40009BA3B /* String+Placeholder.swift */; };
 		96BE0A2E1F6314AE0041FBEA /* ListEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BE0A2D1F6314AE0041FBEA /* ListEditor.storyboard */; };
 		96BE0A301F63C3A50041FBEA /* ListEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE0A2F1F63C3A50041FBEA /* ListEditorView.swift */; };
 		96BE0A321F65B79C0041FBEA /* ListEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE0A311F65B79C0041FBEA /* ListEditorPresenter.swift */; };
@@ -347,6 +348,7 @@
 		96B0B9C11FB89C340009BA3B /* TimeTemplateEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTemplateEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96B0B9C31FC166F00009BA3B /* LayoutKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutKit.swift; sourceTree = "<group>"; };
 		96B0B9C51FC18B4D0009BA3B /* DatesKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesKit.swift; sourceTree = "<group>"; };
+		96B0B9C71FC1F5D40009BA3B /* String+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Placeholder.swift"; sourceTree = "<group>"; };
 		96BE0A2D1F6314AE0041FBEA /* ListEditor.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListEditor.storyboard; sourceTree = "<group>"; };
 		96BE0A2F1F63C3A50041FBEA /* ListEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEditorView.swift; sourceTree = "<group>"; };
 		96BE0A311F65B79C0041FBEA /* ListEditorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEditorPresenter.swift; sourceTree = "<group>"; };
@@ -426,8 +428,8 @@
 		0C8738AD1FB971D800EA1571 /* TaskParameterEditorContainer */ = {
 			isa = PBXGroup;
 			children = (
-				0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */,
 				0C8738AF1FB971D800EA1571 /* TaskParameterEditorContainer.swift */,
+				0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */,
 			);
 			path = TaskParameterEditorContainer;
 			sourceTree = "<group>";
@@ -443,8 +445,8 @@
 		0C8738B21FB971D800EA1571 /* TaskRepetingEditor */ = {
 			isa = PBXGroup;
 			children = (
-				0C8738B31FB971D800EA1571 /* TaskIntervalRepeatingPicker.swift */,
 				0C8738B41FB971D800EA1571 /* TaskRepeatingEditor.swift */,
+				0C8738B31FB971D800EA1571 /* TaskIntervalRepeatingPicker.swift */,
 				0C8738B51FB971D800EA1571 /* TaskWeeklyRepeatingPicker.swift */,
 			);
 			path = TaskRepetingEditor;
@@ -878,6 +880,7 @@
 				963D6A6E1F5EF48F0063E295 /* String+Localized.swift */,
 				96115F451F6ECF9F0050D7A3 /* String+Trimmed.swift */,
 				965798D81F9136BE00F65019 /* String+Encryption.swift */,
+				96B0B9C71FC1F5D40009BA3B /* String+Placeholder.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -1594,9 +1597,7 @@
 				96A820FF1F74E3B200F2AA68 /* TaskSchedulerService.swift in Sources */,
 				969219D31F9CCEA4006E47B4 /* ColorPicker.swift in Sources */,
 				963D6A731F5EF9790063E295 /* AppTheme.swift in Sources */,
-				96115F5F1F72E35C0050D7A3 /* CalendarDayCell.swift in Sources */,
 				96B0B9C61FC18B4D0009BA3B /* DatesKit.swift in Sources */,
-				96A821831F7B818A00F2AA68 /* TaskIntervalRepeatingPicker.swift in Sources */,
 				96115F321F6E6EBE0050D7A3 /* TaskParameterView.swift in Sources */,
 				965798D61F91340100F65019 /* PinAuthenticationViewController.swift in Sources */,
 				962C7B371F58810500639DD6 /* ListSorting.swift in Sources */,
@@ -1615,6 +1616,7 @@
 				0C8738CB1FB9746200EA1571 /* TaskEditorAssembly.swift in Sources */,
 				96115F2C1F6B0D700050D7A3 /* ViewControllersFactory.swift in Sources */,
 				965798D41F91340100F65019 /* NumberPadCells.swift in Sources */,
+				96B0B9C81FC1F5D40009BA3B /* String+Placeholder.swift in Sources */,
 				96477A641F814649005C3520 /* TasksImportInteractor.swift in Sources */,
 				9631790F1F515A4A007F7F53 /* RandomStringGenerator.swift in Sources */,
 				96BE0A361F65BEB10041FBEA /* ListEditorRouter.swift in Sources */,

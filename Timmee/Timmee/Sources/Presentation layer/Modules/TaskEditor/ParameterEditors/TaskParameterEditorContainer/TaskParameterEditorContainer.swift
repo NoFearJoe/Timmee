@@ -57,6 +57,13 @@ protocol TaskParameterEditorContainerOutput: class {
 
 protocol TaskParameterEditorInput: class {
     var requiredHeight: CGFloat { get }
+    func completeEditing(completion: @escaping (Bool) -> Void)
+}
+
+extension TaskParameterEditorInput {
+    func completeEditing(completion: @escaping (Bool) -> Void) {
+        completion(true)
+    }
 }
 
 
@@ -87,13 +94,19 @@ final class TaskParameterEditorContainer: UIViewController {
     }
     
     @IBAction fileprivate func doneButtonPressed() {
-        output?.taskParameterEditingFinished(type: type)
-        dismiss(animated: true, completion: nil)
+        if let currentParameterEditor = viewControllers.last as? TaskParameterEditorInput {
+            currentParameterEditor.completeEditing(completion: { [unowned self] shouldDismiss in
+                if shouldDismiss {
+                    self.completeEditing()
+                }
+            })
+        } else {
+            completeEditing()
+        }
     }
     
     @IBAction fileprivate func backgroundViewPressed() {
-        output?.taskParameterEditingFinished(type: type)
-        dismiss(animated: true, completion: nil)
+        completeEditing()
     }
     
     override func viewDidLoad() {
@@ -179,6 +192,33 @@ extension TaskParameterEditorContainer: TaskRepeatingEditorTransitionOutput {
 
 }
 
+extension TaskParameterEditorContainer: TaskTimeTemplatePickerTransitionOutput {
+    
+    func didAskToShowTimeTemplateEditor(completion: @escaping (TaskTimeTemplateEditor) -> Void) {
+        let controller = ViewControllersFactory.taskTimeTemplateEditor
+        controller.title = "time_template".localized
+        pushViewController(controller) { viewController in
+            if let timeTemplateEditor = viewController as? TaskTimeTemplateEditor {
+                completion(timeTemplateEditor)
+            }
+        }
+    }
+    
+    func didCompleteTimeTemplateEditing() {
+        popViewController()
+    }
+    
+}
+
+fileprivate extension TaskParameterEditorContainer {
+    
+    func completeEditing() {
+        output?.taskParameterEditingFinished(type: type)
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 fileprivate extension TaskParameterEditorContainer {
 
     func setupEditor(for type: TaskParameterEditorType) {
@@ -203,7 +243,11 @@ fileprivate extension TaskParameterEditorContainer {
     
     func pushPicker(type: TaskRepeatingPickerType, completion: @escaping (UIViewController) -> Void) {
         guard let viewController = output?.repeatingPickerViewController(forType: type) else { return }
-                
+        viewController.title = type.editorTitle
+        pushViewController(viewController, completion: completion)
+    }
+    
+    func pushViewController(_ viewController: UIViewController, completion: @escaping (UIViewController) -> Void) {
         addChildViewController(viewController)
         
         let offset = editorContainer.frame.height
@@ -221,8 +265,8 @@ fileprivate extension TaskParameterEditorContainer {
                            delay: 0,
                            options: .curveEaseOut,
                            animations: {
-                            self.setEditorTitle(type.editorTitle)
-                            self.closeButton.tintColor = AppTheme.current.backgroundColor
+                            self.setEditorTitle(viewController.title ?? "")
+                            self.closeButton.tintColor = AppTheme.current.backgroundTintColor
                             self.closeButton.setImage(#imageLiteral(resourceName: "back"), for: .normal)
                             fromView.transform = CGAffineTransform(translationX: 0, y: -offset)
                             viewController.view.frame.origin.y = 0
