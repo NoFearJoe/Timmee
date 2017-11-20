@@ -10,6 +10,7 @@ import UIKit
 
 enum TaskParameterEditorType {
     case dueDate
+    case dueTime
     case reminder
     case repeating
     case repeatEndingDate
@@ -20,6 +21,7 @@ enum TaskParameterEditorType {
     var title: String {
         switch self {
         case .dueDate: return "due_date".localized
+        case .dueTime: return "due_time".localized
         case .reminder: return "reminder".localized
         case .repeating: return "repeat".localized
         case .repeatEndingDate: return "repeat_ending_date".localized

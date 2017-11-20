@@ -36,6 +36,7 @@
 "location" = "Место";
 "remind_in_location" = "Напомнить по месту";
 "due_date" = "Дата выполнения";
+"due_time" = "Время выполнения";
 "finish" = "Выполнить"; // сегодня в 21:00
 "repeat_ending_date" = "Дата окончания";
 "tags_picker" = "Тэги";

@@ -40,6 +40,8 @@ extension Date {
 
 // MARK: - Date operators
 
+infix operator =>
+
 extension Date {
     
     static func +(date: Date, dateUnit: Years) -> Date {
@@ -88,6 +90,27 @@ extension Date {
     
     static func -(date: Date, dateUnit: Minutes) -> Date {
         return date.setupComponents { $0.minute = -dateUnit.value }
+    }
+    
+    
+    static func =>(date: inout Date, dateUnit: Years) {
+        date = date.changeComponents { $0.year = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date, dateUnit: Months) {
+        date = date.changeComponents { $0.month = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date, dateUnit: Weeks) {
+        date = date.changeComponents { $0.weekOfYear = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date, dateUnit: Hours) {
+        date = date.changeComponents { $0.hour = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date, dateUnit: Minutes) {
+        date = date.changeComponents { $0.minute = dateUnit.value }
     }
     
     
@@ -153,6 +176,26 @@ extension Optional where Wrapped == Date {
     
     static func -(date: Date?, dateUnit: Minutes) -> Date? {
         return date?.setupComponents { $0.minute = -dateUnit.value }
+    }
+    
+    static func =>(date: inout Date?, dateUnit: Years) {
+        date = date?.changeComponents { $0.year = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date?, dateUnit: Months) {
+        date = date?.changeComponents { $0.month = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date?, dateUnit: Weeks) {
+        date = date?.changeComponents { $0.weekOfYear = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date?, dateUnit: Hours) {
+        date = date?.changeComponents { $0.hour = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date?, dateUnit: Minutes) {
+        date = date?.changeComponents { $0.minute = dateUnit.value }
     }
     
 }

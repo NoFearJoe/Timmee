@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
+		0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F491FC3016900D8FF8B /* TimeRounder.swift */; };
 		0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C51FB971F200EA1571 /* SubtasksEditor.swift */; };
 		0C8738C81FB972DA00EA1571 /* SubtasksEditorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C71FB972DA00EA1571 /* SubtasksEditorProtocols.swift */; };
 		0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C31FB971D900EA1571 /* SubtaskCell.swift */; };
@@ -190,6 +192,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
+		0C713F491FC3016900D8FF8B /* TimeRounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRounder.swift; sourceTree = "<group>"; };
 		0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C8738A81FB971D800EA1571 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C8738A91FB971D800EA1571 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
@@ -392,11 +396,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C1E25E01FC2F01E0060E673 /* TaskDueTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0C8738A91FB971D800EA1571 /* NumberPicker.swift */,
+				0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */,
+			);
+			path = TaskDueTimePicker;
+			sourceTree = "<group>";
+		};
 		0C8738A51FB971D800EA1571 /* ParameterEditors */ = {
 			isa = PBXGroup;
 			children = (
 				0C8738AD1FB971D800EA1571 /* TaskParameterEditorContainer */,
 				0C8738A61FB971D800EA1571 /* TaskDueDateEditor */,
+				0C1E25E01FC2F01E0060E673 /* TaskDueTimePicker */,
 				0C8738AB1FB971D800EA1571 /* TaskLocationEditor */,
 				0C8738B01FB971D800EA1571 /* TaskReminderEditor */,
 				0C8738B21FB971D800EA1571 /* TaskRepetingEditor */,
@@ -411,7 +425,6 @@
 			children = (
 				0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */,
 				0C8738A81FB971D800EA1571 /* CalendarView.swift */,
-				0C8738A91FB971D800EA1571 /* NumberPicker.swift */,
 				0C8738AA1FB971D800EA1571 /* TaskDueDateEditor.swift */,
 			);
 			path = TaskDueDateEditor;
@@ -1246,6 +1259,7 @@
 			isa = PBXGroup;
 			children = (
 				9631790E1F515A4A007F7F53 /* RandomStringGenerator.swift */,
+				0C713F491FC3016900D8FF8B /* TimeRounder.swift */,
 				96115F581F70E8770050D7A3 /* Date.swift */,
 				96115F621F72E4060050D7A3 /* Calendar.swift */,
 				96477A571F8112E8005C3520 /* KeyboardManager.swift */,
@@ -1536,6 +1550,7 @@
 				960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */,
 				96115F461F6ECF9F0050D7A3 /* String+Trimmed.swift in Sources */,
 				961D67701FA9A6E100511042 /* AddListView.swift in Sources */,
+				0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */,
 				96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */,
 				0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */,
 				965798D91F9136BE00F65019 /* String+Encryption.swift in Sources */,
@@ -1614,6 +1629,7 @@
 				96A5F1361F507AC500F94553 /* PageControl.swift in Sources */,
 				961D676C1FA65FB500511042 /* NextGrowingTextView.swift in Sources */,
 				0C8738CB1FB9746200EA1571 /* TaskEditorAssembly.swift in Sources */,
+				0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */,
 				96115F2C1F6B0D700050D7A3 /* ViewControllersFactory.swift in Sources */,
 				965798D41F91340100F65019 /* NumberPadCells.swift in Sources */,
 				96B0B9C81FC1F5D40009BA3B /* String+Placeholder.swift in Sources */,

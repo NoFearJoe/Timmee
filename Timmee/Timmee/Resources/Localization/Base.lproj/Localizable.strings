@@ -36,6 +36,7 @@
 "location" = "Location";
 "remind_in_location" = "Remind in location";
 "due_date" = "Due date";
+"due_time" = "Due time";
 "finish" = "Finish"; // сегодня в 21:00
 "repeat_ending_date" = "Ending date";
 "tags_picker" = "Tags";

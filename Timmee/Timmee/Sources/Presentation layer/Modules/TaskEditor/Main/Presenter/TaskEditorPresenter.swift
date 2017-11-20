@@ -130,6 +130,21 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
         task.timeTemplate = timeTemplate
+
+        if timeTemplate == nil {
+            showFormattedDueDate(task.dueDate)
+            view.setReminder(task.notification)
+            if task.dueDate != nil {
+                view.setRepeat(task.repeating)
+            } else {
+                view.setRepeat(.init(string: ""))
+            }
+        } else {
+            view.setDueDate(nil)
+            view.setReminder(.doNotNotify)
+            view.setRepeat(task.repeating)
+        }
+        
         view.setTimeTemplate(timeTemplate)
     }
     
@@ -155,9 +170,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func locationChanged(to location: CLLocation?) {
         task.location = location
-        decodeLocation(location) { address in
-            self.task.address = address
-            self.showLocation()
+        decodeLocation(location) { [weak self] address in
+            self?.task.address = address
+            self?.showLocation()
         }
         showLocation()
     }
@@ -196,7 +211,13 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func timeTemplateCleared() {
         task.timeTemplate = nil
         
-        // DueDate, notification clear ???
+        showFormattedDueDate(task.dueDate)
+        view.setReminder(task.notification)
+        if task.dueDate != nil {
+            view.setRepeat(task.repeating)
+        } else {
+            view.setRepeat(.init(string: ""))
+        }
         
         view.setTimeTemplate(nil)
     }

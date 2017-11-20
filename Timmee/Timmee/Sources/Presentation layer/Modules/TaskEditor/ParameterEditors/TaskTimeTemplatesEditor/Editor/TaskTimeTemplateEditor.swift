@@ -19,7 +19,7 @@ protocol TaskTimeTemplateEditorOutput: class {
 final class TaskTimeTemplateEditor: UIViewController {
     
     @IBOutlet fileprivate var titleTextField: UITextField!
-    @IBOutlet fileprivate var dueDateView: TaskParameterView!
+    @IBOutlet fileprivate var dueTimeView: TaskParameterView!
     @IBOutlet fileprivate var notificationView: TaskParameterView!
     
     fileprivate let timeTemplateService = TimeTemplatesService()
@@ -34,7 +34,7 @@ final class TaskTimeTemplateEditor: UIViewController {
         addTitleObserver()
         
         setupTitleTextField()
-        setupDueDateView()
+        setupDueTimeView()
         setupNotificationView()
     }
     
@@ -50,7 +50,7 @@ extension TaskTimeTemplateEditor: TaskTimeTemplateEditorInput {
         self.timeTemplate = timeTemplate ?? timeTemplateService.createTimeTemplate()
         
         titleTextField.text = self.timeTemplate.title
-        updateDueDate()
+        updateDueTime()
         updateNotification()
     }
     
@@ -73,20 +73,30 @@ extension TaskTimeTemplateEditor: TaskParameterEditorInput {
     }
 }
 
+extension TaskTimeTemplateEditor: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}
+
 fileprivate extension TaskTimeTemplateEditor {
     
     func setupTitleTextField() {
+        titleTextField.delegate = self
         titleTextField.attributedPlaceholder = "new_time_template".localized.asForegroundPlaceholder
         titleTextField.textColor = AppTheme.current.tintColor
     }
     
-    func setupDueDateView() {
-        dueDateView.didClear = { [unowned self] in
+    func setupDueTimeView() {
+        dueTimeView.didClear = { [unowned self] in
             self.timeTemplate.dueDate = nil
-            self.updateDueDate()
+            self.updateDueTime()
         }
-        dueDateView.didTouchedUp = { [unowned self] in
-            //            self.showTaskParameterEditor(with: .dueDate)
+        dueTimeView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .dueTime)
         }
     }
     
@@ -96,14 +106,14 @@ fileprivate extension TaskTimeTemplateEditor {
             self.updateNotification()
         }
         notificationView.didTouchedUp = { [unowned self] in
-            //            self.showTaskParameterEditor(with: .reminder)
+            self.showTaskParameterEditor(with: .reminder)
         }
     }
     
     
-    func updateDueDate() {
-        dueDateView.text = makeFormattedString(from: timeTemplate.dueDate)
-        dueDateView.isFilled = timeTemplate.dueDate != nil
+    func updateDueTime() {
+        dueTimeView.text = timeTemplate.dueDate?.asTimeString ?? "due_time".localized
+        dueTimeView.isFilled = timeTemplate.dueDate != nil
     }
     
     func updateNotification() {
@@ -111,19 +121,86 @@ fileprivate extension TaskTimeTemplateEditor {
         notificationView.isFilled = timeTemplate.notification != .doNotNotify
     }
     
+}
+
+extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
     
-    func makeFormattedString(from date: Date?) -> String? {
-        if let date = date {
-            let nearestDate = NearestDate(date: date)
-            
-            if case .custom = nearestDate {
-                return date.asDayMonthTime
-            } else {
-                return nearestDate.title + ", " + date.asTimeString
-            }
-        } else {
-            return nil
+    func taskParameterEditingCancelled(type: TaskParameterEditorType) {
+        switch type {
+        case .dueTime:
+            timeTemplate.dueDate = nil
+            updateDueTime()
+        case .reminder:
+            timeTemplate.notification = .doNotNotify
+            updateNotification()
+        default: return
         }
+    }
+    
+    func taskParameterEditingFinished(type: TaskParameterEditorType) {}
+    
+    func editorViewController(forType type: TaskParameterEditorType) -> UIViewController {
+        switch type {
+        case .dueTime:
+            let viewController = ViewControllersFactory.taskDueTimePicker
+            viewController.loadViewIfNeeded()
+            viewController.output = self
+            
+            if timeTemplate.dueDate == nil { timeTemplate.dueDate = makeDueTime() }
+            viewController.setHours(timeTemplate.dueDate?.hours ?? 0)
+            viewController.setMinutes(timeTemplate.dueDate?.minutes ?? 0)
+            
+            return viewController
+        case .reminder:
+            let viewController = ViewControllersFactory.taskReminderEditor
+            viewController.output = self
+            viewController.setNotificationMask(timeTemplate.notification)
+            return viewController
+        default: return UIViewController()
+        }
+    }
+    
+    func repeatingPickerViewController(forType type: TaskRepeatingPickerType) -> UIViewController {
+        return UIViewController()
+    }
+    
+}
+
+extension TaskTimeTemplateEditor: TaskDueTimePickerOutput {
+    
+    func didChangeHours(to hours: Int) {
+        timeTemplate.dueDate => hours.asHours
+        updateDueTime()
+    }
+    
+    func didChangeMinutes(to minutes: Int) {
+        timeTemplate.dueDate => minutes.asMinutes
+        updateDueTime()
+    }
+    
+}
+
+extension TaskTimeTemplateEditor: TaskReminderEditorOutput {
+    
+    func didSelectNotificationMask(_ notificationMask: NotificationMask) {
+        timeTemplate.notification = notificationMask
+        updateNotification()
+    }
+    
+}
+
+fileprivate extension TaskTimeTemplateEditor {
+    
+    func showTaskParameterEditor(with type: TaskParameterEditorType) {
+        let taskParameterEditorContainer = ViewControllersFactory.taskParameterEditorContainer
+        taskParameterEditorContainer.loadViewIfNeeded()
+        
+        taskParameterEditorContainer.output = self
+        taskParameterEditorContainer.setType(type)
+        
+        present(taskParameterEditorContainer,
+                animated: true,
+                completion: nil)
     }
     
 }
@@ -149,6 +226,12 @@ fileprivate extension TaskTimeTemplateEditor {
         return timeTemplate.dueDate != nil
             && timeTemplate.notification != .doNotNotify
             && !timeTemplate.title.trimmed.isEmpty
+    }
+    
+    func makeDueTime() -> Date {
+        var date = Date()
+        date => TimeRounder.roundMinutes(date.minutes).asMinutes
+        return date
     }
     
 }

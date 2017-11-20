@@ -39,9 +39,11 @@ extension TimeTemplatesService {
 extension TimeTemplatesService {
     
     func createTimeTemplate() -> TimeTemplate {
+        var date = Date()
+        date => TimeRounder.roundMinutes(date.minutes).asMinutes
         return TimeTemplate(id: RandomStringGenerator.randomString(length: 12),
                             title: "",
-                            dueDate: Date(),
+                            dueDate: date,
                             notification: .justInTime)
     }
     

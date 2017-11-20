@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class TaskParameterView: HiddingParameterView {
+class TaskParameterView: HiddingParameterView {
 
-    @IBOutlet fileprivate weak var iconView: UIImageView!
-    @IBOutlet fileprivate weak var titleView: UILabel!
-    @IBOutlet fileprivate weak var clearButton: UIButton! {
+    @IBOutlet fileprivate var iconView: UIImageView!
+    @IBOutlet fileprivate var titleView: UILabel!
+    @IBOutlet fileprivate var clearButton: UIButton! {
         didSet {
             clearButton.tintColor = AppTheme.current.secondaryTintColor
         }
@@ -72,4 +72,26 @@ final class TaskParameterView: HiddingParameterView {
         didClear?()
     }
 
+}
+
+final class TaskComplexParameterView: TaskParameterView {
+    
+    @IBOutlet fileprivate var subtitleLabel: UILabel!
+    
+    fileprivate let filledSubtitleColor = AppTheme.current.secondaryTintColor
+    fileprivate let notFilledSubtitleColor = AppTheme.current.secondaryTintColor
+    
+    var subtitle: String? {
+        get { return subtitleLabel.text }
+        set { subtitleLabel.text = newValue }
+    }
+    
+    override func setFilled(_ isFilled: Bool) {
+        super.setFilled(isFilled)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.subtitleLabel.textColor = isFilled ? self.filledSubtitleColor : self.notFilledSubtitleColor
+        }
+    }
+    
 }

@@ -155,6 +155,7 @@ fileprivate extension TaskTimeTemplatePicker {
     func removeTimeTemplate(_ timeTemplate: TimeTemplate) {
         if timeTemplate == selectedTimeTemplate {
             selectedTimeTemplate = nil
+            output?.timeTemplateChanged(to: nil)
         }
         timeTemplates.remove(object: timeTemplate)
         
@@ -252,7 +253,7 @@ final class TimeTemplateTableCell: SwipeTableViewCell {
         setupAppearance()
         
         titleLabel.text = timeTemplate.title
-        subtitleLabel.text = timeTemplate.dueDate!.asDayMonthTime + ", " + timeTemplate.notification.title
+        subtitleLabel.text = timeTemplate.dueDate!.asTimeString + ", " + timeTemplate.notification.title
     }
     
     func setupAppearance() {

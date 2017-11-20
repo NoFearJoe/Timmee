@@ -22,7 +22,7 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var closeButton: UIButton!
     @IBOutlet fileprivate var doneButton: UIButton!
     
-    @IBOutlet fileprivate var timeTemplateView: TaskParameterView!
+    @IBOutlet fileprivate var timeTemplateView: TaskComplexParameterView!
     @IBOutlet fileprivate var dueDateView: TaskParameterView!
     @IBOutlet fileprivate var reminderView: TaskParameterView!
     @IBOutlet fileprivate var repeatView: TaskParameterView!
@@ -85,10 +85,17 @@ final class TaskEditorView: UIViewController {
                                                                                      weight: UIFontWeightLight),
                                               NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
         
-        timeTemplateView.isHidden = false//!UserProperty.inApp(InAppPurchaseItem.dateTemplates.id).bool()
+        timeTemplateView.isHidden = false // TODO: !UserProperty.inApp(InAppPurchaseItem.dateTemplates.id).bool()
         
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
-            
+            if isFilled {
+                // Show date only picker
+                self.dueDateView.isHidden = true
+                self.repeatView.isHidden = false
+            } else {
+                // Hide date only picker
+                self.dueDateView.isHidden = false
+            }
         }
         timeTemplateView.didClear = { [unowned self] in
             self.output.timeTemplateCleared()
@@ -239,6 +246,12 @@ extension TaskEditorView: TaskEditorViewInput {
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
         timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
+        if let timeTemplate = timeTemplate {
+            timeTemplateView.subtitle = timeTemplate.dueDate!.asTimeString + ", " + timeTemplate.notification.title
+        } else {
+            timeTemplateView.subtitle = nil
+        }
+        
         timeTemplateView.isFilled = timeTemplate != nil
     }
     
@@ -333,6 +346,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output?.locationCleared()
         case .tags: output?.tagsCleared()
         case .timeTemplates: output?.timeTemplateCleared()
+        case .dueTime: return
         }
     }
 
@@ -386,6 +400,8 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.transitionOutput = taskParameterEditorContainer// TODO: Сделать присваивание в taskParameterEditorContainer
             output.willPresentTimeTemplatePicker(viewController)
             return viewController
+        case .dueTime:
+            return UIViewController()
         }
     }
     

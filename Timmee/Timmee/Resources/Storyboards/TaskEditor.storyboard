@@ -87,7 +87,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="rD9-t0-T3n"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXl-Q1-mbM" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXl-Q1-mbM" customClass="TaskComplexParameterView" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="95" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="TEg-bD-rdR">
@@ -97,12 +97,33 @@
                                                                     <constraint firstAttribute="width" constant="20" id="z4D-wG-dcd"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Временной шаблон" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mv8-xb-htS">
-                                                                <rect key="frame" x="35" y="11" width="286" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oc1-8X-6sV">
+                                                                <rect key="frame" x="35" y="2.5" width="286" height="35.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Временной шаблон" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mv8-xb-htS">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="286" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:31, напомнить точно в срок" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfd-N3-E3e">
+                                                                        <rect key="frame" x="0.0" y="19.5" width="286" height="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="yfd-N3-E3e" firstAttribute="leading" secondItem="oc1-8X-6sV" secondAttribute="leading" id="HgG-1q-sRG"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Mv8-xb-htS" secondAttribute="trailing" id="Ilm-30-6k8"/>
+                                                                    <constraint firstItem="yfd-N3-E3e" firstAttribute="top" secondItem="Mv8-xb-htS" secondAttribute="bottom" id="K8V-FM-Djf"/>
+                                                                    <constraint firstItem="Mv8-xb-htS" firstAttribute="top" secondItem="oc1-8X-6sV" secondAttribute="top" id="dCj-oN-Ufc"/>
+                                                                    <constraint firstItem="Mv8-xb-htS" firstAttribute="leading" secondItem="oc1-8X-6sV" secondAttribute="leading" id="gno-br-Z2f"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="yfd-N3-E3e" secondAttribute="trailing" id="kRb-6E-YxH"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="yfd-N3-E3e" secondAttribute="bottom" id="lv9-al-CDC"/>
+                                                                </constraints>
+                                                            </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qp6-7n-oAd">
                                                                 <rect key="frame" x="329" y="12" width="16" height="16"/>
                                                                 <constraints>
@@ -117,19 +138,20 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="Qp6-7n-oAd" firstAttribute="leading" secondItem="oc1-8X-6sV" secondAttribute="trailing" constant="8" id="0fj-Z2-64i"/>
                                                             <constraint firstAttribute="height" constant="40" id="BBa-sy-dzP"/>
                                                             <constraint firstAttribute="trailing" secondItem="Qp6-7n-oAd" secondAttribute="trailing" id="HBx-Yd-yiD"/>
                                                             <constraint firstItem="TEg-bD-rdR" firstAttribute="leading" secondItem="kXl-Q1-mbM" secondAttribute="leading" id="MA3-am-8P5"/>
-                                                            <constraint firstItem="Qp6-7n-oAd" firstAttribute="leading" secondItem="Mv8-xb-htS" secondAttribute="trailing" constant="8" id="Pja-bd-nkH"/>
-                                                            <constraint firstItem="Mv8-xb-htS" firstAttribute="centerY" secondItem="kXl-Q1-mbM" secondAttribute="centerY" id="b6V-eF-Uj2"/>
+                                                            <constraint firstItem="oc1-8X-6sV" firstAttribute="leading" secondItem="TEg-bD-rdR" secondAttribute="trailing" constant="15" id="g5g-X0-iwy"/>
+                                                            <constraint firstItem="oc1-8X-6sV" firstAttribute="centerY" secondItem="kXl-Q1-mbM" secondAttribute="centerY" id="ile-59-ih9"/>
                                                             <constraint firstItem="Qp6-7n-oAd" firstAttribute="centerY" secondItem="kXl-Q1-mbM" secondAttribute="centerY" id="ixK-T3-JCx"/>
-                                                            <constraint firstItem="Mv8-xb-htS" firstAttribute="leading" secondItem="TEg-bD-rdR" secondAttribute="trailing" constant="15" id="qvh-3n-qKT"/>
                                                             <constraint firstItem="TEg-bD-rdR" firstAttribute="centerY" secondItem="kXl-Q1-mbM" secondAttribute="centerY" id="ufI-Rb-1al"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="clearButton" destination="Qp6-7n-oAd" id="9Pa-Uj-jKy"/>
                                                             <outlet property="heightConstraint" destination="BBa-sy-dzP" id="HsA-4o-UJr"/>
                                                             <outlet property="iconView" destination="TEg-bD-rdR" id="gna-sP-zQz"/>
+                                                            <outlet property="subtitleLabel" destination="yfd-N3-E3e" id="Qhf-jk-I6i"/>
                                                             <outlet property="titleView" destination="Mv8-xb-htS" id="lhI-CR-rGP"/>
                                                         </connections>
                                                     </view>
