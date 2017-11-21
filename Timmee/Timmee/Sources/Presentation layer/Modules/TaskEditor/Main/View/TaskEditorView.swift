@@ -94,6 +94,7 @@ final class TaskEditorView: UIViewController {
                 self.repeatView.isHidden = false
             } else {
                 // Hide date only picker
+                self.repeatView.isHidden = !self.dueDateView.isFilled
                 self.dueDateView.isHidden = false
             }
         }
@@ -106,7 +107,7 @@ final class TaskEditorView: UIViewController {
         
         dueDateView.didChangeFilledState = { [unowned self] isFilled in
             self.reminderView.isHidden = !isFilled
-            self.repeatView.isHidden = !isFilled
+            self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
             self.repeatEndingDateView.isHidden = !isFilled || !self.repeatView.isFilled
         }
         dueDateView.didClear = { [unowned self] in

@@ -13,6 +13,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     
     @IBOutlet fileprivate var containerView: TableListRepersentationCellContainerView!
     @IBOutlet fileprivate var titleLabel: UILabel!
+    @IBOutlet fileprivate var timeTemplateLabel: UILabel!
     @IBOutlet fileprivate var dueDateLabel: UILabel!
     @IBOutlet fileprivate var subtasksLabel: UILabel!
     @IBOutlet fileprivate var importancyContainerView: UIView!
@@ -28,6 +29,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         }
     }
     
+    @IBOutlet fileprivate var dueDateLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate var subtasksLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate var tagsViewHeightConstraint: NSLayoutConstraint!
     
@@ -39,6 +41,13 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         set {
             guard let title = newValue else { return }
             updateTitle(title)
+        }
+    }
+    
+    var timeTemplate: String? {
+        didSet {
+            guard timeTemplate != oldValue || oldValue == nil else { return }
+            updateTimeTemplateView(with: timeTemplate)
         }
     }
     
@@ -164,7 +173,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
                 .map { $0.color }
         )
         
-        let hasParameters = task.subtasks.count > 0 || task.dueDate != nil
+        let hasParameters = task.timeTemplate != nil || task.subtasks.count > 0 || task.dueDate != nil
         maxTitleLinesCount = hasParameters || task.isDone ? 1 : 2
         
         title = task.title
@@ -174,9 +183,11 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         inProgress = task.inProgress
         
         if !task.isDone {
+            timeTemplate = task.timeTemplate?.title
             dueDate = task.dueDate?.asDayMonthTime
             subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         } else {
+            timeTemplate = nil
             dueDate = nil
             subtasksInfo = nil
         }
@@ -187,6 +198,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     func applyAppearance() {
         containerView.fillColor = AppTheme.current.foregroundColor
         titleLabel.textColor = AppTheme.current.tintColor
+        timeTemplateLabel.textColor = AppTheme.current.specialColor
         dueDateLabel.textColor = AppTheme.current.secondaryTintColor
         subtasksLabel.textColor = AppTheme.current.secondaryTintColor
     }
@@ -194,6 +206,15 @@ final class TableListRepresentationCell: SwipeTableViewCell {
 }
 
 fileprivate extension TableListRepresentationCell {
+    
+    func updateTimeTemplateView(with timeTemplate: String?) {
+        timeTemplateLabel.text = timeTemplate
+        if let timeTemplate = timeTemplate, !timeTemplate.isEmpty {
+            dueDateLabelLeadingConstraint.constant = 10
+        } else {
+            dueDateLabelLeadingConstraint.constant = 0
+        }
+    }
     
     func updateDueDateView(with dueDate: String?) {
         dueDateLabel.text = dueDate

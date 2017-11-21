@@ -905,18 +905,18 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время выполнения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmp-TZ-2YX">
-                                        <rect key="frame" x="35" y="11" width="286" height="19.5"/>
+                                        <rect key="frame" x="35" y="11" width="278" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dN-mA-uIn">
-                                        <rect key="frame" x="329" y="12" width="16" height="16"/>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dN-mA-uIn">
+                                        <rect key="frame" x="321" y="4" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="7dN-mA-uIn" secondAttribute="height" multiplier="1:1" id="KQY-RJ-MQl"/>
-                                            <constraint firstAttribute="width" constant="16" id="X81-te-xzb"/>
+                                            <constraint firstAttribute="width" constant="32" id="X81-te-xzb"/>
                                         </constraints>
-                                        <state key="normal" image="cross"/>
+                                        <state key="normal" image="cross_small"/>
                                         <connections>
                                             <action selector="onClear" destination="Xom-bW-3Fn" eventType="touchUpInside" id="ReQ-qm-s8x"/>
                                         </connections>
@@ -930,7 +930,7 @@
                                     <constraint firstItem="duI-vB-8uH" firstAttribute="centerY" secondItem="Xom-bW-3Fn" secondAttribute="centerY" id="Qbl-83-dw1"/>
                                     <constraint firstItem="7dN-mA-uIn" firstAttribute="leading" secondItem="hmp-TZ-2YX" secondAttribute="trailing" constant="8" id="chb-6Z-BLB"/>
                                     <constraint firstItem="hmp-TZ-2YX" firstAttribute="leading" secondItem="duI-vB-8uH" secondAttribute="trailing" constant="15" id="ibl-KE-wRr"/>
-                                    <constraint firstAttribute="trailing" secondItem="7dN-mA-uIn" secondAttribute="trailing" id="j6s-ct-5Tc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7dN-mA-uIn" secondAttribute="trailing" constant="-8" id="j6s-ct-5Tc"/>
                                     <constraint firstAttribute="height" constant="40" id="sPI-sh-FFD"/>
                                 </constraints>
                                 <connections>
@@ -951,18 +951,18 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXV-6a-kFW">
-                                        <rect key="frame" x="35" y="11" width="286" height="19.5"/>
+                                        <rect key="frame" x="35" y="11" width="278" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQk-SE-dzR">
-                                        <rect key="frame" x="329" y="12" width="16" height="16"/>
+                                        <rect key="frame" x="321" y="4" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QQk-SE-dzR" secondAttribute="height" multiplier="1:1" id="90s-oA-qNh"/>
-                                            <constraint firstAttribute="width" constant="16" id="EeT-ft-hdO"/>
+                                            <constraint firstAttribute="width" constant="32" id="EeT-ft-hdO"/>
                                         </constraints>
-                                        <state key="normal" image="cross"/>
+                                        <state key="normal" image="cross_small"/>
                                         <connections>
                                             <action selector="onClear" destination="bVZ-gJ-XjV" eventType="touchUpInside" id="pe6-4X-xUa"/>
                                         </connections>
@@ -976,7 +976,7 @@
                                     <constraint firstItem="MXV-6a-kFW" firstAttribute="leading" secondItem="tQp-cB-Gct" secondAttribute="trailing" constant="15" id="gPh-Lq-twf"/>
                                     <constraint firstItem="tQp-cB-Gct" firstAttribute="centerY" secondItem="bVZ-gJ-XjV" secondAttribute="centerY" id="p5V-p1-zay"/>
                                     <constraint firstItem="QQk-SE-dzR" firstAttribute="leading" secondItem="MXV-6a-kFW" secondAttribute="trailing" constant="8" id="qVa-gx-wyv"/>
-                                    <constraint firstAttribute="trailing" secondItem="QQk-SE-dzR" secondAttribute="trailing" id="xdl-Tx-qam"/>
+                                    <constraint firstAttribute="trailing" secondItem="QQk-SE-dzR" secondAttribute="trailing" constant="-8" id="xdl-Tx-qam"/>
                                     <constraint firstItem="MXV-6a-kFW" firstAttribute="centerY" secondItem="bVZ-gJ-XjV" secondAttribute="centerY" id="xsj-0G-U9I"/>
                                 </constraints>
                                 <connections>
@@ -1569,7 +1569,7 @@
         <image name="alarm" width="20" height="20"/>
         <image name="checkmark" width="20" height="20"/>
         <image name="clock" width="20" height="20"/>
-        <image name="cross" width="20" height="20"/>
+        <image name="cross_small" width="13" height="13"/>
         <image name="plus_thin" width="20" height="20"/>
         <image name="trash" width="20" height="20"/>
     </resources>

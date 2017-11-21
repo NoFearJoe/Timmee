@@ -136,8 +136,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             view.setReminder(task.notification)
             if task.dueDate != nil {
                 view.setRepeat(task.repeating)
-            } else {
-                view.setRepeat(.init(string: ""))
             }
         } else {
             view.setDueDate(nil)
@@ -215,8 +213,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         view.setReminder(task.notification)
         if task.dueDate != nil {
             view.setRepeat(task.repeating)
-        } else {
-            view.setRepeat(.init(string: ""))
         }
         
         view.setTimeTemplate(nil)
@@ -224,8 +220,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func dueDateCleared() {
         task.dueDate = nil
-        task.notification = .doNotNotify
-        task.repeating = .init(string: "")
         
         view.setDueDate(nil)
     }

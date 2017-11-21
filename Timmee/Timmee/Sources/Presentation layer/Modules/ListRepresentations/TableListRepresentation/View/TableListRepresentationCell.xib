@@ -48,14 +48,23 @@
                                     <view contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="xlA-T7-43b">
                                         <rect key="frame" x="0.0" y="25.5" width="321" height="14.5"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Перед работой" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX5-DM-bQy">
+                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="QVu-Bc-574"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.23529411759999999" green="0.69803921570000005" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Сегодня, 20:31" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-DL-teM">
-                                                <rect key="frame" x="0.0" y="0.0" width="88" height="14.5"/>
+                                                <rect key="frame" x="99.5" y="0.0" width="88" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="0/2 подзадач" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9g-Q9-BJn">
-                                                <rect key="frame" x="98" y="0.0" width="78" height="14.5"/>
+                                                <rect key="frame" x="197.5" y="0.0" width="78" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -63,12 +72,15 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="VX5-DM-bQy" firstAttribute="top" secondItem="xlA-T7-43b" secondAttribute="top" id="APi-MY-U2w"/>
                                             <constraint firstItem="ZYk-DL-teM" firstAttribute="top" secondItem="xlA-T7-43b" secondAttribute="top" id="BO4-Oo-UDO"/>
+                                            <constraint firstAttribute="bottom" secondItem="VX5-DM-bQy" secondAttribute="bottom" id="GNa-CC-haE"/>
                                             <constraint firstItem="v9g-Q9-BJn" firstAttribute="leading" secondItem="ZYk-DL-teM" secondAttribute="trailing" constant="10" id="JDe-cT-Gfv"/>
                                             <constraint firstItem="v9g-Q9-BJn" firstAttribute="bottom" secondItem="ZYk-DL-teM" secondAttribute="bottom" id="QXJ-fZ-ylM"/>
                                             <constraint firstItem="v9g-Q9-BJn" firstAttribute="top" secondItem="ZYk-DL-teM" secondAttribute="top" id="ULX-0b-Gkp"/>
-                                            <constraint firstItem="ZYk-DL-teM" firstAttribute="leading" secondItem="xlA-T7-43b" secondAttribute="leading" id="ga4-Q7-Qsm"/>
                                             <constraint firstAttribute="bottom" secondItem="ZYk-DL-teM" secondAttribute="bottom" id="lB3-by-Wau"/>
+                                            <constraint firstItem="VX5-DM-bQy" firstAttribute="leading" secondItem="xlA-T7-43b" secondAttribute="leading" id="lnj-uA-NSe"/>
+                                            <constraint firstItem="ZYk-DL-teM" firstAttribute="leading" secondItem="VX5-DM-bQy" secondAttribute="trailing" constant="10" id="pco-lK-Sq6"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -139,12 +151,14 @@
                 <outlet property="containerViewLeadingConstraint" destination="gks-ro-8PW" id="j2i-2S-xOP"/>
                 <outlet property="containerViewTrailingConstraint" destination="TUj-Bj-MYW" id="cGS-5G-GM2"/>
                 <outlet property="dueDateLabel" destination="ZYk-DL-teM" id="xXe-XH-tcH"/>
+                <outlet property="dueDateLabelLeadingConstraint" destination="pco-lK-Sq6" id="Mdc-vT-lox"/>
                 <outlet property="importancyContainerView" destination="FTV-YC-uAI" id="1YC-uF-KeP"/>
                 <outlet property="importancyIconView" destination="7bA-g9-NJw" id="GVk-Rk-9U4"/>
                 <outlet property="subtasksLabel" destination="v9g-Q9-BJn" id="eYG-Ce-39f"/>
                 <outlet property="subtasksLabelLeadingConstraint" destination="JDe-cT-Gfv" id="VgG-ax-Fjg"/>
                 <outlet property="tagsView" destination="j0Q-h9-vnE" id="zdF-ja-Wpe"/>
                 <outlet property="tagsViewHeightConstraint" destination="ie8-OC-F0Q" id="u2K-th-b1E"/>
+                <outlet property="timeTemplateLabel" destination="VX5-DM-bQy" id="aad-3e-NbW"/>
                 <outlet property="titleLabel" destination="ov3-YB-nU5" id="c3q-m1-LQP"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="67"/>
