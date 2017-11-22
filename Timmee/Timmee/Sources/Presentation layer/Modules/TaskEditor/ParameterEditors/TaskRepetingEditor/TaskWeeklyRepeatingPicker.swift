@@ -21,6 +21,7 @@ protocol TaskWeeklyRepeatingPickerOutput: class {
 final class TaskWeeklyRepeatingPicker: UIViewController {
     
     weak var output: TaskWeeklyRepeatingPickerOutput?
+    weak var container: TaskParameterEditorOutput?
 
     @IBOutlet fileprivate weak var weekDaysPicker: WeekDaysPicker!
     

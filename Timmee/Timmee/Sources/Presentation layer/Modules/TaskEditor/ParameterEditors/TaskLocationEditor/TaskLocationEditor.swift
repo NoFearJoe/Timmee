@@ -23,6 +23,7 @@ final class TaskLocationEditor: UIViewController {
     @IBOutlet fileprivate weak var errorPlaceholder: UIView!
     
     weak var output: TaskLocationEditorOutput?
+    weak var container: TaskParameterEditorOutput?
     
     fileprivate let locationManager = CLLocationManager()
     

@@ -75,6 +75,19 @@ final class Calendar {
         }
     }
     
+    var entriesCount: Int {
+        return dates.count
+    }
+    
+    func entry(at index: Int) -> Calendar.Entry? {
+        let date = dates[index]
+        
+        return Calendar.Entry(dayName: date.asShortWeekday,
+                              dayNumber: date.dayOfMonth,
+                              isEnabled: isEnabled(day: date),
+                              isWeekend: isWeekend(day: date))
+    }
+    
     func monthDataSource() -> [Calendar.MonthEntry] {
         let allMonths = dates.map { $0.asMonth }
         

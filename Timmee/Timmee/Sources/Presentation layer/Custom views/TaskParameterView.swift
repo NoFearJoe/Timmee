@@ -34,6 +34,12 @@ class TaskParameterView: HiddingParameterView {
         set { titleView.text = newValue }
     }
     
+    var canClear: Bool = true {
+        didSet {
+            clearButton.isHidden = !(canClear && isFilled)
+        }
+    }
+    
     fileprivate let filledIconColor = AppTheme.current.blueColor
     fileprivate let filledTitleColor = AppTheme.current.tintColor
     
@@ -45,7 +51,7 @@ class TaskParameterView: HiddingParameterView {
             self.iconView.tintColor = isFilled ? self.filledIconColor : self.notFilledIconColor
             self.titleView.textColor = isFilled ? self.filledTitleColor : self.notFilledTitleColor
             
-            self.clearButton.isHidden = !isFilled
+            self.clearButton.isHidden = !(self.canClear && isFilled)
         }
     }
     

@@ -19,7 +19,7 @@ final class CalendarView: UIView {
         }
     }
     
-    var calendar: (days: [Calendar.Entry], months: [Calendar.MonthEntry])!
+    var calendar: (calendar: Calendar, months: [Calendar.MonthEntry])!
     
     var selectedDateIndex = 1 {
         didSet {
@@ -51,7 +51,7 @@ final class CalendarView: UIView {
     
     
     func scrollToSelectedCell() {
-        let daysCount = calendar.days.count
+        let daysCount = calendar.calendar.entriesCount
         if 0..<daysCount ~= selectedDateIndex {
             let visibleItems = calendarView.indexPathsForVisibleItems.sorted()
             
@@ -89,7 +89,7 @@ extension CalendarView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return calendar.days.count
+            return calendar.calendar.entriesCount
         }
         return calendar.months.count
     }
@@ -98,16 +98,16 @@ extension CalendarView: UICollectionViewDataSource {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarDayCell", for: indexPath) as! CalendarDayCell
             
-            let day = calendar.days[indexPath.item]
-            
-            cell.isWeekend = day.isWeekend
+            if let day = calendar.calendar.entry(at: indexPath.item) {
+                cell.isWeekend = day.isWeekend
 
-            cell.dayNameLabel.text = day.dayName.uppercased()
-            cell.dayNumberLabel.text = "\(day.dayNumber)"
-            
-            let notSelectedState: UIControlState = day.isEnabled ? .normal : .disabled
-            cell.dayNameLabel.state = notSelectedState
-            cell.dayNumberLabel.state = selectedDateIndex == indexPath.item ? .selected : notSelectedState
+                cell.dayNameLabel.text = day.dayName.uppercased()
+                cell.dayNumberLabel.text = "\(day.dayNumber)"
+                
+                let notSelectedState: UIControlState = day.isEnabled ? .normal : .disabled
+                cell.dayNameLabel.state = notSelectedState
+                cell.dayNumberLabel.state = selectedDateIndex == indexPath.item ? .selected : notSelectedState
+            }
             
             return cell
         } else {
@@ -124,8 +124,8 @@ extension CalendarView: UICollectionViewDataSource {
 extension CalendarView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if calendar.days.indices.contains(indexPath.item) {
-            if calendar.days[indexPath.item].isEnabled {
+        if let entry = calendar.calendar.entry(at: indexPath.item) {
+            if entry.isEnabled {
                 didSelectItemAtIndex?(indexPath.item)
             }
         }

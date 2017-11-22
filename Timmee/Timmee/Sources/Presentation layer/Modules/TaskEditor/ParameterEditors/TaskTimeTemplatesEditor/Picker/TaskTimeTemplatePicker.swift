@@ -26,6 +26,7 @@ final class TaskTimeTemplatePicker: UIViewController {
     
     weak var output: TaskTimeTemplatePickerOutput?
     weak var transitionOutput: TaskTimeTemplatePickerTransitionOutput?
+    weak var container: TaskParameterEditorOutput?
     
     @IBOutlet fileprivate var addTimeTemplateView: AddTimeTemplateView!
     @IBOutlet fileprivate var tableView: UITableView!

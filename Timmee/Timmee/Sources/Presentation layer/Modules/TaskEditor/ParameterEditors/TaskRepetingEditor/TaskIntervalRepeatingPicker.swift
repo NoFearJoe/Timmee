@@ -19,6 +19,7 @@ protocol TaskIntervalRepeatingPickerOutput: class {
 final class TaskIntervalRepeatingPicker: UIViewController {
 
     weak var output: TaskIntervalRepeatingPickerOutput?
+    weak var container: TaskParameterEditorOutput?
     
     @IBOutlet fileprivate weak var topLabel: UILabel!
     @IBOutlet fileprivate weak var numbersCollectionView: UICollectionView!

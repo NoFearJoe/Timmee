@@ -1,5 +1,5 @@
 //
-//  TaskDueDateEditor.swift
+//  TaskDueDateTimeEditor.swift
 //  Timmee
 //
 //  Created by Ilya Kharabet on 20.09.17.
@@ -8,62 +8,42 @@
 
 import UIKit
 
-protocol TaskDueDateEditorInput: class {
+protocol TaskDueDateTimeEditorInput: class {
     func setDueDate(_ dueDate: Date?)
     func setMinimumDate(_ date: Date?)
 }
 
-protocol TaskDueDateEditorOutput: class {
+protocol TaskDueDateTimeEditorOutput: class {
     func didSelectDueDate(_ dueDate: Date)
 }
 
-final class TaskDueDateEditor: UIViewController {
-
-    @IBOutlet fileprivate var calendarView: CalendarView!
+final class TaskDueDateTimeEditor: UIViewController {
     
-    weak var output: TaskDueDateEditorOutput?
+    weak var output: TaskDueDateTimeEditorOutput?
+    weak var container: TaskParameterEditorOutput?
     
     fileprivate var dueTimePicker: TaskDueTimePickerInput!
+    fileprivate var dueDatePicker: TaskDueDatePickerInput!
     
     var selectedDueDate: Date = Date() {
         didSet {
-            if selectedDueDate != oldValue {
-                calendarView.selectedDateIndex = calendar.index(of: selectedDueDate)
-                calendarView.calendarView.reloadData()
-                
-                output?.didSelectDueDate(selectedDueDate)
-            }
-        }
-    }
-    
-    var minimumAvailableDate: Date = Date() {
-        didSet {
-            calendar.changeStartDate(to: minimumAvailableDate)
-            calendarView.calendar = (calendar.dataSource(), calendar.monthDataSource())
-            calendarView.calendarView.reloadData()
+            guard selectedDueDate != oldValue else { return }
+            output?.didSelectDueDate(selectedDueDate)
         }
     }
     
     fileprivate var hours: Int = 0
     fileprivate var minutes: Int = 0
     
-    fileprivate let calendar = Calendar(start: Date(), shift: -1, daysCount: 357)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        calendarView.calendar = (calendar.dataSource(), calendar.monthDataSource())
-        calendarView.didSelectItemAtIndex = { [unowned self] index in
-            let date = self.calendar.date(by: index)
-            self.updateSelectedDueDate(with: date)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DueTimePicker" {
             guard let dueTimePicker = segue.destination as? TaskDueTimePicker else { return }
             dueTimePicker.output = self
             self.dueTimePicker = dueTimePicker
+        } else if segue.identifier == "DueDatePicker" {
+            guard let dueDatePicker = segue.destination as? TaskDueDatePicker else { return }
+            dueDatePicker.output = self
+            self.dueDatePicker = dueDatePicker
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -71,7 +51,7 @@ final class TaskDueDateEditor: UIViewController {
 
 }
 
-extension TaskDueDateEditor: TaskDueDateEditorInput {
+extension TaskDueDateTimeEditor: TaskDueDateTimeEditorInput {
 
     func setDueDate(_ dueDate: Date?) {
         let date = dueDate ?? Date()
@@ -80,15 +60,25 @@ extension TaskDueDateEditor: TaskDueDateEditorInput {
         dueTimePicker.setMinutes(date.minutes)
         
         updateSelectedDueDate(with: date)
+        
+        dueDatePicker.setDueDate(date)
     }
     
     func setMinimumDate(_ date: Date?) {
-        minimumAvailableDate = date ?? Date()
+        dueDatePicker.minimumAvailableDate = date ?? Date()
     }
 
 }
 
-extension TaskDueDateEditor: TaskDueTimePickerOutput {
+extension TaskDueDateTimeEditor: TaskDueDatePickerOutput {
+    
+    func didChangeDueDate(to date: Date) {
+        updateSelectedDueDate(with: date)
+    }
+    
+}
+
+extension TaskDueDateTimeEditor: TaskDueTimePickerOutput {
     
     func didChangeHours(to hours: Int) {
         self.hours = hours
@@ -102,7 +92,7 @@ extension TaskDueDateEditor: TaskDueTimePickerOutput {
     
 }
 
-extension TaskDueDateEditor: TaskParameterEditorInput {
+extension TaskDueDateTimeEditor: TaskParameterEditorInput {
 
     var requiredHeight: CGFloat {
         return 196
@@ -110,7 +100,7 @@ extension TaskDueDateEditor: TaskParameterEditorInput {
 
 }
 
-fileprivate extension TaskDueDateEditor {
+fileprivate extension TaskDueDateTimeEditor {
     
     func updateSelectedDueDate(with date: Date) {
         selectedDueDate = date

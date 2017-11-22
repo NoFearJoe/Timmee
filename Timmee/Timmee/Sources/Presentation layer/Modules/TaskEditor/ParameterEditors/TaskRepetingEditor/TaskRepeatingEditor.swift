@@ -25,6 +25,7 @@ final class TaskRepeatingEditor: UITableViewController {
     
     weak var output: TaskRepeatingEditorOutput?
     weak var transitionOutput: TaskRepeatingEditorTransitionOutput?
+    weak var container: TaskParameterEditorOutput?
     
     fileprivate var selectedMask: RepeatMask? {
         didSet {

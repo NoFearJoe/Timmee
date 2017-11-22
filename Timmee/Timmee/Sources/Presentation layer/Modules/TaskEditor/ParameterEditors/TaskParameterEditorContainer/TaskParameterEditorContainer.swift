@@ -9,6 +9,7 @@
 import UIKit
 
 enum TaskParameterEditorType {
+    case dueDateTime
     case dueDate
     case dueTime
     case reminder
@@ -20,6 +21,7 @@ enum TaskParameterEditorType {
     
     var title: String {
         switch self {
+        case .dueDateTime: return "due_date".localized
         case .dueDate: return "due_date".localized
         case .dueTime: return "due_time".localized
         case .reminder: return "reminder".localized
@@ -58,6 +60,7 @@ protocol TaskParameterEditorContainerOutput: class {
 
 
 protocol TaskParameterEditorInput: class {
+    weak var container: TaskParameterEditorOutput? { get set }
     var requiredHeight: CGFloat { get }
     func completeEditing(completion: @escaping (Bool) -> Void)
 }
@@ -68,17 +71,22 @@ extension TaskParameterEditorInput {
     }
 }
 
+protocol TaskParameterEditorOutput: class {
+    var closeButton: UIButton! { get }
+    var doneButton: UIButton! { get }
+}
 
-final class TaskParameterEditorContainer: UIViewController {
 
-    @IBOutlet fileprivate weak var closeButton: UIButton!
-    @IBOutlet fileprivate weak var doneButton: UIButton!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var editorContainer: BarView!
-    @IBOutlet fileprivate weak var editorContainerUnderlyingView: BarView!
+final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorOutput {
+
+    @IBOutlet var closeButton: UIButton!
+    @IBOutlet var doneButton: UIButton!
+    @IBOutlet fileprivate var titleLabel: UILabel!
+    @IBOutlet fileprivate var editorContainer: BarView!
+    @IBOutlet fileprivate var editorContainerUnderlyingView: BarView!
     
-    @IBOutlet fileprivate weak var editorContainerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var editorContainerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var editorContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var editorContainerBottomConstraint: NSLayoutConstraint!
     
     weak var output: TaskParameterEditorContainerOutput?
     
@@ -233,6 +241,7 @@ fileprivate extension TaskParameterEditorContainer {
         viewController.didMove(toParentViewController: self)
         
         if let editorInput = viewController as? TaskParameterEditorInput {
+            editorInput.container = self
             editorContainerHeightConstraint.constant = editorInput.requiredHeight
         }
         
@@ -254,6 +263,7 @@ fileprivate extension TaskParameterEditorContainer {
         
         let offset = editorContainer.frame.height
         if let editorInput = viewController as? TaskParameterEditorInput {
+            editorInput.container = self
             editorContainerHeightConstraint.constant = editorInput.requiredHeight
         }
         

@@ -23,6 +23,7 @@ protocol TaskTagsPickerOutput: class {
 final class TaskTagsPicker: UIViewController {
     
     weak var output: TaskTagsPickerOutput?
+    weak var container: TaskParameterEditorOutput?
     
     @IBOutlet fileprivate var addTagView: AddTagView!
     @IBOutlet fileprivate var tagsView: UITableView!

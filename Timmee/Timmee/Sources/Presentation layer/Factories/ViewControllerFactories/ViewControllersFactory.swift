@@ -40,8 +40,12 @@ final class ViewControllersFactory {
         return StoryboardsFactory.taskParameterEditors.initialViewController()
     }
     
-    static var taskDueDateEditor: TaskDueDateEditor {
-        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDateEditor")
+    static var taskDueDateTimeEditor: TaskDueDateTimeEditor {
+        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDateTimeEditor")
+    }
+    
+    static var taskDueDatePicker: TaskDueDatePicker {
+        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDatePicker")
     }
     
     static var taskDueTimePicker: TaskDueTimePicker {

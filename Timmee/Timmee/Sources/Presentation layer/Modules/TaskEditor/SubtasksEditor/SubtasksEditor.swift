@@ -8,6 +8,16 @@
 
 import UIKit
 
+final class FakeScrollView: UIScrollView {
+    
+    override var contentOffset: CGPoint {
+        didSet {
+            print("CO: \(contentOffset)")
+        }
+    }
+    
+}
+
 final class SubtasksEditor: UIViewController {
     
     weak var output: SubtasksEditorOutput!
@@ -29,6 +39,8 @@ final class SubtasksEditor: UIViewController {
     fileprivate let keyboardManager = KeyboardManager()
 
     fileprivate let subtaskCellActionsProvider = SubtaskCellActionsProvider()
+    
+    fileprivate var savedContentOffset: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +79,15 @@ final class SubtasksEditor: UIViewController {
         super.viewWillAppear(animated)
         
         reloadSubtasks()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        if let savedContentOffset = savedContentOffset {
+            contentScrollView.contentOffset = savedContentOffset
+            self.savedContentOffset = nil
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -168,14 +189,17 @@ extension SubtasksEditor: UITableViewDataSource {
             }
             cell.onChangeHeight = { [unowned self] height in
                 let currentOffset = self.contentScrollView.contentOffset
-                UIView.performWithoutAnimation {
+                self.savedContentOffset = currentOffset
+//                UIView.performWithoutAnimation {
+                UIView.setAnimationsEnabled(false)
                     self.tableView.beginUpdates()
                     self.tableView.endUpdates()
+                UIView.setAnimationsEnabled(true)
                     
                     if currentOffset != .zero {
                         self.contentScrollView.contentOffset = currentOffset
                     }
-                }
+//                }
             }
             
             cell.delegate = subtaskCellActionsProvider
@@ -227,13 +251,13 @@ fileprivate extension SubtasksEditor {
     
     func updateContainerViewHeight(_ newHeight: CGFloat) {
         containerViewHeightConstraint.constant = newHeight
-        let offsetY = addSubtaskView.frame.minY
-        UIView.animate(withDuration: 0.2) {
-            self.view.layoutIfNeeded()
+        let offsetY = contentScrollView.convert(addSubtaskView.frame, from: addSubtaskView).minY
+//        UIView.animate(withDuration: 0.2) {
+//            self.view.layoutIfNeeded()
             
             guard self.addSubtaskView.isFirstResponder else { return }
             self.contentScrollView.contentOffset = CGPoint(x: 0, y: offsetY)
-        }
+//        }
     }
     
 }

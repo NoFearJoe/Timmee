@@ -19,6 +19,7 @@ protocol TaskReminderEditorOutput: class {
 final class TaskReminderEditor: UITableViewController {
 
     weak var output: TaskReminderEditorOutput?
+    weak var container: TaskParameterEditorOutput?
     
     var selectedMask: NotificationMask = .doNotNotify {
         didSet {

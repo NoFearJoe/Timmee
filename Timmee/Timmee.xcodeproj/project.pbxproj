@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
 		0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F491FC3016900D8FF8B /* TimeRounder.swift */; };
+		0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */; };
 		0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C51FB971F200EA1571 /* SubtasksEditor.swift */; };
 		0C8738C81FB972DA00EA1571 /* SubtasksEditorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C71FB972DA00EA1571 /* SubtasksEditorProtocols.swift */; };
 		0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C31FB971D900EA1571 /* SubtaskCell.swift */; };
@@ -20,7 +21,7 @@
 		0C8738CF1FB9747700EA1571 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */; };
 		0C8738D01FB9747700EA1571 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738A81FB971D800EA1571 /* CalendarView.swift */; };
 		0C8738D11FB9747700EA1571 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738A91FB971D800EA1571 /* NumberPicker.swift */; };
-		0C8738D21FB9747700EA1571 /* TaskDueDateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AA1FB971D800EA1571 /* TaskDueDateEditor.swift */; };
+		0C8738D21FB9747700EA1571 /* TaskDueDateTimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AA1FB971D800EA1571 /* TaskDueDateTimeEditor.swift */; };
 		0C8738D31FB9747700EA1571 /* TaskLocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AC1FB971D800EA1571 /* TaskLocationEditor.swift */; };
 		0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */; };
 		0C8738D51FB9747700EA1571 /* TaskParameterEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AF1FB971D800EA1571 /* TaskParameterEditorContainer.swift */; };
@@ -194,10 +195,11 @@
 /* Begin PBXFileReference section */
 		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
 		0C713F491FC3016900D8FF8B /* TimeRounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRounder.swift; sourceTree = "<group>"; };
+		0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDatePicker.swift; sourceTree = "<group>"; };
 		0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C8738A81FB971D800EA1571 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C8738A91FB971D800EA1571 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
-		0C8738AA1FB971D800EA1571 /* TaskDueDateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDateEditor.swift; sourceTree = "<group>"; };
+		0C8738AA1FB971D800EA1571 /* TaskDueDateTimeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDateTimeEditor.swift; sourceTree = "<group>"; };
 		0C8738AC1FB971D800EA1571 /* TaskLocationEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskLocationEditor.swift; sourceTree = "<group>"; };
 		0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeBackgroundModalTransition.swift; sourceTree = "<group>"; };
 		0C8738AF1FB971D800EA1571 /* TaskParameterEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskParameterEditorContainer.swift; sourceTree = "<group>"; };
@@ -405,11 +407,22 @@
 			path = TaskDueTimePicker;
 			sourceTree = "<group>";
 		};
+		0C713F501FC54F1200D8FF8B /* TaskDueDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */,
+				0C8738A81FB971D800EA1571 /* CalendarView.swift */,
+				0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */,
+			);
+			path = TaskDueDatePicker;
+			sourceTree = "<group>";
+		};
 		0C8738A51FB971D800EA1571 /* ParameterEditors */ = {
 			isa = PBXGroup;
 			children = (
 				0C8738AD1FB971D800EA1571 /* TaskParameterEditorContainer */,
-				0C8738A61FB971D800EA1571 /* TaskDueDateEditor */,
+				0C8738A61FB971D800EA1571 /* TaskDueDateTimeEditor */,
+				0C713F501FC54F1200D8FF8B /* TaskDueDatePicker */,
 				0C1E25E01FC2F01E0060E673 /* TaskDueTimePicker */,
 				0C8738AB1FB971D800EA1571 /* TaskLocationEditor */,
 				0C8738B01FB971D800EA1571 /* TaskReminderEditor */,
@@ -420,14 +433,12 @@
 			path = ParameterEditors;
 			sourceTree = "<group>";
 		};
-		0C8738A61FB971D800EA1571 /* TaskDueDateEditor */ = {
+		0C8738A61FB971D800EA1571 /* TaskDueDateTimeEditor */ = {
 			isa = PBXGroup;
 			children = (
-				0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */,
-				0C8738A81FB971D800EA1571 /* CalendarView.swift */,
-				0C8738AA1FB971D800EA1571 /* TaskDueDateEditor.swift */,
+				0C8738AA1FB971D800EA1571 /* TaskDueDateTimeEditor.swift */,
 			);
-			path = TaskDueDateEditor;
+			path = TaskDueDateTimeEditor;
 			sourceTree = "<group>";
 		};
 		0C8738AB1FB971D800EA1571 /* TaskLocationEditor */ = {
@@ -1531,7 +1542,7 @@
 				96115F631F72E4060050D7A3 /* Calendar.swift in Sources */,
 				96B0B9BC1FB832E30009BA3B /* AppDelegate+Notifications.swift in Sources */,
 				963D6A7E1F60711C0063E295 /* MainTopViewController.swift in Sources */,
-				0C8738D21FB9747700EA1571 /* TaskDueDateEditor.swift in Sources */,
+				0C8738D21FB9747700EA1571 /* TaskDueDateTimeEditor.swift in Sources */,
 				0C8738E11FBADDCD00EA1571 /* TaskEditorViewProtocols.swift in Sources */,
 				96477A601F8131BE005C3520 /* TasksImportView.swift in Sources */,
 				963D6A841F60746A0063E295 /* ListCell.swift in Sources */,
@@ -1645,6 +1656,7 @@
 				96AAA58C1FB054A400F547A0 /* InAppPurchasesViewController.swift in Sources */,
 				0C8738CD1FB9746200EA1571 /* TaskEditorPresenter.swift in Sources */,
 				96BE0A381F65BFB00041FBEA /* ListEditorAssembly.swift in Sources */,
+				0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */,
 				96A5F11C1F4D4D5900F94553 /* List.swift in Sources */,
 				96AAA5811FADCA3300F547A0 /* GroupEditingActionsView.swift in Sources */,
 				96AAA5921FB0690700F547A0 /* InAppPurchases.swift in Sources */,

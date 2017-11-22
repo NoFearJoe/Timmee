@@ -28,6 +28,7 @@ final class TaskDueTimePicker: UIViewController {
     @IBOutlet fileprivate var timeSeparators: [UIView]!
     
     weak var output: TaskDueTimePickerOutput?
+    weak var container: TaskParameterEditorOutput?
 
     override func viewDidLoad() {
         super.viewDidLoad()

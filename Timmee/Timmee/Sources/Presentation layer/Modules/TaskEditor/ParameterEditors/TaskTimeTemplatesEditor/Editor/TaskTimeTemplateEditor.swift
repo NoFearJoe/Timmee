@@ -27,6 +27,7 @@ final class TaskTimeTemplateEditor: UIViewController {
     fileprivate var timeTemplate: TimeTemplate!
     
     weak var output: TaskTimeTemplateEditorOutput?
+    weak var container: TaskParameterEditorOutput?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,16 @@ final class TaskTimeTemplateEditor: UIViewController {
         setupTitleTextField()
         setupDueTimeView()
         setupNotificationView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        container?.doneButton.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        container?.doneButton.isHidden = false
     }
     
     deinit {
@@ -114,11 +125,13 @@ fileprivate extension TaskTimeTemplateEditor {
     func updateDueTime() {
         dueTimeView.text = timeTemplate.dueDate?.asTimeString ?? "due_time".localized
         dueTimeView.isFilled = timeTemplate.dueDate != nil
+        updateDoneButton()
     }
     
     func updateNotification() {
         notificationView.text = timeTemplate.notification.title
         notificationView.isFilled = timeTemplate.notification != .doNotNotify
+        updateDoneButton()
     }
     
 }
@@ -216,11 +229,16 @@ fileprivate extension TaskTimeTemplateEditor {
     
     @objc func titleChanged() {
         timeTemplate.title = titleTextField.text ?? ""
+        updateDoneButton()
     }
     
 }
 
 fileprivate extension TaskTimeTemplateEditor {
+    
+    func updateDoneButton() {
+        container?.doneButton.isHidden = !isTimeTemplateValid(timeTemplate)
+    }
     
     func isTimeTemplateValid(_ timeTemplate: TimeTemplate) -> Bool {
         return timeTemplate.dueDate != nil

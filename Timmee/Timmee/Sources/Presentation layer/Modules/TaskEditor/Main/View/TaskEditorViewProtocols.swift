@@ -16,7 +16,7 @@ protocol TaskEditorViewInput: class {
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
     func setTimeTemplate(_ timeTemplate: TimeTemplate?)
-    func setDueDate(_ dueDate: String?)
+    func setDueDateTime(_ dueDate: String?)
     func setReminder(_ reminder: NotificationMask)
     func setRepeatEndingDate(_ repeatEndingDate: String?)
     func setRepeat(_ repeat: RepeatMask)
@@ -32,7 +32,7 @@ protocol TaskEditorViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: class, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput {
+protocol TaskEditorViewOutput: class, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -42,10 +42,11 @@ protocol TaskEditorViewOutput: class, TaskEditorViewTimeTemplateOutput, TaskEdit
     func taskImportantChanged(to isImportant: Bool)
     
     func willPresentTimeTemplatePicker(_ input: TaskTimeTemplatePickerInput)
-    func willPresentDueDateEditor(_ input: TaskDueDateEditorInput)
+    func willPresentDueDatePicker(_ input: TaskDueDatePickerInput)
+    func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput)
     func willPresentReminderEditor(_ input: TaskReminderEditorInput)
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput)
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateEditorInput)
+    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateTimeEditorInput)
     func willPresentLocationEditor(_ input: TaskLocationEditorInput)
     func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
@@ -57,9 +58,9 @@ protocol TaskEditorViewTimeTemplateOutput: class {
     func timeTemplateCleared()
 }
 
-protocol TaskEditorViewDueDateOutput: class {
-    func dueDateChanged(to dueDate: Date?)
-    func dueDateCleared()
+protocol TaskEditorViewDueDateTimeOutput: class {
+    func dueDateTimeChanged(to dueDate: Date?)
+    func dueDateTimeCleared()
 }
 
 protocol TaskEditorViewReminderOutput: class {

@@ -61,7 +61,7 @@ final class DayNumberLabel: UILabel {
         super.awakeFromNib()
         
         backgroundColor = AppTheme.current.panelColor
-        selectedTextColor = AppTheme.current.backgroundColor
+        selectedTextColor = AppTheme.current.backgroundTintColor
     }
     
     

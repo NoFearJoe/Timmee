@@ -57,7 +57,7 @@ extension TaskEditorPresenter: TaskEditorInput {
         
         view.setTimeTemplate(self.task.timeTemplate)
         
-        showFormattedDueDate(self.task.dueDate)
+        showFormattedDueDateTime(self.task.dueDate)
         
         view.setReminder(self.task.notification)
         view.setRepeat(self.task.repeating)
@@ -87,7 +87,7 @@ extension TaskEditorPresenter: TaskEditorInput {
     
     func setDueDate(_ dueDate: Date) {
         task.dueDate = dueDate
-        showFormattedDueDate(dueDate)
+        showFormattedDueDateTime(dueDate)
     }
 
 }
@@ -130,15 +130,21 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
         task.timeTemplate = timeTemplate
+        
+        task.dueDate = task.dueDate ?? Date()
+        if let timeTemplateDueDate = timeTemplate?.dueDate {
+            task.dueDate => timeTemplateDueDate.hours.asHours
+            task.dueDate => timeTemplateDueDate.minutes.asMinutes
+        }
+        
+        showFormattedDueDateTime(task.dueDate)
 
         if timeTemplate == nil {
-            showFormattedDueDate(task.dueDate)
             view.setReminder(task.notification)
             if task.dueDate != nil {
                 view.setRepeat(task.repeating)
             }
         } else {
-            view.setDueDate(nil)
             view.setReminder(.doNotNotify)
             view.setRepeat(task.repeating)
         }
@@ -146,9 +152,13 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         view.setTimeTemplate(timeTemplate)
     }
     
-    func dueDateChanged(to dueDate: Date?) {
+    func dueDateTimeChanged(to dueDate: Date?) {
         task.dueDate = dueDate
-        showFormattedDueDate(dueDate)
+        if let timeTemplateDueDate = task.timeTemplate?.dueDate {
+            task.dueDate => timeTemplateDueDate.hours.asHours
+            task.dueDate => timeTemplateDueDate.minutes.asMinutes
+        }
+        showFormattedDueDateTime(task.dueDate)
     }
     
     func reminderChanged(to reminder: NotificationMask) {
@@ -209,7 +219,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func timeTemplateCleared() {
         task.timeTemplate = nil
         
-        showFormattedDueDate(task.dueDate)
+        showFormattedDueDateTime(task.dueDate)
         view.setReminder(task.notification)
         if task.dueDate != nil {
             view.setRepeat(task.repeating)
@@ -218,10 +228,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         view.setTimeTemplate(nil)
     }
     
-    func dueDateCleared() {
+    func dueDateTimeCleared() {
         task.dueDate = nil
         
-        view.setDueDate(nil)
+        view.setDueDateTime(nil)
     }
     
     func reminderCleared() {
@@ -253,7 +263,11 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         input.setSelectedTimeTemplate(task.timeTemplate)
     }
     
-    func willPresentDueDateEditor(_ input: TaskDueDateEditorInput) {
+    func willPresentDueDatePicker(_ input: TaskDueDatePickerInput) {
+        input.setDueDate(task.dueDate ?? Date())
+    }
+    
+    func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput) {
         input.setDueDate(task.dueDate)
     }
     
@@ -265,7 +279,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         input.setRepeatMask(task.repeating)
     }
     
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateEditorInput) {
+    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateTimeEditorInput) {
         let minimumDate = task.dueDate + 1.asDays
         input.setMinimumDate(minimumDate)
         input.setDueDate(task.repeatEndingDate ?? minimumDate)
@@ -298,13 +312,13 @@ extension TaskEditorPresenter: TaskEditorInteractorOutput {}
 
 fileprivate extension TaskEditorPresenter {
 
-    func showFormattedDueDate(_ dueDate: Date?) {
-        view.setDueDate(makeFormattedString(from: dueDate))
+    func showFormattedDueDateTime(_ dueDate: Date?) {
+        view.setDueDateTime(makeFormattedString(from: dueDate))
     }
     
     func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {
         if let dateString = makeFormattedString(from: repeatEndingDate) {
-            view.setRepeatEndingDate("until".localized + " " + dateString)
+            view.setRepeatEndingDate(dateString)
         } else {
             view.setRepeatEndingDate(nil)
         }

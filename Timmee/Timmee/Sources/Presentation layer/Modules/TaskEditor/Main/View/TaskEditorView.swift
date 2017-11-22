@@ -23,13 +23,13 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var doneButton: UIButton!
     
     @IBOutlet fileprivate var timeTemplateView: TaskComplexParameterView!
-    @IBOutlet fileprivate var dueDateView: TaskParameterView!
+    @IBOutlet fileprivate var dueDateTimeView: TaskParameterView!
     @IBOutlet fileprivate var reminderView: TaskParameterView!
     @IBOutlet fileprivate var repeatView: TaskParameterView!
     @IBOutlet fileprivate var repeatEndingDateView: TaskParameterView!
     
-    @IBOutlet fileprivate var locationView: TaskParameterView!
-    @IBOutlet fileprivate var locationReminderView: TaskCheckableParameterView!
+//    @IBOutlet fileprivate var locationView: TaskParameterView!
+//    @IBOutlet fileprivate var locationReminderView: TaskCheckableParameterView!
     
     @IBOutlet fileprivate var taskTagsView: TaskTagsView!
     
@@ -44,8 +44,8 @@ final class TaskEditorView: UIViewController {
     
     fileprivate var shouldForceResignFirstResponder = false
     
-    fileprivate var dueDateEditorHandler = TaskDueDateEditorHandler()
-    fileprivate var repeatEndingDateEditorHandler = TaskDueDateEditorHandler()
+    fileprivate var dueDateEditorHandler = TaskDueDateTimeEditorHandler()
+    fileprivate var repeatEndingDateEditorHandler = TaskDueDateTimeEditorHandler()
     
     fileprivate weak var taskParameterEditorContainer: TaskParameterEditorContainer?
         
@@ -89,13 +89,13 @@ final class TaskEditorView: UIViewController {
         
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
             if isFilled {
-                // Show date only picker
-                self.dueDateView.isHidden = true
+                self.reminderView.isHidden = true
                 self.repeatView.isHidden = false
+                self.dueDateTimeView.canClear = false
             } else {
-                // Hide date only picker
-                self.repeatView.isHidden = !self.dueDateView.isFilled
-                self.dueDateView.isHidden = false
+                self.reminderView.isHidden = !self.dueDateTimeView.isFilled
+                self.repeatView.isHidden = !self.dueDateTimeView.isFilled
+                self.dueDateTimeView.canClear = true
             }
         }
         timeTemplateView.didClear = { [unowned self] in
@@ -105,16 +105,20 @@ final class TaskEditorView: UIViewController {
             self.showTaskParameterEditor(with: .timeTemplates)
         }
         
-        dueDateView.didChangeFilledState = { [unowned self] isFilled in
-            self.reminderView.isHidden = !isFilled
+        dueDateTimeView.didChangeFilledState = { [unowned self] isFilled in
+            self.reminderView.isHidden = !isFilled || self.timeTemplateView.isFilled
             self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
             self.repeatEndingDateView.isHidden = !isFilled || !self.repeatView.isFilled
         }
-        dueDateView.didClear = { [unowned self] in
-            self.output.dueDateCleared()
+        dueDateTimeView.didClear = { [unowned self] in
+            self.output.dueDateTimeCleared()
         }
-        dueDateView.didTouchedUp = { [unowned self] in
-            self.showTaskParameterEditor(with: .dueDate)
+        dueDateTimeView.didTouchedUp = { [unowned self] in
+            if self.timeTemplateView.isFilled {
+                self.showTaskParameterEditor(with: .dueDate)
+            } else {
+                self.showTaskParameterEditor(with: .dueDateTime)
+            }
         }
         
         reminderView.didClear = { [unowned self] in
@@ -141,20 +145,19 @@ final class TaskEditorView: UIViewController {
             self.showTaskParameterEditor(with: .repeatEndingDate)
         }
         
-        locationView.didChangeFilledState = { [unowned self] isFilled in
-            self.locationReminderView.isHidden = !isFilled
-        }
-        locationView.didClear = { [unowned self] in
-            self.output.locationCleared()
-        }
-        locationView.didTouchedUp = { [unowned self] in
-            self.showLocationEditor()
-        }
+//        locationView.didChangeFilledState = { [unowned self] isFilled in
+//            self.locationReminderView.isHidden = !isFilled
+//        }
+//        locationView.didClear = { [unowned self] in
+//            self.output.locationCleared()
+//        }
+//        locationView.didTouchedUp = { [unowned self] in
+//            self.showLocationEditor()
+//        }
         
-        locationReminderView.didChangeCkeckedState = { [unowned self] isChecked in
-            self.output.locationReminderSelectionChanged(to: isChecked)
-        }
-        
+//        locationReminderView.didChangeCkeckedState = { [unowned self] isChecked in
+//            self.output.locationReminderSelectionChanged(to: isChecked)
+//        }
 
         taskTagsView.didTouchedUp = { [unowned self] in
             self.showTaskParameterEditor(with: .tags)
@@ -166,7 +169,7 @@ final class TaskEditorView: UIViewController {
         
         
         dueDateEditorHandler.onDateChange = { [unowned self] date in
-            self.output.dueDateChanged(to: date)
+            self.output.dueDateTimeChanged(to: date)
         }
         
         repeatEndingDateEditorHandler.onDateChange = { [unowned self] date in
@@ -256,10 +259,9 @@ extension TaskEditorView: TaskEditorViewInput {
         timeTemplateView.isFilled = timeTemplate != nil
     }
     
-    func setDueDate(_ dueDate: String?) {
-        dueDateView.text = dueDate ?? "due_date".localized
-        
-        dueDateView.isFilled = dueDate != nil
+    func setDueDateTime(_ dueDate: String?) {
+        dueDateTimeView.text = dueDate ?? "due_date".localized
+        dueDateTimeView.isFilled = dueDate != nil
     }
     
     func setReminder(_ reminder: NotificationMask) {
@@ -287,13 +289,13 @@ extension TaskEditorView: TaskEditorViewInput {
     }
     
     func setLocation(_ location: String?) {
-        locationView.text = location ?? "location".localized
+//        locationView.text = location ?? "location".localized
         
-        locationView.isFilled = location != nil
+//        locationView.isFilled = location != nil
     }
     
     func setLocationReminderIsSelected(_ isSelected: Bool) {
-        locationReminderView.isChecked = isSelected
+//        locationReminderView.isChecked = isSelected
     }
     
     func setTaskImportant(_ isImportant: Bool) {
@@ -338,7 +340,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
     
     func taskParameterEditingCancelled(type: TaskParameterEditorType) {
         switch type {
-        case .dueDate: output?.dueDateCleared()
+        case .dueDateTime: output?.dueDateTimeCleared()
         case .reminder: output?.reminderCleared()
         case .repeating: output?.repeatCleared()
         case .repeatEndingDate: output?.repeatEndingDateCleared()
@@ -347,6 +349,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output?.locationCleared()
         case .tags: output?.tagsCleared()
         case .timeTemplates: output?.timeTemplateCleared()
+        case .dueDate: return
         case .dueTime: return
         }
     }
@@ -359,11 +362,18 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
 
     func editorViewController(forType type: TaskParameterEditorType) -> UIViewController {
         switch type {
-        case .dueDate:
-            let viewController = ViewControllersFactory.taskDueDateEditor
+        case .dueDateTime:
+            let viewController = ViewControllersFactory.taskDueDateTimeEditor
             viewController.loadViewIfNeeded()
             viewController.output = dueDateEditorHandler
-            output.willPresentDueDateEditor(viewController)
+            output.willPresentDueDateTimeEditor(viewController)
+            return viewController
+        case .dueDate:
+            let viewController = ViewControllersFactory.taskDueDatePicker
+            viewController.loadViewIfNeeded()
+            viewController.output = self
+            viewController.canClear = false
+            output.willPresentDueDatePicker(viewController)
             return viewController
         case .reminder:
             let viewController = ViewControllersFactory.taskReminderEditor
@@ -377,7 +387,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output.willPresentRepeatingEditor(viewController)
             return viewController
         case .repeatEndingDate:
-            let viewController = ViewControllersFactory.taskDueDateEditor
+            let viewController = ViewControllersFactory.taskDueDateTimeEditor
             viewController.loadViewIfNeeded()
             viewController.output = repeatEndingDateEditorHandler
             output.willPresentRepeatEndingDateEditor(viewController)
@@ -423,7 +433,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
 
 }
 
-final class TaskDueDateEditorHandler: TaskDueDateEditorOutput {
+final class TaskDueDateTimeEditorHandler: TaskDueDateTimeEditorOutput {
 
     var onDateChange: ((Date) -> Void)?
     
@@ -437,6 +447,14 @@ extension TaskEditorView: TaskTimeTemplatePickerOutput {
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
         output.timeTemplateChanged(to: timeTemplate)
+    }
+    
+}
+
+extension TaskEditorView: TaskDueDatePickerOutput {
+    
+    func didChangeDueDate(to date: Date) {
+        output.dueDateTimeChanged(to: date)
     }
     
 }
@@ -513,9 +531,9 @@ fileprivate extension TaskEditorView {
                 separator.isHidden = !isEnabled
             })
         }
-        let viewsToHide: [UIView] = [taskNoteField, dueDateView,
+        let viewsToHide: [UIView] = [taskNoteField, dueDateTimeView,
                                      reminderView, repeatView,
-                                     locationView, locationReminderView,
+                                     /*locationView, locationReminderView,*/
                                      taskImportancyPicker, timeTemplateView,
                                      subtasksContainer, taskTagsView]
         viewsToHide.forEach { view in
