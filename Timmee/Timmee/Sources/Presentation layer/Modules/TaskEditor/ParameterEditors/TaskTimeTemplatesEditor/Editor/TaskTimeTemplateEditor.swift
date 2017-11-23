@@ -44,6 +44,13 @@ final class TaskTimeTemplateEditor: UIViewController {
         container?.doneButton.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if titleTextField.text == nil || titleTextField.text!.isEmpty {
+            titleTextField.becomeFirstResponder()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         container?.doneButton.isHidden = false

@@ -21,10 +21,12 @@ final class TaskSchedulerService {
         
         let location = task.shouldNotifyAtLocation ? task.location : nil
         
-        if let dueDate = task.dueDate, task.notification != .doNotNotify {
+        let notification = task.timeTemplate?.notification ?? task.notification
+        
+        if let dueDate = task.dueDate, notification != .doNotNotify {
             switch task.repeating.type {
             case .never:
-                let fireDate = dueDate - task.notification.minutes.asMinutes
+                let fireDate = dueDate - notification.minutes.asMinutes
                 scheduleLocalNotification(withID: task.id,
                                           title: listTitle,
                                           message: task.title,
@@ -43,7 +45,7 @@ final class TaskSchedulerService {
                         case .year: date = date + index.asYears
                         }
                     }
-                    let fireDate = date - task.notification.minutes.asMinutes
+                    let fireDate = date - notification.minutes.asMinutes
                     scheduleLocalNotification(withID: task.id,
                                               title: listTitle,
                                               message: task.title,
@@ -54,7 +56,7 @@ final class TaskSchedulerService {
                 }
             case .on(let unit):
                 (0..<7).forEach { day in
-                    let fireDate = dueDate + day.asDays
+                    let fireDate = dueDate + day.asDays - notification.minutes.asMinutes
                     let dayNumber = fireDate.weekday
                     if unit.dayNumbers.contains(dayNumber) {
                         scheduleLocalNotification(withID: task.id,

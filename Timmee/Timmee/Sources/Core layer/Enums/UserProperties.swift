@@ -13,6 +13,8 @@ enum UserProperty {
     case isEducationShown
     case isAppRated
     
+    case isDefaultTimeTemplatesAdded
+    
     case appTheme
     
     case listSorting
@@ -27,6 +29,7 @@ enum UserProperty {
         case .isFirstLoad: return "isFirstLoad"
         case .isEducationShown: return "isEducationShown"
         case .isAppRated: return "isAppRated"
+        case .isDefaultTimeTemplatesAdded: return "isDefaultTimeTemplatesAdded"
         case .appTheme: return "appTheme"
         case .listSorting: return "listSorting"
         case .pinCode: return "pinCode"

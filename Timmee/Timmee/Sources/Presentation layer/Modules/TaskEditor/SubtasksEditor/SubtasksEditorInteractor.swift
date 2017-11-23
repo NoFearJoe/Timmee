@@ -14,14 +14,14 @@ final class SubtasksEditorInteractor {
     let subtasksService = SubtasksService()
     
     fileprivate var sortedSubtasks: [Subtask] {
-        return taskProvider?.task?.subtasks.sorted(by: { $0.0.sortPosition < $0.1.sortPosition }) ?? []
+        return taskProvider?.task?.subtasks.sorted(by: { $0.0.sortPosition > $0.1.sortPosition }) ?? []
     }
     
 }
 
 extension SubtasksEditorInteractor: SubtasksEditorOutput {
     
-    func addSubtask(with title: String) {
+    func addSubtask(with title: String) {  
         guard let taskProvider = taskProvider else { return  }
         
         let subtask = createSubtask(sortPosition: nextSubtaskSortPosition())
@@ -69,9 +69,9 @@ extension SubtasksEditorInteractor: SubtasksEditorOutput {
                 guard index != indexes.0 else { return }
                 if let subtask = subtasks.item(at: index) {
                     if indexes.0 > indexes.1 {
-                        subtask.sortPosition += 1
-                    } else {
                         subtask.sortPosition -= 1
+                    } else {
+                        subtask.sortPosition += 1
                     }
                 }
             }
@@ -130,7 +130,7 @@ fileprivate extension SubtasksEditorInteractor {
 fileprivate extension SubtasksEditorInteractor {
     
     func nextSubtaskSortPosition() -> Int {
-        return (sortedSubtasks.last?.sortPosition ?? 0) + 1
+        return (sortedSubtasks.first?.sortPosition ?? 0) + 1
     }
     
 }

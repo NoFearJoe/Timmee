@@ -96,6 +96,10 @@
 "on_saturday" = "В субботу";
 "on_sunday" = "В воскресенье";
 
+"template_at_morning" = "Утром";
+"template_at_launch" = "В обед";
+"template_at_afternoon" = "Вечером";
+
 "settings" = "Настройки";
 "background_color" = "Цвет фона";
 "password_protection" = "Защита паролем";

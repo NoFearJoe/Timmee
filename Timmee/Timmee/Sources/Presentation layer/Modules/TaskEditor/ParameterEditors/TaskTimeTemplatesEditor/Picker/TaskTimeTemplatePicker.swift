@@ -59,7 +59,8 @@ final class TaskTimeTemplatePicker: UIViewController {
         }
         cellActionsProvider.onEdit = { [unowned self] indexPath in
             if let timeTemplate = self.timeTemplates.item(at: indexPath.row) {
-                self.transitionOutput?.didAskToShowTimeTemplateEditor { editor in
+                self.transitionOutput?.didAskToShowTimeTemplateEditor { [unowned self] editor in
+                    editor.output = self
                     editor.setTimeTemplate(timeTemplate)
                 }
             }
@@ -91,6 +92,8 @@ extension TaskTimeTemplatePicker: TaskTimeTemplatePickerInput {
     
 }
 
+// MARK: - UITableViewDataSource
+
 extension TaskTimeTemplatePicker: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -116,6 +119,8 @@ extension TaskTimeTemplatePicker: UITableViewDataSource {
     
 }
 
+// MARK: - UITableViewDelegate
+
 extension TaskTimeTemplatePicker: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -134,10 +139,23 @@ extension TaskTimeTemplatePicker: UITableViewDelegate {
 fileprivate extension TaskTimeTemplatePicker {
     
     func updateTimeTemplates() {
-        timeTemplates = timeTemplatesService.fetchTimeTemplates()
+        var timeTemplates = timeTemplatesService.fetchTimeTemplates()
+        
+        if !UserProperty.isDefaultTimeTemplatesAdded.bool() {
+            timeTemplates.append(contentsOf: defaultTimeTemplates)
+            UserProperty.isDefaultTimeTemplatesAdded.setBool(true)
+            
+            defaultTimeTemplates.forEach { template in
+                self.timeTemplatesService.createOrUpdateTimeTemplate(template, completion: nil)
+            }
+        }
+        
+        self.timeTemplates = timeTemplates
     }
     
 }
+
+// MARK: - Time templates management
 
 fileprivate extension TaskTimeTemplatePicker {
     
@@ -190,10 +208,41 @@ fileprivate extension TaskTimeTemplatePicker {
     
 }
 
+// MARK: - TaskTimeTemplateEditorOutput
+
 extension TaskTimeTemplatePicker: TaskTimeTemplateEditorOutput {
     
     func timeTemplateCreated() {
         transitionOutput?.didCompleteTimeTemplateEditing()
+    }
+    
+}
+
+// MARK: - Default time templates
+
+fileprivate extension TaskTimeTemplatePicker {
+    
+    var defaultTimeTemplates: [TimeTemplate] {
+        var morningDate = Date()
+        morningDate => 9.asHours
+        morningDate => 0.asMinutes
+        morningDate => 0.asSeconds
+        
+        var launchDate = Date()
+        launchDate => 14.asHours
+        launchDate => 0.asMinutes
+        launchDate => 0.asSeconds
+        
+        var afternoonDate = Date()
+        afternoonDate => 20.asHours
+        afternoonDate => 0.asMinutes
+        afternoonDate => 0.asSeconds
+        
+        return [
+            TimeTemplate(id: "_ttMorning", title: "template_at_morning".localized, dueDate: morningDate, notification: .justInTime),
+            TimeTemplate(id: "_ttLaunch", title: "template_at_launch".localized, dueDate: launchDate, notification: .justInTime),
+            TimeTemplate(id: "_ttAfternoon", title: "template_at_afternoon".localized, dueDate: afternoonDate, notification: .justInTime)
+        ]
     }
     
 }

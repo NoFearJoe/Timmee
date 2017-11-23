@@ -151,8 +151,9 @@ open class GrowingTextView: UIScrollView {
   }
 
   private func setup() {
-
+    showsVerticalScrollIndicator = false
     _textView.isScrollEnabled = false
+    _textView.showsVerticalScrollIndicator = false
     _textView.font = UIFont.systemFont(ofSize: 16)
     _textView.backgroundColor = UIColor.clear
     addSubview(_textView)
@@ -211,7 +212,10 @@ open class GrowingTextView: UIScrollView {
     }
 
     invalidateIntrinsicContentSize()
-    delegates.didChangeHeight(frame.height)
+    
+    if oldScrollViewFrame.height != newScrollViewFrame.height {
+        delegates.didChangeHeight(frame.height)
+    }
   }
 
   private func scrollToBottom() {

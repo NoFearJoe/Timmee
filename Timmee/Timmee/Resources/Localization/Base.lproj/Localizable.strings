@@ -96,6 +96,10 @@
 "on_saturday" = "On saturday";
 "on_sunday" = "On sunday";
 
+"template_at_morning" = "At morning";
+"template_at_launch" = "At launch";
+"template_at_afternoon" = "At afternoon";
+
 "settings" = "Settings";
 "background_color" = "Background color";
 "password_protection" = "Password protection";

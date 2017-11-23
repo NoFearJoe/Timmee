@@ -63,15 +63,19 @@ final class SubtasksEditor: UIViewController {
             self?.output?.removeSubtask(at: indexPath.row)
         }
         
-        keyboardManager.keyboardWillAppear = { [weak self] frame, duration in
-            guard let `self` = self else { return }
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
             guard self.addSubtaskView.isFirstResponder else { return }
+            
+            self.savedContentOffset = nil
             
             let addSubtasksFrame = self.contentScrollView.convert(self.addSubtaskView.frame, from: self.view)
             let offsetY = addSubtasksFrame.minY
             UIView.animate(withDuration: duration, animations: {
                 self.contentScrollView.contentOffset = CGPoint(x: 0, y: offsetY)
             })
+        }
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.savedContentOffset = nil
         }
     }
     
@@ -175,6 +179,8 @@ extension SubtasksEditor: UITableViewDataSource {
             cell.isDone = subtask.isDone
             
             cell.onBeginEditing = { [unowned self] in
+                self.savedContentOffset = nil
+                
                 let frame = cell.frame
                 let normalFrame = self.contentScrollView.convert(frame, from: tableView)
                 UIView.animate(withDuration: 0.2, animations: {
@@ -190,16 +196,15 @@ extension SubtasksEditor: UITableViewDataSource {
             cell.onChangeHeight = { [unowned self] height in
                 let currentOffset = self.contentScrollView.contentOffset
                 self.savedContentOffset = currentOffset
-//                UIView.performWithoutAnimation {
-                UIView.setAnimationsEnabled(false)
+                
+                UIView.performWithoutAnimation {
                     self.tableView.beginUpdates()
                     self.tableView.endUpdates()
-                UIView.setAnimationsEnabled(true)
-                    
-                    if currentOffset != .zero {
-                        self.contentScrollView.contentOffset = currentOffset
-                    }
-//                }
+                }
+            
+                if currentOffset != .zero {
+                    self.contentScrollView.contentOffset = currentOffset
+                }
             }
             
             cell.delegate = subtaskCellActionsProvider
