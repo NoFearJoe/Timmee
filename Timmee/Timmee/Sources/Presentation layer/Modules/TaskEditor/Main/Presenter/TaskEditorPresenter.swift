@@ -132,9 +132,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.timeTemplate = timeTemplate
         
         task.dueDate = task.dueDate ?? Date()
-        if let timeTemplateDueDate = timeTemplate?.dueDate {
-            task.dueDate => timeTemplateDueDate.hours.asHours
-            task.dueDate => timeTemplateDueDate.minutes.asMinutes
+        if let time = timeTemplate?.time {
+            task.dueDate => time.hours.asHours
+            task.dueDate => time.minutes.asMinutes
         }
         
         showFormattedDueDateTime(task.dueDate)
@@ -154,9 +154,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func dueDateTimeChanged(to dueDate: Date?) {
         task.dueDate = dueDate
-        if let timeTemplateDueDate = task.timeTemplate?.dueDate {
-            task.dueDate => timeTemplateDueDate.hours.asHours
-            task.dueDate => timeTemplateDueDate.minutes.asMinutes
+        if let time = task.timeTemplate?.time {
+            task.dueDate => time.hours.asHours
+            task.dueDate => time.minutes.asMinutes
         }
         showFormattedDueDateTime(task.dueDate)
     }

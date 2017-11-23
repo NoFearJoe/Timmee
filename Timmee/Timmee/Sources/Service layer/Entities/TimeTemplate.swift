@@ -12,23 +12,23 @@ import class Foundation.NSDate
 final class TimeTemplate {
     var id: String
     var title: String
-    var dueDate: Date?
+    var time: (hours: Int, minutes: Int)?
     var notification: NotificationMask
     
     init(id: String,
          title: String,
-         dueDate: Date?,
+         time: (hours: Int, minutes: Int)?,
          notification: NotificationMask) {
         self.id = id
         self.title = title
-        self.dueDate = dueDate
+        self.time = time
         self.notification = notification
     }
     
     init(entity: TimeTemplateEntity) {
         id = entity.id ?? ""
         title = entity.title ?? ""
-        dueDate = (entity.dueDate ?? NSDate()) as Date
+        time = (Int(entity.hours), Int(entity.minutes))
         notification = NotificationMask(mask: entity.notification)
     }
 }

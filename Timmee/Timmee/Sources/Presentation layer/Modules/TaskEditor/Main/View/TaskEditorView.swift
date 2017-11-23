@@ -250,8 +250,14 @@ extension TaskEditorView: TaskEditorViewInput {
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
         timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
-        if let timeTemplate = timeTemplate {
-            timeTemplateView.subtitle = timeTemplate.dueDate!.asTimeString + ", " + timeTemplate.notification.title
+        if let timeTemplate = timeTemplate, let time = timeTemplate.time {
+            let minutes: String
+            if time.minutes < 10 {
+                minutes = "\(time.minutes)0"
+            } else {
+                minutes = "\(time.minutes)"
+            }
+            timeTemplateView.subtitle = "\(time.hours):\(minutes), " + timeTemplate.notification.title
         } else {
             timeTemplateView.subtitle = nil
         }

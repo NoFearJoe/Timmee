@@ -13,7 +13,8 @@ extension TimeTemplateEntity {
     func map(from timeTemplate: TimeTemplate) {
         id = timeTemplate.id
         title = timeTemplate.title
-        dueDate = timeTemplate.dueDate as NSDate?
+        hours = Int16(timeTemplate.time?.hours ?? 0)
+        minutes = Int16(timeTemplate.time?.minutes ?? 0)
         notification = timeTemplate.notification.rawValue
     }
     

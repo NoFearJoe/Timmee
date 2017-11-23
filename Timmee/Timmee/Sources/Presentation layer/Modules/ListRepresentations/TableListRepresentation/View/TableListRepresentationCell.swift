@@ -184,7 +184,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         
         if !task.isDone {
             timeTemplate = task.timeTemplate?.title
-            dueDate = task.dueDate?.asDayMonthTime
+            dueDate = makeFormattedString(from: task.dueDate)
             subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         } else {
             timeTemplate = nil
@@ -255,6 +255,21 @@ fileprivate extension TableListRepresentationCell {
     
     @objc func tapImportancyView() {
         onTapToImportancy?()
+    }
+    
+    // TODO: Refactoring
+    func makeFormattedString(from date: Date?) -> String? {
+        if let date = date {
+            let nearestDate = NearestDate(date: date)
+            
+            if case .custom = nearestDate {
+                return date.asDayMonthTime
+            } else {
+                return nearestDate.title + ", " + date.asTimeString
+            }
+        } else {
+            return nil
+        }
     }
     
 }

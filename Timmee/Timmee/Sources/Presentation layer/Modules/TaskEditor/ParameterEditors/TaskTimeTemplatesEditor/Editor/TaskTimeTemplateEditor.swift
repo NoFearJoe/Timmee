@@ -110,7 +110,7 @@ fileprivate extension TaskTimeTemplateEditor {
     
     func setupDueTimeView() {
         dueTimeView.didClear = { [unowned self] in
-            self.timeTemplate.dueDate = nil
+            self.timeTemplate.time = nil
             self.updateDueTime()
         }
         dueTimeView.didTouchedUp = { [unowned self] in
@@ -130,8 +130,18 @@ fileprivate extension TaskTimeTemplateEditor {
     
     
     func updateDueTime() {
-        dueTimeView.text = timeTemplate.dueDate?.asTimeString ?? "due_time".localized
-        dueTimeView.isFilled = timeTemplate.dueDate != nil
+        if let time = timeTemplate.time {
+            let minutes: String
+            if time.minutes < 10 {
+                minutes = "\(time.minutes)0"
+            } else {
+                minutes = "\(time.minutes)"
+            }
+            dueTimeView.text = "\(time.hours):\(minutes)"
+        } else {
+            dueTimeView.text = "due_time".localized
+        }
+        dueTimeView.isFilled = timeTemplate.time != nil
         updateDoneButton()
     }
     
@@ -148,7 +158,7 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
     func taskParameterEditingCancelled(type: TaskParameterEditorType) {
         switch type {
         case .dueTime:
-            timeTemplate.dueDate = nil
+            timeTemplate.time = nil
             updateDueTime()
         case .reminder:
             timeTemplate.notification = .doNotNotify
@@ -166,9 +176,9 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
             viewController.loadViewIfNeeded()
             viewController.output = self
             
-            if timeTemplate.dueDate == nil { timeTemplate.dueDate = makeDueTime() }
-            viewController.setHours(timeTemplate.dueDate?.hours ?? 0)
-            viewController.setMinutes(timeTemplate.dueDate?.minutes ?? 0)
+            if timeTemplate.time == nil { timeTemplate.time = makeDueTime() }
+            viewController.setHours(timeTemplate.time?.hours ?? 0)
+            viewController.setMinutes(timeTemplate.time?.minutes ?? 0)
             
             return viewController
         case .reminder:
@@ -189,12 +199,12 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
 extension TaskTimeTemplateEditor: TaskDueTimePickerOutput {
     
     func didChangeHours(to hours: Int) {
-        timeTemplate.dueDate => hours.asHours
+        timeTemplate.time?.hours = hours
         updateDueTime()
     }
     
     func didChangeMinutes(to minutes: Int) {
-        timeTemplate.dueDate => minutes.asMinutes
+        timeTemplate.time?.minutes = minutes
         updateDueTime()
     }
     
@@ -248,15 +258,15 @@ fileprivate extension TaskTimeTemplateEditor {
     }
     
     func isTimeTemplateValid(_ timeTemplate: TimeTemplate) -> Bool {
-        return timeTemplate.dueDate != nil
+        return timeTemplate.time != nil
             && timeTemplate.notification != .doNotNotify
             && !timeTemplate.title.trimmed.isEmpty
     }
     
-    func makeDueTime() -> Date {
+    func makeDueTime() -> (hours: Int, minutes: Int) {
         var date = Date()
         date => TimeRounder.roundMinutes(date.minutes).asMinutes
-        return date
+        return (hours: date.hours, minutes: date.minutes)
     }
     
 }

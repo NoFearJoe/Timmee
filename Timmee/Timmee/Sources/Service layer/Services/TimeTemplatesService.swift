@@ -43,7 +43,7 @@ extension TimeTemplatesService {
         date => TimeRounder.roundMinutes(date.minutes).asMinutes
         return TimeTemplate(id: RandomStringGenerator.randomString(length: 12),
                             title: "",
-                            dueDate: date,
+                            time: (date.hours, date.minutes),
                             notification: .justInTime)
     }
     

@@ -223,25 +223,10 @@ extension TaskTimeTemplatePicker: TaskTimeTemplateEditorOutput {
 fileprivate extension TaskTimeTemplatePicker {
     
     var defaultTimeTemplates: [TimeTemplate] {
-        var morningDate = Date()
-        morningDate => 9.asHours
-        morningDate => 0.asMinutes
-        morningDate => 0.asSeconds
-        
-        var launchDate = Date()
-        launchDate => 14.asHours
-        launchDate => 0.asMinutes
-        launchDate => 0.asSeconds
-        
-        var afternoonDate = Date()
-        afternoonDate => 20.asHours
-        afternoonDate => 0.asMinutes
-        afternoonDate => 0.asSeconds
-        
         return [
-            TimeTemplate(id: "_ttMorning", title: "template_at_morning".localized, dueDate: morningDate, notification: .justInTime),
-            TimeTemplate(id: "_ttLaunch", title: "template_at_launch".localized, dueDate: launchDate, notification: .justInTime),
-            TimeTemplate(id: "_ttAfternoon", title: "template_at_afternoon".localized, dueDate: afternoonDate, notification: .justInTime)
+            TimeTemplate(id: "_ttMorning", title: "template_at_morning".localized, time: (9, 0), notification: .justInTime),
+            TimeTemplate(id: "_ttLaunch", title: "template_at_launch".localized, time: (14, 0), notification: .justInTime),
+            TimeTemplate(id: "_ttAfternoon", title: "template_at_afternoon".localized, time: (20, 0), notification: .justInTime)
         ]
     }
     
@@ -303,7 +288,16 @@ final class TimeTemplateTableCell: SwipeTableViewCell {
         setupAppearance()
         
         titleLabel.text = timeTemplate.title
-        subtitleLabel.text = timeTemplate.dueDate!.asTimeString + ", " + timeTemplate.notification.title
+        
+        if let time = timeTemplate.time {
+            let minutes: String
+            if time.minutes < 10 {
+                minutes = "\(time.minutes)0"
+            } else {
+                minutes = "\(time.minutes)"
+            }
+            subtitleLabel.text = "\(time.hours):\(minutes), " + timeTemplate.notification.title
+        }
     }
     
     func setupAppearance() {
