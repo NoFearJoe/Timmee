@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
+		0C69A5031FC8682700F78FFD /* FilesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C69A5021FC8682700F78FFD /* FilesService.swift */; };
 		0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F491FC3016900D8FF8B /* TimeRounder.swift */; };
 		0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */; };
 		0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C51FB971F200EA1571 /* SubtasksEditor.swift */; };
@@ -194,6 +195,7 @@
 
 /* Begin PBXFileReference section */
 		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
+		0C69A5021FC8682700F78FFD /* FilesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesService.swift; sourceTree = "<group>"; };
 		0C713F491FC3016900D8FF8B /* TimeRounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRounder.swift; sourceTree = "<group>"; };
 		0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDatePicker.swift; sourceTree = "<group>"; };
 		0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
@@ -955,6 +957,7 @@
 				969219CC1F9C8BCE006E47B4 /* TagsService.swift */,
 				96B0B9BF1FB89A430009BA3B /* TimeTemplatesService.swift */,
 				96A820FE1F74E3B200F2AA68 /* TaskSchedulerService.swift */,
+				0C69A5021FC8682700F78FFD /* FilesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1613,6 +1616,7 @@
 				963D6A711F5EF9250063E295 /* AppThemeConfigurator.swift in Sources */,
 				96B0B9BA1FB82CC10009BA3B /* NotificationsConfigurator.swift in Sources */,
 				96E5437D1F49ED890081C6F0 /* AppDelegate.swift in Sources */,
+				0C69A5031FC8682700F78FFD /* FilesService.swift in Sources */,
 				963D6A801F6071470063E295 /* ControlPanel.swift in Sources */,
 				96A8217D1F7904B400F2AA68 /* SwipeTaskActionsProvider.swift in Sources */,
 				96A5F1181F4A1A5100F94553 /* NotificationMask.swift in Sources */,

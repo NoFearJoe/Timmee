@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = AppTheme.current.panelColor
         
-        pinWindow = UIWindow()
-        pinWindow?.windowLevel = UIWindowLevelStatusBar
         if UserProperty.pinCode.value() != nil {
             let pinViewController = ViewControllersFactory.pinAuthentication
             pinViewController.onComplete = {
@@ -36,9 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.pinWindow = nil
                 })
             }
+            
+            pinWindow = UIWindow()
+            pinWindow?.windowLevel = UIWindowLevelStatusBar
             pinWindow?.rootViewController = pinViewController
+            pinWindow?.makeKeyAndVisible()
         }
-        pinWindow?.makeKeyAndVisible()
         
         return true
     }

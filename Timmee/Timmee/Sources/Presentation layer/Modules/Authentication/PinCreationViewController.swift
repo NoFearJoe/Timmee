@@ -8,6 +8,7 @@
 
 import Foundation
 import class UIKit.UILabel
+import class UIKit.UIBarButtonItem
 import class UIKit.UIViewController
 import class UIKit.UICollectionView
 import class UIKit.UIStoryboardSegue
@@ -48,7 +49,10 @@ final class PinCreationViewController: UIViewController {
                 UserProperty.pinCode.setString(getPinCodeHash())
                 pinCodeView.showPinCodeRight()
                 hideMessage()
-                performCompletion()
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+                    self.performCompletion()
+                }
             case .failed:
                 pinCodeView.showPinCodeWrong()
                 showMessage("passwords_are_not_equal".localized)
@@ -71,6 +75,16 @@ final class PinCreationViewController: UIViewController {
     var pinCodeLength: Int = 4
     
     var onComplete: (() -> Void)?
+    
+    var isRemovePinCodeButtonVisible: Bool = false {
+        didSet {
+            if isRemovePinCodeButtonVisible {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "remove".localized, style: .done, target: self, action: #selector(removePinCode))
+            } else {
+                navigationItem.rightBarButtonItem = nil
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +156,7 @@ extension PinCreationViewController: NumberPadAdapterOutput {
             case .complete: break
             }
         case .cancel:
+            UserProperty.pinCode.setValue(nil)
             pinEnterState = .pin1
             pinCodeView.clear()
         case .biometrics: break
@@ -155,7 +170,11 @@ fileprivate extension PinCreationViewController {
     func updatePinEnterState() {
         switch (enteredPinCode1.count, enteredPinCode2.count) {
         case (0, 0): pinEnterState = .pin1
-        case (pinCodeLength, 0): pinEnterState = .pin2
+        case (pinCodeLength, 0):
+            guard pinEnterState != .pin2 else { return }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+                self.pinEnterState = .pin2
+            }
         case (pinCodeLength, pinCodeLength):
             pinEnterState = arePinCodesEqual() ? .complete : .failed
         default: break
@@ -200,6 +219,11 @@ fileprivate extension PinCreationViewController {
         }
     }
     
+    @objc func removePinCode() {
+        UserProperty.pinCode.setValue(nil)
+        closeAuthorization()
+    }
+    
 }
 
 fileprivate extension PinCreationViewController {
@@ -209,7 +233,7 @@ fileprivate extension PinCreationViewController {
         messageLabel.textColor = AppTheme.current.tintColor
         
         pinCodeView.emptyDotColor = AppTheme.current.panelColor
-        pinCodeView.filledDotColor = AppTheme.current.tintColor
+        pinCodeView.filledDotColor = AppTheme.current.specialColor
         pinCodeView.wrongPinCodeDotColor = AppTheme.current.redColor
         pinCodeView.rightPinCodeDotColor = AppTheme.current.greenColor
     }

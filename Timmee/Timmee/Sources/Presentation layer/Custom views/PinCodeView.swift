@@ -21,10 +21,18 @@ final class PinCodeView: UIView {
         case wrong
     }
     
-    @IBInspectable var emptyDotColor: UIColor = .gray
-    @IBInspectable var filledDotColor: UIColor = .black
-    @IBInspectable var rightPinCodeDotColor: UIColor = .green
-    @IBInspectable var wrongPinCodeDotColor: UIColor = .red
+    @IBInspectable var emptyDotColor: UIColor = .gray {
+        didSet { updateDotsColor() }
+    }
+    @IBInspectable var filledDotColor: UIColor = .black {
+        didSet { updateDotsColor() }
+    }
+    @IBInspectable var rightPinCodeDotColor: UIColor = .green {
+        didSet { updateDotsColor() }
+    }
+    @IBInspectable var wrongPinCodeDotColor: UIColor = .red {
+        didSet { updateDotsColor() }
+    }
     
     @IBInspectable var pinCodeLength: Int = 4
     

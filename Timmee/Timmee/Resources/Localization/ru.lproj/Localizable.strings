@@ -114,6 +114,9 @@
 "are_you_sure_you_want_to_delete_tasks" = "Удалить выбранные задачи?";
 "are_you_sure_you_want_to_move_tasks" = "Перенести выбранные задачи в список";
 
+"attention" = "Внимание";
+"change_pin_code" = "Хотите сменить пин-код?";
+
 "remove" = "Удалить";
 "edit" = "Изменить";
 "done" = "Готово";
@@ -124,6 +127,7 @@
 "restore" = "Восстановить";
 "move" = "Переместить";
 "cancel" = "Отмена";
+"yes" = "Да";
 
 "create_password" = "Придумайте пароль";
 "enter_password" = "Введите пароль";

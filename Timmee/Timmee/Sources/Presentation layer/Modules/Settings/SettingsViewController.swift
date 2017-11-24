@@ -189,14 +189,17 @@ fileprivate extension SettingsViewController {
         
         let isPinCodeSet = UserProperty.pinCode.value() != nil
         let pinCodeAction = { [unowned self] in
+            let viewController = ViewControllersFactory.pinCreation
+            viewController.isRemovePinCodeButtonVisible = isPinCodeSet
+            viewController.onComplete = { [unowned self] in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
             if isPinCodeSet {
-                UserProperty.pinCode.setValue(nil)
-                self.reloadSettings()
+                self.showConfirmationAlert(title: "attention".localized, message: "change_pin_code".localized, onConfirm: { [unowned self] in
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                })
             } else {
-                let viewController = ViewControllersFactory.pinCreation
-                viewController.onComplete = { [unowned self] in
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -297,6 +300,21 @@ fileprivate extension SettingsViewController {
     func setLoadingVisible(_ isVisible: Bool) {
         view.isUserInteractionEnabled = !isVisible
         loadingView.isHidden = !isVisible
+    }
+    
+}
+
+fileprivate extension SettingsViewController {
+
+    func showConfirmationAlert(title: String, message: String, onConfirm: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "yes".localized, style: .default, handler: { action in
+            onConfirm()
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }

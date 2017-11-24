@@ -232,7 +232,7 @@
                                             <constraint firstItem="Ia8-f6-PaX" firstAttribute="leading" secondItem="axc-WM-VME" secondAttribute="leading" constant="15" id="0aZ-Ud-Dzy"/>
                                             <constraint firstAttribute="trailing" secondItem="Ia8-f6-PaX" secondAttribute="trailing" constant="15" id="1lo-IP-qXg"/>
                                             <constraint firstAttribute="bottom" secondItem="Ia8-f6-PaX" secondAttribute="bottom" id="G44-0N-gwh"/>
-                                            <constraint firstAttribute="height" constant="44" id="gE8-c7-H8T"/>
+                                            <constraint firstAttribute="height" priority="750" constant="44" id="gE8-c7-H8T"/>
                                             <constraint firstItem="Ia8-f6-PaX" firstAttribute="top" secondItem="axc-WM-VME" secondAttribute="top" id="jxF-qh-adO"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

@@ -113,8 +113,9 @@
 "are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Are you sure you want to remove the list with all tasks?";
 "are_you_sure_you_want_to_delete_tasks" = "Are you sure you want to remove tasks?";
 "are_you_sure_you_want_to_move_tasks" = "Are you sure you want to move tasks to";
-"i_am_sure" = "Yes, I'm sure";
-"cancel" = "Cancel";
+
+"attention" = "Attention";
+"change_pin_code" = "Do you want to change pin-code?";
 
 "remove" = "Remove";
 "edit" = "Edit";
@@ -125,6 +126,8 @@
 "complete" = "Complete";
 "restore" = "Restore";
 "move" = "Move";
+"cancel" = "Cancel";
+"yes" = "Yes";
 
 "create_password" = "Create password";
 "enter_password" = "Enter password";
