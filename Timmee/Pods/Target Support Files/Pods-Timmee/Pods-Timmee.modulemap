@@ -1,6 +1,0 @@
-framework module Pods_Timmee {
-  umbrella header "Pods-Timmee-umbrella.h"
-
-  export *
-  module * { export * }
-}
