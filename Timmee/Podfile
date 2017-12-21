@@ -4,4 +4,5 @@ use_frameworks!
 target 'Timmee' do
   pod 'SugarRecord/CoreData+iCloud'
   pod 'SwipeCellKit', '1.9.1'
+  pod 'Foto'
 end

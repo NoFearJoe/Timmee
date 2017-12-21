@@ -84,6 +84,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskTimeTemplateEditor")
     }
     
+    static var taskPhotoAttachmentsPicker: TaskPhotoAttachmentsPicker {
+        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskPhotoAttachmentsPicker")
+    }
+    
     
     static var pinCreation: PinCreationViewController {
         return StoryboardsFactory.pin.viewController(id: "PinCreation")
@@ -109,6 +113,11 @@ final class ViewControllersFactory {
     
     static var search: SearchViewController {
         return StoryboardsFactory.search.initialViewController()
+    }
+    
+    
+    static var photoPreview: PhotoPreviewViewController {
+        return StoryboardsFactory.photoPreview.initialViewController()
     }
     
 }

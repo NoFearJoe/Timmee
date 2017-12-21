@@ -43,9 +43,13 @@ final class SearchViewController: UIViewController {
     @IBOutlet fileprivate var tableView: UITableView!
     @IBOutlet fileprivate var tableViewContainer: BarView!
     
+    @IBOutlet fileprivate var tableViewContainerBottomConstraint: NSLayoutConstraint!
+    
     fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
     fileprivate let swipeTableActionsProvider = SwipeTaskActionsProvider()
+    
+    fileprivate let keyboardManager = KeyboardManager()
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
@@ -56,6 +60,7 @@ final class SearchViewController: UIViewController {
         
         setupPlaceholder()
         setInitialPlaceholderVisible(true)
+        setupKeyboardManager()
         
         tableView.backgroundView = UIView()
         tableView.register(UINib(nibName: "TableListRepresentationCell", bundle: nil),
@@ -277,6 +282,24 @@ fileprivate extension SearchViewController {
         configuration(taskEditorInput)
         
         present(taskEditorView, animated: true, completion: nil)
+    }
+    
+    func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.tableViewContainerBottomConstraint.constant = frame.height
+            
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.tableViewContainerBottomConstraint.constant = 0
+            
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
 }

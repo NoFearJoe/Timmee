@@ -45,7 +45,7 @@ final class TaskTagsView: UIView {
     var sortedTags: [Tag] = []
     
     fileprivate let filledIconColor = AppTheme.current.blueColor
-    fileprivate let notFilledIconColor = AppTheme.current.secondaryTintColor
+    fileprivate let notFilledIconColor = AppTheme.current.thirdlyTintColor
     
     fileprivate func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) {

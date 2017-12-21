@@ -8,6 +8,7 @@
 
 import class Foundation.NSDate
 import class Foundation.NSData
+import class Foundation.NSArray
 import class Foundation.NSKeyedArchiver
 import struct CoreLocation.CLLocationCoordinate2D
 
@@ -34,6 +35,8 @@ extension TaskEntity {
         isDone = entity.isDone
         inProgress = entity.inProgress
         creationDate = entity.creationDate as NSDate
+        
+        attachments = entity.attachments as NSArray
     }
 
 }

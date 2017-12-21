@@ -154,7 +154,7 @@ enum WeekRepeatUnit {
             if isEveryday {
                 return "everyday".localized
             }
-            return dayUnits.map({ $0.localizedShort }).joined(separator: ", ")
+            return dayUnits.sorted(by: { $0.0.number < $0.1.number }).map({ $0.localizedShort }).joined(separator: ", ")
         }
     }
     

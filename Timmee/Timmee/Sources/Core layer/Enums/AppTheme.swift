@@ -58,9 +58,10 @@ struct AppThemeScheme {
                                       middlegroundColor: UIColor(rgba: "E0E0E0"),
                                       foregroundColor: UIColor(rgba: "FFFFFF"),
                                       tintColor: UIColor(rgba: "2C3539"),
-                                      secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.5),
+                                      secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.6),
+                                      thirdlyTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.3),
                                       backgroundTintColor: .white,
-                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.5),
+                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.6),
                                       specialColor: UIColor(rgba: "0EAEE4"),
                                       panelColor: UIColor(rgba: "EEEEEE"),
                                       tagColors: whiteThemeTagColors)
@@ -69,9 +70,10 @@ struct AppThemeScheme {
                                       middlegroundColor: UIColor(rgba: "686766"),
                                       foregroundColor: UIColor(rgba: "B7B7B6"),
                                       tintColor: UIColor(rgba: "141311"),
-                                      secondaryTintColor: UIColor(rgba: "141311").withAlphaComponent(0.5),
+                                      secondaryTintColor: UIColor(rgba: "141311").withAlphaComponent(0.6),
+                                      thirdlyTintColor: UIColor(rgba: "141311").withAlphaComponent(0.3),
                                       backgroundTintColor: .white,
-                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.5),
+                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.6),
                                       specialColor: UIColor(rgba: "FFD700"),
                                       panelColor: UIColor(rgba: "EEEEEE"),
                                       tagColors: blackThemeTagColors)
@@ -82,6 +84,8 @@ struct AppThemeScheme {
     
     let tintColor: UIColor
     let secondaryTintColor: UIColor
+    let thirdlyTintColor: UIColor
+    
     let backgroundTintColor: UIColor
     let secondaryBackgroundTintColor: UIColor
     

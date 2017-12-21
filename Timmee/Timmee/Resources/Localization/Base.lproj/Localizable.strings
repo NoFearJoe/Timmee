@@ -53,6 +53,7 @@
 "new_time_template" = "Time template...";
 "attachments" = "Attachments";
 "no_attachments" = "No attachments";
+"add_subtask" = "Add subtask...";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
@@ -128,6 +129,8 @@
 "move" = "Move";
 "cancel" = "Cancel";
 "yes" = "Yes";
+
+"of" = "of";
 
 "create_password" = "Create password";
 "enter_password" = "Enter password";

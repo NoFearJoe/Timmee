@@ -11,6 +11,12 @@
 		0C69A5031FC8682700F78FFD /* FilesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C69A5021FC8682700F78FFD /* FilesService.swift */; };
 		0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F491FC3016900D8FF8B /* TimeRounder.swift */; };
 		0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */; };
+		0C74D81B1FEAA31300CDA0BE /* PhotoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D81A1FEAA31300CDA0BE /* PhotoPreviewViewController.swift */; };
+		0C74D81F1FEAA65200CDA0BE /* PhotoPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C74D81E1FEAA65200CDA0BE /* PhotoPreview.storyboard */; };
+		0C74D8221FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8211FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift */; };
+		0C74D8241FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */; };
+		0C74D8261FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */; };
+		0C796F2A1FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */; };
 		0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C51FB971F200EA1571 /* SubtasksEditor.swift */; };
 		0C8738C81FB972DA00EA1571 /* SubtasksEditorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C71FB972DA00EA1571 /* SubtasksEditorProtocols.swift */; };
 		0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C31FB971D900EA1571 /* SubtaskCell.swift */; };
@@ -37,6 +43,9 @@
 		0C9EF54E1FBC728100B36FBB /* TaskTimeTemplatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */; };
 		0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */; };
 		0C9EF5551FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */; };
+		0CB8F1FF1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */; };
+		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
+		0CB8F26A1FE95036005D9E11 /* Foto.Photo+filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */; };
 		34638CA1E9A08C2EF7EDCA4B /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */; };
 		960A0DDC1F921551003DCDAD /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */; };
 		960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */; };
@@ -198,6 +207,12 @@
 		0C69A5021FC8682700F78FFD /* FilesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesService.swift; sourceTree = "<group>"; };
 		0C713F491FC3016900D8FF8B /* TimeRounder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRounder.swift; sourceTree = "<group>"; };
 		0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDatePicker.swift; sourceTree = "<group>"; };
+		0C74D81A1FEAA31300CDA0BE /* PhotoPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewViewController.swift; sourceTree = "<group>"; };
+		0C74D81E1FEAA65200CDA0BE /* PhotoPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoPreview.storyboard; sourceTree = "<group>"; };
+		0C74D8211FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionView.swift; sourceTree = "<group>"; };
+		0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionLayout.swift; sourceTree = "<group>"; };
+		0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionCell.swift; sourceTree = "<group>"; };
+		0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttachmentsParameterView.swift; sourceTree = "<group>"; };
 		0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C8738A81FB971D800EA1571 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C8738A91FB971D800EA1571 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
@@ -224,6 +239,9 @@
 		0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplatePicker.swift; sourceTree = "<group>"; };
 		0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeTemplateView.swift; sourceTree = "<group>"; };
 		0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplateEditor.swift; sourceTree = "<group>"; };
+		0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttachmentsPicker.swift; sourceTree = "<group>"; };
+		0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPhotoAttachmentsPicker.swift; sourceTree = "<group>"; };
+		0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foto.Photo+filename.swift"; sourceTree = "<group>"; };
 		548C5722BCCB07A0FFED4983 /* Pods-Timmee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.debug.xcconfig"; sourceTree = "<group>"; };
 		6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
@@ -419,6 +437,25 @@
 			path = TaskDueDatePicker;
 			sourceTree = "<group>";
 		};
+		0C74D8191FEAA2F300CDA0BE /* PhotoPreview */ = {
+			isa = PBXGroup;
+			children = (
+				0C74D8201FEAAEE100CDA0BE /* PhotoPreviewCollectionView */,
+				0C74D81A1FEAA31300CDA0BE /* PhotoPreviewViewController.swift */,
+			);
+			path = PhotoPreview;
+			sourceTree = "<group>";
+		};
+		0C74D8201FEAAEE100CDA0BE /* PhotoPreviewCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				0C74D8211FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift */,
+				0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */,
+				0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */,
+			);
+			path = PhotoPreviewCollectionView;
+			sourceTree = "<group>";
+		};
 		0C8738A51FB971D800EA1571 /* ParameterEditors */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +468,7 @@
 				0C8738B21FB971D800EA1571 /* TaskRepetingEditor */,
 				0C8738B61FB971D800EA1571 /* TaskTagsPicker */,
 				0C9EF54C1FBC725B00B36FBB /* TaskTimeTemplatesEditor */,
+				0CB8F1FD1FE3BE53005D9E11 /* TaskAttachmentsPicker */,
 			);
 			path = ParameterEditors;
 			sourceTree = "<group>";
@@ -583,6 +621,23 @@
 				0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */,
 			);
 			path = Picker;
+			sourceTree = "<group>";
+		};
+		0CB8F1FD1FE3BE53005D9E11 /* TaskAttachmentsPicker */ = {
+			isa = PBXGroup;
+			children = (
+				0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */,
+				0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */,
+			);
+			path = TaskAttachmentsPicker;
+			sourceTree = "<group>";
+		};
+		0CB8F2681FE94FFD005D9E11 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		2016C37FE8501A7AB7108367 /* Pods */ = {
@@ -1174,14 +1229,15 @@
 			children = (
 				96E543681F49ED890081C6F0 /* LaunchScreen.storyboard */,
 				96A5F13D1F507B1100F94553 /* Main.storyboard */,
+				963D6A7B1F606A120063E295 /* MainTop.storyboard */,
 				963D6A541F5AEDB50063E295 /* ListRepresentations.storyboard */,
 				963D6A601F5C42990063E295 /* TaskEditor.storyboard */,
-				963D6A7B1F606A120063E295 /* MainTop.storyboard */,
-				96BE0A2D1F6314AE0041FBEA /* ListEditor.storyboard */,
 				96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */,
+				96BE0A2D1F6314AE0041FBEA /* ListEditor.storyboard */,
 				965798CB1F9133D800F65019 /* Pin.storyboard */,
 				96AAA5821FB03F7600F547A0 /* Settings.storyboard */,
 				96AAA59A1FB22F9B00F547A0 /* Search.storyboard */,
+				0C74D81E1FEAA65200CDA0BE /* PhotoPreview.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1254,6 +1310,7 @@
 		96E543711F49ED890081C6F0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0CB8F2681FE94FFD005D9E11 /* Other */,
 				96A5F1001F49F2F300F94553 /* UIKit */,
 				96A5F0F11F49F26300F94553 /* Collections */,
 				96A5F1051F49FA3C00F94553 /* String */,
@@ -1308,9 +1365,10 @@
 				96BE0A391F665B390041FBEA /* TextView.swift */,
 				96115F2F1F6E52420050D7A3 /* CheckBox.swift */,
 				96115F331F6E7D0B0050D7A3 /* HiddingParameterView.swift */,
-				961D676D1FA8F36900511042 /* ReorderableTableView.swift */,
 				96115F311F6E6EBE0050D7A3 /* TaskParameterView.swift */,
 				96115F351F6E7E5D0050D7A3 /* TaskCheckableParameterView.swift */,
+				0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */,
+				961D676D1FA8F36900511042 /* ReorderableTableView.swift */,
 				96115F391F6E89000050D7A3 /* TaskCategoryPicker.swift */,
 				96A3761D1F9BC35A00A7C55C /* PlaceholderView.swift */,
 				96A3761F1F9BC60000A7C55C /* PlaceholderView.xib */,
@@ -1329,6 +1387,7 @@
 				963D6A741F6069F40063E295 /* MainTopModule */,
 				963D6A281F59EBBB0063E295 /* ListRepresentations */,
 				963D6A581F5C42730063E295 /* TaskEditor */,
+				0C74D8191FEAA2F300CDA0BE /* PhotoPreview */,
 				96BE0A271F63149F0041FBEA /* ListEditor */,
 				96477A591F812FCA005C3520 /* TasksImport */,
 				965798CD1F91340100F65019 /* Authentication */,
@@ -1454,6 +1513,7 @@
 				965798CC1F9133D800F65019 /* Pin.storyboard in Resources */,
 				96A376201F9BC60000A7C55C /* PlaceholderView.xib in Resources */,
 				96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */,
+				0C74D81F1FEAA65200CDA0BE /* PhotoPreview.storyboard in Resources */,
 				96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */,
 				963D6A551F5AEDB50063E295 /* ListRepresentations.storyboard in Resources */,
 				963D6A611F5C42990063E295 /* TaskEditor.storyboard in Resources */,
@@ -1478,9 +1538,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SugarRecord/SugarRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SugarRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1508,13 +1577,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Timmee-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1567,6 +1639,7 @@
 				0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */,
 				96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */,
 				0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */,
+				0C74D8241FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift in Sources */,
 				965798D91F9136BE00F65019 /* String+Encryption.swift in Sources */,
 				96A5F11E1F4D500A00F94553 /* SmartList.swift in Sources */,
 				96CF79301FB2377B00AD0594 /* SearchInteractor.swift in Sources */,
@@ -1580,17 +1653,20 @@
 				96A5F1381F507AC500F94553 /* WeekDaysPicker.swift in Sources */,
 				0C8738D31FB9747700EA1571 /* TaskLocationEditor.swift in Sources */,
 				0C8738DF1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift in Sources */,
+				0CB8F1FF1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift in Sources */,
 				96477A691F81499C005C3520 /* TasksImportRouter.swift in Sources */,
 				96A5F1071F49FA3C00F94553 /* String+capitalizeFirst.swift in Sources */,
 				96A5F0FE1F49F26300F94553 /* Sequence+Categorised.swift in Sources */,
 				965798D31F91340100F65019 /* NumberPadAdapter.swift in Sources */,
 				96CF792E1FB2371400AD0594 /* SearchPresenter.swift in Sources */,
 				96A5F1351F507AC500F94553 /* NumPadButton.swift in Sources */,
+				0C74D8261FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift in Sources */,
 				96115F571F70E7CC0050D7A3 /* NearestDate.swift in Sources */,
 				963D6A571F5B262A0063E295 /* ListRepresentationOutput.swift in Sources */,
 				969219CD1F9C8BCE006E47B4 /* TagsService.swift in Sources */,
 				96A5F1371F507AC500F94553 /* PinCodeView.swift in Sources */,
 				96115F301F6E52420050D7A3 /* CheckBox.swift in Sources */,
+				0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */,
 				96115F2E1F6D3D6D0050D7A3 /* PresentTransition.swift in Sources */,
 				96B0B9C01FB89A430009BA3B /* TimeTemplatesService.swift in Sources */,
 				96A5F10E1F49FC3F00F94553 /* SKProduct+localizedPrice.swift in Sources */,
@@ -1624,6 +1700,8 @@
 				0C8738D51FB9747700EA1571 /* TaskParameterEditorContainer.swift in Sources */,
 				96A5F1241F4E034600F94553 /* DefaultStorage.swift in Sources */,
 				96A5F0F91F49F26300F94553 /* Array+IndexOf.swift in Sources */,
+				0C74D81B1FEAA31300CDA0BE /* PhotoPreviewViewController.swift in Sources */,
+				0CB8F26A1FE95036005D9E11 /* Foto.Photo+filename.swift in Sources */,
 				96A820FF1F74E3B200F2AA68 /* TaskSchedulerService.swift in Sources */,
 				969219D31F9CCEA4006E47B4 /* ColorPicker.swift in Sources */,
 				963D6A731F5EF9790063E295 /* AppTheme.swift in Sources */,
@@ -1666,6 +1744,7 @@
 				96AAA5921FB0690700F547A0 /* InAppPurchases.swift in Sources */,
 				96BE0A321F65B79C0041FBEA /* ListEditorPresenter.swift in Sources */,
 				963D6A531F5AECD20063E295 /* TableListRepresentationAssembly.swift in Sources */,
+				0C796F2A1FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift in Sources */,
 				96CF79321FB23C8700AD0594 /* SearchAssembly.swift in Sources */,
 				0C8738D61FB9747700EA1571 /* TaskReminderEditor.swift in Sources */,
 				0C8738CE1FB9746200EA1571 /* TaskEditorRouter.swift in Sources */,
@@ -1674,6 +1753,7 @@
 				0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */,
 				96BE0A3C1F670E3C0041FBEA /* ListIconCell.swift in Sources */,
 				0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */,
+				0C74D8221FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift in Sources */,
 				0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */,
 				96A5F1141F4A174600F94553 /* TaskCategory.swift in Sources */,
 				96115F591F70E8770050D7A3 /* Date.swift in Sources */,

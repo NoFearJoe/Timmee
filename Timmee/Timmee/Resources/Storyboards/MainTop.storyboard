@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JXh-Cu-baD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JXh-Cu-baD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -269,13 +269,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="yMc-7Q-9cF" secondAttribute="trailing" id="0jg-SE-F5T"/>
                             <constraint firstItem="YFi-Sc-Fhi" firstAttribute="top" secondItem="rjr-AG-47x" secondAttribute="top" id="2WT-Zz-yZb"/>
+                            <constraint firstAttribute="bottom" secondItem="KUL-2H-bgS" secondAttribute="bottom" id="69r-M9-xFN"/>
                             <constraint firstItem="KUL-2H-bgS" firstAttribute="top" secondItem="YFi-Sc-Fhi" secondAttribute="bottom" constant="-8" id="EZZ-uf-ZcM"/>
                             <constraint firstAttribute="trailing" secondItem="YFi-Sc-Fhi" secondAttribute="trailing" id="Hsj-iz-xn7"/>
                             <constraint firstAttribute="trailing" secondItem="KUL-2H-bgS" secondAttribute="trailing" id="Qz0-aS-4Jj"/>
                             <constraint firstItem="yMc-7Q-9cF" firstAttribute="top" secondItem="unV-ud-3lG" secondAttribute="bottom" id="Sfm-xT-RGO"/>
                             <constraint firstItem="KUL-2H-bgS" firstAttribute="leading" secondItem="rjr-AG-47x" secondAttribute="leading" id="TSB-TP-b6Y"/>
                             <constraint firstItem="YFi-Sc-Fhi" firstAttribute="leading" secondItem="rjr-AG-47x" secondAttribute="leading" id="htX-7E-4uA"/>
-                            <constraint firstItem="Ghn-aa-hWQ" firstAttribute="top" secondItem="KUL-2H-bgS" secondAttribute="bottom" id="i3D-Kh-9dm"/>
                             <constraint firstItem="yMc-7Q-9cF" firstAttribute="leading" secondItem="rjr-AG-47x" secondAttribute="leading" id="kub-V3-Pay"/>
                         </constraints>
                     </view>

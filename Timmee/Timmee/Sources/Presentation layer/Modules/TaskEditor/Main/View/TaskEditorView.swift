@@ -9,6 +9,7 @@
 import UIKit
 import class CoreLocation.CLLocation
 import SwipeCellKit
+import class Foto.Photo
 
 final class TaskEditorView: UIViewController {
 
@@ -32,6 +33,8 @@ final class TaskEditorView: UIViewController {
 //    @IBOutlet fileprivate var locationReminderView: TaskCheckableParameterView!
     
     @IBOutlet fileprivate var taskTagsView: TaskTagsView!
+    
+    @IBOutlet fileprivate var taskAttachmentsView: TaskAttachmentsParameterView!
     
     @IBOutlet fileprivate var taskImportancyPicker: TaskImportancyPicker!
     
@@ -165,6 +168,20 @@ final class TaskEditorView: UIViewController {
         
         taskImportancyPicker.onPick = { [unowned self] isImportant in
             self.output.taskImportantChanged(to: isImportant)
+        }
+        
+        
+        taskAttachmentsView.didTouchedUp = { [unowned self] in
+            self.showTaskParameterEditor(with: .attachments)
+        }
+        taskAttachmentsView.didClear = { [unowned self] in
+            self.output.attachmentsCleared()
+        }
+        taskAttachmentsView.didRemoveAttachment = { [unowned self] attachment in
+            self.output.attachmentRemoved(attachment)
+        }
+        taskAttachmentsView.didSelectAttachment = { [unowned self] attachment in
+            self.output.attachmentSelected(attachment)
         }
         
         
@@ -314,6 +331,13 @@ extension TaskEditorView: TaskEditorViewInput {
         taskTagsView.isFilled = !tags.isEmpty
     }
     
+    func setAttachments(_ attachments: [String]) {
+        taskAttachmentsView.setAttachments(attachments)
+        
+        taskAttachmentsView.isFilled = !attachments.isEmpty
+    }
+    
+    
     func setTopButtonsVisible(_ isVisible: Bool) {
         UIView.animate(withDuration: 0.35) {
             self.closeButton.isHidden = !isVisible
@@ -357,6 +381,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
         case .timeTemplates: output?.timeTemplateCleared()
         case .dueDate: return
         case .dueTime: return
+        case .attachments: return//output?.attachmentsCleared()
         }
     }
 
@@ -416,6 +441,12 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.output = self
             viewController.transitionOutput = taskParameterEditorContainer// TODO: Сделать присваивание в taskParameterEditorContainer
             output.willPresentTimeTemplatePicker(viewController)
+            return viewController
+        case .attachments:
+            let viewController = ViewControllersFactory.taskPhotoAttachmentsPicker
+            viewController.loadViewIfNeeded()
+            viewController.output = self
+            output.willPresentAttachmentsPicker(viewController)
             return viewController
         case .dueTime:
             return UIViewController()
@@ -487,6 +518,18 @@ extension TaskEditorView: TaskLocationEditorOutput {
         output.locationChanged(to: location)
     }
 
+}
+
+extension TaskEditorView: TaskPhotoAttachmentsPickerOutput {
+    
+    func didSelectPhotos(_ photos: [Photo]) {
+        output.attachmentsChanged(to: photos)
+    }
+    
+    func maxSelectedPhotosCountReached() {
+        // TODO: Show alert panel
+    }
+    
 }
 
 extension TaskEditorView: UITextViewDelegate {

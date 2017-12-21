@@ -72,7 +72,7 @@ class CheckBox: UIView {
 
 final class InversedCheckBox: CheckBox {
 
-    override var checkedColor: UIColor { return AppTheme.current.secondaryTintColor }
+    override var checkedColor: UIColor { return AppTheme.current.thirdlyTintColor }
     override var uncheckedColor: UIColor { return AppTheme.current.blueColor }
 
 }

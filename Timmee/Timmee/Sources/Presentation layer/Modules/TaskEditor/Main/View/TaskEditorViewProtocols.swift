@@ -8,6 +8,7 @@
 
 import struct Foundation.Date
 import class CoreLocation.CLLocation
+import class Foto.Photo
 
 protocol TaskEditorViewInput: class {
     func getTaskTitle() -> String
@@ -23,6 +24,7 @@ protocol TaskEditorViewInput: class {
     func setLocation(_ location: String?)
     func setLocationReminderIsSelected(_ isSelected: Bool)
     func setTaskImportant(_ isImportant: Bool)
+    func setAttachments(_ attachments: [String])
     
     func setTags(_ tags: [Tag])
     
@@ -32,7 +34,7 @@ protocol TaskEditorViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: class, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput {
+protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -51,6 +53,7 @@ protocol TaskEditorViewOutput: class, TaskEditorViewTimeTemplateOutput, TaskEdit
     func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
     func willPresentTagsPicker(_ input: TaskTagsPickerInput)
+    func willPresentAttachmentsPicker(_ input: TaskPhotoAttachmentsPickerInput)
 }
 
 protocol TaskEditorViewTimeTemplateOutput: class {
@@ -84,6 +87,13 @@ protocol TaskEditorViewLocationOutput: class {
     func locationCleared()
 }
 
-protocol TaskEditorViewTagsOutput: class, TaskTagsPickerOutput {
+protocol TaskEditorViewTagsOutput: TaskTagsPickerOutput {
     func tagsCleared()
+}
+
+protocol TaskEditorViewAttachmentsOutput: class {
+    func attachmentsChanged(to attachments: [Photo])
+    func attachmentsCleared()
+    func attachmentSelected(_ attachment: String)
+    func attachmentRemoved(_ attachment: String)
 }

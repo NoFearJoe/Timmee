@@ -41,13 +41,17 @@ protocol TasksImportViewDataSource: class {
 
 final class TasksImportView: UIViewController {
 
-    @IBOutlet fileprivate weak var containerView: BarView!
-    @IBOutlet fileprivate weak var tableView: UITableView!
-    @IBOutlet fileprivate weak var errorLabel: UILabel!
-    @IBOutlet fileprivate weak var closeButton: UIButton!
-    @IBOutlet fileprivate weak var doneButton: UIButton!
+    @IBOutlet fileprivate var containerView: BarView!
+    @IBOutlet fileprivate var tableView: UITableView!
+    @IBOutlet fileprivate var errorLabel: UILabel!
+    @IBOutlet fileprivate var closeButton: UIButton!
+    @IBOutlet fileprivate var doneButton: UIButton!
+    
+    @IBOutlet fileprivate var containerViewButtonConstraint: NSLayoutConstraint!
     
     fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    
+    fileprivate let keyboardManager = KeyboardManager()
     
     var output: TasksImportViewOutput!
     weak var dataSource: TasksImportViewDataSource!
@@ -61,6 +65,7 @@ final class TasksImportView: UIViewController {
         transitioningDelegate = self
         
         setupPlaceholder()
+        setupKeyboardManager()
         
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -256,6 +261,24 @@ fileprivate extension TasksImportView {
         placeholder.subtitle = nil
         placeholder.isHidden = true
         
+    }
+    
+    func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.containerViewButtonConstraint.constant =  frame.height
+            
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.containerViewButtonConstraint.constant =  0
+            
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
 }

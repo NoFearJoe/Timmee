@@ -6,10 +6,15 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import class UIKit.UIImage
+import struct Foundation.URL
 import struct Foundation.Date
+import struct Foundation.Data
 import class Foundation.DispatchQueue
+import class Foundation.DispatchGroup
 import class CoreLocation.CLGeocoder
 import class CoreLocation.CLLocation
+import class Foto.Photo
 
 protocol TaskEditorInput: class {
     weak var output: TaskEditorOutput? { get set }
@@ -78,6 +83,8 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setTaskImportant(self.task.isImportant)
         
         view.setTags(self.task.tags)
+        
+        view.setAttachments(self.task.attachments)
     }
     
     func setTaskTitle(_ title: String) {
@@ -259,6 +266,68 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.tags = []
     }
     
+    func attachmentsChanged(to attachments: [Photo]) {
+        // TODO: Move to interactor
+        
+        let attachmentNames = attachments.map { $0.name }
+        
+        let removedAttachments = Array(Set(self.task.attachments).subtracting(attachmentNames))
+        
+        let group = DispatchGroup()
+        
+        removedAttachments.forEach { attachment in
+            group.enter()
+            
+            FilesService().removeFileFromDocuments(withName: attachment)
+            
+            group.leave()
+        }
+        
+        attachments.forEach { attachment in
+            guard !FilesService().isFileExistsInDocuments(withName: attachment.name) else { return }
+            
+            group.enter()
+            
+            attachment.loadImageData(completion: { data in
+                guard let data = data else { return }
+                
+                FilesService().saveFileInDocuments(withName: attachment.name, contents: data)
+                
+                group.leave()
+            })
+        }
+        
+        group.notify(queue: .main) {
+            self.task.attachments = attachmentNames
+            self.view.setAttachments(attachmentNames)
+        }
+    }
+    
+    func attachmentsCleared() {
+        task.attachments.forEach { FilesService().removeFileFromDocuments(withName: $0) }
+        task.attachments = []
+        
+        view.setAttachments([])
+    }
+    
+    func attachmentSelected(_ attachment: String) {
+        let photosData = task.attachments.flatMap { FilesService().getFileFromDocuments(withName: $0) }
+        let photos = photosData.flatMap { UIImage(data: $0) }
+        
+        guard !photos.isEmpty else { return }
+        
+        let selectedAttachmentIndex = task.attachments.index(of: attachment) ?? 0
+        
+        router.showPhotos(photos, startPosition: selectedAttachmentIndex)
+    }
+    
+    func attachmentRemoved(_ attachment: String) {
+        FilesService().removeFileFromDocuments(withName: attachment)
+        task.attachments.remove(object: attachment)
+        
+        view.setAttachments(task.attachments)
+    }
+    
     func willPresentTimeTemplatePicker(_ input: TaskTimeTemplatePickerInput) {
         input.setSelectedTimeTemplate(task.timeTemplate)
     }
@@ -302,6 +371,11 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput) {
         input.setRepeatingMask(task.repeating)
+    }
+    
+    
+    func willPresentAttachmentsPicker(_ input: TaskPhotoAttachmentsPickerInput) {
+        input.setSelectedPhotos(task.attachments)
     }
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="963-3r-ZYs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="963-3r-ZYs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -106,10 +106,10 @@
                             <constraint firstItem="Ixa-gV-baY" firstAttribute="trailing" secondItem="UAB-eY-8gG" secondAttribute="trailing" id="7LN-4y-z8S"/>
                             <constraint firstItem="rki-sW-7AM" firstAttribute="trailing" secondItem="Ixa-gV-baY" secondAttribute="trailing" id="8rg-z1-kWV"/>
                             <constraint firstItem="UAB-eY-8gG" firstAttribute="top" secondItem="rki-sW-7AM" secondAttribute="bottom" id="ClH-n5-AaR"/>
-                            <constraint firstItem="Ixa-gV-baY" firstAttribute="bottom" secondItem="UAB-eY-8gG" secondAttribute="bottom" id="SGr-d9-Te2"/>
                             <constraint firstItem="rki-sW-7AM" firstAttribute="leading" secondItem="Ixa-gV-baY" secondAttribute="leading" id="Ypw-UO-c1i"/>
                             <constraint firstItem="rki-sW-7AM" firstAttribute="top" secondItem="Ixa-gV-baY" secondAttribute="top" id="jib-rh-MkR"/>
                             <constraint firstItem="UAB-eY-8gG" firstAttribute="leading" secondItem="Ixa-gV-baY" secondAttribute="leading" id="lE8-4k-bnT"/>
+                            <constraint firstAttribute="bottom" secondItem="UAB-eY-8gG" secondAttribute="bottom" id="uAH-xW-7aV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ixa-gV-baY"/>
                     </view>
@@ -119,6 +119,7 @@
                         <outlet property="searchTextField" destination="s2i-dt-Dqf" id="PCH-TV-uR8"/>
                         <outlet property="tableView" destination="vMf-qi-czS" id="ibY-KH-CTL"/>
                         <outlet property="tableViewContainer" destination="UAB-eY-8gG" id="GHg-5j-iGi"/>
+                        <outlet property="tableViewContainerBottomConstraint" destination="uAH-xW-7aV" id="az2-nU-W9p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXO-uU-4aa" userLabel="First Responder" sceneMemberID="firstResponder"/>

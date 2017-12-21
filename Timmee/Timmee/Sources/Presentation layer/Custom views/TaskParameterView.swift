@@ -14,7 +14,7 @@ class TaskParameterView: HiddingParameterView {
     @IBOutlet fileprivate var titleView: UILabel!
     @IBOutlet fileprivate var clearButton: UIButton! {
         didSet {
-            clearButton.tintColor = AppTheme.current.secondaryTintColor
+            clearButton.tintColor = AppTheme.current.thirdlyTintColor
         }
     }
     
@@ -43,13 +43,13 @@ class TaskParameterView: HiddingParameterView {
     fileprivate let filledIconColor = AppTheme.current.blueColor
     fileprivate let filledTitleColor = AppTheme.current.tintColor
     
-    fileprivate let notFilledIconColor = AppTheme.current.secondaryTintColor
+    fileprivate let notFilledIconColor = AppTheme.current.thirdlyTintColor
     fileprivate let notFilledTitleColor = AppTheme.current.secondaryTintColor
     
-    fileprivate func setFilled(_ isFilled: Bool) {
+    func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) { 
             self.iconView.tintColor = isFilled ? self.filledIconColor : self.notFilledIconColor
-            self.titleView.textColor = isFilled ? self.filledTitleColor : self.notFilledTitleColor
+            self.titleView?.textColor = isFilled ? self.filledTitleColor : self.notFilledTitleColor
             
             self.clearButton.isHidden = !(self.canClear && isFilled)
         }
@@ -57,17 +57,18 @@ class TaskParameterView: HiddingParameterView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addTapGestureRecognizer()
+        addTapGestureRecognizer(to: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        addTapGestureRecognizer()
+        addTapGestureRecognizer(to: self)
     }
     
-    fileprivate func addTapGestureRecognizer() {
+    func addTapGestureRecognizer(to view: UIView) {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
-        addGestureRecognizer(recognizer)
+        recognizer.delegate = self
+        view.addGestureRecognizer(recognizer)
     }
     
     @objc fileprivate func onTap() {
@@ -80,12 +81,14 @@ class TaskParameterView: HiddingParameterView {
 
 }
 
+extension TaskParameterView: UIGestureRecognizerDelegate {}
+
 final class TaskComplexParameterView: TaskParameterView {
     
     @IBOutlet fileprivate var subtitleLabel: UILabel!
     
     fileprivate let filledSubtitleColor = AppTheme.current.secondaryTintColor
-    fileprivate let notFilledSubtitleColor = AppTheme.current.secondaryTintColor
+    fileprivate let notFilledSubtitleColor = AppTheme.current.thirdlyTintColor
     
     var subtitle: String? {
         get { return subtitleLabel.text }

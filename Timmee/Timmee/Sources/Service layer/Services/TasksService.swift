@@ -175,6 +175,8 @@ extension TasksService {
         
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
             tasks.forEach { task in
+                task.attachments.forEach { FilesService().removeFileFromDocuments(withName: $0) }
+                
                 if let existingTask = context.fetchTask(id: task.id) {
                     try? context.remove(existingTask)
                 }

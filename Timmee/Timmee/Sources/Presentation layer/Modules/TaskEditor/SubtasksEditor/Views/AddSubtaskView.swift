@@ -12,13 +12,15 @@ final class AddSubtaskView: UIView {
     
     @IBOutlet fileprivate var decorationView: UIImageView! {
         didSet {
-            decorationView.tintColor = AppTheme.current.secondaryTintColor
+            decorationView.tintColor = AppTheme.current.thirdlyTintColor
         }
     }
     @IBOutlet fileprivate var titleField: UITextField! {
         didSet {
             titleField.delegate = self
             titleField.textColor = AppTheme.current.tintColor
+            titleField.attributedPlaceholder = NSAttributedString(string: "add_subtask".localized,
+                                                                  attributes: [NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
         }
     }
     

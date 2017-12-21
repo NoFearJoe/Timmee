@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wPA-hm-0ae">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wPA-hm-0ae">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -282,7 +283,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPz-XF-1RC" customClass="LoadingView" customModule="Timmee">
-                                <rect key="frame" x="155" y="301" width="64" height="64"/>
+                                <rect key="frame" x="155.5" y="301.5" width="64" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BPz-XF-1RC" secondAttribute="height" multiplier="1:1" id="Eoq-37-Nyu"/>
@@ -292,10 +293,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fqp-zm-alY" firstAttribute="bottom" secondItem="U8E-OF-FM3" secondAttribute="bottom" id="ACf-wI-2HQ"/>
                             <constraint firstItem="U8E-OF-FM3" firstAttribute="top" secondItem="fqp-zm-alY" secondAttribute="top" id="HpV-Qk-c2n"/>
                             <constraint firstItem="BPz-XF-1RC" firstAttribute="centerX" secondItem="KaY-oz-taj" secondAttribute="centerX" id="WaH-8Y-cu8"/>
                             <constraint firstItem="BPz-XF-1RC" firstAttribute="centerY" secondItem="KaY-oz-taj" secondAttribute="centerY" id="a1V-k9-iY9"/>
+                            <constraint firstAttribute="bottom" secondItem="U8E-OF-FM3" secondAttribute="bottom" id="c8g-Xc-ffw"/>
                             <constraint firstItem="U8E-OF-FM3" firstAttribute="trailing" secondItem="fqp-zm-alY" secondAttribute="trailing" id="eiS-Rx-paZ"/>
                             <constraint firstItem="U8E-OF-FM3" firstAttribute="leading" secondItem="fqp-zm-alY" secondAttribute="leading" id="jwU-CV-LNO"/>
                         </constraints>

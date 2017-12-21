@@ -8,16 +8,6 @@
 
 import UIKit
 
-final class FakeScrollView: UIScrollView {
-    
-    override var contentOffset: CGPoint {
-        didSet {
-            print("CO: \(contentOffset)")
-        }
-    }
-    
-}
-
 final class SubtasksEditor: UIViewController {
     
     weak var output: SubtasksEditorOutput!

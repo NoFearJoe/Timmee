@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5mz-D7-g42">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5mz-D7-g42">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,10 +22,6 @@
         <scene sceneID="4ci-Hk-AAy">
             <objects>
                 <viewController id="5mz-D7-g42" customClass="MainViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sxb-5N-eNx"/>
-                        <viewControllerLayoutGuide type="bottom" id="nXo-ZA-CpX"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RpN-Nf-xHn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,15 +37,16 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hl3-ih-8t1" firstAttribute="leading" secondItem="RpN-Nf-xHn" secondAttribute="leading" id="0XK-Wg-lzd"/>
-                            <constraint firstAttribute="trailing" secondItem="Hl3-ih-8t1" secondAttribute="trailing" id="90M-iC-oKO"/>
-                            <constraint firstAttribute="trailing" secondItem="qQI-FR-TFf" secondAttribute="trailing" id="BYZ-eZ-Pqf"/>
-                            <constraint firstItem="nXo-ZA-CpX" firstAttribute="top" secondItem="Hl3-ih-8t1" secondAttribute="bottom" id="XYK-DE-wXT"/>
-                            <constraint firstItem="qQI-FR-TFf" firstAttribute="leading" secondItem="RpN-Nf-xHn" secondAttribute="leading" id="bXw-JL-HGR"/>
+                            <constraint firstItem="Hl3-ih-8t1" firstAttribute="leading" secondItem="2vt-i6-Qhf" secondAttribute="leading" id="0XK-Wg-lzd"/>
+                            <constraint firstItem="2vt-i6-Qhf" firstAttribute="trailing" secondItem="Hl3-ih-8t1" secondAttribute="trailing" id="90M-iC-oKO"/>
+                            <constraint firstItem="2vt-i6-Qhf" firstAttribute="trailing" secondItem="qQI-FR-TFf" secondAttribute="trailing" id="BYZ-eZ-Pqf"/>
+                            <constraint firstItem="2vt-i6-Qhf" firstAttribute="bottom" secondItem="Hl3-ih-8t1" secondAttribute="bottom" id="XYK-DE-wXT"/>
+                            <constraint firstItem="qQI-FR-TFf" firstAttribute="leading" secondItem="2vt-i6-Qhf" secondAttribute="leading" id="bXw-JL-HGR"/>
                             <constraint firstAttribute="bottom" secondItem="qQI-FR-TFf" secondAttribute="bottom" id="bvp-I4-iVT"/>
                             <constraint firstItem="qQI-FR-TFf" firstAttribute="top" secondItem="RpN-Nf-xHn" secondAttribute="top" id="icF-dc-XzS"/>
-                            <constraint firstItem="Hl3-ih-8t1" firstAttribute="top" secondItem="sxb-5N-eNx" secondAttribute="bottom" id="pSC-F4-38v"/>
+                            <constraint firstItem="Hl3-ih-8t1" firstAttribute="top" secondItem="2vt-i6-Qhf" secondAttribute="top" id="k5R-rI-rdf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="2vt-i6-Qhf"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>

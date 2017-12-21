@@ -34,6 +34,8 @@ class Task {
     
     var timeTemplate: TimeTemplate?
     
+    var attachments: [String]
+    
     init(task: TaskEntity) {
         id = task.id!
         title = task.title ?? ""
@@ -61,6 +63,8 @@ class Task {
         if let template = task.timeTemplate {
             timeTemplate = TimeTemplate(entity: template)
         }
+        
+        attachments = task.attachments as? [String] ?? []
     }
     
     init(id: String,
@@ -74,6 +78,7 @@ class Task {
          location: CLLocation?,
          address: String?,
          shouldNotifyAtLocation: Bool,
+         attachments: [String],
          isDone: Bool,
          inProgress: Bool,
          creationDate: Date) {
@@ -88,6 +93,7 @@ class Task {
         self.location = location
         self.address = address
         self.shouldNotifyAtLocation = shouldNotifyAtLocation
+        self.attachments = attachments
         self.isDone = isDone
         self.inProgress = inProgress
         self.creationDate = creationDate
@@ -106,6 +112,7 @@ class Task {
                   location: nil,
                   address: nil,
                   shouldNotifyAtLocation: false,
+                  attachments: [],
                   isDone: false,
                   inProgress: false,
                   creationDate: Date())
@@ -123,6 +130,7 @@ class Task {
                         location: location,
                         address: address,
                         shouldNotifyAtLocation: shouldNotifyAtLocation,
+                        attachments: attachments,
                         isDone: isDone,
                         inProgress: inProgress,
                         creationDate: creationDate)

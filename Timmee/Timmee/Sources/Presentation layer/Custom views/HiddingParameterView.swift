@@ -11,8 +11,8 @@ import UIKit
 
 class HiddingParameterView: UIView {
 
-    @IBOutlet fileprivate weak var heightConstraint: NSLayoutConstraint!
-    fileprivate var originalHeight: CGFloat = 40
+    @IBOutlet var heightConstraint: NSLayoutConstraint!
+    var originalHeight: CGFloat = 40
     
     override var isHidden: Bool {
         didSet {
