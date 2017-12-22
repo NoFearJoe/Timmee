@@ -55,26 +55,21 @@ final class SettingsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         InAppPurchase.abstract.loadStore()
-        
-        navigationController?.navigationBar.tintColor = AppTheme.white.scheme.tintColor
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: AppTheme.white.scheme.tintColor
-        ]
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [
-                NSForegroundColorAttributeName: AppTheme.white.scheme.tintColor
-            ]
-        }
         
         settingsItems = makeSettingsItems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupAppearance()
         reloadSettings()
     }
     
@@ -315,6 +310,23 @@ fileprivate extension SettingsViewController {
         }))
         
         present(alert, animated: true, completion: nil)
+    }
+    
+}
+
+fileprivate extension SettingsViewController {
+    
+    func setupAppearance() {
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barTintColor = AppTheme.current.backgroundColor
+        navigationController?.navigationBar.tintColor = AppTheme.current.backgroundTintColor
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor]
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor]
+        }
+        
+        view.backgroundColor = AppTheme.current.middlegroundColor
+        tableView.backgroundColor = AppTheme.current.middlegroundColor
     }
     
 }

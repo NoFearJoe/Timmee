@@ -584,7 +584,8 @@ fileprivate extension TaskEditorView {
                                      reminderView, repeatView,
                                      /*locationView, locationReminderView,*/
                                      taskImportancyPicker, timeTemplateView,
-                                     subtasksContainer, taskTagsView]
+                                     subtasksContainer, taskTagsView,
+                                     taskAttachmentsView]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 
                 view.isUserInteractionEnabled = isEnabled

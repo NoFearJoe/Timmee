@@ -54,8 +54,8 @@ enum AppTheme {
 
 struct AppThemeScheme {
 
-    static let white = AppThemeScheme(backgroundColor: UIColor(rgba: "303737"),
-                                      middlegroundColor: UIColor(rgba: "E0E0E0"),
+    static let white = AppThemeScheme(backgroundColor: UIColor(rgba: "272727"),
+                                      middlegroundColor: UIColor(rgba: "E7E7E7"),
                                       foregroundColor: UIColor(rgba: "FFFFFF"),
                                       tintColor: UIColor(rgba: "2C3539"),
                                       secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.6),

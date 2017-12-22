@@ -14,6 +14,16 @@ class BaseSettingsCell: UITableViewCell {
     
     func setDisplayItem(_ item: SettingsItem) {}
     
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = AppTheme.current.foregroundColor
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        backgroundColor = AppTheme.current.foregroundColor
+    }
+    
 }
 
 class SettingsCellWithTitle: BaseSettingsCell {
@@ -72,6 +82,7 @@ final class SettingsCellWithTitleAndSwitch: SettingsCellWithTitle {
     
     @IBOutlet fileprivate var switcher: UISwitch! {
         didSet {
+            switcher.tintColor = AppTheme.current.panelColor
             switcher.onTintColor = AppTheme.white.scheme.greenColor
         }
     }

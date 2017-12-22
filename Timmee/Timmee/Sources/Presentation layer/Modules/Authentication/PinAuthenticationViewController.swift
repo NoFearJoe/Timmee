@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import class UIKit.UIDevice
 import class UIKit.UILabel
+import class UIKit.UIDevice
+import enum UIKit.UIStatusBarStyle
 import class UIKit.UICollectionView
 import class UIKit.UIViewController
 import struct LocalAuthentication.LAError
@@ -48,6 +49,10 @@ final class PinAuthenticationViewController: UIViewController {
     var pinCodeLength: Int = 4
     
     var onComplete: (() -> Void)?
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -174,11 +179,14 @@ fileprivate extension PinAuthenticationViewController {
 fileprivate extension PinAuthenticationViewController {
 
     func setupAppearance() {
-        view.backgroundColor = AppTheme.current.middlegroundColor
-        messageLabel.textColor = AppTheme.current.tintColor
+        navigationController?.navigationBar.barTintColor = AppTheme.current.backgroundColor
+        navigationController?.navigationBar.tintColor = AppTheme.current.backgroundTintColor
         
-        pinCodeView.emptyDotColor = AppTheme.current.panelColor
-        pinCodeView.filledDotColor = AppTheme.current.tintColor
+        view.backgroundColor = AppTheme.current.backgroundColor
+        messageLabel.textColor = AppTheme.current.backgroundTintColor
+        
+        pinCodeView.emptyDotColor = AppTheme.current.secondaryBackgroundTintColor
+        pinCodeView.filledDotColor = AppTheme.current.backgroundTintColor
         pinCodeView.wrongPinCodeDotColor = AppTheme.current.redColor
         pinCodeView.rightPinCodeDotColor = AppTheme.current.greenColor
     }

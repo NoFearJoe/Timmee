@@ -52,7 +52,7 @@ final class NumberPadCell: BasePadCell {
     
     @IBOutlet fileprivate var titleLabel: UILabel! {
         didSet {
-            titleLabel.textColor = AppTheme.current.tintColor
+            titleLabel.textColor = AppTheme.current.backgroundTintColor
         }
     }
     
@@ -72,7 +72,7 @@ final class IconPadCell: BasePadCell {
     
     @IBOutlet fileprivate var iconView: UIImageView! {
         didSet {
-            iconView.tintColor = AppTheme.current.tintColor
+            iconView.tintColor = AppTheme.current.backgroundTintColor
         }
     }
     

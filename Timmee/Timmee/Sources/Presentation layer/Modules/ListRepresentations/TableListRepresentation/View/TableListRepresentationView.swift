@@ -450,7 +450,7 @@ fileprivate extension TableListRepresentationView {
     
     func setupPlaceholder() {
         placeholder.setup(into: tableContainerView)
-        placeholder.icon = #imageLiteral(resourceName: "faceIDBig")
+        placeholder.icon = #imageLiteral(resourceName: "no_tasks")
         placeholder.title = "no_tasks".localized
         placeholder.subtitle = "no_tasks_hint".localized
         placeholder.isHidden = true

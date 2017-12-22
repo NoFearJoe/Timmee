@@ -11,6 +11,7 @@ import class UIKit.UILabel
 import class UIKit.UIBarButtonItem
 import class UIKit.UIViewController
 import class UIKit.UICollectionView
+import enum UIKit.UIStatusBarStyle
 import class UIKit.UIStoryboardSegue
 import class LocalAuthentication.LAContext
 
@@ -84,6 +85,10 @@ final class PinCreationViewController: UIViewController {
                 navigationItem.rightBarButtonItem = nil
             }
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidLoad() {
@@ -229,10 +234,13 @@ fileprivate extension PinCreationViewController {
 fileprivate extension PinCreationViewController {
     
     func setupAppearance() {
-        view.backgroundColor = AppTheme.current.middlegroundColor
-        messageLabel.textColor = AppTheme.current.tintColor
+        navigationController?.navigationBar.barTintColor = AppTheme.current.backgroundColor
+        navigationController?.navigationBar.tintColor = AppTheme.current.backgroundTintColor
         
-        pinCodeView.emptyDotColor = AppTheme.current.panelColor
+        view.backgroundColor = AppTheme.current.backgroundColor
+        messageLabel.textColor = AppTheme.current.backgroundTintColor
+        
+        pinCodeView.emptyDotColor = AppTheme.current.secondaryBackgroundTintColor
         pinCodeView.filledDotColor = AppTheme.current.specialColor
         pinCodeView.wrongPinCodeDotColor = AppTheme.current.redColor
         pinCodeView.rightPinCodeDotColor = AppTheme.current.greenColor

@@ -205,7 +205,7 @@ fileprivate extension TaskTagsPicker {
     
     func setupPlaceholder() {
         placeholder.setup(into: view)
-        placeholder.icon = #imageLiteral(resourceName: "faceIDBig")
+        placeholder.icon = #imageLiteral(resourceName: "no_tasks")
         placeholder.title = "no_tags".localized
         placeholder.subtitle = "no_tags_hint".localized
         placeholder.isHidden = true

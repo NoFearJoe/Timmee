@@ -63,6 +63,8 @@ final class InAppPurchaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        view.backgroundColor = AppTheme.current.foregroundColor
+        
         inAppPurchaseButton.layer.cornerRadius = 4
         inAppPurchaseButton.layer.borderWidth = 1
     }
