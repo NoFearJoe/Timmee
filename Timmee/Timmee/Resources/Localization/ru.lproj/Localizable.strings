@@ -18,9 +18,11 @@
 "no_searched_tasks" = "Задач не найдено";
 "input_task_title" = "Название задачи...";
 "input_task_note" = "Описание...";
+
 "search" = "Поиск...";
 "initial_search_title" = "Поиск задач";
 "initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
+"emty_section" = "Неопознанный список";
 
 "no_tasks" = "Список пуст";
 "new_task" = "Новая задача...";
@@ -54,6 +56,7 @@
 "attachments" = "Прикрепленные файлы";
 "no_attachments" = "Нет прикрепленных файлов";
 "add_subtask" = "Добавить подзадачу...";
+"subtasks" = "подзадач";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";
@@ -101,12 +104,22 @@
 "template_at_launch" = "В обед";
 "template_at_afternoon" = "Вечером";
 
+"no_reminder" = "Не напоминать";
+"remind_just_in_time" = "Напомнить точно в срок";
+"remind_10_minutes_before" = "Напомнить за 10 минут";
+"remind_20_minutes_before" = "Напомнить за 30 минут";
+"remind_1_hour_before" = "Напомнить за час";
+"remind_1_day_before" = "Напомнить за день";
+
 "settings" = "Настройки";
 "background_color" = "Цвет фона";
 "password_protection" = "Защита паролем";
 "licenses" = "Лицензии";
 "give_feedback" = "Оставить отзыв";
 "additional_features" = "Дополнительные функции";
+"about_app" = "О программе";
+"about_app_text" = "О программе";
+"mail_us" = "Напишите нам";
 
 "remove_list" = "Удаление списка";
 "remove_tasks" = "Удаление задач";
@@ -139,7 +152,7 @@
 "passwords_are_not_equal" = "Пароли не совпадают";
 
 "enter_with" = "Вход по";
-"device_is_not_support_biometrics" = "Ваше устройство не поддерживает вход по биометрическим параметрам"; // TODO: translate
+"device_is_not_support_biometrics" = "Ваше устройство не поддерживает вход по биометрическим параметрам";
 "touch_id" = "TouchID";
 "face_id" = "FaceID";
 "enter_with_touch_id" = "Вход по TouchID";

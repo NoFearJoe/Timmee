@@ -209,7 +209,7 @@ extension TasksImportView: UITableViewDelegate {
         if title == nil || title!.isEmpty {
             title = "tasks_without_list".localized
         }
-        view.title = title!.uppercased() // todo default title and uppercase
+        view.title = title?.uppercased() ?? "empty_section".localized.uppercased()
         return view
     }
     

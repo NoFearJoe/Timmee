@@ -6,11 +6,16 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import class Foto.Photo
+import class Foundation.DispatchGroup
+
 protocol TaskEditorInteractorInput: class {
     func createTask() -> Task
     func saveTask(_ task: Task, listID: String?, success: (() -> Void)?, fail: (() -> Void)?)
     
     func scheduleTask(_ task: Task)
+    
+    func handleAttachmentsChange(oldAttachments: [String], newAttachments: [Photo], completion: @escaping ([String]) -> Void)
 }
 
 protocol TaskEditorInteractorOutput: class {}
@@ -50,6 +55,41 @@ extension TaskEditorInteractor: TaskEditorInteractorInput {
     func scheduleTask(_ task: Task) {
         let listTitle = tasksService.retrieveList(of: task)?.title
         taskSchedulerService.scheduleTask(task, listTitle: listTitle ?? "all_tasks".localized)
+    }
+    
+    
+    func handleAttachmentsChange(oldAttachments: [String], newAttachments: [Photo], completion: @escaping ([String]) -> Void) {
+        let newAttachmentPaths = newAttachments.map { $0.name }
+        
+        let removedAttachments = Array(Set(oldAttachments).subtracting(newAttachmentPaths))
+        
+        let group = DispatchGroup()
+        
+        removedAttachments.forEach { attachment in
+            group.enter()
+            
+            FilesService().removeFileFromDocuments(withName: attachment)
+            
+            group.leave()
+        }
+        
+        newAttachments.forEach { attachment in
+            guard !FilesService().isFileExistsInDocuments(withName: attachment.name) else { return }
+            
+            group.enter()
+            
+            attachment.loadImageData(completion: { data in
+                guard let data = data else { return }
+                
+                FilesService().saveFileInDocuments(withName: attachment.name, contents: data)
+                
+                group.leave()
+            })
+        }
+        
+        group.notify(queue: .main) {
+            completion(newAttachmentPaths)
+        }
     }
 
 }

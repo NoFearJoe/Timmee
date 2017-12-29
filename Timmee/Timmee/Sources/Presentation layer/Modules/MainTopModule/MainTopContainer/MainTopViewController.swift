@@ -104,6 +104,8 @@ final class MainTopViewController: UIViewController {
         addListView.onTap = { [unowned self] in
             self.showListEditor(with: nil)
         }
+        
+        hideLists(animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,11 +123,6 @@ final class MainTopViewController: UIViewController {
         listsViewHeightConstrint.constant = estimatedHeight - extraHeight
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        hideLists(animated: false)
-    }
-    
     func showLists(animated: Bool) {
         guard !isListsVisible else { return }
         
@@ -137,11 +134,12 @@ final class MainTopViewController: UIViewController {
         (view as? PassthrowView)?.shouldPassTouches = false
         overlayView.isHidden = false
         
+        listsViewContainer.isHidden = false
+        
         if animated {
             UIView.animate(withDuration: 0.25, animations: {
                 self.overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
                 self.listsViewContainer.transform = .identity
-//                self.view.layoutIfNeeded()
             }) { _ in
                 self.isListsVisible = true
             }
@@ -157,8 +155,6 @@ final class MainTopViewController: UIViewController {
         
         isPickingList = false
         
-//        listsViewHeightConstrint.constant = 10
-        
         if animated {
             UIView.animate(withDuration: 0.25,
                            delay: 0,
@@ -166,16 +162,17 @@ final class MainTopViewController: UIViewController {
                            animations: {
                 self.overlayView.backgroundColor = .clear
                 self.listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
-//                self.view.layoutIfNeeded()
             }) { _ in
                 self.overlayView.isHidden = true
                 self.isListsVisible = false
+                self.listsViewContainer.isHidden = true
                 (self.view as? PassthrowView)?.shouldPassTouches = true
             }
         } else {
             view.backgroundColor = .clear
             overlayView.isHidden = true
-            self.listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
+            listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
+            listsViewContainer.isHidden = true
             isListsVisible = false
             (view as? PassthrowView)?.shouldPassTouches = true
         }
@@ -264,7 +261,7 @@ extension MainTopViewController: UITableViewDelegate {
             if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
                 guard !(list is SmartList) else { return }
                 pickingListCompletion?(list)
-                hideLists(animated: true) // TODO: Может сначала алерт?
+                hideLists(animated: true)
             }
         } else {
             setCurrentList(indexPath)

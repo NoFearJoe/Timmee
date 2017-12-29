@@ -18,9 +18,11 @@
 "no_searched_tasks" = "No tasks";
 "input_task_title" = "Task title...";
 "input_task_note" = "Note...";
+
 "search" = "Search...";
 "initial_search_title" = "Tasks search";
 "initial_search_subtitle" = "Start to typing task title in search field";
+"emty_section" = "Unrecognized list";
 
 "no_tasks" = "No tasks";
 "new_task" = "New task...";
@@ -54,6 +56,7 @@
 "attachments" = "Attachments";
 "no_attachments" = "No attachments";
 "add_subtask" = "Add subtask...";
+"subtasks" = "subtasks";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
@@ -101,12 +104,22 @@
 "template_at_launch" = "At launch";
 "template_at_afternoon" = "At afternoon";
 
+"no_reminder" = "Don't remind";
+"remind_just_in_time" = "Remind just in time";
+"remind_10_minutes_before" = "Remind 10 minutes before";
+"remind_20_minutes_before" = "Remind 30 minutes before";
+"remind_1_hour_before" = "Remind a hour before";
+"remind_1_day_before" = "Remind a day before";
+
 "settings" = "Settings";
 "background_color" = "Background color";
 "password_protection" = "Password protection";
 "licenses" = "Licenses";
 "give_feedback" = "Send feedback";
 "additional_features" = "Additional features";
+"about_app" = "About App";
+"about_app_text" = "About App text";
+"mail_us" = "Send a mail to us";
 
 "remove_list" = "Remove list";
 "remove_tasks" = "Remove tasks";
@@ -139,7 +152,7 @@
 "passwords_are_not_equal" = "Passwords are not equal";
 
 "enter_with" = "Enter with";
-"device_is_not_support_biometrics" = "Your device is not support biometrics enter"; // TODO: translate
+"device_is_not_support_biometrics" = "Your device is not support biometrics authentication";
 "touch_id" = "TouchID";
 "face_id" = "FaceID";
 "enter_with_touch_id" = "Enter with TouchID";

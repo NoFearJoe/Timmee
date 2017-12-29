@@ -109,7 +109,6 @@ extension TaskRepeatingEditor {
             cell.accessoryType = .none
         } else {
             cell.setTitle(customRepeatingCases[indexPath.row])
-//            cell.setIcon() TODO
             cell.setIndicatorVisible(selectedCaseIndex == indexPath.row)
             cell.accessoryType = .disclosureIndicator
         }
@@ -180,17 +179,11 @@ extension TaskRepeatingEditor: TaskParameterEditorInput {
 
 final class TaskRepeatingCell: UITableViewCell {
     
-    @IBOutlet fileprivate weak var iconView: UIImageView!
     @IBOutlet fileprivate weak var titleView: UILabel!
     @IBOutlet fileprivate weak var selectedIndicator: UIView!
     
     func setRepeatType(_ type: RepeatType) {
         titleView?.text = type.localized
-        //        imageView?.image = mask.icon TODO
-    }
-    
-    func setIcon(_ icon: UIImage) {
-        iconView.image = icon
     }
     
     func setTitle(_ title: String) {

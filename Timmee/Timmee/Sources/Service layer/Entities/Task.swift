@@ -46,7 +46,6 @@ class Task {
         dueDate = task.dueDate as Date?
         repeatEndingDate = task.repeatEndingDate as Date?
         
-        // TODO: handle location
         if let data = task.location as Data? {
             location = NSKeyedUnarchiver.unarchiveObject(with: data) as? CLLocation
         }

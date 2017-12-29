@@ -27,8 +27,6 @@ protocol ListEditorViewOutput: class {
     func listIconSelected(_ icon: ListIcon)
 }
 
-// TODO: Keyboard
-
 final class ListEditorView: UIViewController {
 
     var output: ListEditorViewOutput!

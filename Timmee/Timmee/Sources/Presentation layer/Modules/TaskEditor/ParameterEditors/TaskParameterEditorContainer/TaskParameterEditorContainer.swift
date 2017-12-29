@@ -171,7 +171,6 @@ extension TaskParameterEditorContainer: TaskParameterEditorContainerInput {
 
 }
 
-// TODO: Вынести в отдельный объект TransitionAnimator
 extension TaskParameterEditorContainer: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -236,7 +235,6 @@ fileprivate extension TaskParameterEditorContainer {
     func setupEditor(for type: TaskParameterEditorType) {
         guard let viewController = output?.editorViewController(forType: type) else { return }
         
-        // TODO: Вынести в отдельный метод
         addChildViewController(viewController)
         editorContainer.addSubview(viewController.view)
         viewController.view.allEdges().toSuperview()

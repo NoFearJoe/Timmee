@@ -103,7 +103,7 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
     
     func groupEditingOperationCompleted() {
         view.setInteractionsEnabled(true)
-        view.setGroupEditingActionsEnabled(false) // TODO: Или закончить изменения???
+        view.setGroupEditingActionsEnabled(false)
     }
     
     func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble) {

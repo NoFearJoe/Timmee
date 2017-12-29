@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import enum MessageUI.MFMailComposeResult
+import class MessageUI.MFMailComposeViewController
+import protocol MessageUI.MFMailComposeViewControllerDelegate
 
 enum SettingsSection {
     case general
@@ -254,38 +257,44 @@ fileprivate extension SettingsViewController {
             aboutSectionItems.append(rateItem)
         }
         
-        let licenseAction = { [unowned self] in
-            let viewController = UIViewController() // TODO
+        let aboutAction = { [unowned self] in
+            let viewController = ViewControllersFactory.aboutApp
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        let licenseItem = SettingsItem(title: "license".localized,
+        let aboutItem = SettingsItem(title: "about_app".localized,
                                        subtitle: nil,
-                                       icon: #imageLiteral(resourceName: "chatListIcon"),
+                                       icon: #imageLiteral(resourceName: "homeListIcon"),
                                        isOn: false,
                                        isDetailed: true,
                                        style: .detailsTitle,
-                                       action: licenseAction)
+                                       action: aboutAction)
         
-        aboutSectionItems.append(licenseItem)
+        aboutSectionItems.append(aboutItem)
         
-        let restoreAction = { [unowned self] in
-            self.setLoadingVisible(true)
-            InAppPurchase.abstract.restore { [weak self] in
-                self?.setLoadingVisible(false)
-                // TODO: Reload in app carousel
-            }
+        let mailAction = { [unowned self] in
+            let viewController = ViewControllersFactory.mail
+            viewController.mailComposeDelegate = self
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
-        let restorePurchasesItem = SettingsItem(title: "restore_purchases".localized,
-                                                subtitle: nil,
-                                                icon: #imageLiteral(resourceName: "repeat"),
-                                                isOn: false,
-                                                isDetailed: true,
-                                                style: .detailsTitle,
-                                                action: restoreAction)
+        let mailItem = SettingsItem(title: "mail_us".localized,
+                                       subtitle: nil,
+                                       icon: #imageLiteral(resourceName: "mailListIcon"),
+                                       isOn: false,
+                                       isDetailed: true,
+                                       style: .detailsTitle,
+                                       action: mailAction)
         
-        aboutSectionItems.append(restorePurchasesItem)
+        aboutSectionItems.append(mailItem)
         
         return aboutSectionItems
+    }
+    
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }

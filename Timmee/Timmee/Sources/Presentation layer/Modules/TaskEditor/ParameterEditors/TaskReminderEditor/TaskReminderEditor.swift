@@ -98,13 +98,11 @@ extension TaskReminderEditor: TaskParameterEditorInput {
 
 final class TaskReminderCell: UITableViewCell {
 
-    @IBOutlet fileprivate weak var iconView: UIImageView!
     @IBOutlet fileprivate weak var titleView: UILabel!
     @IBOutlet fileprivate weak var selectedMaskIndicator: UIView!
     
     func setNotificationMask(_ mask: NotificationMask) {
         titleView?.text = mask.title
-//        imageView?.image = mask.icon TODO
     }
     
     func setMaskSelected(_ isSelected: Bool) {

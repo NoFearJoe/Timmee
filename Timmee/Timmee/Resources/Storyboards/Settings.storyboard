@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wPA-hm-0ae">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wPA-hm-0ae">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,21 +38,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="U8E-OF-FM3">
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="kdS-XU-feX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <connections>
-                                        <segue destination="e63-Yk-W22" kind="embed" id="SM7-Cs-0m0"/>
-                                    </connections>
-                                </containerView>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Ez8-Z7-b9y">
-                                    <rect key="frame" x="0.0" y="528.5" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="336.5" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitle" rowHeight="52" id="50L-4J-9Dd" customClass="SettingsCellWithTitle" customModule="Timmee">
-                                        <rect key="frame" x="0.0" y="247.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="50L-4J-9Dd" id="H3g-xF-Bls">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
@@ -86,7 +79,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitle" rowHeight="52" id="7SD-dr-LrA" customClass="SettingsDetailsCellWithTitle" customModule="Timmee">
-                                        <rect key="frame" x="0.0" y="299.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="107.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7SD-dr-LrA" id="8vO-No-U5g">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="51.5"/>
@@ -120,7 +113,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSwitch" rowHeight="52" id="4zi-ht-2Iy" customClass="SettingsCellWithTitleAndSwitch" customModule="Timmee">
-                                        <rect key="frame" x="0.0" y="351.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="159.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4zi-ht-2Iy" id="CFp-aL-Yrc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
@@ -163,7 +156,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSubtitle" rowHeight="52" id="6Ay-5G-jaB" customClass="SettingsCellWithTitleAndSubtitle" customModule="Timmee">
-                                        <rect key="frame" x="0.0" y="403.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="211.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ay-5G-jaB" id="yoV-j7-4dS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
@@ -221,7 +214,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitleAndSubtitle" rowHeight="52" id="S0j-S6-0NM" customClass="SettingsDetailsCellWithTitleAndSubtitle" customModule="Timmee">
-                                        <rect key="frame" x="0.0" y="455.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="263.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S0j-S6-0NM" id="yXK-6R-mR9">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="51.5"/>
@@ -317,6 +310,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4h-ND-cW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="121" y="157"/>
+        </scene>
+        <!--About App View Controller-->
+        <scene sceneID="3MS-Cb-58b">
+            <objects>
+                <viewController storyboardIdentifier="AboutAppViewController" id="uqW-j8-QJb" customClass="AboutAppViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OTB-UG-tOo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ip-F4-40f">
+                                <rect key="frame" x="15" y="35" width="345" height="632"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lzN-CC-gvL" firstAttribute="trailing" secondItem="1ip-F4-40f" secondAttribute="trailing" constant="15" id="L0V-0H-m3V"/>
+                            <constraint firstItem="lzN-CC-gvL" firstAttribute="bottom" secondItem="1ip-F4-40f" secondAttribute="bottom" id="SpH-cb-2a7"/>
+                            <constraint firstItem="1ip-F4-40f" firstAttribute="leading" secondItem="lzN-CC-gvL" secondAttribute="leading" constant="15" id="fCU-bb-2nG"/>
+                            <constraint firstItem="1ip-F4-40f" firstAttribute="top" secondItem="lzN-CC-gvL" secondAttribute="top" constant="15" id="mQF-Fh-hp5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lzN-CC-gvL"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="1ip-F4-40f" id="PkO-RJ-F9z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E4H-Bl-E1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121" y="1009"/>
+        </scene>
+        <!--Futures View Controller-->
+        <scene sceneID="lP0-xo-h5T">
+            <objects>
+                <viewController storyboardIdentifier="FuturesViewController" id="bGK-S7-nnL" customClass="FuturesViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kJd-to-Ncd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="sg6-mZ-zzE"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVO-7i-kg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1087" y="1009"/>
         </scene>
         <!--In App Purchases View Controller-->
         <scene sceneID="lXF-2q-CJp">

@@ -42,6 +42,16 @@ extension Date {
         return asString(format: "HH:mm")
     }
     
+    var asNearestDateString: String {
+        let nearestDate = NearestDate(date: self)
+        
+        if case .custom = nearestDate {
+            return self.asDayMonthTime
+        } else {
+            return nearestDate.title + ", " + self.asTimeString
+        }
+    }
+    
 }
 
 extension Date {

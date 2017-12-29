@@ -267,39 +267,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func attachmentsChanged(to attachments: [Photo]) {
-        // TODO: Move to interactor
-        
-        let attachmentNames = attachments.map { $0.name }
-        
-        let removedAttachments = Array(Set(self.task.attachments).subtracting(attachmentNames))
-        
-        let group = DispatchGroup()
-        
-        removedAttachments.forEach { attachment in
-            group.enter()
-            
-            FilesService().removeFileFromDocuments(withName: attachment)
-            
-            group.leave()
-        }
-        
-        attachments.forEach { attachment in
-            guard !FilesService().isFileExistsInDocuments(withName: attachment.name) else { return }
-            
-            group.enter()
-            
-            attachment.loadImageData(completion: { data in
-                guard let data = data else { return }
-                
-                FilesService().saveFileInDocuments(withName: attachment.name, contents: data)
-                
-                group.leave()
-            })
-        }
-        
-        group.notify(queue: .main) {
-            self.task.attachments = attachmentNames
-            self.view.setAttachments(attachmentNames)
+        interactor.handleAttachmentsChange(oldAttachments: task.attachments, newAttachments: attachments) { newAttachmentPaths in
+            self.task.attachments = newAttachmentPaths
+            self.view.setAttachments(newAttachmentPaths)
         }
     }
     
@@ -387,30 +357,11 @@ extension TaskEditorPresenter: TaskEditorInteractorOutput {}
 fileprivate extension TaskEditorPresenter {
 
     func showFormattedDueDateTime(_ dueDate: Date?) {
-        view.setDueDateTime(makeFormattedString(from: dueDate))
+        view.setDueDateTime(dueDate?.asNearestDateString)
     }
     
     func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {
-        if let dateString = makeFormattedString(from: repeatEndingDate) {
-            view.setRepeatEndingDate(dateString)
-        } else {
-            view.setRepeatEndingDate(nil)
-        }
-    }
-    
-    // TODO: Refactoring cause of reuse in TaskTimeTemplateEditor
-    func makeFormattedString(from date: Date?) -> String? {
-        if let date = date {
-            let nearestDate = NearestDate(date: date)
-            
-            if case .custom = nearestDate {
-                return date.asDayMonthTime
-            } else {
-                return nearestDate.title + ", " + date.asTimeString
-            }
-        } else {
-            return nil
-        }
+        view.setRepeatEndingDate(repeatEndingDate?.asNearestDateString)
     }
     
     

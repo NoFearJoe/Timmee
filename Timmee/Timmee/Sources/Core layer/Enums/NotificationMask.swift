@@ -30,15 +30,14 @@ enum NotificationMask: Int16 {
 
 extension NotificationMask {
 
-    // TODO: Localize
     var title: String {
         switch self {
-        case .doNotNotify: return "Не напоминать"
-        case .justInTime: return "Напомнить точно в срок"
-        case .till10minutes: return "Напомнить за 10 минут"
-        case .till30minutes: return "Напомнить за 30 минут"
-        case .till1hour: return "Напомнить за час"
-        case .till1day: return "Напомнить за день"
+        case .doNotNotify: return "no_reminder"
+        case .justInTime: return "remind_just_in_time"
+        case .till10minutes: return "remind_10_minutes_before"
+        case .till30minutes: return "remind_30_minutes_before"
+        case .till1hour: return "remind_1_hour_before"
+        case .till1day: return "remind_1_day_before"
         }
     }
     

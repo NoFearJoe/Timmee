@@ -184,7 +184,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         
         if !task.isDone {
             timeTemplate = task.timeTemplate?.title
-            dueDate = makeFormattedString(from: task.dueDate)
+            dueDate = task.dueDate?.asNearestDateString
             subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         } else {
             timeTemplate = nil
@@ -196,6 +196,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     }
     
     func applyAppearance() {
+        contentView.backgroundColor = .clear
         containerView.fillColor = AppTheme.current.foregroundColor
         titleLabel.textColor = AppTheme.current.tintColor
         timeTemplateLabel.textColor = AppTheme.current.specialColor
@@ -227,7 +228,7 @@ fileprivate extension TableListRepresentationCell {
     
     func updateSubtasksView(with subtasksInfo: (done: Int, total: Int)?) {
         if let info = subtasksInfo, info.total != 0 {
-            subtasksLabel.text = "\(info.done)/\(info.total) подзадач" // TODO: убрать подзадач? поставить иконку???
+            subtasksLabel.text = "\(info.done) \("of".localized) \(info.total) \("subtasks".localized)"
         } else {
             subtasksLabel.text = nil
         }
@@ -255,21 +256,6 @@ fileprivate extension TableListRepresentationCell {
     
     @objc func tapImportancyView() {
         onTapToImportancy?()
-    }
-    
-    // TODO: Refactoring
-    func makeFormattedString(from date: Date?) -> String? {
-        if let date = date {
-            let nearestDate = NearestDate(date: date)
-            
-            if case .custom = nearestDate {
-                return date.asDayMonthTime
-            } else {
-                return nearestDate.title + ", " + date.asTimeString
-            }
-        } else {
-            return nil
-        }
     }
     
 }

@@ -9,6 +9,7 @@
 import class UIKit.UIStoryboard
 import class UIKit.UIViewController
 import class UIKit.UINavigationController
+import class MessageUI.MFMailComposeViewController
 
 final class ViewControllersFactory {
 
@@ -108,6 +109,20 @@ final class ViewControllersFactory {
     
     static var inApp: InAppPurchaseViewController {
         return StoryboardsFactory.settings.viewController(id: "InAppPurchaseViewController")
+    }
+    
+    static var aboutApp: AboutAppViewController {
+        return StoryboardsFactory.settings.viewController(id: "AboutAppViewController")
+    }
+    
+    static var mail: MFMailComposeViewController {
+        let viewController = MFMailComposeViewController()
+        if #available(iOS 11.0, *) {
+            viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
+        } else {
+            viewController.setToRecipients(["mesterra.co@gmail.com"])
+        }
+        return viewController
     }
 
     

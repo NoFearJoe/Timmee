@@ -87,9 +87,7 @@ final class TaskEditorView: UIViewController {
                                  attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16,
                                                                                      weight: UIFontWeightLight),
                                               NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
-        
-        timeTemplateView.isHidden = false // TODO: !UserProperty.inApp(InAppPurchaseItem.dateTemplates.id).bool()
-        
+                
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
             if isFilled {
                 self.reminderView.isHidden = true
@@ -439,7 +437,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             let viewController = ViewControllersFactory.taskTimeTemplatePicker
             viewController.loadViewIfNeeded()
             viewController.output = self
-            viewController.transitionOutput = taskParameterEditorContainer// TODO: Сделать присваивание в taskParameterEditorContainer
+            viewController.transitionOutput = taskParameterEditorContainer
             output.willPresentTimeTemplatePicker(viewController)
             return viewController
         case .attachments:

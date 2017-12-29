@@ -215,7 +215,7 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         groupEditingActionsView.setEnabled(false)
         groupEditingActionsView.setVisible(isGroupEditing, animated: true)
         
-        self.output.groupEditingToggled(to: self.isGroupEditing)
+        self.output.groupEditingWillToggle(to: self.isGroupEditing)
         
         UIView.animate(withDuration: 0.33, animations: {
             self.shortTaskEditorView.alpha = self.isGroupEditing ? 0 : 1

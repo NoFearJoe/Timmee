@@ -145,7 +145,7 @@ extension TaskPhotoAttachmentsPicker: UICollectionViewDelegateFlowLayout {
 extension TaskPhotoAttachmentsPicker: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return UIScreen.main.bounds.height - 64
+        return UIScreen.main.bounds.height * 0.6
     }
     
     func completeEditing(completion: @escaping (Bool) -> Void) {
