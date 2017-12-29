@@ -202,6 +202,10 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
         return state.checkedTasks.contains(task)
     }
     
+    func groupEditingWillToggle(to isEditing: Bool) {
+        editingOutput?.groupEditingWillToggle(to: isEditing)
+    }
+    
     func groupEditingToggled(to isEditing: Bool) {
         editingOutput?.groupEditingToggled(to: isEditing)
         state.checkedTasks = []

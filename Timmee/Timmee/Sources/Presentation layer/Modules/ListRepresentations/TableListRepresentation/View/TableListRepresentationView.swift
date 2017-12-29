@@ -50,6 +50,7 @@ protocol TableListRepresentationViewOutput: class {
     func didUncheckTask(_ task: Task)
     func taskIsChecked(_ task: Task) -> Bool
     
+    func groupEditingWillToggle(to isEditing: Bool)
     func groupEditingToggled(to isEditing: Bool)
     func didSelectGroupEditingAction(_ action: GroupEditingAction)
 }
@@ -122,39 +123,7 @@ final class TableListRepresentationView: UIViewController {
         tableView.register(TableListRepresentationFooter.self,
                            forHeaderFooterViewReuseIdentifier: "TableListRepresentationFooter")
         
-        swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
-            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                self.output.didPressDelete(task: task)
-            }
-        }
-        swipeTableActionsProvider.onStart = { [unowned self] indexPath in
-            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                self.output.didPressStart(task: task)
-            }
-        }
-        swipeTableActionsProvider.onStop = { [unowned self] indexPath in
-            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                self.output.didPressStop(task: task)
-            }
-        }
-        swipeTableActionsProvider.onDone = { [unowned self] indexPath in
-            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                self.output.didPressComplete(task: task)
-            }
-        }
-        swipeTableActionsProvider.isDone = { [unowned self] indexPath in
-            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                return task.isDone
-            }
-            return false
-        }
-        swipeTableActionsProvider.progressActionForRow = { [unowned self] indexPath in
-            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                if task.isDone { return .none }
-                else { return task.inProgress ? .stop : .start }
-            }
-            return .none
-        }
+        setupSwipeActionsProvider()
         
         keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
             self.bottomContainerConstraint.constant = frame.height
@@ -245,6 +214,9 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         newTaskTitleTextField.resignFirstResponder()
         groupEditingActionsView.setEnabled(false)
         groupEditingActionsView.setVisible(isGroupEditing, animated: true)
+        
+        self.output.groupEditingToggled(to: self.isGroupEditing)
+        
         UIView.animate(withDuration: 0.33, animations: {
             self.shortTaskEditorView.alpha = self.isGroupEditing ? 0 : 1
         }) { _ in
@@ -446,6 +418,48 @@ fileprivate extension TableListRepresentationView {
     
     @objc func taskTitleDidChange() {
         updateRightBarButton()
+    }
+    
+    func setupSwipeActionsProvider() {
+        func performWithTask(at indexPath: IndexPath, action: @escaping (Task) -> Void) {
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                action(task)
+            }
+        }
+        
+        swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
+            performWithTask(at: indexPath) { [unowned self] task in
+                self.output.didPressDelete(task: task)
+            }
+        }
+        swipeTableActionsProvider.onStart = { [unowned self] indexPath in
+            performWithTask(at: indexPath) { [unowned self] task in
+                self.output.didPressStart(task: task)
+            }
+        }
+        swipeTableActionsProvider.onStop = { [unowned self] indexPath in
+            performWithTask(at: indexPath) { [unowned self] task in
+                self.output.didPressStop(task: task)
+            }
+        }
+        swipeTableActionsProvider.onDone = { [unowned self] indexPath in
+            performWithTask(at: indexPath) { [unowned self] task in
+                self.output.didPressComplete(task: task)
+            }
+        }
+        swipeTableActionsProvider.isDone = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                return task.isDone
+            }
+            return false
+        }
+        swipeTableActionsProvider.progressActionForRow = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                if task.isDone { return .none }
+                else { return task.inProgress ? .stop : .start }
+            }
+            return .none
+        }
     }
     
     func setupPlaceholder() {

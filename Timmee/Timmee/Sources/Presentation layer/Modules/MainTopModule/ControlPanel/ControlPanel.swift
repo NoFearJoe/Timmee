@@ -50,8 +50,8 @@ final class ControlPanel: BarView {
         editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .disabled)
         editButton.tintColor = isEditing ? AppTheme.current.greenColor : AppTheme.current.backgroundTintColor
         
-        settingsButton.isUserInteractionEnabled = !isEditing
-        searchButton.isUserInteractionEnabled = !isEditing
+        settingsButton.isEnabled = !isEditing
+        searchButton.isEnabled = !isEditing
     }
 
 }

@@ -52,18 +52,14 @@ final class MainTopViewController: UIViewController {
     
     
     @IBAction fileprivate func didPressSettingsButton() {
-        if isListsVisible {
-            hideLists(animated: true)
-        }
-        
+        hideLists(animated: true, force: true)
+
         let viewController = ViewControllersFactory.settings
         present(viewController, animated: true, completion: nil)
     }
     
     @IBAction fileprivate func didPressSearchButton() {
-        if isListsVisible {
-            hideLists(animated: true)
-        }
+        hideLists(animated: true, force: true)
         
         let viewController = ViewControllersFactory.search
         SearchAssembly.assembly(with: viewController)
@@ -74,9 +70,7 @@ final class MainTopViewController: UIViewController {
         controlPanel.setGroupEditingButtonEnabled(false)
         editingInput?.toggleGroupEditing()
         
-        if isListsVisible {
-            hideLists(animated: true)
-        }
+        hideLists(animated: true, force: true)
     }
     
     @IBAction fileprivate func didPressOverlayView() {
@@ -110,8 +104,6 @@ final class MainTopViewController: UIViewController {
         addListView.onTap = { [unowned self] in
             self.showListEditor(with: nil)
         }
-                
-        hideLists(animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,6 +115,15 @@ final class MainTopViewController: UIViewController {
         listsViewContainer.barColor = AppTheme.current.foregroundColor
         
         listsView.hideSwipeCell(animated: false)
+        
+        let estimatedHeight = view.frame.height * 0.75
+        let extraHeight = estimatedHeight.truncatingRemainder(dividingBy: 44)
+        listsViewHeightConstrint.constant = estimatedHeight - extraHeight
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        hideLists(animated: false)
     }
     
     func showLists(animated: Bool) {
@@ -136,43 +137,47 @@ final class MainTopViewController: UIViewController {
         (view as? PassthrowView)?.shouldPassTouches = false
         overlayView.isHidden = false
         
-        let estimatedHeight = view.frame.height * 0.75
-        let extraHeight = estimatedHeight.truncatingRemainder(dividingBy: 44)
-        listsViewHeightConstrint.constant = estimatedHeight - extraHeight
-        
         if animated {
             UIView.animate(withDuration: 0.25, animations: {
                 self.overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
-                self.view.layoutIfNeeded()
+                self.listsViewContainer.transform = .identity
+//                self.view.layoutIfNeeded()
             }) { _ in
                 self.isListsVisible = true
             }
         } else {
             overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
+            self.listsViewContainer.transform = .identity
             isListsVisible = true
         }
     }
     
-    func hideLists(animated: Bool) {
-        guard isListsVisible else { return }
+    func hideLists(animated: Bool, force: Bool = false) {
+        guard isListsVisible || force else { return }
         
         isPickingList = false
-        (view as? PassthrowView)?.shouldPassTouches = true
         
-        listsViewHeightConstrint.constant = 0
+//        listsViewHeightConstrint.constant = 10
         
         if animated {
-            UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: .beginFromCurrentState,
+                           animations: {
                 self.overlayView.backgroundColor = .clear
-                self.view.layoutIfNeeded()
+                self.listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
+//                self.view.layoutIfNeeded()
             }) { _ in
                 self.overlayView.isHidden = true
                 self.isListsVisible = false
+                (self.view as? PassthrowView)?.shouldPassTouches = true
             }
         } else {
             view.backgroundColor = .clear
             overlayView.isHidden = true
+            self.listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
             isListsVisible = false
+            (view as? PassthrowView)?.shouldPassTouches = true
         }
     }
     
@@ -292,6 +297,12 @@ extension MainTopViewController: ListEditorOutput {
 }
 
 extension MainTopViewController: ListRepresentationEditingOutput {
+    
+    func groupEditingWillToggle(to isEditing: Bool) {
+        if isEditing {
+            isGroupEditing = true
+        }
+    }
     
     func groupEditingToggled(to isEditing: Bool) {
         isGroupEditing = isEditing

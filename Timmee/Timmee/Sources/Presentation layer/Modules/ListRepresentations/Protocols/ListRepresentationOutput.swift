@@ -12,7 +12,9 @@ protocol ListRepresentationOutput: class {
 }
 
 protocol ListRepresentationEditingOutput: class {
+    func groupEditingWillToggle(to isEditing: Bool)
     func groupEditingToggled(to isEditing: Bool)
+    
     func didAskToShowListsForMoveTasks(completion: @escaping (List) -> Void)
     func setGroupEditingVisible(_ isVisible: Bool)
 }

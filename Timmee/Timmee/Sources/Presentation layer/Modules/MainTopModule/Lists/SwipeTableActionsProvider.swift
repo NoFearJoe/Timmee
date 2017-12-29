@@ -50,7 +50,7 @@ class SwipeTableActionsProvider {
             self?.onDelete?(indexPath)
             action.fulfill(with: .delete)
         })
-        deleteAction.image = UIImage(named: "trash")
+        deleteAction.image = #imageLiteral(resourceName: "trash")
         deleteAction.textColor = AppTheme.current.redColor
         deleteAction.title = nil
         deleteAction.accessibilityLabel = ""

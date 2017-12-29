@@ -317,6 +317,7 @@ fileprivate extension SettingsViewController {
 fileprivate extension SettingsViewController {
     
     func setupAppearance() {
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.barTintColor = AppTheme.current.backgroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.backgroundTintColor

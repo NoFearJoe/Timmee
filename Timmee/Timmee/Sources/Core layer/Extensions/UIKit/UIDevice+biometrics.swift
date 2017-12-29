@@ -19,8 +19,8 @@ extension UIDevice {
         
         if #available(iOS 11.0, *) {
             switch localAuthenticationContext.biometryType {
-            case .typeFaceID: return .faceID
-            case .typeTouchID: return .touchID
+            case .faceID: return .faceID
+            case .touchID: return .touchID
             case .none: return .none
             }
         } else {

@@ -7,6 +7,7 @@
 //
 
 import class UIKit.UIImage
+import class UIKit.UIDevice
 import class LocalAuthentication.LAContext
 
 struct NumberPadItem {
@@ -37,7 +38,7 @@ struct NumberPadItem {
         case .number(let value): style = .number(value: value)
         case .clear: style = .icon(image: #imageLiteral(resourceName: "clear_arrow"))
         case .biometrics:
-            switch biometricsType {
+            switch UIDevice.current.biometricsType {
             case .none: style = .icon(image: UIImage())
             case .touchID: style = .icon(image: #imageLiteral(resourceName: "touchIDSmall"))
             case .faceID: style = .icon(image: #imageLiteral(resourceName: "faceIDSmall"))
@@ -50,21 +51,5 @@ struct NumberPadItem {
         self.kind = kind
         self.style = style
     }
-    
-    fileprivate let biometricsType: BiometricsType = {
-        let localAuthenticationContext = LAContext()
-        guard localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-            else { return .none }
-        
-        if #available(iOS 11.0, *) {
-            switch localAuthenticationContext.biometryType {
-            case .typeFaceID: return .faceID
-            case .typeTouchID: return .touchID
-            case .none: return .none
-            }
-        } else {
-            return .touchID
-        }
-    }()
     
 }
