@@ -114,7 +114,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
                 guard let `self` = self else { return }
                 
                 if task.isDone {
-                    self.taskSchedulerService.removeNotification(for: task)
+                    self.taskSchedulerService.removeNotifications(for: task)
                 } else {
                     let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
                     self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
@@ -140,7 +140,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
 
                 tasks.forEach { task in
                     if task.isDone {
-                        self.taskSchedulerService.removeNotification(for: task)
+                        self.taskSchedulerService.removeNotifications(for: task)
                     } else {
                         let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
                         self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
@@ -156,7 +156,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.updateTask(task) { [weak self] error in
             DispatchQueue.main.async {
-                self?.taskSchedulerService.removeNotification(for: task)
+                self?.taskSchedulerService.removeNotifications(for: task)
                 self?.output.operationCompleted()
             }
         }
@@ -168,7 +168,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.updateTasks(tasks) { [weak self] error in
             DispatchQueue.main.async {
-                tasks.forEach { self?.taskSchedulerService.removeNotification(for: $0) }
+                tasks.forEach { self?.taskSchedulerService.removeNotifications(for: $0) }
                 self?.output.groupEditingOperationCompleted()
             }
         }

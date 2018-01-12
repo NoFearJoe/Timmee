@@ -31,6 +31,12 @@ final class ListCell: SwipeTableViewCell {
     func setListSelected(_ selected: Bool) {
         selectedListIndicator.isHidden = !selected
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        contentView.alpha = 1
+    }
 
 }
 

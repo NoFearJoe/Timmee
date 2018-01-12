@@ -51,10 +51,10 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         }
     }
     
-    var dueDate: String? {
+    var dueDate: Date? {
         didSet {
-            guard dueDate != oldValue || dueDate == nil else { return }
-            updateDueDateView(with: dueDate)
+            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && dueDate! < Date())
+            updateDueDateView(with: dueDate?.asNearestDateString, isOverdue: isOverdue)
         }
     }
     
@@ -184,7 +184,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         
         if !task.isDone {
             timeTemplate = task.timeTemplate?.title
-            dueDate = task.dueDate?.asNearestDateString
+            dueDate = task.dueDate
             subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         } else {
             timeTemplate = nil
@@ -200,7 +200,6 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         containerView.fillColor = AppTheme.current.foregroundColor
         titleLabel.textColor = AppTheme.current.tintColor
         timeTemplateLabel.textColor = AppTheme.current.specialColor
-        dueDateLabel.textColor = AppTheme.current.secondaryTintColor
         subtasksLabel.textColor = AppTheme.current.secondaryTintColor
     }
     
@@ -217,8 +216,11 @@ fileprivate extension TableListRepresentationCell {
         }
     }
     
-    func updateDueDateView(with dueDate: String?) {
+    func updateDueDateView(with dueDate: String?, isOverdue: Bool = false) {
         dueDateLabel.text = dueDate
+        
+        dueDateLabel.textColor = isOverdue ? AppTheme.current.redColor : AppTheme.current.secondaryTintColor
+        
         if let dueDate = dueDate, !dueDate.isEmpty {
             subtasksLabelLeadingConstraint.constant = 10
         } else {

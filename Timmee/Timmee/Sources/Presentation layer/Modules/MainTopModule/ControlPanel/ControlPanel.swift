@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import class UIKit.UIView
 import class UIKit.UILabel
 import class UIKit.UIButton
 import class UIKit.UIImageView
@@ -21,6 +22,8 @@ final class ControlPanel: BarView {
     @IBOutlet fileprivate var editButton: UIButton!
     
     @IBOutlet fileprivate var editButtonWidthConstraint: NSLayoutConstraint!
+    
+    private var isControlsHidden = false
     
     func showList(_ list: List) {
         setListIcon(list.icon)
@@ -52,6 +55,46 @@ final class ControlPanel: BarView {
         
         settingsButton.isEnabled = !isEditing
         searchButton.isEnabled = !isEditing
+    }
+    
+    func showControls(animated: Bool) {
+        guard isControlsHidden else { return }
+        
+        [settingsButton, searchButton, editButton].forEach { $0?.isHidden = false }
+        
+        if animated {
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: [.beginFromCurrentState, .curveEaseOut],
+                           animations:
+            {
+                [self.settingsButton, self.searchButton, self.editButton].forEach { $0?.alpha = 1 }
+            }, completion: { _ in
+                self.isControlsHidden = false
+            })
+        } else {
+            isControlsHidden = false
+        }
+    }
+    
+    func hideControls(animated: Bool) {
+        guard !isControlsHidden else { return }
+        
+        if animated {
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: [.beginFromCurrentState, .curveEaseIn],
+                           animations:
+            {
+                [self.settingsButton, self.searchButton, self.editButton].forEach { $0?.alpha = 0 }
+            }, completion: { _ in
+                [self.settingsButton, self.searchButton, self.editButton].forEach { $0?.isHidden = true }
+                self.isControlsHidden = true
+            })
+        } else {
+            [settingsButton, searchButton, editButton].forEach { $0?.isHidden = true }
+            isControlsHidden = true
+        }
     }
 
 }

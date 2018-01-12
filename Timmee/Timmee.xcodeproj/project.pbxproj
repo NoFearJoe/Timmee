@@ -48,6 +48,7 @@
 		0CB8F1FF1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */; };
 		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
 		0CB8F26A1FE95036005D9E11 /* Foto.Photo+filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */; };
+		0CC7C8562005E41F006758C1 /* NextDayNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */; };
 		34638CA1E9A08C2EF7EDCA4B /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */; };
 		960A0DDC1F921551003DCDAD /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */; };
 		960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */; };
@@ -246,6 +247,7 @@
 		0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttachmentsPicker.swift; sourceTree = "<group>"; };
 		0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPhotoAttachmentsPicker.swift; sourceTree = "<group>"; };
 		0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foto.Photo+filename.swift"; sourceTree = "<group>"; };
+		0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDayNumberTests.swift; sourceTree = "<group>"; };
 		548C5722BCCB07A0FFED4983 /* Pods-Timmee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.debug.xcconfig"; sourceTree = "<group>"; };
 		6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
@@ -1181,6 +1183,7 @@
 			children = (
 				96E543521F49EBB20081C6F0 /* TimmeeTests.swift */,
 				96E543541F49EBB20081C6F0 /* Info.plist */,
+				0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */,
 			);
 			path = TimmeeTests;
 			sourceTree = "<group>";
@@ -1784,6 +1787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CC7C8562005E41F006758C1 /* NextDayNumberTests.swift in Sources */,
 				96E543531F49EBB20081C6F0 /* TimmeeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

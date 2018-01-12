@@ -68,7 +68,7 @@ final class NotificationsConfigurator {
     private static func makeDoneAction() -> UIUserNotificationAction {
         let doneAction = UIMutableUserNotificationAction()
         doneAction.identifier = NotificationActions.done.rawValue
-        doneAction.title = "done".localized
+        doneAction.title = "complete".localized
         doneAction.activationMode = .background
         doneAction.behavior = .default
         doneAction.isAuthenticationRequired = false
@@ -80,7 +80,7 @@ final class NotificationsConfigurator {
     @available(iOS 10.0, *)
     private static func makeDoneAction() -> UNNotificationAction {
         return UNNotificationAction(identifier: NotificationActions.done.rawValue,
-                                    title: "done".localized,
+                                    title: "complete".localized,
                                     options: [])
     }
     

@@ -41,7 +41,7 @@ class TaskParameterView: HiddingParameterView {
     }
     
     fileprivate let filledIconColor = AppTheme.current.blueColor
-    fileprivate let filledTitleColor = AppTheme.current.tintColor
+    var filledTitleColor = AppTheme.current.tintColor
     
     fileprivate let notFilledIconColor = AppTheme.current.thirdlyTintColor
     fileprivate let notFilledTitleColor = AppTheme.current.secondaryTintColor
@@ -49,7 +49,7 @@ class TaskParameterView: HiddingParameterView {
     func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) { 
             self.iconView.tintColor = isFilled ? self.filledIconColor : self.notFilledIconColor
-            self.titleView?.textColor = isFilled ? self.filledTitleColor : self.notFilledTitleColor
+            self.updateTitleColor()
             
             self.clearButton.isHidden = !(self.canClear && isFilled)
         }
@@ -65,7 +65,11 @@ class TaskParameterView: HiddingParameterView {
         addTapGestureRecognizer(to: self)
     }
     
-    func addTapGestureRecognizer(to view: UIView) {
+    func updateTitleColor() {
+        titleView?.textColor = isFilled ? self.filledTitleColor : self.notFilledTitleColor
+    }
+    
+    private func addTapGestureRecognizer(to view: UIView) {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
         recognizer.delegate = self
         view.addGestureRecognizer(recognizer)

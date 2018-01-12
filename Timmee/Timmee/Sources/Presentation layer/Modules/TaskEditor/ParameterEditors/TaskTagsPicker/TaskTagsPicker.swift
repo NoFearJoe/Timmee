@@ -140,6 +140,8 @@ fileprivate extension TaskTagsPicker {
         } else {
             tagsView.reloadData()
         }
+        
+        addTagView.hideTagColors()
     }
     
     func removeTag(_ tag: Tag) {
@@ -284,7 +286,18 @@ final class AddTagView: BarView {
         guard let colorPicker = colorPicker else { return }
         colorPicker.selectedColorIndex = colors.index(of: color) ?? -1
         
-        colorPickerHeightConstraint.constant = colorPickerHeightConstraint.constant == 0 ? 52 : 0
+        colorPickerHeightConstraint.constant == 0 ? showTagColors() : hideTagColors()
+    }
+    
+    func showTagColors() {
+        colorPickerHeightConstraint.constant = 52
+        UIView.animate(withDuration: 0.2) {
+            self.superview?.layoutIfNeeded()
+        }
+    }
+    
+    func hideTagColors() {
+        colorPickerHeightConstraint.constant = 0
         UIView.animate(withDuration: 0.2) {
             self.superview?.layoutIfNeeded()
         }

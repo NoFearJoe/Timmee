@@ -32,12 +32,12 @@ extension NotificationMask {
 
     var title: String {
         switch self {
-        case .doNotNotify: return "no_reminder"
-        case .justInTime: return "remind_just_in_time"
-        case .till10minutes: return "remind_10_minutes_before"
-        case .till30minutes: return "remind_30_minutes_before"
-        case .till1hour: return "remind_1_hour_before"
-        case .till1day: return "remind_1_day_before"
+        case .doNotNotify: return "no_reminder".localized
+        case .justInTime: return "remind_just_in_time".localized
+        case .till10minutes: return "remind_10_minutes_before".localized
+        case .till30minutes: return "remind_30_minutes_before".localized
+        case .till1hour: return "remind_1_hour_before".localized
+        case .till1day: return "remind_1_day_before".localized
         }
     }
     

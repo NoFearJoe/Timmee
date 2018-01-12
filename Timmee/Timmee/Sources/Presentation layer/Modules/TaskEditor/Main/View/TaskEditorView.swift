@@ -280,8 +280,10 @@ extension TaskEditorView: TaskEditorViewInput {
         timeTemplateView.isFilled = timeTemplate != nil
     }
     
-    func setDueDateTime(_ dueDate: String?) {
+    func setDueDateTime(_ dueDate: String?, isOverdue: Bool) {
         dueDateTimeView.text = dueDate ?? "due_date".localized
+        dueDateTimeView.filledTitleColor = isOverdue ? AppTheme.current.redColor : AppTheme.current.tintColor
+        dueDateTimeView.updateTitleColor()
         dueDateTimeView.isFilled = dueDate != nil
     }
     

@@ -8,7 +8,7 @@
 
 import class UIKit.UIViewController
 
-protocol ListRepresentationInput: class, ListRepresentationEditingInput {
+protocol ListRepresentationInput: ListRepresentationEditingInput {
     var viewController: UIViewController { get }
     
     weak var editingOutput: ListRepresentationEditingOutput? { get set }

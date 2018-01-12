@@ -238,7 +238,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func dueDateTimeCleared() {
         task.dueDate = nil
         
-        view.setDueDateTime(nil)
+        view.setDueDateTime(nil, isOverdue: false)
     }
     
     func reminderCleared() {
@@ -357,7 +357,8 @@ extension TaskEditorPresenter: TaskEditorInteractorOutput {}
 fileprivate extension TaskEditorPresenter {
 
     func showFormattedDueDateTime(_ dueDate: Date?) {
-        view.setDueDateTime(dueDate?.asNearestDateString)
+        let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && dueDate! < Date())
+        view.setDueDateTime(dueDate?.asNearestDateString, isOverdue: isOverdue)
     }
     
     func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {

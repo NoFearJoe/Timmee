@@ -30,7 +30,7 @@ protocol TableViewManageble: class {
     func setTableView(_ tableView: UITableView)
 }
 
-final class CoreDataObserver<T>: NSObject, NSFetchedResultsControllerDelegate, TableViewManageble {
+final class CoreDataObserver<T: Equatable>: NSObject, NSFetchedResultsControllerDelegate, TableViewManageble {
 
     let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     var mapping: ((NSManagedObject) -> T)!
@@ -150,11 +150,21 @@ extension CoreDataObserver {
     }
     
     func item(at indexPath: IndexPath) -> T {
+        return mapping(entity(at: indexPath))
+    }
+    
+    func entity(at indexPath: IndexPath) -> NSManagedObject {
         var indexPathWithOffset = indexPath
         indexPathWithOffset.section -= sectionOffset
         
-        let entity = fetchedResultsController.object(at: indexPathWithOffset) as! NSManagedObject
-        return mapping(entity)
+        return fetchedResultsController.object(at: indexPathWithOffset) as! NSManagedObject
+    }
+    
+    func index(of item: T) -> Int? {
+        return fetchedResultsController.fetchedObjects?.index(where: { entity in
+            let object = self.mapping(entity as! NSManagedObject)
+            return object == item
+        })
     }
     
     func totalObjectsCount() -> Int {

@@ -88,6 +88,16 @@ extension ListsInteractor {
             return result + self.numberOfItems(in: section)
         }
     }
+    
+    func indexPath(ofList list: List) -> IndexPath? {
+        if let list = list as? SmartList {
+            guard let index = listsService.smartLists.index(of: list) else { return nil }
+            return IndexPath(row: index, section: 0)
+        } else {
+            guard let index = listsObserver.index(of: list) else { return nil }
+            return IndexPath(row: index, section: 1)
+        }
+    }
 
 }
 

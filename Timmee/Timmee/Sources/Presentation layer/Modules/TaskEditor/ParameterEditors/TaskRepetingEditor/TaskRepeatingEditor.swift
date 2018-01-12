@@ -63,8 +63,8 @@ final class TaskRepeatingEditor: UITableViewController {
     var selectedTemplateIndex = -1
     
     let customRepeatingCases: [String] = [
-        "Выбрать интервал повтора",
-        "Выбрать дни повтора"
+//        "choose_interval".localized,
+        "choose_days".localized
     ]
     var selectedCaseIndex = -1
     
@@ -125,15 +125,15 @@ extension TaskRepeatingEditor {
             selectedMask = RepeatMask(type: repeatingTemplates[indexPath.row],
                                       value: 1)
         } else {
-            if indexPath.row == 0 {
-                transitionOutput?.didAskToShowIntervalPiker(completion: { picker in
-                    picker.output = self
-                })
-            } else if indexPath.row == 1 {
+//            if indexPath.row == 0 {
+//                transitionOutput?.didAskToShowIntervalPiker(completion: { picker in
+//                    picker.output = self
+//                })
+//            } else if indexPath.row == 1 {
                 transitionOutput?.didAskToShowWeeklyPicker(completion: { picker in
                     picker.output = self
                 })
-            }
+//            }
         }
     }
 
@@ -171,7 +171,7 @@ extension TaskRepeatingEditor: TaskWeeklyRepeatingPickerOutput {
 extension TaskRepeatingEditor: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return CGFloat(7) * TaskRepeatingEditor.rowHeight
+        return CGFloat(repeatingTemplates.count + customRepeatingCases.count) * TaskRepeatingEditor.rowHeight
     }
     
 }
@@ -179,8 +179,8 @@ extension TaskRepeatingEditor: TaskParameterEditorInput {
 
 final class TaskRepeatingCell: UITableViewCell {
     
-    @IBOutlet fileprivate weak var titleView: UILabel!
-    @IBOutlet fileprivate weak var selectedIndicator: UIView!
+    @IBOutlet private var titleView: UILabel!
+    @IBOutlet private var selectedIndicator: UIView!
     
     func setRepeatType(_ type: RepeatType) {
         titleView?.text = type.localized

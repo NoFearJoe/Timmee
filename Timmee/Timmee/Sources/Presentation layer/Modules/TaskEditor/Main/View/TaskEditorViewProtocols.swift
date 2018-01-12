@@ -17,7 +17,7 @@ protocol TaskEditorViewInput: class {
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
     func setTimeTemplate(_ timeTemplate: TimeTemplate?)
-    func setDueDateTime(_ dueDate: String?)
+    func setDueDateTime(_ dueDate: String?, isOverdue: Bool)
     func setReminder(_ reminder: NotificationMask)
     func setRepeatEndingDate(_ repeatEndingDate: String?)
     func setRepeat(_ repeat: RepeatMask)

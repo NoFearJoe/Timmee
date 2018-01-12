@@ -20,8 +20,12 @@ extension Date {
         return Foundation.Calendar.current.component(.month, from: self)
     }
     
+    var weekOfYear: Int {
+        return Foundation.Calendar.current.component(.weekOfYear, from: self)
+    }
+    
     var weekday: Int {
-        return Foundation.Calendar.current.ordinality(of: .weekday, in: .weekOfYear, for: self) ?? 0
+        return Foundation.Calendar.current.ordinality(of: .weekday, in: .weekOfYear, for: self) ?? 1
     }
     
     var dayOfMonth: Int {
@@ -242,6 +246,14 @@ extension Date {
     var startOfHour: Date {
         return changeComponents { components in
             components.minute = 0
+            components.second = 0
+            components.nanosecond = 0
+        }
+    }
+    
+    
+    var startOfMinute: Date {
+        return changeComponents { components in
             components.second = 0
             components.nanosecond = 0
         }

@@ -217,6 +217,11 @@ extension TasksService {
         return nil
     }
     
+    func retrieveTask(withID id: String) -> Task? {
+        guard let entity = DefaultStorage.instance.mainContext.fetchTask(id: id) else { return nil }
+        return Task(task: entity)
+    }
+    
 }
 
 fileprivate extension TasksService {

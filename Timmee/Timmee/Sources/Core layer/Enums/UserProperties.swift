@@ -19,6 +19,8 @@ enum UserProperty {
     
     case listSorting
     
+    case highlightOverdueTasks
+    
     case pinCode
     case biometricsAuthenticationEnabled
     
@@ -32,6 +34,7 @@ enum UserProperty {
         case .isDefaultTimeTemplatesAdded: return "isDefaultTimeTemplatesAdded"
         case .appTheme: return "appTheme"
         case .listSorting: return "listSorting"
+        case .highlightOverdueTasks: return "highlightOverdueTasks"
         case .pinCode: return "pinCode"
         case .biometricsAuthenticationEnabled: return "biometricsAuthenticationEnabled"
         case .inApp(let id): return "inApp_\(id)"

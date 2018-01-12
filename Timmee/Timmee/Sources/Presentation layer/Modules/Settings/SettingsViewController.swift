@@ -161,6 +161,19 @@ fileprivate extension SettingsViewController {
         
         generalSectionItems.append(listSortingItem)
         
+        let highlightOverdueTasksAction = {
+            UserProperty.highlightOverdueTasks.setBool(!UserProperty.highlightOverdueTasks.bool())
+        }
+        let highlightOverdueTasksItem = SettingsItem(title: "highlight_overdue_tasks".localized,
+                                                     subtitle: nil,
+                                                     icon: #imageLiteral(resourceName: "ideaListIcon"),
+                                                     isOn: UserProperty.highlightOverdueTasks.bool(),
+                                                     isDetailed: false,
+                                                     style: .titleWithSwitch,
+                                                     action: highlightOverdueTasksAction)
+        
+        generalSectionItems.append(highlightOverdueTasksItem)
+        
 //        let currentTheme = AppTheme.current
 //        let themeAction = { [unowned self] in
 //            UserProperty.appTheme.setInt(currentTheme.next.code)

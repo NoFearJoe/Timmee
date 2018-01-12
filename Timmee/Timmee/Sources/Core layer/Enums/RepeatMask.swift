@@ -265,7 +265,7 @@ struct RepeatMask {
         switch components.count {
         case 2:
             type = RepeatType(string: components[0], repeatUnit: components[1])
-            value = 0
+            value = 1
         case 3:
             type = RepeatType(string: components[0], repeatUnit: components[2])
             value = Int(components[1]) ?? 1
@@ -275,7 +275,7 @@ struct RepeatMask {
         }
     }
     
-    init(type: RepeatType, value: Int = 0) {
+    init(type: RepeatType, value: Int = 1) {
         self.type = type
         self.value = value
     }

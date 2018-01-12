@@ -31,13 +31,29 @@ final class MainTopViewController: UIViewController {
     weak var editingInput: ListRepresentationEditingInput?
     
     fileprivate let listsInteractor = ListsInteractor()
-    fileprivate var currentListIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
+    fileprivate var currentList: List! {
+        didSet {
+            controlPanel.showList(currentList)
+            output?.currentListChanged(to: currentList)
+            
+            if let indexPath = listsInteractor.indexPath(ofList: currentList) {
+                listsView.reloadRows(at: [indexPath], with: .none)
+            }
+        }
+    }
+    fileprivate var currentListIndexPath: IndexPath? {
+        guard let list = currentList else { return nil }
+        return listsInteractor.indexPath(ofList: list)
+    }
     
     fileprivate var isListsVisible: Bool = true {
         didSet {
             listsView.hideSwipeCell()
         }
     }
+    
+    fileprivate var isAnimationInProgress = false
     
     fileprivate var isGroupEditing: Bool = false
     
@@ -49,6 +65,10 @@ final class MainTopViewController: UIViewController {
     fileprivate var pickingListCompletion: ((List) -> Void)?
     
     fileprivate let swipeTableActionsProvider = ListsSwipeTableActionsProvider()
+    
+    var passthrowView: PassthrowView {
+        return view as! PassthrowView
+    }
     
     
     @IBAction fileprivate func didPressSettingsButton() {
@@ -74,9 +94,7 @@ final class MainTopViewController: UIViewController {
     }
     
     @IBAction fileprivate func didPressOverlayView() {
-        if isListsVisible {
-            hideLists(animated: true)
-        }
+        hideLists(animated: true)
     }
     
     @IBAction fileprivate func didPressControlPanel() {
@@ -92,12 +110,12 @@ final class MainTopViewController: UIViewController {
         
         listsInteractor.requestLists()
                 
-        swipeTableActionsProvider.onDelete = { [weak self] indexPath in
-            self?.handleListDeletion(at: indexPath)
+        swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
+            self.handleListDeletion(at: indexPath)
         }
-        swipeTableActionsProvider.onEdit = { [weak self] indexPath in
-            if let list = self?.listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-                self?.showListEditor(with: list)
+        swipeTableActionsProvider.onEdit = { [unowned self] indexPath in
+            if let list = self.listsInteractor.list(at: indexPath.row, in: indexPath.section) {
+                self.showListEditor(with: list)
             }
         }
         
@@ -118,47 +136,60 @@ final class MainTopViewController: UIViewController {
         
         listsView.hideSwipeCell(animated: false)
         
-        let estimatedHeight = view.frame.height * 0.75
-        let extraHeight = estimatedHeight.truncatingRemainder(dividingBy: 44)
-        listsViewHeightConstrint.constant = estimatedHeight - extraHeight
+        updateListsViewHeight()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateListsViewHeight()
     }
     
     func showLists(animated: Bool) {
-        guard !isListsVisible else { return }
+        guard !isListsVisible && !isAnimationInProgress else { return }
         
         output?.willShowLists()
         
         listsInteractor.requestLists()
         listsView.setContentOffset(.zero, animated: false)
         
-        (view as? PassthrowView)?.shouldPassTouches = false
+        passthrowView.shouldPassTouches = false
         overlayView.isHidden = false
         
         listsViewContainer.isHidden = false
         
+        controlPanel.hideControls(animated: animated)
+        
         if animated {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
+            isAnimationInProgress = true
+            UIView.animate(withDuration: 0.25,
+                           delay: 0,
+                           options: [.beginFromCurrentState, .curveEaseOut],
+                           animations: {
+                self.overlayView.backgroundColor = AppTheme.current.backgroundColor
                 self.listsViewContainer.transform = .identity
             }) { _ in
                 self.isListsVisible = true
+                self.isAnimationInProgress = false
             }
         } else {
-            overlayView.backgroundColor = UIColor(rgba: "202020").withAlphaComponent(0.5)
+            overlayView.backgroundColor = AppTheme.current.backgroundColor
             self.listsViewContainer.transform = .identity
             isListsVisible = true
         }
     }
     
     func hideLists(animated: Bool, force: Bool = false) {
-        guard isListsVisible || force else { return }
+        guard (isListsVisible && !isAnimationInProgress) || force else { return }
         
         isPickingList = false
         
+        controlPanel.showControls(animated: animated)
+        
         if animated {
+            isAnimationInProgress = true
             UIView.animate(withDuration: 0.25,
                            delay: 0,
-                           options: .beginFromCurrentState,
+                           options: [.beginFromCurrentState, .curveEaseIn],
                            animations: {
                 self.overlayView.backgroundColor = .clear
                 self.listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
@@ -166,7 +197,8 @@ final class MainTopViewController: UIViewController {
                 self.overlayView.isHidden = true
                 self.isListsVisible = false
                 self.listsViewContainer.isHidden = true
-                (self.view as? PassthrowView)?.shouldPassTouches = true
+                self.passthrowView.shouldPassTouches = true
+                self.isAnimationInProgress = false
             }
         } else {
             view.backgroundColor = .clear
@@ -174,18 +206,7 @@ final class MainTopViewController: UIViewController {
             listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
             listsViewContainer.isHidden = true
             isListsVisible = false
-            (view as? PassthrowView)?.shouldPassTouches = true
-        }
-    }
-    
-    
-    func setCurrentList(_ indexPath: IndexPath) {        
-        currentListIndexPath = indexPath
-        
-        if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-            controlPanel.showList(list)
-            output?.currentListChanged(to: list)
-            listsView.reloadRows(at: [indexPath], with: .none)
+            passthrowView.shouldPassTouches = true
         }
     }
 
@@ -198,16 +219,18 @@ extension MainTopViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialLists() {
-        setCurrentList(currentListIndexPath)
+        if currentList == nil {
+            currentList = listsInteractor.list(at: 0, in: 0)
+        }
     }
     
     func didUpdateLists(with change: CoreDataItemChange) {
         switch change {
         case .insertion(let indexPath):
-            setCurrentList(indexPath)
+            currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
         case .deletion(let indexPath):
-            if indexPath == currentListIndexPath {
-                setCurrentList(IndexPath(row: 0, section: 0))
+            if currentListIndexPath == nil || indexPath == currentListIndexPath {
+                currentList = listsInteractor.list(at: 0, in: 0)
             }
         case .update(let indexPath):
             guard indexPath == currentListIndexPath else { return }
@@ -216,7 +239,7 @@ extension MainTopViewController: ListsInteractorOutput {
             }
         case .move(let indexPath, let newIndexPath):
             if indexPath == currentListIndexPath {
-                setCurrentList(newIndexPath)
+                currentList = listsInteractor.list(at: newIndexPath.row, in: newIndexPath.section)
             }
         }
     }
@@ -264,7 +287,7 @@ extension MainTopViewController: UITableViewDelegate {
                 hideLists(animated: true)
             }
         } else {
-            setCurrentList(indexPath)
+            currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
             tableView.reloadData()
             hideLists(animated: true)
         }
@@ -321,6 +344,14 @@ extension MainTopViewController: ListRepresentationEditingOutput {
 
 fileprivate extension MainTopViewController {
 
+    func updateListsViewHeight() {
+        var listsViewHeight = view.frame.height - 52
+        if #available(iOS 11.0, *) {
+            listsViewHeight -= view.safeAreaInsets.top
+        }
+        listsViewHeightConstrint.constant = listsViewHeight
+    }
+    
     func showListEditor(with list: List?) {
         let listEditorView = ViewControllersFactory.listEditor
         listEditorView.loadViewIfNeeded()

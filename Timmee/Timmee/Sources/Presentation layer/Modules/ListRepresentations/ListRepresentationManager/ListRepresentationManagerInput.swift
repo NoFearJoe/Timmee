@@ -6,7 +6,7 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-protocol ListRepresentationManagerInput: class, MainTopViewControllerOutput {
+protocol ListRepresentationManagerInput: MainTopViewControllerOutput {
     func setRepresentation(_ representation: ListRepresentation, animated: Bool)
     func setList(_ list: List)
     func forceTaskCreation()

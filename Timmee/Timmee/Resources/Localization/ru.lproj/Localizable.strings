@@ -107,7 +107,7 @@
 "no_reminder" = "Не напоминать";
 "remind_just_in_time" = "Напомнить точно в срок";
 "remind_10_minutes_before" = "Напомнить за 10 минут";
-"remind_20_minutes_before" = "Напомнить за 30 минут";
+"remind_30_minutes_before" = "Напомнить за 30 минут";
 "remind_1_hour_before" = "Напомнить за час";
 "remind_1_day_before" = "Напомнить за день";
 
@@ -120,6 +120,7 @@
 "about_app" = "О программе";
 "about_app_text" = "О программе";
 "mail_us" = "Напишите нам";
+"highlight_overdue_tasks" = "Выделять просроченные задачи";
 
 "remove_list" = "Удаление списка";
 "remove_tasks" = "Удаление задач";
@@ -137,7 +138,7 @@
 "close" = "Закрыть";
 "back" = "Назад";
 "continue" = "Далее";
-"complete" = "Завершить";
+"complete" = "Выполнено";
 "restore" = "Восстановить";
 "move" = "Переместить";
 "cancel" = "Отмена";
@@ -174,9 +175,10 @@
 "license" = "Лицензия";
 "restore_purchases" = "Восстановить покупки";
 "list_sorting" = "Сортировка списков";
-"sort_by_creation_date" = "По дате создания";
-"sort_by_tasks_count" = "По количеству задач";
-"sort_by_title" = "По алфавиту";
+"sort_by_creation_date_ascending" = "По дате создания ↓";
+"sort_by_creation_date_descending" = "По дате создания ↑";
+"sort_by_title_ascending" = "По алфавиту ↓";
+"sort_by_title_descending" = "По алфавиту ↑";
 "theme" = "Тема";
 "white_theme" = "Светлая";
 "black_theme" = "Темная";

@@ -107,7 +107,7 @@
 "no_reminder" = "Don't remind";
 "remind_just_in_time" = "Remind just in time";
 "remind_10_minutes_before" = "Remind 10 minutes before";
-"remind_20_minutes_before" = "Remind 30 minutes before";
+"remind_30_minutes_before" = "Remind 30 minutes before";
 "remind_1_hour_before" = "Remind a hour before";
 "remind_1_day_before" = "Remind a day before";
 
@@ -120,6 +120,7 @@
 "about_app" = "About App";
 "about_app_text" = "About App text";
 "mail_us" = "Send a mail to us";
+"highlight_overdue_tasks" = "Highlight overdue tasks";
 
 "remove_list" = "Remove list";
 "remove_tasks" = "Remove tasks";
@@ -174,9 +175,10 @@
 "license" = "License";
 "restore_purchases" = "Restore purchases";
 "list_sorting" = "Lists sorting";
-"sort_by_creation_date" = "By creation date";
-"sort_by_tasks_count" = "By tasks count";
-"sort_by_title" = "By alphabet";
+"sort_by_creation_date_ascending" = "By creation date ↓";
+"sort_by_creation_date_descending" = "By creation date ↑";
+"sort_by_title_ascending" = "By alphabet ↓";
+"sort_by_title_descending" = "By alphabet ↑";
 "theme" = "App theme";
 "white_theme" = "Light";
 "black_theme" = "Dark";

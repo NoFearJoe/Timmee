@@ -15,9 +15,9 @@ import class CoreLocation.CLCircularRegion
 final class TaskSchedulerService {
 
     func scheduleTask(_ task: Task, listTitle: String) {
-        guard !task.isDone else { return }
+        removeNotifications(for: task)
 
-        removeNotification(for: task)
+        guard !task.isDone else { return }
         
         let location = task.shouldNotifyAtLocation ? task.location : nil
         
@@ -35,35 +35,24 @@ final class TaskSchedulerService {
                                           end: task.repeatEndingDate,
                                           location: location)
             case .every(let unit):
-                var date = dueDate
-                (0..<task.repeating.value).forEach { index in
-                    if index > 0 {
-                        switch unit {
-                        case .day: date = date + index.asDays
-                        case .week: date = date + index.asWeeks
-                        case .month: date = date + index.asMonths
-                        case .year: date = date + index.asYears
-                        }
-                    }
-                    let fireDate = date - notification.minutes.asMinutes
-                    scheduleLocalNotification(withID: task.id,
-                                              title: listTitle,
-                                              message: task.title,
-                                              at: fireDate,
-                                              repeatUnit: unit.calendarUnit,
-                                              end: task.repeatEndingDate,
-                                              location: location)
-                }
+                let fireDate = dueDate - notification.minutes.asMinutes
+                scheduleLocalNotification(withID: task.id,
+                                          title: listTitle,
+                                          message: task.title,
+                                          at: fireDate,
+                                          repeatUnit: unit.calendarUnit,
+                                          end: task.repeatEndingDate,
+                                          location: location)
             case .on(let unit):
                 (0..<7).forEach { day in
                     let fireDate = dueDate + day.asDays - notification.minutes.asMinutes
-                    let dayNumber = fireDate.weekday
+                    let dayNumber = fireDate.weekday - 1
                     if unit.dayNumbers.contains(dayNumber) {
                         scheduleLocalNotification(withID: task.id,
                                                   title: listTitle,
                                                   message: task.title,
                                                   at: fireDate,
-                                                  repeatUnit: .weekOfMonth,
+                                                  repeatUnit: .weekOfYear,
                                                   end: task.repeatEndingDate,
                                                   location: location)
                     }
@@ -80,19 +69,16 @@ final class TaskSchedulerService {
         }
     }
     
-    func removeNotification(for task: Task) {
+    func removeNotifications(for task: Task) {
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
-            if let index = notifications.index(where: {
-                if let taskID = $0.userInfo?["task_id"] as? String {
-                    return taskID == task.id
+            notifications.forEach { notification in
+                if let taskID = notification.userInfo?["task_id"] as? String, taskID == task.id {
+//                    if #available(iOS 10.0, *) {
+//                        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [])
+//                    } else {
+                    UIApplication.shared.cancelLocalNotification(notification)
+//                    }
                 }
-                return false
-            }) {
-//                if #available(iOS 10.0, *) {
-//                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [])
-//                } else {
-                UIApplication.shared.cancelLocalNotification(notifications[index])
-//                }
             }
         }
     }
@@ -109,7 +95,7 @@ fileprivate extension TaskSchedulerService {
                                    end: Date?,
                                    location: CLLocation?) {
         let notification = UILocalNotification()
-        notification.fireDate = date
+        notification.fireDate = date?.startOfMinute
         notification.timeZone = TimeZone.current
         notification.alertTitle = title
         notification.alertBody = message

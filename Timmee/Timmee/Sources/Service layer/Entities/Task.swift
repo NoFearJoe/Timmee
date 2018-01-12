@@ -141,6 +141,36 @@ class Task {
         
         return task
     }
+    
+    var nextDueDate: Date? {
+        guard var dueDate = dueDate else { return nil }
+        
+        let now = Date()
+        
+        while dueDate <= now {
+            switch repeating.type {
+            case .every(let unit):
+                switch unit {
+                case .day: dueDate = dueDate + repeating.value.asDays as Date
+                case .week: dueDate = dueDate + repeating.value.asWeeks as Date
+                case .month: dueDate = dueDate + repeating.value.asMonths as Date
+                case .year: dueDate = dueDate + repeating.value.asYears as Date
+                }
+            case .on(let unit):
+                let dayNumbers = unit.dayNumbers.sorted()
+                let currentDayNumber = dueDate.weekday - 1
+                let currentDayNumberIndex = dayNumbers.index(of: currentDayNumber) ?? 0
+                let nextDayNumberIndex = currentDayNumberIndex + 1
+                let nextDayNumber = dayNumbers.item(at: nextDayNumberIndex) ?? dayNumbers.item(at: 0) ?? 0
+                let dayNumbersDifference = nextDayNumberIndex >= currentDayNumberIndex ? nextDayNumber - currentDayNumber : (7 + nextDayNumber) - currentDayNumber
+                
+                dueDate = dueDate + dayNumbersDifference.asDays as Date
+            case .never: return nil
+            }
+        }
+        
+        return dueDate
+    }
 
 }
 
