@@ -12,33 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var pinWindow: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        // TODO: Перенести в обучение
         NotificationsConfigurator.registerForLocalNotifications(application: application)
         
-        if UserProperty.appTheme.value() == nil {
-            UserProperty.appTheme.setInt(AppTheme.white.code)
-        }
+        AppThemeConfigurator.setupInitialThemeIfNeeded()
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = AppTheme.current.panelColor
+        AppearanceConfigurator.setupAppearance()
         
-        if UserProperty.pinCode.value() != nil {
-            let pinViewController = ViewControllersFactory.pinAuthentication
-            pinViewController.onComplete = {
-                UIView.animate(withDuration: 0.25, animations: {
-                    self.pinWindow?.alpha = 0
-                }, completion: { _ in
-                    self.pinWindow?.isHidden = true
-                    self.pinWindow = nil
-                })
-            }
-            
-            pinWindow = UIWindow()
-            pinWindow?.windowLevel = UIWindowLevelStatusBar
-            pinWindow?.rootViewController = pinViewController
-            pinWindow?.makeKeyAndVisible()
+        if let window = window {
+            InitialScreenPresenter.presentInitialScreen(inWindow: window)
         }
         
         return true

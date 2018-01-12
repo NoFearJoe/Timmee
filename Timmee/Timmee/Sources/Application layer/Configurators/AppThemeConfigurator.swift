@@ -10,6 +10,10 @@ import UIKit
 
 final class AppThemeConfigurator {
 
-    
+    static func setupInitialThemeIfNeeded() {
+        if UserProperty.appTheme.value() == nil {
+            UserProperty.appTheme.setInt(AppTheme.white.code)
+        }
+    }
 
 }

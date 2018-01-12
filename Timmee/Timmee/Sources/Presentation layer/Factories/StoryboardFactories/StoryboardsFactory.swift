@@ -49,6 +49,10 @@ final class StoryboardsFactory {
     static var photoPreview: UIStoryboard {
         return StoryboardsFactory.storyboard(named: "PhotoPreview")
     }
+    
+    static var education: UIStoryboard {
+        return StoryboardsFactory.storyboard(named: "Education")
+    }
 
 }
 

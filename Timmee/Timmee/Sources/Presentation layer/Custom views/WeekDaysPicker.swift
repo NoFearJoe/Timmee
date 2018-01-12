@@ -32,12 +32,13 @@ final class WeekDaysPicker: UIView {
     
     @IBOutlet weak var weekdaysButton: WeekDaysButton! {
         didSet {
-            weekdaysButton.setTitle("weekdays".localized, for: .normal)
+            weekdaysButton.setTitle("weekdays".localized.capitalizedFirst, for: .normal)
         }
     }
     @IBOutlet weak var weekendsButton: WeekDaysButton! {
         didSet {
-            weekendsButton.setTitle("weekends".localized, for: .normal)
+            weekendsButton.setTitle("weekends".localized.capitalizedFirst, for: .normal)
+            weekendsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         }
     }
     @IBOutlet var dayButtons: [DayButton]! {
@@ -88,6 +89,9 @@ final class WeekDaysPicker: UIView {
     
     func selectDays(_ days: [Int]) {
         dayButtons.filter({ days.contains($0.dayNumber) }).forEach({ $0.isSelected = true })
+        
+        updateWeekdaysButton()
+        updateWeekendsButton()
     }
     
     func deselectDays(_ days: [Int]) {
@@ -96,6 +100,9 @@ final class WeekDaysPicker: UIView {
     
     func selectDays(_ range: CountableClosedRange<Int>) {
         dayButtons.filter({ range.contains($0.dayNumber) }).forEach({ $0.isSelected = true })
+        
+        updateWeekdaysButton()
+        updateWeekendsButton()
     }
     
     func deselectDays(_ range: CountableClosedRange<Int>) {
@@ -186,5 +193,24 @@ final class DayButton: UIButton {
 }
 
 final class WeekDaysButton: UIButton {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupAppearance()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupAppearance()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height * 0.5
+    }
+    
+    private func setupAppearance() {
+        clipsToBounds = true
+    }
     
 }

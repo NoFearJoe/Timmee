@@ -367,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9HQ-EC-vJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4076" y="369"/>
+            <point key="canvasLocation" x="4076" y="297"/>
         </scene>
         <!--Task Location Editor-->
         <scene sceneID="ynm-3t-9IS">
@@ -1091,11 +1091,11 @@
                         <viewControllerLayoutGuide type="bottom" id="xSL-vb-5D4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hDg-qx-cLL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhT-1V-1RY" customClass="WeekDaysPicker" customModule="Timmee" customModuleProvider="target">
-                                <rect key="frame" x="26" y="8" width="323" height="72"/>
+                                <rect key="frame" x="26.5" y="8" width="322" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exg-Of-LQH" customClass="WeekDaysButton" customModule="Timmee" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="221.5" height="34"/>
@@ -1114,8 +1114,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss4-Mz-h9x" customClass="WeekDaysButton" customModule="Timmee" customModuleProvider="target">
-                                        <rect key="frame" x="238" y="0.0" width="84.5" height="34"/>
+                                        <rect key="frame" x="237" y="0.0" width="84.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                         <state key="normal" title="Weekends">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1130,7 +1131,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="745" translatesAutoresizingMaskIntoConstraints="NO" id="k7g-2D-864">
-                                        <rect key="frame" x="0.0" y="34" width="323" height="38"/>
+                                        <rect key="frame" x="0.0" y="42" width="322" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufj-Ee-aLN" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
@@ -1225,14 +1226,14 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="755" translatesAutoresizingMaskIntoConstraints="NO" id="yWE-2J-ms1">
-                                                <rect key="frame" x="222" y="0.0" width="16" height="38"/>
+                                                <rect key="frame" x="222" y="0.0" width="15" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="16" id="TDc-sC-srU"/>
+                                                    <constraint firstAttribute="width" constant="15" id="TDc-sC-srU"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1B-ZB-Q46" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
-                                                <rect key="frame" x="238" y="0.0" width="38" height="38"/>
+                                                <rect key="frame" x="237" y="0.0" width="38" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                                 <state key="normal" title="SAT"/>
@@ -1246,11 +1247,11 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="755" translatesAutoresizingMaskIntoConstraints="NO" id="R7U-QI-37i">
-                                                <rect key="frame" x="276.5" y="0.0" width="8" height="38"/>
+                                                <rect key="frame" x="275.5" y="0.0" width="8" height="38"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJs-HQ-Qqo" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
-                                                <rect key="frame" x="285" y="0.0" width="38" height="38"/>
+                                                <rect key="frame" x="284" y="0.0" width="38" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                                 <state key="normal" title="SUN"/>
@@ -1324,19 +1325,19 @@
                                 <constraints>
                                     <constraint firstItem="exg-Of-LQH" firstAttribute="top" secondItem="AhT-1V-1RY" secondAttribute="top" id="0Ks-FY-7DC"/>
                                     <constraint firstAttribute="trailing" secondItem="Ss4-Mz-h9x" secondAttribute="trailing" id="2LL-Xk-BjC"/>
-                                    <constraint firstItem="k7g-2D-864" firstAttribute="top" secondItem="Ss4-Mz-h9x" secondAttribute="bottom" id="6Tr-V6-oHn"/>
+                                    <constraint firstItem="k7g-2D-864" firstAttribute="top" secondItem="Ss4-Mz-h9x" secondAttribute="bottom" constant="8" id="6Tr-V6-oHn"/>
                                     <constraint firstItem="V1B-ZB-Q46" firstAttribute="leading" secondItem="Ss4-Mz-h9x" secondAttribute="leading" id="BRs-AW-trf"/>
                                     <constraint firstItem="ZeH-yl-427" firstAttribute="trailing" secondItem="exg-Of-LQH" secondAttribute="trailing" id="DPx-8b-An6"/>
                                     <constraint firstItem="Ss4-Mz-h9x" firstAttribute="top" secondItem="AhT-1V-1RY" secondAttribute="top" id="QkB-Jg-nyy"/>
                                     <constraint firstItem="k7g-2D-864" firstAttribute="height" secondItem="AhT-1V-1RY" secondAttribute="height" multiplier="0.6" id="VHl-Zg-9Sn"/>
                                     <constraint firstItem="exg-Of-LQH" firstAttribute="leading" secondItem="AhT-1V-1RY" secondAttribute="leading" id="ZcR-A7-2AU"/>
-                                    <constraint firstAttribute="height" constant="72" id="dJf-eB-T0i">
+                                    <constraint firstAttribute="height" constant="80" id="dJf-eB-T0i">
                                         <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="k7g-2D-864" secondAttribute="trailing" id="hHe-Xt-IgR"/>
                                     <constraint firstAttribute="bottom" secondItem="k7g-2D-864" secondAttribute="bottom" id="qNC-h7-JEA"/>
                                     <constraint firstItem="k7g-2D-864" firstAttribute="leading" secondItem="AhT-1V-1RY" secondAttribute="leading" id="sOd-pZ-WlB"/>
-                                    <constraint firstItem="k7g-2D-864" firstAttribute="top" secondItem="exg-Of-LQH" secondAttribute="bottom" id="zC4-pr-0lq"/>
+                                    <constraint firstItem="k7g-2D-864" firstAttribute="top" secondItem="exg-Of-LQH" secondAttribute="bottom" constant="8" id="zC4-pr-0lq"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1363,19 +1364,21 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AhT-1V-1RY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hDg-qx-cLL" secondAttribute="leading" constant="15" id="H3f-AG-cJX"/>
+                            <constraint firstItem="AhT-1V-1RY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hDg-qx-cLL" secondAttribute="leading" constant="10" id="H3f-AG-cJX"/>
                             <constraint firstItem="AhT-1V-1RY" firstAttribute="top" secondItem="hDg-qx-cLL" secondAttribute="top" constant="8" id="e66-g7-nzM"/>
                             <constraint firstItem="AhT-1V-1RY" firstAttribute="centerX" secondItem="hDg-qx-cLL" secondAttribute="centerX" id="qlQ-UX-2Lc"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AhT-1V-1RY" secondAttribute="trailing" constant="15" id="yaA-vj-qkS"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AhT-1V-1RY" secondAttribute="trailing" constant="10" id="yaA-vj-qkS"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="104"/>
                     <connections>
                         <outlet property="weekDaysPicker" destination="AhT-1V-1RY" id="HK7-nE-5L2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TB-Pr-ceC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4076" y="-203"/>
+            <point key="canvasLocation" x="4076" y="26"/>
         </scene>
         <!--Task Due Time Picker-->
         <scene sceneID="Bpc-i7-lJ8">

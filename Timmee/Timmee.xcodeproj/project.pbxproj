@@ -49,6 +49,10 @@
 		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
 		0CB8F26A1FE95036005D9E11 /* Foto.Photo+filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */; };
 		0CC7C8562005E41F006758C1 /* NextDayNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */; };
+		0CC7C8582008C7F1006758C1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */; };
+		0CC7C85B2008CDFE006758C1 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */; };
+		0CC7C85D2008D208006758C1 /* AppearanceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */; };
+		0CC7C85F2008FE48006758C1 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85E2008FE48006758C1 /* EducationState.swift */; };
 		34638CA1E9A08C2EF7EDCA4B /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */; };
 		960A0DDC1F921551003DCDAD /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */; };
 		960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */; };
@@ -248,6 +252,10 @@
 		0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPhotoAttachmentsPicker.swift; sourceTree = "<group>"; };
 		0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foto.Photo+filename.swift"; sourceTree = "<group>"; };
 		0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDayNumberTests.swift; sourceTree = "<group>"; };
+		0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenPresenter.swift; sourceTree = "<group>"; };
+		0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewController.swift; sourceTree = "<group>"; };
+		0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigurator.swift; sourceTree = "<group>"; };
+		0CC7C85E2008FE48006758C1 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		548C5722BCCB07A0FFED4983 /* Pods-Timmee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.debug.xcconfig"; sourceTree = "<group>"; };
 		6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
@@ -653,6 +661,15 @@
 				0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		0CC7C8592008CDC1006758C1 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				0CC7C85E2008FE48006758C1 /* EducationState.swift */,
+				0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */,
+			);
+			path = Education;
 			sourceTree = "<group>";
 		};
 		2016C37FE8501A7AB7108367 /* Pods */ = {
@@ -1293,7 +1310,9 @@
 			isa = PBXGroup;
 			children = (
 				963D6A701F5EF9250063E295 /* AppThemeConfigurator.swift */,
+				0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */,
 				96B0B9B91FB82CC10009BA3B /* NotificationsConfigurator.swift */,
+				0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -1406,10 +1425,11 @@
 				963D6A581F5C42730063E295 /* TaskEditor */,
 				0C74D8191FEAA2F300CDA0BE /* PhotoPreview */,
 				96BE0A271F63149F0041FBEA /* ListEditor */,
+				96AAA5951FB22F5000F547A0 /* Search */,
 				96477A591F812FCA005C3520 /* TasksImport */,
 				965798CD1F91340100F65019 /* Authentication */,
 				96AAA5831FB03F8A00F547A0 /* Settings */,
-				96AAA5951FB22F5000F547A0 /* Search */,
+				0CC7C8592008CDC1006758C1 /* Education */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1654,6 +1674,7 @@
 				960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */,
 				96115F461F6ECF9F0050D7A3 /* String+Trimmed.swift in Sources */,
 				961D67701FA9A6E100511042 /* AddListView.swift in Sources */,
+				0CC7C8582008C7F1006758C1 /* InitialScreenPresenter.swift in Sources */,
 				0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */,
 				96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */,
 				0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */,
@@ -1694,7 +1715,9 @@
 				963D6A8A1F6187A20063E295 /* BarView.swift in Sources */,
 				963D6A881F61433F0063E295 /* PassthrowView.swift in Sources */,
 				963D6A411F59ECBD0063E295 /* ListRepresentation.swift in Sources */,
+				0CC7C85D2008D208006758C1 /* AppearanceConfigurator.swift in Sources */,
 				96A14DF01F9C7BBB0028943C /* Tag.swift in Sources */,
+				0CC7C85F2008FE48006758C1 /* EducationState.swift in Sources */,
 				963D6A861F6074F20063E295 /* ListsInteractor.swift in Sources */,
 				96115F2A1F6B0C780050D7A3 /* StoryboardsFactory.swift in Sources */,
 				96AAA58A1FB04AEE00F547A0 /* UIDevice+biometrics.swift in Sources */,
@@ -1737,6 +1760,7 @@
 				96477A6B1F814CC2005C3520 /* TasksImportAssembly.swift in Sources */,
 				96636A371F86560600C84FD4 /* Subtask.swift in Sources */,
 				963D6A491F5AE1630063E295 /* TableListRepresentationPresenter.swift in Sources */,
+				0CC7C85B2008CDFE006758C1 /* EducationViewController.swift in Sources */,
 				96E543791F49ED890081C6F0 /* Timmee.xcdatamodeld in Sources */,
 				96A5F1361F507AC500F94553 /* PageControl.swift in Sources */,
 				961D676C1FA65FB500511042 /* NextGrowingTextView.swift in Sources */,

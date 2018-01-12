@@ -41,7 +41,7 @@ final class TaskRepeatingEditor: UITableViewController {
             if case .every = mask.type, mask.value != 1 {
                 selectedCaseIndex = 0
             } else if case .on = mask.type {
-                selectedCaseIndex = 1
+                selectedCaseIndex = 0
             } else {
                 selectedCaseIndex = -1
             }

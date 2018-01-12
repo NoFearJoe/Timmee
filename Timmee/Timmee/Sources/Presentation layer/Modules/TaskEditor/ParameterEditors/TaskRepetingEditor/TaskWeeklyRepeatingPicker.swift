@@ -34,27 +34,34 @@ final class TaskWeeklyRepeatingPicker: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.blueColor.withAlphaComponent(0.5),
-                                                    for: .normal)
-        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.redColor.withAlphaComponent(0.5),
-                                                    for: .normal)
+        weekDaysPicker.weekdaysButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.panelColor), for: .normal)
+        weekDaysPicker.weekdaysButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .selected)
+        weekDaysPicker.weekdaysButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .highlighted)
+        weekDaysPicker.weekendsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.panelColor), for: .normal)
+        weekDaysPicker.weekendsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.redColor), for: .selected)
+        weekDaysPicker.weekendsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.redColor), for: .highlighted)
+        
         weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.blueColor,
-                                                    for: .selected)
+                                                    for: .normal)
         weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.redColor,
+                                                    for: .normal)
+        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.backgroundTintColor,
                                                     for: .selected)
-        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.blueColor,
+        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.backgroundTintColor,
+                                                    for: .selected)
+        weekDaysPicker.weekdaysButton.setTitleColor(AppTheme.current.backgroundTintColor,
                                                     for: .highlighted)
-        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.redColor,
+        weekDaysPicker.weekendsButton.setTitleColor(AppTheme.current.backgroundTintColor,
                                                     for: .highlighted)
         weekDaysPicker.dayButtons.prefix(upTo: 5).forEach {
             $0.titleNormalColor = AppTheme.current.tintColor
-            $0.titleSelectedColor = AppTheme.current.backgroundColor
+            $0.titleSelectedColor = AppTheme.current.backgroundTintColor
             $0.backgroundNormalColor = AppTheme.current.panelColor
             $0.backgroundSelectedColor = AppTheme.current.blueColor
         }
         weekDaysPicker.dayButtons.suffix(2).forEach {
             $0.titleNormalColor = AppTheme.current.tintColor
-            $0.titleSelectedColor = AppTheme.current.backgroundColor
+            $0.titleSelectedColor = AppTheme.current.backgroundTintColor
             $0.backgroundNormalColor = AppTheme.current.panelColor
             $0.backgroundSelectedColor = AppTheme.current.redColor
         }
@@ -96,7 +103,7 @@ extension TaskWeeklyRepeatingPicker: WeekDaysPickerOutput {
 extension TaskWeeklyRepeatingPicker: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return 96
+        return 104
     }
     
 }

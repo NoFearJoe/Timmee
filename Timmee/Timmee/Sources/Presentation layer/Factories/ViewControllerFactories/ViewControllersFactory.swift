@@ -13,6 +13,10 @@ import class MessageUI.MFMailComposeViewController
 
 final class ViewControllersFactory {
 
+    static var main: MainViewController {
+        return StoryboardsFactory.main.initialViewController()
+    }
+    
     static var mainTop: MainTopViewController {
         return StoryboardsFactory.mainTop.initialViewController()
     }
@@ -133,6 +137,11 @@ final class ViewControllersFactory {
     
     static var photoPreview: PhotoPreviewViewController {
         return StoryboardsFactory.photoPreview.initialViewController()
+    }
+    
+    
+    static var education: EducationViewController {
+        return StoryboardsFactory.education.initialViewController()
     }
     
 }
