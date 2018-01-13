@@ -97,8 +97,6 @@ fileprivate extension ListRepresentationManager {
                                                                        output: self)
             
             view.loadViewIfNeeded()
-        case .eisenhower:
-            newPresentation = "" as! ListRepresentationInput
         }
         
         output?.configureListRepresentation(newPresentation)

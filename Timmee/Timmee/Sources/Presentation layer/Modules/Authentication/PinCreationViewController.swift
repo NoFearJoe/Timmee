@@ -193,7 +193,7 @@ fileprivate extension PinCreationViewController {
     }
     
     func getPinCodeHash() -> String {
-        return enteredPinCode1.reduce("", { $0.0 + String($0.1) }).sha256()
+        return enteredPinCode1.reduce("", { $0 + String($1) }).sha256()
     }
     
 }

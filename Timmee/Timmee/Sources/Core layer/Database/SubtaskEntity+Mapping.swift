@@ -15,7 +15,7 @@ extension SubtaskEntity {
         self.title = subtask.title
         self.isDone = subtask.isDone
         self.sortPosition = Int32(subtask.sortPosition)
-        self.creationDate = subtask.creationDate.nsDate
+        self.creationDate = subtask.creationDate
     }
 
 }

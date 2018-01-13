@@ -234,7 +234,7 @@ final class CalendarViewLayout: UICollectionViewFlowLayout {
                     let daysCount = delegate?.daysCount(forIndex: item) ?? 0
                     
                     let maxWidth = CGFloat(daysCount) * CGFloat(48)
-                    let width = (month as NSString).size(attributes: [ NSFontAttributeName: UIFont.systemFont(ofSize: 12) ]).width + 4
+                    let width = (month as NSString).size(withAttributes: [ NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12) ]).width + 4
                     let minOffset = xOffset
                     let maxOffset = (xOffset + maxWidth) - width
                     let offsetX = (collectionView.frame.width * 0.5 - width * 0.5) + collectionView.contentOffset.x

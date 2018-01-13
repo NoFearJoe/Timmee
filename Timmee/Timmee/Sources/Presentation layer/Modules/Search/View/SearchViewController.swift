@@ -116,7 +116,7 @@ final class SearchViewController: UIViewController {
         searchTextField.tintColor = AppTheme.current.specialColor
         searchTextField.textColor = AppTheme.current.backgroundTintColor
         
-        let attributes = [NSForegroundColorAttributeName: AppTheme.current.secondaryBackgroundTintColor]
+        let attributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryBackgroundTintColor]
         searchTextField.attributedPlaceholder = NSAttributedString(string: "search".localized,
                                                                    attributes: attributes)
         

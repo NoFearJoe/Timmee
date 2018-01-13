@@ -1505,11 +1505,13 @@
 					96E543361F49EBB20081C6F0 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 485UNLA592;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					96E5434D1F49EBB20081C6F0 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 485UNLA592;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 96E543361F49EBB20081C6F0;
 					};
@@ -1972,7 +1974,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.timmee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/Sources/BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1988,7 +1991,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.timmee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/Sources/BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -2002,7 +2006,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TimmeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timmee.app/Timmee";
 			};
 			name = Debug;
@@ -2017,7 +2022,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TimmeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timmee.app/Timmee";
 			};
 			name = Release;

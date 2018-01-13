@@ -188,7 +188,7 @@ fileprivate extension TaskTimeTemplatePicker {
     }
     
     func updateTimeTemplate(_ timeTemplate: TimeTemplate) {
-        timeTemplates.sort(by: { $0.0.title < $0.1.title })
+        timeTemplates.sort(by: { $0.title < $1.title })
         
         timeTemplatesService.createOrUpdateTimeTemplate(timeTemplate, completion: nil)
         

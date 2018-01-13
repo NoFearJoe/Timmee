@@ -14,7 +14,7 @@ final class SubtasksEditorInteractor {
     let subtasksService = SubtasksService()
     
     fileprivate var sortedSubtasks: [Subtask] {
-        return taskProvider?.task?.subtasks.sorted(by: { $0.0.sortPosition > $0.1.sortPosition }) ?? []
+        return taskProvider?.task?.subtasks.sorted(by: { $0.sortPosition > $1.sortPosition }) ?? []
     }
     
 }

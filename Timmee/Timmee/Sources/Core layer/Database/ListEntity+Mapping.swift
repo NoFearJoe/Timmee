@@ -15,7 +15,7 @@ extension ListEntity {
         title = list.title
         note = list.note
         iconID = Int16(list.icon.rawValue)
-        creationDate = list.creationDate as NSDate
+        creationDate = list.creationDate
     }
 
 }

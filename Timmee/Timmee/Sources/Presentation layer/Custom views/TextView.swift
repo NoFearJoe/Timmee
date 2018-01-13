@@ -69,12 +69,12 @@ class TextView: UITextView {
             } else if let placeHolder = placeHolder {
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.alignment = textAlignment
-                var attributes: [String: Any] = [
-                    NSForegroundColorAttributeName: placeHolderColor,
-                    NSParagraphStyleAttributeName: paragraphStyle
+                var attributes: [NSAttributedStringKey: Any] = [
+                    NSAttributedStringKey.foregroundColor: placeHolderColor,
+                    NSAttributedStringKey.paragraphStyle: paragraphStyle
                 ]
                 if let font = font {
-                    attributes[NSFontAttributeName] = font
+                    attributes[NSAttributedStringKey.font] = font
                 }
                 
                 placeHolder.draw(in: placeHolderRect, withAttributes: attributes)
@@ -82,11 +82,11 @@ class TextView: UITextView {
         }
     }
     
-    func textDidChange(notification: Notification) {
+    @objc func textDidChange(notification: Notification) {
         let maxWidth = self.frame.width
         let textRect = (text as NSString).boundingRect(with: CGSize(width: maxWidth, height: 99999),
                                                        options: .usesLineFragmentOrigin,
-                                                       attributes: [NSFontAttributeName: self.font!],
+                                                       attributes: [NSAttributedStringKey.font: self.font!],
                                                        context: nil)
         if textRect.height > self.frame.height {
             onChangeContentHeight?(textRect.height)

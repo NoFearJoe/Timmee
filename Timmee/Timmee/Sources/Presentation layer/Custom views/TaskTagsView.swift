@@ -36,7 +36,7 @@ final class TaskTagsView: UIView {
     
     var tags: [Tag] = [] {
         didSet {
-            sortedTags = tags.sorted(by: { $0.0.title < $0.1.title })
+            sortedTags = tags.sorted(by: { $0.title < $1.title })
             placeholderLabel.isHidden = !tags.isEmpty
             tagsView.reloadData()
         }
@@ -104,8 +104,8 @@ extension TaskTagsView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let tag = sortedTags.item(at: indexPath.row) {
-            let width = (tag.title as NSString).size(attributes: [
-                NSFontAttributeName: UIFont.systemFont(ofSize: 16)
+            let width = (tag.title as NSString).size(withAttributes: [
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)
             ]).width
             return CGSize(width: width + 10, height: 24)
         }

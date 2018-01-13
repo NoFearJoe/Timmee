@@ -169,7 +169,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     func setTask(_ task: Task) {
         updateTagColors(with:
             task.tags
-                .sorted(by: { $0.0.title < $0.1.title })
+                .sorted(by: { $0.title < $1.title })
                 .map { $0.color }
         )
         

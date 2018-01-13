@@ -7,18 +7,18 @@
 //
 
 import class Foundation.NSAttributedString
-import var UIKit.NSForegroundColorAttributeName
+import struct UIKit.NSAttributedStringKey
 
 extension String {
     
     var asPlaceholder: NSAttributedString {
-        let attributes = [NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor.withAlphaComponent(0.5)]
+        let attributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.backgroundTintColor.withAlphaComponent(0.5)]
         return NSAttributedString(string: self,
                                   attributes: attributes)
     }
     
     var asForegroundPlaceholder: NSAttributedString {
-        let attributes = [NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor]
+        let attributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor]
         return NSAttributedString(string: self,
                                   attributes: attributes)
     }

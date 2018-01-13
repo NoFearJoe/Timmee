@@ -107,7 +107,7 @@ fileprivate extension PinAuthenticationViewController {
     func validatePinCode(_ pinCode: [Int]) {
         guard pinCode.count == pinCodeLength else { return }
         
-        let pinCodeHash = pinCode.reduce("") { $0.0 + String($0.1) }.sha256()
+        let pinCodeHash = pinCode.reduce("") { $0 + String($1) }.sha256()
         let validPinCodeHash = getValidPinCodeHash()
         
         if pinCodeHash == validPinCodeHash {

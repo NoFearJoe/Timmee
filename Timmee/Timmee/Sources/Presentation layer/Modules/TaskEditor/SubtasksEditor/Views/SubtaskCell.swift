@@ -64,15 +64,15 @@ final class SubtaskCell: SwipeTableViewCell {
                                                                attributes: attributes)
     }
     
-    static var doneAttributes: [String: Any] = [
-        NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight),
-        NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor,
-        NSStrikethroughStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+    static var doneAttributes: [NSAttributedStringKey: Any] = [
+        NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light),
+        NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor,
+        NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue
     ]
     
     static var activeAttributes = [
-        NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightLight),
-        NSForegroundColorAttributeName: AppTheme.current.tintColor
+        NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light),
+        NSAttributedStringKey.foregroundColor: AppTheme.current.tintColor
     ]
     
 }

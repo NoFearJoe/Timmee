@@ -38,13 +38,13 @@ fileprivate extension EducationViewController {
         let viewController: UIViewController
         switch screen {
         case .initial:
-            return UIViewController()
+            viewController = UIViewController()
         case .features:
-            return UIViewController()
+            viewController = UIViewController()
         case .pinCodeSetupSuggestion:
-            return UIViewController()
+            viewController = UIViewController()
         case .pinCodeCreation:
-            return ViewControllersFactory.pinCreation
+            viewController = ViewControllersFactory.pinCreation
         }
         
         if let educationScreenInput = viewController as? EducationScreenInput {

@@ -33,7 +33,7 @@ final class TaskTagsPicker: UIViewController {
     fileprivate var selectedTags: [Tag] = []
     fileprivate var allTags: [Tag] = [] {
         didSet {
-            allTags.sort(by: { $0.0.title < $0.1.title })
+            allTags.sort(by: { $0.title < $1.title })
             
             allTags.isEmpty ? showNoTagsPlaceholder() : hideNoTagsPlaceholder()
         }
@@ -160,7 +160,7 @@ fileprivate extension TaskTagsPicker {
     
     func updateTag(_ tag: Tag) {
         // ???
-        allTags.sort(by: { $0.0.title < $0.1.title })
+        allTags.sort(by: { $0.title < $1.title })
         
         output?.tagUpdated(tag)
         tagsService.createOrUpdateTag(tag, completion: nil)

@@ -21,11 +21,11 @@ extension TaskEntity {
         notificationMask = entity.notification.rawValue
         note = entity.note
         repeatMask = entity.repeating.string
-        dueDate = entity.dueDate as NSDate?
-        repeatEndingDate = entity.repeatEndingDate as NSDate?
+        dueDate = entity.dueDate
+        repeatEndingDate = entity.repeatEndingDate
         
         if let location = entity.location {
-            self.location = NSKeyedArchiver.archivedData(withRootObject: location) as NSData
+            self.location = NSKeyedArchiver.archivedData(withRootObject: location)
         } else {
             self.location = nil
         }
@@ -34,7 +34,7 @@ extension TaskEntity {
         shouldNotifyAtLocation = entity.shouldNotifyAtLocation
         isDone = entity.isDone
         inProgress = entity.inProgress
-        creationDate = entity.creationDate as NSDate
+        creationDate = entity.creationDate
         
         attachments = entity.attachments as NSArray
     }

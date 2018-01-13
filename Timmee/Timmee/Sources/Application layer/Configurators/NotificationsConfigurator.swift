@@ -39,7 +39,7 @@ final class NotificationsConfigurator {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = application.delegate as? UNUserNotificationCenterDelegate
             UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { _ in }
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { _,_  in }
         } else {
             let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound],
                                                       categories: makeLocalNotificationsCategories())

@@ -13,5 +13,5 @@ enum ListRepresentation {
     case table
     
     // Представление задач в виде матрицы Эйзенхауэра
-    case eisenhower
+//    case eisenhower
 }

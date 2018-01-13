@@ -153,7 +153,7 @@ final class PageControl: UIView {
     fileprivate func createLabel(title: String, index: Int) -> UILabel {
         let label = UILabel()
         label.text = title
-        label.font = .systemFont(ofSize: fontSize, weight: UIFontWeightRegular)
+        label.font = .systemFont(ofSize: fontSize, weight: UIFont.Weight.regular)
         label.tag = index
         label.isUserInteractionEnabled = true
         label.lineBreakMode = .byClipping

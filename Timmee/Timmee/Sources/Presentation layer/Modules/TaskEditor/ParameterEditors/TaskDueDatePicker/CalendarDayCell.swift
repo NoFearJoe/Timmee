@@ -25,7 +25,7 @@ final class CalendarDayCell: UICollectionViewCell {
 
 final class DayNameLabel: UILabel {
     
-    dynamic var color = UIColor.black
+    @objc dynamic var color = UIColor.black
     
     var state: UIControlState = .normal {
         didSet {
@@ -54,8 +54,8 @@ final class DayNameLabel: UILabel {
 
 final class DayNumberLabel: UILabel {
     
-    dynamic var color = UIColor.black
-    dynamic var selectedTextColor = UIColor.white
+    @objc dynamic var color = UIColor.black
+    @objc dynamic var selectedTextColor = UIColor.white
     
     override func awakeFromNib() {
         super.awakeFromNib()

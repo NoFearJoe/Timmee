@@ -343,9 +343,9 @@ fileprivate extension SettingsViewController {
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.barTintColor = AppTheme.current.backgroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.backgroundTintColor
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.backgroundTintColor]
         if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: AppTheme.current.backgroundTintColor]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.backgroundTintColor]
         }
         
         view.backgroundColor = AppTheme.current.middlegroundColor

@@ -74,19 +74,19 @@ final class TaskEditorView: UIViewController {
         taskTitleField.showsVerticalScrollIndicator = false
         taskTitleField.placeholderAttributedText
             = NSAttributedString(string: "input_task_title".localized,
-                                 attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 24),
-                                              NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
+                                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24),
+                                              NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
         
         taskNoteField.textView.delegate = self
         taskNoteField.textView.textContainerInset = .zero
-        taskNoteField.textView.font = UIFont.systemFont(ofSize: 16, weight: UIFontWeightLight)
+        taskNoteField.textView.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
         taskNoteField.maxNumberOfLines = 5
         taskNoteField.showsVerticalScrollIndicator = false
         taskNoteField.placeholderAttributedText
             = NSAttributedString(string: "input_task_note".localized,
-                                 attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16,
-                                                                                     weight: UIFontWeightLight),
-                                              NSForegroundColorAttributeName: AppTheme.current.secondaryTintColor])
+                                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16,
+                                                                                     weight: UIFont.Weight.light),
+                                              NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
                 
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
             if isFilled {
