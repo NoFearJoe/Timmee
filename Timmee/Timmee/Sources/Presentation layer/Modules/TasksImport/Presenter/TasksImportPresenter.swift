@@ -103,7 +103,7 @@ extension TasksImportPresenter: TasksImportViewOutput {
     }
     
     func didChangeSearchString(to string: String) {
-        if string.trimmed.characters.count > 0 {
+        if string.trimmed.count > 0 {
             isSearching = true
             interactor.searchTasks(by: string, excludeList: list)
         } else {

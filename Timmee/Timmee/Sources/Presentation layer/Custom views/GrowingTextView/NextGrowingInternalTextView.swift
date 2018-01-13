@@ -106,6 +106,6 @@ internal class NextGrowingInternalTextView: UITextView {
   }
 
   private func updatePlaceholder() {
-    displayPlaceholder = text.characters.count == 0
+    displayPlaceholder = text.count == 0
   }
 }

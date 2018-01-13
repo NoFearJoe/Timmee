@@ -96,6 +96,8 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
     
     fileprivate var viewControllers: [UIViewController] = []
     
+    private var isAppeared = false
+    
     @IBAction fileprivate func closeButtonPressed() {
         if viewControllers.count <= 1 {
             output?.taskParameterEditingCancelled(type: type)
@@ -134,13 +136,22 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
         editorContainerUnderlyingView.showShadow = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard !isAppeared else { return }
+        
+        isAppeared = true
+        
+        if #available(iOS 11.0, *) {
+            let safeAreaBottomInset = view.safeAreaInsets.bottom
+            editorContainerHeightConstraint.constant += safeAreaBottomInset
+        }
         
         let fullHeight: CGFloat = 64 + editorContainerHeightConstraint.constant
         view.transform = CGAffineTransform(translationX: 0, y: fullHeight)
         
-        UIView.animate(withDuration: 0.25) { 
+        UIView.animate(withDuration: 0.25) {
             self.view.transform = CGAffineTransform.identity
         }
     }

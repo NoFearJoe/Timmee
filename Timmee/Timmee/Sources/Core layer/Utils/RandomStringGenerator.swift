@@ -10,7 +10,7 @@ import func Foundation.arc4random_uniform
 
 final class RandomStringGenerator {
 
-    fileprivate static let characters = Array("qwertyuiopasdfghjklzxcvbnm1234567890".characters)
+    fileprivate static let characters = Array("qwertyuiopasdfghjklzxcvbnm1234567890")
     
     static func randomString(length: Int) -> String {
         return (0..<length).flatMap { _ in
