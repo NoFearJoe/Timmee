@@ -275,7 +275,13 @@ fileprivate extension TaskParameterEditorContainer {
         let offset = editorContainer.frame.height
         if let editorInput = viewController as? TaskParameterEditorInput {
             editorInput.container = self
-            editorContainerHeightConstraint.constant = editorInput.requiredHeight
+            
+            if #available(iOS 11.0, *) {
+                let safeAreaBottomInset = view.safeAreaInsets.bottom
+                editorContainerHeightConstraint.constant = editorInput.requiredHeight + safeAreaBottomInset
+            } else {
+                editorContainerHeightConstraint.constant = editorInput.requiredHeight
+            }
         }
         
         if let fromView = editorContainer.subviews.first {
@@ -308,7 +314,12 @@ fileprivate extension TaskParameterEditorContainer {
         
         let offset = editorContainer.frame.height
         if let editorInput = toView as? TaskParameterEditorInput {
-            editorContainerHeightConstraint.constant = editorInput.requiredHeight
+            if #available(iOS 11.0, *) {
+                let safeAreaBottomInset = view.safeAreaInsets.bottom
+                editorContainerHeightConstraint.constant = editorInput.requiredHeight + safeAreaBottomInset
+            } else {
+                editorContainerHeightConstraint.constant = editorInput.requiredHeight
+            }
         }
         
         editorContainer.addSubview(toView.view)

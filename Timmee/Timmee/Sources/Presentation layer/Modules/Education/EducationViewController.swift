@@ -13,21 +13,44 @@ protocol EducationScreenInput: class {
 }
 
 protocol EducationScreenOutput: class {
-    func educationScreenDidEndPresentation()
+    func didAskToContinueEducation(screen: EducationScreen)
+    func didAskToSkipEducation(screen: EducationScreen)
 }
 
 final class EducationViewController: UINavigationController {
     
+    private let educationState = EducationState()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let initialScreen = educationState.screensToShow.first {
+            setViewControllers([viewController(forScreen: initialScreen)], animated: false)
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
 }
 
 extension EducationViewController: EducationScreenOutput {
     
-    func educationScreenDidEndPresentation() {
-        
+    func didAskToContinueEducation(screen: EducationScreen) {
+        if let screenIndex = educationState.screensToShow.index(of: screen) {
+            if let nextScreen = educationState.screensToShow.item(at: screenIndex + 1) {
+                pushViewController(viewController(forScreen: nextScreen), animated: true)
+            } else {
+                performSegue(withIdentifier: "ShowMainViewController", sender: nil)
+            }
+        } else {
+            performSegue(withIdentifier: "ShowMainViewController", sender: nil)
+        }
+    }
+    
+    func didAskToSkipEducation(screen: EducationScreen) {
+        performSegue(withIdentifier: "ShowMainViewController", sender: nil)
     }
     
 }
@@ -38,13 +61,19 @@ fileprivate extension EducationViewController {
         let viewController: UIViewController
         switch screen {
         case .initial:
-            viewController = UIViewController()
+            viewController = ViewControllersFactory.initialEducationScreen
         case .features:
-            viewController = UIViewController()
+            viewController = ViewControllersFactory.featuresEducationScreen
         case .pinCodeSetupSuggestion:
-            viewController = UIViewController()
+            viewController = ViewControllersFactory.pinCodeSetupSuggestionEducationScreen
         case .pinCodeCreation:
-            viewController = ViewControllersFactory.pinCreation
+            let pinCreationViewController = ViewControllersFactory.pinCreation
+            
+            pinCreationViewController.onComplete = { [unowned self] in
+                self.performSegue(withIdentifier: "ShowMainViewController", sender: nil)
+            }
+            
+            viewController = pinCreationViewController
         }
         
         if let educationScreenInput = viewController as? EducationScreenInput {

@@ -17,10 +17,9 @@ final class InitialScreenPresenter {
         
         let initialViewController: UIViewController
         
-//        if !UserProperty.isEducationShown.bool() {
-//            initialViewController = ViewControllersFactory.education
-//        } else
-        if UserProperty.pinCode.value() != nil {
+        if !UserProperty.isEducationShown.bool() {
+            initialViewController = ViewControllersFactory.education
+        } else if UserProperty.pinCode.value() != nil {
             let pinAuthenticationViewController = ViewControllersFactory.pinAuthentication
             pinAuthenticationViewController.onComplete = { [unowned pinAuthenticationViewController] in
                 pinAuthenticationViewController.performSegue(withIdentifier: "ShowMainViewController", sender: nil)

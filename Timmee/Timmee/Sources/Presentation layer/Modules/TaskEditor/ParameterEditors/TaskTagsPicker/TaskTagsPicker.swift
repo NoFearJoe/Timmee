@@ -124,7 +124,7 @@ extension TaskTagsPicker: UITableViewDelegate {
 extension TaskTagsPicker: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return CGFloat(10) * TaskTagsPicker.rowHeight + 52
+        return CGFloat(10) * TaskTagsPicker.rowHeight + 96
     }
 }
 

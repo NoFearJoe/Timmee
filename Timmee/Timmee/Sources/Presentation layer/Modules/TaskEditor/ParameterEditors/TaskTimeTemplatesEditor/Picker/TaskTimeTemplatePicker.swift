@@ -268,7 +268,7 @@ fileprivate extension TaskTimeTemplatePicker {
 
 extension TaskTimeTemplatePicker: TaskParameterEditorInput {
     var requiredHeight: CGFloat {
-        return CGFloat(6) * TaskTimeTemplatePicker.rowHeight + 44
+        return CGFloat(6) * TaskTimeTemplatePicker.rowHeight + 44 + 96
     }
 }
 

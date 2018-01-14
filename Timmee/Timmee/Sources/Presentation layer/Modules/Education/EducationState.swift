@@ -22,15 +22,15 @@ enum EducationScreen {
 
 final class EducationState {
     
-    private static var isEducationShown: Bool {
+    private var isEducationShown: Bool {
         return UserProperty.isEducationShown.bool()
     }
     
-    static var screensToShow: [EducationScreen] {
+    lazy var screensToShow: [EducationScreen] = {
         if !isEducationShown {
             return [.initial, .features, .pinCodeSetupSuggestion, .pinCodeCreation]
         }
         return []
-    }
+    }()
     
 }

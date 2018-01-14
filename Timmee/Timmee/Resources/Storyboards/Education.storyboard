@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="COh-kM-2lC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Education View Controller-->
+        <scene sceneID="I8T-8F-YdK">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="COh-kM-2lC" customClass="EducationViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fbW-Ai-p29">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gec-Cj-ld1" kind="showDetail" identifier="ShowMainViewController" id="Xrq-M8-NUU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VTr-AS-2Oq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-535" y="164"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="MBc-UU-Jwd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="gec-Cj-ld1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="78P-K9-g5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-535" y="625"/>
+        </scene>
+        <!--Initial Education Screen-->
+        <scene sceneID="ZVS-xg-MVj">
+            <objects>
+                <viewController storyboardIdentifier="InitialEducationScreen" id="YIr-p7-VZc" customClass="InitialEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mTC-M6-yT3" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OnC-Hi-IbU">
+                                <rect key="frame" x="34.5" y="264.5" width="306" height="138"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привет!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzU-uZ-xfT">
+                                        <rect key="frame" x="0.0" y="0.0" width="305.5" height="53"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="44"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Это Memori - твой новый помощник в повседневных делах и не только" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LC-kn-5U2">
+                                        <rect key="frame" x="0.0" y="97" width="306" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.90198102678571423" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SzU-uZ-xfT" firstAttribute="leading" secondItem="OnC-Hi-IbU" secondAttribute="leading" id="NHp-i1-cgu"/>
+                                    <constraint firstItem="6LC-kn-5U2" firstAttribute="top" secondItem="SzU-uZ-xfT" secondAttribute="bottom" constant="44" id="Xeb-MR-02q"/>
+                                    <constraint firstAttribute="trailing" secondItem="6LC-kn-5U2" secondAttribute="trailing" id="bzW-vi-Hqf"/>
+                                    <constraint firstItem="6LC-kn-5U2" firstAttribute="leading" secondItem="OnC-Hi-IbU" secondAttribute="leading" id="dfo-vC-Ncv"/>
+                                    <constraint firstAttribute="trailing" secondItem="SzU-uZ-xfT" secondAttribute="trailing" id="gJB-RN-tLi"/>
+                                    <constraint firstAttribute="bottom" secondItem="6LC-kn-5U2" secondAttribute="bottom" id="hqa-03-DVF"/>
+                                    <constraint firstItem="SzU-uZ-xfT" firstAttribute="top" secondItem="OnC-Hi-IbU" secondAttribute="top" id="pLX-fG-IO4"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xkr-bo-t9b">
+                                <rect key="frame" x="59" y="531" width="256" height="116"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzB-5W-94R" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="bdQ-vr-jMm"/>
+                                            <constraint firstAttribute="height" constant="52" id="u7S-Vm-Yt6"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Привет, Memori"/>
+                                        <connections>
+                                            <action selector="continueEducation" destination="YIr-p7-VZc" eventType="touchUpInside" id="Ty0-wd-U0d"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q87-Qa-Hm9" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="256" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="1fF-ra-Cby"/>
+                                            <constraint firstAttribute="height" constant="44" id="r4H-VY-Ceu"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Давай сразу к делу"/>
+                                        <connections>
+                                            <action selector="skipEducation" destination="YIr-p7-VZc" eventType="touchUpInside" id="7ZF-mK-9BZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="q87-Qa-Hm9" firstAttribute="leading" secondItem="Xkr-bo-t9b" secondAttribute="leading" id="8dU-zQ-VOJ"/>
+                                    <constraint firstItem="qzB-5W-94R" firstAttribute="leading" secondItem="Xkr-bo-t9b" secondAttribute="leading" id="Grn-8j-W12"/>
+                                    <constraint firstAttribute="bottom" secondItem="q87-Qa-Hm9" secondAttribute="bottom" id="fhJ-9l-vQS"/>
+                                    <constraint firstAttribute="trailing" secondItem="qzB-5W-94R" secondAttribute="trailing" id="kFF-V3-RVV"/>
+                                    <constraint firstAttribute="width" constant="256" id="ldo-Yx-j2b"/>
+                                    <constraint firstItem="q87-Qa-Hm9" firstAttribute="top" secondItem="qzB-5W-94R" secondAttribute="bottom" constant="20" id="oMV-pF-B2S"/>
+                                    <constraint firstItem="qzB-5W-94R" firstAttribute="top" secondItem="Xkr-bo-t9b" secondAttribute="top" id="trC-zN-EaV"/>
+                                    <constraint firstAttribute="trailing" secondItem="q87-Qa-Hm9" secondAttribute="trailing" id="twV-g9-NpC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OnC-Hi-IbU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zk5-6R-d3o" secondAttribute="leading" constant="20" id="1Gc-XI-ldq"/>
+                            <constraint firstItem="zk5-6R-d3o" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OnC-Hi-IbU" secondAttribute="bottom" constant="44" id="37G-fq-4sG"/>
+                            <constraint firstItem="Xkr-bo-t9b" firstAttribute="top" relation="greaterThanOrEqual" secondItem="OnC-Hi-IbU" secondAttribute="bottom" constant="20" id="QE0-0G-AS2"/>
+                            <constraint firstItem="Xkr-bo-t9b" firstAttribute="centerX" secondItem="mTC-M6-yT3" secondAttribute="centerX" id="SaT-bC-wQ2"/>
+                            <constraint firstItem="OnC-Hi-IbU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zk5-6R-d3o" secondAttribute="top" constant="44" id="Xsx-qL-uFc"/>
+                            <constraint firstItem="OnC-Hi-IbU" firstAttribute="centerY" secondItem="mTC-M6-yT3" secondAttribute="centerY" id="YPM-na-wed"/>
+                            <constraint firstItem="zk5-6R-d3o" firstAttribute="bottom" secondItem="Xkr-bo-t9b" secondAttribute="bottom" constant="20" id="fY1-8I-0qh"/>
+                            <constraint firstItem="OnC-Hi-IbU" firstAttribute="centerX" secondItem="mTC-M6-yT3" secondAttribute="centerX" id="kz9-cq-5vn"/>
+                            <constraint firstItem="zk5-6R-d3o" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OnC-Hi-IbU" secondAttribute="trailing" constant="20" id="r5X-fP-wXf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zk5-6R-d3o"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isVertical" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startAlpha">
+                                <real key="value" value="0.94999999999999996"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="qzB-5W-94R" id="tAn-fg-Tla"/>
+                        <outlet property="skipButton" destination="q87-Qa-Hm9" id="nPd-eB-yFU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6hZ-ys-2tD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480.80000000000001" y="162.3688155922039"/>
+        </scene>
+        <!--Features Education Screen-->
+        <scene sceneID="yKZ-NZ-uUy">
+            <objects>
+                <viewController storyboardIdentifier="FeaturesEducationScreen" id="7SQ-p2-iNt" customClass="FeaturesEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ByO-3r-Mgt" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCE-01-jgK">
+                                <rect key="frame" x="76" y="249" width="223.5" height="170"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вот то, что я умею" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2R-V7-3ux">
+                                        <rect key="frame" x="0.0" y="0.0" width="223.5" height="105.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="44"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="- Раз\n-Два\n- Три" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5Z-k6-SqB">
+                                        <rect key="frame" x="0.0" y="149.5" width="223.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.90198102680000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="p5Z-k6-SqB" secondAttribute="trailing" id="3ub-KG-djN"/>
+                                    <constraint firstItem="p5Z-k6-SqB" firstAttribute="leading" secondItem="cCE-01-jgK" secondAttribute="leading" id="3xQ-yJ-x7u"/>
+                                    <constraint firstItem="J2R-V7-3ux" firstAttribute="leading" secondItem="cCE-01-jgK" secondAttribute="leading" id="DJV-sG-S5I"/>
+                                    <constraint firstAttribute="trailing" secondItem="J2R-V7-3ux" secondAttribute="trailing" id="JHG-Ln-Sw8"/>
+                                    <constraint firstAttribute="bottom" secondItem="p5Z-k6-SqB" secondAttribute="bottom" id="TFN-b5-f4o"/>
+                                    <constraint firstItem="p5Z-k6-SqB" firstAttribute="top" secondItem="J2R-V7-3ux" secondAttribute="bottom" constant="44" id="aWQ-7j-mu8"/>
+                                    <constraint firstItem="J2R-V7-3ux" firstAttribute="top" secondItem="cCE-01-jgK" secondAttribute="top" id="pK9-tX-uo8"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="e3P-Ru-fOO"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="II1-eD-MIP">
+                                <rect key="frame" x="59" y="531" width="256" height="116"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPT-Ba-STF" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="8h7-BZ-uPi"/>
+                                            <constraint firstAttribute="height" constant="52" id="ABy-9d-bl6"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Отлично, что дальше?"/>
+                                        <connections>
+                                            <action selector="continueEducation" destination="YIr-p7-VZc" eventType="touchUpInside" id="P9i-YP-4zY"/>
+                                            <action selector="continueEducation" destination="7SQ-p2-iNt" eventType="touchUpInside" id="R4c-yd-wof"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C51-Op-qXa" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="256" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="hcw-6C-efd"/>
+                                            <constraint firstAttribute="height" constant="44" id="ndv-L8-Lli"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Понятно, хочу пропустить это"/>
+                                        <connections>
+                                            <action selector="skipEducation" destination="YIr-p7-VZc" eventType="touchUpInside" id="AJj-he-0Fo"/>
+                                            <action selector="skipEducation" destination="7SQ-p2-iNt" eventType="touchUpInside" id="UTq-AY-XMj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PPT-Ba-STF" firstAttribute="top" secondItem="II1-eD-MIP" secondAttribute="top" id="AIG-3q-yL0"/>
+                                    <constraint firstAttribute="trailing" secondItem="PPT-Ba-STF" secondAttribute="trailing" id="MgR-PM-CA4"/>
+                                    <constraint firstAttribute="bottom" secondItem="C51-Op-qXa" secondAttribute="bottom" id="T6J-dr-2M6"/>
+                                    <constraint firstItem="PPT-Ba-STF" firstAttribute="leading" secondItem="II1-eD-MIP" secondAttribute="leading" id="YGR-Me-xIg"/>
+                                    <constraint firstItem="C51-Op-qXa" firstAttribute="leading" secondItem="II1-eD-MIP" secondAttribute="leading" id="drY-9b-I4z"/>
+                                    <constraint firstAttribute="width" constant="256" id="gc8-pR-Odn"/>
+                                    <constraint firstAttribute="trailing" secondItem="C51-Op-qXa" secondAttribute="trailing" id="mFI-lq-xGS"/>
+                                    <constraint firstItem="C51-Op-qXa" firstAttribute="top" secondItem="PPT-Ba-STF" secondAttribute="bottom" constant="20" id="oRo-Rz-Rvr"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="4wJ-r0-GEJ"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cCE-01-jgK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ByO-3r-Mgt" secondAttribute="leading" constant="20" id="26w-8B-Lx8"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cCE-01-jgK" secondAttribute="trailing" constant="20" id="C6F-GB-SRJ"/>
+                            <constraint firstItem="II1-eD-MIP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cCE-01-jgK" secondAttribute="bottom" constant="20" id="CJP-4h-IzC"/>
+                            <constraint firstItem="cCE-01-jgK" firstAttribute="centerY" secondItem="ByO-3r-Mgt" secondAttribute="centerY" id="JpD-0I-3Fm"/>
+                            <constraint firstItem="39m-Co-GFU" firstAttribute="bottom" secondItem="II1-eD-MIP" secondAttribute="bottom" constant="20" id="bVS-id-nhA"/>
+                            <constraint firstItem="cCE-01-jgK" firstAttribute="centerX" secondItem="ByO-3r-Mgt" secondAttribute="centerX" id="dYV-Ai-I97"/>
+                            <constraint firstItem="II1-eD-MIP" firstAttribute="centerX" secondItem="ByO-3r-Mgt" secondAttribute="centerX" id="m0F-bs-b2a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="39m-Co-GFU"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startAlpha">
+                                <real key="value" value="0.94999999999999996"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isVertical" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="PPT-Ba-STF" id="9d6-gQ-igO"/>
+                        <outlet property="skipButton" destination="C51-Op-qXa" id="gEB-zg-OGP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="svH-J4-fda" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433" y="162"/>
+        </scene>
+        <!--Pin Code Setup Suggestion Education Screen-->
+        <scene sceneID="Nly-Ni-Hbw">
+            <objects>
+                <viewController storyboardIdentifier="PinCodeSetupSuggestionEducationScreen" id="zPZ-oH-Gdt" customClass="PinCodeSetupSuggestionEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b9J-xF-GF4" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIQ-bj-nTg">
+                                <rect key="frame" x="28.5" y="228" width="319" height="211"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Установи пароль" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwX-og-Mco">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="105.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="44"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Можно поставить короткий пароль для входа в приложение, чтобы защитить важную информацию" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qK9-jn-loR">
+                                        <rect key="frame" x="0.0" y="150" width="319" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.90198102680000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="iwX-og-Mco" secondAttribute="trailing" id="1e2-ZM-xJO"/>
+                                    <constraint firstAttribute="bottom" secondItem="qK9-jn-loR" secondAttribute="bottom" id="NtS-D4-RtI"/>
+                                    <constraint firstItem="qK9-jn-loR" firstAttribute="leading" secondItem="uIQ-bj-nTg" secondAttribute="leading" id="bx7-Tg-hhn"/>
+                                    <constraint firstItem="iwX-og-Mco" firstAttribute="leading" secondItem="uIQ-bj-nTg" secondAttribute="leading" id="fdv-EN-zG1"/>
+                                    <constraint firstItem="iwX-og-Mco" firstAttribute="top" secondItem="uIQ-bj-nTg" secondAttribute="top" id="w0w-a3-zBE"/>
+                                    <constraint firstAttribute="trailing" secondItem="qK9-jn-loR" secondAttribute="trailing" id="wzF-Ou-9Xk"/>
+                                    <constraint firstItem="qK9-jn-loR" firstAttribute="top" secondItem="iwX-og-Mco" secondAttribute="bottom" constant="44" id="z05-EV-Ygh"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="eqf-LR-GlW"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byW-Yl-qBc">
+                                <rect key="frame" x="59" y="531" width="256" height="116"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ay-15-JqG" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="nrP-M6-9zm"/>
+                                            <constraint firstAttribute="width" constant="256" id="waM-EJ-HJs"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Установить"/>
+                                        <connections>
+                                            <action selector="continueEducation" destination="zPZ-oH-Gdt" eventType="touchUpInside" id="QMM-0p-Fom"/>
+                                            <action selector="continueEducation" destination="YIr-p7-VZc" eventType="touchUpInside" id="VOE-HP-zUJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF3-3x-pPY" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="256" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="XUo-PH-uTf"/>
+                                            <constraint firstAttribute="height" constant="44" id="sU5-yn-1oZ"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Не хочу"/>
+                                        <connections>
+                                            <action selector="skipEducation" destination="YIr-p7-VZc" eventType="touchUpInside" id="5Lx-gB-A6a"/>
+                                            <action selector="skipEducation" destination="zPZ-oH-Gdt" eventType="touchUpInside" id="xCf-HX-3h4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="2GN-sm-A8k"/>
+                                    <constraint firstAttribute="bottom" secondItem="aF3-3x-pPY" secondAttribute="bottom" id="3ex-Jv-HAh"/>
+                                    <constraint firstAttribute="trailing" secondItem="aF3-3x-pPY" secondAttribute="trailing" id="Ky2-xb-sbJ"/>
+                                    <constraint firstItem="9Ay-15-JqG" firstAttribute="top" secondItem="byW-Yl-qBc" secondAttribute="top" id="MSN-CQ-rb9"/>
+                                    <constraint firstItem="9Ay-15-JqG" firstAttribute="leading" secondItem="byW-Yl-qBc" secondAttribute="leading" id="RFC-6x-qRj"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Ay-15-JqG" secondAttribute="trailing" id="SSI-2o-4FS"/>
+                                    <constraint firstItem="aF3-3x-pPY" firstAttribute="top" secondItem="9Ay-15-JqG" secondAttribute="bottom" constant="20" id="pip-fM-cLq"/>
+                                    <constraint firstItem="aF3-3x-pPY" firstAttribute="leading" secondItem="byW-Yl-qBc" secondAttribute="leading" id="ryO-0M-oFp"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="MNV-zC-XCK"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Mp2-T1-cNM" firstAttribute="bottom" secondItem="byW-Yl-qBc" secondAttribute="bottom" constant="20" id="7cp-AC-Ic7"/>
+                            <constraint firstItem="uIQ-bj-nTg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mp2-T1-cNM" secondAttribute="leading" constant="20" id="CK9-ba-Z33"/>
+                            <constraint firstItem="byW-Yl-qBc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uIQ-bj-nTg" secondAttribute="bottom" constant="20" id="Q8O-uq-Peg"/>
+                            <constraint firstItem="Mp2-T1-cNM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uIQ-bj-nTg" secondAttribute="trailing" constant="20" id="WGn-ZY-oV5"/>
+                            <constraint firstItem="uIQ-bj-nTg" firstAttribute="centerX" secondItem="b9J-xF-GF4" secondAttribute="centerX" id="Xgn-Cl-rnz"/>
+                            <constraint firstItem="byW-Yl-qBc" firstAttribute="centerX" secondItem="b9J-xF-GF4" secondAttribute="centerX" id="nNw-oH-HF2"/>
+                            <constraint firstItem="uIQ-bj-nTg" firstAttribute="centerY" secondItem="b9J-xF-GF4" secondAttribute="centerY" id="wrx-VS-MVD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mp2-T1-cNM"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startAlpha">
+                                <real key="value" value="0.94999999999999996"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isVertical" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="continueButton" destination="9Ay-15-JqG" id="EIH-Hw-PbD"/>
+                        <outlet property="skipButton" destination="aF3-3x-pPY" id="Ph7-em-wCh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSW-4o-EVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2380" y="160.56971514242881"/>
+        </scene>
+    </scenes>
+</document>

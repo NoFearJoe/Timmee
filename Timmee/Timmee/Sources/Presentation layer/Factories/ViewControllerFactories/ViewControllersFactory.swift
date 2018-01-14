@@ -144,6 +144,18 @@ final class ViewControllersFactory {
         return StoryboardsFactory.education.initialViewController()
     }
     
+    static var initialEducationScreen: InitialEducationScreen {
+        return StoryboardsFactory.education.viewController(id: "InitialEducationScreen")
+    }
+    
+    static var featuresEducationScreen: FeaturesEducationScreen {
+        return StoryboardsFactory.education.viewController(id: "FeaturesEducationScreen")
+    }
+    
+    static var pinCodeSetupSuggestionEducationScreen: PinCodeSetupSuggestionEducationScreen {
+        return StoryboardsFactory.education.viewController(id: "PinCodeSetupSuggestionEducationScreen")
+    }
+    
 }
 
 fileprivate extension UIStoryboard {

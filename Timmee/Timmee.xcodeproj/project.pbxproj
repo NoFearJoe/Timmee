@@ -118,6 +118,11 @@
 		965798D61F91340100F65019 /* PinAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965798D11F91340100F65019 /* PinAuthenticationViewController.swift */; };
 		965798D71F91340100F65019 /* PinCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965798D21F91340100F65019 /* PinCreationViewController.swift */; };
 		965798D91F9136BE00F65019 /* String+Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965798D81F9136BE00F65019 /* String+Encryption.swift */; };
+		96594E4C200A6F9000998133 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96594E4B200A6F9000998133 /* InitialEducationScreen.swift */; };
+		96594E4E200A6FC200998133 /* FeaturesEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96594E4D200A6FC200998133 /* FeaturesEducationScreen.swift */; };
+		96594E50200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96594E4F200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift */; };
+		96594E52200B6A2600998133 /* Education.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96594E51200B6A2600998133 /* Education.storyboard */; };
+		96594E54200B6CB000998133 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96594E53200B6CB000998133 /* ContinueEducationButton.swift */; };
 		96636A351F8655DB00C84FD4 /* SubtaskEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96636A341F8655DB00C84FD4 /* SubtaskEntity+Mapping.swift */; };
 		96636A371F86560600C84FD4 /* Subtask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96636A361F86560600C84FD4 /* Subtask.swift */; };
 		96636A391F86592300C84FD4 /* SubtasksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96636A381F86592300C84FD4 /* SubtasksService.swift */; };
@@ -327,6 +332,11 @@
 		965798D21F91340100F65019 /* PinCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCreationViewController.swift; sourceTree = "<group>"; };
 		965798D81F9136BE00F65019 /* String+Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encryption.swift"; sourceTree = "<group>"; };
 		965798DA1F9138B000F65019 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		96594E4B200A6F9000998133 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
+		96594E4D200A6FC200998133 /* FeaturesEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesEducationScreen.swift; sourceTree = "<group>"; };
+		96594E4F200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeSetupSuggestionEducationScreen.swift; sourceTree = "<group>"; };
+		96594E51200B6A2600998133 /* Education.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Education.storyboard; sourceTree = "<group>"; };
+		96594E53200B6CB000998133 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
 		96636A341F8655DB00C84FD4 /* SubtaskEntity+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubtaskEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96636A361F86560600C84FD4 /* Subtask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subtask.swift; sourceTree = "<group>"; };
 		96636A381F86592300C84FD4 /* SubtasksService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtasksService.swift; sourceTree = "<group>"; };
@@ -666,6 +676,7 @@
 		0CC7C8592008CDC1006758C1 /* Education */ = {
 			isa = PBXGroup;
 			children = (
+				96594E4A200A6F7300998133 /* Education screens */,
 				0CC7C85E2008FE48006758C1 /* EducationState.swift */,
 				0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */,
 			);
@@ -957,6 +968,16 @@
 				960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		96594E4A200A6F7300998133 /* Education screens */ = {
+			isa = PBXGroup;
+			children = (
+				96594E4B200A6F9000998133 /* InitialEducationScreen.swift */,
+				96594E4D200A6FC200998133 /* FeaturesEducationScreen.swift */,
+				96594E4F200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift */,
+			);
+			path = "Education screens";
 			sourceTree = "<group>";
 		};
 		96A5F0F11F49F26300F94553 /* Collections */ = {
@@ -1272,6 +1293,7 @@
 				96AAA5821FB03F7600F547A0 /* Settings.storyboard */,
 				96AAA59A1FB22F9B00F547A0 /* Search.storyboard */,
 				0C74D81E1FEAA65200CDA0BE /* PhotoPreview.storyboard */,
+				96594E51200B6A2600998133 /* Education.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1412,6 +1434,7 @@
 				969219D21F9CCEA4006E47B4 /* ColorPicker.swift */,
 				96AAA5801FADCA3300F547A0 /* GroupEditingActionsView.swift */,
 				96AAA5931FB0943F00F547A0 /* LoadingView.swift */,
+				96594E53200B6CB000998133 /* ContinueEducationButton.swift */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -1548,6 +1571,7 @@
 				96CF79341FB2DFBB00AD0594 /* TableListRepresentationCell.xib in Resources */,
 				96477A541F80F371005C3520 /* Localizable.stringsdict in Resources */,
 				96AAA59B1FB22F9C00F547A0 /* Search.storyboard in Resources */,
+				96594E52200B6A2600998133 /* Education.storyboard in Resources */,
 				963D6A7C1F606A120063E295 /* MainTop.storyboard in Resources */,
 				965798CC1F9133D800F65019 /* Pin.storyboard in Resources */,
 				96A376201F9BC60000A7C55C /* PlaceholderView.xib in Resources */,
@@ -1647,6 +1671,7 @@
 				965798D71F91340100F65019 /* PinCreationViewController.swift in Sources */,
 				96115F3A1F6E89000050D7A3 /* TaskCategoryPicker.swift in Sources */,
 				96BE0A341F65B8760041FBEA /* ListEditorInteractor.swift in Sources */,
+				96594E54200B6CB000998133 /* ContinueEducationButton.swift in Sources */,
 				96636A351F8655DB00C84FD4 /* SubtaskEntity+Mapping.swift in Sources */,
 				0C8738DD1FB9769A00EA1571 /* AddSubtaskView.swift in Sources */,
 				961D676E1FA8F36A00511042 /* ReorderableTableView.swift in Sources */,
@@ -1677,6 +1702,7 @@
 				96115F461F6ECF9F0050D7A3 /* String+Trimmed.swift in Sources */,
 				961D67701FA9A6E100511042 /* AddListView.swift in Sources */,
 				0CC7C8582008C7F1006758C1 /* InitialScreenPresenter.swift in Sources */,
+				96594E4E200A6FC200998133 /* FeaturesEducationScreen.swift in Sources */,
 				0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */,
 				96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */,
 				0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */,
@@ -1792,6 +1818,7 @@
 				0C796F2A1FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift in Sources */,
 				96CF79321FB23C8700AD0594 /* SearchAssembly.swift in Sources */,
 				0C8738D61FB9747700EA1571 /* TaskReminderEditor.swift in Sources */,
+				96594E4C200A6F9000998133 /* InitialEducationScreen.swift in Sources */,
 				0C8738CE1FB9746200EA1571 /* TaskEditorRouter.swift in Sources */,
 				96A5F10A1F49FA4B00F94553 /* UIColor+Interpolate.swift in Sources */,
 				96A5F1331F507AC500F94553 /* GradientView.swift in Sources */,
@@ -1802,6 +1829,7 @@
 				0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */,
 				96A5F1141F4A174600F94553 /* TaskCategory.swift in Sources */,
 				96115F591F70E8770050D7A3 /* Date.swift in Sources */,
+				96594E50200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
 				969219CF1F9C901A006E47B4 /* TagEntity+Mapping.swift in Sources */,
 				96AAA5871FB041D500F547A0 /* SettingsCells.swift in Sources */,
 				96AAA5941FB0943F00F547A0 /* LoadingView.swift in Sources */,

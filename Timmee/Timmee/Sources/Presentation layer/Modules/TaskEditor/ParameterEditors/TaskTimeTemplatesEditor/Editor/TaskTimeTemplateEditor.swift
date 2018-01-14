@@ -76,7 +76,7 @@ extension TaskTimeTemplateEditor: TaskTimeTemplateEditorInput {
 
 extension TaskTimeTemplateEditor: TaskParameterEditorInput {
     var requiredHeight: CGFloat {
-        return 156 + 200
+        return 156 + 200 + 96
     }
     
     func completeEditing(completion: @escaping (Bool) -> Void) {
