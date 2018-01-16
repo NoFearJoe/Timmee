@@ -26,7 +26,16 @@ final class TaskSchedulerService {
         if let dueDate = task.dueDate, notification != .doNotNotify {
             switch task.repeating.type {
             case .never:
-                let fireDate = dueDate - notification.minutes.asMinutes
+                var fireDate = dueDate - notification.minutes.asMinutes
+                
+                if fireDate <= Date() {
+                    if let nextDueDate = task.nextDueDate {
+                        fireDate = nextDueDate - notification.minutes.asMinutes
+                    } else {
+                        return
+                    }
+                }
+                
                 scheduleLocalNotification(withID: task.id,
                                           title: listTitle,
                                           message: task.title,
@@ -35,7 +44,16 @@ final class TaskSchedulerService {
                                           end: task.repeatEndingDate,
                                           location: location)
             case .every(let unit):
-                let fireDate = dueDate - notification.minutes.asMinutes
+                var fireDate = dueDate - notification.minutes.asMinutes
+                
+                if fireDate <= Date() {
+                    if let nextDueDate = task.nextDueDate {
+                        fireDate = nextDueDate - notification.minutes.asMinutes
+                    } else {
+                        return
+                    }
+                }
+                
                 scheduleLocalNotification(withID: task.id,
                                           title: listTitle,
                                           message: task.title,
@@ -46,6 +64,11 @@ final class TaskSchedulerService {
             case .on(let unit):
                 (0..<7).forEach { day in
                     let fireDate = dueDate + day.asDays - notification.minutes.asMinutes
+                    
+                    if fireDate <= Date() {
+                        return
+                    }
+                    
                     let dayNumber = fireDate.weekday - 1
                     if unit.dayNumbers.contains(dayNumber) {
                         scheduleLocalNotification(withID: task.id,

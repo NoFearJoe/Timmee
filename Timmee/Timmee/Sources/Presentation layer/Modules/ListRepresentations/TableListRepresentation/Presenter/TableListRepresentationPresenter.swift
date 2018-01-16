@@ -121,6 +121,7 @@ extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
     func viewWillAppear() {
         guard let list = state.list else { return }
         interactor.fetchTasks(by: list.id)
+        interactor.updateTaskDueDates()
     }
     
     func didInputTaskTitle(_ title: String?) {

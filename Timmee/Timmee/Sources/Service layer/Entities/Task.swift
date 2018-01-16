@@ -160,13 +160,17 @@ class Task {
                 let dayNumbers = unit.dayNumbers.sorted()
                 let currentDayNumber = dueDate.weekday - 1
                 let currentDayNumberIndex = dayNumbers.index(of: currentDayNumber) ?? 0
-                let nextDayNumberIndex = currentDayNumberIndex + 1
+                let nextDayNumberIndex = currentDayNumberIndex + 1 >= dayNumbers.count ? 0 : currentDayNumberIndex + 1
                 let nextDayNumber = dayNumbers.item(at: nextDayNumberIndex) ?? dayNumbers.item(at: 0) ?? 0
                 let dayNumbersDifference = nextDayNumberIndex >= currentDayNumberIndex ? nextDayNumber - currentDayNumber : (7 + nextDayNumber) - currentDayNumber
                 
                 dueDate = dueDate + dayNumbersDifference.asDays as Date
             case .never: return nil
             }
+        }
+        
+        if case .never = repeating.type {
+            return nil
         }
         
         return dueDate

@@ -13,6 +13,7 @@ import class CoreData.NSManagedObjectContext
 import struct SugarRecord.FetchRequest
 import class SugarRecord.CoreDataDefaultStorage
 import protocol SugarRecord.Context
+import struct Foundation.Date
 import class Foundation.NSSet
 import class Foundation.NSPredicate
 import class Foundation.NSOrderedSet
@@ -66,6 +67,16 @@ final class TasksService {
         
         return request
     }
+    
+    func tasksToUpdateDueDateFetchRequest() -> NSFetchRequest<TaskEntity> {
+        let request = NSFetchRequest<TaskEntity>(entityName: TaskEntity.entityName)
+        
+        request.predicate = NSPredicate(format: "dueDate < %@ AND notificationMask != 0 AND repeatMask != %@",
+                                        Date() as CVarArg,
+                                        RepeatType.never.string as CVarArg)
+        
+        return request
+    }
 
 }
 
@@ -88,6 +99,10 @@ extension TasksService {
     
     func fetchTaskEntities(with request: NSFetchRequest<TaskEntity>) -> [TaskEntity] {
         return (try? (DefaultStorage.instance.storage.mainContext as! NSManagedObjectContext).fetch(request)) ?? []
+    }
+    
+    func fetchTaskEntitiesInBackground(with request: NSFetchRequest<TaskEntity>) -> [TaskEntity] {
+        return (try? (DefaultStorage.instance.storage.requestContext() as! NSManagedObjectContext).fetch(request)) ?? []
     }
     
     func fetchTaskEntities(listID: String) -> [TaskEntity] {

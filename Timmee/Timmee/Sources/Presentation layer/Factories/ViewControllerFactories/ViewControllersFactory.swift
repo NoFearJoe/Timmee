@@ -156,6 +156,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.education.viewController(id: "PinCodeSetupSuggestionEducationScreen")
     }
     
+    static var finalEducationScreen: FinalEducationScreen {
+        return StoryboardsFactory.education.viewController(id: "FinalEducationScreen")
+    }
+    
 }
 
 fileprivate extension UIStoryboard {

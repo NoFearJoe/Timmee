@@ -104,7 +104,7 @@ final class TaskImportancyPicker: UIView {
     
     var isPicked: Bool = false {
         didSet {
-            iconView.image = isPicked ? #imageLiteral(resourceName: "important_active") : #imageLiteral(resourceName: "important_inactive")
+            iconView.image = isPicked ? #imageLiteral(resourceName: "important_active_big") : #imageLiteral(resourceName: "important_inactive_big")
         }
     }
     

@@ -10,6 +10,9 @@ import UIKit
 
 final class InitialEducationScreen: UIViewController {
     
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var textLabel: UILabel!
+    
     @IBOutlet private var continueButton: UIButton!
     @IBOutlet private var skipButton: UIButton!
     
@@ -23,8 +26,18 @@ final class InitialEducationScreen: UIViewController {
     
     private var output: EducationScreenOutput!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleLabel.text = "education_initial_title".localized
+        textLabel.text = "education_initial_text".localized
+        
+        continueButton.setTitle("education_initial_continue".localized, for: .normal)
+        skipButton.setTitle("education_initial_skip".localized, for: .normal)
         
         continueButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
         skipButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.secondaryBackgroundTintColor), for: .normal)

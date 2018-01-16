@@ -28,6 +28,8 @@ protocol TableListRepresentationInteractorInput: class {
     func toggleImportancy(of task: Task)
     func moveTasks(_ tasks: [Task], toList list: List)
     
+    func updateTaskDueDates()
+    
     func item(at index: Int, in section: Int) -> Task?
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)?
 }
@@ -191,6 +193,18 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
             }
         }
     }
+    
+    func updateTaskDueDates() {
+        DispatchQueue.global().async {
+            let tasksToUpdate = self.tasksService.fetchTaskEntitiesInBackground(with: self.tasksService.tasksToUpdateDueDateFetchRequest())
+            let updatedTasks = tasksToUpdate.map { entity -> Task in
+                let task = Task(task: entity)
+                task.dueDate = task.nextDueDate
+                return task
+            }
+            self.tasksService.updateTasks(updatedTasks, completion: { _ in })
+        }
+    }
 
 }
 
@@ -242,6 +256,8 @@ fileprivate extension TableListRepresentationInteractor {
             NSSortDescriptor(key: "inProgress", ascending: false),
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
+        
+        request.fetchBatchSize = 20
         
         let context = DefaultStorage.instance.mainContext
         tasksObserver = CoreDataObserver(request: request,

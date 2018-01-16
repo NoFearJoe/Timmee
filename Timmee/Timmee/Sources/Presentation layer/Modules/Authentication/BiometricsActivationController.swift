@@ -16,7 +16,6 @@ import class UIKit.UIViewController
 
 final class BiometricsActivationController: UIViewController {
     
-    @IBOutlet fileprivate var imageView: UIImageView!
     @IBOutlet fileprivate var titleLabel: UILabel!
     @IBOutlet fileprivate var subtitleLabel: UILabel!
     
@@ -36,7 +35,6 @@ final class BiometricsActivationController: UIViewController {
         
         let biometricsType = UIDevice.current.biometricsType
         
-        imageView.image = biometricsType.image
         titleLabel.text = biometricsType.localizedTitle
         subtitleLabel.text = biometricsType.localizedSubtitle
         

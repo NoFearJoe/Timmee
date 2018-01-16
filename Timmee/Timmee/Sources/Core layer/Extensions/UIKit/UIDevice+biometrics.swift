@@ -38,8 +38,8 @@ enum BiometricsType {
     var localizedTitle: String {
         switch self {
         case .none: return "error".localized
-        case .touchID: return "enter_with_touch_id".localized
-        case .faceID: return "enter_with_face_id".localized
+        case .touchID: return "touch_id".localized
+        case .faceID: return "face_id".localized
         }
     }
     

@@ -45,6 +45,7 @@
 		0C9EF54E1FBC728100B36FBB /* TaskTimeTemplatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */; };
 		0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */; };
 		0C9EF5551FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */; };
+		0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */; };
 		0CB8F1FF1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */; };
 		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
 		0CB8F26A1FE95036005D9E11 /* Foto.Photo+filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */; };
@@ -253,6 +254,7 @@
 		0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplatePicker.swift; sourceTree = "<group>"; };
 		0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeTemplateView.swift; sourceTree = "<group>"; };
 		0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplateEditor.swift; sourceTree = "<group>"; };
+		0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalEducationScreen.swift; sourceTree = "<group>"; };
 		0CB8F1FE1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttachmentsPicker.swift; sourceTree = "<group>"; };
 		0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPhotoAttachmentsPicker.swift; sourceTree = "<group>"; };
 		0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foto.Photo+filename.swift"; sourceTree = "<group>"; };
@@ -976,6 +978,7 @@
 				96594E4B200A6F9000998133 /* InitialEducationScreen.swift */,
 				96594E4D200A6FC200998133 /* FeaturesEducationScreen.swift */,
 				96594E4F200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift */,
+				0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */,
 			);
 			path = "Education screens";
 			sourceTree = "<group>";
@@ -1814,6 +1817,7 @@
 				96AAA5811FADCA3300F547A0 /* GroupEditingActionsView.swift in Sources */,
 				96AAA5921FB0690700F547A0 /* InAppPurchases.swift in Sources */,
 				96BE0A321F65B79C0041FBEA /* ListEditorPresenter.swift in Sources */,
+				0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */,
 				963D6A531F5AECD20063E295 /* TableListRepresentationAssembly.swift in Sources */,
 				0C796F2A1FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift in Sources */,
 				96CF79321FB23C8700AD0594 /* SearchAssembly.swift in Sources */,

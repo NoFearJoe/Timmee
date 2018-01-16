@@ -94,7 +94,7 @@ struct AppThemeScheme {
     
     let tagColors: [UIColor]
     
-    let redColor: UIColor = UIColor(rgba: "EB4949")
+    let redColor: UIColor = UIColor(rgba: "E92B2B")
     let blueColor: UIColor = UIColor(rgba: "0EAEE4")
     let greenColor: UIColor = UIColor(rgba: "42EC62")
     

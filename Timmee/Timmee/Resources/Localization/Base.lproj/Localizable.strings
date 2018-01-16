@@ -198,3 +198,19 @@
 "tags_inapp_description" = "";
 "date_templates_inapp_title" = "Date templates";
 "date_templates_inapp_description" = "";
+
+"education_initial_title" = "Hi!";
+"education_initial_text" = "It's Memori - not just a ToDo list, but something more";
+"education_initial_continue" = "";
+"education_initial_skip" = "";
+"education_features_title" = "";
+"education_features_text" = "";
+"education_features_continue" = "";
+"education_features_skip" = "";
+"education_pin_setup_title" = "";
+"education_pin_setup_text" = "";
+"education_pin_setup_continue" = "";
+"education_pin_setup_skip" = "";
+"education_final_title" = "";
+"education_final_text" = "";
+"education_final_continue" = "";
