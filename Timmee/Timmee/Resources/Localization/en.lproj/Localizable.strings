@@ -207,6 +207,10 @@
 "education_features_text" = "";
 "education_features_continue" = "";
 "education_features_skip" = "";
+"education_notifications_setup_title" = "";
+"education_notifications_setup_text" = "";
+"education_notifications_setup_continue" = "";
+"education_notifications_setup_skip" = "";
 "education_pin_setup_title" = "";
 "education_pin_setup_text" = "";
 "education_pin_setup_continue" = "";

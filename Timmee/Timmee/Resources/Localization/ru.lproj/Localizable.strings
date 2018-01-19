@@ -200,17 +200,21 @@
 "date_templates_inapp_description" = "Часто выполняете задачи в определенное время? Временные шаблоны позволят упростить создание задач";
 
 "education_initial_title" = "Привет!";
-"education_initial_text" = "Это Memori - не просто список дел, а нечто большее";
+"education_initial_text" = "Это Memori - нечто большее, чем просто список дел";
 "education_initial_continue" = "Привет";
 "education_initial_skip" = "Я уже все знаю";
 "education_features_title" = "Выдохните";
 "education_features_text" = "Теперь я буду запоминать все Ваши дела и напоминать о них";
 "education_features_continue" = "Отлично, что дальше?";
 "education_features_skip" = "Ну все, хватит";
+"education_notifications_setup_title" = "Кстати о напоминаниях";
+"education_notifications_setup_text" = "Хотите включить уведомления, чтобы не забыть о важных делах?";
+"education_notifications_setup_continue" = "Включить уведомления";
+"education_notifications_setup_skip" = "Не стоит";
 "education_pin_setup_title" = "Делаете что-то секретное?";
 "education_pin_setup_text" = "Можно поставить короткий пароль и спать спокойно";
 "education_pin_setup_continue" = "Да, хочу поставить пароль";
 "education_pin_setup_skip" = "Мне это не нужно";
-"education_final_title" = "⏰";
+"education_final_title" = "🎉";
 "education_final_text" = "Настало время для великих дел!";
 "education_final_continue" = "Вперед!";

@@ -19,6 +19,7 @@
 		0C74D8241FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */; };
 		0C74D8261FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */; };
 		0C796F2A1FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */; };
+		0C7C1CAC200F265300933CFB /* NotificationsSetupSuggestionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C1CAB200F265300933CFB /* NotificationsSetupSuggestionScreen.swift */; };
 		0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C51FB971F200EA1571 /* SubtasksEditor.swift */; };
 		0C8738C81FB972DA00EA1571 /* SubtasksEditorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C71FB972DA00EA1571 /* SubtasksEditorProtocols.swift */; };
 		0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C31FB971D900EA1571 /* SubtaskCell.swift */; };
@@ -228,6 +229,7 @@
 		0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionLayout.swift; sourceTree = "<group>"; };
 		0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionCell.swift; sourceTree = "<group>"; };
 		0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttachmentsParameterView.swift; sourceTree = "<group>"; };
+		0C7C1CAB200F265300933CFB /* NotificationsSetupSuggestionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupSuggestionScreen.swift; sourceTree = "<group>"; };
 		0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C8738A81FB971D800EA1571 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C8738A91FB971D800EA1571 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
@@ -977,6 +979,7 @@
 			children = (
 				96594E4B200A6F9000998133 /* InitialEducationScreen.swift */,
 				96594E4D200A6FC200998133 /* FeaturesEducationScreen.swift */,
+				0C7C1CAB200F265300933CFB /* NotificationsSetupSuggestionScreen.swift */,
 				96594E4F200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift */,
 				0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */,
 			);
@@ -1722,6 +1725,7 @@
 				0C8738DA1FB9747700EA1571 /* TaskTagsPicker.swift in Sources */,
 				96A5F1381F507AC500F94553 /* WeekDaysPicker.swift in Sources */,
 				0C8738D31FB9747700EA1571 /* TaskLocationEditor.swift in Sources */,
+				0C7C1CAC200F265300933CFB /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8738DF1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift in Sources */,
 				0CB8F1FF1FE3BE99005D9E11 /* TaskAttachmentsPicker.swift in Sources */,
 				96477A691F81499C005C3520 /* TasksImportRouter.swift in Sources */,
@@ -2006,6 +2010,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.timmee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/Sources/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 			};

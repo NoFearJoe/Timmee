@@ -13,6 +13,9 @@ enum EducationScreen {
     // Экран с основными фичами
     case features
     
+    // Экран с предложением включить уведомления
+    case notificationsSetupSuggestion
+    
     // Экран с предложением включить защиту паролем
     case pinCodeSetupSuggestion
     
@@ -31,7 +34,7 @@ final class EducationState {
     
     lazy var screensToShow: [EducationScreen] = {
         if !isEducationShown {
-            return [.initial, .features, .pinCodeSetupSuggestion, .pinCodeCreation, .final]
+            return [.initial, .features, .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation, .final]
         }
         return []
     }()

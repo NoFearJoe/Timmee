@@ -50,9 +50,12 @@ extension EducationViewController: EducationScreenOutput {
     }
     
     func didAskToSkipEducation(screen: EducationScreen) {
-        if screen == .pinCodeSetupSuggestion {
+        switch screen {
+        case .initial:
+            didAskToContinueEducation(screen: .features)
+        case .pinCodeSetupSuggestion:
             didAskToContinueEducation(screen: .pinCodeCreation)
-        } else {
+        default:
             performSegue(withIdentifier: "ShowMainViewController", sender: nil)
         }
     }
@@ -68,6 +71,8 @@ fileprivate extension EducationViewController {
             viewController = ViewControllersFactory.initialEducationScreen
         case .features:
             viewController = ViewControllersFactory.featuresEducationScreen
+        case .notificationsSetupSuggestion:
+            viewController = ViewControllersFactory.notificationsSetupSuggestionScreen
         case .pinCodeSetupSuggestion:
             viewController = ViewControllersFactory.pinCodeSetupSuggestionEducationScreen
         case .pinCodeCreation:

@@ -152,6 +152,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.education.viewController(id: "FeaturesEducationScreen")
     }
     
+    static var notificationsSetupSuggestionScreen: NotificationsSetupSuggestionScreen {
+        return StoryboardsFactory.education.viewController(id: "NotificationsSetupSuggestionScreen")
+    }
+    
     static var pinCodeSetupSuggestionEducationScreen: PinCodeSetupSuggestionEducationScreen {
         return StoryboardsFactory.education.viewController(id: "PinCodeSetupSuggestionEducationScreen")
     }

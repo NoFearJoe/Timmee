@@ -14,9 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // TODO: Перенести в обучение
-        NotificationsConfigurator.registerForLocalNotifications(application: application)
-        
         AppThemeConfigurator.setupInitialThemeIfNeeded()
         
         AppearanceConfigurator.setupAppearance()
