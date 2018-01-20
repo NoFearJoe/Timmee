@@ -6,21 +6,26 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import Foundation
 import class UIKit.UIView
 import class UIKit.UIViewController
 import enum UIKit.UIStatusBarStyle
 
 final class MainViewController: UIViewController {
 
-    @IBOutlet fileprivate var contentContainerView: UIView!
-    @IBOutlet fileprivate var mainTopViewContainer: PassthrowView!
+    @IBOutlet private var contentContainerView: UIView!
+    @IBOutlet private var mainTopViewContainer: PassthrowView!
     
-    fileprivate lazy var mainTopView: MainTopViewController = ViewControllersFactory.mainTop
+    private lazy var mainTopView: MainTopViewController = ViewControllersFactory.mainTop
     
-    fileprivate let representationManager = ListRepresentationManager()
+    private let representationManager = ListRepresentationManager()
+    
+    private let interactor = MainContainerInteractor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        subscribeToApplicationEvents()
         
         setupRepresentationManager()
         setupMainTopView()
@@ -29,10 +34,23 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = AppTheme.current.backgroundColor
+        
+        interactor.updateTaskDueDates()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func subscribeToApplicationEvents() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didBecomeActive),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+    }
+    
+    @objc func didBecomeActive() {
+        interactor.updateTaskDueDates()
     }
 
 }
@@ -46,7 +64,7 @@ extension MainViewController: ListRepresentationManagerOutput {
     
 }
 
-fileprivate extension MainViewController {
+private extension MainViewController {
     
     func setupMainTopView() {
         mainTopView.output = representationManager

@@ -27,9 +27,7 @@ protocol TableListRepresentationInteractorInput: class {
     func toggleTasksProgressState(_ tasks: [Task])
     func toggleImportancy(of task: Task)
     func moveTasks(_ tasks: [Task], toList list: List)
-    
-    func updateTaskDueDates()
-    
+        
     func item(at index: Int, in section: Int) -> Task?
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)?
 }
@@ -191,18 +189,6 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
             DispatchQueue.main.async {
                 self?.output.groupEditingOperationCompleted()
             }
-        }
-    }
-    
-    func updateTaskDueDates() {
-        DispatchQueue.global().async {
-            let tasksToUpdate = self.tasksService.fetchTaskEntitiesInBackground(with: self.tasksService.tasksToUpdateDueDateFetchRequest())
-            let updatedTasks = tasksToUpdate.map { entity -> Task in
-                let task = Task(task: entity)
-                task.dueDate = task.nextDueDate
-                return task
-            }
-            self.tasksService.updateTasks(updatedTasks, completion: { _ in })
         }
     }
 

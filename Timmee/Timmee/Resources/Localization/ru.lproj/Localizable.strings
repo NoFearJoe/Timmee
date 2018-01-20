@@ -204,7 +204,7 @@
 "education_initial_continue" = "Привет";
 "education_initial_skip" = "Я уже все знаю";
 "education_features_title" = "Выдохните";
-"education_features_text" = "Теперь я буду запоминать все Ваши дела и напоминать о них";
+"education_features_text" = "Теперь я буду помнить о всех Ваших делах и напоминать о них";
 "education_features_continue" = "Отлично, что дальше?";
 "education_features_skip" = "Ну все, хватит";
 "education_notifications_setup_title" = "Кстати о напоминаниях";

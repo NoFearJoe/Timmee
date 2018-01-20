@@ -71,7 +71,7 @@ final class TasksService {
     func tasksToUpdateDueDateFetchRequest() -> NSFetchRequest<TaskEntity> {
         let request = NSFetchRequest<TaskEntity>(entityName: TaskEntity.entityName)
         
-        request.predicate = NSPredicate(format: "dueDate < %@ AND notificationMask != 0 AND repeatMask != %@",
+        request.predicate = NSPredicate(format: "dueDate < %@ AND repeatMask != %@",
                                         Date() as CVarArg,
                                         RepeatType.never.string as CVarArg)
         

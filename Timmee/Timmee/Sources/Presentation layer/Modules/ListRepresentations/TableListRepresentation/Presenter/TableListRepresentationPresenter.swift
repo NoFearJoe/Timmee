@@ -6,10 +6,10 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import class UIKit.UIViewController
 import struct Foundation.Date
 import struct Foundation.IndexPath
 import class UIKit.UITableView
+import class UIKit.UIViewController
 
 final class TableListRepresentationPresenter {
 
@@ -113,15 +113,10 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
 }
 
 extension TableListRepresentationPresenter: TableListRepresentationViewOutput {
-
-    func viewDidLoad() {
-        
-    }
     
     func viewWillAppear() {
         guard let list = state.list else { return }
         interactor.fetchTasks(by: list.id)
-        interactor.updateTaskDueDates()
     }
     
     func didInputTaskTitle(_ title: String?) {

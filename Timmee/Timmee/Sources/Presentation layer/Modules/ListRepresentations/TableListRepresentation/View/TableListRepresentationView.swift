@@ -30,7 +30,6 @@ protocol TableListRepresentationViewInput: class {
 }
 
 protocol TableListRepresentationViewOutput: class {
-    func viewDidLoad()
     func viewWillAppear()
     
     func didToggleImportancyInShortTaskEditor(to isImportant: Bool)
@@ -146,7 +145,6 @@ final class TableListRepresentationView: UIViewController {
         
         addTapGestureRecognizerToImportancyView()
         subscribeToTaskTitleChange()
-        output.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
