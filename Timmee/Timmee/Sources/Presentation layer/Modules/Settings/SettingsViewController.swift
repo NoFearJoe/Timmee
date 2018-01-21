@@ -40,6 +40,7 @@ struct SettingsItem {
     var icon: UIImage
     var isOn: Bool
     var isDetailed: Bool
+    let isSelectable: Bool
     
     var style: Style = .title
     
@@ -153,9 +154,10 @@ fileprivate extension SettingsViewController {
         }
         let listSortingItem = SettingsItem(title: "list_sorting".localized,
                                            subtitle: currentListSorting.title,
-                                           icon: #imageLiteral(resourceName: "defaultListIcon"),
+                                           icon: #imageLiteral(resourceName: "list_sort"),
                                            isOn: false,
                                            isDetailed: false,
+                                           isSelectable: true,
                                            style: .titleWithSubtitle,
                                            action: listSortingAction)
         
@@ -166,9 +168,10 @@ fileprivate extension SettingsViewController {
         }
         let highlightOverdueTasksItem = SettingsItem(title: "highlight_overdue_tasks".localized,
                                                      subtitle: nil,
-                                                     icon: #imageLiteral(resourceName: "ideaListIcon"),
+                                                     icon: #imageLiteral(resourceName: "overdue"),
                                                      isOn: UserProperty.highlightOverdueTasks.bool(),
                                                      isDetailed: false,
+                                                     isSelectable: false,
                                                      style: .titleWithSwitch,
                                                      action: highlightOverdueTasksAction)
         
@@ -217,9 +220,10 @@ fileprivate extension SettingsViewController {
         let pinCodeSubtitle = isPinCodeSet ? "is_on".localized : "is_off".localized
         let pinCodeItem = SettingsItem(title: "pin_code_protection".localized,
                                        subtitle: pinCodeSubtitle,
-                                       icon: #imageLiteral(resourceName: "settings"),
+                                       icon: #imageLiteral(resourceName: "key"),
                                        isOn: false,
                                        isDetailed: true,
+                                       isSelectable: true,
                                        style: .detailsSubtitle,
                                        action: pinCodeAction)
         
@@ -233,9 +237,10 @@ fileprivate extension SettingsViewController {
         }
         let biometricsItem = SettingsItem(title: biometricsType.localizedTitle,
                                           subtitle: nil,
-                                          icon: biometricsType.smallImage,
+                                          icon: biometricsType.settingsImage,
                                           isOn: isBiometricsEnabled,
                                           isDetailed: false,
+                                          isSelectable: false,
                                           style: .titleWithSwitch,
                                           action: biometricsAction)
         
@@ -263,26 +268,13 @@ fileprivate extension SettingsViewController {
                                     icon: #imageLiteral(resourceName: "starListIcon"),
                                     isOn: false,
                                     isDetailed: true,
+                                    isSelectable: true,
                                     style: .detailsTitle,
                                     action: rateAction)
         
         if !isAppRated {
             aboutSectionItems.append(rateItem)
         }
-        
-        let aboutAction = { [unowned self] in
-            let viewController = ViewControllersFactory.aboutApp
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
-        let aboutItem = SettingsItem(title: "about_app".localized,
-                                       subtitle: nil,
-                                       icon: #imageLiteral(resourceName: "homeListIcon"),
-                                       isOn: false,
-                                       isDetailed: true,
-                                       style: .detailsTitle,
-                                       action: aboutAction)
-        
-        aboutSectionItems.append(aboutItem)
         
         let mailAction = { [unowned self] in
             let viewController = ViewControllersFactory.mail
@@ -294,10 +286,23 @@ fileprivate extension SettingsViewController {
                                        icon: #imageLiteral(resourceName: "mailListIcon"),
                                        isOn: false,
                                        isDetailed: true,
+                                       isSelectable: true,
                                        style: .detailsTitle,
                                        action: mailAction)
         
         aboutSectionItems.append(mailItem)
+        
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        let versionItem = SettingsItem(title: "version".localized,
+                                     subtitle: version,
+                                     icon: #imageLiteral(resourceName: "homeListIcon"),
+                                     isOn: false,
+                                     isDetailed: true,
+                                     isSelectable: false,
+                                     style: .titleWithSubtitle,
+                                     action: nil)
+        
+        aboutSectionItems.append(versionItem)
         
         return aboutSectionItems
     }

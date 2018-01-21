@@ -264,6 +264,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func tagsCleared() {
         task.tags = []
+        view.setTags([])
     }
     
     func attachmentsChanged(to attachments: [Photo]) {

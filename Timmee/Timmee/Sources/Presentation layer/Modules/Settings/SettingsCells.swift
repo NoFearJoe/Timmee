@@ -12,7 +12,9 @@ class BaseSettingsCell: UITableViewCell {
     
     class var identifier: String { return "" }
     
-    func setDisplayItem(_ item: SettingsItem) {}
+    func setDisplayItem(_ item: SettingsItem) {
+        selectionStyle = item.isSelectable ? .default : .none
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,6 +44,7 @@ class SettingsCellWithTitle: BaseSettingsCell {
     }
     
     override func setDisplayItem(_ item: SettingsItem) {
+        super.setDisplayItem(item)
         iconView.image = item.icon
         titleLabel.text = item.title
     }

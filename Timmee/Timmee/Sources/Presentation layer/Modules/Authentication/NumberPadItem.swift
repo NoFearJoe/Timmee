@@ -43,7 +43,7 @@ struct NumberPadItem {
             case .touchID: style = .icon(image: #imageLiteral(resourceName: "touchIDSmall"))
             case .faceID: style = .icon(image: #imageLiteral(resourceName: "faceIDSmall"))
             }
-        case .cancel: style = .symbol(string: "cancel".localized.lowercased())
+        case .cancel: style = .symbol(string: "cancel".localized.capitalizedFirst)
         }
     }
     

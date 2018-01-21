@@ -18,6 +18,7 @@
 "no_searched_tasks" = "No tasks";
 "input_task_title" = "Task title...";
 "input_task_note" = "Note...";
+"completed_tasks" = "Completed tasks";
 
 "search" = "Search...";
 "initial_search_title" = "Tasks search";
@@ -182,6 +183,7 @@
 "theme" = "App theme";
 "white_theme" = "Light";
 "black_theme" = "Dark";
+"version" = "Version";
 
 "every_n_units" = "n %lu";
 "every_n_weeks" = "n %lu";

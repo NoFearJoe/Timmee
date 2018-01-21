@@ -55,7 +55,7 @@ final class GroupEditingActionsView: UIView {
     }
     @IBOutlet fileprivate var moveActionView: GroupEditingActionView! {
         didSet {
-            moveActionView.image = #imageLiteral(resourceName: "repeat")
+            moveActionView.image = #imageLiteral(resourceName: "mailListIcon")
             moveActionView.title = "move".localized
             moveActionView.titleColor = AppTheme.current.blueColor
             moveActionView.onTap = { [unowned self] in self.didSelectAction(.move) }

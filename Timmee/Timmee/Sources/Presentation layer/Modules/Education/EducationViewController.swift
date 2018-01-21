@@ -29,6 +29,12 @@ final class EducationViewController: UINavigationController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UserProperty.isEducationShown.setBool(true)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

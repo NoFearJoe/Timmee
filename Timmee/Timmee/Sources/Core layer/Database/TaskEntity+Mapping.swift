@@ -24,14 +24,15 @@ extension TaskEntity {
         dueDate = entity.dueDate
         repeatEndingDate = entity.repeatEndingDate
         
-        if let location = entity.location {
-            self.location = NSKeyedArchiver.archivedData(withRootObject: location)
-        } else {
-            self.location = nil
-        }
-        address = entity.address
+//        if let location = entity.location {
+//            self.location = NSKeyedArchiver.archivedData(withRootObject: location)
+//        } else {
+//            self.location = nil
+//        }
+//        address = entity.address
         
-        shouldNotifyAtLocation = entity.shouldNotifyAtLocation
+//        shouldNotifyAtLocation = entity.shouldNotifyAtLocation
+        
         isDone = entity.isDone
         inProgress = entity.inProgress
         creationDate = entity.creationDate

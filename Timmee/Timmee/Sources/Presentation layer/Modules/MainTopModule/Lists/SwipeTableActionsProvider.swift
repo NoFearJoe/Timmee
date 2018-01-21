@@ -60,37 +60,33 @@ class SwipeTableActionsProvider {
     }()
     
     fileprivate lazy var swipeStartAction: SwipeAction = {
-        let editAction = SwipeAction(style: .default,
+        let startAction = SwipeAction(style: .default,
                                      title: "start".localized,
                                      handler:
         { [weak self] (action, indexPath) in
             self?.onStart?(indexPath)
             action.fulfill(with: .reset)
         })
-        editAction.image = #imageLiteral(resourceName: "mailListIcon")
-        editAction.textColor = AppTheme.current.blueColor
-        editAction.title = nil
-        editAction.accessibilityLabel = ""
-        editAction.backgroundColor = type(of: self).backgroundColor
-        editAction.transitionDelegate = nil
-        return editAction
+        startAction.textColor = AppTheme.current.blueColor
+        startAction.accessibilityLabel = ""
+        startAction.backgroundColor = type(of: self).backgroundColor
+        startAction.transitionDelegate = nil
+        return startAction
     }()
     
     fileprivate lazy var swipeStopAction: SwipeAction = {
-        let editAction = SwipeAction(style: .default,
+        let stopAction = SwipeAction(style: .default,
                                      title: "stop".localized,
                                      handler:
             { [weak self] (action, indexPath) in
                 self?.onStop?(indexPath)
                 action.fulfill(with: .reset)
         })
-        editAction.image = #imageLiteral(resourceName: "mailListIcon")
-        editAction.textColor = AppTheme.current.blueColor
-        editAction.title = nil
-        editAction.accessibilityLabel = ""
-        editAction.backgroundColor = type(of: self).backgroundColor
-        editAction.transitionDelegate = nil
-        return editAction
+        stopAction.textColor = AppTheme.current.blueColor
+        stopAction.accessibilityLabel = ""
+        stopAction.backgroundColor = type(of: self).backgroundColor
+        stopAction.transitionDelegate = nil
+        return stopAction
     }()
     
     func rightSwipeActions(for indexPath: IndexPath) -> [SwipeAction] {

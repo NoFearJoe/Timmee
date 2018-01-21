@@ -18,6 +18,7 @@
 "no_searched_tasks" = "Задач не найдено";
 "input_task_title" = "Название задачи...";
 "input_task_note" = "Описание...";
+"completed_tasks" = "Завершенные задачи";
 
 "search" = "Поиск...";
 "initial_search_title" = "Поиск задач";
@@ -143,6 +144,8 @@
 "move" = "Переместить";
 "cancel" = "Отмена";
 "yes" = "Да";
+"start" = "Начать";
+"stop" = "Остановить";
 
 "of" = "из";
 
@@ -182,6 +185,7 @@
 "theme" = "Тема";
 "white_theme" = "Светлая";
 "black_theme" = "Темная";
+"version" = "Версия";
 
 "every_n_units" = "n %lu";
 "every_n_weeks" = "n %lu";

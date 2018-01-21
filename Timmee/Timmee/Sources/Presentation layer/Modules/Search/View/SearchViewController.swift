@@ -111,7 +111,7 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = AppTheme.current.backgroundColor
         tableViewContainer.barColor = AppTheme.current.middlegroundColor
         searchImageView.tintColor = AppTheme.current.secondaryBackgroundTintColor
-        closeButton.tintColor = AppTheme.current.redColor
+        closeButton.tintColor = AppTheme.current.backgroundTintColor
         
         searchTextField.tintColor = AppTheme.current.specialColor
         searchTextField.textColor = AppTheme.current.backgroundTintColor

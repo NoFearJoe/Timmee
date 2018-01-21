@@ -74,4 +74,12 @@ enum BiometricsType {
         case .faceID: return #imageLiteral(resourceName: "faceIDSmall")
         }
     }
+    
+    var settingsImage: UIImage {
+        switch self {
+        case .none: return UIImage()
+        case .touchID: return #imageLiteral(resourceName: "touchIDSettings")
+        case .faceID: return #imageLiteral(resourceName: "faceIDSettings")
+        }
+    }
 }

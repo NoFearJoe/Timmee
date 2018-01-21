@@ -349,7 +349,7 @@ extension TableListRepresentationView: UITableViewDelegate {
             if let sectionInfo = dataSource.sectionInfo(forSectionAt: section), sectionInfo.name == "1", sectionInfo.numberOfItems > 0 {
                 let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableListRepresentationFooter") as! TableListRepresentationFooter
                 
-                view.title = "Завершенные задачи"
+                view.title = "completed_tasks".localized
                 
                 view.applyAppearance()
                 
