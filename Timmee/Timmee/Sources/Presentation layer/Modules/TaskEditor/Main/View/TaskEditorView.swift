@@ -83,7 +83,7 @@ final class TaskEditorView: UIViewController {
         taskNoteField.maxNumberOfLines = 5
         taskNoteField.showsVerticalScrollIndicator = false
         taskNoteField.placeholderAttributedText
-            = NSAttributedString(string: "input_task_note".localized,
+            = NSAttributedString(string: "note".localized,
                                  attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16,
                                                                                      weight: UIFont.Weight.light),
                                               NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])

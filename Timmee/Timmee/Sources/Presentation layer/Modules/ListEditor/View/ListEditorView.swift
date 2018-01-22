@@ -33,7 +33,7 @@ final class ListEditorView: UIViewController {
     
     @IBOutlet fileprivate weak var contentView: BarView!
     @IBOutlet fileprivate weak var listTitleTextField: UITextField!
-    @IBOutlet fileprivate weak var listNoteTextView: UITextView!
+    @IBOutlet fileprivate weak var listNoteTextView: TextView!
     @IBOutlet fileprivate weak var listIconsView: UICollectionView!
     @IBOutlet fileprivate weak var importTasksButton: UIButton!
     @IBOutlet fileprivate weak var doneButton: UIButton!
@@ -67,6 +67,9 @@ final class ListEditorView: UIViewController {
         transitioningDelegate = self
         setupKeyboardEventsHandler()
         setupTitleObserver()
+        
+        listTitleTextField.placeholder = "new_list".localized
+        listNoteTextView.placeHolder = "note".localized
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -17,13 +17,13 @@
 "tasks_without_list" = "Не в списке";
 "no_searched_tasks" = "Задач не найдено";
 "input_task_title" = "Название задачи...";
-"input_task_note" = "Описание...";
+"note" = "Описание...";
 "completed_tasks" = "Завершенные задачи";
 
 "search" = "Поиск...";
 "initial_search_title" = "Поиск задач";
 "initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
-"emty_section" = "Неопознанный список";
+"empty_section" = "Неопознанный список";
 
 "no_tasks" = "Список пуст";
 "new_task" = "Новая задача...";
@@ -41,7 +41,7 @@
 "due_date" = "Дата выполнения";
 "due_time" = "Время выполнения";
 "finish" = "Выполнить"; // сегодня в 21:00
-"repeat_ending_date" = "Дата окончания";
+"repeat_ending_date" = "Окончание повторения";
 "tags_picker" = "Тэги";
 "input_tag" = "Введите тэг...";
 "no_tags" = "Нет тэгов";
@@ -51,7 +51,7 @@
 "time_templates" = "Временные шаблоны";
 "time_template_placeholder" = "Временной шаблон не выбран";
 "no_time_templates" = "Нет временных шаблонов";
-"no_time_templates_hint" = "Временные шаблоны помогают лучше разбираться в поставленных задачах";
+"no_time_templates_hint" = "Временные шаблоны помогают упростить создание задач";
 "add_time_template" = "Создать временной шаблон...";
 "new_time_template" = "Временной шаблон...";
 "attachments" = "Прикрепленные файлы";
@@ -195,13 +195,6 @@
 "n_years" = "%lu n";
 "imported_n_tasks" = "%lu n";
 "n_attachments" = "%lu n";
-
-"dark_theme_inapp_title" = "Темная тема";
-"dark_theme_inapp_description" = "Черная как негретянский мальчик";
-"tags_inapp_title" = "Тэги";
-"tags_inapp_description" = "Активируйте тэги для повышения удобства при работе с задачами";
-"date_templates_inapp_title" = "Временные шаблоны";
-"date_templates_inapp_description" = "Часто выполняете задачи в определенное время? Временные шаблоны позволят упростить создание задач";
 
 "education_initial_title" = "Привет!";
 "education_initial_text" = "Это Memori - нечто большее, чем просто список дел";

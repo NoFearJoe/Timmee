@@ -17,17 +17,17 @@
 "tasks_without_list" = "Not in a list";
 "no_searched_tasks" = "No tasks";
 "input_task_title" = "Task title...";
-"input_task_note" = "Note...";
+"note" = "Note...";
 "completed_tasks" = "Completed tasks";
 
 "search" = "Search...";
-"initial_search_title" = "Tasks search";
+"initial_search_title" = "Search";
 "initial_search_subtitle" = "Start to typing task title in search field";
-"emty_section" = "Unrecognized list";
+"empty_section" = "Unrecognized list";
 
 "no_tasks" = "No tasks";
 "new_task" = "New task...";
-"no_tasks_hint" = "Add a task by pressing on the pen above";
+"no_tasks_hint" = "There are no tasks in this list";
 
 "important_and_urgent" = "Important and urgent";
 "important" = "Important";
@@ -41,17 +41,17 @@
 "due_date" = "Due date";
 "due_time" = "Due time";
 "finish" = "Finish"; // сегодня в 21:00
-"repeat_ending_date" = "Ending date";
+"repeat_ending_date" = "Repeat ending date";
 "tags_picker" = "Tags";
 "input_tag" = "Input tag...";
 "no_tags" = "No tags";
-"no_tags_hint" = "Input title and pick color to add tag";
+"no_tags_hint" = "To create a tag, select color and enter name";
 "in_progress" = "In progress";
 "time_template" = "Time template";
 "time_templates" = "Time templates";
 "time_template_placeholder" = "Time template is not selected";
 "no_time_templates" = "No time templates";
-"no_time_templates_hint" = "Time templates helps you to clarify the tasks";
+"no_time_templates_hint" = "Time templates help you to simplify creation of tasks";
 "add_time_template" = "Create time template...";
 "new_time_template" = "Time template...";
 "attachments" = "Attachments";
@@ -67,7 +67,7 @@
 "weekdays" = "weekdays";
 "weekends" = "weekends";
 "monthly" = "Monthly";
-"every_year" = "Every year";
+"every_year" = "Annually";
 "at" = "at"; // 21:00
 "upon" = ""; // 15 минут
 "no_repeat" = "No repeat";
@@ -114,7 +114,7 @@
 
 "settings" = "Settings";
 "background_color" = "Background color";
-"password_protection" = "Password protection";
+"password_protection" = "Pin-code protection";
 "licenses" = "Licenses";
 "give_feedback" = "Send feedback";
 "additional_features" = "Additional features";
@@ -127,8 +127,8 @@
 "remove_tasks" = "Remove tasks";
 "move_tasks" = "Move tasks";
 "are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Are you sure you want to remove the list with all tasks?";
-"are_you_sure_you_want_to_delete_tasks" = "Are you sure you want to remove tasks?";
-"are_you_sure_you_want_to_move_tasks" = "Are you sure you want to move tasks to";
+"are_you_sure_you_want_to_delete_tasks" = "Are you sure you want to remove this tasks?";
+"are_you_sure_you_want_to_move_tasks" = "Are you sure you want to move this tasks to";
 
 "attention" = "Attention";
 "change_pin_code" = "Do you want to change pin-code?";
@@ -144,6 +144,8 @@
 "move" = "Move";
 "cancel" = "Cancel";
 "yes" = "Yes";
+"start" = "Start";
+"stop" = "Stop";
 
 "of" = "of";
 
@@ -165,7 +167,7 @@
 "no_thanks" = "No, thanks";
 "touch_id_reason" = "Use touchID to enter";
 "face_id_reason" = "Use faceID to enter";
-"pin_code_protection" = "Pin code protection";
+"pin_code_protection" = "Pin-code protection";
 
 "general_section" = "General";
 "security_section" = "Security";
@@ -178,8 +180,8 @@
 "list_sorting" = "Lists sorting";
 "sort_by_creation_date_ascending" = "By creation date ↓";
 "sort_by_creation_date_descending" = "By creation date ↑";
-"sort_by_title_ascending" = "By alphabet ↓";
-"sort_by_title_descending" = "By alphabet ↑";
+"sort_by_title_ascending" = "Alphabetically ↓";
+"sort_by_title_descending" = "Alphabetically ↑";
 "theme" = "App theme";
 "white_theme" = "Light";
 "black_theme" = "Dark";
@@ -194,29 +196,22 @@
 "imported_n_tasks" = "%lu n";
 "n_attachments" = "%lu n";
 
-"dark_theme_inapp_title" = "Dark theme";
-"dark_theme_inapp_description" = "";
-"tags_inapp_title" = "Tags";
-"tags_inapp_description" = "";
-"date_templates_inapp_title" = "Date templates";
-"date_templates_inapp_description" = "";
-
 "education_initial_title" = "Hi!";
 "education_initial_text" = "It's Memori - not just a ToDo list, but something more";
-"education_initial_continue" = "";
-"education_initial_skip" = "";
-"education_features_title" = "";
-"education_features_text" = "";
-"education_features_continue" = "";
-"education_features_skip" = "";
-"education_notifications_setup_title" = "";
-"education_notifications_setup_text" = "";
-"education_notifications_setup_continue" = "";
-"education_notifications_setup_skip" = "";
-"education_pin_setup_title" = "";
-"education_pin_setup_text" = "";
-"education_pin_setup_continue" = "";
-"education_pin_setup_skip" = "";
-"education_final_title" = "";
-"education_final_text" = "";
-"education_final_continue" = "";
+"education_initial_continue" = "Hi, Memori!";
+"education_initial_skip" = "Skip";
+"education_features_title" = "Chill out";
+"education_features_text" = "Now I will remember all of your tasks and remind you about them";
+"education_features_continue" = "Well, what's next?";
+"education_features_skip" = "Skip";
+"education_notifications_setup_title" = "Speaking of reminders";
+"education_notifications_setup_text" = "Do you want to enable notifications to not forget about the important tasks?";
+"education_notifications_setup_continue" = "Yes, enable";
+"education_notifications_setup_skip" = "No";
+"education_pin_setup_title" = "Do you keep secrets?";
+"education_pin_setup_text" = "Setup pin-code and sleep peacefully";
+"education_pin_setup_continue" = "Setup pin-code";
+"education_pin_setup_skip" = "No, thanks";
+"education_final_title" = "🎉";
+"education_final_text" = "Lets create your first task!";
+"education_final_continue" = "Start";

@@ -21,6 +21,12 @@ final class KeyboardManager {
         subscribeToKeyboardEvents()
     }
     
+    func unsubscribe() {
+        keyboardWillAppear = nil
+        keyboardWillDisappear = nil
+        keyboardFrameDidChange = nil
+    }
+    
     
     fileprivate func subscribeToKeyboardEvents() {
         NotificationCenter.default.addObserver(self,
