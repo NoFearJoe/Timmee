@@ -11,14 +11,13 @@ import SwipeCellKit
 
 final class SubtaskCell: SwipeTableViewCell {
     
-    @IBOutlet fileprivate weak var checkBox: InversedCheckBox! {
+    @IBOutlet private var doneAreaView: UIView! {
         didSet {
-            checkBox.didChangeCkeckedState = { [weak self] _ in
-                self?.onDone?()
-            }
+            addTapOnDoneAreaGestureRecognizer()
         }
     }
-    @IBOutlet fileprivate weak var titleView: GrowingTextView! {
+    @IBOutlet private var checkBox: InversedCheckBox!
+    @IBOutlet private var titleView: GrowingTextView! {
         didSet {
             titleView.textView.delegate = self
             titleView.textView.isEditable = false
@@ -43,7 +42,7 @@ final class SubtaskCell: SwipeTableViewCell {
         set { updateTitle(newValue) }
     }
     
-    fileprivate var titleBeforeEditing: String?
+    private var titleBeforeEditing: String?
     
     var onBeginEditing: (() -> Void)?
     var onDone: (() -> Void)?
@@ -58,7 +57,11 @@ final class SubtaskCell: SwipeTableViewCell {
         onBeginEditing?()
     }
     
-    fileprivate func updateTitle(_ title: String) {
+    @objc func done() {
+        onDone?()
+    }
+    
+    private func updateTitle(_ title: String) {
         let attributes = isDone ? SubtaskCell.doneAttributes : SubtaskCell.activeAttributes
         titleView.textView.attributedText = NSAttributedString(string: title,
                                                                attributes: attributes)
@@ -99,6 +102,11 @@ fileprivate extension SubtaskCell {
     func addTapGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(beginEditing))
         titleView.addGestureRecognizer(recognizer)
+    }
+    
+    func addTapOnDoneAreaGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(done))
+        doneAreaView.addGestureRecognizer(recognizer)
     }
     
 }

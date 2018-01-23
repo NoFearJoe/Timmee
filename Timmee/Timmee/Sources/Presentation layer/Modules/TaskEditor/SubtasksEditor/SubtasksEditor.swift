@@ -21,16 +21,16 @@ final class SubtasksEditor: UIViewController {
     weak var contentScrollView: UIScrollView!
     weak var containerViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet fileprivate var addSubtaskView: AddSubtaskView!
-    @IBOutlet fileprivate var tableView: ReorderableTableView!
+    @IBOutlet private var addSubtaskView: AddSubtaskView!
+    @IBOutlet private var tableView: ReorderableTableView!
     
-    fileprivate let interactor = SubtasksEditorInteractor()
+    private let interactor = SubtasksEditorInteractor()
     
-    fileprivate let keyboardManager = KeyboardManager()
+    private let keyboardManager = KeyboardManager()
 
-    fileprivate let subtaskCellActionsProvider = SubtaskCellActionsProvider()
+    private let subtaskCellActionsProvider = SubtaskCellActionsProvider()
     
-    fileprivate var savedContentOffset: CGPoint?
+    private var savedContentOffset: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,7 +168,7 @@ extension SubtasksEditor: UITableViewDataSource {
             cell.title = subtask.title
             cell.isDone = subtask.isDone
             
-            cell.onBeginEditing = { [unowned self] in
+            cell.onBeginEditing = { [unowned self, unowned cell] in
                 self.savedContentOffset = nil
                 
                 let frame = cell.frame
@@ -177,11 +177,13 @@ extension SubtasksEditor: UITableViewDataSource {
                     self.contentScrollView.contentOffset = CGPoint(x: 0, y: normalFrame.minY)
                 })
             }
-            cell.onDone = { [unowned self] in
-                self.output?.doneSubtask(at: indexPath.row)
+            cell.onDone = { [unowned self, unowned cell] in
+                guard let actualIndexPath = tableView.indexPath(for: cell) else { return }
+                self.output?.doneSubtask(at: actualIndexPath.row)
             }
-            cell.onChangeTitle = { [unowned self] title in
-                self.output?.updateSubtask(at: indexPath.row, newTitle: title)
+            cell.onChangeTitle = { [unowned self, unowned cell] title in
+                guard let actualIndexPath = tableView.indexPath(for: cell) else { return }
+                self.output?.updateSubtask(at: actualIndexPath.row, newTitle: title)
             }
             cell.onChangeHeight = { [unowned self] height in
                 let currentOffset = self.contentScrollView.contentOffset

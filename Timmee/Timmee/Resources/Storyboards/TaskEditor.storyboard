@@ -589,8 +589,8 @@
                                                         </constraints>
                                                         <viewLayoutGuide key="safeArea" id="PQS-Ik-BqN"/>
                                                     </view>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-gE-l8g">
-                                                        <rect key="frame" x="0.0" y="436" width="375" height="40"/>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-gE-l8g">
+                                                        <rect key="frame" x="0.0" y="436" width="375" height="129"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="jtV-ke-jBC"/>
                                                         </constraints>
@@ -729,7 +729,7 @@
             <objects>
                 <viewController storyboardIdentifier="SubtasksEditor" id="J5T-B3-DLw" customClass="SubtasksEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bKg-vp-wze">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-dB-RXn" customClass="AddSubtaskView" customModule="Timmee" customModuleProvider="target">
@@ -770,7 +770,7 @@
                                 </connections>
                             </view>
                             <tableView contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ym9-dy-PPp" customClass="ReorderableTableView" customModule="Timmee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="40" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="89"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="lHU-aH-mFU"/>
@@ -783,7 +783,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJe-4y-GXn" customClass="InversedCheckBox" customModule="Timmee" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIk-v5-AiF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJe-4y-GXn" customClass="InversedCheckBox" customModule="Timmee" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="12" width="20" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -797,17 +801,22 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="MIk-v5-AiF" firstAttribute="leading" secondItem="u8N-aT-FWl" secondAttribute="leading" id="42h-2e-U8Y"/>
                                                 <constraint firstItem="cMt-bn-ugA" firstAttribute="top" secondItem="u8N-aT-FWl" secondAttribute="top" id="52V-qm-ipf"/>
                                                 <constraint firstItem="GJe-4y-GXn" firstAttribute="centerY" secondItem="u8N-aT-FWl" secondAttribute="centerY" id="BOQ-nF-tqg"/>
+                                                <constraint firstAttribute="bottom" secondItem="MIk-v5-AiF" secondAttribute="bottom" id="DyH-BO-AWN"/>
                                                 <constraint firstItem="cMt-bn-ugA" firstAttribute="leading" secondItem="GJe-4y-GXn" secondAttribute="trailing" constant="15" id="THV-Na-iDk"/>
                                                 <constraint firstAttribute="bottom" secondItem="cMt-bn-ugA" secondAttribute="bottom" id="XGL-oB-6tg"/>
                                                 <constraint firstItem="GJe-4y-GXn" firstAttribute="leading" secondItem="u8N-aT-FWl" secondAttribute="leading" constant="15" id="Ygx-HE-Vf5"/>
+                                                <constraint firstItem="MIk-v5-AiF" firstAttribute="top" secondItem="u8N-aT-FWl" secondAttribute="top" id="fb9-KX-75C"/>
+                                                <constraint firstItem="cMt-bn-ugA" firstAttribute="leading" secondItem="MIk-v5-AiF" secondAttribute="trailing" id="qHF-Cm-2dl"/>
                                                 <constraint firstAttribute="trailing" secondItem="cMt-bn-ugA" secondAttribute="trailing" id="sGQ-Pq-eCg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="checkBox" destination="GJe-4y-GXn" id="c78-CO-XW4"/>
+                                            <outlet property="doneAreaView" destination="MIk-v5-AiF" id="P9F-bW-mdG"/>
                                             <outlet property="titleView" destination="cMt-bn-ugA" id="oeA-fA-ahp"/>
                                         </connections>
                                     </tableViewCell>
@@ -837,7 +846,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJA-rU-nqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="219"/>
+            <point key="canvasLocation" x="1076" y="218.1409295352324"/>
         </scene>
     </scenes>
     <resources>
@@ -852,6 +861,6 @@
         <image name="plus_thin" width="20" height="20"/>
         <image name="repeat" width="20" height="20"/>
         <image name="tag" width="20" height="20"/>
-        <image name="time_template" width="22" height="22"/>
+        <image name="time_template" width="20" height="20"/>
     </resources>
 </document>
