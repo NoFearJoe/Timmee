@@ -5,4 +5,7 @@ target 'Timmee' do
   pod 'SugarRecord/CoreData+iCloud'
   pod 'SwipeCellKit'
   pod 'Foto'
+  
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
