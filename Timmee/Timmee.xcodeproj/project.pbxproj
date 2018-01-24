@@ -1995,7 +1995,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Timmee/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.timmee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/Sources/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2013,7 +2013,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Timmee/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.timmee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/Sources/BridgingHeader.h;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
