@@ -87,6 +87,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     }
     
     func deleteTask(_ task: Task) {
+        taskSchedulerService.removeNotifications(for: task)
         tasksService.removeTask(task, completion: { [weak self] error in
             DispatchQueue.main.async {
                 
@@ -96,6 +97,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     }
     
     func deleteTasks(_ tasks: [Task]) {
+        tasks.forEach { taskSchedulerService.removeNotifications(for: $0) }
         tasksService.removeTasks(tasks) { [weak self] error in
             DispatchQueue.main.async {
                 self?.output.operationCompleted()
