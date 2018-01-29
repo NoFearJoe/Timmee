@@ -258,7 +258,7 @@ fileprivate extension SettingsViewController {
         
         let isAppRated = UserProperty.isAppRated.bool()
         let rateAction = {
-            if let url = URL(string: "itms-apps://itunes.apple.com/app/id") {
+            if let url = URL(string: "itms-apps://itunes.apple.com/app/id1330119990") {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.openURL(url)
                 }
