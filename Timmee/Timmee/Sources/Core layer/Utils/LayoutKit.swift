@@ -38,7 +38,7 @@ struct Constraint {
 extension Constraint {
     
     @discardableResult
-    func to(_ view: UIView) -> NSLayoutConstraint {
+    func to(_ view: UIView, addTo containerView: UIView? = nil) -> NSLayoutConstraint {
         self.view.translatesAutoresizingMaskIntoConstraints = false
 
         let constraint = NSLayoutConstraint(item: self.view,
@@ -49,7 +49,11 @@ extension Constraint {
                                             multiplier: multiplier,
                                             constant: constant)
         
-        view.addConstraint(constraint)
+        if let containerView = containerView {
+            containerView.addConstraint(constraint)
+        } else {
+            view.addConstraint(constraint)
+        }
         
         return constraint
     }
@@ -183,6 +187,23 @@ extension UIView {
     @discardableResult
     func height(greatherOrEqual constant: CGFloat) -> NSLayoutConstraint {
         return size(.height, constant: constant, relation: .greaterThanOrEqual)
+    }
+    
+    @discardableResult
+    func aspectRatio() -> NSLayoutConstraint {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraint = NSLayoutConstraint(item: self,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: self,
+                                            attribute: .width,
+                                            multiplier: 1,
+                                            constant: 0)
+        
+        self.addConstraint(constraint)
+        
+        return constraint
     }
     
 }

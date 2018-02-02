@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppearanceConfigurator.setupAppearance()
         
-        if let window = window {
+        if let window = self.window {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)
         }
         

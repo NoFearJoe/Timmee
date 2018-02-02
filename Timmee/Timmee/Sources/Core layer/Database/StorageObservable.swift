@@ -17,6 +17,7 @@ import enum CoreData.NSFetchedResultsChangeType
 import class CoreData.NSFetchRequest
 import protocol CoreData.NSFetchedResultsSectionInfo
 import class UIKit.UITableView
+import class UIKit.UICollectionView
 import struct Foundation.IndexSet
 
 enum CoreDataItemChange {
@@ -30,7 +31,11 @@ protocol TableViewManageble: class {
     func setTableView(_ tableView: UITableView)
 }
 
-final class CoreDataObserver<T: Equatable>: NSObject, NSFetchedResultsControllerDelegate, TableViewManageble {
+protocol CollectionViewManageble: class {
+    func setCollectionView(_ collectionView: UICollectionView)
+}
+
+final class CoreDataObserver<T: Equatable>: NSObject, NSFetchedResultsControllerDelegate, TableViewManageble, CollectionViewManageble {
 
     let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
     var mapping: ((NSManagedObject) -> T)!
@@ -40,9 +45,10 @@ final class CoreDataObserver<T: Equatable>: NSObject, NSFetchedResultsController
     
     var sectionOffset: Int = 0
     
-    fileprivate weak var tableView: UITableView?
+    private weak var tableView: UITableView?
+    private weak var collectionView: UICollectionView?
     
-    fileprivate var batchChanges: [CoreDataItemChange] = []
+    private var batchChanges: [CoreDataItemChange] = []
     
     init(request: NSFetchRequest<NSFetchRequestResult>,
         section: String?,
@@ -60,9 +66,14 @@ final class CoreDataObserver<T: Equatable>: NSObject, NSFetchedResultsController
         self.tableView = tableView
     }
     
+    func setCollectionView(_ collectionView: UICollectionView) {
+        self.collectionView = collectionView
+    }
+    
     func fetchInitialEntities() {
         _ = try? fetchedResultsController.performFetch()
         tableView?.reloadData()
+        collectionView?.reloadData()
         onFetchedObjectsCountChange?(totalObjectsCount())
         onInitialFetch?()
         
@@ -127,11 +138,33 @@ final class CoreDataObserver<T: Equatable>: NSObject, NSFetchedResultsController
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView?.endUpdates()
         onFetchedObjectsCountChange?(totalObjectsCount())
         
-        batchChanges.forEach { self.onItemChange?($0) }
-        batchChanges.removeAll()        
+        if let collectionView = self.collectionView {
+            let changes = batchChanges
+            
+            collectionView.performBatchUpdates({
+                changes.forEach { change in
+                    switch change {
+                    case let .insertion(indexPath):
+                        collectionView.insertItems(at: [indexPath])
+                    case let .deletion(indexPath):
+                        collectionView.deleteItems(at: [indexPath])
+                    case let .update(indexPath):
+                        collectionView.reloadItems(at: [indexPath])
+                    case let .move(fromIndexPath, toIndexPath):
+                        collectionView.moveItem(at: fromIndexPath, to: toIndexPath)
+                    }
+                }
+            }, completion: { finished in
+                self.batchChanges.forEach { self.onItemChange?($0) }
+                self.batchChanges.removeAll()
+            })
+        } else {
+            tableView?.endUpdates()
+            batchChanges.forEach { self.onItemChange?($0) }
+            batchChanges.removeAll()
+        }
     }
 
 }

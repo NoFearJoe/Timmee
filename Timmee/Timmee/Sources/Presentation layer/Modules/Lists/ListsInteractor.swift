@@ -10,33 +10,46 @@ import struct Foundation.Date
 import struct Foundation.IndexPath
 import class Foundation.DispatchQueue
 import class CoreData.NSFetchRequest
+import class CoreData.NSSortDescriptor
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
 import class SugarRecord.CoreDataDefaultStorage
 
 protocol ListsInteractorOutput: class {
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
+    func prepareListsObserver(_ collectionViewManageble: CollectionViewManageble)
     func didFetchInitialLists()
     func didUpdateLists(with change: CoreDataItemChange)
+    
+    func prepareSmartListsObserver(_ collectionViewManageble: CollectionViewManageble)
+    func didFetchInitialSmartLists()
+    func didUpdateSmartLists(with change: CoreDataItemChange)
 }
 
 final class ListsInteractor {
 
-    fileprivate let listsService = ListsService()
-    fileprivate let tasksService = TasksService()
+    private let listsService = ListsService()
+    private let tasksService = TasksService()
     
-    fileprivate var listsObserver: CoreDataObserver<List>!
-    fileprivate var currentListsSorting: ListSorting!
+    private var smartListsObserver: CoreDataObserver<SmartList>!
+    private var listsObserver: CoreDataObserver<List>!
+    
+    private var currentListsSorting: ListSorting!
     
     weak var output: ListsInteractorOutput!
     
     init() {
+        setupSmartListsObserver()
         setupListsObserver()
     }
     
     func requestLists() {
+        setupSmartListsObserver()
         setupListsObserver()
-        output.prepareCoreDataObserver(listsObserver)
+        
+        output.prepareSmartListsObserver(smartListsObserver)
+        output.prepareListsObserver(listsObserver)
+        
+        smartListsObserver.fetchInitialEntities()
         listsObserver.fetchInitialEntities()
     }
     
@@ -60,42 +73,45 @@ final class ListsInteractor {
     func removeList(_ list: List) {
         listsService.removeList(list) { error in }
     }
+    
+    
+    func hideSmartList(_ list: SmartList) {
+        listsService.removeSmartList(list) { error in }
+    }
 
 }
 
 extension ListsInteractor {
 
     func numberOfSections() -> Int {
-        return listsObserver.numberOfSections() + 1
+        return smartListsObserver.numberOfSections() + listsObserver.numberOfSections()
     }
     
     func numberOfItems(in section: Int) -> Int {
-        if section == 0 {
-            return listsService.smartLists.count
+        if section == 1 {
+            return smartListsObserver.numberOfItems(in: section)
         }
         return listsObserver.numberOfItems(in: section)
     }
     
     func list(at index: Int, in section: Int) -> List? {
-        if section == 0 {
-            return listsService.smartLists.item(at: index)
+        guard section != 0 else { return nil }
+        
+        let indexPath = IndexPath(row: index, section: section)
+        
+        if section == 1 {
+            return smartListsObserver.item(at: indexPath)
         }
-        return listsObserver.item(at: IndexPath(row: index, section: section))
-    }
-    
-    func totalListsCount() -> Int {
-        return (0..<numberOfSections()).reduce(0) { (result, section) in
-            return result + self.numberOfItems(in: section)
-        }
+        return listsObserver.item(at: indexPath)
     }
     
     func indexPath(ofList list: List) -> IndexPath? {
         if let list = list as? SmartList {
-            guard let index = listsService.smartLists.index(of: list) else { return nil }
-            return IndexPath(row: index, section: 0)
+            guard let index = smartListsObserver.index(of: list) else { return nil }
+            return IndexPath(row: index, section: 1)
         } else {
             guard let index = listsObserver.index(of: list) else { return nil }
-            return IndexPath(row: index, section: 1)
+            return IndexPath(row: index, section: 2)
         }
     }
 
@@ -104,7 +120,17 @@ extension ListsInteractor {
 extension ListsInteractor {
 
     func tasksCount(in list: List) -> Int {
+        if let smartList = list as? SmartList {
+            return tasksService.fetchTasks(smartListID: smartList.id).count
+        }
         return tasksService.fetchTasks(listID: list.id).count
+    }
+    
+    func activeTasksCount(in list: List) -> Int {
+        if let smartList = list as? SmartList {
+            return tasksService.fetchActiveTasks(smartListID: smartList.id).count
+        }
+        return tasksService.fetchActiveTasks(listID: list.id).count
     }
 
 }
@@ -134,11 +160,39 @@ fileprivate extension ListsInteractor {
         }
     }
     
+    func setupSmartListsObserver() {
+        smartListsObserver = makeSmartListsObserver()
+        
+        smartListsObserver.mapping = { entity in
+            let listEntity = entity as! SmartListEntity
+            let type = SmartListType(id: listEntity.id ?? "")
+            return SmartList(type: type)
+        }
+        
+        smartListsObserver.onInitialFetch = { [weak self] in
+            self?.output.didFetchInitialSmartLists()
+        }
+        
+        smartListsObserver.onItemChange = { [weak self] change in
+            self?.output.didUpdateSmartLists(with: change)
+        }
+    }
+    
     func makeListsObserver(sorting: ListSorting) -> CoreDataObserver<List> {
         let observer: CoreDataObserver<List>
         observer = CoreDataObserver(request: makeListsFetchRequest(sorting: sorting),
                                     section: nil,
                                     cacheName: "lists",
+                                    context: DefaultStorage.instance.mainContext)
+        observer.sectionOffset = 2
+        return observer
+    }
+    
+    func makeSmartListsObserver() -> CoreDataObserver<SmartList> {
+        let observer: CoreDataObserver<SmartList>
+        observer = CoreDataObserver(request: makeSmartListsFetchRequest(),
+                                    section: nil,
+                                    cacheName: "smart_lists",
                                     context: DefaultStorage.instance.mainContext)
         observer.sectionOffset = 1
         return observer
@@ -147,6 +201,13 @@ fileprivate extension ListsInteractor {
     func makeListsFetchRequest(sorting: ListSorting) -> NSFetchRequest<NSFetchRequestResult> {
         let sortDescriptor = sorting.sortDescriptor
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: ListEntity.entityName)
+        request.sortDescriptors = [sortDescriptor]
+        return request
+    }
+    
+    func makeSmartListsFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: SmartListEntity.entityName)
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         return request
     }

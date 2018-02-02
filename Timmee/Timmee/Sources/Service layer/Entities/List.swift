@@ -17,6 +17,8 @@ class List {
     var title: String
     var note: String
     var icon: ListIcon
+    var sortPosition: Int
+    let tasksCount: Int
     let creationDate: Date
     
     init(listEntity: ListEntity) {
@@ -24,6 +26,8 @@ class List {
         title = listEntity.title!
         note = listEntity.note ?? ""
         icon = ListIcon(id: Int(listEntity.iconID))
+        sortPosition = Int(listEntity.sortPosition)
+        tasksCount = listEntity.tasks?.count ?? 0
         creationDate = listEntity.creationDate! as Date
     }
     
@@ -31,11 +35,15 @@ class List {
          title: String,
          note: String = "",
          icon: ListIcon,
+         sortPosition: Int = 0,
+         tasksCount: Int = 0,
          creationDate: Date) {
         self.id = id
         self.title = title
         self.note = note
         self.icon = icon
+        self.sortPosition = sortPosition
+        self.tasksCount = tasksCount
         self.creationDate = creationDate
     }
     
@@ -44,6 +52,8 @@ class List {
                     title: title,
                     note: note,
                     icon: icon,
+                    sortPosition: sortPosition,
+                    tasksCount: tasksCount,
                     creationDate: creationDate)
     }
     
@@ -57,5 +67,17 @@ extension List {
         let fetchRequest = NSFetchRequest<TaskEntity>(entityName: "Task")
         fetchRequest.predicate = tasksFetchPredicate
         return fetchRequest
+    }
+}
+
+extension List: Equatable {
+    static func ==(lhs: List, rhs: List) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+extension List: Hashable {
+    var hashValue: Int {
+        return id.hashValue
     }
 }

@@ -24,6 +24,10 @@ final class ListsService {
         case listRemovingError
     }
     
+    lazy var smartListsFetchRequest: FetchRequest<SmartListEntity> = {
+        return FetchRequest<SmartListEntity>()
+    }()
+    
     lazy var listsFetchRequest: FetchRequest<ListEntity> = {
         let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
         return FetchRequest<ListEntity>().sorted(with: sortDescriptor)
@@ -33,19 +37,7 @@ final class ListsService {
         return listsFetchRequest.filtered(with: NSPredicate(format: "title CONTAINS[cd] %@", string))
     }
     
-    lazy var smartLists: [SmartList] = {
-        return [
-            SmartList(type: .all),
-            SmartList(type: .today),
-            SmartList(type: .inProgress)
-        ]
-    }()
-    
-    
-    func getLists() -> [List] {
-        let userLists = fetchLists()
-        return smartLists + userLists
-    }
+    // MARK: Lists
     
     func addList(_ list: List, completion: @escaping (Error?) -> Void) {
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
@@ -98,6 +90,40 @@ final class ListsService {
         }
     }
     
+    // MARK: Smart lists
+    
+    func addSmartList(_ list: SmartList,
+                      completion: @escaping (Error?) -> Void) {
+        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+            guard context.fetchSmartList(id: list.id) == nil else {
+                completion(.listIsAlreadyExist)
+                return
+            }
+            
+            if let newList = context.createSmartList() {
+                newList.map(from: list)
+                save()
+            }
+        }) { error in
+            completion(error != nil ? .listAddingError : nil)
+        }
+    }
+    
+    func removeSmartList(_ list: SmartList,
+                         completion: @escaping (Error?) -> Void) {
+        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+            guard let existingList = context.fetchSmartList(id: list.id) else {
+                completion(.listIsNotExist)
+                return
+            }
+            
+            try? context.remove(existingList)
+            save()
+        }) { error in
+            completion(error != nil ? .listRemovingError : nil)
+        }
+    }
+    
 }
 
 fileprivate extension ListsService {
@@ -124,6 +150,10 @@ fileprivate extension ListsService {
         return FetchRequest<ListEntity>().filtered(with: "id", equalTo: id)
     }
     
+    static func smartListFetchRequest(with id: String) -> FetchRequest<SmartListEntity> {
+        return FetchRequest<SmartListEntity>().filtered(with: "id", equalTo: id)
+    }
+    
     static func tasksFetchRequest(for tasks: [Task]) -> FetchRequest<TaskEntity> {
         return FetchRequest<TaskEntity>().filtered(with: "id", in: tasks.map { $0.id })
     }
@@ -140,7 +170,15 @@ extension Context {
         return (try? fetch(ListsService.listFetchRequest(with: id)))?.first
     }
     
+    func fetchSmartList(id: String) -> SmartListEntity? {
+        return (try? fetch(ListsService.smartListFetchRequest(with: id)))?.first
+    }
+    
     func createList() -> ListEntity? {
+        return try? create()
+    }
+    
+    func createSmartList() -> SmartListEntity? {
         return try? create()
     }
 

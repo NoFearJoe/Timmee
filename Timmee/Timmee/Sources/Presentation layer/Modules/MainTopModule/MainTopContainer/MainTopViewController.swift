@@ -21,35 +21,17 @@ final class MainTopViewController: UIViewController {
     @IBOutlet fileprivate weak var controlPanel: ControlPanel!
     
     @IBOutlet fileprivate weak var listsViewContainer: BarView!
-    @IBOutlet fileprivate weak var addListView: AddListView!
-    @IBOutlet fileprivate weak var listsView: UITableView!
     
-    @IBOutlet fileprivate var addListViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var listsViewHeightConstrint: NSLayoutConstraint!
     
     weak var output: MainTopViewControllerOutput?
     weak var editingInput: ListRepresentationEditingInput?
     
-    fileprivate let listsInteractor = ListsInteractor()
-    
-    fileprivate var currentList: List! {
-        didSet {
-            controlPanel.showList(currentList)
-            output?.currentListChanged(to: currentList)
-            
-            if let indexPath = listsInteractor.indexPath(ofList: currentList) {
-                listsView.reloadRows(at: [indexPath], with: .none)
-            }
-        }
-    }
-    fileprivate var currentListIndexPath: IndexPath? {
-        guard let list = currentList else { return nil }
-        return listsInteractor.indexPath(ofList: list)
-    }
+    private weak var listsViewInput: ListsViewInput!
     
     fileprivate var isListsVisible: Bool = true {
         didSet {
-            listsView.hideSwipeCell()
+            listsViewInput.resetRevealedCells()
         }
     }
     
@@ -59,7 +41,7 @@ final class MainTopViewController: UIViewController {
     
     fileprivate var isPickingList: Bool = false {
         didSet {
-            addListViewHeightConstraint.constant = isPickingList ? 0 : 44
+            listsViewInput.setPickingList(isPickingList)
         }
     }
     fileprivate var pickingListCompletion: ((List) -> Void)?
@@ -105,24 +87,6 @@ final class MainTopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        listsInteractor.output = self
-        
-        listsInteractor.requestLists()
-                
-        swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
-            self.handleListDeletion(at: indexPath)
-        }
-        swipeTableActionsProvider.onEdit = { [unowned self] indexPath in
-            if let list = self.listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-                self.showListEditor(with: list)
-            }
-        }
-        
-        addListView.onTap = { [unowned self] in
-            self.showListEditor(with: nil)
-        }
-        
         hideLists(animated: false)
     }
     
@@ -130,11 +94,9 @@ final class MainTopViewController: UIViewController {
         super.viewWillAppear(animated)
         
         controlPanel.applyAppearance()
-        listsView.separatorColor = AppTheme.current.panelColor
-        addListView.barColor = AppTheme.current.foregroundColor
-        listsViewContainer.barColor = AppTheme.current.foregroundColor
+        listsViewContainer.barColor = AppTheme.current.middlegroundColor
         
-        listsView.hideSwipeCell(animated: false)
+        listsViewInput.resetRevealedCells()
         
         updateListsViewHeight()
     }
@@ -144,13 +106,22 @@ final class MainTopViewController: UIViewController {
         updateListsViewHeight()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EmbedListsViewController" {
+            guard let listsViewController = segue.destination as? ListsViewController else { return }
+            listsViewController.output = self
+            listsViewInput = listsViewController
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
     func showLists(animated: Bool) {
         guard !isListsVisible && !isAnimationInProgress else { return }
         
         output?.willShowLists()
         
-        listsInteractor.requestLists()
-        listsView.setContentOffset(.zero, animated: false)
+        listsViewInput.reloadLists()
         
         passthrowView.shouldPassTouches = false
         overlayView.isHidden = false
@@ -212,97 +183,34 @@ final class MainTopViewController: UIViewController {
 
 }
 
-extension MainTopViewController: ListsInteractorOutput {
+extension MainTopViewController: ListsViewOutput {
     
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble) {
-        tableViewManageble.setTableView(listsView)
+    func didSelectList(_ list: List) {
+        controlPanel.showList(list)
+        output?.currentListChanged(to: list)
+        hideLists(animated: true)
     }
     
-    func didFetchInitialLists() {
-        if currentList == nil {
-            currentList = listsInteractor.list(at: 0, in: 0)
-        }
+    func didPickList(_ list: List) {
+        pickingListCompletion?(list)
+        hideLists(animated: true)
     }
     
-    func didUpdateLists(with change: CoreDataItemChange) {
-        switch change {
-        case .insertion(let indexPath):
-            currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
-        case .deletion(let indexPath):
-            if currentListIndexPath == nil || indexPath == currentListIndexPath {
-                currentList = listsInteractor.list(at: 0, in: 0)
-            }
-        case .update(let indexPath):
-            guard indexPath == currentListIndexPath else { return }
-            if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-                controlPanel.showList(list)
-            }
-        case .move(let indexPath, let newIndexPath):
-            if indexPath == currentListIndexPath {
-                currentList = listsInteractor.list(at: newIndexPath.row, in: newIndexPath.section)
-            }
-        }
+    func didUpdateList(_ list: List) {
+        controlPanel.showList(list)
+        output?.currentListChanged(to: list)
     }
     
-}
-
-extension MainTopViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return listsInteractor.numberOfSections()
+    func didAskToAddList() {
+        self.showListEditor(with: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listsInteractor.numberOfItems(in: section)
+    func didAskToAddSmartList() {
+        // TODO
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell",
-                                                 for: indexPath) as! ListCell
-        
-        if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-            cell.setList(list)
-            cell.setListSelected(indexPath == currentListIndexPath)
-            
-            if !(list is SmartList) {
-                cell.delegate = isPickingList ? nil : swipeTableActionsProvider
-            } else {
-                cell.contentView.alpha = isPickingList ? 0.5 : 1
-                cell.delegate = nil
-            }
-        }
-        
-        return cell
-    }
-    
-}
-
-extension MainTopViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isPickingList {
-            if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-                guard !(list is SmartList) else { return }
-                pickingListCompletion?(list)
-                hideLists(animated: true)
-            }
-        } else {
-            currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
-            tableView.reloadData()
-            hideLists(animated: true)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? ListCell)?.applyAppearance()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == 0 ? 1 : 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return ListsSeparatorView()
+    func didAskToEditList(_ list: List) {
+        self.showListEditor(with: list)
     }
     
 }
@@ -361,34 +269,6 @@ fileprivate extension MainTopViewController {
         listEditorInput.setList(list)
         
         present(listEditorView, animated: true, completion: nil)
-    }
-    
-    func handleListDeletion(at indexPath: IndexPath) {
-        if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-            if listsInteractor.tasksCount(in: list) > 0 {
-                showListDeletionAlert(with: list)
-            } else {
-                removeList(list)
-            }
-        }
-    }
-    
-    func showListDeletionAlert(with list: List) {
-        let alert = UIAlertController(title: "remove_list".localized,
-                                      message: "are_you_sure_you_want_to_delete_the_list_with_all_tasks".localized,
-                                      preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "remove".localized, style: .destructive, handler: { [weak self] _ in
-            self?.removeList(list)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func removeList(_ list: List) {
-        listsInteractor.removeList(list)
     }
 
 }

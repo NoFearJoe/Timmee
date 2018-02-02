@@ -16,6 +16,7 @@ import protocol SugarRecord.Context
 import struct Foundation.Date
 import class Foundation.NSSet
 import class Foundation.NSPredicate
+import class Foundation.NSCompoundPredicate
 import class Foundation.NSOrderedSet
 import class Foundation.NSSortDescriptor
 
@@ -43,6 +44,28 @@ final class TasksService {
         
         if let predicate = smartList.tasksFetchPredicate {
             request.predicate = predicate
+        }
+        
+        return request
+    }
+    
+    func tasksFetchRequest(listID: String, isDone: Bool) -> NSFetchRequest<TaskEntity> {
+        let request = NSFetchRequest<TaskEntity>(entityName: TaskEntity.entityName)
+        request.predicate = NSPredicate(format: "list.id == %@ && isDone == %@", listID, isDone as CVarArg)
+        request.sortDescriptors = [NSSortDescriptor(key: "isDone", ascending: true)]
+        return request
+    }
+    
+    func tasksFetchRequest(smartListID: String, isDone: Bool) -> NSFetchRequest<TaskEntity> {
+        let smartList = SmartList(type: SmartListType(id: smartListID))
+        let request = NSFetchRequest<TaskEntity>(entityName: TaskEntity.entityName)
+        request.sortDescriptors = [NSSortDescriptor(key: "isDone", ascending: true)]
+        
+        if let predicate = smartList.tasksFetchPredicate {
+            let donePredicate = NSPredicate(format: "isDone == %@", isDone as CVarArg)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, donePredicate])
+        } else {
+            request.predicate = NSPredicate(format: "isDone == %@", isDone as CVarArg)
         }
         
         return request
@@ -87,8 +110,18 @@ extension TasksService {
         return entities.map({ Task(task: $0) })
     }
     
+    func fetchActiveTasks(listID: String) -> [Task] {
+        let entities = fetchTaskEntities(listID: listID, isDone: false)
+        return entities.map({ Task(task: $0) })
+    }
+    
     func fetchTasks(smartListID: String) -> [Task] {
         let entities = fetchTaskEntities(smartListID: smartListID)
+        return entities.map({ Task(task: $0) })
+    }
+    
+    func fetchActiveTasks(smartListID: String) -> [Task] {
+        let entities = fetchTaskEntities(smartListID: smartListID, isDone: false)
         return entities.map({ Task(task: $0) })
     }
     
@@ -111,6 +144,14 @@ extension TasksService {
     
     func fetchTaskEntities(smartListID: String) -> [TaskEntity] {
         return fetchTaskEntities(with: tasksFetchRequest(smartListID: smartListID))
+    }
+    
+    func fetchTaskEntities(listID: String, isDone: Bool) -> [TaskEntity] {
+        return fetchTaskEntities(with: tasksFetchRequest(listID: listID, isDone: isDone))
+    }
+    
+    func fetchTaskEntities(smartListID: String, isDone: Bool) -> [TaskEntity] {
+        return fetchTaskEntities(with: tasksFetchRequest(smartListID: smartListID, isDone: isDone))
     }
     
     static func taskFetchRequest(with id: String) -> FetchRequest<TaskEntity> {
