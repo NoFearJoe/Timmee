@@ -123,10 +123,10 @@
                                 </connections>
                             </view>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WG7-Fi-F8x" customClass="BarView" customModule="Timmee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="411" width="375" height="256"/>
+                                <rect key="frame" x="0.0" y="155" width="375" height="512"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="3af-w5-yCU"/>
+                                    <constraint firstAttribute="height" constant="512" id="3af-w5-yCU"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="GfW-Cf-Cig" kind="embed" identifier="EmbedListsViewController" id="GA4-ud-fQb"/>
@@ -178,11 +178,11 @@
                         <viewControllerLayoutGuide type="bottom" id="hha-jd-JZP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Gy1-I1-5Kx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b9x-D6-4Al">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Lvn-vF-wRX">
                                     <size key="itemSize" width="359" height="50"/>
@@ -319,16 +319,70 @@
                                     <outlet property="delegate" destination="GfW-Cf-Cig" id="Fco-Ph-19N"/>
                                 </connections>
                             </collectionView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZOS-ZR-jas">
+                                <rect key="frame" x="123.5" y="333" width="128" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgD-6i-caC">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+                                        <color key="backgroundColor" red="0.064666134119999996" green="0.77535759250000003" blue="0.94499355549999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Список">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQa-G4-llp">
+                                        <rect key="frame" x="0.0" y="45" width="128" height="30"/>
+                                        <color key="backgroundColor" red="0.064666134119999996" green="0.77535759250000003" blue="0.94499355549999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Smart список">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="jXs-lQ-UGz"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1D-oW-nv7">
+                                <rect key="frame" x="155" y="428" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="H1D-oW-nv7" secondAttribute="height" multiplier="1:1" id="XQ0-RL-lRo"/>
+                                    <constraint firstAttribute="width" constant="64" id="erN-Mj-qIT"/>
+                                </constraints>
+                                <state key="normal" image="plus"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toggleAddListMenu" destination="GfW-Cf-Cig" eventType="touchUpInside" id="t0v-BG-0Nf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ZOS-ZR-jas" firstAttribute="centerX" secondItem="Gy1-I1-5Kx" secondAttribute="centerX" id="XXZ-Mz-dOr"/>
+                            <constraint firstItem="H1D-oW-nv7" firstAttribute="centerX" secondItem="Gy1-I1-5Kx" secondAttribute="centerX" id="cG6-SM-Y4j"/>
+                            <constraint firstItem="hha-jd-JZP" firstAttribute="top" secondItem="H1D-oW-nv7" secondAttribute="bottom" constant="20" id="dRF-9S-c4J"/>
                             <constraint firstItem="b9x-D6-4Al" firstAttribute="top" secondItem="Gy1-I1-5Kx" secondAttribute="top" id="efd-lt-bh0"/>
+                            <constraint firstItem="H1D-oW-nv7" firstAttribute="top" secondItem="ZOS-ZR-jas" secondAttribute="bottom" constant="20" id="ogB-vr-QKy"/>
                             <constraint firstAttribute="trailing" secondItem="b9x-D6-4Al" secondAttribute="trailing" id="pVf-Ja-9uG"/>
                             <constraint firstItem="b9x-D6-4Al" firstAttribute="leading" secondItem="Gy1-I1-5Kx" secondAttribute="leading" id="qqG-B2-6z8"/>
                             <constraint firstAttribute="bottom" secondItem="b9x-D6-4Al" secondAttribute="bottom" id="sp2-V9-UKT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addListButton" destination="H1D-oW-nv7" id="5F8-2i-qu3"/>
+                        <outlet property="addListMenu" destination="ZOS-ZR-jas" id="jly-xi-WxZ"/>
                         <outlet property="collectionView" destination="b9x-D6-4Al" id="bRf-sP-aMu"/>
                     </connections>
                 </viewController>
@@ -339,6 +393,7 @@
     </scenes>
     <resources>
         <image name="edit" width="20" height="20"/>
+        <image name="plus" width="20" height="20"/>
         <image name="search" width="19" height="19"/>
         <image name="settings" width="20" height="20"/>
     </resources>

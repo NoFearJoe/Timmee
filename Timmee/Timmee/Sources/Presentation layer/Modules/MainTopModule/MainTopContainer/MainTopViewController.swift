@@ -80,7 +80,7 @@ final class MainTopViewController: UIViewController {
     }
     
     @IBAction fileprivate func didPressControlPanel() {
-        guard !isGroupEditing else { return }
+        guard !isGroupEditing || isPickingList else { return }
         isListsVisible ? hideLists(animated: true) : showLists(animated: true)
     }
     

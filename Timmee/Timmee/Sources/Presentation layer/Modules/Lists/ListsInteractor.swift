@@ -88,18 +88,16 @@ extension ListsInteractor {
     }
     
     func numberOfItems(in section: Int) -> Int {
-        if section == 1 {
+        if section == ListsCollectionViewSection.smartLists.rawValue {
             return smartListsObserver.numberOfItems(in: section)
         }
         return listsObserver.numberOfItems(in: section)
     }
     
     func list(at index: Int, in section: Int) -> List? {
-        guard section != 0 else { return nil }
-        
         let indexPath = IndexPath(row: index, section: section)
         
-        if section == 1 {
+        if section == ListsCollectionViewSection.smartLists.rawValue {
             return smartListsObserver.item(at: indexPath)
         }
         return listsObserver.item(at: indexPath)
@@ -108,10 +106,10 @@ extension ListsInteractor {
     func indexPath(ofList list: List) -> IndexPath? {
         if let list = list as? SmartList {
             guard let index = smartListsObserver.index(of: list) else { return nil }
-            return IndexPath(row: index, section: 1)
+            return IndexPath(row: index, section: ListsCollectionViewSection.smartLists.rawValue)
         } else {
             guard let index = listsObserver.index(of: list) else { return nil }
-            return IndexPath(row: index, section: 2)
+            return IndexPath(row: index, section: ListsCollectionViewSection.lists.rawValue) // FIXME: Может быть неправильная секция, если обычные списки будут разбиты на доп. секции
         }
     }
 
@@ -184,7 +182,7 @@ fileprivate extension ListsInteractor {
                                     section: nil,
                                     cacheName: "lists",
                                     context: DefaultStorage.instance.mainContext)
-        observer.sectionOffset = 2
+        observer.sectionOffset = 1
         return observer
     }
     
@@ -194,7 +192,7 @@ fileprivate extension ListsInteractor {
                                     section: nil,
                                     cacheName: "smart_lists",
                                     context: DefaultStorage.instance.mainContext)
-        observer.sectionOffset = 1
+        observer.sectionOffset = 0
         return observer
     }
     

@@ -282,7 +282,8 @@ extension SwipableCollectionViewCell: UIGestureRecognizerDelegate {
                 && abs(translation.x) > abs(translation.y)
         }
         if gestureRecognizer is UITapGestureRecognizer {
-            return currentSwipeOffset > 0 && panGestureRecognizer.state == UIGestureRecognizerState.possible
+            return currentSwipeOffset > 0
+                && (panGestureRecognizer.state == UIGestureRecognizerState.possible || panGestureRecognizer.state == UIGestureRecognizerState.failed)
         }
         return false
     }
@@ -307,6 +308,14 @@ private extension UICollectionView {
                                      newValue,
                                      .OBJC_ASSOCIATION_ASSIGN)
         }
+    }
+    
+}
+
+extension UICollectionView {
+    
+    func hideSwipedCell() {
+        swipedCell?.hide()
     }
     
 }

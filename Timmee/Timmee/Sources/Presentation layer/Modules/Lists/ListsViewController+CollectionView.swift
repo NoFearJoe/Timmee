@@ -8,15 +8,13 @@
 
 import UIKit
 
-private enum ListsCollectionViewSection: Int {
-    case addList
+enum ListsCollectionViewSection: Int {
     case smartLists
     case lists
     
     init(rawValue: Int) {
         switch rawValue {
-        case 0: self = .addList
-        case 1: self = .smartLists
+        case 0: self = .smartLists
         default: self = .lists
         }
     }
@@ -25,47 +23,36 @@ private enum ListsCollectionViewSection: Int {
 extension ListsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return listsInteractor.numberOfSections() + 1
+        return listsInteractor.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ListsCollectionViewSection(rawValue: section) == .addList {
-            return isPickingList ? 0 : 2
-        } else if  ListsCollectionViewSection(rawValue: section) == .smartLists, isPickingList {
+        if ListsCollectionViewSection(rawValue: section) == .smartLists, isPickingList {
             return 0
         }
         return listsInteractor.numberOfItems(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let section = ListsCollectionViewSection(rawValue: indexPath.section)
-        if section == .addList {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddListCollectionViewCell", for: indexPath) as! AddListCollectionViewCell
-            cell.title = indexPath.item == 0 ? "Список" : "Smart список" // TODO
-            cell.icon = #imageLiteral(resourceName: "plus_thin")
-            cell.roundedCorners = self.roundedCorners(forAddListCellAt: indexPath)
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewCell", for: indexPath) as! ListCollectionViewCell
-            if let list = listsInteractor.list(at: indexPath.item, in: indexPath.section) {
-                cell.title = list.title
-                cell.icon = list.icon.image
-                
-                let tasksCount = listsInteractor.activeTasksCount(in: list)
-                if tasksCount > 0 {
-                    cell.tasksCount = "\(tasksCount)"
-                } else {
-                    cell.tasksCount = nil
-                }
-                
-                cell.isPicked = currentList == list
-                
-                cell.roundedCorners = self.roundedCorners(forListAt: indexPath)
-                
-                cell.actionsProvider = self
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewCell", for: indexPath) as! ListCollectionViewCell
+        if let list = listsInteractor.list(at: indexPath.item, in: indexPath.section) {
+            cell.title = list.title
+            cell.icon = list.icon.image
+            
+            let tasksCount = listsInteractor.activeTasksCount(in: list)
+            if tasksCount > 0 {
+                cell.tasksCount = "\(tasksCount)"
+            } else {
+                cell.tasksCount = nil
             }
-            return cell
+            
+            cell.isPicked = currentList == list
+            
+            cell.roundedCorners = self.roundedCorners(forListAt: indexPath)
+            
+            cell.actionsProvider = self
         }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -95,17 +82,9 @@ extension ListsViewController: UICollectionViewDelegate {
                 output?.didPickList(list)
             }
         } else {
-            if ListsCollectionViewSection(rawValue: indexPath.section) == .addList {
-                if indexPath.item == 0 {
-                    output?.didAskToAddList()
-                } else {
-                    output?.didAskToAddSmartList()
-                }
-            } else {
-                currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
-                collectionView.reloadData()
-                output?.didSelectList(currentList)
-            }
+            currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
+            collectionView.reloadData()
+            output?.didSelectList(currentList)
         }
     }
     
@@ -114,31 +93,25 @@ extension ListsViewController: UICollectionViewDelegate {
 extension ListsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if ListsCollectionViewSection(rawValue: indexPath.section) == .addList {
-            return CGSize(width: (collectionView.frame.width - 16) * 0.5, height: 44)
-        } else {
-            if UIDevice.current.isIpad {
-                let itemsCount = listsInteractor.numberOfItems(in: indexPath.section)
-                
-                let width: CGFloat
-                
-                if indexPath.item == itemsCount - 1 && indexPath.item % 2 == 0 {
-                    width = collectionView.frame.width - 16
-                } else {
-                    width = (collectionView.frame.width - 16) * 0.5
-                }
-                
-                return CGSize(width: width, height: 44)
+        if UIDevice.current.isIpad {
+            let itemsCount = listsInteractor.numberOfItems(in: indexPath.section)
+            
+            let width: CGFloat
+            
+            if indexPath.item == itemsCount - 1 && indexPath.item % 2 == 0 {
+                width = collectionView.frame.width - 16
             } else {
-                return CGSize(width: collectionView.frame.width - 16, height: 44)
+                width = (collectionView.frame.width - 16) * 0.5
             }
+            
+            return CGSize(width: width, height: 44)
+        } else {
+            return CGSize(width: collectionView.frame.width - 16, height: 44)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if ListsCollectionViewSection(rawValue: section) == .addList {
-            return .zero
-        } else if ListsCollectionViewSection(rawValue: section) == .smartLists, isPickingList {
+        if ListsCollectionViewSection(rawValue: section) == .smartLists, isPickingList {
             return .zero
         } else if listsInteractor.numberOfItems(in: section) == 0 {
             return .zero
@@ -155,12 +128,12 @@ extension ListsViewController: UICollectionViewDelegateFlowLayout {
 extension ListsViewController: SwipableCollectionViewCellActionsProvider {
     
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction] {
-        if indexPath.section == 1 {
+        if indexPath.section == ListsCollectionViewSection.smartLists.rawValue && indexPath.item != 0 {
             let hideAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "trash"), // TODO
                                                    tintColor: AppTheme.current.secondaryTintColor,
                                                    action: handleSmartListHidding)
             return [hideAction]
-        } else if indexPath.section == 2 {
+        } else if indexPath.section >= ListsCollectionViewSection.lists.rawValue {
             let deleteAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "trash"),
                                                      tintColor: AppTheme.current.redColor,
                                                      action: handleListDeletion)

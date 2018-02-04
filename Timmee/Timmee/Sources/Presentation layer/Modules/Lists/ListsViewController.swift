@@ -29,6 +29,9 @@ final class ListsViewController: UIViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
     
+    @IBOutlet private var addListButton: UIButton!
+    @IBOutlet private var addListMenu: UIStackView!
+    
     let listsInteractor = ListsInteractor()
     
     var currentList: List! {
@@ -46,7 +49,10 @@ final class ListsViewController: UIViewController {
     
     private(set) var isPickingList: Bool = false {
         didSet {
-            collectionView.reloadSections(IndexSet(integersIn: 0...1))
+            addListButton.isHidden = isPickingList
+            if collectionView.numberOfSections >= 1 {
+                collectionView.reloadSections(IndexSet(integer: ListsCollectionViewSection.smartLists.rawValue))
+            }
         }
     }
     
@@ -60,6 +66,14 @@ final class ListsViewController: UIViewController {
         initialDataConfigurator.addInitialSmartLists { [unowned self] in
             self.listsInteractor.requestLists()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
+        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor.withAlphaComponent(0.8)), for: .highlighted)
+        addListButton.tintColor = AppTheme.current.backgroundTintColor
     }
     
 }
@@ -76,7 +90,7 @@ extension ListsViewController: ListsViewInput {
     }
     
     func resetRevealedCells() {
-        // TODO
+        collectionView.hideSwipedCell()
     }
     
 }
@@ -89,7 +103,7 @@ extension ListsViewController: ListsInteractorOutput {
     
     func didFetchInitialLists() {
         if currentList == nil {
-            currentList = listsInteractor.list(at: 0, in: 1)
+            currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
         }
     }
     
@@ -99,7 +113,14 @@ extension ListsViewController: ListsInteractorOutput {
             currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
         case .deletion(let indexPath):
             if currentListIndexPath == nil || indexPath == currentListIndexPath {
-                currentList = listsInteractor.list(at: 0, in: 1)
+                currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+            }
+            
+            if indexPath.item > 0 {
+                collectionView.reloadItems(at: [IndexPath(item: indexPath.item - 1, section: indexPath.section)])
+            }
+            if collectionView.numberOfItems(inSection: indexPath.section) > indexPath.item {
+                collectionView.reloadItems(at: [IndexPath(item: indexPath.item, section: indexPath.section)])
             }
         case .update(let indexPath):
             guard indexPath == currentListIndexPath else { return }
@@ -119,7 +140,7 @@ extension ListsViewController: ListsInteractorOutput {
     
     func didFetchInitialSmartLists() {
         if currentList == nil {
-            currentList = listsInteractor.list(at: 0, in: 1)
+            currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
         }
     }
     
@@ -129,17 +150,30 @@ extension ListsViewController: ListsInteractorOutput {
     
 }
 
-final class ListsSectionView: UICollectionReusableView {
+private extension ListsViewController {
     
-    @IBOutlet private var titleLabel: UILabel! {
-        didSet {
-            titleLabel.textColor = AppTheme.current.secondaryTintColor
+    @IBAction func toggleAddListMenu() {
+        if addListMenu.isHidden {
+            showAddListMenu(animated: true)
+        } else {
+            hideAddListMenu(animated: true)
         }
     }
     
-    var title: String? {
-        get { return titleLabel.text }
-        set { titleLabel.text = newValue?.uppercased() }
+    func showAddListMenu(animated: Bool = false) {
+        addListMenu.isHidden = false
+        UIView.animate(withDuration: animated ? 0.1 : 0) {
+            self.addListMenu.alpha = 1
+        }
+    }
+    
+    func hideAddListMenu(animated: Bool = false) {
+        UIView.animate(withDuration: animated ? 0.1 : 0,
+                       animations: {
+            self.addListMenu.alpha = 0
+        }) { _ in
+            self.addListMenu.isHidden = true
+        }
     }
     
 }
