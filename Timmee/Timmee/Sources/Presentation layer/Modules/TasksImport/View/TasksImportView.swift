@@ -86,7 +86,7 @@ final class TasksImportView: UIViewController {
         closeButton.tintColor = AppTheme.current.backgroundTintColor
         doneButton.tintColor = AppTheme.current.greenColor
         
-        containerView.barColor = AppTheme.current.middlegroundColor
+        containerView.backgroundColor = AppTheme.current.middlegroundColor
         tableView.backgroundColor = AppTheme.current.middlegroundColor
         
         tableView.tableHeaderView?.backgroundColor = .clear

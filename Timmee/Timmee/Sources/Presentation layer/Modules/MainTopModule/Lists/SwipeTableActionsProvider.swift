@@ -153,7 +153,7 @@ final class ListsSwipeTableActionsProvider: SwipeTableActionsProvider {
                 self?.onEdit?(indexPath)
                 action.fulfill(with: .reset)
         })
-        editAction.image = #imageLiteral(resourceName: "edit_thin")
+        editAction.image = #imageLiteral(resourceName: "cogwheel")
         editAction.textColor = AppTheme.current.blueColor
         editAction.title = nil
         editAction.accessibilityLabel = ""

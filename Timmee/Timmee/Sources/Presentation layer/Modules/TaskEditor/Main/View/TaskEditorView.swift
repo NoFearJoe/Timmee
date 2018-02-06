@@ -197,7 +197,7 @@ final class TaskEditorView: UIViewController {
         
         view.backgroundColor = AppTheme.current.backgroundColor
         
-        contentContainerView.barColor = AppTheme.current.foregroundColor
+        contentContainerView.backgroundColor = AppTheme.current.foregroundColor
         closeButton.tintColor = AppTheme.current.backgroundTintColor
         doneButton.tintColor = AppTheme.current.greenColor
         

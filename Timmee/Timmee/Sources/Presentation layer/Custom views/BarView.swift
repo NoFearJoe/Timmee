@@ -10,8 +10,6 @@ import UIKit
 
 class BarView: UIView {
 
-    @IBInspectable var barColor: UIColor = UIColor(rgba: "FEFEFE")
-    @IBInspectable var separatorColor: UIColor = UIColor(rgba: "DDDDDD")
     @IBInspectable var cornerRadius: CGFloat = 8
     
     var shadowRadius: CGFloat = 4 {
@@ -44,25 +42,18 @@ class BarView: UIView {
         } else {
             layer.shadowPath = nil
         }
+        
+        applyRoundCornersMask()
     }
     
-    override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else { return }
+    private func applyRoundCornersMask() {
+        let maskPath = UIBezierPath(roundedRect: bounds,
+                                    byRoundingCorners: [.topLeft, .topRight],
+                                    cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = maskPath.cgPath
         
-        let clip = UIBezierPath(roundedRect: rect,
-                                byRoundingCorners: [.topLeft, .topRight],
-                                cornerRadii: CGSize(width: cornerRadius,
-                                                    height: cornerRadius))
-        clip.addClip()
-        
-        context.setFillColor(barColor.cgColor)
-        context.fill(rect)
-        
-        context.setFillColor(separatorColor.cgColor)
-        context.fill(CGRect(x: 0,
-                            y: rect.height - 0.5,
-                            width: rect.width,
-                            height: 0.5))
+        self.layer.mask = maskLayer
     }
 
 }

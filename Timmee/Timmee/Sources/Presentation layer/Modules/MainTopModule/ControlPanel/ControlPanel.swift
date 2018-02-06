@@ -103,9 +103,8 @@ extension ControlPanel {
     
     func applyAppearance() {
         showShadow = false
-        separatorColor = .clear
         
-        barColor = .clear
+        backgroundColor = .clear
         listTitleLabel.textColor = AppTheme.current.backgroundTintColor
         listIconView.tintColor = AppTheme.current.specialColor
         

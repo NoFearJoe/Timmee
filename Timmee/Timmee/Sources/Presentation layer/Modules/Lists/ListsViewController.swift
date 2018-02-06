@@ -11,7 +11,7 @@ import UIKit
 protocol ListsViewInput: class {
     func reloadLists()
     func setPickingList(_ isPicking: Bool)
-    func resetRevealedCells()
+    func resetState()
 }
 
 protocol ListsViewOutput: class {
@@ -31,6 +31,7 @@ final class ListsViewController: UIViewController {
     
     @IBOutlet private var addListButton: UIButton!
     @IBOutlet private var addListMenu: UIStackView!
+    @IBOutlet private var dimmedBackgroundView: BarView!
     
     let listsInteractor = ListsInteractor()
     
@@ -66,14 +67,38 @@ final class ListsViewController: UIViewController {
         initialDataConfigurator.addInitialSmartLists { [unowned self] in
             self.listsInteractor.requestLists()
         }
+        
+        dimmedBackgroundView.isHidden = true
+        addListMenu.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        dimmedBackgroundView.backgroundColor = AppTheme.current.foregroundColor.withAlphaComponent(0.75)
+        
+        addListMenu.arrangedSubviews.forEach { view in
+            guard let button = view as? UIButton else { return }
+            button.backgroundColor = AppTheme.current.blueColor
+            button.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
+            button.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor.withAlphaComponent(0.9)), for: .highlighted)
+            button.tintColor = AppTheme.current.backgroundTintColor
+        }
+        
         addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor.withAlphaComponent(0.8)), for: .highlighted)
+//        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor.withAlphaComponent(0.9)), for: .highlighted)
+        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: UIControlState.selected)
         addListButton.tintColor = AppTheme.current.backgroundTintColor
+    }
+    
+    @IBAction private func didSelectAddListMenuItem() {
+        output?.didAskToAddList()
+        hideAddListMenu(animated: true)
+    }
+    
+    @IBAction private func didSelectAddSmartListMenuItem() {
+        output?.didAskToAddSmartList()
+        hideAddListMenu(animated: true)
     }
     
 }
@@ -89,8 +114,9 @@ extension ListsViewController: ListsViewInput {
         isPickingList = isPicking
     }
     
-    func resetRevealedCells() {
+    func resetState() {
         collectionView.hideSwipedCell()
+        hideAddListMenu()
     }
     
 }
@@ -161,19 +187,41 @@ private extension ListsViewController {
     }
     
     func showAddListMenu(animated: Bool = false) {
+        addListMenu.transform = makeAddListMenuInitialTransform()
+        
         addListMenu.isHidden = false
-        UIView.animate(withDuration: animated ? 0.1 : 0) {
+        dimmedBackgroundView.isHidden = false
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.addListMenu.alpha = 1
+            self.dimmedBackgroundView.alpha = 1
+            self.addListMenu.transform = .identity
+            self.addListButton.isSelected = true
+            self.addListButton.transform = self.makeAddListButtonRotationTransform()
         }
     }
     
     func hideAddListMenu(animated: Bool = false) {
-        UIView.animate(withDuration: animated ? 0.1 : 0,
+        UIView.animate(withDuration: animated ? 0.2 : 0,
                        animations: {
             self.addListMenu.alpha = 0
+            self.dimmedBackgroundView.alpha = 0
+            self.addListMenu.transform = self.makeAddListMenuInitialTransform()
+            self.addListButton.isSelected = false
+            self.addListButton.transform = .identity
         }) { _ in
             self.addListMenu.isHidden = true
+            self.dimmedBackgroundView.isHidden = true
         }
+    }
+    
+    func makeAddListMenuInitialTransform() -> CGAffineTransform {
+        let translation = CGAffineTransform(translationX: 0, y: 64)
+        let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        return scale.concatenating(translation)
+    }
+    
+    func makeAddListButtonRotationTransform() -> CGAffineTransform {
+        return CGAffineTransform(rotationAngle: 45 * .pi / 180)
     }
     
 }

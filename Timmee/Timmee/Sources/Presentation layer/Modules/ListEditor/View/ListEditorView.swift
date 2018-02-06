@@ -76,7 +76,7 @@ final class ListEditorView: UIViewController {
         super.viewWillAppear(animated)
         
         view.backgroundColor = AppTheme.current.backgroundColor
-        contentView.barColor = AppTheme.current.foregroundColor
+        contentView.backgroundColor = AppTheme.current.foregroundColor
         listTitleTextField.textColor = AppTheme.current.specialColor
         listTitleTextField.tintColor = AppTheme.current.tintColor
         listNoteTextView.textColor = AppTheme.current.tintColor

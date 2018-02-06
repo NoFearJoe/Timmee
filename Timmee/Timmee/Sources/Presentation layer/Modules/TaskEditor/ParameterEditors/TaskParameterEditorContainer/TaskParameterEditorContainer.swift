@@ -128,7 +128,7 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
         
         transitioningDelegate = self
         
-        editorContainer.barColor = AppTheme.current.foregroundColor
+        editorContainer.backgroundColor = AppTheme.current.foregroundColor
         titleLabel.textColor = AppTheme.current.backgroundTintColor
         closeButton.tintColor = AppTheme.current.redColor
         doneButton.tintColor = AppTheme.current.greenColor

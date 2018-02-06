@@ -39,7 +39,10 @@ final class ListCollectionViewCell: SwipableCollectionViewCell {
     
     var tasksCount: String? {
         get { return tasksCountLabel.text }
-        set { tasksCountLabel.text = newValue }
+        set {
+            tasksCountLabel.text = newValue
+            tasksCountLabel.isHidden = newValue == nil || newValue == ""
+        }
     }
     
     var isPicked: Bool = false {

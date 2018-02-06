@@ -31,7 +31,7 @@ final class MainTopViewController: UIViewController {
     
     fileprivate var isListsVisible: Bool = true {
         didSet {
-            listsViewInput.resetRevealedCells()
+            listsViewInput.resetState()
         }
     }
     
@@ -94,9 +94,9 @@ final class MainTopViewController: UIViewController {
         super.viewWillAppear(animated)
         
         controlPanel.applyAppearance()
-        listsViewContainer.barColor = AppTheme.current.middlegroundColor
+        listsViewContainer.backgroundColor = AppTheme.current.middlegroundColor
         
-        listsViewInput.resetRevealedCells()
+        listsViewInput.resetState()
         
         updateListsViewHeight()
     }
@@ -121,6 +121,7 @@ final class MainTopViewController: UIViewController {
         
         output?.willShowLists()
         
+        listsViewInput.resetState()
         listsViewInput.reloadLists()
         
         passthrowView.shouldPassTouches = false

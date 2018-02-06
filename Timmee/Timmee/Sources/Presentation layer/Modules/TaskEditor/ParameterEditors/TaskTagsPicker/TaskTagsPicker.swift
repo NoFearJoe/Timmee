@@ -60,7 +60,7 @@ final class TaskTagsPicker: UIViewController {
         tagsView.reloadData()
         
         addTagView.placeholder = "input_tag".localized
-        addTagView.barColor = AppTheme.current.panelColor
+        addTagView.backgroundColor = AppTheme.current.panelColor
         addTagView.color = addTagView.colors.first!
         addTagView.onCreateTag = { [weak self] title, color in
             let tagID = RandomStringGenerator.randomString(length: 16)

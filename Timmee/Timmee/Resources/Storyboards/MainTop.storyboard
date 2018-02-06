@@ -205,22 +205,23 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="n4b-ES-eN8">
-                                                    <rect key="frame" x="33" y="15" width="293" height="19.5"/>
+                                                    <rect key="frame" x="33" y="15" width="290" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.27058823529999998" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOO-NY-pTW">
-                                                    <rect key="frame" x="334" y="16.5" width="17" height="17"/>
+                                                    <rect key="frame" x="331" y="15" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="17" id="6Ug-5k-yCA"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="6Ug-5k-yCA"/>
+                                                        <constraint firstAttribute="height" constant="20" id="i5M-Pb-kfk"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.57254901960000004" green="0.59999999999999998" blue="0.63529411759999999" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <real key="value" value="8.5"/>
+                                                            <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
@@ -319,36 +320,53 @@
                                     <outlet property="delegate" destination="GfW-Cf-Cig" id="Fco-Ph-19N"/>
                                 </connections>
                             </collectionView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZOS-ZR-jas">
-                                <rect key="frame" x="123.5" y="333" width="128" height="75"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuB-xn-oJm" customClass="BarView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dMy-N1-mgC" appends="YES" id="wf5-PM-VU4"/>
+                                </connections>
+                            </view>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZOS-ZR-jas">
+                                <rect key="frame" x="119.5" y="328" width="136" height="80"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgD-6i-caC">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
-                                        <color key="backgroundColor" red="0.064666134119999996" green="0.77535759250000003" blue="0.94499355549999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="136" height="32"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Список">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
+                                                <integer key="value" value="16"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didSelectAddListMenuItem" destination="GfW-Cf-Cig" eventType="touchUpInside" id="uXC-BL-iid"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQa-G4-llp">
-                                        <rect key="frame" x="0.0" y="45" width="128" height="30"/>
-                                        <color key="backgroundColor" red="0.064666134119999996" green="0.77535759250000003" blue="0.94499355549999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="0.0" y="48" width="136" height="32"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Smart список">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
+                                                <integer key="value" value="16"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didSelectAddSmartListMenuItem" destination="GfW-Cf-Cig" eventType="touchUpInside" id="Sqz-PU-3uJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="jXs-lQ-UGz"/>
+                                    <constraint firstAttribute="height" constant="80" id="ZeZ-ss-yPW"/>
+                                    <constraint firstAttribute="width" constant="136" id="jXs-lQ-UGz"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1D-oW-nv7">
@@ -358,6 +376,7 @@
                                     <constraint firstAttribute="width" constant="64" id="erN-Mj-qIT"/>
                                 </constraints>
                                 <state key="normal" image="plus"/>
+                                <state key="highlighted" image="plus"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="32"/>
@@ -370,10 +389,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VuB-xn-oJm" firstAttribute="top" secondItem="Gy1-I1-5Kx" secondAttribute="top" id="5nT-aM-dOI"/>
+                            <constraint firstAttribute="bottom" secondItem="VuB-xn-oJm" secondAttribute="bottom" id="OY3-u7-08A"/>
+                            <constraint firstItem="VuB-xn-oJm" firstAttribute="leading" secondItem="Gy1-I1-5Kx" secondAttribute="leading" id="PT2-IQ-sIO"/>
                             <constraint firstItem="ZOS-ZR-jas" firstAttribute="centerX" secondItem="Gy1-I1-5Kx" secondAttribute="centerX" id="XXZ-Mz-dOr"/>
                             <constraint firstItem="H1D-oW-nv7" firstAttribute="centerX" secondItem="Gy1-I1-5Kx" secondAttribute="centerX" id="cG6-SM-Y4j"/>
                             <constraint firstItem="hha-jd-JZP" firstAttribute="top" secondItem="H1D-oW-nv7" secondAttribute="bottom" constant="20" id="dRF-9S-c4J"/>
                             <constraint firstItem="b9x-D6-4Al" firstAttribute="top" secondItem="Gy1-I1-5Kx" secondAttribute="top" id="efd-lt-bh0"/>
+                            <constraint firstAttribute="trailing" secondItem="VuB-xn-oJm" secondAttribute="trailing" id="j6r-it-z0N"/>
                             <constraint firstItem="H1D-oW-nv7" firstAttribute="top" secondItem="ZOS-ZR-jas" secondAttribute="bottom" constant="20" id="ogB-vr-QKy"/>
                             <constraint firstAttribute="trailing" secondItem="b9x-D6-4Al" secondAttribute="trailing" id="pVf-Ja-9uG"/>
                             <constraint firstItem="b9x-D6-4Al" firstAttribute="leading" secondItem="Gy1-I1-5Kx" secondAttribute="leading" id="qqG-B2-6z8"/>
@@ -384,9 +407,15 @@
                         <outlet property="addListButton" destination="H1D-oW-nv7" id="5F8-2i-qu3"/>
                         <outlet property="addListMenu" destination="ZOS-ZR-jas" id="jly-xi-WxZ"/>
                         <outlet property="collectionView" destination="b9x-D6-4Al" id="bRf-sP-aMu"/>
+                        <outlet property="dimmedBackgroundView" destination="VuB-xn-oJm" id="X2L-5I-7do"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AI1-Yw-2TM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dMy-N1-mgC">
+                    <connections>
+                        <action selector="toggleAddListMenu" destination="GfW-Cf-Cig" id="DYe-vJ-dzp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1093.5999999999999" y="124.13793103448276"/>
         </scene>

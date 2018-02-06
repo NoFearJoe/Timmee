@@ -129,7 +129,7 @@ extension ListsViewController: SwipableCollectionViewCellActionsProvider {
     
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction] {
         if indexPath.section == ListsCollectionViewSection.smartLists.rawValue && indexPath.item != 0 {
-            let hideAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "trash"), // TODO
+            let hideAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "eye"), // TODO
                                                    tintColor: AppTheme.current.secondaryTintColor,
                                                    action: handleSmartListHidding)
             return [hideAction]
@@ -137,7 +137,7 @@ extension ListsViewController: SwipableCollectionViewCellActionsProvider {
             let deleteAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "trash"),
                                                      tintColor: AppTheme.current.redColor,
                                                      action: handleListDeletion)
-            let editAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "edit_thin"),
+            let editAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "cogwheel"),
                                                    tintColor: AppTheme.current.blueColor,
                                                    action: handleListEditing)
             return [editAction, deleteAction]

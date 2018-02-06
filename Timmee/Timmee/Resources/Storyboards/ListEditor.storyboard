@@ -177,14 +177,6 @@
                                     <constraint firstAttribute="trailing" secondItem="G45-L7-CZY" secondAttribute="trailing" constant="15" id="sTq-C8-Oct"/>
                                     <constraint firstItem="VKo-hY-e00" firstAttribute="top" secondItem="G45-L7-CZY" secondAttribute="bottom" constant="10" id="zu9-tR-rMn"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

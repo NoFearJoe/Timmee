@@ -671,14 +671,6 @@
                                     <constraint firstItem="g3p-60-8Fd" firstAttribute="leading" secondItem="2G4-B0-pZA" secondAttribute="leading" id="efK-8J-tgN"/>
                                     <constraint firstItem="g3p-60-8Fd" firstAttribute="top" secondItem="2G4-B0-pZA" secondAttribute="top" id="jHV-JY-HFt"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
