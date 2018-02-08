@@ -58,6 +58,7 @@
 "no_attachments" = "No attachments";
 "add_subtask" = "Add subtask...";
 "subtasks" = "subtasks";
+"overdue" = "Overdue";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";

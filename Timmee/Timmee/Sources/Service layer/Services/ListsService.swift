@@ -39,6 +39,11 @@ final class ListsService {
     
     // MARK: Lists
     
+    func fetchLists() -> [List] {
+        let entities = fetchListEntities()
+        return entities.map({ List(listEntity: $0) })
+    }
+    
     func addList(_ list: List, completion: @escaping (Error?) -> Void) {
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
             guard context.fetchList(id: list.id) == nil else {
@@ -92,6 +97,15 @@ final class ListsService {
     
     // MARK: Smart lists
     
+    func fetchSmartLists() -> [SmartList] {
+        let entities = fetchSmartListEntities()
+        return entities.flatMap({
+            guard let id = $0.id else { return nil }
+            let smartListType = SmartListType(id: id)
+            return SmartList(type: smartListType)
+        })
+    }
+    
     func addSmartList(_ list: SmartList,
                       completion: @escaping (Error?) -> Void) {
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
@@ -128,11 +142,6 @@ final class ListsService {
 
 fileprivate extension ListsService {
     
-    func fetchLists() -> [List] {
-        let entities = fetchListEntities()
-        return entities.map({ List(listEntity: $0) })
-    }
-    
     func searchLists(by string: String) -> [List] {
         let entities = searchListEntities(by: string)
         return entities.map({ List(listEntity: $0) })
@@ -140,6 +149,10 @@ fileprivate extension ListsService {
     
     func fetchListEntities() -> [ListEntity] {
         return (try? DefaultStorage.instance.storage.fetch(listsFetchRequest)) ?? []
+    }
+    
+    func fetchSmartListEntities() -> [SmartListEntity] {
+        return (try? DefaultStorage.instance.storage.fetch(smartListsFetchRequest)) ?? []
     }
     
     func searchListEntities(by string: String) -> [ListEntity] {

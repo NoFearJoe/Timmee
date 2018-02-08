@@ -47,6 +47,10 @@
 		0C9EF54E1FBC728100B36FBB /* TaskTimeTemplatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */; };
 		0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */; };
 		0C9EF5551FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */; };
+		0CA9EE76202AD97200C24003 /* SmartListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE75202AD97200C24003 /* SmartListPickerView.swift */; };
+		0CA9EE78202AE20300C24003 /* SmartListPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE77202AE20300C24003 /* SmartListPickerInteractor.swift */; };
+		0CA9EE7B202AEA2E00C24003 /* SmartListsPickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE7A202AEA2E00C24003 /* SmartListsPickerState.swift */; };
+		0CA9EE9A202C5FB100C24003 /* SmartListPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE99202C5FB100C24003 /* SmartListPickerCell.swift */; };
 		0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */; };
 		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
 		0CB8F26A1FE95036005D9E11 /* Foto.Photo+filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */; };
@@ -263,6 +267,10 @@
 		0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplatePicker.swift; sourceTree = "<group>"; };
 		0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeTemplateView.swift; sourceTree = "<group>"; };
 		0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplateEditor.swift; sourceTree = "<group>"; };
+		0CA9EE75202AD97200C24003 /* SmartListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListPickerView.swift; sourceTree = "<group>"; };
+		0CA9EE77202AE20300C24003 /* SmartListPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListPickerInteractor.swift; sourceTree = "<group>"; };
+		0CA9EE7A202AEA2E00C24003 /* SmartListsPickerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListsPickerState.swift; sourceTree = "<group>"; };
+		0CA9EE99202C5FB100C24003 /* SmartListPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListPickerCell.swift; sourceTree = "<group>"; };
 		0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalEducationScreen.swift; sourceTree = "<group>"; };
 		0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPhotoAttachmentsPicker.swift; sourceTree = "<group>"; };
 		0CB8F2691FE95036005D9E11 /* Foto.Photo+filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foto.Photo+filename.swift"; sourceTree = "<group>"; };
@@ -670,6 +678,41 @@
 				0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */,
 			);
 			path = Picker;
+			sourceTree = "<group>";
+		};
+		0CA9EE71202AD8EC00C24003 /* SmartListPicker */ = {
+			isa = PBXGroup;
+			children = (
+				0CA9EE74202AD91500C24003 /* Interactor */,
+				0CA9EE79202AEA1300C24003 /* State */,
+				0CA9EE72202AD91000C24003 /* View */,
+			);
+			path = SmartListPicker;
+			sourceTree = "<group>";
+		};
+		0CA9EE72202AD91000C24003 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0CA9EE75202AD97200C24003 /* SmartListPickerView.swift */,
+				0CA9EE99202C5FB100C24003 /* SmartListPickerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0CA9EE74202AD91500C24003 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0CA9EE77202AE20300C24003 /* SmartListPickerInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		0CA9EE79202AEA1300C24003 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0CA9EE7A202AEA2E00C24003 /* SmartListsPickerState.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 		0CB8F1FD1FE3BE53005D9E11 /* TaskAttachmentsPicker */ = {
@@ -1480,6 +1523,7 @@
 				963D6A581F5C42730063E295 /* TaskEditor */,
 				0C74D8191FEAA2F300CDA0BE /* PhotoPreview */,
 				96BE0A271F63149F0041FBEA /* ListEditor */,
+				0CA9EE71202AD8EC00C24003 /* SmartListPicker */,
 				96AAA5951FB22F5000F547A0 /* Search */,
 				96477A591F812FCA005C3520 /* TasksImport */,
 				965798CD1F91340100F65019 /* Authentication */,
@@ -1752,6 +1796,7 @@
 				0C713F4A1FC3016900D8FF8B /* TimeRounder.swift in Sources */,
 				96A5F0FD1F49F26300F94553 /* Array+Unique.swift in Sources */,
 				0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */,
+				0CA9EE7B202AEA2E00C24003 /* SmartListsPickerState.swift in Sources */,
 				0C74D8241FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift in Sources */,
 				965798D91F9136BE00F65019 /* String+Encryption.swift in Sources */,
 				96A5F11E1F4D500A00F94553 /* SmartList.swift in Sources */,
@@ -1802,6 +1847,7 @@
 				96BE0A301F63C3A50041FBEA /* ListEditorView.swift in Sources */,
 				961D676B1FA65FB500511042 /* NextGrowingInternalTextView.swift in Sources */,
 				0C8738CF1FB9747700EA1571 /* CalendarDayCell.swift in Sources */,
+				0CA9EE9A202C5FB100C24003 /* SmartListPickerCell.swift in Sources */,
 				969219D11F9C9568006E47B4 /* TaskTagsView.swift in Sources */,
 				96A5F0FB1F49F26300F94553 /* Array+RemoveObject.swift in Sources */,
 				96A5F1201F4E01AB00F94553 /* ListsService.swift in Sources */,
@@ -1825,6 +1871,7 @@
 				96B0B9C61FC18B4D0009BA3B /* DatesKit.swift in Sources */,
 				96115F321F6E6EBE0050D7A3 /* TaskParameterView.swift in Sources */,
 				965798D61F91340100F65019 /* PinAuthenticationViewController.swift in Sources */,
+				0CA9EE76202AD97200C24003 /* SmartListPickerView.swift in Sources */,
 				962C7B371F58810500639DD6 /* ListSorting.swift in Sources */,
 				963179111F56CB40007F7F53 /* StorageObservable.swift in Sources */,
 				0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */,
@@ -1841,6 +1888,7 @@
 				0CF30954201F301E00FD7E3E /* ListsViewController.swift in Sources */,
 				963D6A491F5AE1630063E295 /* TableListRepresentationPresenter.swift in Sources */,
 				0CC7C85B2008CDFE006758C1 /* EducationViewController.swift in Sources */,
+				0CA9EE78202AE20300C24003 /* SmartListPickerInteractor.swift in Sources */,
 				96E543791F49ED890081C6F0 /* Timmee.xcdatamodeld in Sources */,
 				96A5F1361F507AC500F94553 /* PageControl.swift in Sources */,
 				961D676C1FA65FB500511042 /* NextGrowingTextView.swift in Sources */,

@@ -210,6 +210,127 @@
             </objects>
             <point key="canvasLocation" x="98" y="148"/>
         </scene>
+        <!--Smart List Picker View-->
+        <scene sceneID="zAu-gl-gjl">
+            <objects>
+                <viewController storyboardIdentifier="SmartListPicker" id="HeE-dt-8O5" customClass="SmartListPickerView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OUz-JB-TWR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVS-6L-ZZI">
+                                <rect key="frame" x="331" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tVS-6L-ZZI" secondAttribute="height" multiplier="1:1" id="71N-ZI-mix"/>
+                                    <constraint firstAttribute="height" constant="44" id="TLz-OH-FgJ"/>
+                                </constraints>
+                                <state key="normal" image="checkmark">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.50266008439999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressDoneButton" destination="asB-od-wn4" eventType="touchUpInside" id="WW1-ZY-ww7"/>
+                                    <action selector="done" destination="HeE-dt-8O5" eventType="touchUpInside" id="F20-gj-wPj"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYu-X4-RNI" customClass="BarView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zmd-3u-Ewm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="88e-8n-qaE">
+                                            <size key="itemSize" width="371" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" contentMode="center" reuseIdentifier="SmartListPickerCell" id="Pmm-Ew-cXc" customClass="SmartListPickerCell" customModule="Timmee" customModuleProvider="target">
+                                                <rect key="frame" x="2" y="0.0" width="371" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="371" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="94O-mW-DyO">
+                                                            <rect key="frame" x="8" y="15" width="20" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="SyB-7K-CuP"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="wDJ-mM-Phb">
+                                                            <rect key="frame" x="33" y="15" width="294" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.27058823529999998" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJY-WS-ipf" customClass="CheckBox" customModule="Timmee" customModuleProvider="target">
+                                                            <rect key="frame" x="335" y="11" width="28" height="28"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="UJY-WS-ipf" secondAttribute="height" multiplier="1:1" id="8Vr-K1-fTS"/>
+                                                                <constraint firstAttribute="width" constant="28" id="zfm-VH-TMu"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </view>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="94O-mW-DyO" firstAttribute="leading" secondItem="Pmm-Ew-cXc" secondAttribute="leading" constant="8" id="OFl-45-BSh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="UJY-WS-ipf" secondAttribute="trailing" constant="8" id="Sih-Mn-v0Q"/>
+                                                    <constraint firstItem="94O-mW-DyO" firstAttribute="centerY" secondItem="Pmm-Ew-cXc" secondAttribute="centerY" id="VLQ-p2-vRq"/>
+                                                    <constraint firstItem="UJY-WS-ipf" firstAttribute="centerY" secondItem="Pmm-Ew-cXc" secondAttribute="centerY" id="YM9-EA-hYu"/>
+                                                    <constraint firstItem="UJY-WS-ipf" firstAttribute="leading" secondItem="wDJ-mM-Phb" secondAttribute="trailing" constant="8" id="bbA-aK-LtQ"/>
+                                                    <constraint firstItem="wDJ-mM-Phb" firstAttribute="leading" secondItem="94O-mW-DyO" secondAttribute="trailing" constant="5" id="l6I-vj-aPr"/>
+                                                    <constraint firstItem="wDJ-mM-Phb" firstAttribute="centerY" secondItem="Pmm-Ew-cXc" secondAttribute="centerY" id="naS-Da-You"/>
+                                                    <constraint firstItem="94O-mW-DyO" firstAttribute="width" secondItem="94O-mW-DyO" secondAttribute="height" multiplier="1:1" id="shV-8a-Vyp"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="checkBox" destination="UJY-WS-ipf" id="5Ee-SG-p12"/>
+                                                    <outlet property="iconView" destination="94O-mW-DyO" id="Jp1-MX-g6E"/>
+                                                    <outlet property="titleLabel" destination="wDJ-mM-Phb" id="SsM-tS-q6H"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="HeE-dt-8O5" id="5fU-KY-fhK"/>
+                                            <outlet property="delegate" destination="HeE-dt-8O5" id="pu8-sQ-obG"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Zmd-3u-Ewm" secondAttribute="trailing" id="H8Q-6X-clK"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zmd-3u-Ewm" secondAttribute="bottom" id="m71-Ln-1xb"/>
+                                    <constraint firstItem="Zmd-3u-Ewm" firstAttribute="leading" secondItem="sYu-X4-RNI" secondAttribute="leading" id="sL1-5f-kkc"/>
+                                    <constraint firstItem="Zmd-3u-Ewm" firstAttribute="top" secondItem="sYu-X4-RNI" secondAttribute="top" id="ueM-fU-dH2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6t0-Ub-C0O" firstAttribute="trailing" secondItem="tVS-6L-ZZI" secondAttribute="trailing" id="7ul-5E-gTx"/>
+                            <constraint firstItem="6t0-Ub-C0O" firstAttribute="bottom" secondItem="sYu-X4-RNI" secondAttribute="bottom" id="AdW-mn-gQQ"/>
+                            <constraint firstItem="sYu-X4-RNI" firstAttribute="leading" secondItem="6t0-Ub-C0O" secondAttribute="leading" id="Eu2-wv-aup"/>
+                            <constraint firstItem="6t0-Ub-C0O" firstAttribute="trailing" secondItem="sYu-X4-RNI" secondAttribute="trailing" id="S20-qn-C9p"/>
+                            <constraint firstItem="sYu-X4-RNI" firstAttribute="top" secondItem="tVS-6L-ZZI" secondAttribute="bottom" id="TYl-hP-kO5"/>
+                            <constraint firstItem="tVS-6L-ZZI" firstAttribute="top" secondItem="6t0-Ub-C0O" secondAttribute="top" id="yMx-sn-H8r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6t0-Ub-C0O"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Zmd-3u-Ewm" id="MQM-yR-CCI"/>
+                        <outlet property="collectionViewContainer" destination="sYu-X4-RNI" id="NAi-VH-YKm"/>
+                        <outlet property="doneButton" destination="tVS-6L-ZZI" id="oaC-7p-9lj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RxO-2m-ffg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96.799999999999997" y="967.4662668665668"/>
+        </scene>
         <!--Tasks Import View-->
         <scene sceneID="eeB-AP-N7O">
             <objects>

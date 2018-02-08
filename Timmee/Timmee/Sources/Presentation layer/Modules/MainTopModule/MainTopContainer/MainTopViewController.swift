@@ -203,15 +203,15 @@ extension MainTopViewController: ListsViewOutput {
     }
     
     func didAskToAddList() {
-        self.showListEditor(with: nil)
+        showListEditor(with: nil)
     }
     
     func didAskToAddSmartList() {
-        // TODO
+        showSmartListsPicker()
     }
     
     func didAskToEditList(_ list: List) {
-        self.showListEditor(with: list)
+        showListEditor(with: list)
     }
     
 }
@@ -270,6 +270,13 @@ fileprivate extension MainTopViewController {
         listEditorInput.setList(list)
         
         present(listEditorView, animated: true, completion: nil)
+    }
+    
+    func showSmartListsPicker() {
+        let smartListsPickerView = ViewControllersFactory.smartListsPicker
+        smartListsPickerView.loadViewIfNeeded()
+        
+        present(smartListsPickerView, animated: true, completion: nil)
     }
 
 }

@@ -29,6 +29,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.listEditor.initialViewController()
     }
     
+    static var smartListsPicker: SmartListPickerView {
+        return StoryboardsFactory.listEditor.viewController(id: "SmartListPicker")
+    }
+    
     static var tasksImportView: TasksImportView {
         return StoryboardsFactory.listEditor.viewController(id: "TasksImportView")
     }
