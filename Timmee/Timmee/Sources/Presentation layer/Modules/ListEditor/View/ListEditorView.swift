@@ -39,8 +39,6 @@ final class ListEditorView: UIViewController {
     @IBOutlet fileprivate weak var doneButton: UIButton!
     @IBOutlet fileprivate weak var closeButton: UIButton!
     
-    @IBOutlet fileprivate var separators: [UIView]!
-    
     @IBOutlet fileprivate weak var bottomConstraint: NSLayoutConstraint!
     
     
@@ -76,7 +74,7 @@ final class ListEditorView: UIViewController {
         super.viewWillAppear(animated)
         
         view.backgroundColor = AppTheme.current.backgroundColor
-        contentView.backgroundColor = AppTheme.current.foregroundColor
+        contentView.backgroundColor = AppTheme.current.middlegroundColor
         listTitleTextField.textColor = AppTheme.current.specialColor
         listTitleTextField.tintColor = AppTheme.current.tintColor
         listNoteTextView.textColor = AppTheme.current.tintColor
@@ -265,11 +263,6 @@ fileprivate extension ListEditorView {
     func setInterfaceEnabled(_ isEnabled: Bool) {
         doneButton.isEnabled = isEnabled
         
-        separators.forEach { separator in
-            UIView.animate(withDuration: 0.2, animations: {
-                separator.isHidden = !isEnabled
-            })
-        }
         let viewsToHide: [UIView] = [listNoteTextView, listIconsView, importTasksButton]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: {
