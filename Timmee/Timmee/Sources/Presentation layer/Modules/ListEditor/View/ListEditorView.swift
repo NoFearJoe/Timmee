@@ -31,43 +31,62 @@ final class ListEditorView: UIViewController {
 
     var output: ListEditorViewOutput!
     
-    @IBOutlet fileprivate weak var contentView: BarView!
-    @IBOutlet fileprivate weak var listTitleTextField: UITextField!
-    @IBOutlet fileprivate weak var listNoteTextView: TextView!
-    @IBOutlet fileprivate weak var listIconsView: UICollectionView!
-    @IBOutlet fileprivate weak var importTasksButton: UIButton!
-    @IBOutlet fileprivate weak var doneButton: UIButton!
-    @IBOutlet fileprivate weak var closeButton: UIButton!
+    private var listIconsView: ListIconsViewInput! {
+        didSet {
+            listIconsView.output = self
+        }
+    }
+    @IBOutlet private var listIconsViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet fileprivate weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var contentView: BarView!
+    @IBOutlet private var listTitleTextField: GrowingTextView!
+    @IBOutlet private var listNoteTextView: GrowingTextView!
+    @IBOutlet private var importTasksButton: UIButton!
+    @IBOutlet private var doneButton: UIButton!
+    @IBOutlet private var closeButton: UIButton!
     
+    @IBOutlet private var headerLabels: [UILabel]!
+    @IBOutlet private var initiallyHiddenViews: [UIView]!
     
-    @IBAction fileprivate func didPressImportTasksButton() {
+    @IBAction private func didPressImportTasksButton() {
         output.importTasksButtonPressed()
     }
     
-    @IBAction fileprivate func didPressDoneButton() {
+    @IBAction private func didPressDoneButton() {
         output.doneButtonPressed()
     }
     
-    @IBAction fileprivate func didPressCloseButton() {
+    @IBAction private func didPressCloseButton() {
         output.closeButtonPressed()
     }
     
-    
-    fileprivate var selectedListIcon: ListIcon?
-    
-    fileprivate let keyboardManager = KeyboardManager()
-    fileprivate var shouldForceResignFirstResponder = false
+    private var shouldForceResignFirstResponder = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         transitioningDelegate = self
-        setupKeyboardEventsHandler()
         setupTitleObserver()
         
-        listTitleTextField.placeholder = "new_list".localized
-        listNoteTextView.placeHolder = "note".localized
+        setInterfaceEnabled(false)
+        
+        listTitleTextField.textView.delegate = self
+        listTitleTextField.textView.font = UIFont.systemFont(ofSize: 20)
+        listTitleTextField.textView.autocapitalizationType = .sentences
+        listTitleTextField.textView.autocorrectionType = .yes
+        listTitleTextField.minNumberOfLines = 1
+        listTitleTextField.maxNumberOfLines = 3
+        listTitleTextField.placeholderAttributedText = NSAttributedString(string: "new_list".localized,
+                                                                          attributes: [.foregroundColor: AppTheme.current.secondaryTintColor,
+                                                                                       .font: UIFont.systemFont(ofSize: 20)])
+        
+        listNoteTextView.textView.font = UIFont.systemFont(ofSize: 16)
+        listNoteTextView.textView.autocapitalizationType = .sentences
+        listNoteTextView.textView.autocorrectionType = .yes
+        listNoteTextView.minNumberOfLines = 1
+        listNoteTextView.maxNumberOfLines = 8
+        listNoteTextView.placeholderAttributedText = NSAttributedString(string: "note".localized,
+                                                                        attributes: [.foregroundColor: AppTheme.current.secondaryTintColor,
+                                                                                     .font: UIFont.systemFont(ofSize: 16)])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,13 +94,17 @@ final class ListEditorView: UIViewController {
         
         view.backgroundColor = AppTheme.current.backgroundColor
         contentView.backgroundColor = AppTheme.current.middlegroundColor
-        listTitleTextField.textColor = AppTheme.current.specialColor
         listTitleTextField.tintColor = AppTheme.current.tintColor
-        listNoteTextView.textColor = AppTheme.current.tintColor
+        listTitleTextField.textView.textColor = AppTheme.current.specialColor
         listNoteTextView.tintColor = AppTheme.current.tintColor
+        listNoteTextView.textView.textColor = AppTheme.current.tintColor
         closeButton.tintColor = AppTheme.current.backgroundTintColor
         doneButton.tintColor = AppTheme.current.greenColor
         importTasksButton.setTitleColor(AppTheme.current.blueColor, for: .normal)
+        headerLabels.forEach { label in
+            label.text = label.text?.localized.uppercased()
+            label.textColor = AppTheme.current.secondaryTintColor
+        }
         
         if !listTitleTextField.isFirstResponder {
             listTitleTextField.becomeFirstResponder()
@@ -99,24 +122,32 @@ final class ListEditorView: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EmbededListIconsView" {
+            guard let listIconsView = segue.destination as? ListIconsViewInput else { return }
+            self.listIconsView = listIconsView
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
 
 }
 
 extension ListEditorView: ListEditorViewInput {
 
     func setListTitle(_ title: String) {
-        listTitleTextField.text = title
+        listTitleTextField.textView.text = title
         
         setInterfaceEnabled(!title.isEmpty)
     }
     
     func setListNote(_ note: String) {
-        listNoteTextView.text = note
+        listNoteTextView.textView.text = note
     }
     
     func setListIcon(_ icon: ListIcon) {
-        selectedListIcon = icon
-        listIconsView.reloadData()
+        listIconsView.setListIcon(icon)
     }
     
     func setImportedTasksCount(_ count: Int) {
@@ -129,63 +160,38 @@ extension ListEditorView: ListEditorViewInput {
     }
     
     func getTitle() -> String {
-        return listTitleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return listTitleTextField.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     func getNote() -> String {
-        return listNoteTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        return listNoteTextView.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
 }
 
-extension ListEditorView: UITextFieldDelegate {
+extension ListEditorView: ListIconsViewOutput {
+    
+    func didSelectListIcon(_ icon: ListIcon) {
+        output.listIconSelected(icon)
+    }
+    
+    func didChangeContentHeight(_ height: CGFloat) {
+        listIconsViewHeightConstraint.constant = height
+    }
+    
+}
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
+extension ListEditorView: UITextViewDelegate {
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
         guard !shouldForceResignFirstResponder else { return }
-        guard let text = textField.text, !text.trimmed.isEmpty else { return }
+        guard let text = textView.text, !text.trimmed.isEmpty else { return }
         output.listTitleEntered(text)
-        
-        textField.setNeedsLayout()
-        textField.layoutIfNeeded()
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         guard !shouldForceResignFirstResponder else { return true }
-        return textField.text != nil && !textField.text!.trimmed.isEmpty
-    }
-
-}
-
-extension ListEditorView: UICollectionViewDataSource {
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ListIcon.all.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListIconCell", for: indexPath) as! ListIconCell
-        
-        if let icon = ListIcon.all.item(at: indexPath.item) {
-            cell.icon = icon
-            cell.isSelected = icon == selectedListIcon
-        }
-        
-        return cell
-    }
-
-}
-
-extension ListEditorView: UICollectionViewDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let icon = ListIcon.all.item(at: indexPath.item) {
-            setListIcon(icon)
-            output.listIconSelected(icon)
-        }
+        return textView.text != nil && !textView.text!.trimmed.isEmpty
     }
 
 }
@@ -202,58 +208,17 @@ extension ListEditorView: UIViewControllerTransitioningDelegate {
 
 }
 
-fileprivate extension ListEditorView {
-
-    var listTitle: String {
-        return listTitleTextField.text ?? ""
-    }
-    
-    var listNote: String {
-        return listNoteTextView.text
-    }
-
-}
-
-fileprivate extension ListEditorView {
-    
-    fileprivate func setupKeyboardEventsHandler() {
-        keyboardManager.keyboardWillAppear = { (keyboardFrame, animationDuration) in
-            self.bottomConstraint.constant = keyboardFrame.size.height
-            
-            UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                self?.view.layoutIfNeeded()
-            })
-        }
-        
-        keyboardManager.keyboardWillDisappear = { (_, animationDuration) in
-            self.bottomConstraint.constant = 0
-            
-            UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                self?.view.layoutIfNeeded()
-            })
-        }
-        keyboardManager.keyboardFrameDidChange = { (keyboardFrame, animationDuration) in
-            self.bottomConstraint.constant = keyboardFrame.size.height
-            
-            UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-                self?.view.layoutIfNeeded()
-            })
-        }
-    }
-    
-}
-
-fileprivate extension ListEditorView {
+private extension ListEditorView {
 
     func setupTitleObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(listTitleDidChange),
-                                               name: .UITextFieldTextDidChange,
+                                               name: .UITextViewTextDidChange,
                                                object: nil)
     }
     
-    @objc func listTitleDidChange(notification: Notification) {
-        if let text = listTitleTextField.text, !text.trimmed.isEmpty {
+    @objc func listTitleDidChange() {
+        if let text = listTitleTextField.textView.text, !text.trimmed.isEmpty {
             setInterfaceEnabled(true)
         } else {
             setInterfaceEnabled(false)
@@ -263,8 +228,7 @@ fileprivate extension ListEditorView {
     func setInterfaceEnabled(_ isEnabled: Bool) {
         doneButton.isEnabled = isEnabled
         
-        let viewsToHide: [UIView] = [listNoteTextView, listIconsView, importTasksButton]
-        viewsToHide.forEach { view in
+        initiallyHiddenViews.forEach { view in
             UIView.animate(withDuration: 0.2, animations: {
                 view.isUserInteractionEnabled = isEnabled
                 view.alpha = isEnabled ? 1 : 0

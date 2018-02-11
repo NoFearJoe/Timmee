@@ -306,9 +306,9 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="tEy-zI-4Ti" secondAttribute="trailing" constant="16" id="BOt-Fl-Afq"/>
-                                        <constraint firstItem="tEy-zI-4Ti" firstAttribute="leading" secondItem="nWZ-iE-81b" secondAttribute="leading" constant="16" id="Z82-Pg-iyc"/>
-                                        <constraint firstItem="tEy-zI-4Ti" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nWZ-iE-81b" secondAttribute="top" constant="8" id="lug-An-ZPj"/>
+                                        <constraint firstAttribute="trailing" secondItem="tEy-zI-4Ti" secondAttribute="trailing" priority="750" constant="16" id="BOt-Fl-Afq"/>
+                                        <constraint firstItem="tEy-zI-4Ti" firstAttribute="leading" secondItem="nWZ-iE-81b" secondAttribute="leading" priority="750" constant="16" id="Z82-Pg-iyc"/>
+                                        <constraint firstItem="tEy-zI-4Ti" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nWZ-iE-81b" secondAttribute="top" priority="750" constant="8" id="lug-An-ZPj"/>
                                         <constraint firstAttribute="bottom" secondItem="tEy-zI-4Ti" secondAttribute="bottom" id="wdx-LI-17R"/>
                                     </constraints>
                                     <connections>

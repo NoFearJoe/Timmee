@@ -11,7 +11,7 @@
 "today" = "Today";
 "tomorrow" = "Tomorrow";
 "week" = "Week";
-"new_list" = "New list...";
+"new_list" = "New list";
 "import_tasks" = "Import tasks";
 "no_tasks_to_import" = "No tasks to import";
 "tasks_without_list" = "Not in a list";
@@ -19,6 +19,9 @@
 "input_task_title" = "Task title...";
 "note" = "Note...";
 "completed_tasks" = "Completed tasks";
+"list_title" = "List title";
+"list_description" = "Description";
+"list_icon" = "Icon";
 
 "search" = "Search...";
 "initial_search_title" = "Search";

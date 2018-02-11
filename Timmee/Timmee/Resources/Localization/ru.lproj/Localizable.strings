@@ -11,7 +11,7 @@
 "today" = "Сегодня";
 "tomorrow" = "Завтра";
 "week" = "Неделя";
-"new_list" = "Новый список...";
+"new_list" = "Новый список";
 "import_tasks" = "Импортировать задачи";
 "no_tasks_to_import" = "Нет задач для импорта";
 "tasks_without_list" = "Не в списке";
@@ -19,6 +19,9 @@
 "input_task_title" = "Название задачи...";
 "note" = "Описание...";
 "completed_tasks" = "Завершенные задачи";
+"list_title" = "Название списка";
+"list_description" = "Описание";
+"list_icon" = "Иконка";
 
 "search" = "Поиск...";
 "initial_search_title" = "Поиск задач";
