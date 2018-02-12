@@ -86,7 +86,6 @@ final class ListsViewController: UIViewController {
         }
         
         addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-//        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor.withAlphaComponent(0.9)), for: .highlighted)
         addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: UIControlState.selected)
         addListButton.tintColor = AppTheme.current.backgroundTintColor
     }
@@ -134,20 +133,31 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didUpdateLists(with change: CoreDataItemChange) {
+        func reloadPreviousCell(for indexPath: IndexPath) {
+            guard indexPath.item > 0 else { return }
+            collectionView.reloadItems(at: [IndexPath(item: indexPath.item - 1, section: indexPath.section)])
+        }
+        
+        func reloadNextCell(for indexPath: IndexPath) {
+            guard collectionView.numberOfItems(inSection: indexPath.section) > indexPath.item else { return }
+            collectionView.reloadItems(at: [IndexPath(item: indexPath.item, section: indexPath.section)])
+        }
+        
         switch change {
         case .insertion(let indexPath):
-            currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
+            if ListsCollectionViewSection(rawValue: indexPath.section) == .lists {
+                currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
+            }
+            
+            reloadPreviousCell(for: indexPath)
+            reloadNextCell(for: indexPath)
         case .deletion(let indexPath):
             if currentListIndexPath == nil || indexPath == currentListIndexPath {
                 currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
             }
             
-            if indexPath.item > 0 {
-                collectionView.reloadItems(at: [IndexPath(item: indexPath.item - 1, section: indexPath.section)])
-            }
-            if collectionView.numberOfItems(inSection: indexPath.section) > indexPath.item {
-                collectionView.reloadItems(at: [IndexPath(item: indexPath.item, section: indexPath.section)])
-            }
+            reloadPreviousCell(for: indexPath)
+            reloadNextCell(for: indexPath)
         case .update(let indexPath):
             guard indexPath == currentListIndexPath else { return }
             if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {

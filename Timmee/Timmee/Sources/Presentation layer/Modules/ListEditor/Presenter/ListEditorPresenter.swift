@@ -59,8 +59,8 @@ extension ListEditorPresenter: ListEditorViewOutput {
                 if self?.isNewList == true {
                     self?.output?.listCreated()
                 }
+                self?.router.close()
             }
-            self?.router.close()
         })
     }
     
