@@ -60,8 +60,6 @@ final class ListEditorView: UIViewController {
         output.closeButtonPressed()
     }
     
-    private var shouldForceResignFirstResponder = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         transitioningDelegate = self
@@ -106,17 +104,14 @@ final class ListEditorView: UIViewController {
             label.textColor = AppTheme.current.secondaryTintColor
         }
         
-        if !listTitleTextField.isFirstResponder {
+        if !listTitleTextField.isFirstResponder && getTitle().isEmpty {
             listTitleTextField.becomeFirstResponder()
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        shouldForceResignFirstResponder = true
         view.endEditing(true)
-        shouldForceResignFirstResponder = false
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -184,7 +179,6 @@ extension ListEditorView: ListIconsViewOutput {
 extension ListEditorView: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard !shouldForceResignFirstResponder else { return }
         guard let text = textView.text, !text.trimmed.isEmpty else { return }
         output.listTitleEntered(text)
     }

@@ -516,23 +516,13 @@
                                             <outlet property="delegate" destination="9rH-du-qUU" id="bqQ-kN-eqV"/>
                                         </connections>
                                     </tableView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJE-Sw-6ak">
-                                        <rect key="frame" x="15" y="291" width="345" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="DJE-Sw-6ak" firstAttribute="centerX" secondItem="0rI-Eh-6ZL" secondAttribute="centerX" id="Bft-qS-VhE"/>
-                                    <constraint firstItem="DJE-Sw-6ak" firstAttribute="centerY" secondItem="0rI-Eh-6ZL" secondAttribute="centerY" id="Mge-In-omr"/>
-                                    <constraint firstAttribute="trailing" secondItem="DJE-Sw-6ak" secondAttribute="trailing" constant="15" id="NAa-YI-EfM"/>
                                     <constraint firstAttribute="trailing" secondItem="BCP-xv-xzl" secondAttribute="trailing" id="Zd2-A4-4bl"/>
                                     <constraint firstItem="BCP-xv-xzl" firstAttribute="leading" secondItem="0rI-Eh-6ZL" secondAttribute="leading" id="b7R-hs-xjT"/>
                                     <constraint firstAttribute="bottom" secondItem="BCP-xv-xzl" secondAttribute="bottom" id="gsD-vw-yqE"/>
                                     <constraint firstItem="BCP-xv-xzl" firstAttribute="top" secondItem="0rI-Eh-6ZL" secondAttribute="top" id="kUf-CL-oeo"/>
-                                    <constraint firstItem="DJE-Sw-6ak" firstAttribute="leading" secondItem="0rI-Eh-6ZL" secondAttribute="leading" constant="15" id="n9W-b9-9Gr"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUL-bE-G11">
@@ -582,9 +572,8 @@
                     <connections>
                         <outlet property="closeButton" destination="8Pw-0K-UCN" id="dy7-Hp-7ed"/>
                         <outlet property="containerView" destination="0rI-Eh-6ZL" id="xq1-lb-ycy"/>
-                        <outlet property="containerViewButtonConstraint" destination="wGI-aI-w3d" id="0L7-1R-uDy"/>
+                        <outlet property="containerViewBottomConstraint" destination="wGI-aI-w3d" id="Px3-BU-moO"/>
                         <outlet property="doneButton" destination="jUL-bE-G11" id="v85-o6-AIM"/>
-                        <outlet property="errorLabel" destination="DJE-Sw-6ak" id="VvO-01-OcI"/>
                         <outlet property="tableView" destination="BCP-xv-xzl" id="Kf0-Qm-RIN"/>
                     </connections>
                 </viewController>

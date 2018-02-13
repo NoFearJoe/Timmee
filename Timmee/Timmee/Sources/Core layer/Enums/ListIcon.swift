@@ -15,6 +15,7 @@ import struct CoreGraphics.CGRect
 import class UIKit.NSMutableParagraphStyle
 import func Foundation.arc4random_uniform
 import struct Foundation.NSAttributedStringKey
+import func UIKit.UIGraphicsEndImageContext
 import func UIKit.UIGraphicsGetCurrentContext
 import func UIKit.UIGraphicsBeginImageContextWithOptions
 import func UIKit.UIGraphicsGetImageFromCurrentImageContext
@@ -111,6 +112,8 @@ private extension ListIcon {
         ("\(day)" as NSString).draw(in: textRect, withAttributes: textAttributes)
         
         let resultImage = UIGraphicsGetImageFromCurrentImageContext() ?? sourceImage
+        
+        UIGraphicsEndImageContext()
         
         return resultImage.withRenderingMode(.alwaysTemplate)
     }

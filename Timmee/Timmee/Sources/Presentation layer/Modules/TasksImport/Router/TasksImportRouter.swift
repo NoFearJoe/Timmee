@@ -21,6 +21,9 @@ final class TasksImportRouter {
 extension TasksImportRouter: TasksImportRouterInput {
 
     func close() {
+        if let presentedViewController = transitionHandler.presentedViewController {
+            presentedViewController.dismiss(animated: false, completion: nil)
+        }
         transitionHandler.dismiss(animated: true, completion: nil)
     }
 

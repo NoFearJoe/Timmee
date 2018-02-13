@@ -43,11 +43,10 @@ final class TasksImportView: UIViewController {
 
     @IBOutlet fileprivate var containerView: BarView!
     @IBOutlet fileprivate var tableView: UITableView!
-    @IBOutlet fileprivate var errorLabel: UILabel!
     @IBOutlet fileprivate var closeButton: UIButton!
     @IBOutlet fileprivate var doneButton: UIButton!
     
-    @IBOutlet fileprivate var containerViewButtonConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate var containerViewBottomConstraint: NSLayoutConstraint!
     
     fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
@@ -94,8 +93,6 @@ final class TasksImportView: UIViewController {
         searchController.searchBar.barTintColor = AppTheme.current.panelColor
         searchController.searchBar.backgroundColor = .clear
         searchController.searchBar.backgroundImage = UIImage.plain(color: .clear)
-        
-        errorLabel.textColor = AppTheme.current.tintColor
         
         output.viewWillAppear()
     }
@@ -265,7 +262,7 @@ fileprivate extension TasksImportView {
     
     func setupKeyboardManager() {
         keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
-            self.containerViewButtonConstraint.constant =  frame.height
+            self.containerViewBottomConstraint.constant =  frame.height
             
             UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()
@@ -273,7 +270,7 @@ fileprivate extension TasksImportView {
         }
         
         keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
-            self.containerViewButtonConstraint.constant =  0
+            self.containerViewBottomConstraint.constant =  0
             
             UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()

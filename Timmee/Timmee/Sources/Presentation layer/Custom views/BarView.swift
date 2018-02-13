@@ -27,11 +27,6 @@ class BarView: UIView {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        contentMode = .redraw
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -50,10 +45,24 @@ class BarView: UIView {
         let maskPath = UIBezierPath(roundedRect: bounds,
                                     byRoundingCorners: [.topLeft, .topRight],
                                     cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = maskPath.cgPath
         
-        self.layer.mask = maskLayer
+        if layer.mask == nil {
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = maskPath.cgPath
+            
+            layer.mask = maskLayer
+        } else {
+            guard let maskLayer = layer.mask as? CAShapeLayer else { return }
+            if let animation = layer.animation(forKey: "bounds.size")?.copy() as? CABasicAnimation {
+                animation.keyPath = "path"
+                animation.fromValue = maskLayer.path
+                animation.toValue = maskPath.cgPath
+                maskLayer.path = maskPath.cgPath
+                maskLayer.add(animation, forKey: "path")
+            } else {
+                maskLayer.path = maskPath.cgPath
+            }
+        }
     }
 
 }
