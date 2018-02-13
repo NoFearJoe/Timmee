@@ -12,6 +12,7 @@ extension SmartListEntity {
     
     func map(from list: SmartList) {
         id = list.id
+        sortPosition = Int16(list.smartListType.sortPosition)
     }
     
 }

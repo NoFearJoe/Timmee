@@ -123,25 +123,25 @@ final class SmartList: List {
         switch type {
         case .all:
             title = "all_tasks".localized
-            icon = .default
+            icon = .allTasks
         case .today:
             title = "today".localized
-            icon = .default
+            icon = .today
         case .tomorrow:
             title = "tomorrow".localized
-            icon = .default
+            icon = .tomorrow
         case .week:
             title = "week".localized
-            icon = .default
+            icon = .week
         case .inProgress:
             title = "in_progress".localized
-            icon = .mail
+            icon = .inProgress
         case .overdue:
             title = "overdue".localized
-            icon = .lock
+            icon = .overdue
         case .important:
             title = "important".localized
-            icon = .lock
+            icon = .important
         }
         
         self.init(id: type.id,

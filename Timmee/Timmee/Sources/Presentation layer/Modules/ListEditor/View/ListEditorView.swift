@@ -188,11 +188,6 @@ extension ListEditorView: UITextViewDelegate {
         guard let text = textView.text, !text.trimmed.isEmpty else { return }
         output.listTitleEntered(text)
     }
-    
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        guard !shouldForceResignFirstResponder else { return true }
-        return textView.text != nil && !textView.text!.trimmed.isEmpty
-    }
 
 }
 

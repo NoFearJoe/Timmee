@@ -16,7 +16,7 @@ protocol ListsViewInput: class {
 
 protocol ListsViewOutput: class {
     func didSelectList(_ list: List)
-    func didPickList(_ list: List) // TODO: Refactor?
+    func didPickList(_ list: List)
     func didUpdateList(_ list: List)
     func didAskToAddList()
     func didAskToAddSmartList()
@@ -31,6 +31,8 @@ final class ListsViewController: UIViewController {
     
     @IBOutlet private var addListButton: UIButton!
     @IBOutlet private var addListMenu: UIStackView!
+    @IBOutlet private var addListMenuButton: UIButton!
+    @IBOutlet private var addSmartListMenuButton: UIButton!
     @IBOutlet private var dimmedBackgroundView: BarView!
     
     let listsInteractor = ListsInteractor()
@@ -88,6 +90,9 @@ final class ListsViewController: UIViewController {
         addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
         addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: UIControlState.selected)
         addListButton.tintColor = AppTheme.current.backgroundTintColor
+        
+        addListMenuButton.setTitle("list".localized, for: .normal)
+        addSmartListMenuButton.setTitle("smart_list".localized, for: .normal)
     }
     
     @IBAction private func didSelectAddListMenuItem() {

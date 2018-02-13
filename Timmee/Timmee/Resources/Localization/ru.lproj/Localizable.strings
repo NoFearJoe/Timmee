@@ -17,11 +17,15 @@
 "tasks_without_list" = "Не в списке";
 "no_searched_tasks" = "Задач не найдено";
 "input_task_title" = "Название задачи...";
-"note" = "Описание...";
+"note" = "Здесь будут мои дела";
 "completed_tasks" = "Завершенные задачи";
 "list_title" = "Название списка";
 "list_description" = "Описание";
 "list_icon" = "Иконка";
+"list" = "Список";
+"smart_list" = "Smart список";
+"my_lists" = "Мои списки";
+"smart_lists" = "Smart списки";
 
 "search" = "Поиск...";
 "initial_search_title" = "Поиск задач";

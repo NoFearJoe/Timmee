@@ -205,7 +205,7 @@ fileprivate extension ListsInteractor {
     
     func makeSmartListsFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: SmartListEntity.entityName)
-        let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "sortPosition", ascending: true)
         request.sortDescriptors = [sortDescriptor]
         return request
     }

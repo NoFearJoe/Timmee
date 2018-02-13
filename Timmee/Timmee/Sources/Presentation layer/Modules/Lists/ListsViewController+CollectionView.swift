@@ -61,9 +61,9 @@ extension ListsViewController: UICollectionViewDataSource {
             
             let section = ListsCollectionViewSection(rawValue: indexPath.section)
             if section == .smartLists {
-                view.title = "Smart списки" // TODO
+                view.title = "smart_lists".localized
             } else if section == .lists {
-                view.title = "Мои списки" // TODO
+                view.title = "my_lists".localized
             }
             
             return view
@@ -129,7 +129,7 @@ extension ListsViewController: SwipableCollectionViewCellActionsProvider {
     
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction] {
         if indexPath.section == ListsCollectionViewSection.smartLists.rawValue && indexPath.item != 0 {
-            let hideAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "eye"), // TODO
+            let hideAction = SwipeCollectionAction(icon: #imageLiteral(resourceName: "eye"),
                                                    tintColor: AppTheme.current.secondaryTintColor,
                                                    action: handleSmartListHidding)
             return [hideAction]

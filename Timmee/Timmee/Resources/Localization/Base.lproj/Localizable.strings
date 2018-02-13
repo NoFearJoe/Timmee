@@ -17,11 +17,15 @@
 "tasks_without_list" = "Not in a list";
 "no_searched_tasks" = "No tasks";
 "input_task_title" = "Task title...";
-"note" = "Note...";
+"note" = "Here will be my tasks";
 "completed_tasks" = "Completed tasks";
 "list_title" = "List title";
 "list_description" = "Description";
 "list_icon" = "Icon";
+"list" = "List";
+"smart_list" = "Smart list";
+"my_lists" = "My lists";
+"smart_lists" = "Smart lists";
 
 "search" = "Search...";
 "initial_search_title" = "Search";

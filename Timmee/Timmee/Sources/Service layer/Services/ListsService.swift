@@ -99,11 +99,15 @@ final class ListsService {
     
     func fetchSmartLists() -> [SmartList] {
         let entities = fetchSmartListEntities()
-        return entities.flatMap({
-            guard let id = $0.id else { return nil }
-            let smartListType = SmartListType(id: id)
-            return SmartList(type: smartListType)
-        })
+        return entities
+            .flatMap {
+                guard let id = $0.id else { return nil }
+                let smartListType = SmartListType(id: id)
+                return SmartList(type: smartListType)
+            }
+            .sorted(by: { lhs, rhs -> Bool in
+                return lhs.smartListType.sortPosition < rhs.smartListType.sortPosition
+            })
     }
     
     func addSmartList(_ list: SmartList,

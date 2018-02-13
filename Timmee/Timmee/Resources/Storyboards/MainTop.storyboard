@@ -335,7 +335,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="136" height="32"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                        <state key="normal" title="Список">
+                                        <state key="normal" title="List">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -351,7 +351,7 @@
                                         <rect key="frame" x="0.0" y="48" width="136" height="32"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                        <state key="normal" title="Smart список">
+                                        <state key="normal" title="Smart list">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -406,6 +406,8 @@
                     <connections>
                         <outlet property="addListButton" destination="H1D-oW-nv7" id="5F8-2i-qu3"/>
                         <outlet property="addListMenu" destination="ZOS-ZR-jas" id="jly-xi-WxZ"/>
+                        <outlet property="addListMenuButton" destination="RgD-6i-caC" id="Qi3-mt-b6o"/>
+                        <outlet property="addSmartListMenuButton" destination="NQa-G4-llp" id="dxq-Dq-2cV"/>
                         <outlet property="collectionView" destination="b9x-D6-4Al" id="bRf-sP-aMu"/>
                         <outlet property="dimmedBackgroundView" destination="VuB-xn-oJm" id="X2L-5I-7do"/>
                     </connections>
