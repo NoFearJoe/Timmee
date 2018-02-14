@@ -27,7 +27,6 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
     
     private weak var collectionView: UICollectionView?
     
-    private var snapshotCenter: CGPoint = .zero
     private var currentSwipeOffset: CGFloat = 0
     
     private lazy var panGestureRecognizer: UIPanGestureRecognizer = {
@@ -54,7 +53,6 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        snapshotCenter = .zero
         currentSwipeOffset = 0
         
         if isHalfSwiped() {
@@ -96,19 +94,14 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
         case .began:
             addActionButtons()
             hideOtherSwipedCell()
-            if snapshotCenter == .zero {
-                snapshotCenter = center
-            }
+
             collectionView?.swipedCell = self
         case .changed:
-            guard snapshotCenter != .zero else { return }
             guard let container = actionButtonsContainer else { return }
             let translation = recognizer.translation(in: self)
-            let x = min(snapshotCenter.x, max(self.center.x + translation.x, snapshotCenter.x - container.frame.width))
-            let center = CGPoint(x: x, y: self.center.y)
             recognizer.setTranslation(.zero, in: self)
-            self.center = center
             currentSwipeOffset = max(0, min(container.frame.width, currentSwipeOffset - translation.x))
+            self.transform = CGAffineTransform(translationX: -currentSwipeOffset, y: 0)
         case .ended, .cancelled:
             let velocity = recognizer.velocity(in: self)
             if isHalfSwiped() || shouldShowActions(velocity: velocity) {
@@ -116,10 +109,6 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
             }
             if !isHalfSwiped() || shouldHideActions(velocity: velocity) {
                 hide(animated: true)
-            }
-            
-            if snapshotCenter == center {
-                snapshotCenter = .zero
             }
         default: break
         }
@@ -231,23 +220,22 @@ extension SwipableCollectionViewCell {
     func show(animated: Bool) {
         collectionView?.isUserInteractionEnabled = false
         UIView.animate(withDuration: animated ? 0.1 : 0, animations: {
-            guard self.snapshotCenter != .zero else { return }
             guard let container = self.actionButtonsContainer else { return }
-            let x = self.snapshotCenter.x - container.frame.width
-            self.center = CGPoint(x: x, y: self.center.y)
+            self.transform = CGAffineTransform(translationX: -container.frame.width, y: 0)
         }) { _ in
+            if let container = self.actionButtonsContainer {
+                self.currentSwipeOffset = container.frame.width
+            }
             self.collectionView?.isUserInteractionEnabled = true
         }
     }
     
     func hide(animated: Bool = false) {
-        guard snapshotCenter != .zero else { return }
         panGestureRecognizer.isEnabled = false
         panGestureRecognizer.isEnabled = true
         collectionView?.isUserInteractionEnabled = false
         UIView.animate(withDuration: animated ? 0.1 : 0, animations: {
-            guard self.snapshotCenter != .zero else { return }
-            self.center = self.snapshotCenter
+            self.transform = .identity
         }) { _ in
             self.currentSwipeOffset = 0
             self.removeActionButtons()
