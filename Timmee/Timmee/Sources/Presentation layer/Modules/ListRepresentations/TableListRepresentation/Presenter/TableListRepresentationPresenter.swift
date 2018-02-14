@@ -54,6 +54,10 @@ extension TableListRepresentationPresenter: ListRepresentationInput {
         state.shouldResetOffsetAfterReload = true
         
         interactor.fetchTasks(by: list.id)
+        
+        if let smartList = list as? SmartList, smartList.smartListType == .important {
+            view.setImportancy(true)
+        }
     }
     
     func clearInput() {

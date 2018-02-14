@@ -229,13 +229,14 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
 extension SwipableCollectionViewCell {
     
     func show(animated: Bool) {
+        collectionView?.isUserInteractionEnabled = false
         UIView.animate(withDuration: animated ? 0.1 : 0, animations: {
             guard self.snapshotCenter != .zero else { return }
             guard let container = self.actionButtonsContainer else { return }
             let x = self.snapshotCenter.x - container.frame.width
             self.center = CGPoint(x: x, y: self.center.y)
         }) { _ in
-            
+            self.collectionView?.isUserInteractionEnabled = true
         }
     }
     
@@ -243,6 +244,7 @@ extension SwipableCollectionViewCell {
         guard snapshotCenter != .zero else { return }
         panGestureRecognizer.isEnabled = false
         panGestureRecognizer.isEnabled = true
+        collectionView?.isUserInteractionEnabled = false
         UIView.animate(withDuration: animated ? 0.1 : 0, animations: {
             guard self.snapshotCenter != .zero else { return }
             self.center = self.snapshotCenter
@@ -252,6 +254,7 @@ extension SwipableCollectionViewCell {
             if self.collectionView?.swipedCell == self {
                 self.collectionView?.swipedCell = nil
             }
+            self.collectionView?.isUserInteractionEnabled = true
         }
     }
     

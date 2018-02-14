@@ -154,15 +154,19 @@ extension ListsViewController: ListsInteractorOutput {
                 currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
             }
             
-            reloadPreviousCell(for: indexPath)
-            reloadNextCell(for: indexPath)
+            collectionView.performBatchUpdates({
+                reloadPreviousCell(for: indexPath)
+                reloadNextCell(for: indexPath)
+            })
         case .deletion(let indexPath):
             if currentListIndexPath == nil || indexPath == currentListIndexPath {
                 currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
             }
             
-            reloadPreviousCell(for: indexPath)
-            reloadNextCell(for: indexPath)
+            collectionView.performBatchUpdates({
+                reloadPreviousCell(for: indexPath)
+                reloadNextCell(for: indexPath)
+            })
         case .update(let indexPath):
             guard indexPath == currentListIndexPath else { return }
             if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {

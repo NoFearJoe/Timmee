@@ -18,6 +18,7 @@
 "no_searched_tasks" = "No tasks";
 "input_task_title" = "Task title...";
 "note" = "Here will be my tasks";
+"task_note" = "Note...";
 "completed_tasks" = "Completed tasks";
 "list_title" = "List title";
 "list_description" = "Description";

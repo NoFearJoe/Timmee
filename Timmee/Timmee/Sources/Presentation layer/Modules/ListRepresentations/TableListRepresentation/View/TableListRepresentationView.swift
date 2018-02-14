@@ -17,6 +17,7 @@ protocol TableListRepresentationViewInput: class {
     func clearTaskTitleInput()
     
     func toggleGroupEditing()
+    func setImportancy(_ isImportant: Bool)
     func setGroupEditingActionsEnabled(_ isEnabled: Bool)
     func setCompletionGroupEditingAction(_ action: GroupEditingCompletionAction)
     
@@ -220,6 +221,11 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         }) { _ in
             self.output.groupEditingToggled(to: self.isGroupEditing)
         }
+    }
+    
+    func setImportancy(_ isImportant: Bool) {
+        importancyView.isHighlighted = isImportant
+        output.didToggleImportancyInShortTaskEditor(to: isImportant)
     }
     
     func setGroupEditingActionsEnabled(_ isEnabled: Bool) {
@@ -474,8 +480,7 @@ fileprivate extension TableListRepresentationView {
     }
     
     @objc func toggleImportancy() {
-        importancyView.isHighlighted = !importancyView.isHighlighted
-        output.didToggleImportancyInShortTaskEditor(to: importancyView.isHighlighted)
+        setImportancy(!importancyView.isHighlighted)
     }
 
 }
