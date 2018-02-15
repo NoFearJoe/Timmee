@@ -69,6 +69,7 @@
 		34638CA1E9A08C2EF7EDCA4B /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */; };
 		960A0DDC1F921551003DCDAD /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */; };
 		960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */; };
+		960D03522035ED9D00321BC3 /* ListEditorTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */; };
 		96115F251F6AD5500050D7A3 /* UITableView+hideSwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F241F6AD5500050D7A3 /* UITableView+hideSwipeCell.swift */; };
 		96115F2A1F6B0C780050D7A3 /* StoryboardsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F291F6B0C780050D7A3 /* StoryboardsFactory.swift */; };
 		96115F2C1F6B0D700050D7A3 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */; };
@@ -290,6 +291,7 @@
 		6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
 		960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationCell.swift; sourceTree = "<group>"; };
+		960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEditorTextFieldController.swift; sourceTree = "<group>"; };
 		96115F241F6AD5500050D7A3 /* UITableView+hideSwipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+hideSwipeCell.swift"; sourceTree = "<group>"; };
 		96115F291F6B0C780050D7A3 /* StoryboardsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsFactory.swift; sourceTree = "<group>"; };
 		96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				9615F428203033B500D9625C /* ListIconsView.swift */,
+				960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */,
 			);
 			path = Submodules;
 			sourceTree = "<group>";
@@ -1892,6 +1895,7 @@
 				0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */,
 				96A5F1161F4A18EE00F94553 /* RepeatMask.swift in Sources */,
 				963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */,
+				960D03522035ED9D00321BC3 /* ListEditorTextFieldController.swift in Sources */,
 				96477A6B1F814CC2005C3520 /* TasksImportAssembly.swift in Sources */,
 				96636A371F86560600C84FD4 /* Subtask.swift in Sources */,
 				0CF30954201F301E00FD7E3E /* ListsViewController.swift in Sources */,

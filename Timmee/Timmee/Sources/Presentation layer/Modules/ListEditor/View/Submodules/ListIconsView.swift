@@ -15,7 +15,7 @@ import struct CoreGraphics.CGFloat
 
 // MARK: - Input
 protocol ListIconsViewInput: class {
-    weak var output: ListIconsViewOutput? { get set }
+    func setOutput(_ output: ListIconsViewOutput)
     func setListIcon(_ icon: ListIcon)
 }
 
@@ -52,6 +52,10 @@ final class ListIconsView: UICollectionViewController {
 
 // MARK: - ListIconsViewInput
 extension ListIconsView: ListIconsViewInput {
+    
+    func setOutput(_ output: ListIconsViewOutput) {
+        self.output = output
+    }
     
     func setListIcon(_ icon: ListIcon) {
         selectedListIcon = icon

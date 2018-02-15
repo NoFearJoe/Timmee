@@ -589,8 +589,8 @@
                                                         </constraints>
                                                         <viewLayoutGuide key="safeArea" id="PQS-Ik-BqN"/>
                                                     </view>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-gE-l8g">
-                                                        <rect key="frame" x="0.0" y="436" width="375" height="129"/>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-gE-l8g">
+                                                        <rect key="frame" x="0.0" y="436" width="375" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="jtV-ke-jBC"/>
                                                         </constraints>
@@ -721,7 +721,7 @@
             <objects>
                 <viewController storyboardIdentifier="SubtasksEditor" id="J5T-B3-DLw" customClass="SubtasksEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bKg-vp-wze">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXr-dB-RXn" customClass="AddSubtaskView" customModule="Timmee" customModuleProvider="target">
@@ -762,7 +762,7 @@
                                 </connections>
                             </view>
                             <tableView contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ym9-dy-PPp" customClass="ReorderableTableView" customModule="Timmee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="40" width="375" height="89"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="0.0"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="lHU-aH-mFU"/>
