@@ -65,21 +65,23 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkh-Sh-QGQ" userLabel="Title container">
                                                         <rect key="frame" x="8" y="38.5" width="358" height="56"/>
                                                         <subviews>
-                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mf8-kg-B2q" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="8" width="342" height="40"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAo-YO-304">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="56"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" placeholder="YES" id="NsC-dk-8Ry"/>
+                                                                    <constraint firstAttribute="height" constant="56" placeholder="YES" id="7he-5g-ArM"/>
                                                                 </constraints>
-                                                            </view>
+                                                                <connections>
+                                                                    <segue destination="1ug-vW-u4X" kind="embed" identifier="EmbedTitleTextView" id="inn-tI-RjD"/>
+                                                                </connections>
+                                                            </containerView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="mf8-kg-B2q" firstAttribute="leading" secondItem="jkh-Sh-QGQ" secondAttribute="leading" constant="8" id="0tg-EK-HyT"/>
+                                                            <constraint firstItem="mAo-YO-304" firstAttribute="leading" secondItem="jkh-Sh-QGQ" secondAttribute="leading" id="3jT-GG-hTZ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="mAo-YO-304" secondAttribute="trailing" id="77o-N4-QhM"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="CeW-66-15E"/>
-                                                            <constraint firstAttribute="trailing" secondItem="mf8-kg-B2q" secondAttribute="trailing" constant="8" id="ROg-JC-dDn"/>
-                                                            <constraint firstAttribute="bottom" secondItem="mf8-kg-B2q" secondAttribute="bottom" constant="8" id="ckR-UX-fYL"/>
-                                                            <constraint firstItem="mf8-kg-B2q" firstAttribute="top" secondItem="jkh-Sh-QGQ" secondAttribute="top" constant="8" id="ldL-TO-86e"/>
+                                                            <constraint firstAttribute="bottom" secondItem="mAo-YO-304" secondAttribute="bottom" id="ep7-jT-vyI"/>
+                                                            <constraint firstItem="mAo-YO-304" firstAttribute="top" secondItem="jkh-Sh-QGQ" secondAttribute="top" id="wXL-ub-fB0"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -93,24 +95,26 @@
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-d1-cCT" userLabel="Description container">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-d1-cCT" userLabel="Description container">
                                                         <rect key="frame" x="8" y="133" width="358" height="44"/>
                                                         <subviews>
-                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLV-TH-oIR" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="8" width="342" height="28"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7u-7W-pj7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="28" placeholder="YES" id="VOm-qa-hmb"/>
+                                                                    <constraint firstAttribute="height" constant="44" placeholder="YES" id="Er8-We-XTa"/>
                                                                 </constraints>
-                                                            </view>
+                                                                <connections>
+                                                                    <segue destination="1ug-vW-u4X" kind="embed" identifier="EmbedNoteTextView" id="FHq-oL-Fxu"/>
+                                                                </connections>
+                                                            </containerView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="aLV-TH-oIR" secondAttribute="trailing" constant="8" id="0yT-IR-RQQ"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="5XE-fr-uX0"/>
-                                                            <constraint firstItem="aLV-TH-oIR" firstAttribute="leading" secondItem="bHZ-d1-cCT" secondAttribute="leading" constant="8" id="KGr-nG-0Yw"/>
-                                                            <constraint firstItem="aLV-TH-oIR" firstAttribute="top" secondItem="bHZ-d1-cCT" secondAttribute="top" constant="8" id="KJv-kI-2fP"/>
-                                                            <constraint firstAttribute="bottom" secondItem="aLV-TH-oIR" secondAttribute="bottom" constant="8" id="UCd-d0-5gs"/>
+                                                            <constraint firstItem="R7u-7W-pj7" firstAttribute="top" secondItem="bHZ-d1-cCT" secondAttribute="top" id="R0S-bU-4uc"/>
+                                                            <constraint firstAttribute="bottom" secondItem="R7u-7W-pj7" secondAttribute="bottom" id="Zud-RO-fSI"/>
+                                                            <constraint firstItem="R7u-7W-pj7" firstAttribute="leading" secondItem="bHZ-d1-cCT" secondAttribute="leading" id="c4E-xI-Ar8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="R7u-7W-pj7" secondAttribute="trailing" id="h4k-5R-Bc7"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -245,8 +249,6 @@
                         <outlet property="doneButton" destination="cWF-h2-bVv" id="idT-lB-dFc"/>
                         <outlet property="importTasksButton" destination="VKo-hY-e00" id="fdR-ie-Hdl"/>
                         <outlet property="listIconsViewHeightConstraint" destination="Oho-la-DiU" id="BjC-cK-gBW"/>
-                        <outlet property="listNoteTextView" destination="aLV-TH-oIR" id="5Se-ts-Mpo"/>
-                        <outlet property="listTitleTextField" destination="mf8-kg-B2q" id="oQl-ei-CSh"/>
                         <outletCollection property="headerLabels" destination="at1-Fb-RZe" collectionClass="NSMutableArray" id="1uQ-Tg-K0I"/>
                         <outletCollection property="headerLabels" destination="gSi-UA-mBh" collectionClass="NSMutableArray" id="PKA-xB-TZS"/>
                         <outletCollection property="headerLabels" destination="BfK-Of-FPL" collectionClass="NSMutableArray" id="Nmg-sJ-gCr"/>
@@ -260,6 +262,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryD-ma-S5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="96.799999999999997" y="147.97601199400302"/>
+        </scene>
+        <!--List Editor Text Field Controller-->
+        <scene sceneID="quF-5G-WV3">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1ug-vW-u4X" customClass="ListEditorTextFieldController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mgn-31-dsz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mf8-kg-B2q" customClass="GrowingTextView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="8" y="8" width="359" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" placeholder="YES" id="NsC-dk-8Ry"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="mf8-kg-B2q" secondAttribute="bottom" constant="8" id="3Ks-Ab-vJY"/>
+                            <constraint firstAttribute="trailing" secondItem="mf8-kg-B2q" secondAttribute="trailing" constant="8" id="J06-3h-xnr"/>
+                            <constraint firstItem="mf8-kg-B2q" firstAttribute="leading" secondItem="mgn-31-dsz" secondAttribute="leading" constant="8" id="o4D-7W-i03"/>
+                            <constraint firstItem="mf8-kg-B2q" firstAttribute="top" secondItem="mgn-31-dsz" secondAttribute="top" constant="8" id="qff-7z-Qoe"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="44"/>
+                    <connections>
+                        <outlet property="textView" destination="mf8-kg-B2q" id="Znw-u9-qve"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="znr-bA-yeb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934" y="-32"/>
         </scene>
         <!--List Icons View-->
         <scene sceneID="xWi-3m-qTa">
@@ -307,7 +344,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXS-c4-BhY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="148"/>
+            <point key="canvasLocation" x="907" y="134"/>
         </scene>
         <!--Smart List Picker View-->
         <scene sceneID="zAu-gl-gjl">
@@ -586,4 +623,7 @@
         <image name="checkmark" width="20" height="20"/>
         <image name="cross" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="FHq-oL-Fxu"/>
+    </inferredMetricsTieBreakers>
 </document>
