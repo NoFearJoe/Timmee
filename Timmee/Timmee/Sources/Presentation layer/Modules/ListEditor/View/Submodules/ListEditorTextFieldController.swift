@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - Input
 protocol ListEditorTextFieldInput: class {
     var text: String { get }
     
@@ -18,11 +19,13 @@ protocol ListEditorTextFieldInput: class {
     func setFocused()
 }
 
+// MARK: - Output
 protocol ListEditorTextFieldOutput: class {
     func listEditorTextField(_ textField: ListEditorTextFieldInput, didChangeText text: String)
     func listEditorTextField(_ textField: ListEditorTextFieldInput, didEndEditing text: String)
 }
 
+// MARK: - Class
 final class ListEditorTextFieldController: UIViewController {
     
     weak var output: ListEditorTextFieldOutput?
@@ -48,6 +51,7 @@ final class ListEditorTextFieldController: UIViewController {
     
 }
 
+// MARK: - ListEditorTextFieldInput
 extension ListEditorTextFieldController: ListEditorTextFieldInput {
     
     var text: String {
@@ -80,6 +84,7 @@ extension ListEditorTextFieldController: ListEditorTextFieldInput {
     
 }
 
+// MARK: - UITextViewDelegate
 extension ListEditorTextFieldController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -89,6 +94,7 @@ extension ListEditorTextFieldController: UITextViewDelegate {
     
 }
 
+// MARK: - Private methdos
 private extension ListEditorTextFieldController {
     
     func setupTextObserver() {

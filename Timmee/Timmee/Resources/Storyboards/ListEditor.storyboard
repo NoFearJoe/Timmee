@@ -286,6 +286,7 @@
                             <constraint firstItem="mf8-kg-B2q" firstAttribute="leading" secondItem="mgn-31-dsz" secondAttribute="leading" constant="8" id="o4D-7W-i03"/>
                             <constraint firstItem="mf8-kg-B2q" firstAttribute="top" secondItem="mgn-31-dsz" secondAttribute="top" constant="8" id="qff-7z-Qoe"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="eAU-E4-mxV"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

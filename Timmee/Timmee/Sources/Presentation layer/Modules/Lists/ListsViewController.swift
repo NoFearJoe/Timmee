@@ -132,9 +132,8 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialLists() {
-        if currentList == nil {
-            currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
-        }
+        guard currentList == nil else { return }
+        currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
     }
     
     func didUpdateLists(with change: CoreDataItemChange) {
@@ -184,9 +183,8 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialSmartLists() {
-        if currentList == nil {
-            currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
-        }
+        guard currentList == nil else { return }
+        currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
     }
     
     func didUpdateSmartLists(with change: CoreDataItemChange) {

@@ -40,11 +40,7 @@ extension ListsViewController: UICollectionViewDataSource {
             cell.icon = list.icon.image
             
             let tasksCount = listsInteractor.activeTasksCount(in: list)
-            if tasksCount > 0 {
-                cell.tasksCount = "\(tasksCount)"
-            } else {
-                cell.tasksCount = nil
-            }
+            cell.tasksCount = tasksCount > 0 ? "\(tasksCount)" : nil
             
             cell.isPicked = currentList == list
             
@@ -78,9 +74,8 @@ extension ListsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isPickingList, ListsCollectionViewSection(rawValue: indexPath.section) == .lists {
-            if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-                output?.didPickList(list)
-            }
+            guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
+            output?.didPickList(list)
         } else {
             currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
             collectionView.reloadData()
@@ -151,25 +146,22 @@ extension ListsViewController: SwipableCollectionViewCellActionsProvider {
 private extension ListsViewController {
     
     func handleSmartListHidding(at indexPath: IndexPath) {
-        if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) as? SmartList {
-            listsInteractor.hideSmartList(list)
-        }
+        guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) as? SmartList else { return }
+        listsInteractor.hideSmartList(list)
     }
     
     func handleListDeletion(at indexPath: IndexPath) {
-        if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-            if listsInteractor.tasksCount(in: list) > 0 {
-                showListDeletionAlert(with: list)
-            } else {
-                listsInteractor.removeList(list)
-            }
+        guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
+        if listsInteractor.tasksCount(in: list) > 0 {
+            showListDeletionAlert(with: list)
+        } else {
+            listsInteractor.removeList(list)
         }
     }
     
     func handleListEditing(at indexPath: IndexPath) {
-        if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
-            self.output?.didAskToEditList(list)
-        }
+        guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
+        output?.didAskToEditList(list)
     }
     
     func showListDeletionAlert(with list: List) {

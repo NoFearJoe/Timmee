@@ -717,6 +717,13 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		0CAF831F2036AC4500E129D4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		0CB8F1FD1FE3BE53005D9E11 /* TaskAttachmentsPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1487,6 +1494,7 @@
 		96E543741F49ED890081C6F0 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				0CAF831F2036AC4500E129D4 /* Base */,
 				96115F261F6B0C660050D7A3 /* Factories */,
 				96E543751F49ED890081C6F0 /* Custom views */,
 				96E543761F49ED890081C6F0 /* Modules */,
