@@ -6,7 +6,7 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
-import class Foundation.NSOrderedSet
+import class Foundation.NSSet
 import class CoreData.NSPredicate
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSCompoundPredicate
@@ -64,8 +64,8 @@ final class ListsService {
                     tasks: [Task] = [],
                     completion: @escaping (Error?) -> Void) {
         DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
-            let taskEntities = NSOrderedSet(array: self.fetchTaskEntities(for: tasks,
-                                                                          context: context))
+            let taskEntities = NSSet(array: self.fetchTaskEntities(for: tasks,
+                                                                   context: context))
             
             if let existingList = context.fetchList(id: list.id) {
                 existingList.map(from: list)

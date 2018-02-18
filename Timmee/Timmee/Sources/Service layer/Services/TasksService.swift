@@ -172,10 +172,10 @@ extension TasksService {
             if let newTask = context.createTask() {
                 newTask.map(from: task)
                 newTask.list = context.fetchList(id: listID)
-                newTask.subtasks = NSOrderedSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
-                                                                                    in: context))
+                newTask.subtasks = NSSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
+                                                                             in: context))
                 newTask.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
-                                                                        in: context))
+                                                                     in: context))
                 newTask.timeTemplate = self.retrieveTimeTemplateEntity(from: task.timeTemplate,
                                                                           in: context)
                 save()
@@ -204,8 +204,8 @@ extension TasksService {
                         taskEntity.list = context.fetchList(id: listID)
                     }
                     
-                    taskEntity.subtasks = NSOrderedSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
-                                                                                           in: context))
+                    taskEntity.subtasks = NSSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
+                                                                                    in: context))
                     taskEntity.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
                                                                             in: context))
                     

@@ -57,7 +57,7 @@ class Task {
         creationDate = task.creationDate! as Date
         
         tags = (Array(task.tags as? Set<TagEntity> ?? Set())).map { Tag(entity: $0) }
-        subtasks = (task.subtasks!.array as! [SubtaskEntity]).map { Subtask(entity: $0) }
+        subtasks = (Array(task.subtasks!) as! [SubtaskEntity]).map { Subtask(entity: $0) }
         
         if let template = task.timeTemplate {
             timeTemplate = TimeTemplate(entity: template)

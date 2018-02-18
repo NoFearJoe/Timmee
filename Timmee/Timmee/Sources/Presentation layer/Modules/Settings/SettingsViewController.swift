@@ -281,7 +281,7 @@ fileprivate extension SettingsViewController {
         let mailAction = { [unowned self] in
             let viewController = ViewControllersFactory.mail
             viewController.mailComposeDelegate = self
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.present(viewController, animated: true, completion: nil)
         }
         let mailItem = SettingsItem(title: "mail_us".localized,
                                        subtitle: nil,
