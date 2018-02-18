@@ -292,7 +292,9 @@ fileprivate extension SettingsViewController {
                                        style: .detailsTitle,
                                        action: mailAction)
         
-        aboutSectionItems.append(mailItem)
+        if MFMailComposeViewController.canSendMail() {
+            aboutSectionItems.append(mailItem)
+        }
         
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let versionItem = SettingsItem(title: "version".localized,

@@ -127,9 +127,8 @@ final class ViewControllersFactory {
         let viewController = MFMailComposeViewController()
         if #available(iOS 11.0, *) {
             viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
-        } else {
-            viewController.setToRecipients(["mesterra.co@gmail.com"])
         }
+        viewController.setToRecipients(["mesterra.co@gmail.com"])
         return viewController
     }
 
