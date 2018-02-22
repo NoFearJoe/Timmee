@@ -151,15 +151,40 @@ enum WeekRepeatUnit {
         case .weekdays: return "weekdays".localized
         case .weekends: return "weekends".localized
         case .custom(let dayUnits):
+            func localizedDay(dayUnit: DayUnit) -> String {
+                // Проблема с "Повтор в суббота"
+//                if dayUnits.count == 1 {
+//                    return dayUnit.localized
+//                } else {
+                    return dayUnit.localizedShort
+//                }
+            }
+            
             if isEveryday {
                 return "everyday".localized
+            } else if containsWeekdays {
+                let otherDaysString = Array(dayUnits.sorted(by: { $0.number < $1.number }).dropFirst(5)).map(localizedDay).joined(separator: ", ")
+                return "weekdays".localized + " \("and".localized) " + otherDaysString
+            } else if containsWeekends {
+                let otherDaysString = Array(dayUnits.sorted(by: { $0.number < $1.number }).dropLast(2)).map(localizedDay).joined(separator: ", ")
+                return otherDaysString + " \("and".localized) " + "weekends".localized
             }
-            return dayUnits.sorted(by: { $0.number < $1.number }).map({ $0.localizedShort }).joined(separator: ", ")
+            return dayUnits.sorted(by: { $0.number < $1.number }).map(localizedDay).joined(separator: ", ")
         }
     }
     
     var isEveryday: Bool {
         if case .custom(let days) = self { return days.count == 7 }
+        return false
+    }
+    
+    var containsWeekdays: Bool {
+        if case .custom(let dayUnits) = self { return Set(dayUnits.map { $0.number }).isSuperset(of: [0, 1, 2, 3, 4]) }
+        return false
+    }
+    
+    var containsWeekends: Bool {
+        if case .custom(let dayUnits) = self { return Set(dayUnits.map { $0.number }).isSuperset(of: [5, 6]) }
         return false
     }
     

@@ -80,6 +80,7 @@
 "at" = "at"; // 21:00
 "upon" = ""; // 15 минут
 "no_repeat" = "No repeat";
+"and" = "and";
 
 "hours" = "hours";
 "minutes" = "minutes";
