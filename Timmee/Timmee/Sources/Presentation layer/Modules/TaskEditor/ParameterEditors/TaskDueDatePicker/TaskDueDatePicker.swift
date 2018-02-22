@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CVCalendar
 
 protocol TaskDueDatePickerInput: class {
     var minimumAvailableDate: Date { get set }
@@ -26,32 +27,38 @@ final class TaskDueDatePicker: UIViewController {
         didSet { updateClearButton() }
     }
     
-    @IBOutlet fileprivate var calendarView: CalendarView!
-    
-    fileprivate let calendar = Calendar(start: Date(), shift: -1, daysCount: 357)
+    @IBOutlet private var menuView: CVCalendarMenuView!
+    @IBOutlet private var calendarView: CVCalendarView!
     
     var minimumAvailableDate: Date = Date() {
         didSet {
-            calendar.changeStartDate(to: minimumAvailableDate)
-            calendarView.calendar = (calendar, calendar.monthDataSource())
-            calendarView.calendarView.reloadData()
+//            calendar.changeStartDate(to: minimumAvailableDate)
+//            calendarView.calendar = (calendar, calendar.monthDataSource())
+//            calendarView.calendarView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        calendarView.calendar = (calendar, calendar.monthDataSource())
-        calendarView.didSelectItemAtIndex = { [unowned self] index in
-            let date = self.calendar.date(by: index)
-            self.setDueDate(date)
-            self.output?.didChangeDueDate(to: date)
-        }
+//        calendarView.calendar = (calendar, calendar.monthDataSource())
+//        calendarView.didSelectItemAtIndex = { [unowned self] index in
+//            let date = self.calendar.date(by: index)
+//            self.setDueDate(date)
+//            self.output?.didChangeDueDate(to: date)
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateClearButton()
+        calendarView.isHidden = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        menuView.commitMenuViewUpdate()
+        calendarView.commitCalendarViewUpdate()
     }
     
 }
@@ -59,8 +66,8 @@ final class TaskDueDatePicker: UIViewController {
 extension TaskDueDatePicker: TaskDueDatePickerInput {
     
     func setDueDate(_ date: Date) {
-        calendarView.selectedDateIndex = calendar.index(of: date)
-        calendarView.calendarView.reloadData()
+//        calendarView.selectedDateIndex = calendar.index(of: date)
+//        calendarView.calendarView.reloadData()
     }
     
 }
@@ -68,8 +75,46 @@ extension TaskDueDatePicker: TaskDueDatePickerInput {
 extension TaskDueDatePicker: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return 82
+        return 480
     }
+    
+}
+
+extension TaskDueDatePicker: CVCalendarMenuViewDelegate {
+    
+    func firstWeekday() -> Weekday {
+        return .monday
+    }
+    
+    func dayOfWeekTextColor(by weekday: Weekday) -> UIColor {
+        if weekday == .saturday || weekday == .sunday {
+            return AppTheme.current.redColor
+        } else {
+            return AppTheme.current.secondaryTintColor
+        }
+    }
+    
+}
+
+extension TaskDueDatePicker: CVCalendarViewDelegate {
+    
+    func presentationMode() -> CalendarMode {
+        return .monthView
+    }
+    
+    func shouldAutoSelectDayOnWeekChange() -> Bool {
+        return false
+    }
+    
+    func shouldAutoSelectDayOnMonthChange() -> Bool {
+        return false
+    }
+    
+}
+
+extension TaskDueDatePicker: CVCalendarViewAppearanceDelegate {
+    
+    
     
 }
 
