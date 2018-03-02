@@ -129,7 +129,7 @@
                         <viewControllerLayoutGuide type="bottom" id="tx7-vz-Cva"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WN7-pZ-RXs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="417"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgU-u1-Z5M">
@@ -142,7 +142,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hW-8h-ebL">
-                                <rect key="frame" x="0.0" y="112" width="375" height="480"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="305"/>
                                 <connections>
                                     <segue destination="gbT-db-EPL" kind="embed" identifier="DueDatePicker" id="cK8-Nl-zMn"/>
                                 </connections>
@@ -161,7 +161,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="592"/>
+                    <size key="freeformSize" width="375" height="417"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThR-qY-YXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1574,7 +1574,7 @@
             </objects>
             <point key="canvasLocation" x="748" y="251"/>
         </scene>
-        <!--Calendar Delegate-->
+        <!--Calendar Appearance Delegate-->
         <scene sceneID="bEn-aO-hi1">
             <objects>
                 <viewController storyboardIdentifier="TaskDueDatePicker" id="gbT-db-EPL" customClass="TaskDueDatePicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
@@ -1583,7 +1583,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Spy-CM-Ztk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4LN-nR-Mch">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="305"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-3K-cUZ" customClass="CVCalendarMenuView" customModule="CVCalendar">
@@ -1597,9 +1597,13 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JA-Zx-08p" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="30" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="275"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="91F-Kr-QEd"/>
+                                </constraints>
                                 <connections>
+                                    <outlet property="calendarAppearanceDelegate" destination="gbT-db-EPL" id="VGP-No-GNL"/>
                                     <outlet property="calendarDelegate" destination="gbT-db-EPL" id="jg2-xC-s7V"/>
                                 </connections>
                             </view>
@@ -1617,7 +1621,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="480"/>
+                    <size key="freeformSize" width="375" height="305"/>
                     <connections>
                         <outlet property="calendarView" destination="6JA-Zx-08p" id="fQG-pY-gVm"/>
                         <outlet property="menuView" destination="ypb-3K-cUZ" id="JzG-tI-km0"/>

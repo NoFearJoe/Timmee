@@ -95,7 +95,7 @@ extension TaskDueDateTimeEditor: TaskDueTimePickerOutput {
 extension TaskDueDateTimeEditor: TaskParameterEditorInput {
 
     var requiredHeight: CGFloat {
-        return 592
+        return 112 + 305
     }
 
 }
