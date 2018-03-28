@@ -129,7 +129,7 @@
                         <viewControllerLayoutGuide type="bottom" id="tx7-vz-Cva"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WN7-pZ-RXs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgU-u1-Z5M">
@@ -142,7 +142,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hW-8h-ebL">
-                                <rect key="frame" x="0.0" y="112" width="375" height="480"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="84"/>
                                 <connections>
                                     <segue destination="gbT-db-EPL" kind="embed" identifier="DueDatePicker" id="cK8-Nl-zMn"/>
                                 </connections>
@@ -161,11 +161,11 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="592"/>
+                    <size key="freeformSize" width="375" height="196"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThR-qY-YXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="-240"/>
+            <point key="canvasLocation" x="1138" y="-60"/>
         </scene>
         <!--Task Reminder Editor-->
         <scene sceneID="TLs-bo-bjZ">
@@ -1574,7 +1574,7 @@
             </objects>
             <point key="canvasLocation" x="748" y="251"/>
         </scene>
-        <!--Calendar Delegate-->
+        <!--Task Due Date Picker-->
         <scene sceneID="bEn-aO-hi1">
             <objects>
                 <viewController storyboardIdentifier="TaskDueDatePicker" id="gbT-db-EPL" customClass="TaskDueDatePicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
@@ -1583,49 +1583,125 @@
                         <viewControllerLayoutGuide type="bottom" id="Spy-CM-Ztk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4LN-nR-Mch">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-3K-cUZ" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="10" width="375" height="15"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-yk-dVX" customClass="CalendarView" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UH4-cH-aBh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewLayout key="collectionViewLayout" id="HZz-1D-LrO" customClass="CalendarViewLayout" customModule="Timmee" customModuleProvider="target"/>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarDayCell" id="vNt-gS-euE" customClass="CalendarDayCell" customModule="Timmee" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="62"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="пн" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJK-wP-UUw" customClass="DayNameLabel" customModule="Timmee" customModuleProvider="target">
+                                                            <rect key="frame" x="4" y="4" width="40" height="12"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="12" id="a9k-vR-IpY"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-Na-XBy" customClass="DayNumberLabel" customModule="Timmee" customModuleProvider="target">
+                                                            <rect key="frame" x="5" y="20" width="38" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="caZ-Na-XBy" secondAttribute="height" multiplier="1:1" id="k2c-tz-tz6"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="19"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="caZ-Na-XBy" firstAttribute="top" secondItem="XJK-wP-UUw" secondAttribute="bottom" constant="4" id="6hM-Ah-YUR"/>
+                                                    <constraint firstItem="XJK-wP-UUw" firstAttribute="top" secondItem="vNt-gS-euE" secondAttribute="top" constant="4" id="DET-Fe-OMn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XJK-wP-UUw" secondAttribute="trailing" constant="4" id="e5U-90-kK8"/>
+                                                    <constraint firstAttribute="bottom" secondItem="caZ-Na-XBy" secondAttribute="bottom" constant="4" id="ihe-4h-Gvb"/>
+                                                    <constraint firstItem="XJK-wP-UUw" firstAttribute="leading" secondItem="vNt-gS-euE" secondAttribute="leading" constant="4" id="pkL-BJ-GPW"/>
+                                                    <constraint firstItem="caZ-Na-XBy" firstAttribute="centerX" secondItem="vNt-gS-euE" secondAttribute="centerX" id="zJI-sU-GGJ"/>
+                                                </constraints>
+                                                <size key="customSize" width="48" height="62"/>
+                                                <connections>
+                                                    <outlet property="dayNameLabel" destination="XJK-wP-UUw" id="6as-i9-tmz"/>
+                                                    <outlet property="dayNumberLabel" destination="caZ-Na-XBy" id="rSK-dZ-Sg5"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarMonthCell" id="3vI-zN-9KG" customClass="CalendarMonthCell" customModule="Timmee" customModuleProvider="target">
+                                                <rect key="frame" x="58" y="21" width="48" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPl-LY-Ies">
+                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="HPl-LY-Ies" firstAttribute="top" secondItem="3vI-zN-9KG" secondAttribute="top" id="4eI-kP-w4Z"/>
+                                                    <constraint firstItem="HPl-LY-Ies" firstAttribute="leading" secondItem="3vI-zN-9KG" secondAttribute="leading" id="KTD-aD-v8f"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HPl-LY-Ies" secondAttribute="bottom" id="VXo-Rf-GUt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HPl-LY-Ies" secondAttribute="trailing" id="gAh-lg-O8D"/>
+                                                </constraints>
+                                                <size key="customSize" width="48" height="20"/>
+                                                <connections>
+                                                    <outlet property="monthLabel" destination="HPl-LY-Ies" id="E2C-6G-BRV"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="zyM-id-B8S"/>
+                                    <constraint firstAttribute="trailing" secondItem="UH4-cH-aBh" secondAttribute="trailing" id="IXx-wZ-h6h"/>
+                                    <constraint firstItem="UH4-cH-aBh" firstAttribute="top" secondItem="d4C-yk-dVX" secondAttribute="top" id="J4R-sk-Shf"/>
+                                    <constraint firstItem="UH4-cH-aBh" firstAttribute="leading" secondItem="d4C-yk-dVX" secondAttribute="leading" id="lNT-k0-VNp"/>
+                                    <constraint firstAttribute="bottom" secondItem="UH4-cH-aBh" secondAttribute="bottom" id="vDT-d9-XgM"/>
+                                    <constraint firstAttribute="height" constant="82" id="wOf-Jo-fb8"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="menuViewDelegate" destination="gbT-db-EPL" id="vkb-jc-mH2"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JA-Zx-08p" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="30" width="375" height="450"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="calendarDelegate" destination="gbT-db-EPL" id="jg2-xC-s7V"/>
+                                    <outlet property="calendarView" destination="UH4-cH-aBh" id="nGH-O9-qoo"/>
                                 </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6JA-Zx-08p" firstAttribute="leading" secondItem="4LN-nR-Mch" secondAttribute="leading" id="0Ss-yy-NeN"/>
-                            <constraint firstAttribute="trailing" secondItem="6JA-Zx-08p" secondAttribute="trailing" id="6UH-eq-tL2"/>
-                            <constraint firstItem="ypb-3K-cUZ" firstAttribute="leading" secondItem="4LN-nR-Mch" secondAttribute="leading" id="9Wu-pv-rky"/>
-                            <constraint firstItem="6JA-Zx-08p" firstAttribute="top" secondItem="ypb-3K-cUZ" secondAttribute="bottom" constant="5" id="Ixb-EP-LKg"/>
-                            <constraint firstAttribute="bottom" secondItem="6JA-Zx-08p" secondAttribute="bottom" id="KEp-YM-HlW"/>
-                            <constraint firstItem="ypb-3K-cUZ" firstAttribute="top" secondItem="4LN-nR-Mch" secondAttribute="top" constant="10" id="P2b-lY-JNJ"/>
-                            <constraint firstAttribute="trailing" secondItem="ypb-3K-cUZ" secondAttribute="trailing" id="eXW-ya-nQK"/>
+                            <constraint firstItem="d4C-yk-dVX" firstAttribute="leading" secondItem="4LN-nR-Mch" secondAttribute="leading" id="42W-mI-JTW"/>
+                            <constraint firstAttribute="trailing" secondItem="d4C-yk-dVX" secondAttribute="trailing" id="FSb-KG-zeZ"/>
+                            <constraint firstItem="d4C-yk-dVX" firstAttribute="top" secondItem="4LN-nR-Mch" secondAttribute="top" id="R3b-KZ-dQu"/>
+                            <constraint firstItem="Spy-CM-Ztk" firstAttribute="top" secondItem="d4C-yk-dVX" secondAttribute="bottom" id="ZCA-pY-Scj"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="480"/>
+                    <size key="freeformSize" width="375" height="82"/>
                     <connections>
-                        <outlet property="calendarView" destination="6JA-Zx-08p" id="fQG-pY-gVm"/>
-                        <outlet property="menuView" destination="ypb-3K-cUZ" id="JzG-tI-km0"/>
+                        <outlet property="calendarView" destination="d4C-yk-dVX" id="gPa-T6-2UX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OF1-bJ-gVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="416"/>
+            <point key="canvasLocation" x="1482" y="237"/>
         </scene>
     </scenes>
     <resources>
