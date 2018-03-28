@@ -66,7 +66,6 @@ final class TaskDueDatePicker: UIViewController {
 extension TaskDueDatePicker: TaskDueDatePickerInput {
     
     func setDueDate(_ date: Date) {
-        calendarView.presentedDate = CVDate(date: date)
 //        calendarView.selectedDateIndex = calendar.index(of: date)
 //        calendarView.calendarView.reloadData()
     }
@@ -76,7 +75,7 @@ extension TaskDueDatePicker: TaskDueDatePickerInput {
 extension TaskDueDatePicker: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return 275 + 30
+        return 480
     }
     
 }
@@ -115,25 +114,7 @@ extension TaskDueDatePicker: CVCalendarViewDelegate {
 
 extension TaskDueDatePicker: CVCalendarViewAppearanceDelegate {
     
-    func dayLabelColor(by weekday: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
-        if weekday == .saturday || weekday == .sunday {
-            return AppTheme.current.redColor
-        } else {
-            return AppTheme.current.tintColor
-        }
-    }
     
-    func dayLabelWeekdaySelectedBackgroundColor() -> UIColor {
-        return AppTheme.current.blueColor
-    }
-    
-    func dayLabelWeekdaySelectedTextColor() -> UIColor {
-        return AppTheme.current.backgroundTintColor
-    }
-    
-//    func spaceBetweenWeekViews() -> CGFloat {
-//        return 20
-//    }
     
 }
 
