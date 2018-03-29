@@ -22,18 +22,21 @@ final class TaskDueDateTimeEditor: UIViewController {
     weak var output: TaskDueDateTimeEditorOutput?
     weak var container: TaskParameterEditorOutput?
     
-    fileprivate var dueTimePicker: TaskDueTimePickerInput!
-    fileprivate var dueDatePicker: TaskDueDatePickerInput!
+    private var dueTimePicker: TaskDueTimePickerInput!
+    private var dueDatePicker: TaskDueDatePickerInput!
+    
+    @IBOutlet private var resultDateLabel: UILabel!
     
     var selectedDueDate: Date = Date() {
         didSet {
+            resultDateLabel.text = selectedDueDate.asNearestDateString
             guard selectedDueDate != oldValue else { return }
             output?.didSelectDueDate(selectedDueDate)
         }
     }
     
-    fileprivate var hours: Int = 0
-    fileprivate var minutes: Int = 0
+    private var hours: Int = 0
+    private var minutes: Int = 0
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DueTimePicker" {
@@ -95,12 +98,12 @@ extension TaskDueDateTimeEditor: TaskDueTimePickerOutput {
 extension TaskDueDateTimeEditor: TaskParameterEditorInput {
 
     var requiredHeight: CGFloat {
-        return 196
+        return 112 + 82 + 40
     }
 
 }
 
-fileprivate extension TaskDueDateTimeEditor {
+private extension TaskDueDateTimeEditor {
     
     func updateSelectedDueDate(with date: Date) {
         selectedDueDate = date

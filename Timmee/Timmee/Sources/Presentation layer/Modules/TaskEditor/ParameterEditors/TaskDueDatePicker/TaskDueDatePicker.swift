@@ -26,9 +26,9 @@ final class TaskDueDatePicker: UIViewController {
         didSet { updateClearButton() }
     }
     
-    @IBOutlet fileprivate var calendarView: CalendarView!
+    @IBOutlet private var calendarView: CalendarView!
     
-    fileprivate let calendar = Calendar(start: Date(), shift: -1, daysCount: 357)
+    private let calendar = Calendar(start: Date(), shift: -1, daysCount: 357)
     
     var minimumAvailableDate: Date = Date() {
         didSet {

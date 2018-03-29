@@ -129,7 +129,7 @@
                         <viewControllerLayoutGuide type="bottom" id="tx7-vz-Cva"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WN7-pZ-RXs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgU-u1-Z5M">
@@ -147,25 +147,40 @@
                                     <segue destination="gbT-db-EPL" kind="embed" identifier="DueDatePicker" id="cK8-Nl-zMn"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUV-Qw-l1b">
+                                <rect key="frame" x="0.0" y="196" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="TP0-bN-vKM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.066666666666666666" alpha="0.29999999999999999" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BUV-Qw-l1b" firstAttribute="top" secondItem="4hW-8h-ebL" secondAttribute="bottom" id="7O1-WQ-StK"/>
                             <constraint firstItem="RgU-u1-Z5M" firstAttribute="leading" secondItem="WN7-pZ-RXs" secondAttribute="leading" id="874-bP-IAg"/>
                             <constraint firstItem="4hW-8h-ebL" firstAttribute="leading" secondItem="WN7-pZ-RXs" secondAttribute="leading" id="HXE-na-UA4"/>
+                            <constraint firstItem="tx7-vz-Cva" firstAttribute="top" secondItem="BUV-Qw-l1b" secondAttribute="bottom" id="IrZ-iZ-7Yl"/>
                             <constraint firstAttribute="trailing" secondItem="RgU-u1-Z5M" secondAttribute="trailing" id="NyS-Hl-hJA"/>
-                            <constraint firstAttribute="bottom" secondItem="4hW-8h-ebL" secondAttribute="bottom" id="Z0W-TH-sAC"/>
+                            <constraint firstItem="BUV-Qw-l1b" firstAttribute="leading" secondItem="WN7-pZ-RXs" secondAttribute="leading" id="bV5-JM-iWi"/>
                             <constraint firstItem="RgU-u1-Z5M" firstAttribute="top" secondItem="WN7-pZ-RXs" secondAttribute="top" id="frJ-sO-JzE"/>
                             <constraint firstAttribute="trailing" secondItem="4hW-8h-ebL" secondAttribute="trailing" id="iF4-JF-uBF"/>
                             <constraint firstItem="4hW-8h-ebL" firstAttribute="top" secondItem="RgU-u1-Z5M" secondAttribute="bottom" id="ngU-4J-fpS"/>
+                            <constraint firstAttribute="trailing" secondItem="BUV-Qw-l1b" secondAttribute="trailing" id="tHK-3Q-ajQ"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="196"/>
+                    <size key="freeformSize" width="375" height="236"/>
+                    <connections>
+                        <outlet property="resultDateLabel" destination="BUV-Qw-l1b" id="QqT-nf-u1C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThR-qY-YXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="-60"/>
+            <point key="canvasLocation" x="1136.8" y="-60.26986506746627"/>
         </scene>
         <!--Task Reminder Editor-->
         <scene sceneID="TLs-bo-bjZ">
@@ -1675,8 +1690,8 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="UH4-cH-aBh" secondAttribute="trailing" id="IXx-wZ-h6h"/>
                                     <constraint firstItem="UH4-cH-aBh" firstAttribute="top" secondItem="d4C-yk-dVX" secondAttribute="top" id="J4R-sk-Shf"/>
+                                    <constraint firstAttribute="bottom" secondItem="UH4-cH-aBh" secondAttribute="bottom" id="Rzg-Bp-ctW"/>
                                     <constraint firstItem="UH4-cH-aBh" firstAttribute="leading" secondItem="d4C-yk-dVX" secondAttribute="leading" id="lNT-k0-VNp"/>
-                                    <constraint firstAttribute="bottom" secondItem="UH4-cH-aBh" secondAttribute="bottom" id="vDT-d9-XgM"/>
                                     <constraint firstAttribute="height" constant="82" id="wOf-Jo-fb8"/>
                                 </constraints>
                                 <connections>
@@ -1688,8 +1703,8 @@
                         <constraints>
                             <constraint firstItem="d4C-yk-dVX" firstAttribute="leading" secondItem="4LN-nR-Mch" secondAttribute="leading" id="42W-mI-JTW"/>
                             <constraint firstAttribute="trailing" secondItem="d4C-yk-dVX" secondAttribute="trailing" id="FSb-KG-zeZ"/>
+                            <constraint firstItem="Spy-CM-Ztk" firstAttribute="top" secondItem="d4C-yk-dVX" secondAttribute="bottom" id="Q7n-z7-t2p"/>
                             <constraint firstItem="d4C-yk-dVX" firstAttribute="top" secondItem="4LN-nR-Mch" secondAttribute="top" id="R3b-KZ-dQu"/>
-                            <constraint firstItem="Spy-CM-Ztk" firstAttribute="top" secondItem="d4C-yk-dVX" secondAttribute="bottom" id="ZCA-pY-Scj"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -1701,7 +1716,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OF1-bJ-gVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="237"/>
+            <point key="canvasLocation" x="1480.8" y="236.58170914542731"/>
         </scene>
     </scenes>
     <resources>
