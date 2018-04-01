@@ -9,9 +9,8 @@
 import struct Foundation.IndexPath
 import class Foundation.NSPredicate
 import class CoreData.NSFetchRequest
-import protocol CoreData.NSFetchRequestResult
 import class CoreData.NSManagedObjectContext
-import class SugarRecord.CoreDataDefaultStorage
+import protocol CoreData.NSFetchRequestResult
 
 protocol TasksImportInteractorInput: class {
     func fetchTasks(excludeList list: List?)
@@ -88,7 +87,7 @@ fileprivate extension TasksImportInteractor {
     func fetchTasks(predicate: NSPredicate?) {
         let request = tasksService.allTasksFetchRequest() as! NSFetchRequest<NSFetchRequestResult>
         request.predicate = predicate
-        let context = DefaultStorage.instance.mainContext
+        let context = DefaultStorage.instance.database.readContext
         tasksObserver = CoreDataObserver<Task>(request: request,
                                                section: "list.title",
                                                cacheName: nil,

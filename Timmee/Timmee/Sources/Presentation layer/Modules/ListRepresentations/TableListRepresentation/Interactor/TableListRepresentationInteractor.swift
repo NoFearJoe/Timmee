@@ -8,13 +8,12 @@
 
 import struct Foundation.Date
 import struct Foundation.IndexPath
-import class SugarRecord.CoreDataDefaultStorage
-import class CoreData.NSManagedObjectContext
 import class CoreData.NSFetchRequest
-import protocol CoreData.NSFetchRequestResult
 import class Foundation.NSPredicate
 import class CoreData.NSSortDescriptor
 import class Foundation.DispatchQueue
+import class CoreData.NSManagedObjectContext
+import protocol CoreData.NSFetchRequestResult
 
 protocol TableListRepresentationInteractorInput: class {
     func fetchTasks(by listID: String?)
@@ -247,7 +246,7 @@ fileprivate extension TableListRepresentationInteractor {
         
         request.fetchBatchSize = 20
         
-        let context = DefaultStorage.instance.mainContext
+        let context = DefaultStorage.instance.database.readContext
         tasksObserver = CoreDataObserver(request: request,
                                          section: "isDone",
                                          cacheName: "tasks\(listID)",

@@ -119,7 +119,7 @@ fileprivate extension SearchInteractor {
     func fetchTasks(predicate: NSPredicate?) {
         let request = tasksService.allTasksFetchRequest() as! NSFetchRequest<NSFetchRequestResult>
         request.predicate = predicate
-        let context = DefaultStorage.instance.mainContext
+        let context = DefaultStorage.instance.database.readContext
         tasksObserver = CoreDataObserver<Task>(request: request,
                                                section: "list.title",
                                                cacheName: nil,

@@ -12,9 +12,6 @@ import class Foundation.NSSortDescriptor
 import class Foundation.DispatchQueue
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSFetchRequest
-import class SugarRecord.CoreDataDefaultStorage
-import struct SugarRecord.FetchRequest
-import protocol SugarRecord.Context
 
 final class TimeTemplatesService {}
 
@@ -31,7 +28,7 @@ extension TimeTemplatesService {
     }
     
     private func fetch(with request: NSFetchRequest<TimeTemplateEntity>) -> [TimeTemplateEntity] {
-        return (try? DefaultStorage.instance.mainContext.fetch(request)) ?? []
+        return (try? DefaultStorage.instance.database.readContext.fetch(request)) ?? []
     }
     
 }
@@ -48,7 +45,7 @@ extension TimeTemplatesService {
     }
     
     func createOrUpdateTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             if let existingTimeTemplate = context.fetchTimeTemplate(id: template.id) {
                 existingTimeTemplate.map(from: template)
                 save()
@@ -60,7 +57,7 @@ extension TimeTemplatesService {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -68,16 +65,16 @@ extension TimeTemplatesService {
     }
     
     func removeTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             if let existingTimeTemplate = context.fetchTimeTemplate(id: template.id) {
-                try? context.remove(existingTimeTemplate)
+                context.delete(existingTimeTemplate)
                 save()
             } else {
                 DispatchQueue.main.async {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -86,7 +83,7 @@ extension TimeTemplatesService {
     
 }
 
-fileprivate extension TimeTemplatesService {
+private extension TimeTemplatesService {
     
     func timeTemplateFetchRequest(id: String) -> NSFetchRequest<TimeTemplateEntity> {
         let fetchRequest: NSFetchRequest<TimeTemplateEntity> = TimeTemplateEntity.fetchRequest()
@@ -108,10 +105,11 @@ fileprivate extension TimeTemplatesService {
     
 }
 
-extension Context {
+extension NSManagedObjectContext {
     
     func fetchTimeTemplate(id: String) -> TimeTemplateEntity? {
-        let request = FetchRequest<TimeTemplateEntity>().filtered(with: "id", equalTo: id)
+        let request: NSFetchRequest<TimeTemplateEntity> = TimeTemplateEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
         return (try? fetch(request))?.first
     }
     

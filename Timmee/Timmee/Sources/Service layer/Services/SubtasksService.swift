@@ -7,18 +7,17 @@
 //
 
 import class Foundation.NSPredicate
+import class Foundation.NSSortDescriptor
 import class Foundation.DispatchQueue
+import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObjectContext
-import struct SugarRecord.FetchRequest
-import class SugarRecord.CoreDataDefaultStorage
-import protocol SugarRecord.Context
 
 final class SubtasksService {}
 
 extension SubtasksService {
 
     func addSubtask(_ subtask: Subtask, to task: Task, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard context.fetchSubtask(id: subtask.id) == nil else {
                 DispatchQueue.main.async {
                     completion?()
@@ -36,7 +35,7 @@ extension SubtasksService {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -44,7 +43,7 @@ extension SubtasksService {
     }
     
     func updateSubtask(_ subtask: Subtask, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             if let existingSubtask = context.fetchSubtask(id: subtask.id) {
                 existingSubtask.map(from: subtask)
                 save()
@@ -56,7 +55,7 @@ extension SubtasksService {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -64,16 +63,16 @@ extension SubtasksService {
     }
     
     func removeSubtask(_ subtask: Subtask, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             if let existingSubtask = context.fetchSubtask(id: subtask.id) {
-                try? context.remove(existingSubtask)
+                context.delete(existingSubtask)
                 save()
             } else {
                 DispatchQueue.main.async {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -84,20 +83,23 @@ extension SubtasksService {
 
 fileprivate extension SubtasksService {
 
-    static func subtaskFetchRequest(id: String) -> FetchRequest<SubtaskEntity> {
-        return FetchRequest<SubtaskEntity>().filtered(with: "id", equalTo: id)
+    static func subtaskFetchRequest(id: String) -> NSFetchRequest<SubtaskEntity> {
+        let request: NSFetchRequest<SubtaskEntity> = SubtaskEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        return request
     }
     
-    static func subtasksFetchRequest(taskID: String) -> FetchRequest<SubtaskEntity> {
-        return FetchRequest<SubtaskEntity>()
-            .filtered(with: "task.id", equalTo: taskID)
-            .sorted(with: "sortPosition", ascending: true)
+    static func subtasksFetchRequest(taskID: String) -> NSFetchRequest<SubtaskEntity> {
+        let request: NSFetchRequest<SubtaskEntity> = SubtaskEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "task.id = %@", taskID)
+        request.sortDescriptors = [NSSortDescriptor.init(key: "sortPosition", ascending: true)]
+        return request
     }
 
 }
 
 
-extension Context {
+extension NSManagedObjectContext {
     
     func fetchSubtask(id: String) -> SubtaskEntity? {
         return (try? fetch(SubtasksService.subtaskFetchRequest(id: id)))?.first

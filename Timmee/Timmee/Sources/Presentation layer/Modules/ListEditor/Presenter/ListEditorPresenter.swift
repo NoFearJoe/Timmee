@@ -9,7 +9,7 @@
 import class Foundation.DispatchQueue
 
 protocol ListEditorInput: class {
-    weak var output: ListEditorOutput? { get set }
+    var output: ListEditorOutput? { get set }
     
     func setList(_ list: List?)
 }

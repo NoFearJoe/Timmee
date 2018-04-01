@@ -17,7 +17,7 @@ import class CoreLocation.CLLocation
 import class Foto.Photo
 
 protocol TaskEditorInput: class {
-    weak var output: TaskEditorOutput? { get set }
+    var output: TaskEditorOutput? { get set }
     
     func setListID(_ listID: String?)
     func setTask(_ task: Task?)
@@ -282,8 +282,8 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func attachmentSelected(_ attachment: String) {
-        let photosData = task.attachments.flatMap { FilesService().getFileFromDocuments(withName: $0) }
-        let photos = photosData.flatMap { UIImage(data: $0) }
+        let photosData = task.attachments.compactMap { FilesService().getFileFromDocuments(withName: $0) }
+        let photos = photosData.compactMap { UIImage(data: $0) }
         
         guard !photos.isEmpty else { return }
         
@@ -398,7 +398,7 @@ fileprivate extension TaskEditorPresenter {
                     }
                 }
 
-                let stringAddress = address.flatMap { $0 }.joined(separator: ", ")
+                let stringAddress = address.compactMap { $0 }.joined(separator: ", ")
                 
                 completion(stringAddress)
             } else {

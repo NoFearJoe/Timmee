@@ -7,12 +7,11 @@
 //
 
 import class Foundation.NSSet
+import class Foundation.NSSortDescriptor
 import class CoreData.NSPredicate
+import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSCompoundPredicate
-import struct SugarRecord.FetchRequest
-import class SugarRecord.CoreDataDefaultStorage
-import protocol SugarRecord.Context
 
 final class ListsService {
     
@@ -24,17 +23,19 @@ final class ListsService {
         case listRemovingError
     }
     
-    lazy var smartListsFetchRequest: FetchRequest<SmartListEntity> = {
-        return FetchRequest<SmartListEntity>()
-    }()
+    lazy var smartListsFetchRequest: NSFetchRequest<SmartListEntity> = SmartListEntity.fetchRequest()
     
-    lazy var listsFetchRequest: FetchRequest<ListEntity> = {
+    lazy var listsFetchRequest: NSFetchRequest<ListEntity> = {
         let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
-        return FetchRequest<ListEntity>().sorted(with: sortDescriptor)
+        let request: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
+        request.sortDescriptors = [sortDescriptor]
+        return request
     }()
     
-    fileprivate func listsSearchRequest(string: String) -> FetchRequest<ListEntity> {
-        return listsFetchRequest.filtered(with: NSPredicate(format: "title CONTAINS[cd] %@", string))
+    fileprivate func listsSearchRequest(string: String) -> NSFetchRequest<ListEntity> {
+        let request: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", string)
+        return request
     }
     
     // MARK: Lists
@@ -45,7 +46,7 @@ final class ListsService {
     }
     
     func addList(_ list: List, completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard context.fetchList(id: list.id) == nil else {
                 completion(.listIsAlreadyExist)
                 return
@@ -55,15 +56,15 @@ final class ListsService {
                 newList.map(from: list)
                 save()
             }
-        }) { error in
-            completion(error != nil ? .listAddingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .listAddingError : nil)
         }
     }
     
     func updateList(_ list: List,
                     tasks: [Task] = [],
                     completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             let taskEntities = NSSet(array: self.fetchTaskEntities(for: tasks,
                                                                    context: context))
             
@@ -76,22 +77,22 @@ final class ListsService {
                 newList.addToTasks(taskEntities)
                 save()
             }
-        }) { error in
-            completion(error != nil ? .listUpdatingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .listUpdatingError : nil)
         }
     }
     
     func removeList(_ list: List, completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard let existingList = context.fetchList(id: list.id) else {
                 completion(.listIsNotExist)
                 return
             }
             
-            try? context.remove(existingList)
+            context.delete(existingList)
             save()
-        }) { error in
-            completion(error != nil ? .listRemovingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .listRemovingError : nil)
         }
     }
     
@@ -100,7 +101,7 @@ final class ListsService {
     func fetchSmartLists() -> [SmartList] {
         let entities = fetchSmartListEntities()
         return entities
-            .flatMap {
+            .compactMap {
                 guard let id = $0.id else { return nil }
                 let smartListType = SmartListType(id: id)
                 return SmartList(type: smartListType)
@@ -112,7 +113,7 @@ final class ListsService {
     
     func addSmartList(_ list: SmartList,
                       completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard context.fetchSmartList(id: list.id) == nil else {
                 completion(.listIsAlreadyExist)
                 return
@@ -122,23 +123,23 @@ final class ListsService {
                 newList.map(from: list)
                 save()
             }
-        }) { error in
-            completion(error != nil ? .listAddingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .listAddingError : nil)
         }
     }
     
     func removeSmartList(_ list: SmartList,
                          completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard let existingList = context.fetchSmartList(id: list.id) else {
                 completion(.listIsNotExist)
                 return
             }
             
-            try? context.remove(existingList)
+            context.delete(existingList)
             save()
-        }) { error in
-            completion(error != nil ? .listRemovingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .listRemovingError : nil)
         }
     }
     
@@ -152,36 +153,42 @@ fileprivate extension ListsService {
     }
     
     func fetchListEntities() -> [ListEntity] {
-        return (try? DefaultStorage.instance.storage.fetch(listsFetchRequest)) ?? []
+        return (try? DefaultStorage.instance.database.readContext.fetch(listsFetchRequest)) ?? []
     }
     
     func fetchSmartListEntities() -> [SmartListEntity] {
-        return (try? DefaultStorage.instance.storage.fetch(smartListsFetchRequest)) ?? []
+        return (try? DefaultStorage.instance.database.readContext.fetch(smartListsFetchRequest)) ?? []
     }
     
     func searchListEntities(by string: String) -> [ListEntity] {
-        return (try? DefaultStorage.instance.storage.fetch(listsSearchRequest(string: string))) ?? []
+        return (try? DefaultStorage.instance.database.readContext.fetch(listsSearchRequest(string: string))) ?? []
     }
     
-    static func listFetchRequest(with id: String) -> FetchRequest<ListEntity> {
-        return FetchRequest<ListEntity>().filtered(with: "id", equalTo: id)
+    static func listFetchRequest(with id: String) -> NSFetchRequest<ListEntity> {
+        let request: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        return request
     }
     
-    static func smartListFetchRequest(with id: String) -> FetchRequest<SmartListEntity> {
-        return FetchRequest<SmartListEntity>().filtered(with: "id", equalTo: id)
+    static func smartListFetchRequest(with id: String) -> NSFetchRequest<SmartListEntity> {
+        let request: NSFetchRequest<SmartListEntity> = SmartListEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        return request
     }
     
-    static func tasksFetchRequest(for tasks: [Task]) -> FetchRequest<TaskEntity> {
-        return FetchRequest<TaskEntity>().filtered(with: "id", in: tasks.map { $0.id })
+    static func tasksFetchRequest(for tasks: [Task]) -> NSFetchRequest<TaskEntity> {
+        let request: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id IN %@", tasks.map { $0.id })
+        return request
     }
     
-    func fetchTaskEntities(for tasks: [Task], context: Context) -> [TaskEntity] {
+    func fetchTaskEntities(for tasks: [Task], context: NSManagedObjectContext) -> [TaskEntity] {
         return (try? context.fetch(ListsService.tasksFetchRequest(for: tasks))) ?? []
     }
 
 }
 
-extension Context {
+extension NSManagedObjectContext {
 
     func fetchList(id: String) -> ListEntity? {
         return (try? fetch(ListsService.listFetchRequest(with: id)))?.first
