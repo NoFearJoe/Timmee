@@ -27,8 +27,28 @@ enum NotificationCategories: String {
     case task
 }
 
-enum NotificationActions: String {
-    case done
+enum NotificationAction {
+    case done // Закончить задачу
+    case remindAfter(Int) // Напомнить позже
+    
+    init?(rawValue: String) {
+        if rawValue == "done" {
+            self = .done
+        } else if rawValue.starts(with: "remind_after") {
+            let minutes = Int(String(rawValue[rawValue.index(rawValue.startIndex, offsetBy: 13)...])) ?? 0
+            self = .remindAfter(minutes)
+        } else {
+            return nil
+        }
+    }
+    
+    var rawValue: String {
+        switch self {
+        case .done: return "done"
+        case .remindAfter(let minutes): return "remind_after_\(minutes)"
+        }
+    }
+    
 }
 
 // MARK: - Notification configurator
@@ -50,7 +70,11 @@ final class NotificationsConfigurator {
     private static func makeLocalNotificationsCategories() -> Set<UIUserNotificationCategory> {
         let taskCategory = UIMutableUserNotificationCategory()
         taskCategory.identifier = NotificationCategories.task.rawValue
-        taskCategory.setActions([makeDoneAction()], for: .default)
+        taskCategory.setActions([makeDoneAction(),
+                                 makeRemindLaterAction(minutes: 10),
+                                 makeRemindLaterAction(minutes: 30),
+                                 makeRemindLaterAction(minutes: 60)],
+                                for: .default)
         
         return Set(arrayLiteral: taskCategory)
     }
@@ -58,7 +82,10 @@ final class NotificationsConfigurator {
     @available(iOS 10.0, *)
     private static func makeLocalNotificationsCategories() -> Set<UNNotificationCategory> {
         let taskCategory = UNNotificationCategory(identifier: NotificationCategories.task.rawValue,
-                                                  actions: [makeDoneAction()],
+                                                  actions: [makeDoneAction(),
+                                                            makeRemindLaterAction(minutes: 10),
+                                                            makeRemindLaterAction(minutes: 30),
+                                                            makeRemindLaterAction(minutes: 60)],
                                                   intentIdentifiers: [],
                                                   options: [])
         
@@ -67,7 +94,7 @@ final class NotificationsConfigurator {
     
     private static func makeDoneAction() -> UIUserNotificationAction {
         let doneAction = UIMutableUserNotificationAction()
-        doneAction.identifier = NotificationActions.done.rawValue
+        doneAction.identifier = NotificationAction.done.rawValue
         doneAction.title = "complete".localized
         doneAction.activationMode = .background
         doneAction.behavior = .default
@@ -79,22 +106,29 @@ final class NotificationsConfigurator {
     
     @available(iOS 10.0, *)
     private static func makeDoneAction() -> UNNotificationAction {
-        return UNNotificationAction(identifier: NotificationActions.done.rawValue,
+        return UNNotificationAction(identifier: NotificationAction.done.rawValue,
                                     title: "complete".localized,
                                     options: [])
     }
     
     // TODO: Доработать и добавить в список
-    private static func makeRemindLaterAction() -> UIUserNotificationAction {
+    private static func makeRemindLaterAction(minutes: Int) -> UIUserNotificationAction {
         let remindLaterAction = UIMutableUserNotificationAction()
-        remindLaterAction.identifier = "remind_later"
-        remindLaterAction.title = "remind_later".localized
+        remindLaterAction.identifier = NotificationAction.remindAfter(minutes).rawValue
+        remindLaterAction.title = NotificationAction.remindAfter(minutes).rawValue.localized
         remindLaterAction.activationMode = .background
         remindLaterAction.behavior = .default
         remindLaterAction.isAuthenticationRequired = false
         remindLaterAction.isDestructive = false
         
         return remindLaterAction
+    }
+    
+    @available(iOS 10.0, *)
+    private static func makeRemindLaterAction(minutes: Int) -> UNNotificationAction {
+        return UNNotificationAction(identifier: NotificationAction.remindAfter(minutes).rawValue,
+                                    title: NotificationAction.remindAfter(minutes).rawValue.localized,
+                                    options: [])
     }
     
 }

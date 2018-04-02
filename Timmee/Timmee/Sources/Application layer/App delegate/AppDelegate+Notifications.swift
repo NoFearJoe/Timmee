@@ -44,7 +44,7 @@ extension AppDelegate {
         }
         
         if notification.category == NotificationCategories.task.rawValue {
-            if identifier == NotificationActions.done.rawValue {
+            if identifier == NotificationAction.done.rawValue {
                 guard let taskID = notification.userInfo?["task_id"] as? String else {
                     completionHandler()
                     return
@@ -70,7 +70,7 @@ extension AppDelegate {
         }
         
         if notification.category == NotificationCategories.task.rawValue {
-            if identifier == NotificationActions.done.rawValue {
+            if identifier == NotificationAction.done.rawValue {
                 guard let taskID = notification.userInfo?["task_id"] as? String else {
                     completionHandler()
                     return
@@ -123,26 +123,53 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             
             if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
                 completionHandler()
-            } else if response.actionIdentifier == NotificationActions.done.rawValue {
-                guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
-                    completionHandler()
-                    return
+            } else if let action = NotificationAction(rawValue: response.actionIdentifier) {
+                switch action {
+                case .done:
+                    guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
+                        completionHandler()
+                        return
+                    }
+                    TasksService().doneTask(withID: taskID, completion: {
+                        completionHandler()
+                    })
+                case .remindAfter(let minutes):
+                    guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
+                        completionHandler()
+                        return
+                    }
+                    updateNotificationDate(ofTaskWithID: taskID, by: minutes, completion: completionHandler)
                 }
-                TasksService().doneTask(withID: taskID, completion: {
-                    completionHandler()
-                })
             }
         }
     }
     
 }
 
-fileprivate extension AppDelegate {
+private extension AppDelegate {
     
     func updateDueDate(ofTaskWithID id: String) {
-        if let task = TasksService().retrieveTask(withID: id) {
-            task.dueDate = task.nextDueDate
-            TasksService().updateTask(task, completion: { _ in })
+        guard let task = TasksService().retrieveTask(withID: id) else { return }
+        task.dueDate = task.nextDueDate
+        TasksService().updateTask(task, completion: { _ in })
+    }
+    
+    func updateNotificationDate(ofTaskWithID id: String, by minutes: Int, completion: @escaping () -> Void) {
+        guard let task = TasksService().retrieveTask(withID: id) else {
+            completion()
+            return
+        }
+        guard let initialDate = task.notificationDate ?? task.dueDate else {
+            completion()
+            return
+        }
+        
+        let nextNotificationDate = initialDate + minutes.asMinutes
+        
+        task.notificationDate = nextNotificationDate
+        
+        TasksService().updateTask(task) { _ in
+            completion()
         }
     }
     

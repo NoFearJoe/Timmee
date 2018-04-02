@@ -18,6 +18,7 @@ class Task {
     var title: String
     var isImportant: Bool
     var notification: NotificationMask
+    var notificationDate: Date?
     var note: String
     var repeating: RepeatMask
     var repeatEndingDate: Date?
@@ -41,6 +42,7 @@ class Task {
         title = task.title ?? ""
         isImportant = task.isImportant
         notification = NotificationMask(mask: task.notificationMask)
+        notificationDate = task.notificationDate
         note = task.note ?? ""
         repeating = RepeatMask(string: task.repeatMask ?? "")
         dueDate = task.dueDate as Date?
@@ -70,6 +72,7 @@ class Task {
          title: String,
          isImportant: Bool,
          notification: NotificationMask,
+         notificationDate: Date?,
          note: String,
          repeating: RepeatMask,
          repeatEndingDate: Date?,
@@ -85,6 +88,7 @@ class Task {
         self.title = title
         self.isImportant = isImportant
         self.notification = notification
+        self.notificationDate = notificationDate
         self.note = note
         self.repeating = repeating
         self.repeatEndingDate = repeatEndingDate
@@ -104,6 +108,7 @@ class Task {
                   title: title,
                   isImportant: false,
                   notification: .doNotNotify,
+                  notificationDate: nil,
                   note: "",
                   repeating: .init(string: ""),
                   repeatEndingDate: nil,
@@ -122,6 +127,7 @@ class Task {
                         title: title,
                         isImportant: isImportant,
                         notification: notification,
+                        notificationDate: notificationDate,
                         note: note,
                         repeating: repeating,
                         repeatEndingDate: repeatEndingDate,

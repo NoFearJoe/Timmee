@@ -206,6 +206,10 @@
 "imported_n_tasks" = "%lu n";
 "n_attachments" = "%lu n";
 
+"remind_after_10" = "Remind after 10 minutes";
+"remind_after_30" = "Remind after 30 minutes";
+"remind_after_60" = "Remind after 1 hour";
+
 "education_initial_title" = "Hi!";
 "education_initial_text" = "It's Memori - not just a ToDo list, but something more";
 "education_initial_continue" = "Hi, Memori!";

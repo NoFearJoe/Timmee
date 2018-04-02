@@ -206,6 +206,10 @@
 "imported_n_tasks" = "%lu n";
 "n_attachments" = "%lu n";
 
+"remind_after_10" = "Напомнить через 10 минут";
+"remind_after_30" = "Напомнить через 30 минут";
+"remind_after_60" = "Напомнить через час";
+
 "education_initial_title" = "Привет!";
 "education_initial_text" = "Это Memori - нечто большее, чем просто список дел";
 "education_initial_continue" = "Привет";
