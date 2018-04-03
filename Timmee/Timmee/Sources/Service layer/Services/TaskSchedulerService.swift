@@ -23,7 +23,59 @@ final class TaskSchedulerService {
         
         let notification = task.timeTemplate?.notification ?? task.notification
         
-        if let dueDate = task.dueDate, notification != .doNotNotify {
+        if var notificationDate = task.notificationDate {
+            switch task.repeating.type {
+            case .never:
+                if notificationDate <= Date() {
+                    if let nextDueDate = task.nextDueDate {
+                        notificationDate = nextDueDate
+                    } else {
+                        return
+                    }
+                }
+                
+                scheduleLocalNotification(withID: task.id,
+                                          title: listTitle,
+                                          message: task.title,
+                                          at: notificationDate,
+                                          repeatUnit: nil,
+                                          end: task.repeatEndingDate,
+                                          location: location)
+            case .every(let unit):
+                if notificationDate <= Date() {
+                    if let nextDueDate = task.nextDueDate {
+                        notificationDate = nextDueDate
+                    } else {
+                        return
+                    }
+                }
+                
+                scheduleLocalNotification(withID: task.id,
+                                          title: listTitle,
+                                          message: task.title,
+                                          at: notificationDate,
+                                          repeatUnit: unit.calendarUnit,
+                                          end: task.repeatEndingDate,
+                                          location: location)
+            case .on(let unit):
+                (0..<7).forEach { day in
+                    let fireDate = notificationDate + day.asDays
+                    
+                    guard fireDate > Date() else { return }
+                    
+                    let dayNumber = fireDate.weekday - 1
+                    if unit.dayNumbers.contains(dayNumber) {
+                        scheduleLocalNotification(withID: task.id,
+                                                  title: listTitle,
+                                                  message: task.title,
+                                                  at: fireDate,
+                                                  repeatUnit: .weekOfYear,
+                                                  end: task.repeatEndingDate,
+                                                  location: location)
+                    }
+                }
+            }
+        } else if let dueDate = task.dueDate, notification != .doNotNotify {
             switch task.repeating.type {
             case .never:
                 var fireDate = dueDate - notification.minutes.asMinutes
@@ -92,23 +144,64 @@ final class TaskSchedulerService {
         }
     }
     
+    /**
+     Создает уведомление для задачи, которую пользователь перенес на другое время
+     */
+    func scheduleDeferredTask(_ task: Task, listTitle: String, fireDate: Date) {
+        removeDeferredNotifications(for: task)
+        
+        guard !task.isDone else { return }
+        
+        let location = task.shouldNotifyAtLocation ? task.location : nil
+                
+        scheduleLocalNotification(withID: task.id,
+                                  title: listTitle,
+                                  message: task.title,
+                                  at: fireDate,
+                                  repeatUnit: nil,
+                                  end: task.repeatEndingDate,
+                                  location: location,
+                                  isDeferred: true)
+    }
+    
     func removeNotifications(for task: Task) {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+                let identifiers = requests.filter { request in
+                        if let taskID = request.content.userInfo["task_id"] as? String {
+                            return taskID == task.id
+                        }
+                        return false
+                    }.map { request in
+                        request.identifier
+                    }
+                
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            }
+        } else {
+            if let notifications = UIApplication.shared.scheduledLocalNotifications {
+                notifications.forEach { notification in
+                    if let taskID = notification.userInfo?["task_id"] as? String, taskID == task.id {
+                        UIApplication.shared.cancelLocalNotification(notification)
+                    }
+                }
+            }
+        }
+    }
+    
+    func removeDeferredNotifications(for task: Task) {
         if let notifications = UIApplication.shared.scheduledLocalNotifications {
             notifications.forEach { notification in
-                if let taskID = notification.userInfo?["task_id"] as? String, taskID == task.id {
-//                    if #available(iOS 10.0, *) {
-//                        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [])
-//                    } else {
-                    UIApplication.shared.cancelLocalNotification(notification)
-//                    }
-                }
+                guard let taskID = notification.userInfo?["task_id"] as? String, taskID == task.id else { return }
+                guard let isDeferred = notification.userInfo?["isDeferred"] as? Bool, isDeferred else { return }
+                UIApplication.shared.cancelLocalNotification(notification)
             }
         }
     }
 
 }
 
-fileprivate extension TaskSchedulerService {
+private extension TaskSchedulerService {
 
     func scheduleLocalNotification(withID id: String,
                                    title: String,
@@ -116,7 +209,8 @@ fileprivate extension TaskSchedulerService {
                                    at date: Date?,
                                    repeatUnit: NSCalendar.Unit?,
                                    end: Date?,
-                                   location: CLLocation?) {
+                                   location: CLLocation?,
+                                   isDeferred: Bool = false) {
         let notification = UILocalNotification()
         notification.fireDate = date?.startOfMinute
         notification.timeZone = TimeZone.current
@@ -133,6 +227,7 @@ fileprivate extension TaskSchedulerService {
         if let endDate = end {
             notification.userInfo?["end_date"] = endDate
         }
+        notification.userInfo?["isDeferred"] = isDeferred
         
         if let location = location {
             notification.region = CLCircularRegion(center: location.coordinate,

@@ -44,17 +44,15 @@ extension AppDelegate {
         }
         
         if notification.category == NotificationCategories.task.rawValue {
-            if identifier == NotificationAction.done.rawValue {
-                guard let taskID = notification.userInfo?["task_id"] as? String else {
-                    completionHandler()
-                    return
-                }
-                TasksService().doneTask(withID: taskID, completion: {
-                    completionHandler()
-                })
-            } else {
+            guard let taskID = notification.userInfo?["task_id"] as? String else {
                 completionHandler()
+                return
             }
+            
+            handleTaskAction(withIdentifier: identifier,
+                             taskID: taskID,
+                             fireDate: notification.fireDate,
+                             completion: completionHandler)
         } else {
             completionHandler()
         }
@@ -70,17 +68,15 @@ extension AppDelegate {
         }
         
         if notification.category == NotificationCategories.task.rawValue {
-            if identifier == NotificationAction.done.rawValue {
-                guard let taskID = notification.userInfo?["task_id"] as? String else {
-                    completionHandler()
-                    return
-                }
-                TasksService().doneTask(withID: taskID, completion: {
-                    completionHandler()
-                })
-            } else {
+            guard let taskID = notification.userInfo?["task_id"] as? String else {
                 completionHandler()
+                return
             }
+            
+            handleTaskAction(withIdentifier: identifier,
+                             taskID: taskID,
+                             fireDate: notification.fireDate,
+                             completion: completionHandler)
         } else {
             completionHandler()
         }
@@ -121,26 +117,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 }
             }
             
-            if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
                 completionHandler()
-            } else if let action = NotificationAction(rawValue: response.actionIdentifier) {
-                switch action {
-                case .done:
-                    guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
-                        completionHandler()
-                        return
-                    }
-                    TasksService().doneTask(withID: taskID, completion: {
-                        completionHandler()
-                    })
-                case .remindAfter(let minutes):
-                    guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
-                        completionHandler()
-                        return
-                    }
-                    updateNotificationDate(ofTaskWithID: taskID, by: minutes, completion: completionHandler)
-                }
+                return
             }
+            
+            handleTaskAction(withIdentifier: response.actionIdentifier,
+                             taskID: taskID,
+                             fireDate: response.notification.date,
+                             completion: completionHandler)
+        }
+    }
+    
+}
+
+private extension AppDelegate {
+    
+    func handleTaskAction(withIdentifier identifier: String, taskID: String, fireDate: Date?, completion: @escaping () -> Void) {
+        if let action = NotificationAction(rawValue: identifier) {
+            switch action {
+            case .done:
+                TasksService().doneTask(withID: taskID, completion: {
+                    completion()
+                })
+            case .remindAfter(let minutes):
+                deferNotification(ofTaskWithID: taskID, by: minutes, fireDate: fireDate, completion: completion)
+            }
+        } else {
+            completion()
         }
     }
     
@@ -154,23 +158,21 @@ private extension AppDelegate {
         TasksService().updateTask(task, completion: { _ in })
     }
     
-    func updateNotificationDate(ofTaskWithID id: String, by minutes: Int, completion: @escaping () -> Void) {
+    func deferNotification(ofTaskWithID id: String, by minutes: Int, fireDate: Date?, completion: @escaping () -> Void) {
         guard let task = TasksService().retrieveTask(withID: id) else {
             completion()
             return
         }
-        guard let initialDate = task.notificationDate ?? task.dueDate else {
+        guard let oldFireDate = fireDate else {
             completion()
             return
         }
         
-        let nextNotificationDate = initialDate + minutes.asMinutes
-        
-        task.notificationDate = nextNotificationDate
-        
-        TasksService().updateTask(task) { _ in
-            completion()
-        }
+        let nextFireDate = oldFireDate + minutes.asMinutes
+
+        let title = TasksService().retrieveList(of: task)?.title
+        TaskSchedulerService().scheduleDeferredTask(task, listTitle: title ?? "all_tasks".localized, fireDate: nextFireDate)
+        completion()
     }
     
 }
