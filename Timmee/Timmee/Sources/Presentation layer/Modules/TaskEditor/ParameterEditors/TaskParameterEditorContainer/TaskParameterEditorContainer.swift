@@ -62,7 +62,7 @@ protocol TaskParameterEditorContainerOutput: class {
 
 
 protocol TaskParameterEditorInput: class {
-    weak var container: TaskParameterEditorOutput? { get set }
+    var container: TaskParameterEditorOutput? { get set }
     var requiredHeight: CGFloat { get }
     func completeEditing(completion: @escaping (Bool) -> Void)
 }

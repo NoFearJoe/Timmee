@@ -10,9 +10,6 @@ import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObject
 import protocol CoreData.NSFetchRequestResult
 import class CoreData.NSManagedObjectContext
-import struct SugarRecord.FetchRequest
-import class SugarRecord.CoreDataDefaultStorage
-import protocol SugarRecord.Context
 import struct Foundation.Date
 import class Foundation.NSSet
 import class Foundation.NSPredicate
@@ -131,11 +128,11 @@ extension TasksService {
     }
     
     func fetchTaskEntities(with request: NSFetchRequest<TaskEntity>) -> [TaskEntity] {
-        return (try? (DefaultStorage.instance.storage.mainContext as! NSManagedObjectContext).fetch(request)) ?? []
+        return (try? (DefaultStorage.instance.database.readContext).fetch(request)) ?? []
     }
     
     func fetchTaskEntitiesInBackground(with request: NSFetchRequest<TaskEntity>) -> [TaskEntity] {
-        return (try? (DefaultStorage.instance.storage.requestContext() as! NSManagedObjectContext).fetch(request)) ?? []
+        return (try? (DefaultStorage.instance.database.writeContext).fetch(request)) ?? []
     }
     
     func fetchTaskEntities(listID: String) -> [TaskEntity] {
@@ -154,8 +151,10 @@ extension TasksService {
         return fetchTaskEntities(with: tasksFetchRequest(smartListID: smartListID, isDone: isDone))
     }
     
-    static func taskFetchRequest(with id: String) -> FetchRequest<TaskEntity> {
-        return FetchRequest<TaskEntity>().filtered(with: "id", equalTo: id)
+    static func taskFetchRequest(with id: String) -> NSFetchRequest<TaskEntity> {
+        let request: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        return request
     }
 
 }
@@ -163,7 +162,7 @@ extension TasksService {
 extension TasksService {
 
     func addTask(_ task: Task, listID: String, completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard context.fetchTask(id: task.id) == nil else {
                 completion(.taskIsAlreadyExist)
                 return
@@ -180,8 +179,8 @@ extension TasksService {
                                                                           in: context)
                 save()
             }
-        }) { error in
-            completion(error != nil ?.taskAddingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .taskAddingError : nil)
         }
     }
     
@@ -195,7 +194,7 @@ extension TasksService {
             return
         }
         
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             tasks.forEach { task in
                 if let taskEntity = context.fetchTask(id: task.id) ?? context.createTask() {
                     taskEntity.map(from: task)
@@ -214,8 +213,8 @@ extension TasksService {
                 }
             }
             save()
-        }) { error in
-            completion(error != nil ? .taskUpdatingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .taskUpdatingError : nil)
         }
     }
     
@@ -229,17 +228,17 @@ extension TasksService {
             return
         }
         
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             tasks.forEach { task in
                 task.attachments.forEach { FilesService().removeFileFromDocuments(withName: $0) }
                 
                 if let existingTask = context.fetchTask(id: task.id) {
-                    try? context.remove(existingTask)
+                    context.delete(existingTask)
                 }
             }
             save()
-        }) { error in
-            completion(error != nil ?.taskRemovingError : nil)
+        }) { isSuccess in
+            completion(!isSuccess ? .taskRemovingError : nil)
         }
     }
 
@@ -248,7 +247,7 @@ extension TasksService {
 extension TasksService {
     
     func doneTask(withID id: String, completion: @escaping () -> Void) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             guard let task = context.fetchTask(id: id) else {
                 completion()
                 return
@@ -267,14 +266,14 @@ extension TasksService {
 extension TasksService {
     
     func retrieveList(of task: Task) -> List? {
-        if let taskEntity = DefaultStorage.instance.mainContext.fetchTask(id: task.id), let listEntity = taskEntity.list {
+        if let taskEntity = DefaultStorage.instance.database.readContext.fetchTask(id: task.id), let listEntity = taskEntity.list {
             return List(listEntity: listEntity)
         }
         return nil
     }
     
     func retrieveTask(withID id: String) -> Task? {
-        guard let entity = DefaultStorage.instance.mainContext.fetchTask(id: id) else { return nil }
+        guard let entity = DefaultStorage.instance.database.readContext.fetchTask(id: id) else { return nil }
         return Task(task: entity)
     }
     
@@ -283,8 +282,8 @@ extension TasksService {
 fileprivate extension TasksService {
 
     func retrieveSubtaskEntities(from subtasks: [Subtask],
-                                 in context: Context) -> [SubtaskEntity] {
-        return subtasks.flatMap { subtask in
+                                 in context: NSManagedObjectContext) -> [SubtaskEntity] {
+        return subtasks.compactMap { subtask in
             let entity = context.fetchSubtask(id: subtask.id) ?? context.createSubtask()
             entity?.map(from: subtask)
             return entity
@@ -292,8 +291,8 @@ fileprivate extension TasksService {
     }
     
     func retrieveTagEntities(from tags: [Tag],
-                             in context: Context) -> [TagEntity] {
-        return tags.flatMap { tag in
+                             in context: NSManagedObjectContext) -> [TagEntity] {
+        return tags.compactMap { tag in
             let entity = context.fetchTag(id: tag.id) ?? context.createTag()
             entity?.map(from: tag)
             return entity
@@ -301,7 +300,7 @@ fileprivate extension TasksService {
     }
     
     func retrieveTimeTemplateEntity(from template: TimeTemplate?,
-                                      in context: Context) -> TimeTemplateEntity? {
+                                      in context: NSManagedObjectContext) -> TimeTemplateEntity? {
         guard let template = template else { return nil }
         let entity = context.fetchTimeTemplate(id: template.id) ?? context.createTimeTemplate()
         entity?.map(from: template)
@@ -310,7 +309,7 @@ fileprivate extension TasksService {
 
 }
 
-extension Context {
+extension NSManagedObjectContext {
 
     func fetchTask(id: String) -> TaskEntity? {
         return (try? fetch(TasksService.taskFetchRequest(with: id)))?.first

@@ -9,7 +9,7 @@
 import struct Foundation.IndexPath
 
 protocol TasksImportInput: class {
-    weak var output: TasksImportOutput? { get set }
+    var output: TasksImportOutput? { get set }
     func setSelectedTasks(_ tasks: [Task])
     func setList(_ list: List)
 }

@@ -13,7 +13,7 @@ final class RandomStringGenerator {
     fileprivate static let characters = Array("qwertyuiopasdfghjklzxcvbnm1234567890")
     
     static func randomString(length: Int) -> String {
-        return (0..<length).flatMap { _ in
+        return (0..<length).compactMap { _ in
             let randomIndex = Int(arc4random_uniform(UInt32(characters.count)))
             guard let char = characters.item(at: randomIndex) else { return nil }
             return String(char)

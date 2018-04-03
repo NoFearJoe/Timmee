@@ -77,7 +77,7 @@ extension Array where Element == Constraint {
     
     @discardableResult
     func toSuperview() -> [NSLayoutConstraint] {
-        return self.flatMap { constraint in
+        return self.compactMap { constraint in
             return constraint.toSuperview()
         }
     }

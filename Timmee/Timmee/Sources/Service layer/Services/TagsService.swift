@@ -11,9 +11,6 @@ import class Foundation.NSSortDescriptor
 import class Foundation.DispatchQueue
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSFetchRequest
-import class SugarRecord.CoreDataDefaultStorage
-import struct SugarRecord.FetchRequest
-import protocol SugarRecord.Context
 
 final class TagsService {}
 
@@ -30,7 +27,7 @@ extension TagsService {
     }
     
     private func fetch(with request: NSFetchRequest<TagEntity>) -> [TagEntity] {
-        return (try? DefaultStorage.instance.mainContext.fetch(request)) ?? []
+        return (try? DefaultStorage.instance.database.readContext.fetch(request)) ?? []
     }
     
 }
@@ -38,7 +35,7 @@ extension TagsService {
 extension TagsService {
 
     func createOrUpdateTag(_ tag: Tag, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             if let existingTag = context.fetchTag(id: tag.id) {
                 existingTag.map(from: tag)
                 save()
@@ -50,7 +47,7 @@ extension TagsService {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -58,16 +55,16 @@ extension TagsService {
     }
     
     func removeTag(_ tag: Tag, completion: (() -> Void)?) {
-        DefaultStorage.instance.storage.backgroundOperation({ (context, save) in
+        DefaultStorage.instance.database.write({ (context, save) in
             if let existingTag = context.fetchTag(id: tag.id) {
-                try? context.remove(existingTag)
+                context.delete(existingTag)
                 save()
             } else {
                 DispatchQueue.main.async {
                     completion?()
                 }
             }
-        }) { error in
+        }) { _ in
             DispatchQueue.main.async {
                 completion?()
             }
@@ -98,10 +95,11 @@ fileprivate extension TagsService {
     
 }
 
-extension Context {
+extension NSManagedObjectContext {
     
     func fetchTag(id: String) -> TagEntity? {
-        let request = FetchRequest<TagEntity>().filtered(with: "id", equalTo: id)
+        let request: NSFetchRequest<TagEntity> = TagEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
         return (try? fetch(request))?.first
     }
     

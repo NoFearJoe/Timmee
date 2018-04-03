@@ -13,7 +13,6 @@ import class CoreData.NSFetchRequest
 import class CoreData.NSSortDescriptor
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
-import class SugarRecord.CoreDataDefaultStorage
 
 protocol ListsInteractorOutput: class {
     func prepareListsObserver(_ collectionViewManageble: CollectionViewManageble)
@@ -181,7 +180,7 @@ fileprivate extension ListsInteractor {
         observer = CoreDataObserver(request: makeListsFetchRequest(sorting: sorting),
                                     section: nil,
                                     cacheName: "lists",
-                                    context: DefaultStorage.instance.mainContext)
+                                    context: DefaultStorage.instance.database.readContext)
         observer.sectionOffset = 1
         return observer
     }
@@ -191,7 +190,7 @@ fileprivate extension ListsInteractor {
         observer = CoreDataObserver(request: makeSmartListsFetchRequest(),
                                     section: nil,
                                     cacheName: "smart_lists",
-                                    context: DefaultStorage.instance.mainContext)
+                                    context: DefaultStorage.instance.database.readContext)
         observer.sectionOffset = 0
         return observer
     }

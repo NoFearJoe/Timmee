@@ -11,7 +11,7 @@ import class UIKit.UIViewController
 protocol ListRepresentationInput: ListRepresentationEditingInput {
     var viewController: UIViewController { get }
     
-    weak var editingOutput: ListRepresentationEditingOutput? { get set }
+    var editingOutput: ListRepresentationEditingOutput? { get set }
     
     func setList(list: List)
     func clearInput()
