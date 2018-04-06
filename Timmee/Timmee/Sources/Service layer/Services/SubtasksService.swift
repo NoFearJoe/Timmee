@@ -7,34 +7,57 @@
 //
 
 import class Foundation.NSPredicate
-import class Foundation.NSSortDescriptor
 import class Foundation.DispatchQueue
+import class Foundation.NSSortDescriptor
 import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObjectContext
 
-final class SubtasksService {}
+protocol SubtasksProvider: class {
+    func fetchSubtask(id: String) -> Subtask?
+    func fetchSubtasks(taskID: String) -> [Subtask]
+}
 
-extension SubtasksService {
+protocol SubtaskEntitiesProvider: class {
+    func fetchSubtaskEntity(id: String) -> SubtaskEntity?
+    func fetchSubtaskEntities(taskID: String) -> [SubtaskEntity]
+}
+
+protocol SubtaskEntitiesBackgroundProvider: class {
+    func createSubtaskEntity() -> SubtaskEntity?
+    func fetchSubtaskEntityInBackground(id: String) -> SubtaskEntity?
+    func fetchSubtaskEntitiesInBackground(taskID: String) -> [SubtaskEntity]
+}
+
+protocol SubtasksManager: class {
+    func addSubtask(_ subtask: Subtask, to task: Task, completion: (() -> Void)?)
+    func updateSubtask(_ subtask: Subtask, completion: (() -> Void)?)
+    func removeSubtask(_ subtask: Subtask, completion: (() -> Void)?)
+}
+
+final class SubtasksService {
+    
+    weak var tasksProvider: TaskEntitiesBackgroundProvider!
+    
+}
+
+extension SubtasksService: SubtasksManager {
 
     func addSubtask(_ subtask: Subtask, to task: Task, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            guard context.fetchSubtask(id: subtask.id) == nil else {
+        Database.localStorage.write({ (context, save) in
+            guard self.fetchSubtaskEntityInBackground(id: subtask.id) == nil else {
                 DispatchQueue.main.async {
                     completion?()
                 }
                 return
             }
             
-            if let task = context.fetchTask(id: task.id),
-               let newSubtask = context.createSubtask() {
+            if let task = self.tasksProvider.fetchTaskEntityInBackground(id: task.id),
+                let newSubtask = self.createSubtaskEntity() {
                 newSubtask.map(from: subtask)
                 newSubtask.task = task
-                save()
-            } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
             }
+            
+            save()
         }) { _ in
             DispatchQueue.main.async {
                 completion?()
@@ -43,18 +66,14 @@ extension SubtasksService {
     }
     
     func updateSubtask(_ subtask: Subtask, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            if let existingSubtask = context.fetchSubtask(id: subtask.id) {
+        Database.localStorage.write({ (context, save) in
+            if let existingSubtask = self.fetchSubtaskEntityInBackground(id: subtask.id) {
                 existingSubtask.map(from: subtask)
-                save()
-            } else if let newSubtask = context.createSubtask() {
+            } else if let newSubtask = self.createSubtaskEntity() {
                 newSubtask.map(from: subtask)
-                save()
-            } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
             }
+            
+            save()
         }) { _ in
             DispatchQueue.main.async {
                 completion?()
@@ -63,15 +82,12 @@ extension SubtasksService {
     }
     
     func removeSubtask(_ subtask: Subtask, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            if let existingSubtask = context.fetchSubtask(id: subtask.id) {
+        Database.localStorage.write({ (context, save) in
+            if let existingSubtask = self.fetchSubtaskEntityInBackground(id: subtask.id) {
                 context.delete(existingSubtask)
-                save()
-            } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
             }
+            
+            save()
         }) { _ in
             DispatchQueue.main.async {
                 completion?()
@@ -81,32 +97,66 @@ extension SubtasksService {
 
 }
 
-fileprivate extension SubtasksService {
+// MARK: - Fetch
 
-    static func subtaskFetchRequest(id: String) -> NSFetchRequest<SubtaskEntity> {
-        let request: NSFetchRequest<SubtaskEntity> = SubtaskEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", id)
-        return request
+extension SubtasksService: SubtasksProvider {
+    
+    func fetchSubtask(id: String) -> Subtask? {
+        guard let entity = self.fetchSubtaskEntity(id: id) else { return nil }
+        return Subtask(entity: entity)
     }
     
-    static func subtasksFetchRequest(taskID: String) -> NSFetchRequest<SubtaskEntity> {
-        let request: NSFetchRequest<SubtaskEntity> = SubtaskEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "task.id = %@", taskID)
-        request.sortDescriptors = [NSSortDescriptor.init(key: "sortPosition", ascending: true)]
-        return request
+    func fetchSubtasks(taskID: String) -> [Subtask] {
+        let entities = self.fetchSubtaskEntities(taskID: taskID)
+        return entities.map { Subtask(entity: $0) }
     }
-
+    
 }
 
+// MARK: - Fetch entities
 
-extension NSManagedObjectContext {
+extension SubtasksService: SubtaskEntitiesProvider {
     
-    func fetchSubtask(id: String) -> SubtaskEntity? {
-        return (try? fetch(SubtasksService.subtaskFetchRequest(id: id)))?.first
+    func fetchSubtaskEntity(id: String) -> SubtaskEntity? {
+        return SubtasksService.subtaskFetchRequest(id: id).execute().first
     }
     
-    func createSubtask() -> SubtaskEntity? {
-        return try? create()
+    func fetchSubtaskEntities(taskID: String) -> [SubtaskEntity] {
+        return SubtasksService.subtasksFetchRequest(taskID: taskID).execute()
     }
     
+}
+
+// MARK: - Fetch entities in background
+
+extension SubtasksService: SubtaskEntitiesBackgroundProvider {
+    
+    func createSubtaskEntity() -> SubtaskEntity? {
+        return try? Database.localStorage.writeContext.create()
+    }
+    
+    func fetchSubtaskEntityInBackground(id: String) -> SubtaskEntity? {
+        return SubtasksService.subtaskFetchRequest(id: id).executeInBackground().first
+    }
+    
+    func fetchSubtaskEntitiesInBackground(taskID: String) -> [SubtaskEntity] {
+        return SubtasksService.subtasksFetchRequest(taskID: taskID).executeInBackground()
+    }
+    
+}
+
+// MARK: - Fetch reqeusts
+
+private extension SubtasksService {
+
+    /// Запрос подзадачи по id
+    static func subtaskFetchRequest(id: String) -> FetchRequest<SubtaskEntity> {
+        return SubtaskEntity.request().filtered(key: "id", value: id)
+    }
+    
+    /// Запрос подзадач для задачи с определенным id
+    static func subtasksFetchRequest(taskID: String) -> FetchRequest<SubtaskEntity> {
+        return SubtaskEntity.request().filtered(key: "task.id", value: taskID).sorted(key: "sortPosition", ascending: true)
+    }
+
 }

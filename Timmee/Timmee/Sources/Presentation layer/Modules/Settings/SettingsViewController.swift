@@ -67,9 +67,7 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "settings".localized
-        
-        InAppPurchase.abstract.loadStore()
-        
+                
         settingsItems = makeSettingsItems()
     }
     

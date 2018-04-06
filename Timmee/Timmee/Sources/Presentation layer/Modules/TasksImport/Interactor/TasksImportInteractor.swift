@@ -34,9 +34,9 @@ final class TasksImportInteractor {
 
     weak var output: TasksImportInteractorOutput!
     
-    fileprivate let tasksService = TasksService()
+    private let tasksService = ServicesAssembly.shared.tasksService
     
-    fileprivate var tasksObserver: CoreDataObserver<Task>!
+    private var tasksObserver: CoreDataObserver<Task>!
 
 }
 
@@ -82,21 +82,10 @@ extension TasksImportInteractor: TasksImportDataSource {
     
 }
 
-fileprivate extension TasksImportInteractor {
+private extension TasksImportInteractor {
     
     func fetchTasks(predicate: NSPredicate?) {
-        let request = tasksService.allTasksFetchRequest() as! NSFetchRequest<NSFetchRequestResult>
-        request.predicate = predicate
-        let context = DefaultStorage.instance.database.readContext
-        tasksObserver = CoreDataObserver<Task>(request: request,
-                                               section: "list.title",
-                                               cacheName: nil,
-                                               context: context)
-        
-        tasksObserver.mapping = { entity in
-            let entity = entity as! TaskEntity
-            return Task(task: entity)
-        }
+        tasksObserver = tasksService.tasksObserver(predicate: predicate)
         
         tasksObserver.onFetchedObjectsCountChange = { [weak self] count in
             self?.output.tasksFetched(count: count)

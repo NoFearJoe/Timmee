@@ -18,13 +18,13 @@ protocol TaskTimeTemplateEditorOutput: class {
 
 final class TaskTimeTemplateEditor: UIViewController {
     
-    @IBOutlet fileprivate var titleTextField: UITextField!
-    @IBOutlet fileprivate var dueTimeView: TaskParameterView!
-    @IBOutlet fileprivate var notificationView: TaskParameterView!
+    @IBOutlet private var titleTextField: UITextField!
+    @IBOutlet private var dueTimeView: TaskParameterView!
+    @IBOutlet private var notificationView: TaskParameterView!
     
-    fileprivate let timeTemplateService = TimeTemplatesService()
+    private let timeTemplateService = ServicesAssembly.shared.timeTemplatesService
     
-    fileprivate var timeTemplate: TimeTemplate!
+    private var timeTemplate: TimeTemplate!
     
     weak var output: TaskTimeTemplateEditorOutput?
     weak var container: TaskParameterEditorOutput?

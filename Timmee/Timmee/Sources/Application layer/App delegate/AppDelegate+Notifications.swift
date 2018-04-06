@@ -137,7 +137,7 @@ private extension AppDelegate {
         if let action = NotificationAction(rawValue: identifier) {
             switch action {
             case .done:
-                TasksService().doneTask(withID: taskID, completion: {
+                ServicesAssembly.shared.tasksService.doneTask(withID: taskID, completion: {
                     completion()
                 })
             case .remindAfter(let minutes):
@@ -153,13 +153,13 @@ private extension AppDelegate {
 private extension AppDelegate {
     
     func updateDueDate(ofTaskWithID id: String) {
-        guard let task = TasksService().retrieveTask(withID: id) else { return }
+        guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else { return }
         task.dueDate = task.nextDueDate
-        TasksService().updateTask(task, completion: { _ in })
+        ServicesAssembly.shared.tasksService.updateTask(task, completion: { _ in })
     }
     
     func deferNotification(ofTaskWithID id: String, by minutes: Int, fireDate: Date?, completion: @escaping () -> Void) {
-        guard let task = TasksService().retrieveTask(withID: id) else {
+        guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else {
             completion()
             return
         }
@@ -170,7 +170,7 @@ private extension AppDelegate {
         
         let nextFireDate = oldFireDate + minutes.asMinutes
 
-        let title = TasksService().retrieveList(of: task)?.title
+        let title = ServicesAssembly.shared.tasksService.retrieveList(of: task)?.title
         TaskSchedulerService().scheduleDeferredTask(task, listTitle: title ?? "all_tasks".localized, fireDate: nextFireDate)
         completion()
     }

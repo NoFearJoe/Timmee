@@ -13,46 +13,116 @@ import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSCompoundPredicate
 
+protocol ListsProvider: class {
+    func fetchLists() -> [List]
+}
+
+protocol SmartListsProvider: class {
+    func fetchSmartLists() -> [SmartList]
+}
+
+protocol ListEntitiesProvider: class {
+    func createListEntity() -> ListEntity?
+    func fetchListEntities() -> [ListEntity]
+    func fetchListEntities(context: NSManagedObjectContext) -> [ListEntity]
+    func fetchListEntity(id: String) -> ListEntity?
+    func fetchListEntity(id: String, context: NSManagedObjectContext) -> ListEntity?
+}
+
+protocol SmartListEntitiesProvider: class {
+    func createSmartListEntity() -> SmartListEntity?
+    func fetchSmartListEntities() -> [SmartListEntity]
+    func fetchSmartListEntities(context: NSManagedObjectContext) -> [SmartListEntity]
+    func fetchSmartList(id: String) -> SmartListEntity?
+    func fetchSmartList(id: String, context: NSManagedObjectContext) -> SmartListEntity?
+}
+
+protocol ListsObserverProvider: class {
+    func listsObserver() -> CoreDataObserver<List>
+    func smartListsObserver() -> CoreDataObserver<SmartList>
+}
+
+protocol ListsManager: class {
+    func createOrUpdateList(_ list: List, tasks: [Task], completion: @escaping (ListsService.Error?) -> Void)
+    func removeList(_ list: List, completion: @escaping (ListsService.Error?) -> Void)
+}
+
+protocol SmartListsManager: class {
+    func addSmartList(_ list: SmartList, completion: @escaping (ListsService.Error?) -> Void)
+    func removeSmartList(_ list: SmartList, completion: @escaping (ListsService.Error?) -> Void)
+}
+
 final class ListsService {
     
     enum Error: Swift.Error {
-        case listIsAlreadyExist
         case listIsNotExist
         case listAddingError
         case listUpdatingError
         case listRemovingError
     }
     
-    lazy var smartListsFetchRequest: NSFetchRequest<SmartListEntity> = SmartListEntity.fetchRequest()
+    weak var tasksProvider: TaskEntitiesBackgroundProvider!
     
-    lazy var listsFetchRequest: NSFetchRequest<ListEntity> = {
-        let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
-        let request: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
-        request.sortDescriptors = [sortDescriptor]
-        return request
-    }()
+}
+
+// MARK: - Lists manager
+
+extension ListsService: ListsManager {
     
-    fileprivate func listsSearchRequest(string: String) -> NSFetchRequest<ListEntity> {
-        let request: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", string)
-        return request
+    func createOrUpdateList(_ list: List,
+                            tasks: [Task],
+                            completion: @escaping (Error?) -> Void) {
+        Database.localStorage.write({ (context, save) in
+            let taskEntities = NSSet(array: tasks.isEmpty ? [] : self.tasksProvider.fetchTaskEntitiesInBackground(tasks: tasks))
+            
+            if let existingList = self.fetchListEntity(id: list.id, context: context) {
+                existingList.map(from: list)
+                if !tasks.isEmpty {
+                    existingList.addToTasks(taskEntities)
+                }
+            } else if let newList = self.createListEntity() {
+                newList.map(from: list)
+                if !tasks.isEmpty {
+                    newList.addToTasks(taskEntities)
+                }
+            }
+            
+            save()
+        }) { isSuccess in
+            completion(!isSuccess ? .listUpdatingError : nil)
+        }
     }
     
-    // MARK: Lists
-    
-    func fetchLists() -> [List] {
-        let entities = fetchListEntities()
-        return entities.map({ List(listEntity: $0) })
-    }
-    
-    func addList(_ list: List, completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            guard context.fetchList(id: list.id) == nil else {
-                completion(.listIsAlreadyExist)
+    func removeList(_ list: List, completion: @escaping (Error?) -> Void) {
+        Database.localStorage.write({ (context, save) in
+            guard let existingList = self.fetchListEntity(id: list.id, context: context) else {
+                completion(.listIsNotExist)
                 return
             }
             
-            if let newList = context.createList() {
+            context.delete(existingList)
+            
+            save()
+        }) { isSuccess in
+            completion(!isSuccess ? .listRemovingError : nil)
+        }
+    }
+    
+}
+
+// MARK: - Smart lists manager
+
+extension ListsService: SmartListsManager {
+    
+    func addSmartList(_ list: SmartList,
+                      completion: @escaping (Error?) -> Void) {
+        Database.localStorage.write({ (context, save) in
+            guard self.fetchSmartList(id: list.id, context: context) == nil else {
+                completion(.listAddingError)
+                return
+            }
+            
+            if let newList = self.createSmartListEntity() {
                 newList.map(from: list)
                 save()
             }
@@ -61,30 +131,10 @@ final class ListsService {
         }
     }
     
-    func updateList(_ list: List,
-                    tasks: [Task] = [],
-                    completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            let taskEntities = NSSet(array: self.fetchTaskEntities(for: tasks,
-                                                                   context: context))
-            
-            if let existingList = context.fetchList(id: list.id) {
-                existingList.map(from: list)
-                existingList.addToTasks(taskEntities)
-                save()
-            } else if let newList = context.createList() {
-                newList.map(from: list)
-                newList.addToTasks(taskEntities)
-                save()
-            }
-        }) { isSuccess in
-            completion(!isSuccess ? .listUpdatingError : nil)
-        }
-    }
-    
-    func removeList(_ list: List, completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            guard let existingList = context.fetchList(id: list.id) else {
+    func removeSmartList(_ list: SmartList,
+                         completion: @escaping (Error?) -> Void) {
+        Database.localStorage.write({ (context, save) in
+            guard let existingList = self.fetchSmartList(id: list.id, context: context) else {
                 completion(.listIsNotExist)
                 return
             }
@@ -96,7 +146,16 @@ final class ListsService {
         }
     }
     
-    // MARK: Smart lists
+}
+
+// MARK: - Fetch
+
+extension ListsService: ListsProvider, SmartListsProvider {
+    
+    func fetchLists() -> [List] {
+        let entities = fetchListEntities()
+        return entities.map({ List(listEntity: $0) })
+    }
     
     func fetchSmartLists() -> [SmartList] {
         let entities = fetchSmartListEntities()
@@ -111,99 +170,109 @@ final class ListsService {
             })
     }
     
-    func addSmartList(_ list: SmartList,
-                      completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            guard context.fetchSmartList(id: list.id) == nil else {
-                completion(.listIsAlreadyExist)
-                return
-            }
-            
-            if let newList = context.createSmartList() {
-                newList.map(from: list)
-                save()
-            }
-        }) { isSuccess in
-            completion(!isSuccess ? .listAddingError : nil)
-        }
-    }
-    
-    func removeSmartList(_ list: SmartList,
-                         completion: @escaping (Error?) -> Void) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            guard let existingList = context.fetchSmartList(id: list.id) else {
-                completion(.listIsNotExist)
-                return
-            }
-            
-            context.delete(existingList)
-            save()
-        }) { isSuccess in
-            completion(!isSuccess ? .listRemovingError : nil)
-        }
-    }
-    
 }
 
-fileprivate extension ListsService {
+// MARK: - Fetch list entities
+
+extension ListsService: ListEntitiesProvider {
     
-    func searchLists(by string: String) -> [List] {
-        let entities = searchListEntities(by: string)
-        return entities.map({ List(listEntity: $0) })
+    func createListEntity() -> ListEntity? {
+        return try? Database.localStorage.writeContext.create()
     }
     
     func fetchListEntities() -> [ListEntity] {
-        return (try? DefaultStorage.instance.database.readContext.fetch(listsFetchRequest)) ?? []
+        return ListsService.listsFetchRequest().execute()
     }
     
-    func fetchSmartListEntities() -> [SmartListEntity] {
-        return (try? DefaultStorage.instance.database.readContext.fetch(smartListsFetchRequest)) ?? []
+    func fetchListEntities(context: NSManagedObjectContext) -> [ListEntity] {
+        return ListsService.listsFetchRequest().execute(context: context)
     }
     
-    func searchListEntities(by string: String) -> [ListEntity] {
-        return (try? DefaultStorage.instance.database.readContext.fetch(listsSearchRequest(string: string))) ?? []
+    func fetchListEntity(id: String) -> ListEntity? {
+        return ListsService.listFetchRequest(id: id).execute().first
     }
     
-    static func listFetchRequest(with id: String) -> NSFetchRequest<ListEntity> {
-        let request: NSFetchRequest<ListEntity> = ListEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", id)
-        return request
-    }
-    
-    static func smartListFetchRequest(with id: String) -> NSFetchRequest<SmartListEntity> {
-        let request: NSFetchRequest<SmartListEntity> = SmartListEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", id)
-        return request
-    }
-    
-    static func tasksFetchRequest(for tasks: [Task]) -> NSFetchRequest<TaskEntity> {
-        let request: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id IN %@", tasks.map { $0.id })
-        return request
-    }
-    
-    func fetchTaskEntities(for tasks: [Task], context: NSManagedObjectContext) -> [TaskEntity] {
-        return (try? context.fetch(ListsService.tasksFetchRequest(for: tasks))) ?? []
+    func fetchListEntity(id: String, context: NSManagedObjectContext) -> ListEntity? {
+        return ListsService.listFetchRequest(id: id).execute(context: context).first
     }
 
 }
 
-extension NSManagedObjectContext {
+// MARK: - Fetch smart list entities
 
-    func fetchList(id: String) -> ListEntity? {
-        return (try? fetch(ListsService.listFetchRequest(with: id)))?.first
+extension ListsService: SmartListEntitiesProvider {
+    
+    func createSmartListEntity() -> SmartListEntity? {
+        return try? Database.localStorage.writeContext.create()
+    }
+    
+    func fetchSmartListEntities() -> [SmartListEntity] {
+        return ListsService.smartListsFetchRequest().execute()
+    }
+    
+    func fetchSmartListEntities(context: NSManagedObjectContext) -> [SmartListEntity] {
+        return ListsService.smartListsFetchRequest().execute(context: context)
     }
     
     func fetchSmartList(id: String) -> SmartListEntity? {
-        return (try? fetch(ListsService.smartListFetchRequest(with: id)))?.first
+        return ListsService.smartListFetchRequest(id: id).execute().first
     }
     
-    func createList() -> ListEntity? {
-        return try? create()
+    func fetchSmartList(id: String, context: NSManagedObjectContext) -> SmartListEntity? {
+        return ListsService.smartListFetchRequest(id: id).execute(context: context).first
     }
     
-    func createSmartList() -> SmartListEntity? {
-        return try? create()
-    }
+}
 
+// MARK: - Lists observer
+
+extension ListsService: ListsObserverProvider {
+    
+    func listsObserver() -> CoreDataObserver<List> {
+        let observer: CoreDataObserver<List>
+        observer = CoreDataObserver(request: ListsService.listsFetchRequest().nsFetchRequestWithResult,
+                                    section: nil,
+                                    cacheName: "lists",
+                                    context: Database.localStorage.readContext)
+        observer.sectionOffset = 1
+        return observer
+    }
+    
+    func smartListsObserver() -> CoreDataObserver<SmartList> {
+        let observer: CoreDataObserver<SmartList>
+        observer = CoreDataObserver(request: ListsService.smartListsFetchRequest().nsFetchRequestWithResult,
+                                    section: nil,
+                                    cacheName: "smart_lists",
+                                    context: Database.localStorage.readContext)
+        observer.sectionOffset = 0
+        return observer
+    }
+    
+}
+
+// MARK: - Fetch requests
+
+private extension ListsService {
+    
+    /// Запрос всех смарт списков
+    static func smartListsFetchRequest() -> FetchRequest<SmartListEntity> {
+        return SmartListEntity.request().sorted(key: "sortPosition", ascending: true)
+    }
+    
+    /// Запрос смарт списка по id
+    static func smartListFetchRequest(id: String) -> FetchRequest<SmartListEntity> {
+        return SmartListEntity.request().filtered(key: "id", value: id)
+    }
+    
+    /// Запрос всех списков
+    static func listsFetchRequest() -> FetchRequest<ListEntity> {
+        let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
+        return ListEntity.request().sorted(sortDescriptor: sortDescriptor)
+    }
+    
+    /// Запрос списка по id
+    static func listFetchRequest(id: String) -> FetchRequest<ListEntity> {
+        return ListEntity.request().filtered(key: "id", value: id)
+    }
+    
 }

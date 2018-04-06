@@ -21,7 +21,7 @@ final class ListEditorInteractor {
 
     weak var output: ListEditorInteractorOutput!
     
-    fileprivate var listsService = ListsService()
+    private var listsService = ServicesAssembly.shared.listsService
 
 }
 
@@ -42,7 +42,7 @@ extension ListEditorInteractor: ListEditorInteractorInput {
             return
         }
         
-        listsService.updateList(list, tasks: tasks) { error in
+        listsService.createOrUpdateList(list, tasks: tasks) { error in
             if error != nil {
                 fail?()
             } else {

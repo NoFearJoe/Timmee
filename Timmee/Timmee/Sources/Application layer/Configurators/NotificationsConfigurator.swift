@@ -67,6 +67,17 @@ final class NotificationsConfigurator {
         }
     }
     
+    static func updateNotificationCategoriesIfPossible(application: UIApplication) {
+        guard let settings = application.currentUserNotificationSettings, !settings.types.isEmpty else { return }
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())
+        } else {
+            let settings = UIUserNotificationSettings(types: settings.types,
+                                                      categories: makeLocalNotificationsCategories())
+            application.registerUserNotificationSettings(settings)
+        }
+    }
+    
     private static func makeLocalNotificationsCategories() -> Set<UIUserNotificationCategory> {
         let taskCategory = UIMutableUserNotificationCategory()
         taskCategory.identifier = NotificationCategories.task.rawValue
@@ -111,7 +122,6 @@ final class NotificationsConfigurator {
                                     options: [])
     }
     
-    // TODO: Доработать и добавить в список
     private static func makeRemindLaterAction(minutes: Int) -> UIUserNotificationAction {
         let remindLaterAction = UIMutableUserNotificationAction()
         remindLaterAction.identifier = NotificationAction.remindAfter(minutes).rawValue

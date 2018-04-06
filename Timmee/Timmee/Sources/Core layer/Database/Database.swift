@@ -1,5 +1,5 @@
 //
-//  DefaultStorage.swift
+//  Database.swift
 //  Timmee
 //
 //  Created by Ilya Kharabet on 23.08.17.
@@ -8,15 +8,13 @@
 
 import CoreData
 
-final class DefaultStorage {
+final class Database {
     
-    static let instance = DefaultStorage()
-    
-    lazy var database: Database = CoreDataStorage()
+    static let localStorage: Storage = CoreDataStorage()
     
 }
 
-protocol Database: class {
+protocol Storage: class {
     var readContext: NSManagedObjectContext { get }
     var writeContext: NSManagedObjectContext { get }
     
@@ -25,7 +23,7 @@ protocol Database: class {
                completion: ((Bool) -> Void)?)
 }
 
-private final class CoreDataStorage: Database {
+private final class CoreDataStorage: Storage {
     
     lazy var readContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -96,12 +94,11 @@ private extension CoreDataStorage {
     
     var storeURL: URL {
         let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return documentURL.appendingPathComponent("Timmee.sqlite")
+        return documentURL.appendingPathComponent("Timmee")
     }
     
     var model: NSManagedObjectModel {
-        let modelURL = Bundle.main.url(forResource: "Timmee", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
+        return NSManagedObjectModel.mergedModel(from: nil)!
     }
     
     var coordinator: NSPersistentStoreCoordinator {
@@ -109,7 +106,11 @@ private extension CoreDataStorage {
         try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
                                             configurationName: nil,
                                             at: self.storeURL,
-                                            options: [NSMigratePersistentStoresAutomaticallyOption: true])
+                                            options: [
+                                                NSMigratePersistentStoresAutomaticallyOption: true,
+                                                NSInferMappingModelAutomaticallyOption: true,
+                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
+                                            ])
         return coordinator
     }
     

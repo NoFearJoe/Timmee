@@ -13,43 +13,35 @@ import class Foundation.DispatchQueue
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSFetchRequest
 
-final class TimeTemplatesService {}
-
-extension TimeTemplatesService {
-    
-    func fetchTimeTemplates() -> [TimeTemplate] {
-        let entities = fetch(with: timeTemplatesFetchRequest())
-        return entities.map { TimeTemplate(entity: $0) }
-    }
-    
-    func searchTimeTemplates(by string: String) -> [TimeTemplate] {
-        let entities = fetch(with: timeTemplatesSearchRequest(string: string))
-        return entities.map { TimeTemplate(entity: $0) }
-    }
-    
-    private func fetch(with request: NSFetchRequest<TimeTemplateEntity>) -> [TimeTemplateEntity] {
-        return (try? DefaultStorage.instance.database.readContext.fetch(request)) ?? []
-    }
-    
+protocol TimeTemplatesProvider: class {
+    func createTimeTemplate() -> TimeTemplate
+    func fetchTimeTemplates() -> [TimeTemplate]
 }
 
-extension TimeTemplatesService {
-    
-    func createTimeTemplate() -> TimeTemplate {
-        var date = Date()
-        date => TimeRounder.roundMinutes(date.minutes).asMinutes
-        return TimeTemplate(id: RandomStringGenerator.randomString(length: 12),
-                            title: "",
-                            time: (date.hours, date.minutes),
-                            notification: .justInTime)
-    }
+protocol TimeTemplateEntitiesProvider: class {
+    func fetchTimeTemplateEntity(id: String) -> TimeTemplateEntity?
+}
+
+protocol TimeTemplateEntitiesBackgroundProvider: class {
+    func createTimeTemplateEntity() -> TimeTemplateEntity?
+    func fetchTimeTemplateEntityInBackground(id: String) -> TimeTemplateEntity?
+}
+
+protocol TimeTemplatesManager: class {
+    func createOrUpdateTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?)
+    func removeTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?)
+}
+
+final class TimeTemplatesService {}
+
+extension TimeTemplatesService: TimeTemplatesManager {
     
     func createOrUpdateTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            if let existingTimeTemplate = context.fetchTimeTemplate(id: template.id) {
+        Database.localStorage.write({ (context, save) in
+            if let existingTimeTemplate = self.fetchTimeTemplateEntityInBackground(id: template.id) {
                 existingTimeTemplate.map(from: template)
                 save()
-            } else if let newTimeTemplate = context.createTimeTemplate() {
+            } else if let newTimeTemplate = self.createTimeTemplateEntity() {
                 newTimeTemplate.map(from: template)
                 save()
             } else {
@@ -65,8 +57,8 @@ extension TimeTemplatesService {
     }
     
     func removeTimeTemplate(_ template: TimeTemplate, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            if let existingTimeTemplate = context.fetchTimeTemplate(id: template.id) {
+        Database.localStorage.write({ (context, save) in
+            if let existingTimeTemplate = self.fetchTimeTemplateEntityInBackground(id: template.id) {
                 context.delete(existingTimeTemplate)
                 save()
             } else {
@@ -83,38 +75,59 @@ extension TimeTemplatesService {
     
 }
 
-private extension TimeTemplatesService {
+// MARK: - Fetch
+
+extension TimeTemplatesService: TimeTemplatesProvider {
     
-    func timeTemplateFetchRequest(id: String) -> NSFetchRequest<TimeTemplateEntity> {
-        let fetchRequest: NSFetchRequest<TimeTemplateEntity> = TimeTemplateEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        return fetchRequest
+    func createTimeTemplate() -> TimeTemplate {
+        var date = Date()
+        date => TimeRounder.roundMinutes(date.minutes).asMinutes
+        return TimeTemplate(id: RandomStringGenerator.randomString(length: 12),
+                            title: "",
+                            time: (date.hours, date.minutes),
+                            notification: .justInTime)
     }
     
-    func timeTemplatesFetchRequest() -> NSFetchRequest<TimeTemplateEntity> {
-        let fetchRequest: NSFetchRequest<TimeTemplateEntity> = TimeTemplateEntity.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        return fetchRequest
-    }
-    
-    func timeTemplatesSearchRequest(string: String) -> NSFetchRequest<TimeTemplateEntity> {
-        let request = timeTemplatesFetchRequest()
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", string)
-        return request
+    func fetchTimeTemplates() -> [TimeTemplate] {
+        return TimeTemplatesService.timeTemplatesFetchRequest().execute().map { TimeTemplate(entity: $0) }
     }
     
 }
 
-extension NSManagedObjectContext {
+// MARK: - Fetch entities
+
+extension TimeTemplatesService: TimeTemplateEntitiesProvider {
     
-    func fetchTimeTemplate(id: String) -> TimeTemplateEntity? {
-        let request: NSFetchRequest<TimeTemplateEntity> = TimeTemplateEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", id)
-        return (try? fetch(request))?.first
+    func fetchTimeTemplateEntity(id: String) -> TimeTemplateEntity? {
+        return TimeTemplatesService.timeTemplateFetchRequest(id: id).execute().first
     }
     
-    func createTimeTemplate() -> TimeTemplateEntity? {
-        return try? create()
+}
+
+// MARK: - Fetch entities in background
+
+extension TimeTemplatesService: TimeTemplateEntitiesBackgroundProvider {
+    
+    func createTimeTemplateEntity() -> TimeTemplateEntity? {
+        return try? Database.localStorage.writeContext.create()
+    }
+    
+    func fetchTimeTemplateEntityInBackground(id: String) -> TimeTemplateEntity? {
+        return TimeTemplatesService.timeTemplateFetchRequest(id: id).executeInBackground().first
+    }
+    
+}
+
+// MARK: - Fetch requests
+
+private extension TimeTemplatesService {
+    
+    static func timeTemplatesFetchRequest() -> FetchRequest<TimeTemplateEntity> {
+        return TimeTemplateEntity.request().sorted(key: "title", ascending: true)
+    }
+    
+    static func timeTemplateFetchRequest(id: String) -> FetchRequest<TimeTemplateEntity> {
+        return TimeTemplateEntity.request().filtered(key: "id", value: id)
     }
     
 }

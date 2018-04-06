@@ -8,7 +8,7 @@
 
 final class SmartListsPickerInteractor {
     
-    private let listsService = ListsService()
+    private let listsService = ServicesAssembly.shared.listsService
     
     private let allSmartLists = SmartListType.allValues.filter { $0 != .all }.map { SmartList(type: $0) }
     

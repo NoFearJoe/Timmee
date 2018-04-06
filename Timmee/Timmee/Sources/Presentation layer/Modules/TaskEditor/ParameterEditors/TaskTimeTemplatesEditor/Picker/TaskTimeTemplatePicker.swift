@@ -28,19 +28,19 @@ final class TaskTimeTemplatePicker: UIViewController {
     weak var transitionOutput: TaskTimeTemplatePickerTransitionOutput?
     weak var container: TaskParameterEditorOutput?
     
-    @IBOutlet fileprivate var addTimeTemplateView: AddTimeTemplateView!
-    @IBOutlet fileprivate var tableView: UITableView!
+    @IBOutlet private var addTimeTemplateView: AddTimeTemplateView!
+    @IBOutlet private var tableView: UITableView!
     
-    fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
-    fileprivate static let rowHeight: CGFloat = 52
+    private static let rowHeight: CGFloat = 52
     
-    fileprivate var timeTemplatesService = TimeTemplatesService()
+    private var timeTemplatesService = ServicesAssembly.shared.timeTemplatesService
     
-    fileprivate let cellActionsProvider = ListsSwipeTableActionsProvider()
+    private let cellActionsProvider = ListsSwipeTableActionsProvider()
     
-    fileprivate var selectedTimeTemplate: TimeTemplate?
-    fileprivate var timeTemplates: [TimeTemplate] = [] {
+    private var selectedTimeTemplate: TimeTemplate?
+    private var timeTemplates: [TimeTemplate] = [] {
         didSet {
             timeTemplates.isEmpty ? showNoTimeTemplatesPlaceholder() : hideNoTimeTemplatesPlaceholder()
             tableView.reloadData()

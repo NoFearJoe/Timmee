@@ -24,7 +24,7 @@ final class TaskEditorInteractor {
 
     weak var output: TaskEditorInteractorOutput!
     
-    let tasksService = TasksService()
+    let tasksService = ServicesAssembly.shared.tasksService
     let taskSchedulerService = TaskSchedulerService()
 
 }

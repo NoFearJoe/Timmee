@@ -39,7 +39,7 @@ final class TaskTagsPicker: UIViewController {
         }
     }
     
-    fileprivate let tagsService = TagsService()
+    fileprivate let tagsService = ServicesAssembly.shared.tagsService
     
     fileprivate static let rowHeight: CGFloat = 36
     

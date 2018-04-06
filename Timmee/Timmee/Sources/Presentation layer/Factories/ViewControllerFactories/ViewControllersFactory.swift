@@ -115,10 +115,6 @@ final class ViewControllersFactory {
         return StoryboardsFactory.settings.initialViewController()
     }
     
-    static var inApp: InAppPurchaseViewController {
-        return StoryboardsFactory.settings.viewController(id: "InAppPurchaseViewController")
-    }
-    
     static var aboutApp: AboutAppViewController {
         return StoryboardsFactory.settings.viewController(id: "AboutAppViewController")
     }

@@ -7,12 +7,17 @@
 //
 
 import func Foundation.NSStringFromClass
+import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObject
 
 extension NSManagedObject {
     
     class var entityName: String {
         return NSStringFromClass(self).components(separatedBy: ".").last!
+    }
+    
+    static func request<T: NSManagedObject>() -> FetchRequest<T> {
+        return FetchRequest()
     }
     
 }

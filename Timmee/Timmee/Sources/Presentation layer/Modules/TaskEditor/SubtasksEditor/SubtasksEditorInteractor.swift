@@ -11,7 +11,7 @@ final class SubtasksEditorInteractor {
     weak var output: SubtasksEditorInteractorOutput?
     weak var taskProvider: SubtasksEditorTaskProvider!
     
-    let subtasksService = SubtasksService()
+    let subtasksService = ServicesAssembly.shared.subtasksService
     
     fileprivate var sortedSubtasks: [Subtask] {
         return taskProvider?.task?.subtasks.sorted(by: { $0.sortPosition > $1.sortPosition }) ?? []

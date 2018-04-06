@@ -12,41 +12,37 @@ import class Foundation.DispatchQueue
 import class CoreData.NSManagedObjectContext
 import class CoreData.NSFetchRequest
 
-final class TagsService {}
-
-extension TagsService {
-    
-    func fetchTags() -> [Tag] {
-        let entities = fetch(with: tagsFetchRequest())
-        return entities.map { Tag(entity: $0) }
-    }
-    
-    func searchTags(by string: String) -> [Tag] {
-        let entities = fetch(with: tagsSearchRequest(string: string))
-        return entities.map { Tag(entity: $0) }
-    }
-    
-    private func fetch(with request: NSFetchRequest<TagEntity>) -> [TagEntity] {
-        return (try? DefaultStorage.instance.database.readContext.fetch(request)) ?? []
-    }
-    
+protocol TagsProvider: class {
+    func fetchTags() -> [Tag]
 }
 
-extension TagsService {
+protocol TagEntitiesProvider: class {
+    func fetchTagEntity(id: String) -> TagEntity?
+}
+
+protocol TagEntitiesBackgroundProvider: class {
+    func createTagEntity() -> TagEntity?
+    func fetchTagEntityInBackground(id: String) -> TagEntity?
+}
+
+protocol TagsManager: class {
+    func createOrUpdateTag(_ tag: Tag, completion: (() -> Void)?)
+    func removeTag(_ tag: Tag, completion: (() -> Void)?)
+}
+
+final class TagsService {}
+
+extension TagsService: TagsManager {
 
     func createOrUpdateTag(_ tag: Tag, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            if let existingTag = context.fetchTag(id: tag.id) {
+        Database.localStorage.write({ (context, save) in
+            if let existingTag = self.fetchTagEntityInBackground(id: tag.id) {
                 existingTag.map(from: tag)
-                save()
-            } else if let newTag = context.createTag() {
+            } else if let newTag = self.createTagEntity() {
                 newTag.map(from: tag)
-                save()
-            } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
             }
+            
+            save()
         }) { _ in
             DispatchQueue.main.async {
                 completion?()
@@ -55,15 +51,13 @@ extension TagsService {
     }
     
     func removeTag(_ tag: Tag, completion: (() -> Void)?) {
-        DefaultStorage.instance.database.write({ (context, save) in
-            if let existingTag = context.fetchTag(id: tag.id) {
+        Database.localStorage.write({ (context, save) in
+            if let existingTag = self.fetchTagEntityInBackground(id: tag.id) {
                 context.delete(existingTag)
-                save()
-            } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
+                
             }
+            
+            save()
         }) { _ in
             DispatchQueue.main.async {
                 completion?()
@@ -73,38 +67,50 @@ extension TagsService {
     
 }
 
-fileprivate extension TagsService {
+// MARK: - Fetch
+
+extension TagsService: TagsProvider {
     
-    func tagFetchRequest(id: String) -> NSFetchRequest<TagEntity> {
-        let fetchRequest: NSFetchRequest<TagEntity> = TagEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        return fetchRequest
-    }
-    
-    func tagsFetchRequest() -> NSFetchRequest<TagEntity> {
-        let fetchRequest: NSFetchRequest<TagEntity> = TagEntity.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        return fetchRequest
-    }
-    
-    func tagsSearchRequest(string: String) -> NSFetchRequest<TagEntity> {
-        let request = tagsFetchRequest()
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", string)
-        return request
+    func fetchTags() -> [Tag] {
+        return TagsService.tagsFetchRequest().execute().map { Tag(entity: $0) }
     }
     
 }
 
-extension NSManagedObjectContext {
+// MARK: - Fetch entities
+
+extension TagsService: TagEntitiesProvider {
     
-    func fetchTag(id: String) -> TagEntity? {
-        let request: NSFetchRequest<TagEntity> = TagEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", id)
-        return (try? fetch(request))?.first
+    func fetchTagEntity(id: String) -> TagEntity? {
+        return TagsService.tagFetchRequest(id: id).execute().first
     }
     
-    func createTag() -> TagEntity? {
-        return try? create()
+}
+
+// MARK: - Fetch entities in background
+
+extension TagsService: TagEntitiesBackgroundProvider {
+    
+    func createTagEntity() -> TagEntity? {
+        return try? Database.localStorage.writeContext.create()
+    }
+    
+    func fetchTagEntityInBackground(id: String) -> TagEntity? {
+        return TagsService.tagFetchRequest(id: id).executeInBackground().first
+    }
+    
+}
+
+// MARK: - Fetch reqeusts
+
+private extension TagsService {
+    
+    static func tagFetchRequest(id: String) -> FetchRequest<TagEntity> {
+        return TagEntity.request().filtered(key: "id", value: id)
+    }
+    
+    static func tagsFetchRequest() -> FetchRequest<TagEntity> {
+        return TagEntity.request().sorted(key: "title", ascending: true)
     }
     
 }

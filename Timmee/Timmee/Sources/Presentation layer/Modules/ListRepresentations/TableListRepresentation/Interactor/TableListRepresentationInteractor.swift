@@ -45,7 +45,7 @@ final class TableListRepresentationInteractor {
 
     weak var output: TableListRepresentationInteractorOutput!
     
-    fileprivate let tasksService = TasksService()
+    fileprivate let tasksService = ServicesAssembly.shared.tasksService
     fileprivate let taskSchedulerService = TaskSchedulerService()
     
     fileprivate var tasksObserver: CoreDataObserver<Task>!
@@ -246,7 +246,7 @@ fileprivate extension TableListRepresentationInteractor {
         
         request.fetchBatchSize = 20
         
-        let context = DefaultStorage.instance.database.readContext
+        let context = Database.localStorage.readContext
         tasksObserver = CoreDataObserver(request: request,
                                          section: "isDone",
                                          cacheName: "tasks\(listID)",

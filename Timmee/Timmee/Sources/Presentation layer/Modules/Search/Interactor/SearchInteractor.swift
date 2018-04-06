@@ -39,8 +39,8 @@ final class SearchInteractor {
     
     weak var output: SearchInteractorOutput!
     
-    fileprivate let tasksService = TasksService()
-    fileprivate var tasksObserver: CoreDataObserver<Task>!
+    private let tasksService = ServicesAssembly.shared.tasksService
+    private var tasksObserver: CoreDataObserver<Task>!
     
 }
 
@@ -117,18 +117,7 @@ extension SearchInteractor: SearchDataSource {
 fileprivate extension SearchInteractor {
     
     func fetchTasks(predicate: NSPredicate?) {
-        let request = tasksService.allTasksFetchRequest() as! NSFetchRequest<NSFetchRequestResult>
-        request.predicate = predicate
-        let context = DefaultStorage.instance.database.readContext
-        tasksObserver = CoreDataObserver<Task>(request: request,
-                                               section: "list.title",
-                                               cacheName: nil,
-                                               context: context)
-        
-        tasksObserver.mapping = { entity in
-            let entity = entity as! TaskEntity
-            return Task(task: entity)
-        }
+        tasksObserver = tasksService.tasksObserver(predicate: predicate)
         
         tasksObserver.onFetchedObjectsCountChange = { [weak self] count in
             self?.output.tasksFetched(count: count)

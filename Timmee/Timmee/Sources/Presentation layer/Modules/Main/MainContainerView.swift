@@ -20,7 +20,7 @@ final class MainViewController: UIViewController {
     
     private let representationManager = ListRepresentationManager()
     
-    private let interactor = MainContainerInteractor()
+    private let tasksService = ServicesAssembly.shared.tasksService
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         view.backgroundColor = AppTheme.current.backgroundColor
         
-        interactor.updateTaskDueDates()
+        tasksService.updateTasksDueDates()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -50,7 +50,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc func didBecomeActive() {
-        interactor.updateTaskDueDates()
+        tasksService.updateTasksDueDates()
     }
 
 }

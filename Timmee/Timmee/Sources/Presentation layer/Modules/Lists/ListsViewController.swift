@@ -133,7 +133,7 @@ extension ListsViewController: ListsInteractorOutput {
     
     func didFetchInitialLists() {
         guard currentList == nil else { return }
-        currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+        setInitialList()
     }
     
     func didUpdateLists(with change: CoreDataItemChange) {
@@ -159,7 +159,7 @@ extension ListsViewController: ListsInteractorOutput {
             })
         case .deletion(let indexPath):
             if currentListIndexPath == nil || indexPath == currentListIndexPath {
-                currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+                setInitialList()
             }
             
             collectionView.performBatchUpdates({
@@ -184,13 +184,22 @@ extension ListsViewController: ListsInteractorOutput {
     
     func didFetchInitialSmartLists() {
         guard currentList == nil else { return }
-        currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+        setInitialList()
     }
     
     func didUpdateSmartLists(with change: CoreDataItemChange) {
         didUpdateLists(with: change)
     }
     
+}
+
+private extension ListsViewController {
+
+    func setInitialList() {
+        guard listsInteractor.numberOfItems(in: ListsCollectionViewSection.smartLists.rawValue) > 0 else { return }
+        currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+    }
+
 }
 
 private extension ListsViewController {

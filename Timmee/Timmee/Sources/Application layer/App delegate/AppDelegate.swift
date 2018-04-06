@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppearanceConfigurator.setupAppearance()
         
+        NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
+        
         if let window = self.window {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)
         }

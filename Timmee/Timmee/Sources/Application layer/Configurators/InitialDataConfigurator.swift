@@ -6,13 +6,31 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
+import class Foundation.DispatchQueue
 import class Foundation.DispatchGroup
 
 final class InitialDataConfigurator {
     
-    let listsService = ListsService()
+    private let listsService = ServicesAssembly.shared.listsService
     
     func addInitialSmartLists(completion: @escaping () -> Void) {
+        if !listsService.fetchSmartLists().contains(where: { $0.smartListType == .all }) && UserProperty.isInitialSmartListsAdded.bool() {
+            addAllTasksSmartList(completion: completion)
+        } else {
+            addInitialSmartListsIfNeeded(completion: completion)
+        }
+    }
+    
+    private func addAllTasksSmartList(completion: @escaping () -> Void) {
+        let list = SmartList(type: .all)
+        listsService.addSmartList(list, completion: { _ in
+            DispatchQueue.main.async {
+                completion()
+            }
+        })
+    }
+    
+    private func addInitialSmartListsIfNeeded(completion: @escaping () -> Void) {
         guard !UserProperty.isInitialSmartListsAdded.bool() else {
             completion()
             return
