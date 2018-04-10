@@ -53,7 +53,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     
     var dueDate: Date? {
         didSet {
-            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && dueDate! < Date())
+            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
             updateDueDateView(with: dueDate?.asNearestDateString, isOverdue: isOverdue)
         }
     }

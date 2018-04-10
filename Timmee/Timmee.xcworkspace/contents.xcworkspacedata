@@ -5,6 +5,12 @@
       location = "group:Timmee.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:TasksCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Workset.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

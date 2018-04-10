@@ -1,10 +1,25 @@
 platform :ios, '9.0'
 use_frameworks!
 
+workspace 'Timmee.xcworkspace'
+
 target 'Timmee' do
+  project 'Timmee.xcodeproj'
+    
   pod 'SwipeCellKit'
   pod 'Foto'
   
   pod 'Fabric'
   pod 'Crashlytics'
+end
+
+target 'TasksCore' do
+  project 'TasksCore.xcodeproj'
+end
+
+target 'Workset' do
+  project 'Workset.xcodeproj'
+  
+  pod 'SwipeCellKit'
+  pod 'Foto'
 end

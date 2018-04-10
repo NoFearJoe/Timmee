@@ -358,7 +358,7 @@ extension TaskEditorPresenter: TaskEditorInteractorOutput {}
 fileprivate extension TaskEditorPresenter {
 
     func showFormattedDueDateTime(_ dueDate: Date?) {
-        let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && dueDate! < Date())
+        let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
         view.setDueDateTime(dueDate?.asNearestDateString, isOverdue: isOverdue)
     }
     

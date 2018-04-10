@@ -19,7 +19,7 @@ final class CalendarView: UIView {
         }
     }
     
-    var calendar: (calendar: Calendar, months: [Calendar.MonthEntry])!
+    var calendar: (calendar: Workset.Calendar, months: [Workset.Calendar.MonthEntry])!
     
     var selectedDateIndex = 1 {
         didSet {
