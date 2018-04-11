@@ -220,7 +220,7 @@ extension TasksService: TasksManager {
 extension TasksService: TasksObserverProvider {
     
     public func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task> {
-        let request = TasksService.allTasksFetchRequest().filtered(predicate: predicate).nsFetchRequestWithResult
+        let request = TasksService.allTasksFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
         let context = Database.localStorage.readContext
         let tasksObserver = CacheObserver<Task>(request: request,
                                                 section: "list.title",
