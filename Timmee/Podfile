@@ -13,8 +13,8 @@ target 'Timmee' do
   pod 'Crashlytics'
 end
 
-target 'TasksCore' do
-  project 'TasksCore.xcodeproj'
+target 'TasksKit' do
+  project 'TasksKit.xcodeproj'
 end
 
 target 'Workset' do

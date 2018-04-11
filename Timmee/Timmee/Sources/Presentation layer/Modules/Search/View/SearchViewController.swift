@@ -18,7 +18,7 @@ protocol SearchViewInput: class {
     func setInitialPlaceholderVisible(_ isVisible: Bool)
     func setNoSearchResultsPlaceholderVisible(_ isVisible: Bool)
     func setInteractionsEnabled(_ isEnabled: Bool)
-    func connect(with tableViewManagable: TableViewManageble)
+    func subscribeToCacheObserver(_ observer: CacheSubscribable)
 }
 
 protocol SearchViewOutput: class {
@@ -37,19 +37,20 @@ final class SearchViewController: UIViewController {
     var output: SearchViewOutput!
     weak var dataSource: SearchDataSource!
     
-    @IBOutlet fileprivate var searchImageView: UIImageView!
-    @IBOutlet fileprivate var searchTextField: UITextField!
-    @IBOutlet fileprivate var closeButton: UIButton!
-    @IBOutlet fileprivate var tableView: UITableView!
-    @IBOutlet fileprivate var tableViewContainer: BarView!
+    @IBOutlet private var searchImageView: UIImageView!
+    @IBOutlet private var searchTextField: UITextField!
+    @IBOutlet private var closeButton: UIButton!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var tableViewContainer: BarView!
     
-    @IBOutlet fileprivate var tableViewContainerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var tableViewContainerBottomConstraint: NSLayoutConstraint!
     
-    fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
-    fileprivate let swipeTableActionsProvider = SwipeTaskActionsProvider()
+    private let swipeTableActionsProvider = SwipeTaskActionsProvider()
     
-    fileprivate let keyboardManager = KeyboardManager()
+    private let keyboardManager = KeyboardManager()
+    private let cacheAdapter = TableViewCacheAdapter()
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
@@ -69,6 +70,8 @@ final class SearchViewController: UIViewController {
                            forHeaderFooterViewReuseIdentifier: "TasksImportHeaderView")
         
         subscribeToSearchStringChanges()
+        
+        cacheAdapter.setTableView(tableView)
         
         swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath) {
@@ -158,8 +161,8 @@ extension SearchViewController: SearchViewInput {
         view.isUserInteractionEnabled = isEnabled
     }
     
-    func connect(with tableViewManagable: TableViewManageble) {
-        tableViewManagable.setTableView(tableView)
+    func subscribeToCacheObserver(_ observer: CacheSubscribable) {
+        observer.setSubscriber(cacheAdapter)
     }
     
 }

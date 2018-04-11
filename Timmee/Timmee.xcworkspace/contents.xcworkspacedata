@@ -5,7 +5,7 @@
       location = "group:Timmee.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:TasksCore.xcodeproj">
+      location = "group:TasksKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Workset.xcodeproj">

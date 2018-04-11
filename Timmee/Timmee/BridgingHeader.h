@@ -10,6 +10,6 @@
 #define BridgingHeader_h
 
 #import <Workset/Workset.h>
-#import <TasksCore/TasksCore.h>
+#import <TasksKit/TasksKit.h>
 
 #endif /* BridgingHeader_h */

@@ -75,8 +75,8 @@ extension TasksImportPresenter: TasksImportInteractorOutput {
         }
     }
     
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble) {
-        view.connect(with: tableViewManageble)
+    func prepareCacheObserver(_ cacheSubscribable: CacheSubscribable) {
+        view.subscribeToCacheObserver(cacheSubscribable)
     }
 
 }

@@ -92,9 +92,13 @@ private extension CoreDataStorage {
 
 private extension CoreDataStorage {
     
+    var storeName: String {
+        return DatabaseConfiguration.shared.properties["database_name"] as! String
+    }
+    
     var storeURL: URL {
         let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return documentURL.appendingPathComponent("Timmee")
+        return documentURL.appendingPathComponent(storeName)
     }
     
     var model: NSManagedObjectModel {
@@ -112,6 +116,28 @@ private extension CoreDataStorage {
                                                 NSSQLitePragmasOption: ["journal_mode": "DELETE"]
                                             ])
         return coordinator
+    }
+    
+}
+
+private class DatabaseConfiguration {
+    
+    static let shared = DatabaseConfiguration()
+    
+    let properties: [String: Any]
+    
+    init() {
+        guard let plistURL = Bundle.main.url(forResource: "TasksKitConfiguration", withExtension: "plist") else {
+            fatalError("Файл Database.plist не найден")
+        }
+        guard let data = try? Data(contentsOf: plistURL) else {
+            fatalError("Файл Database.plist имеет неверный формат")
+        }
+        guard let properties = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? [String: Any] else {
+            fatalError("Файл Database.plist имеет неверный формат")
+        }
+        
+        self.properties = properties
     }
     
 }

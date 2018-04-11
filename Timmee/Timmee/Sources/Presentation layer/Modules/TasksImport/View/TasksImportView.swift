@@ -15,7 +15,7 @@ protocol TasksImportViewInput: class {
     func hideError()
     func setDoneButtonEnabled(_ isEnabled: Bool)
     
-    func connect(with tableViewManagable: TableViewManageble)
+    func subscribeToCacheObserver(_ observer: CacheSubscribable)
 }
 
 protocol TasksImportViewOutput: class {
@@ -41,21 +41,22 @@ protocol TasksImportViewDataSource: class {
 
 final class TasksImportView: UIViewController {
 
-    @IBOutlet fileprivate var containerView: BarView!
-    @IBOutlet fileprivate var tableView: UITableView!
-    @IBOutlet fileprivate var closeButton: UIButton!
-    @IBOutlet fileprivate var doneButton: UIButton!
+    @IBOutlet private var containerView: BarView!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var closeButton: UIButton!
+    @IBOutlet private var doneButton: UIButton!
     
-    @IBOutlet fileprivate var containerViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var containerViewBottomConstraint: NSLayoutConstraint!
     
-    fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
-    fileprivate let keyboardManager = KeyboardManager()
+    private let keyboardManager = KeyboardManager()
+    private let cacheAdapter = TableViewCacheAdapter()
     
     var output: TasksImportViewOutput!
     weak var dataSource: TasksImportViewDataSource!
     
-    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     
     
     override func viewDidLoad() {
@@ -75,6 +76,8 @@ final class TasksImportView: UIViewController {
         tableView.backgroundView = UIView()
         tableView.register(TasksImportHeaderView.self,
                            forHeaderFooterViewReuseIdentifier: "TasksImportHeaderView")
+        
+        cacheAdapter.setTableView(tableView)
         
         output.viewDidLoad()
     }
@@ -149,8 +152,8 @@ extension TasksImportView: TasksImportViewInput {
         doneButton?.isEnabled = isEnabled
     }
     
-    func connect(with tableViewManagable: TableViewManageble) {
-        tableViewManagable.setTableView(tableView)
+    func subscribeToCacheObserver(_ observer: CacheSubscribable) {
+        observer.setSubscriber(cacheAdapter)
     }
 
 }

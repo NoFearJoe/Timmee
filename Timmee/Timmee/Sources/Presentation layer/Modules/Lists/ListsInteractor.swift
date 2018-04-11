@@ -15,13 +15,13 @@ import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
 
 protocol ListsInteractorOutput: class {
-    func prepareListsObserver(_ collectionViewManageble: CollectionViewManageble)
+    func prepareListsObserver(_ cacheSubscribable: CacheSubscribable)
     func didFetchInitialLists()
-    func didUpdateLists(with change: CoreDataItemChange)
+    func didUpdateLists(with change: CoreDataChange)
     
-    func prepareSmartListsObserver(_ collectionViewManageble: CollectionViewManageble)
+    func prepareSmartListsObserver(_ cacheSubscribable: CacheSubscribable)
     func didFetchInitialSmartLists()
-    func didUpdateSmartLists(with change: CoreDataItemChange)
+    func didUpdateSmartLists(with change: CoreDataChange)
 }
 
 final class ListsInteractor {
@@ -29,8 +29,8 @@ final class ListsInteractor {
     private let listsService = ServicesAssembly.shared.listsService
     private let tasksService: TaskEntitiesCountProvider = ServicesAssembly.shared.tasksService
     
-    private var smartListsObserver: CoreDataObserver<SmartList>!
-    private var listsObserver: CoreDataObserver<List>!
+    private var smartListsObserver: CacheObserver<SmartList>!
+    private var listsObserver: CacheObserver<List>!
     
     private var currentListsSorting: ListSorting!
     
@@ -141,36 +141,38 @@ private extension ListsInteractor {
         
         listsObserver = listsService.listsObserver()
         
-        listsObserver.mapping = { entity in
+        listsObserver.setMapping { entity in
             let listEntity = entity as! ListEntity
             return List(listEntity: listEntity)
         }
         
-        listsObserver.onInitialFetch = { [weak self] in
-            self?.output.didFetchInitialLists()
-        }
-        
-        listsObserver.onItemChange = { [weak self] change in
-            self?.output.didUpdateLists(with: change)
-        }
+        listsObserver.setActions(
+            onInitialFetch: { [weak self] in
+                self?.output.didFetchInitialLists()
+            },
+            onItemsCountChange: nil,
+            onItemChange: { [weak self] change in
+                self?.output.didUpdateLists(with: change)
+            })
     }
     
     func setupSmartListsObserver() {
         smartListsObserver = listsService.smartListsObserver()
         
-        smartListsObserver.mapping = { entity in
+        smartListsObserver.setMapping { entity in
             let listEntity = entity as! SmartListEntity
             let type = SmartListType(id: listEntity.id ?? "")
             return SmartList(type: type)
         }
         
-        smartListsObserver.onInitialFetch = { [weak self] in
-            self?.output.didFetchInitialSmartLists()
-        }
-        
-        smartListsObserver.onItemChange = { [weak self] change in
-            self?.output.didUpdateSmartLists(with: change)
-        }
+        smartListsObserver.setActions(
+            onInitialFetch: { [weak self] in
+                self?.output.didFetchInitialSmartLists()
+            },
+            onItemsCountChange: nil,
+            onItemChange: { [weak self] change in
+                self?.output.didUpdateSmartLists(with: change)
+            })
     }
     
 }

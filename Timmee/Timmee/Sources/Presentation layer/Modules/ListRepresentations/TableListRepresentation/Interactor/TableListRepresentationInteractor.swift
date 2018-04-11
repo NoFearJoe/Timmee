@@ -38,7 +38,7 @@ protocol TableListRepresentationInteractorOutput: class {
     func operationCompleted()
     func groupEditingOperationCompleted()
     
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
+    func prepareCacheObserver(_ cacheSubscribable: CacheSubscribable)
 }
 
 final class TableListRepresentationInteractor {
@@ -48,7 +48,7 @@ final class TableListRepresentationInteractor {
     fileprivate let tasksService = ServicesAssembly.shared.tasksService
     fileprivate let taskSchedulerService = TaskSchedulerService()
     
-    fileprivate var tasksObserver: CoreDataObserver<Task>!
+    fileprivate var tasksObserver: CacheObserver<Task>!
     fileprivate var lastListID: String?
     
 }
@@ -247,23 +247,26 @@ fileprivate extension TableListRepresentationInteractor {
         request.fetchBatchSize = 20
         
         let context = Database.localStorage.readContext
-        tasksObserver = CoreDataObserver(request: request,
-                                         section: "isDone",
-                                         cacheName: "tasks\(listID)",
-                                         context: context)
+        tasksObserver = CacheObserver(request: request,
+                                      section: "isDone",
+                                      cacheName: "tasks\(listID)",
+                                      context: context)
         
-        tasksObserver.mapping = { entity in
+        tasksObserver.setMapping { entity in
             let taskEntity = entity as! TaskEntity
             return Task(task: taskEntity)
         }
-        tasksObserver.onFetchedObjectsCountChange = { [weak self] count in
-            self?.output.tasksCountChanged(count: count)
-        }
-        tasksObserver.onInitialFetch = { [weak self] in
-            self?.output.initialTasksFetched()
-        }
         
-        output.prepareCoreDataObserver(tasksObserver)
+        tasksObserver.setActions(
+            onInitialFetch: { [weak self] in
+                self?.output.initialTasksFetched()
+            },
+            onItemsCountChange: { [weak self] count in
+                self?.output.tasksCountChanged(count: count)
+            },
+            onItemChange: nil)
+        
+        output.prepareCacheObserver(tasksObserver)
         
         tasksObserver.fetchInitialEntities()
     }

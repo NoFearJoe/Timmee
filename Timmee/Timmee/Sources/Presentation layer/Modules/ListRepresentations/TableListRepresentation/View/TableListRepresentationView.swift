@@ -21,7 +21,7 @@ protocol TableListRepresentationViewInput: class {
     func setGroupEditingActionsEnabled(_ isEnabled: Bool)
     func setCompletionGroupEditingAction(_ action: GroupEditingCompletionAction)
     
-    func connect(with tableViewManagable: TableViewManageble)
+    func subscribeToCacheObserver(_ observer: CacheSubscribable)
     
     func resetOffset()
     
@@ -69,25 +69,27 @@ final class TableListRepresentationView: UIViewController {
     weak var dataSource: TableListRepresentationViewDataSource!
     var output: TableListRepresentationViewOutput!
     
-    @IBOutlet fileprivate var tableContainerView: UIView!
-    @IBOutlet fileprivate var tableView: UITableView!
+    @IBOutlet private var tableContainerView: UIView!
+    @IBOutlet private var tableView: UITableView!
     
-    @IBOutlet fileprivate var shortTaskEditorView: UIView!
-    @IBOutlet fileprivate var importancyView: UIImageView!
-    @IBOutlet fileprivate var newTaskTitleTextField: UITextField!
-    @IBOutlet fileprivate var rightBarButton: UIButton!
+    @IBOutlet private var shortTaskEditorView: UIView!
+    @IBOutlet private var importancyView: UIImageView!
+    @IBOutlet private var newTaskTitleTextField: UITextField!
+    @IBOutlet private var rightBarButton: UIButton!
     
-    @IBOutlet fileprivate var groupEditingActionsView: GroupEditingActionsView!
+    @IBOutlet private var groupEditingActionsView: GroupEditingActionsView!
     
-    @IBOutlet fileprivate var bottomContainerConstraint: NSLayoutConstraint!
+    @IBOutlet private var bottomContainerConstraint: NSLayoutConstraint!
     
-    fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
-    fileprivate let swipeTableActionsProvider = SwipeTaskActionsProvider()
+    private let swipeTableActionsProvider = SwipeTaskActionsProvider()
     
-    fileprivate let keyboardManager = KeyboardManager()
+    private let keyboardManager = KeyboardManager()
     
-    fileprivate var isTaskTitleEntered: Bool {
+    private let cacheAdapter = TableViewCacheAdapter()
+    
+    private var isTaskTitleEntered: Bool {
         if let text = newTaskTitleTextField.text, !text.isEmpty,
            newTaskTitleTextField.isFirstResponder {
             return true
@@ -124,6 +126,8 @@ final class TableListRepresentationView: UIViewController {
                            forHeaderFooterViewReuseIdentifier: "TableListRepresentationFooter")
         
         setupSwipeActionsProvider()
+        
+        cacheAdapter.setTableView(tableView)
         
         keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
             self.bottomContainerConstraint.constant = frame.height
@@ -238,8 +242,8 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
                                              andImage: action.image)
     }
     
-    func connect(with tableViewManagable: TableViewManageble) {
-        tableViewManagable.setTableView(tableView)
+    func subscribeToCacheObserver(_ observer: CacheSubscribable) {
+        observer.setSubscriber(cacheAdapter)
     }
     
     func resetOffset() {

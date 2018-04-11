@@ -41,12 +41,13 @@
 		0C8738DD1FB9769A00EA1571 /* AddSubtaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738DC1FB9769A00EA1571 /* AddSubtaskView.swift */; };
 		0C8738DF1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738DE1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift */; };
 		0C8738E11FBADDCD00EA1571 /* TaskEditorViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738E01FBADDCC00EA1571 /* TaskEditorViewProtocols.swift */; };
-		0C9B23B72077B679009EF6DE /* TasksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE017FA2077B16800633EFF /* TasksCore.framework */; };
-		0C9B23B82077B679009EF6DE /* TasksCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE017FA2077B16800633EFF /* TasksCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C9B240E2077BA48009EF6DE /* String+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B240D2077BA48009EF6DE /* String+Placeholder.swift */; };
 		0C9B2415207B4440009EF6DE /* OperatorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2414207B4440009EF6DE /* OperatorDefinitions.swift */; };
-		0C9B241D207B5FF5009EF6DE /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B241C207B5FF5009EF6DE /* Workset.framework */; };
-		0C9B241E207B5FF5009EF6DE /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B241C207B5FF5009EF6DE /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C9B2428207CD4E3009EF6DE /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C9B2427207CD4E3009EF6DE /* TasksKitConfiguration.plist */; };
+		0C9B243C207E377F009EF6DE /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B243A207E3759009EF6DE /* TasksKit.framework */; };
+		0C9B243D207E377F009EF6DE /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B243A207E3759009EF6DE /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C9B243E207E377F009EF6DE /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B2438207E3724009EF6DE /* Workset.framework */; };
+		0C9B243F207E377F009EF6DE /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B2438207E3724009EF6DE /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C9EF54E1FBC728100B36FBB /* TaskTimeTemplatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */; };
 		0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */; };
 		0C9EF5551FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */; };
@@ -171,14 +172,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0C9B23BC2077B679009EF6DE /* Embed Frameworks */ = {
+		0C9B2440207E3780009EF6DE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0C9B241E207B5FF5009EF6DE /* Workset.framework in Embed Frameworks */,
-				0C9B23B82077B679009EF6DE /* TasksCore.framework in Embed Frameworks */,
+				0C9B243F207E377F009EF6DE /* Workset.framework in Embed Frameworks */,
+				0C9B243D207E377F009EF6DE /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +224,9 @@
 		0C9B240D2077BA48009EF6DE /* String+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Placeholder.swift"; sourceTree = "<group>"; };
 		0C9B2412207B440E009EF6DE /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		0C9B2414207B4440009EF6DE /* OperatorDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorDefinitions.swift; sourceTree = "<group>"; };
-		0C9B241C207B5FF5009EF6DE /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C9B2427207CD4E3009EF6DE /* TasksKitConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TasksKitConfiguration.plist; sourceTree = "<group>"; };
+		0C9B2438207E3724009EF6DE /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C9B243A207E3759009EF6DE /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplatePicker.swift; sourceTree = "<group>"; };
 		0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeTemplateView.swift; sourceTree = "<group>"; };
 		0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplateEditor.swift; sourceTree = "<group>"; };
@@ -238,7 +241,6 @@
 		0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewController.swift; sourceTree = "<group>"; };
 		0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigurator.swift; sourceTree = "<group>"; };
 		0CC7C85E2008FE48006758C1 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
-		0CE017FA2077B16800633EFF /* TasksCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF30953201F301E00FD7E3E /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		0CF309732020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRoundedCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -353,8 +355,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9B241D207B5FF5009EF6DE /* Workset.framework in Frameworks */,
-				0C9B23B72077B679009EF6DE /* TasksCore.framework in Frameworks */,
+				0C9B243C207E377F009EF6DE /* TasksKit.framework in Frameworks */,
+				0C9B243E207E377F009EF6DE /* Workset.framework in Frameworks */,
 				34638CA1E9A08C2EF7EDCA4B /* Pods_Timmee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1116,7 +1118,6 @@
 				96E543381F49EBB20081C6F0 /* Products */,
 				2016C37FE8501A7AB7108367 /* Pods */,
 				A0CA419F3C43D8434E707942 /* Frameworks */,
-				0C9B241C207B5FF5009EF6DE /* Workset.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1155,7 +1156,6 @@
 				96E5435E1F49ED890081C6F0 /* Assets */,
 				96E543631F49ED890081C6F0 /* Localization */,
 				96E543641F49ED890081C6F0 /* Plists */,
-				96E543661F49ED890081C6F0 /* Sounds */,
 				96E543671F49ED890081C6F0 /* Storyboards */,
 			);
 			path = Resources;
@@ -1182,15 +1182,9 @@
 			isa = PBXGroup;
 			children = (
 				96E543651F49ED890081C6F0 /* Info.plist */,
+				0C9B2427207CD4E3009EF6DE /* TasksKitConfiguration.plist */,
 			);
 			path = Plists;
-			sourceTree = "<group>";
-		};
-		96E543661F49ED890081C6F0 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		96E543671F49ED890081C6F0 /* Storyboards */ = {
@@ -1317,7 +1311,8 @@
 		A0CA419F3C43D8434E707942 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0CE017FA2077B16800633EFF /* TasksCore.framework */,
+				0C9B243A207E3759009EF6DE /* TasksKit.framework */,
+				0C9B2438207E3724009EF6DE /* Workset.framework */,
 				6F32F20A366F046EF746BBA4 /* Pods_Timmee.framework */,
 			);
 			name = Frameworks;
@@ -1337,7 +1332,7 @@
 				05FA97F23DECC1F4DC8F8B9E /* [CP] Embed Pods Frameworks */,
 				4992C2E77A5A9CA17CECD143 /* [CP] Copy Pods Resources */,
 				96594E5A201918CF00998133 /* ShellScript */,
-				0C9B23BC2077B679009EF6DE /* Embed Frameworks */,
+				0C9B2440207E3780009EF6DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1427,6 +1422,7 @@
 				965798CC1F9133D800F65019 /* Pin.storyboard in Resources */,
 				96A376201F9BC60000A7C55C /* PlaceholderView.xib in Resources */,
 				96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */,
+				0C9B2428207CD4E3009EF6DE /* TasksKitConfiguration.plist in Resources */,
 				0C74D81F1FEAA65200CDA0BE /* PhotoPreview.storyboard in Resources */,
 				96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */,
 				963D6A551F5AEDB50063E295 /* ListRepresentations.storyboard in Resources */,

@@ -19,8 +19,7 @@ protocol TasksImportInteractorInput: class {
 
 protocol TasksImportInteractorOutput: class {
     func tasksFetched(count: Int)
-    
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
+    func prepareCacheObserver(_ cacheSubscribable: CacheSubscribable)
 }
 
 protocol TasksImportDataSource: class {
@@ -36,7 +35,7 @@ final class TasksImportInteractor {
     
     private let tasksService = ServicesAssembly.shared.tasksService
     
-    private var tasksObserver: CoreDataObserver<Task>!
+    private var tasksObserver: CacheObserver<Task>!
 
 }
 
@@ -87,11 +86,14 @@ private extension TasksImportInteractor {
     func fetchTasks(predicate: NSPredicate?) {
         tasksObserver = tasksService.tasksObserver(predicate: predicate)
         
-        tasksObserver.onFetchedObjectsCountChange = { [weak self] count in
-            self?.output.tasksFetched(count: count)
-        }
+        tasksObserver.setActions(
+            onInitialFetch: nil,
+            onItemsCountChange: { [weak self] count in
+                self?.output.tasksFetched(count: count)
+            },
+            onItemChange: nil)
         
-        output.prepareCoreDataObserver(tasksObserver!)
+        output.prepareCacheObserver(tasksObserver!)
         
         tasksObserver.fetchInitialEntities()
     }

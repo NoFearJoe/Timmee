@@ -36,6 +36,7 @@ final class ListsViewController: UIViewController {
     @IBOutlet private var dimmedBackgroundView: BarView!
     
     let listsInteractor = ListsInteractor()
+    let cacheAdapter = CollectionViewCacheAdapter()
     
     var currentList: List! {
         didSet {
@@ -63,6 +64,8 @@ final class ListsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cacheAdapter.setCollectionView(collectionView)
         
         listsInteractor.output = self
         
@@ -127,8 +130,8 @@ extension ListsViewController: ListsViewInput {
 
 extension ListsViewController: ListsInteractorOutput {
     
-    func prepareListsObserver(_ collectionViewManageble: CollectionViewManageble) {
-        collectionViewManageble.setCollectionView(collectionView)
+    func prepareListsObserver(_ cacheSubscribable: CacheSubscribable) {
+        cacheSubscribable.setSubscriber(cacheAdapter)
     }
     
     func didFetchInitialLists() {
@@ -136,7 +139,7 @@ extension ListsViewController: ListsInteractorOutput {
         setInitialList()
     }
     
-    func didUpdateLists(with change: CoreDataItemChange) {
+    func didUpdateLists(with change: CoreDataChange) {
         func reloadPreviousCell(for indexPath: IndexPath) {
             guard indexPath.item > 0 else { return }
             collectionView.reloadItems(at: [IndexPath(item: indexPath.item - 1, section: indexPath.section)])
@@ -175,11 +178,12 @@ extension ListsViewController: ListsInteractorOutput {
             if indexPath == currentListIndexPath {
                 currentList = listsInteractor.list(at: newIndexPath.row, in: newIndexPath.section)
             }
+        default: break
         }
     }
     
-    func prepareSmartListsObserver(_ collectionViewManageble: CollectionViewManageble) {
-        collectionViewManageble.setCollectionView(collectionView)
+    func prepareSmartListsObserver(_ cacheSubscribable: CacheSubscribable) {
+        cacheSubscribable.setSubscriber(cacheAdapter)
     }
     
     func didFetchInitialSmartLists() {
@@ -187,7 +191,7 @@ extension ListsViewController: ListsInteractorOutput {
         setInitialList()
     }
     
-    func didUpdateSmartLists(with change: CoreDataItemChange) {
+    func didUpdateSmartLists(with change: CoreDataChange) {
         didUpdateLists(with: change)
     }
     

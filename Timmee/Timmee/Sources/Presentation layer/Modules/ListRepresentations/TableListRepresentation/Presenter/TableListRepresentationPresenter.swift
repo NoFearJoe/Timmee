@@ -110,8 +110,8 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
         view.setGroupEditingActionsEnabled(false)
     }
     
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble) {
-        view.connect(with: tableViewManageble)
+    func prepareCacheObserver(_ cacheSubscribable: CacheSubscribable) {
+        view.subscribeToCacheObserver(cacheSubscribable)
     }
 
 }

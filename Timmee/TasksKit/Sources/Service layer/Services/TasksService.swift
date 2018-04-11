@@ -42,7 +42,7 @@ public protocol TaskEntitiesBackgroundProvider: class {
 }
 
 public protocol TasksObserverProvider: class {
-    func tasksObserver(predicate: NSPredicate?) -> CoreDataObserver<Task>
+    func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task>
 }
 
 public protocol TaskEntitiesCountProvider: class {
@@ -219,15 +219,15 @@ extension TasksService: TasksManager {
 
 extension TasksService: TasksObserverProvider {
     
-    public func tasksObserver(predicate: NSPredicate?) -> CoreDataObserver<Task> {
+    public func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task> {
         let request = TasksService.allTasksFetchRequest().filtered(predicate: predicate).nsFetchRequestWithResult
         let context = Database.localStorage.readContext
-        let tasksObserver = CoreDataObserver<Task>(request: request,
-                                                   section: "list.title",
-                                                   cacheName: "all_tasks_cache",
-                                                   context: context)
+        let tasksObserver = CacheObserver<Task>(request: request,
+                                                section: "list.title",
+                                                cacheName: "all_tasks_cache",
+                                                context: context)
         
-        tasksObserver.mapping = { entity in
+        tasksObserver.setMapping { entity in
             let entity = entity as! TaskEntity
             return Task(task: entity)
         }

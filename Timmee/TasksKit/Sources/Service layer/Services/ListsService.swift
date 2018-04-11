@@ -39,8 +39,8 @@ public protocol SmartListEntitiesProvider: class {
 }
 
 public protocol ListsObserverProvider: class {
-    func listsObserver() -> CoreDataObserver<List>
-    func smartListsObserver() -> CoreDataObserver<SmartList>
+    func listsObserver() -> CacheObserver<List>
+    func smartListsObserver() -> CacheObserver<SmartList>
 }
 
 public protocol ListsManager: class {
@@ -229,23 +229,23 @@ extension ListsService: SmartListEntitiesProvider {
 
 extension ListsService: ListsObserverProvider {
     
-    public func listsObserver() -> CoreDataObserver<List> {
-        let observer: CoreDataObserver<List>
-        observer = CoreDataObserver(request: ListsService.listsFetchRequest().nsFetchRequestWithResult,
-                                    section: nil,
-                                    cacheName: "lists",
-                                    context: Database.localStorage.readContext)
-        observer.sectionOffset = 1
+    public func listsObserver() -> CacheObserver<List> {
+        let observer: CacheObserver<List>
+        observer = CacheObserver(request: ListsService.listsFetchRequest().nsFetchRequestWithResult,
+                                 section: nil,
+                                 cacheName: "lists",
+                                 context: Database.localStorage.readContext)
+        observer.setSectionOffset(1)
         return observer
     }
     
-    public func smartListsObserver() -> CoreDataObserver<SmartList> {
-        let observer: CoreDataObserver<SmartList>
-        observer = CoreDataObserver(request: ListsService.smartListsFetchRequest().nsFetchRequestWithResult,
-                                    section: nil,
-                                    cacheName: "smart_lists",
-                                    context: Database.localStorage.readContext)
-        observer.sectionOffset = 0
+    public func smartListsObserver() -> CacheObserver<SmartList> {
+        let observer: CacheObserver<SmartList>
+        observer = CacheObserver(request: ListsService.smartListsFetchRequest().nsFetchRequestWithResult,
+                                 section: nil,
+                                 cacheName: "smart_lists",
+                                 context: Database.localStorage.readContext)
+        observer.setSectionOffset(0)
         return observer
     }
     

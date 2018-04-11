@@ -25,7 +25,7 @@ protocol SearchInteractorInput: class {
 protocol SearchInteractorOutput: class {
     func tasksFetched(count: Int)
     func operationCompleted()
-    func prepareCoreDataObserver(_ tableViewManageble: TableViewManageble)
+    func prepareCacheObserver(_ cacheSubscribable: CacheSubscribable)
 }
 
 protocol SearchDataSource: class {
@@ -40,7 +40,7 @@ final class SearchInteractor {
     weak var output: SearchInteractorOutput!
     
     private let tasksService = ServicesAssembly.shared.tasksService
-    private var tasksObserver: CoreDataObserver<Task>!
+    private var tasksObserver: CacheObserver<Task>!
     
 }
 
@@ -119,11 +119,14 @@ fileprivate extension SearchInteractor {
     func fetchTasks(predicate: NSPredicate?) {
         tasksObserver = tasksService.tasksObserver(predicate: predicate)
         
-        tasksObserver.onFetchedObjectsCountChange = { [weak self] count in
-            self?.output.tasksFetched(count: count)
-        }
+        tasksObserver.setActions(
+            onInitialFetch: nil,
+            onItemsCountChange: { [weak self] count in
+                self?.output.tasksFetched(count: count)
+            },
+            onItemChange: nil)
         
-        output.prepareCoreDataObserver(tasksObserver!)
+        output.prepareCacheObserver(tasksObserver!)
         
         tasksObserver.fetchInitialEntities()
     }
