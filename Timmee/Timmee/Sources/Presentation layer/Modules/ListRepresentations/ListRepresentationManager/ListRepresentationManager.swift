@@ -16,12 +16,13 @@ final class ListRepresentationManager {
     weak var listsContainerView: UIView!
     
     weak var output: ListRepresentationManagerOutput?
+    weak var listRepresentationOutput: ListRepresentationOutput!
     
-    fileprivate var representation: ListRepresentation = .table
+    private var representation: ListRepresentation = .table
     
-    fileprivate var currentListRepresentationInput: ListRepresentationInput?
+    private var currentListRepresentationInput: ListRepresentationInput?
     
-    fileprivate var currentList: List?
+    private var currentList: List?
 
 }
 
@@ -36,54 +37,10 @@ extension ListRepresentationManager: ListRepresentationManagerInput {
         currentList = list
         currentListRepresentationInput?.setList(list: list)
     }
-    
-    func forceTaskCreation() {
-        currentListRepresentationInput?.forceTaskCreation()
-    }
-    
-    func finishShortTaskEditing() {
-        currentListRepresentationInput?.finishShortTaskEditing()
-    }
 
 }
 
-extension ListRepresentationManager: MainTopViewControllerOutput {
-    
-    func currentListChanged(to list: List) {
-        setList(list)
-    }
-    
-    func listCreated() {
-        forceTaskCreation()
-    }
-    
-    func willShowLists() {
-        finishShortTaskEditing()
-    }
-    
-}
-
-extension ListRepresentationManager: ListRepresentationOutput {
-
-    func didAskToShowTaskEditor(with taskTitle: String) {
-        showTaskEditor(with: taskTitle)
-    }
-    
-    func didAskToShowTaskEditor(with task: Task?) {
-        showTaskEditor(with: task)
-    }
-
-}
-
-extension ListRepresentationManager: TaskEditorOutput {
-
-    func taskCreated() {
-        currentListRepresentationInput?.clearInput()
-    }
-
-}
-
-fileprivate extension ListRepresentationManager {
+private extension ListRepresentationManager {
 
     func performRepresentationChange(to: ListRepresentation, animated: Bool) {
         let newPresentation: ListRepresentationInput
@@ -94,7 +51,7 @@ fileprivate extension ListRepresentationManager {
             containerViewController.addChildViewController(view)
             
             newPresentation = TableListRepresentationAssembly.assembly(with: view,
-                                                                       output: self)
+                                                                       output: listRepresentationOutput)
             
             view.loadViewIfNeeded()
         }
@@ -141,37 +98,6 @@ fileprivate extension ListRepresentationManager {
     
     func layoutRepresentationView(_ view: UIView) {
         view.allEdges().toSuperview()
-    }
-    
-    func showTaskEditor(with task: Task?) {
-        showTaskEditor { taskEditorInput in
-            taskEditorInput.setTask(task)
-        }
-    }
-    
-    func showTaskEditor(with taskTitle: String) {
-        showTaskEditor { taskEditorInput in
-            taskEditorInput.setTask(nil)
-            taskEditorInput.setTaskTitle(taskTitle)
-        }
-    }
-    
-    private func showTaskEditor(configuration: (TaskEditorInput) -> Void) {
-        let taskEditorView = ViewControllersFactory.taskEditor
-        
-        let taskEditorInput = TaskEditorAssembly.assembly(with: taskEditorView)
-        taskEditorInput.output = self
-        taskEditorInput.setListID(currentList?.id)
-        
-        taskEditorView.loadViewIfNeeded()
-        
-        configuration(taskEditorInput)
-        
-        if let smartList = currentList as? SmartList, smartList.smartListType == .today {
-            taskEditorInput.setDueDate(Date().startOfHour + 1.asHours)
-        }
-        
-        containerViewController.present(taskEditorView, animated: true, completion: nil)
     }
 
 }

@@ -73,13 +73,16 @@ extension ListsViewController: UICollectionViewDataSource {
 extension ListsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if isPickingList, ListsCollectionViewSection(rawValue: indexPath.section) == .lists {
+        if isPickingList {
+            guard ListsCollectionViewSection(rawValue: indexPath.section) == .lists else { return }
             guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
             output?.didPickList(list)
+            close()
         } else {
             currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
             collectionView.reloadData()
             output?.didSelectList(currentList)
+            close()
         }
     }
     
@@ -161,7 +164,7 @@ private extension ListsViewController {
     
     func handleListEditing(at indexPath: IndexPath) {
         guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
-        output?.didAskToEditList(list)
+        showListEditor(with: list)
     }
     
     func showListDeletionAlert(with list: List) {

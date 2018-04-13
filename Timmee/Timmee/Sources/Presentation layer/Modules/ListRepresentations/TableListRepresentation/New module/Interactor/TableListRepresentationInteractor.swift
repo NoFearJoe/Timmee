@@ -2,22 +2,23 @@
 //  TableListRepresentationInteractor.swift
 //  Timmee
 //
-//  Created by Ilya Kharabet on 02.09.17.
-//  Copyright © 2017 Mesterra. All rights reserved.
+//  Created by i.kharabet on 12.04.2018.
+//  Copyright © 2018 Mesterra. All rights reserved.
 //
 
 import struct Foundation.Date
 import struct Foundation.IndexPath
-import class CoreData.NSFetchRequest
 import class Foundation.NSPredicate
-import class CoreData.NSSortDescriptor
 import class Foundation.DispatchQueue
+import class CoreData.NSFetchRequest
+import class CoreData.NSSortDescriptor
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
 
 protocol TableListRepresentationInteractorInput: class {
-    func fetchTasks(by listID: String?)
-    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool)
+    func subscribeToTasks(in list: List?)
+    
+    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String)
     func deleteTask(_ task: Task)
     func deleteTasks(_ tasks: [Task])
     func completeTask(_ task: Task)
@@ -26,7 +27,7 @@ protocol TableListRepresentationInteractorInput: class {
     func toggleTasksProgressState(_ tasks: [Task])
     func toggleImportancy(of task: Task)
     func moveTasks(_ tasks: [Task], toList list: List)
-        
+    
     func item(at index: Int, in section: Int) -> Task?
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)?
 }
@@ -34,7 +35,7 @@ protocol TableListRepresentationInteractorInput: class {
 protocol TableListRepresentationInteractorOutput: class {
     func initialTasksFetched()
     func tasksCountChanged(count: Int)
-        
+    
     func operationCompleted()
     func groupEditingOperationCompleted()
     
@@ -42,33 +43,27 @@ protocol TableListRepresentationInteractorOutput: class {
 }
 
 final class TableListRepresentationInteractor {
-
+    
     weak var output: TableListRepresentationInteractorOutput!
     
-    fileprivate let tasksService = ServicesAssembly.shared.tasksService
-    fileprivate let taskSchedulerService = TaskSchedulerService()
+    private let tasksService = ServicesAssembly.shared.tasksService
+    private let taskSchedulerService = TaskSchedulerService()
     
-    fileprivate var tasksObserver: CacheObserver<Task>!
-    fileprivate var lastListID: String?
+    private var tasksObserver: CacheObserver<Task>!
+    private var lastListID: String?
     
 }
 
 extension TableListRepresentationInteractor: TableListRepresentationInteractorInput {
-
-    func fetchTasks(by listID: String?) {
-        if let listID = listID {
-            if tasksObserver == nil || lastListID != listID {
-                lastListID = listID
-                setupTasksObserver(listID: listID)
-            }
-        } else {
-            lastListID = nil
+    
+    func subscribeToTasks(in list: List?) {
+        if let listID = list?.id, tasksObserver == nil || lastListID != listID {
+            setupTasksObserver(listID: listID)
         }
+        lastListID = list?.id
     }
     
-    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool) {
-        guard let listID = lastListID else { return }
-        
+    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String) {
         let task = Task(id: RandomStringGenerator.randomString(length: 24),
                         title: title)
         
@@ -89,7 +84,6 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         taskSchedulerService.removeNotifications(for: task)
         tasksService.removeTask(task, completion: { [weak self] error in
             DispatchQueue.main.async {
-                
                 self?.output.operationCompleted()
             }
         })
@@ -138,7 +132,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         tasksService.updateTasks(tasks) { [weak self] error in
             DispatchQueue.main.async {
                 guard let `self` = self else { return }
-
+                
                 tasks.forEach { task in
                     if task.isDone {
                         self.taskSchedulerService.removeNotifications(for: task)
@@ -192,11 +186,11 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
             }
         }
     }
-
+    
 }
 
-extension TableListRepresentationInteractor: TableListRepresentationViewDataSource {
-
+extension TableListRepresentationInteractor: TableListRepresentationDataSource {
+    
     func sectionsCount() -> Int {
         return tasksObserver?.numberOfSections() ?? 0
     }
@@ -221,41 +215,13 @@ extension TableListRepresentationInteractor: TableListRepresentationViewDataSour
     func totalObjectsCount() -> Int {
         return tasksObserver?.totalObjectsCount() ?? 0
     }
-
+    
 }
 
-fileprivate extension TableListRepresentationInteractor {
+private extension TableListRepresentationInteractor {
     
     func setupTasksObserver(listID: String) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: TaskEntity.entityName)
-        if SmartListType.isSmartListID(listID) {
-            let smartList = SmartList(type: SmartListType(id: listID))
-            if let predicate = smartList.tasksFetchPredicate {
-                request.predicate = predicate
-            }
-        } else {
-            request.predicate = NSPredicate(format: "list.id == %@", listID)
-        }
-        
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "isDone", ascending: true),
-            NSSortDescriptor(key: "isImportant", ascending: false),
-            NSSortDescriptor(key: "inProgress", ascending: false),
-            NSSortDescriptor(key: "creationDate", ascending: false)
-        ]
-        
-        request.fetchBatchSize = 20
-        
-        let context = Database.localStorage.readContext
-        tasksObserver = CacheObserver(request: request,
-                                      section: "isDone",
-                                      cacheName: "tasks\(listID)",
-                                      context: context)
-        
-        tasksObserver.setMapping { entity in
-            let taskEntity = entity as! TaskEntity
-            return Task(task: taskEntity)
-        }
+        tasksObserver = tasksService.tasksObserver(listID: listID)
         
         tasksObserver.setActions(
             onInitialFetch: { [weak self] in
@@ -270,5 +236,5 @@ fileprivate extension TableListRepresentationInteractor {
         
         tasksObserver.fetchInitialEntities()
     }
-
+    
 }

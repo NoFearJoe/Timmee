@@ -21,6 +21,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.mainTop.initialViewController()
     }
     
+    static var taskCreationPanel: TaskCreationPanelViewController {
+        return StoryboardsFactory.mainTop.viewController(id: "TaskCreationPanel")
+    }
+    
     static var tableListRepresentation: TableListRepresentationView {
         return StoryboardsFactory.listRepresentations.viewController(id: "Table")
     }

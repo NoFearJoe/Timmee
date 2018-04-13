@@ -9,177 +9,75 @@
 import UIKit
 import SwipeCellKit
 
-protocol MainTopViewControllerOutput: class {
-    func currentListChanged(to list: List)
-    func listCreated()
-    func willShowLists()
-}
-
 final class MainTopViewController: UIViewController {
 
-    @IBOutlet fileprivate weak var overlayView: UIView!
-    @IBOutlet fileprivate weak var controlPanel: ControlPanel!
+    @IBOutlet private var overlayView: UIView!
     
-    @IBOutlet fileprivate weak var listsViewContainer: BarView!
+    @IBOutlet private var listRepresentationContainer: UIView!
     
-    @IBOutlet fileprivate weak var listsViewHeightConstrint: NSLayoutConstraint!
+    @IBOutlet private var controlPanelContainer: UIView!
     
-    weak var output: MainTopViewControllerOutput?
-    weak var editingInput: ListRepresentationEditingInput?
+    @IBOutlet private var bottomContainer: UIView!
+    @IBOutlet private var taskCreationPanelContainer: UIView!
+    @IBOutlet private var groupEditingPanelContainer: UIView!
     
-    private weak var listsViewInput: ListsViewInput!
+    private var menuPanel: MenuPanelInput!
+    private var taskCreationPanel: TaskCreationPanelInput!
+    private var groupEditingPanel: GroupEditingPanelInput!
     
-    fileprivate var isListsVisible: Bool = true {
-        didSet {
-            listsViewInput.resetState()
-        }
-    }
+    private let representationManager = ListRepresentationManager()
     
-    fileprivate var isAnimationInProgress = false
+    private lazy var router: MainRouterInput = {
+        let router = MainRouter()
+        router.transitionHandler = self
+        return router
+    }()
     
-    fileprivate var isGroupEditing: Bool = false
+    weak var editingInput: TableListRepresentationEditingInput?
     
-    fileprivate var isPickingList: Bool = false {
-        didSet {
-            listsViewInput.setPickingList(isPickingList)
-        }
-    }
-    fileprivate var pickingListCompletion: ((List) -> Void)?
+    private var currentList: List = SmartList(type: .all)
     
-    fileprivate let swipeTableActionsProvider = ListsSwipeTableActionsProvider()
+    private var isGroupEditing: Bool = false
+    private var isPickingList: Bool = false
     
-    var passthrowView: PassthrowView {
-        return view as! PassthrowView
-    }
-    
-    
-    @IBAction fileprivate func didPressSettingsButton() {
-        hideLists(animated: true, force: true)
-
-        let viewController = ViewControllersFactory.settings
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction fileprivate func didPressSearchButton() {
-        hideLists(animated: true, force: true)
-        
-        let viewController = ViewControllersFactory.search
-        SearchAssembly.assembly(with: viewController)
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction fileprivate func didPressEditButton() {
-        controlPanel.setGroupEditingButtonEnabled(false)
-        editingInput?.toggleGroupEditing()
-        
-        hideLists(animated: true, force: true)
-    }
-    
-    @IBAction fileprivate func didPressOverlayView() {
-        hideLists(animated: true)
-    }
-    
-    @IBAction fileprivate func didPressControlPanel() {
-        guard !isGroupEditing || isPickingList else { return }
-        isListsVisible ? hideLists(animated: true) : showLists(animated: true)
-    }
-    
+    private var pickingListCompletion: ((List) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideLists(animated: false)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        controlPanel.applyAppearance()
-        listsViewContainer.backgroundColor = AppTheme.current.middlegroundColor
-        
-        listsViewInput.resetState()
-        
-        updateListsViewHeight()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateListsViewHeight()
+        setupRepresentationManager()
+        menuPanel.showList(currentList)
+        representationManager.setList(currentList)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EmbedListsViewController" {
+        if segue.identifier == "ShowLists" {
             guard let listsViewController = segue.destination as? ListsViewController else { return }
             listsViewController.output = self
-            listsViewInput = listsViewController
+            listsViewController.setCurrentList(currentList)
+            listsViewController.setPickingList(isPickingList)
+        } else if segue.identifier == "EmbedMenuPanel" {
+            guard let menuPanel = segue.destination as? MenuPanelViewController else { return }
+            menuPanel.output = self
+            self.menuPanel = menuPanel
+        } else if segue.identifier == "EmbedTaskCreationPanel" {
+            guard let taskCreationPanel = segue.destination as? TaskCreationPanelViewController else { return }
+            taskCreationPanel.output = self
+            self.taskCreationPanel = taskCreationPanel
+        } else if segue.identifier == "EmbedGroupEditingPanel" {
+            guard let groupEditingPanel = segue.destination as? GroupEditingPanelViewController else { return }
+            groupEditingPanel.output = self
+            self.groupEditingPanel = groupEditingPanel
         } else {
             super.prepare(for: segue, sender: sender)
         }
     }
     
     func showLists(animated: Bool) {
-        guard !isListsVisible && !isAnimationInProgress else { return }
-        
-        output?.willShowLists()
-        
-        listsViewInput.resetState()
-        listsViewInput.reloadLists()
-        
-        passthrowView.shouldPassTouches = false
         overlayView.isHidden = false
+        menuPanel.hideControls(animated: animated)
+        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
         
-        listsViewContainer.isHidden = false
-        
-        controlPanel.hideControls(animated: animated)
-        
-        if animated {
-            isAnimationInProgress = true
-            UIView.animate(withDuration: 0.25,
-                           delay: 0,
-                           options: [.beginFromCurrentState, .curveEaseOut],
-                           animations: {
-                self.overlayView.backgroundColor = AppTheme.current.backgroundColor
-                self.listsViewContainer.transform = .identity
-            }) { _ in
-                self.isListsVisible = true
-                self.isAnimationInProgress = false
-            }
-        } else {
-            overlayView.backgroundColor = AppTheme.current.backgroundColor
-            self.listsViewContainer.transform = .identity
-            isListsVisible = true
-        }
-    }
-    
-    func hideLists(animated: Bool, force: Bool = false) {
-        guard (isListsVisible && !isAnimationInProgress) || force else { return }
-        
-        isPickingList = false
-        
-        controlPanel.showControls(animated: animated)
-        
-        if animated {
-            isAnimationInProgress = true
-            UIView.animate(withDuration: 0.25,
-                           delay: 0,
-                           options: [.beginFromCurrentState, .curveEaseIn],
-                           animations: {
-                self.overlayView.backgroundColor = .clear
-                self.listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
-            }) { _ in
-                self.overlayView.isHidden = true
-                self.isListsVisible = false
-                self.listsViewContainer.isHidden = true
-                self.passthrowView.shouldPassTouches = true
-                self.isAnimationInProgress = false
-            }
-        } else {
-            view.backgroundColor = .clear
-            overlayView.isHidden = true
-            listsViewContainer.transform = CGAffineTransform(translationX: 0, y: self.listsViewContainer.frame.height)
-            listsViewContainer.isHidden = true
-            isListsVisible = false
-            passthrowView.shouldPassTouches = true
-        }
+        performSegue(withIdentifier: "ShowLists", sender: nil)
     }
 
 }
@@ -187,56 +85,45 @@ final class MainTopViewController: UIViewController {
 extension MainTopViewController: ListsViewOutput {
     
     func didSelectList(_ list: List) {
-        controlPanel.showList(list)
-        output?.currentListChanged(to: list)
-        hideLists(animated: true)
+        currentList = list
+        menuPanel.showList(list)
+        menuPanel.showControls(animated: true)
+        representationManager.setList(list)
     }
     
     func didPickList(_ list: List) {
         pickingListCompletion?(list)
-        hideLists(animated: true)
+        menuPanel.showControls(animated: true)
     }
     
     func didUpdateList(_ list: List) {
-        controlPanel.showList(list)
-        output?.currentListChanged(to: list)
+        currentList = list
+        menuPanel.showList(list)
+        representationManager.setList(list)
     }
     
-    func didAskToAddList() {
-        showListEditor(with: nil)
+    func didCreateList() {
+        taskCreationPanel.setTaskTitleFieldFirstResponder(true)
     }
     
-    func didAskToAddSmartList() {
-        showSmartListsPicker()
+    func willClose() {
+        menuPanel.showControls(animated: true)
+        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
     }
     
-    func didAskToEditList(_ list: List) {
-        showListEditor(with: list)
-    }
-    
-}
-
-extension MainTopViewController: ListEditorOutput {
-
-    func listCreated() {
-        hideLists(animated: false)
-        output?.listCreated()
-    }
-
 }
 
 extension MainTopViewController: ListRepresentationEditingOutput {
     
     func groupEditingWillToggle(to isEditing: Bool) {
-        if isEditing {
-            isGroupEditing = true
-        }
+        guard isEditing else { return }
+        isGroupEditing = true
     }
     
     func groupEditingToggled(to isEditing: Bool) {
         isGroupEditing = isEditing
-        controlPanel.setGroupEditingButtonEnabled(true)
-        controlPanel.changeGroupEditingState(to: isEditing)
+        menuPanel.setGroupEditingButtonEnabled(true)
+        menuPanel.changeGroupEditingState(to: isEditing)
     }
     
     func didAskToShowListsForMoveTasks(completion: @escaping (List) -> Void) {
@@ -246,65 +133,88 @@ extension MainTopViewController: ListRepresentationEditingOutput {
     }
     
     func setGroupEditingVisible(_ isVisible: Bool) {
-        controlPanel.setGroupEditingVisible(isVisible)
+        menuPanel.setGroupEditingButtonVisible(isVisible)
     }
     
 }
 
-fileprivate extension MainTopViewController {
-
-    func updateListsViewHeight() {
-        var listsViewHeight = view.frame.height - 52
-        if #available(iOS 11.0, *) {
-            listsViewHeight -= view.safeAreaInsets.top
-        }
-        listsViewHeightConstrint.constant = listsViewHeight
+extension MainTopViewController: MenuPanelOutput {
+    
+    func didPressOnPanel() {
+        guard !isGroupEditing || isPickingList else { return }
+        showLists(animated: true)
     }
     
-    func showListEditor(with list: List?) {
-        let listEditorView = ViewControllersFactory.listEditor
-        listEditorView.loadViewIfNeeded()
-        
-        let listEditorInput = ListEditorAssembly.assembly(with: listEditorView)
-        listEditorInput.output = self
-        listEditorInput.setList(list)
-        
-        present(listEditorView, animated: true, completion: nil)
+    func didPressGroupEditingButton() {
+        editingInput?.setEditingMode(.default) // TODO
     }
     
-    func showSmartListsPicker() {
-        let smartListsPickerView = ViewControllersFactory.smartListsPicker
-        smartListsPickerView.loadViewIfNeeded()
-        
-        present(smartListsPickerView, animated: true, completion: nil)
-    }
-
 }
 
-final class ListsSeparatorView: UIView {
+extension MainTopViewController: TaskCreationPanelOutput {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .clear
+    func didUpdateTaskTitle(to title: String) {
+        
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        backgroundColor = .clear
+    func didPressAddTaskButton() {
+        
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    func didPressCreateTaskButton() {
         
-        guard let context = UIGraphicsGetCurrentContext() else { return }
+    }
+    
+}
+
+extension MainTopViewController: GroupEditingPanelOutput {
+    
+    func didSelectGroupEditingAction(_ action: GroupEditingAction) {
         
-        context.setStrokeColor(AppTheme.current.panelColor.cgColor)
-        context.setLineWidth(1)
-        context.setLineDash(phase: 2, lengths: [4, 4])
+    }
+    
+}
+
+extension MainTopViewController: ListRepresentationManagerOutput {
+    
+    func configureListRepresentation(_ representation: ListRepresentationInput) {
+        representation.editingOutput = self
+    }
+    
+}
+
+extension MainTopViewController: ListRepresentationOutput {
+    
+    func tasksCountChanged(count: Int) {
         
-        context.move(to: CGPoint(x: 0, y: 0.5))
-        context.addLine(to: CGPoint(x: rect.width, y: 0.5))
-        context.strokePath()
+    }
+    
+    func groupEditingOperationCompleted() {
+        
+    }
+    
+    func didPressEdit(for task: Task) {
+        router.showTaskEditor(with: task, list: currentList, output: self)
+    }
+    
+}
+
+extension MainTopViewController: TaskEditorOutput {
+    
+    func taskCreated() {
+        taskCreationPanel.clearTaskTitleInput()
+    }
+    
+}
+
+private extension MainTopViewController {
+    
+    func setupRepresentationManager() {
+        representationManager.output = self
+        representationManager.listRepresentationOutput = self
+        representationManager.containerViewController = self
+        representationManager.listsContainerView = listRepresentationContainer
+        representationManager.setRepresentation(.table, animated: false)
     }
     
 }

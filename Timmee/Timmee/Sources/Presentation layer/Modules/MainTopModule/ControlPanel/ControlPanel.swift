@@ -14,14 +14,14 @@ import class UIKit.NSLayoutConstraint
 
 final class ControlPanel: BarView {
 
-    @IBOutlet fileprivate var listIconView: UIImageView!
-    @IBOutlet fileprivate var listTitleLabel: UILabel!
+    @IBOutlet private var listIconView: UIImageView!
+    @IBOutlet private var listTitleLabel: UILabel!
     
-    @IBOutlet fileprivate var settingsButton: UIButton!
-    @IBOutlet fileprivate var searchButton: UIButton!
-    @IBOutlet fileprivate var editButton: UIButton!
+    @IBOutlet private var settingsButton: UIButton!
+    @IBOutlet private var searchButton: UIButton!
+    @IBOutlet private var editButton: UIButton!
     
-    @IBOutlet fileprivate var editButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private var editButtonWidthConstraint: NSLayoutConstraint!
     
     private var isControlsHidden = false
     

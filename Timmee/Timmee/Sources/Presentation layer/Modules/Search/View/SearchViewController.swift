@@ -45,7 +45,7 @@ final class SearchViewController: UIViewController {
     
     @IBOutlet private var tableViewContainerBottomConstraint: NSLayoutConstraint!
     
-    private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    private lazy var placeholder = PlaceholderView.loadedFromNib()
     
     private let swipeTableActionsProvider = SwipeTaskActionsProvider()
     

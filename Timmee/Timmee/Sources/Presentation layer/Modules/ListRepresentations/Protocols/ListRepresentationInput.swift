@@ -8,18 +8,15 @@
 
 import class UIKit.UIViewController
 
-protocol ListRepresentationInput: ListRepresentationEditingInput {
+protocol ListRepresentationInput: TableListRepresentationEditingInput {
     var viewController: UIViewController { get }
     
     var editingOutput: ListRepresentationEditingOutput? { get set }
-    
+        
     func setList(list: List)
-    func clearInput()
-    
-    func forceTaskCreation()
-    func finishShortTaskEditing()
+    func performGroupEditingAction(_ action: TargetGroupEditingAction)
 }
 
-protocol ListRepresentationEditingInput: class {
-    func toggleGroupEditing()
+protocol TableListRepresentationEditingInput: class {
+    func setEditingMode(_ mode: ListRepresentationEditingMode)
 }

@@ -7,8 +7,11 @@
 //
 
 protocol ListRepresentationOutput: class {
-    func didAskToShowTaskEditor(with taskTitle: String)
-    func didAskToShowTaskEditor(with task: Task?)
+//    func didAskToShowTaskEditor(with taskTitle: String)
+//    func didAskToShowTaskEditor(with task: Task?)
+    func tasksCountChanged(count: Int)
+    func groupEditingOperationCompleted()
+    func didPressEdit(for task: Task)
 }
 
 protocol ListRepresentationEditingOutput: class {

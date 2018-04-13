@@ -42,6 +42,7 @@ public protocol TaskEntitiesBackgroundProvider: class {
 }
 
 public protocol TasksObserverProvider: class {
+    func tasksObserver(listID: String) -> CacheObserver<Task>
     func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task>
 }
 
@@ -218,6 +219,34 @@ extension TasksService: TasksManager {
 // MARK: - Tasks observer
 
 extension TasksService: TasksObserverProvider {
+    
+    public func tasksObserver(listID: String) -> CacheObserver<Task> {
+        var request: FetchRequest<TaskEntity> = TaskEntity.request()
+            .sorted(key: "isDone", ascending: true)
+            .sorted(key: "isImportant", ascending: false)
+            .sorted(key: "inProgress", ascending: false)
+            .sorted(key: "creationDate", ascending: false)
+            .batchSize(10)
+        
+        if SmartListType.isSmartListID(listID) {
+            request = request.filtered(predicate: SmartListType(id: listID).fetchPredicate)
+        } else {
+            request = request.filtered(key: "list.id", value: listID)
+        }
+        
+        let context = Database.localStorage.readContext
+        let tasksObserver = CacheObserver<Task>(request: request.nsFetchRequestWithResult,
+                                                section: "isDone",
+                                                cacheName: "tasks\(listID)",
+                                                context: context)
+        
+        tasksObserver.setMapping { entity in
+            let taskEntity = entity as! TaskEntity
+            return Task(task: taskEntity)
+        }
+        
+        return tasksObserver
+    }
     
     public func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task> {
         let request = TasksService.allTasksFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult

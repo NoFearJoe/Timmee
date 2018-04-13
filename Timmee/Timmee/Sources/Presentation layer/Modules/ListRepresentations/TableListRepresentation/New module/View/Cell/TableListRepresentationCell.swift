@@ -11,17 +11,17 @@ import SwipeCellKit
 
 final class TableListRepresentationCell: SwipeTableViewCell {
     
-    @IBOutlet fileprivate var containerView: TableListRepersentationCellContainerView!
-    @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var timeTemplateLabel: UILabel!
-    @IBOutlet fileprivate var dueDateLabel: UILabel!
-    @IBOutlet fileprivate var subtasksLabel: UILabel!
-    @IBOutlet fileprivate var importancyContainerView: UIView!
-    @IBOutlet fileprivate var importancyIconView: UIImageView!
+    @IBOutlet private var containerView: TableListRepersentationCellContainerView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var timeTemplateLabel: UILabel!
+    @IBOutlet private var dueDateLabel: UILabel!
+    @IBOutlet private var subtasksLabel: UILabel!
+    @IBOutlet private var importancyContainerView: UIView!
+    @IBOutlet private var importancyIconView: UIImageView!
     
-    @IBOutlet fileprivate var tagsView: UIScrollView!
+    @IBOutlet private var tagsView: UIScrollView!
     
-    @IBOutlet fileprivate var checkBox: CheckBox! {
+    @IBOutlet private var checkBox: CheckBox! {
         didSet {
             checkBox.didChangeCkeckedState = { [unowned self] isChecked in
                 self.onCheck?(isChecked)
@@ -29,12 +29,12 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         }
     }
     
-    @IBOutlet fileprivate var dueDateLabelLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate var subtasksLabelLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate var tagsViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var dueDateLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private var subtasksLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private var tagsViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet fileprivate var containerViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate var containerViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private var containerViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private var containerViewTrailingConstraint: NSLayoutConstraint!
     
     var title: String? {
         get { return titleLabel.attributedText?.string }
@@ -115,7 +115,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     
     var onTapToImportancy: (() -> Void)?
     
-    fileprivate var _isGroupEditing: Bool = false
+    private var _isGroupEditing: Bool = false
     func setGroupEditing(_ isGroupEditing: Bool,
                          animated: Bool = false,
                          completion: (() -> Void)? = nil) {
@@ -251,6 +251,7 @@ fileprivate extension TableListRepresentationCell {
         titleLabel.text = title
     }
     
+    // TODO: Перенести в storyboard
     func addTapToImportancyGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapImportancyView))
         importancyContainerView.addGestureRecognizer(recognizer)

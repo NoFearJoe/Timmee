@@ -10,7 +10,11 @@ import UIKit
 
 public extension UIView {
     
-    public static func loadedFromNib<T: UIView>(named name: String? = nil) -> T {
+    public static func loadedFromNib(named name: String? = nil) -> Self {
+        return self.loadFromNib(named: name)
+    }
+    
+    private static func loadFromNib<T: UIView>(named name: String? = nil) -> T {
         let nibName = name ?? String(describing: T.classForCoder())
         return UINib(nibName: nibName,
                      bundle: nil)

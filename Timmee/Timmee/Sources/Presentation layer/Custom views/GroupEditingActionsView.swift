@@ -33,11 +33,17 @@ enum GroupEditingAction {
     case move
 }
 
+enum TargetGroupEditingAction {
+    case delete
+    case complete
+    case move(list: List)
+}
+
 final class GroupEditingActionsView: UIView {
     
     var onAction: ((GroupEditingAction) -> Void)?
     
-    @IBOutlet fileprivate var deleteActionView: GroupEditingActionView! {
+    @IBOutlet private var deleteActionView: GroupEditingActionView! {
         didSet {
             deleteActionView.image = #imageLiteral(resourceName: "trash")
             deleteActionView.title = "remove".localized
@@ -45,7 +51,7 @@ final class GroupEditingActionsView: UIView {
             deleteActionView.onTap = { [unowned self] in self.didSelectAction(.delete) }
         }
     }
-    @IBOutlet fileprivate var completeActionView: GroupEditingActionView! {
+    @IBOutlet private var completeActionView: GroupEditingActionView! {
         didSet {
             completeActionView.title = GroupEditingCompletionAction.complete.title
             completeActionView.image = GroupEditingCompletionAction.complete.image
@@ -53,7 +59,7 @@ final class GroupEditingActionsView: UIView {
             completeActionView.onTap = { [unowned self] in self.didSelectAction(.complete) }
         }
     }
-    @IBOutlet fileprivate var moveActionView: GroupEditingActionView! {
+    @IBOutlet private var moveActionView: GroupEditingActionView! {
         didSet {
             moveActionView.image = #imageLiteral(resourceName: "mailListIcon")
             moveActionView.title = "move".localized
@@ -62,10 +68,10 @@ final class GroupEditingActionsView: UIView {
         }
     }
     
-    fileprivate var isVisible: Bool = true
-    fileprivate var isEnabled: Bool = true
+    private var isVisible: Bool = true
+    private var isEnabled: Bool = true
     
-    fileprivate func didSelectAction(_ action: GroupEditingAction) {
+    private func didSelectAction(_ action: GroupEditingAction) {
         onAction?(action)
     }
     
@@ -141,7 +147,7 @@ final class GroupEditingActionView: UIView {
             iconView.tintColor = AppTheme.current.backgroundTintColor
         }
     }
-    @IBOutlet fileprivate var titleLabel: UILabel! {
+    @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = title
             titleLabel.textColor = titleColor
@@ -176,12 +182,12 @@ final class GroupEditingActionView: UIView {
         addTapGestureRecognizer()
     }
     
-    fileprivate func addTapGestureRecognizer() {
+    private func addTapGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         self.addGestureRecognizer(recognizer)
     }
     
-    @objc fileprivate func tap() {
+    @objc private func tap() {
         onTap?()
     }
     

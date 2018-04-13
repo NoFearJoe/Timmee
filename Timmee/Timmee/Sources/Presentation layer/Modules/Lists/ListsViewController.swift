@@ -9,24 +9,24 @@
 import UIKit
 
 protocol ListsViewInput: class {
-    func reloadLists()
+    func setCurrentList(_ list: List)
     func setPickingList(_ isPicking: Bool)
-    func resetState()
 }
 
 protocol ListsViewOutput: class {
     func didSelectList(_ list: List)
     func didPickList(_ list: List)
     func didUpdateList(_ list: List)
-    func didAskToAddList()
-    func didAskToAddSmartList()
-    func didAskToEditList(_ list: List)
+    func didCreateList()
+    
+    func willClose()
 }
 
 final class ListsViewController: UIViewController {
     
     weak var output: ListsViewOutput?
     
+    @IBOutlet private var collectionViewContainer: BarView!
     @IBOutlet private var collectionView: UICollectionView!
     
     @IBOutlet private var addListButton: UIButton!
@@ -53,14 +53,11 @@ final class ListsViewController: UIViewController {
     
     private(set) var isPickingList: Bool = false {
         didSet {
-            addListButton.isHidden = isPickingList
-            if collectionView.numberOfSections >= 1 {
-                collectionView.reloadSections(IndexSet(integer: ListsCollectionViewSection.smartLists.rawValue))
-            }
+            setPickingListIfPossible()
         }
     }
     
-    let initialDataConfigurator = InitialDataConfigurator()
+    private let initialDataConfigurator = InitialDataConfigurator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +72,14 @@ final class ListsViewController: UIViewController {
         
         dimmedBackgroundView.isHidden = true
         addListMenu.isHidden = true
+        
+        setPickingListIfPossible()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        collectionViewContainer.backgroundColor = AppTheme.current.middlegroundColor
         
         dimmedBackgroundView.backgroundColor = AppTheme.current.foregroundColor.withAlphaComponent(0.75)
         
@@ -99,31 +100,30 @@ final class ListsViewController: UIViewController {
     }
     
     @IBAction private func didSelectAddListMenuItem() {
-        output?.didAskToAddList()
+        showListEditor(with: nil)
         hideAddListMenu(animated: true)
     }
     
     @IBAction private func didSelectAddSmartListMenuItem() {
-        output?.didAskToAddSmartList()
+        showSmartListsPicker()
         hideAddListMenu(animated: true)
+    }
+    
+    @IBAction func close() {
+        output?.willClose()
+        dismiss(animated: true, completion: nil)
     }
     
 }
 
 extension ListsViewController: ListsViewInput {
     
-    func reloadLists() {
-        listsInteractor.requestLists()
-        collectionView.setContentOffset(.zero, animated: false)
+    func setCurrentList(_ list: List) {
+        self.currentList = list
     }
     
     func setPickingList(_ isPicking: Bool) {
         isPickingList = isPicking
-    }
-    
-    func resetState() {
-        collectionView.hideSwipedCell()
-        hideAddListMenu()
     }
     
 }
@@ -197,11 +197,41 @@ extension ListsViewController: ListsInteractorOutput {
     
 }
 
+extension ListsViewController: ListEditorOutput {
+    
+    func listCreated() {
+        // TODO: close
+//        output?.didCreateList()
+    }
+    
+}
+
+extension ListsViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view?.isDescendant(of: collectionViewContainer) == false
+    }
+    
+}
+
 private extension ListsViewController {
 
+    func resetState() {
+        collectionView.hideSwipedCell()
+        hideAddListMenu()
+    }
+    
     func setInitialList() {
         guard listsInteractor.numberOfItems(in: ListsCollectionViewSection.smartLists.rawValue) > 0 else { return }
         currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+    }
+    
+    func setPickingListIfPossible() {
+        guard isViewLoaded else { return }
+        addListButton.isHidden = isPickingList
+        if collectionView.numberOfSections >= 1 {
+            collectionView.reloadSections(IndexSet(integer: ListsCollectionViewSection.smartLists.rawValue))
+        }
     }
 
 }
@@ -209,6 +239,7 @@ private extension ListsViewController {
 private extension ListsViewController {
     
     @IBAction func toggleAddListMenu() {
+        resetState()
         if addListMenu.isHidden {
             showAddListMenu(animated: true)
         } else {
@@ -252,6 +283,28 @@ private extension ListsViewController {
     
     func makeAddListButtonRotationTransform() -> CGAffineTransform {
         return CGAffineTransform(rotationAngle: 45 * .pi / 180)
+    }
+    
+}
+
+extension ListsViewController {
+    
+    func showListEditor(with list: List?) {
+        let listEditorView = ViewControllersFactory.listEditor
+        listEditorView.loadViewIfNeeded()
+        
+        let listEditorInput = ListEditorAssembly.assembly(with: listEditorView)
+        listEditorInput.output = self
+        listEditorInput.setList(list)
+        
+        present(listEditorView, animated: true, completion: nil)
+    }
+    
+    func showSmartListsPicker() {
+        let smartListsPickerView = ViewControllersFactory.smartListsPicker
+        smartListsPickerView.loadViewIfNeeded()
+        
+        present(smartListsPickerView, animated: true, completion: nil)
     }
     
 }

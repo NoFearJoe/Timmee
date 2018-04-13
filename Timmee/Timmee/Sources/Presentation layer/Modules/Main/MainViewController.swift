@@ -1,5 +1,5 @@
 //
-//  MainContainerView.swift
+//  MainViewController.swift
 //  Timmee
 //
 //  Created by Ilya Kharabet on 25.08.17.
@@ -18,8 +18,6 @@ final class MainViewController: UIViewController {
     
     private lazy var mainTopView: MainTopViewController = ViewControllersFactory.mainTop
     
-    private let representationManager = ListRepresentationManager()
-    
     private let tasksService = ServicesAssembly.shared.tasksService
     
     override func viewDidLoad() {
@@ -27,7 +25,6 @@ final class MainViewController: UIViewController {
         
         subscribeToApplicationEvents()
         
-        setupRepresentationManager()
         setupMainTopView()
     }
     
@@ -55,30 +52,14 @@ final class MainViewController: UIViewController {
 
 }
 
-extension MainViewController: ListRepresentationManagerOutput {
-    
-    func configureListRepresentation(_ representation: ListRepresentationInput) {
-        representation.editingOutput = mainTopView
-        mainTopView.editingInput = representation
-    }
-    
-}
-
 private extension MainViewController {
     
     func setupMainTopView() {
-        mainTopView.output = representationManager
+//        mainTopView.output = representationManager
         addChildViewController(mainTopView)
         mainTopViewContainer.addSubview(mainTopView.view)
         mainTopView.view.allEdges().toSuperview()
         mainTopView.didMove(toParentViewController: self)
-    }
-    
-    func setupRepresentationManager() {
-        representationManager.output = self
-        representationManager.containerViewController = self
-        representationManager.listsContainerView = contentContainerView
-        representationManager.setRepresentation(.table, animated: false)
     }
     
 }
