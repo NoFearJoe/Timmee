@@ -10,7 +10,7 @@ protocol TableListRepresentationViewInput: class {
     func showNoTasksPlaceholder()
     func hideNoTasksPlaceholder()
     
-    func setEditingMode(_ mode: ListRepresentationEditingMode)
+    func setEditingMode(_ mode: ListRepresentationEditingMode, completion: @escaping () -> Void)
     
     func subscribeToCacheObserver(_ observer: CacheSubscribable)
     

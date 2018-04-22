@@ -104,7 +104,7 @@ extension TasksService: TasksManager {
             
             if let newTask = self.createTask() {
                 newTask.map(from: task)
-                newTask.list = self.listsProvider.fetchListEntity(id: listID)
+                newTask.list = self.listsProvider.fetchListEntity(id: listID, context: context)
                 newTask.subtasks = NSSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
                                                                              in: context))
                 newTask.tags = NSSet(array: self.retrieveTagEntities(from: task.tags,
@@ -143,7 +143,7 @@ extension TasksService: TasksManager {
                     taskEntity.map(from: task)
                     
                     if let listID = listID {
-                        taskEntity.list = self.listsProvider.fetchListEntity(id: listID)
+                        taskEntity.list = self.listsProvider.fetchListEntity(id: listID, context: context)
                     }
                     
                     taskEntity.subtasks = NSSet(array: self.retrieveSubtaskEntities(from: task.subtasks,
@@ -253,7 +253,7 @@ extension TasksService: TasksObserverProvider {
         let context = Database.localStorage.readContext
         let tasksObserver = CacheObserver<Task>(request: request,
                                                 section: "list.title",
-                                                cacheName: "all_tasks_cache",
+                                                cacheName: nil,
                                                 context: context)
         
         tasksObserver.setMapping { entity in

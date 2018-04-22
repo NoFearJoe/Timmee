@@ -12,9 +12,17 @@ import SwipeCellKit
 enum ListRepresentationEditingMode {
     case `default`
     case group
+    
+    var next: ListRepresentationEditingMode {
+        switch self {
+        case .default: return .group
+        case .group: return .default
+        }
+    }
 }
 
 protocol TableListRepresentationAdapterInput: class {
+    func setupTableView(_ tableView: UITableView)
     func setEditingMode(_ mode: ListRepresentationEditingMode)
     func applyEditingMode(_ mode: ListRepresentationEditingMode, toCell cell: TableListRepresentationCell)
 }
@@ -49,6 +57,11 @@ final class TableListRepresentationAdapter: NSObject {
 }
 
 extension TableListRepresentationAdapter: TableListRepresentationAdapterInput {
+    
+    func setupTableView(_ tableView: UITableView) {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     
     func setEditingMode(_ mode: ListRepresentationEditingMode) {
         self.editingMode = mode

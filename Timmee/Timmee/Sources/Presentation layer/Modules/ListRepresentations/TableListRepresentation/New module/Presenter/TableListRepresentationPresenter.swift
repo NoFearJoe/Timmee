@@ -47,16 +47,15 @@ extension TableListRepresentationPresenter: ListRepresentationInput {
             interactor.moveTasks(state.checkedTasks, toList: list)
         }
         state.checkedTasks = []
-//        view.setEditingMode(.default)
     }
     
 }
 
 extension TableListRepresentationPresenter: TableListRepresentationEditingInput {
     
-    func setEditingMode(_ mode: ListRepresentationEditingMode) {
+    func setEditingMode(_ mode: ListRepresentationEditingMode, completion: @escaping () -> Void) {
         state.editingMode = mode
-        view.setEditingMode(mode)
+        view.setEditingMode(mode, completion: completion)
     }
     
 }
@@ -136,35 +135,26 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     
     func didCheckTask(_ task: Task) {
         state.checkedTasks.append(task)
-        //        view.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
-        //        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
-        //            view.setCompletionGroupEditingAction(.complete)
-        //        } else {
-        //            view.setCompletionGroupEditingAction(.recover)
-        //        }
+        editingOutput?.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
+        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
+            editingOutput?.setCompletionGroupEditingAction(.complete)
+        } else {
+            editingOutput?.setCompletionGroupEditingAction(.recover)
+        }
     }
     
     func didUncheckTask(_ task: Task) {
         state.checkedTasks.remove(object: task)
-        //        view.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
-        //        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
-        //            view.setCompletionGroupEditingAction(.complete)
-        //        } else {
-        //            view.setCompletionGroupEditingAction(.recover)
-        //        }
+        editingOutput?.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
+        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
+            editingOutput?.setCompletionGroupEditingAction(.complete)
+        } else {
+            editingOutput?.setCompletionGroupEditingAction(.recover)
+        }
     }
     
     func taskIsChecked(_ task: Task) -> Bool {
         return state.checkedTasks.contains(task)
-    }
-    
-    func groupEditingWillToggle(to isEditing: Bool) {
-        //        editingOutput?.groupEditingWillToggle(to: isEditing)
-    }
-    
-    func groupEditingToggled(to isEditing: Bool) {
-        //        editingOutput?.groupEditingToggled(to: isEditing)
-        state.checkedTasks = []
     }
     
 }

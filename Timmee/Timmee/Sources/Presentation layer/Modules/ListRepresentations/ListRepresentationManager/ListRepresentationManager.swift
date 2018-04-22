@@ -20,9 +20,9 @@ final class ListRepresentationManager {
     
     private var representation: ListRepresentation = .table
     
-    private var currentListRepresentationInput: ListRepresentationInput?
-    
     private var currentList: List?
+    
+    var currentListRepresentationInput: ListRepresentationInput?
 
 }
 

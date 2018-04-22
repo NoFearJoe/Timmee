@@ -66,10 +66,6 @@ final class ListsViewController: UIViewController {
         
         listsInteractor.output = self
         
-        initialDataConfigurator.addInitialSmartLists { [unowned self] in
-            self.listsInteractor.requestLists()
-        }
-        
         dimmedBackgroundView.isHidden = true
         addListMenu.isHidden = true
         
@@ -97,6 +93,10 @@ final class ListsViewController: UIViewController {
         
         addListMenuButton.setTitle("list".localized, for: .normal)
         addSmartListMenuButton.setTitle("smart_list".localized, for: .normal)
+        
+        initialDataConfigurator.addInitialSmartLists { [unowned self] in
+            self.listsInteractor.requestLists()
+        }
     }
     
     @IBAction private func didSelectAddListMenuItem() {
@@ -111,7 +111,15 @@ final class ListsViewController: UIViewController {
     
     @IBAction func close() {
         output?.willClose()
-        dismiss(animated: true, completion: nil)
+        close(completion: nil)
+    }
+    
+    func close(completion: (() -> Void)?) {
+        dismiss(animated: true, completion: completion)
+    }
+    
+    func closeAll(completion: (() -> Void)?) {
+        presentingViewController?.dismiss(animated: true, completion: completion)
     }
     
 }
@@ -200,8 +208,9 @@ extension ListsViewController: ListsInteractorOutput {
 extension ListsViewController: ListEditorOutput {
     
     func listCreated() {
-        // TODO: close
-//        output?.didCreateList()
+        closeAll {
+            self.output?.didCreateList()
+        }
     }
     
 }
@@ -239,7 +248,7 @@ private extension ListsViewController {
 private extension ListsViewController {
     
     @IBAction func toggleAddListMenu() {
-        resetState()
+        collectionView.hideSwipedCell()
         if addListMenu.isHidden {
             showAddListMenu(animated: true)
         } else {

@@ -76,8 +76,9 @@ extension ListsViewController: UICollectionViewDelegate {
         if isPickingList {
             guard ListsCollectionViewSection(rawValue: indexPath.section) == .lists else { return }
             guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
-            output?.didPickList(list)
-            close()
+            close {
+                self.output?.didPickList(list)
+            }
         } else {
             currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
             collectionView.reloadData()

@@ -15,9 +15,6 @@ protocol ListRepresentationOutput: class {
 }
 
 protocol ListRepresentationEditingOutput: class {
-    func groupEditingWillToggle(to isEditing: Bool)
-    func groupEditingToggled(to isEditing: Bool)
-    
-    func didAskToShowListsForMoveTasks(completion: @escaping (List) -> Void)
-    func setGroupEditingVisible(_ isVisible: Bool)
+    func setGroupEditingActionsEnabled(_ isEnabled: Bool)
+    func setCompletionGroupEditingAction(_ action: GroupEditingCompletionAction)
 }

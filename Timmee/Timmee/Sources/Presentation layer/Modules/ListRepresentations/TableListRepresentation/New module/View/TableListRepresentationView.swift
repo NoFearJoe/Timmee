@@ -19,19 +19,6 @@ final class TableListRepresentationView: UIViewController {
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: tableView)
     
-    private var editingMode: ListRepresentationEditingMode = .default {
-        didSet {
-            adapter.setEditingMode(editingMode)
-            tableView.hideSwipeCell(animated: true)
-            tableView.visibleCells
-                .map { $0 as! TableListRepresentationCell }
-                .forEach {
-                    adapter.applyEditingMode(editingMode, toCell: $0)
-                    if editingMode == .group { $0.isChecked = false }
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -40,6 +27,7 @@ final class TableListRepresentationView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        view.backgroundColor = AppTheme.current.middlegroundColor
         output.viewWillAppear()
     }
     
@@ -67,8 +55,21 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         })
     }
     
-    func setEditingMode(_ mode: ListRepresentationEditingMode) {
-        self.editingMode = mode
+    func setEditingMode(_ mode: ListRepresentationEditingMode, completion: @escaping () -> Void) {
+        adapter.setEditingMode(mode)
+        tableView.hideSwipeCell(animated: true)
+        
+        if tableView.visibleCells.count > 0 {
+            tableView.visibleCells
+                .map { $0 as! TableListRepresentationCell }
+                .forEach {
+                    adapter.applyEditingMode(mode, toCell: $0)
+                    if mode == .group { $0.isChecked = false }
+                    completion()
+            }
+        } else {
+            completion()
+        }
     }
     
     func subscribeToCacheObserver(_ observer: CacheSubscribable) {
@@ -96,6 +97,8 @@ private extension TableListRepresentationView {
                            forCellReuseIdentifier: "TableListRepresentationCell")
         tableView.register(ListRepresentationFooter.self,
                            forHeaderFooterViewReuseIdentifier: "ListRepresentationFooter")
+        
+        adapter.setupTableView(tableView)
     }
     
     func setupPlaceholder() {

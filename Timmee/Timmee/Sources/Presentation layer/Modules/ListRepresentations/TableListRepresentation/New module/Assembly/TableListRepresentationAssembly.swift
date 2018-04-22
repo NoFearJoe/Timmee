@@ -23,6 +23,7 @@ final class TableListRepresentationAssembly {
         presenter.view = view
         presenter.interactor = interactor
         presenter.output = output
+        presenter.editingOutput = output as? ListRepresentationEditingOutput
         
         interactor.output = presenter
         

@@ -18,7 +18,6 @@ import protocol CoreData.NSFetchRequestResult
 protocol TableListRepresentationInteractorInput: class {
     func subscribeToTasks(in list: List?)
     
-    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String)
     func deleteTask(_ task: Task)
     func deleteTasks(_ tasks: [Task])
     func completeTask(_ task: Task)
@@ -61,23 +60,6 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
             setupTasksObserver(listID: listID)
         }
         lastListID = list?.id
-    }
-    
-    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String) {
-        let task = Task(id: RandomStringGenerator.randomString(length: 24),
-                        title: title)
-        
-        if let dueDate = dueDate {
-            task.dueDate = dueDate
-        }
-        task.inProgress = inProgress
-        task.isImportant = isImportant
-        
-        tasksService.addTask(task, listID: listID, completion: { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
-        })
     }
     
     func deleteTask(_ task: Task) {

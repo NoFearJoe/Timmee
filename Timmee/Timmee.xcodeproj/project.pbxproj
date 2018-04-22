@@ -1425,7 +1425,6 @@
 				96E543341F49EBB20081C6F0 /* Frameworks */,
 				96E543351F49EBB20081C6F0 /* Resources */,
 				05FA97F23DECC1F4DC8F8B9E /* [CP] Embed Pods Frameworks */,
-				4992C2E77A5A9CA17CECD143 /* [CP] Copy Pods Resources */,
 				96594E5A201918CF00998133 /* ShellScript */,
 				0C9B2440207E3780009EF6DE /* Embed Frameworks */,
 			);
@@ -1555,21 +1554,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4992C2E77A5A9CA17CECD143 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Timmee/Pods-Timmee-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DE132591A068AE007ADE020 /* [CP] Check Pods Manifest.lock */ = {

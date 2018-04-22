@@ -18,5 +18,5 @@ protocol ListRepresentationInput: TableListRepresentationEditingInput {
 }
 
 protocol TableListRepresentationEditingInput: class {
-    func setEditingMode(_ mode: ListRepresentationEditingMode)
+    func setEditingMode(_ mode: ListRepresentationEditingMode, completion: @escaping () -> Void)
 }

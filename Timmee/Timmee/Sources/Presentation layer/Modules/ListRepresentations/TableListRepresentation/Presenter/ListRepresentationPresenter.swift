@@ -34,10 +34,6 @@ extension ListRepresentationPresenter: ListRepresentationInput {
     
     func setList(list: List) {
         state.list = list
-        
-        if let smartList = list as? SmartList, smartList.smartListType == .important {
-            view.setImportancy(true)
-        }
     }
     
     func clearInput() {
@@ -52,35 +48,11 @@ extension ListRepresentationPresenter: ListRepresentationInput {
         view.setTaskTitleFieldFirstResponder(false)
     }
     
-}
-
-extension ListRepresentationPresenter: TableListRepresentationEditingInput {
-    
-    func setEditingMode(_ mode: ListRepresentationEditingMode) {
+    func setEditingMode(_ mode: ListRepresentationEditingMode, completion: @escaping () -> Void) {
         
     }
     
 }
-
-//extension ListRepresentationPresenter: TableListRepresentationOutput {
-//
-//    func didPressEdit(for task: Task) {
-//        self.output?.didAskToShowTaskEditor(with: task)
-//    }
-//
-//    func tasksCountChanged(count: Int) {
-//        if count == 0 {
-//            editingOutput?.setGroupEditingVisible(false)
-//        } else {
-//            editingOutput?.setGroupEditingVisible(true)
-//        }
-//    }
-//
-//    func groupEditingOperationCompleted() {
-//        view.setGroupEditingActionsEnabled(false)
-//    }
-//
-//}
 
 extension ListRepresentationPresenter: ListRepresentationViewOutput {
     
@@ -93,22 +65,11 @@ extension ListRepresentationPresenter: ListRepresentationViewOutput {
     }
     
     func didPressAddTaskButton() {
-        if let title = state.enteredTaskTitle, let listID = state.list?.id {
-//            view.setInteractionsEnabled(false)
-//            interactor.addShortTask(with: title,
-//                                    dueDate: dateForTodaySmartList(),
-//                                    inProgress: progressStateForInProgressSmartList(),
-//                                    isImportant: state.shouldCreateImportantTask,
-//                                    listID: listID)
-        }
+
     }
     
     func didPressMoreButton() {
-//        if let title = state.enteredTaskTitle, !title.isEmpty {
-//            output?.didAskToShowTaskEditor(with: title)
-//        } else {
-//            output?.didAskToShowTaskEditor(with: nil)
-//        }
+
     }
     
     func didCheckTask(_ task: Task) {
@@ -130,58 +91,4 @@ extension ListRepresentationPresenter: ListRepresentationViewOutput {
             view.setCompletionGroupEditingAction(.recover)
         }
     }
-    
-    func groupEditingWillToggle(to isEditing: Bool) {
-        editingOutput?.groupEditingWillToggle(to: isEditing)
-    }
-    
-    func groupEditingToggled(to isEditing: Bool) {
-        editingOutput?.groupEditingToggled(to: isEditing)
-        state.checkedTasks = []
-    }
-    
-    func didSelectGroupEditingAction(_ action: GroupEditingAction) {        
-        switch action {
-        case .delete:
-            let message = "are_you_sure_you_want_to_delete_tasks".localized
-            view.showConfirmationAlert(title: "remove_tasks".localized,
-                                       message: message,
-                                       confirmationTitle: "remove".localized) { [weak self] in
-//                self?.representationInput?.performGroupEditingAction(.delete)
-                self?.setEditingMode(.default)
-            }
-        case .complete: break
-//            representationInput?.performGroupEditingAction(.complete)
-        case .move:
-            editingOutput?.didAskToShowListsForMoveTasks { [weak self] list in
-                let message = "are_you_sure_you_want_to_move_tasks".localized + " \"\(list.title)\""
-                self?.view.showConfirmationAlert(title: "move_tasks".localized,
-                                                 message: message,
-                                                 confirmationTitle: "move".localized) { [weak self] in
-//                    self?.representationInput?.performGroupEditingAction(.move(list: list))
-                    self?.setEditingMode(.default)
-                }
-            }
-        }
-    }
-    
-}
-
-private extension ListRepresentationPresenter {
-
-    func dateForTodaySmartList() -> Date? {
-        if let smartList = state.list as? SmartList, smartList.smartListType == .today {
-            let startOfNextHour = Date().startOfHour + 1.asHours
-            return startOfNextHour
-        }
-        return nil
-    }
-    
-    func progressStateForInProgressSmartList() -> Bool {
-        if let smartList = state.list as? SmartList, smartList.smartListType == .inProgress {
-            return true
-        }
-        return false
-    }
-
 }

@@ -9,13 +9,15 @@
 import UIKit
 
 protocol TaskCreationPanelInput: class {
+    var enteredTaskTitle: String? { get }
+    var isImportancySelected: Bool { get }
+    
     func clearTaskTitleInput()
     func setImportancy(_ isImportant: Bool)
     func setTaskTitleFieldFirstResponder(_ isFirstResponder: Bool)
 }
 
 protocol TaskCreationPanelOutput: class {
-    func didUpdateTaskTitle(to title: String)
     func didPressAddTaskButton()
     func didPressCreateTaskButton()
 }
@@ -29,11 +31,15 @@ final class TaskCreationPanelViewController: UIViewController {
     @IBOutlet private var rightBarButton: UIButton!
     
     // newTaskTitleTextField.isFirstResponder
-    private var enteredTaskTitle: String? {
+    var enteredTaskTitle: String? {
         if let title = taskTitleTextField.text, !title.trimmed.isEmpty {
             return title
         }
         return nil
+    }
+    
+    var isImportancySelected: Bool {
+        return importancyView.isHighlighted
     }
         
     override func viewDidLoad() {
@@ -77,17 +83,12 @@ extension TaskCreationPanelViewController: TaskCreationPanelInput {
 
 extension TaskCreationPanelViewController: UITextFieldDelegate {
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true //editingMode == .default
-    }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateRightBarButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let title = enteredTaskTitle {
-            output.didUpdateTaskTitle(to: title)
+        if enteredTaskTitle != nil {
             output.didPressAddTaskButton()
             
             clearTaskTitleInput()
@@ -98,7 +99,6 @@ extension TaskCreationPanelViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        output.didUpdateTaskTitle(to: textField.text ?? "")
         updateRightBarButton()
     }
     
@@ -130,13 +130,10 @@ private extension TaskCreationPanelViewController {
     }
     
     @IBAction private func rightBarButtonPressed() {
-        if taskTitleTextField.isFirstResponder {
-            if let title = enteredTaskTitle {
-                output.didUpdateTaskTitle(to: title)
-                output.didPressAddTaskButton()
-                
-                clearTaskTitleInput()
-            }
+        if taskTitleTextField.isFirstResponder, enteredTaskTitle != nil {
+            output.didPressAddTaskButton()
+            
+            clearTaskTitleInput()
         } else {
             output.didPressCreateTaskButton()
         }
