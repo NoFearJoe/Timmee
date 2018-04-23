@@ -25,9 +25,10 @@ final class MainTopViewController: UIViewController {
     
     private var menuPanel: MenuPanelInput!
     private var taskCreationPanel: TaskCreationPanelInput!
-    private var groupEditingPanel: GroupEditingPanelInput!
     
     private let representationManager = ListRepresentationManager()
+    
+    private let editingModeController = EditingModeController()
     
     private let keyboardManager = KeyboardManager()
     
@@ -41,7 +42,6 @@ final class MainTopViewController: UIViewController {
     
     private var currentList: List = SmartList(type: .all)
     
-    private var editingMode: ListRepresentationEditingMode = .default
     private var isPickingList: Bool = false
     
     private var pickingListCompletion: ((List) -> Void)?
@@ -50,6 +50,7 @@ final class MainTopViewController: UIViewController {
         super.viewDidLoad()
         setupKeyboardManager()
         setupRepresentationManager()
+        setupEditingModeController()
         menuPanel.showList(currentList)
         representationManager.setList(currentList)
         groupEditingPanelContainer.isHidden = true
@@ -71,8 +72,8 @@ final class MainTopViewController: UIViewController {
             self.taskCreationPanel = taskCreationPanel
         } else if segue.identifier == "EmbedGroupEditingPanel" {
             guard let groupEditingPanel = segue.destination as? GroupEditingPanelViewController else { return }
-            groupEditingPanel.output = self
-            self.groupEditingPanel = groupEditingPanel
+            groupEditingPanel.output = editingModeController
+            editingModeController.groupEditingPanel = groupEditingPanel
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -123,27 +124,15 @@ extension MainTopViewController: ListsViewOutput {
     
 }
 
-extension MainTopViewController: ListRepresentationEditingOutput {
-    
-    func setGroupEditingActionsEnabled(_ isEnabled: Bool) {
-        groupEditingPanel.setActionsEnabled(isEnabled)
-    }
-    
-    func setCompletionGroupEditingAction(_ action: GroupEditingCompletionAction) {
-        groupEditingPanel.updateCompletionAction(with: action)
-    }
-    
-}
-
 extension MainTopViewController: MenuPanelOutput {
     
     func didPressOnPanel() {
-        guard editingMode == .default || isPickingList else { return }
+        guard editingModeController.editingMode == .default || isPickingList else { return }
         showLists(animated: true)
     }
     
     func didPressGroupEditingButton() {
-        toggleEditingMode()
+        editingModeController.toggleEditingMode()
     }
     
 }
@@ -170,32 +159,29 @@ extension MainTopViewController: TaskCreationPanelOutput {
     
 }
 
-extension MainTopViewController: GroupEditingPanelOutput {
+extension MainTopViewController: EditingModeControllerOutput {
     
-    func didSelectGroupEditingAction(_ action: GroupEditingAction) {
-        switch action {
-        case .delete:
-            let message = "are_you_sure_you_want_to_delete_tasks".localized
-            showConfirmationAlert(title: "remove_tasks".localized,
-                               message: message,
-                               confirmationTitle: "remove".localized) { [weak self] in
-                                self?.representationManager.currentListRepresentationInput?.performGroupEditingAction(.delete)
-                                self?.toggleEditingMode()
-            }
-        case .complete:
-            representationManager.currentListRepresentationInput?.performGroupEditingAction(.complete)
-            toggleEditingMode()
-        case .move:
-            showListsForMoveTasks { [weak self] list in
-                let message = "are_you_sure_you_want_to_move_tasks".localized + " \"\(list.title)\""
-                self?.showConfirmationAlert(title: "move_tasks".localized,
-                                         message: message,
-                                         confirmationTitle: "move".localized) { [weak self] in
-                                            self?.representationManager.currentListRepresentationInput?.performGroupEditingAction(.move(list: list))
-                                            self?.toggleEditingMode()
-                }
-            }
+    func performGroupEditingAction(_ action: TargetGroupEditingAction) {
+        representationManager.currentListRepresentationInput?.performGroupEditingAction(action)
+    }
+    
+    func performEditingModeChange(to mode: ListRepresentationEditingMode) {
+        groupEditingPanelContainer.isHidden = mode == .default
+        taskCreationPanelContainer.isHidden = mode == .group
+        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
+        UIView.animate(withDuration: 0.33, animations: {
+            self.taskCreationPanelContainer.alpha = mode == .group ? 0 : 1
+        })
+        representationManager.currentListRepresentationInput?.setEditingMode(mode) {
+            self.menuPanel.setGroupEditingButtonEnabled(true)
+            self.menuPanel.changeGroupEditingState(to: mode == .group)
         }
+    }
+    
+    func showListsForMoveTasks(completion: @escaping (List) -> Void) {
+        isPickingList = true
+        pickingListCompletion = completion
+        showLists(animated: true)
     }
     
 }
@@ -203,7 +189,7 @@ extension MainTopViewController: GroupEditingPanelOutput {
 extension MainTopViewController: ListRepresentationManagerOutput {
     
     func configureListRepresentation(_ representation: ListRepresentationInput) {
-        representation.editingOutput = self
+        representation.editingOutput = editingModeController
     }
     
 }
@@ -215,7 +201,7 @@ extension MainTopViewController: ListRepresentationOutput {
     }
     
     func groupEditingOperationCompleted() {
-        groupEditingPanel.setActionsEnabled(false)
+        editingModeController.groupEditingPanel.setActionsEnabled(false)
     }
     
     func didPressEdit(for task: Task) {
@@ -242,19 +228,8 @@ private extension MainTopViewController {
         representationManager.setRepresentation(.table, animated: false)
     }
     
-    func showConfirmationAlert(title: String,
-                               message: String,
-                               confirmationTitle: String,
-                               success: @escaping () -> Void) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: confirmationTitle,
-                                      style: .default) { _ in success() })
-        alert.addAction(UIAlertAction(title: "cancel".localized,
-                                      style: .cancel,
-                                      handler: nil))
-        
-        present(alert, animated: true, completion: nil)
+    func setupEditingModeController() {
+        editingModeController.output = self
     }
     
     func setupKeyboardManager() {
@@ -274,12 +249,6 @@ private extension MainTopViewController {
         }
     }
     
-    func showListsForMoveTasks(completion: @escaping (List) -> Void) {
-        isPickingList = true
-        pickingListCompletion = completion
-        showLists(animated: true)
-    }
-    
     func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String) {
         let task = Task(id: RandomStringGenerator.randomString(length: 24),
                         title: title)
@@ -291,21 +260,6 @@ private extension MainTopViewController {
         task.isImportant = isImportant
         
         tasksService.addTask(task, listID: listID, completion: { _ in })
-    }
-    
-    func toggleEditingMode() {
-        editingMode = editingMode.next
-        groupEditingPanelContainer.isHidden = editingMode == .default
-        taskCreationPanelContainer.isHidden = editingMode == .group
-        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
-        editingMode == .group ? groupEditingPanel.show() : groupEditingPanel.hide()
-        UIView.animate(withDuration: 0.33, animations: {
-            self.taskCreationPanelContainer.alpha = self.editingMode == .group ? 0 : 1
-        })
-        representationManager.currentListRepresentationInput?.setEditingMode(editingMode) {
-            self.menuPanel.setGroupEditingButtonEnabled(true)
-            self.menuPanel.changeGroupEditingState(to: self.editingMode == .group)
-        }
     }
     
 }

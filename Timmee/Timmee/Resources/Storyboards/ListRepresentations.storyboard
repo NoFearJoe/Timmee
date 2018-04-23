@@ -9,89 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List Representation View-->
-        <scene sceneID="Oqs-q7-d8W">
-            <objects>
-                <viewController id="vtI-Lt-Bav" customClass="ListRepresentationView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mOQ-Bb-7vc"/>
-                        <viewControllerLayoutGuide type="bottom" id="RaU-Pi-R18"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SI4-N2-Kfe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjt-vW-b2m">
-                                <rect key="frame" x="0.0" y="52" width="375" height="563"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMx-NK-Vyo">
-                                        <rect key="frame" x="15" y="281.5" width="345" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnN-23-gJc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
-                                        <connections>
-                                            <segue destination="IU2-uG-KUS" kind="embed" id="Z7p-hj-aNH"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="lnN-23-gJc" secondAttribute="bottom" id="0h2-6F-3gK"/>
-                                    <constraint firstItem="BMx-NK-Vyo" firstAttribute="centerY" secondItem="Mjt-vW-b2m" secondAttribute="centerY" id="5bx-df-82k"/>
-                                    <constraint firstItem="lnN-23-gJc" firstAttribute="top" secondItem="Mjt-vW-b2m" secondAttribute="top" id="Lql-8j-Tpg"/>
-                                    <constraint firstItem="lnN-23-gJc" firstAttribute="leading" secondItem="Mjt-vW-b2m" secondAttribute="leading" id="SdJ-be-C5W"/>
-                                    <constraint firstAttribute="trailing" secondItem="BMx-NK-Vyo" secondAttribute="trailing" constant="15" id="Zh3-cu-xir"/>
-                                    <constraint firstItem="BMx-NK-Vyo" firstAttribute="centerX" secondItem="Mjt-vW-b2m" secondAttribute="centerX" id="jhP-fp-ywl"/>
-                                    <constraint firstItem="BMx-NK-Vyo" firstAttribute="leading" secondItem="Mjt-vW-b2m" secondAttribute="leading" constant="15" id="lkQ-32-OCy"/>
-                                    <constraint firstAttribute="trailing" secondItem="lnN-23-gJc" secondAttribute="trailing" id="nOM-IC-PaG"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9DI-TD-86z">
-                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="0X7-Zy-tC3"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPD-Cy-UGn" customClass="GroupEditingActionsView" customModule="Timmee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="9DI-TD-86z" firstAttribute="leading" secondItem="XPD-Cy-UGn" secondAttribute="leading" id="041-K1-QZI"/>
-                            <constraint firstItem="9DI-TD-86z" firstAttribute="bottom" secondItem="XPD-Cy-UGn" secondAttribute="bottom" id="0Yx-jw-rFT"/>
-                            <constraint firstItem="Mjt-vW-b2m" firstAttribute="leading" secondItem="SI4-N2-Kfe" secondAttribute="leading" id="1Y1-wL-1lw"/>
-                            <constraint firstItem="Mjt-vW-b2m" firstAttribute="top" secondItem="SI4-N2-Kfe" secondAttribute="top" constant="52" id="2PB-P7-qPL"/>
-                            <constraint firstItem="9DI-TD-86z" firstAttribute="trailing" secondItem="XPD-Cy-UGn" secondAttribute="trailing" id="67f-sa-1N4"/>
-                            <constraint firstAttribute="bottom" secondItem="9DI-TD-86z" secondAttribute="bottom" id="DMv-dh-cZI"/>
-                            <constraint firstItem="9DI-TD-86z" firstAttribute="leading" secondItem="SI4-N2-Kfe" secondAttribute="leading" id="FEt-qJ-YTB"/>
-                            <constraint firstAttribute="trailing" secondItem="Mjt-vW-b2m" secondAttribute="trailing" id="HmF-pn-8zJ"/>
-                            <constraint firstItem="9DI-TD-86z" firstAttribute="top" secondItem="XPD-Cy-UGn" secondAttribute="top" id="cNT-3w-Ad9"/>
-                            <constraint firstAttribute="trailing" secondItem="9DI-TD-86z" secondAttribute="trailing" id="f4v-3h-Kyg"/>
-                            <constraint firstItem="9DI-TD-86z" firstAttribute="top" secondItem="Mjt-vW-b2m" secondAttribute="bottom" id="mDH-j0-GIf"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="bottomContainerConstraint" destination="DMv-dh-cZI" id="Xse-c3-LfC"/>
-                        <outlet property="shortTaskEditorView" destination="9DI-TD-86z" id="qLj-hl-jFg"/>
-                        <outlet property="tableContainerView" destination="Mjt-vW-b2m" id="egm-Br-Mdl"/>
-                        <outlet property="tableView" destination="Xt7-eo-rRT" id="Kfd-d0-9UQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sfD-HV-QFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="160.80000000000001" y="-107.49625187406298"/>
-        </scene>
         <!--Table List Representation View-->
         <scene sceneID="VKx-Nh-9Bf">
             <objects>
@@ -101,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0uJ-u6-EdG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0gg-IY-wDW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xt7-eo-rRT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="GUm-gK-iLC">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
