@@ -96,6 +96,8 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
     
     fileprivate var viewControllers: [UIViewController] = []
     
+    let transitionHandler = FadePresentationTransitionHandler()
+    
     private var isAppeared = false
     
     @IBAction fileprivate func closeButtonPressed() {
@@ -126,7 +128,7 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transitioningDelegate = self
+        transitioningDelegate = transitionHandler
         
         editorContainer.backgroundColor = AppTheme.current.foregroundColor
         titleLabel.textColor = AppTheme.current.backgroundTintColor
@@ -178,18 +180,6 @@ extension TaskParameterEditorContainer: TaskParameterEditorContainerInput {
         
         setupEditor(for: type)
         setEditorTitle(type.title)
-    }
-
-}
-
-extension TaskParameterEditorContainer: UIViewControllerTransitioningDelegate {
-
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return FadeInBackgroundModalTransition()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return FadeOutBackgroundModalTransition()
     }
 
 }

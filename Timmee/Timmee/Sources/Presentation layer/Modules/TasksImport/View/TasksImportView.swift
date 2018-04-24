@@ -58,11 +58,12 @@ final class TasksImportView: UIViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     
+    private let transitionHandler = ModalPresentationTransitionHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transitioningDelegate = self
+        transitioningDelegate = transitionHandler
         
         setupPlaceholder()
         setupKeyboardManager()
@@ -239,18 +240,6 @@ extension TasksImportView: UISearchBarDelegate {
         output.didFinishSearching()
     }
 
-}
-
-extension TasksImportView: UIViewControllerTransitioningDelegate {
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalPresentationTransition()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalDismissalTransition()
-    }
-    
 }
 
 fileprivate extension TasksImportView {

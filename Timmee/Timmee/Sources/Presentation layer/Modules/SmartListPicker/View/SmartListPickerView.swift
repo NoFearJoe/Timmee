@@ -19,6 +19,8 @@ final class SmartListPickerView: UIViewController {
     
     @IBOutlet private var doneButton: UIButton!
     
+    private let transitionHandler = ModalPresentationTransitionHandler()
+    
     @IBAction private func done() {
         dismiss(animated: true, completion: nil)
     }
@@ -29,7 +31,7 @@ final class SmartListPickerView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        transitioningDelegate = self
+        transitioningDelegate = transitionHandler
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,18 +111,6 @@ extension SmartListPickerView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return .zero
-    }
-    
-}
-
-extension SmartListPickerView: UIViewControllerTransitioningDelegate {
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalPresentationTransition()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalDismissalTransition()
     }
     
 }

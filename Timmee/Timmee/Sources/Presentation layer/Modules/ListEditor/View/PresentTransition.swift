@@ -37,6 +37,7 @@ final class ModalPresentationTransition: NSObject, UIViewControllerAnimatedTrans
                     toViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 },
                 completion: { (complete) in
+                    backgroundView.removeFromSuperview()
                     transitionContext.completeTransition(complete)
                 }
             )
@@ -62,7 +63,8 @@ final class ModalDismissalTransition: NSObject, UIViewControllerAnimatedTransiti
         if let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
             let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) {
             
-            let backgroundView = findBackgroundView(in: transitionContext.containerView)
+            let backgroundView = makeBackgroundView(size: UIScreen.main.bounds.size)
+            transitionContext.containerView.addSubview(backgroundView)
             
             transitionContext.containerView.insertSubview(toViewController.view,
                                                           belowSubview: backgroundView)
@@ -86,8 +88,11 @@ final class ModalDismissalTransition: NSObject, UIViewControllerAnimatedTransiti
         }
     }
     
-    private func findBackgroundView(in view: UIView) -> UIView {
-        return view.viewWithTag(901)!
+    private func makeBackgroundView(size: CGSize) -> UIView {
+        let view = UIView(frame: CGRect(origin: .zero, size: size))
+        view.backgroundColor = AppTheme.current.backgroundColor
+        view.tag = 901
+        return view
     }
 
 }

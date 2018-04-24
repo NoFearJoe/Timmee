@@ -34,7 +34,7 @@ final class ListsViewController: UIViewController {
     @IBOutlet private var addListMenuButton: UIButton!
     @IBOutlet private var addSmartListMenuButton: UIButton!
     @IBOutlet private var dimmedBackgroundView: BarView!
-    
+        
     let listsInteractor = ListsInteractor()
     let cacheAdapter = CollectionViewCacheAdapter()
     

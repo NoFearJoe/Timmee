@@ -14,8 +14,8 @@ final class StoryboardsFactory {
         return StoryboardsFactory.storyboard(named: "Main")
     }
     
-    static var mainTop: UIStoryboard {
-        return StoryboardsFactory.storyboard(named: "MainTop")
+    static var lists: UIStoryboard {
+        return StoryboardsFactory.storyboard(named: "Lists")
     }
     
     static var listRepresentations: UIStoryboard {

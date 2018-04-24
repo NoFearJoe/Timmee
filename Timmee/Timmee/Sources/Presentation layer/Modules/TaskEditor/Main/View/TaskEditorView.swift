@@ -51,6 +51,8 @@ final class TaskEditorView: UIViewController {
     fileprivate var repeatEndingDateEditorHandler = TaskDueDateTimeEditorHandler()
     
     fileprivate weak var taskParameterEditorContainer: TaskParameterEditorContainer?
+    
+    private let transitionHandler = ModalPresentationTransitionHandler()
         
     @IBAction fileprivate func closeButtonPressed() {
         output.closeButtonPressed()
@@ -62,7 +64,7 @@ final class TaskEditorView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        transitioningDelegate = self
+        transitioningDelegate = transitionHandler
         
         setupTitleObserver()
         setupNoteObserver()
@@ -352,19 +354,6 @@ extension TaskEditorView: TaskEditorViewInput {
     }
     
 }
-
-extension TaskEditorView: UIViewControllerTransitioningDelegate {
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalPresentationTransition()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalDismissalTransition()
-    }
-    
-}
-
 
 extension TaskEditorView: TaskParameterEditorContainerOutput {
     

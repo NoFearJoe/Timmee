@@ -57,9 +57,11 @@ final class ListEditorView: UIViewController {
         output.closeButtonPressed()
     }
     
+    private let transitionHandler = ModalPresentationTransitionHandler()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        transitioningDelegate = self
+        transitioningDelegate = transitionHandler
         
         setInterfaceEnabled(false)
         
@@ -168,18 +170,6 @@ extension ListEditorView: ListIconsViewOutput {
         listIconsViewHeightConstraint.constant = height
     }
     
-}
-
-extension ListEditorView: UIViewControllerTransitioningDelegate {
-
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalPresentationTransition()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalDismissalTransition()
-    }
-
 }
 
 private extension ListEditorView {

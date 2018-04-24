@@ -1,5 +1,5 @@
 //
-//  MainTopViewController.swift
+//  MainViewController.swift
 //  Timmee
 //
 //  Created by Ilya Kharabet on 06.09.17.
@@ -9,14 +9,10 @@
 import UIKit
 import SwipeCellKit
 
-final class MainTopViewController: UIViewController {
-
-    @IBOutlet private var overlayView: UIView!
+final class MainViewController: UIViewController {
     
     @IBOutlet private var listRepresentationContainer: UIView!
-    
-    @IBOutlet private var controlPanelContainer: UIView!
-    
+        
     @IBOutlet private var bottomContainer: UIView!
     @IBOutlet private var taskCreationPanelContainer: UIView!
     @IBOutlet private var groupEditingPanelContainer: UIView!
@@ -40,29 +36,36 @@ final class MainTopViewController: UIViewController {
         return router
     }()
     
-    private var currentList: List = SmartList(type: .all)
+    private var state = State()
     
-    private var isPickingList: Bool = false
-    
-    private var pickingListCompletion: ((List) -> Void)?
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeToApplicationEvents()
         setupKeyboardManager()
         setupRepresentationManager()
         setupEditingModeController()
-        menuPanel.showList(currentList)
-        representationManager.setList(currentList)
+        menuPanel.showList(state.currentList)
+        representationManager.setList(state.currentList)
         groupEditingPanelContainer.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = AppTheme.current.backgroundColor
+        
+        tasksService.updateTasksDueDates()
+    }
+    
+    @objc private func didBecomeActive() {
+        tasksService.updateTasksDueDates()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowLists" {
-            guard let listsViewController = segue.destination as? ListsViewController else { return }
-            listsViewController.output = self
-            listsViewController.setCurrentList(currentList)
-            listsViewController.setPickingList(isPickingList)
-        } else if segue.identifier == "EmbedMenuPanel" {
+        if segue.identifier == "EmbedMenuPanel" {
             guard let menuPanel = segue.destination as? MenuPanelViewController else { return }
             menuPanel.output = self
             self.menuPanel = menuPanel
@@ -78,21 +81,13 @@ final class MainTopViewController: UIViewController {
             super.prepare(for: segue, sender: sender)
         }
     }
-    
-    func showLists(animated: Bool) {
-        overlayView.isHidden = false
-        menuPanel.hideControls(animated: animated)
-        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
-        
-        performSegue(withIdentifier: "ShowLists", sender: nil)
-    }
 
 }
 
-extension MainTopViewController: ListsViewOutput {
+extension MainViewController: ListsViewOutput {
     
     func didSelectList(_ list: List) {
-        currentList = list
+        state.currentList = list
         menuPanel.showList(list)
         menuPanel.showControls(animated: true)
         representationManager.setList(list)
@@ -102,13 +97,13 @@ extension MainTopViewController: ListsViewOutput {
     }
     
     func didPickList(_ list: List) {
-        pickingListCompletion?(list)
+        state.pickingListCompletion?(list)
         menuPanel.showControls(animated: true)
-        isPickingList = false
+        state.isPickingList = false
     }
     
     func didUpdateList(_ list: List) {
-        currentList = list
+        state.currentList = list
         menuPanel.showList(list)
         representationManager.setList(list)
     }
@@ -124,10 +119,10 @@ extension MainTopViewController: ListsViewOutput {
     
 }
 
-extension MainTopViewController: MenuPanelOutput {
+extension MainViewController: MenuPanelOutput {
     
     func didPressOnPanel() {
-        guard editingModeController.editingMode == .default || isPickingList else { return }
+        guard editingModeController.editingMode == .default || state.isPickingList else { return }
         showLists(animated: true)
     }
     
@@ -137,7 +132,7 @@ extension MainTopViewController: MenuPanelOutput {
     
 }
 
-extension MainTopViewController: TaskCreationPanelOutput {
+extension MainViewController: TaskCreationPanelOutput {
     
     func didPressAddTaskButton() {
         if let title = taskCreationPanel.enteredTaskTitle {
@@ -145,21 +140,21 @@ extension MainTopViewController: TaskCreationPanelOutput {
                         dueDate: dateForTodaySmartList(),
                         inProgress: progressStateForInProgressSmartList(),
                         isImportant: taskCreationPanel.isImportancySelected,
-                        listID: currentList.id)
+                        listID: state.currentList.id)
         }
     }
     
     func didPressCreateTaskButton() {
         if let title = taskCreationPanel.enteredTaskTitle, !title.isEmpty {
-            router.showTaskEditor(with: title, list: currentList, output: self)
+            router.showTaskEditor(with: title, list: state.currentList, output: self)
         } else {
-            router.showTaskEditor(with: nil, list: currentList, output: self)
+            router.showTaskEditor(with: nil, list: state.currentList, output: self)
         }
     }
     
 }
 
-extension MainTopViewController: EditingModeControllerOutput {
+extension MainViewController: EditingModeControllerOutput {
     
     func performGroupEditingAction(_ action: TargetGroupEditingAction) {
         representationManager.currentListRepresentationInput?.performGroupEditingAction(action)
@@ -179,14 +174,14 @@ extension MainTopViewController: EditingModeControllerOutput {
     }
     
     func showListsForMoveTasks(completion: @escaping (List) -> Void) {
-        isPickingList = true
-        pickingListCompletion = completion
+        state.isPickingList = true
+        state.pickingListCompletion = completion
         showLists(animated: true)
     }
     
 }
 
-extension MainTopViewController: ListRepresentationManagerOutput {
+extension MainViewController: ListRepresentationManagerOutput {
     
     func configureListRepresentation(_ representation: ListRepresentationInput) {
         representation.editingOutput = editingModeController
@@ -194,7 +189,7 @@ extension MainTopViewController: ListRepresentationManagerOutput {
     
 }
 
-extension MainTopViewController: ListRepresentationOutput {
+extension MainViewController: ListRepresentationOutput {
     
     func tasksCountChanged(count: Int) {
         menuPanel.setGroupEditingButtonVisible(count > 0)
@@ -205,12 +200,12 @@ extension MainTopViewController: ListRepresentationOutput {
     }
     
     func didPressEdit(for task: Task) {
-        router.showTaskEditor(with: task, list: currentList, output: self)
+        router.showTaskEditor(with: task, list: state.currentList, output: self)
     }
     
 }
 
-extension MainTopViewController: TaskEditorOutput {
+extension MainViewController: TaskEditorOutput {
     
     func taskCreated() {
         taskCreationPanel.clearTaskTitleInput()
@@ -218,7 +213,7 @@ extension MainTopViewController: TaskEditorOutput {
     
 }
 
-private extension MainTopViewController {
+private extension MainViewController {
     
     func setupRepresentationManager() {
         representationManager.output = self
@@ -249,6 +244,24 @@ private extension MainTopViewController {
         }
     }
     
+    func subscribeToApplicationEvents() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didBecomeActive),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+    }
+    
+    func showLists(animated: Bool) {
+        menuPanel.hideControls(animated: animated)
+        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
+        
+        let listsViewController = ViewControllersFactory.lists
+        listsViewController.output = self
+        listsViewController.setCurrentList(state.currentList)
+        listsViewController.setPickingList(state.isPickingList)
+        present(listsViewController, animated: true, completion: nil)
+    }
+    
     func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String) {
         let task = Task(id: RandomStringGenerator.randomString(length: 24),
                         title: title)
@@ -264,10 +277,10 @@ private extension MainTopViewController {
     
 }
 
-private extension MainTopViewController {
+private extension MainViewController {
     
     func dateForTodaySmartList() -> Date? {
-        if let smartList = currentList as? SmartList, smartList.smartListType == .today {
+        if let smartList = state.currentList as? SmartList, smartList.smartListType == .today {
             let startOfNextHour = Date().startOfHour + 1.asHours
             return startOfNextHour
         }
@@ -275,7 +288,7 @@ private extension MainTopViewController {
     }
     
     func progressStateForInProgressSmartList() -> Bool {
-        if let smartList = currentList as? SmartList, smartList.smartListType == .inProgress {
+        if let smartList = state.currentList as? SmartList, smartList.smartListType == .inProgress {
             return true
         }
         return false
