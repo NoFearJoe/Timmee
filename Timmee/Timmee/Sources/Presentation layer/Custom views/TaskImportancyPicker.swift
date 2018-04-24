@@ -13,11 +13,11 @@ import class UIKit.UITapGestureRecognizer
 
 final class TaskImportancyPicker: UIView {
     
-    @IBOutlet fileprivate weak var iconView: UIImageView!
+    @IBOutlet private weak var iconView: UIImageView!
     
     var isPicked: Bool = false {
         didSet {
-            iconView.image = isPicked ? #imageLiteral(resourceName: "important_active_big") : #imageLiteral(resourceName: "important_inactive_big")
+            iconView.tintColor = isPicked ? AppTheme.current.redColor : AppTheme.current.thirdlyTintColor
         }
     }
     
@@ -31,7 +31,7 @@ final class TaskImportancyPicker: UIView {
         addGestureRecognizer(recognizer)
     }
     
-    @objc fileprivate func onTap() {
+    @objc private func onTap() {
         isPicked = !isPicked
         onPick?(isPicked)
     }

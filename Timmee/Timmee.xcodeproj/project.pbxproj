@@ -20,6 +20,7 @@
 		0C74D8241FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */; };
 		0C74D8261FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */; };
 		0C796F2A1FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */; };
+		0C7B2A55208F612000009096 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B2A54208F612000009096 /* AppTheme.swift */; };
 		0C7C1CAC200F265300933CFB /* NotificationsSetupSuggestionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7C1CAB200F265300933CFB /* NotificationsSetupSuggestionScreen.swift */; };
 		0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C51FB971F200EA1571 /* SubtasksEditor.swift */; };
 		0C8738C81FB972DA00EA1571 /* SubtasksEditorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738C71FB972DA00EA1571 /* SubtasksEditorProtocols.swift */; };
@@ -211,6 +212,7 @@
 		0C74D8231FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionLayout.swift; sourceTree = "<group>"; };
 		0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewCollectionCell.swift; sourceTree = "<group>"; };
 		0C796F291FDFBB45006BCB98 /* TaskAttachmentsParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttachmentsParameterView.swift; sourceTree = "<group>"; };
+		0C7B2A54208F612000009096 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		0C7C1CAB200F265300933CFB /* NotificationsSetupSuggestionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupSuggestionScreen.swift; sourceTree = "<group>"; };
 		0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C8738A81FB971D800EA1571 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -447,6 +449,14 @@
 				0C74D8251FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift */,
 			);
 			path = PhotoPreviewCollectionView;
+			sourceTree = "<group>";
+		};
+		0C7B2A53208F610600009096 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				0C7B2A54208F612000009096 /* AppTheme.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		0C8738A51FB971D800EA1571 /* ParameterEditors */ = {
@@ -1273,6 +1283,7 @@
 			children = (
 				96E5436C1F49ED890081C6F0 /* App delegate */,
 				96E5436E1F49ED890081C6F0 /* Configurators */,
+				0C7B2A53208F610600009096 /* Theme */,
 			);
 			path = "Application layer";
 			sourceTree = "<group>";
@@ -1641,6 +1652,7 @@
 				965798D61F91340100F65019 /* PinAuthenticationViewController.swift in Sources */,
 				0CA9EE76202AD97200C24003 /* SmartListPickerView.swift in Sources */,
 				0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */,
+				0C7B2A55208F612000009096 /* AppTheme.swift in Sources */,
 				0C9B2455207F5CEC009EF6DE /* TableListRepresentationAssembly.swift in Sources */,
 				0CF309742020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift in Sources */,
 				0C8738D01FB9747700EA1571 /* CalendarView.swift in Sources */,
