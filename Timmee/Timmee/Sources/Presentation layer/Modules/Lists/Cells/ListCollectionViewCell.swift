@@ -48,6 +48,7 @@ final class ListCollectionViewCell: SwipableCollectionViewCell {
     var isPicked: Bool = false {
         didSet {
             titleLabel.textColor = isPicked ? AppTheme.current.blueColor : AppTheme.current.tintColor
+            titleLabel.font = isPicked ? UIFont.systemFont(ofSize: 16, weight: .medium) : UIFont.systemFont(ofSize: 16)
         }
     }
     

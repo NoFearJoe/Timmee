@@ -87,7 +87,7 @@ public struct AppThemeScheme {
                                            thirdlyTintColor: UIColor(rgba: "DDDfe0"),
                                            backgroundTintColor: .white,
                                            secondaryBackgroundTintColor: UIColor(rgba: "EAECEE"),
-                                           specialColor: UIColor(rgba: "0080FF"),
+                                           specialColor: UIColor(rgba: "027dc5"),
                                            panelColor: UIColor(rgba: "f9f9f9"),
                                            tagColors: blackThemeTagColors)
     
@@ -107,8 +107,8 @@ public struct AppThemeScheme {
     
     public let tagColors: [UIColor]
     
-    public let redColor: UIColor = UIColor(rgba: "ff2800")
-    public let blueColor: UIColor = UIColor(rgba: "0080FF")
+    public let redColor: UIColor = UIColor(rgba: "e4002f") // ff2800
+    public let blueColor: UIColor = UIColor(rgba: "027dc5") // 0080FF
     public let greenColor: UIColor = UIColor(rgba: "39FF14")
     
     private static let whiteThemeTagColors: [UIColor] = [

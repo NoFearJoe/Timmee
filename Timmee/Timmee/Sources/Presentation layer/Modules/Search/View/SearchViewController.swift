@@ -167,6 +167,7 @@ extension SearchViewController: SearchViewInput {
     
 }
 
+// TODO: Вынести в adapter
 extension SearchViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -247,7 +248,7 @@ extension SearchViewController: UITableViewDelegate {
     
 }
 
-fileprivate extension SearchViewController {
+private extension SearchViewController {
     
     func setupPlaceholder() {
         placeholder.setup(into: tableViewContainer)
@@ -276,7 +277,8 @@ fileprivate extension SearchViewController {
         output.searchStringChanged(to: string)
     }
     
-    fileprivate func showTaskEditor(configuration: (TaskEditorInput) -> Void) {
+    // TODO: Вынести в route
+    func showTaskEditor(configuration: (TaskEditorInput) -> Void) {
         let taskEditorView = ViewControllersFactory.taskEditor
         taskEditorView.loadViewIfNeeded()
         

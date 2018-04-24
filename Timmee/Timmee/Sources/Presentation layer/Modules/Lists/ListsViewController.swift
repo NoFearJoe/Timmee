@@ -260,6 +260,7 @@ private extension ListsViewController {
         addListMenu.transform = makeAddListMenuInitialTransform()
         
         addListMenu.isHidden = false
+        dimmedBackgroundView.alpha = 0
         dimmedBackgroundView.isHidden = false
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.addListMenu.alpha = 1

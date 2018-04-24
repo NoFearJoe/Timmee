@@ -60,12 +60,17 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         tableView.hideSwipeCell(animated: true)
         
         if tableView.visibleCells.count > 0 {
+            let group = DispatchGroup()
             tableView.visibleCells
                 .map { $0 as! TableListRepresentationCell }
                 .forEach {
-                    adapter.applyEditingMode(mode, toCell: $0)
                     if mode == .group { $0.isChecked = false }
-                    completion()
+                    group.enter()
+                    adapter.applyEditingMode(mode, toCell: $0, animated: true) {
+                        group.leave()
+                    }
+                    
+                    group.notify(queue: .main, execute: completion)
             }
         } else {
             completion()

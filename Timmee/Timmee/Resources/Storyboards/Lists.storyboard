@@ -40,13 +40,13 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wQL-hP-Oi4">
-                                                            <rect key="frame" x="8" y="15" width="20" height="20"/>
+                                                            <rect key="frame" x="12" y="15" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="dUl-9a-YWc"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="wn2-6q-cM5">
-                                                            <rect key="frame" x="33" y="15" width="290" height="19.5"/>
+                                                            <rect key="frame" x="40" y="15" width="283" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.27058823529999998" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -72,9 +72,9 @@
                                                 <constraints>
                                                     <constraint firstItem="wQL-hP-Oi4" firstAttribute="centerY" secondItem="cKd-B3-evH" secondAttribute="centerY" id="IvU-eG-8Z0"/>
                                                     <constraint firstItem="wn2-6q-cM5" firstAttribute="centerY" secondItem="cKd-B3-evH" secondAttribute="centerY" id="ODL-uY-kjL"/>
-                                                    <constraint firstItem="wQL-hP-Oi4" firstAttribute="leading" secondItem="cKd-B3-evH" secondAttribute="leading" constant="8" id="OLv-lz-7xz"/>
+                                                    <constraint firstItem="wQL-hP-Oi4" firstAttribute="leading" secondItem="cKd-B3-evH" secondAttribute="leading" constant="12" id="OLv-lz-7xz"/>
                                                     <constraint firstAttribute="trailing" secondItem="xCA-43-kJi" secondAttribute="trailing" constant="8" id="bXB-5L-H5N"/>
-                                                    <constraint firstItem="wn2-6q-cM5" firstAttribute="leading" secondItem="wQL-hP-Oi4" secondAttribute="trailing" constant="5" id="ePS-15-ClC"/>
+                                                    <constraint firstItem="wn2-6q-cM5" firstAttribute="leading" secondItem="wQL-hP-Oi4" secondAttribute="trailing" constant="8" id="ePS-15-ClC"/>
                                                     <constraint firstItem="wQL-hP-Oi4" firstAttribute="width" secondItem="wQL-hP-Oi4" secondAttribute="height" multiplier="1:1" id="qPO-TO-KQs"/>
                                                     <constraint firstItem="xCA-43-kJi" firstAttribute="centerY" secondItem="cKd-B3-evH" secondAttribute="centerY" id="xrN-Qa-25L"/>
                                                     <constraint firstItem="xCA-43-kJi" firstAttribute="leading" secondItem="wn2-6q-cM5" secondAttribute="trailing" constant="8" id="xsI-ub-8qx"/>

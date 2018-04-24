@@ -24,7 +24,10 @@ enum ListRepresentationEditingMode {
 protocol TableListRepresentationAdapterInput: class {
     func setupTableView(_ tableView: UITableView)
     func setEditingMode(_ mode: ListRepresentationEditingMode)
-    func applyEditingMode(_ mode: ListRepresentationEditingMode, toCell cell: TableListRepresentationCell)
+    func applyEditingMode(_ mode: ListRepresentationEditingMode,
+                          toCell cell: TableListRepresentationCell,
+                          animated: Bool,
+                          completion: (() -> Void)?)
 }
 
 protocol TableListRepresentationAdapterOutput: class {
@@ -67,8 +70,11 @@ extension TableListRepresentationAdapter: TableListRepresentationAdapterInput {
         self.editingMode = mode
     }
     
-    func applyEditingMode(_ mode: ListRepresentationEditingMode, toCell cell: TableListRepresentationCell) {
-        cell.setGroupEditing(mode == .group, animated: true)
+    func applyEditingMode(_ mode: ListRepresentationEditingMode,
+                          toCell cell: TableListRepresentationCell,
+                          animated: Bool,
+                          completion: (() -> Void)?) {
+        cell.setGroupEditing(mode == .group, animated: animated, completion: completion)
         
         switch mode {
         case .default: cell.delegate = swipeTableActionsProvider
@@ -110,7 +116,7 @@ extension TableListRepresentationAdapter: UITableViewDataSource {
             }
         }
         
-        applyEditingMode(editingMode, toCell: cell)
+        applyEditingMode(editingMode, toCell: cell, animated: false, completion: nil)
         
         return cell
     }

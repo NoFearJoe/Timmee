@@ -10,9 +10,9 @@ import UIKit
 
 final class PhotoPreviewViewController: UIViewController {
     
-    @IBOutlet fileprivate var photosCollectionView: PhotoPreviewCollectionView!
-    @IBOutlet fileprivate var photosCountLabel: UILabel!
-    @IBOutlet fileprivate var closeButton: UIButton!
+    @IBOutlet private var photosCollectionView: PhotoPreviewCollectionView!
+    @IBOutlet private var photosCountLabel: UILabel!
+    @IBOutlet private var closeButton: UIButton!
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
@@ -31,7 +31,7 @@ final class PhotoPreviewViewController: UIViewController {
         }
     }
     
-    fileprivate var isInterfaceHidden = false
+    private var isInterfaceHidden = false
     
     override var prefersStatusBarHidden: Bool {
         return isInterfaceHidden
@@ -101,7 +101,7 @@ extension PhotoPreviewViewController {
     
 }
 
-fileprivate extension PhotoPreviewViewController {
+private extension PhotoPreviewViewController {
     
     func addTapGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
