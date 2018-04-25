@@ -41,7 +41,6 @@
 		0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018292077B2BD00633EFF /* NotificationMask.swift */; };
 		0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182A2077B2BD00633EFF /* RepeatMask.swift */; };
 		0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182B2077B2BD00633EFF /* ListIcon.swift */; };
-		0CE018702077B2BD00633EFF /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182D2077B2BD00633EFF /* AppTheme.swift */; };
 		34AD26EBFFBCF266F491B4C4 /* Pods_TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479E274779193BD76907A349 /* Pods_TasksKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +81,6 @@
 		0CE018292077B2BD00633EFF /* NotificationMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMask.swift; sourceTree = "<group>"; };
 		0CE0182A2077B2BD00633EFF /* RepeatMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatMask.swift; sourceTree = "<group>"; };
 		0CE0182B2077B2BD00633EFF /* ListIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
-		0CE0182D2077B2BD00633EFF /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		13BE24C472AB4C09E09E3393 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
 		18BB200E41693D5790370B30 /* Pods-TasksKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.release.xcconfig"; sourceTree = "<group>"; };
 		42B1089DA760ADF6D9F82EF5 /* Pods_TasksCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,7 +269,6 @@
 				0CE018292077B2BD00633EFF /* NotificationMask.swift */,
 				0CE0182A2077B2BD00633EFF /* RepeatMask.swift */,
 				0CE0182B2077B2BD00633EFF /* ListIcon.swift */,
-				0CE0182D2077B2BD00633EFF /* AppTheme.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -402,7 +399,6 @@
 				0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */,
 				0CE018542077B2BD00633EFF /* TaskSchedulerService.swift in Sources */,
 				0CE018582077B2BD00633EFF /* SubtasksService.swift in Sources */,
-				0CE018702077B2BD00633EFF /* AppTheme.swift in Sources */,
 				0CE018682077B2BD00633EFF /* SmartListEntity+Mapping.swift in Sources */,
 				0CE018692077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift in Sources */,
 				0CE018572077B2BD00633EFF /* FilesService.swift in Sources */,
@@ -570,7 +566,11 @@
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TasksKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -593,7 +593,11 @@
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TasksKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

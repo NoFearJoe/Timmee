@@ -7,8 +7,9 @@
 //
 
 protocol ListRepresentationManagerInput {
+    var currentListRepresentationInput: ListRepresentationInput! { get }
+    
     func setRepresentation(_ representation: ListRepresentation, animated: Bool)
-    func setList(_ list: List)
 }
 
 protocol ListRepresentationManagerOutput: class {

@@ -21,6 +21,8 @@ final class TaskImportancyPicker: UIView {
         }
     }
     
+    var changeStateAutomatically = true
+    
     var onPick: ((Bool) -> Void)?
     
     override func awakeFromNib() {
@@ -32,7 +34,9 @@ final class TaskImportancyPicker: UIView {
     }
     
     @objc private func onTap() {
-        isPicked = !isPicked
+        if changeStateAutomatically {
+            isPicked = !isPicked
+        }
         onPick?(isPicked)
     }
     

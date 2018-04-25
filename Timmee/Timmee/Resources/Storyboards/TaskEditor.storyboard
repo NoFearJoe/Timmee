@@ -59,7 +59,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJA-YM-A5a" customClass="TaskImportancyPicker" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="328" y="10" width="36" height="36"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="important_active_big" translatesAutoresizingMaskIntoConstraints="NO" id="fML-vj-g0v">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="important_inactive_big" translatesAutoresizingMaskIntoConstraints="NO" id="fML-vj-g0v">
                                                                 <rect key="frame" x="4" y="4" width="28" height="28"/>
                                                             </imageView>
                                                         </subviews>
@@ -849,7 +849,7 @@
         <image name="cross" width="20" height="20"/>
         <image name="cross_small" width="13" height="13"/>
         <image name="finish" width="20" height="20"/>
-        <image name="important_active_big" width="28" height="28"/>
+        <image name="important_inactive_big" width="28" height="28"/>
         <image name="plus_thin" width="20" height="20"/>
         <image name="repeat" width="20" height="20"/>
         <image name="tag" width="20" height="20"/>

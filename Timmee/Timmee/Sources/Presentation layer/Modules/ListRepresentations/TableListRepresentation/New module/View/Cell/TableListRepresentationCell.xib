@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -96,10 +96,10 @@
                                     <constraint firstAttribute="trailing" secondItem="xlA-T7-43b" secondAttribute="trailing" id="zSO-Yo-1Ay"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTV-YC-uAI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTV-YC-uAI" customClass="TaskImportancyPicker" customModule="Timmee" customModuleProvider="target">
                                 <rect key="frame" x="329" y="14" width="30" height="30"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="important_and_urgent" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-g9-NJw">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="important_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-g9-NJw">
                                         <rect key="frame" x="5" y="5" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="rNE-Bc-aK4"/>
@@ -117,6 +117,9 @@
                                     <constraint firstItem="7bA-g9-NJw" firstAttribute="centerY" secondItem="FTV-YC-uAI" secondAttribute="centerY" id="nC5-7v-57s"/>
                                     <constraint firstAttribute="width" secondItem="FTV-YC-uAI" secondAttribute="height" multiplier="1:1" id="pz6-yF-AKG"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="iconView" destination="7bA-g9-NJw" id="t1d-sx-1xZ"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -150,8 +153,7 @@
                 <outlet property="containerViewTrailingConstraint" destination="TUj-Bj-MYW" id="cGS-5G-GM2"/>
                 <outlet property="dueDateLabel" destination="ZYk-DL-teM" id="xXe-XH-tcH"/>
                 <outlet property="dueDateLabelLeadingConstraint" destination="pco-lK-Sq6" id="Mdc-vT-lox"/>
-                <outlet property="importancyContainerView" destination="FTV-YC-uAI" id="1YC-uF-KeP"/>
-                <outlet property="importancyIconView" destination="7bA-g9-NJw" id="GVk-Rk-9U4"/>
+                <outlet property="importancyPicker" destination="FTV-YC-uAI" id="zzK-Tn-0bo"/>
                 <outlet property="subtasksLabel" destination="v9g-Q9-BJn" id="eYG-Ce-39f"/>
                 <outlet property="subtasksLabelLeadingConstraint" destination="JDe-cT-Gfv" id="VgG-ax-Fjg"/>
                 <outlet property="tagsView" destination="j0Q-h9-vnE" id="zdF-ja-Wpe"/>
@@ -163,6 +165,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="important_and_urgent" width="44" height="44"/>
+        <image name="important_inactive" width="20" height="20"/>
     </resources>
 </document>

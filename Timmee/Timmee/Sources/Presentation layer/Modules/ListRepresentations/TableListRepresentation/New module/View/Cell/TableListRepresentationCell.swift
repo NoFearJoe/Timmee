@@ -16,8 +16,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     @IBOutlet private var timeTemplateLabel: UILabel!
     @IBOutlet private var dueDateLabel: UILabel!
     @IBOutlet private var subtasksLabel: UILabel!
-    @IBOutlet private var importancyContainerView: UIView!
-    @IBOutlet private var importancyIconView: UIImageView!
+    @IBOutlet private var importancyPicker: TaskImportancyPicker!
     
     @IBOutlet private var tagsView: UIScrollView!
     
@@ -71,7 +70,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     var isImportant: Bool = false {
         didSet {
             guard isImportant != oldValue else { return }
-            importancyIconView.image = isImportant ? #imageLiteral(resourceName: "important_active") : #imageLiteral(resourceName: "important_inactive")
+            importancyPicker.isPicked = isImportant
         }
     }
     
@@ -154,16 +153,14 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         }
     }
     
-    
     var onCheck: ((Bool) -> Void)?
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         applyAppearance()
         checkBox.isHidden = true
-        importancyIconView.image = #imageLiteral(resourceName: "important_inactive")
-        addTapToImportancyGestureRecognizer()
+        importancyPicker.isPicked = false
+        importancyPicker.changeStateAutomatically = false
     }
     
     func setTask(_ task: Task) {
@@ -193,6 +190,10 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         }
         
         isImportant = task.isImportant
+        
+        importancyPicker.onPick = { [unowned self] _ in
+            self.onTapToImportancy?()
+        }
     }
     
     func applyAppearance() {
@@ -249,16 +250,6 @@ fileprivate extension TableListRepresentationCell {
     
     func updateTitle(_ title: String) {
         titleLabel.text = title
-    }
-    
-    // TODO: Перенести в storyboard
-    func addTapToImportancyGestureRecognizer() {
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapImportancyView))
-        importancyContainerView.addGestureRecognizer(recognizer)
-    }
-    
-    @objc func tapImportancyView() {
-        onTapToImportancy?()
     }
     
 }

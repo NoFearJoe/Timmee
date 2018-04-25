@@ -26,7 +26,7 @@ final class TaskCreationPanelViewController: UIViewController {
     
     weak var output: TaskCreationPanelOutput!
     
-    @IBOutlet private var importancyView: UIImageView!
+    @IBOutlet private var importancyPicker: TaskImportancyPicker!
     @IBOutlet private var taskTitleTextField: UITextField!
     @IBOutlet private var rightBarButton: UIButton!
     
@@ -39,7 +39,7 @@ final class TaskCreationPanelViewController: UIViewController {
     }
     
     var isImportancySelected: Bool {
-        return importancyView.isHighlighted
+        return importancyPicker.isPicked
     }
         
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ extension TaskCreationPanelViewController: TaskCreationPanelInput {
     }
     
     func setImportancy(_ isImportant: Bool) {
-        importancyView.isHighlighted = isImportant
+        importancyPicker.isPicked = isImportant
     }
     
     func setTaskTitleFieldFirstResponder(_ isFirstResponder: Bool) {
@@ -126,7 +126,7 @@ private extension TaskCreationPanelViewController {
     }
     
     @IBAction func toggleImportancy() {
-        setImportancy(!importancyView.isHighlighted)
+        setImportancy(!importancyPicker.isPicked)
     }
     
     @IBAction private func rightBarButtonPressed() {

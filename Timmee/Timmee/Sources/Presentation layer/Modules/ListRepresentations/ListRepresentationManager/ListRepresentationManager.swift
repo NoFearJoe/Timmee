@@ -20,9 +20,7 @@ final class ListRepresentationManager {
     
     private var representation: ListRepresentation = .table
     
-    private var currentList: List?
-    
-    var currentListRepresentationInput: ListRepresentationInput?
+    var currentListRepresentationInput: ListRepresentationInput!
 
 }
 
@@ -31,11 +29,6 @@ extension ListRepresentationManager: ListRepresentationManagerInput {
     func setRepresentation(_ representation: ListRepresentation, animated: Bool) {
         performRepresentationChange(to: representation, animated: animated)
         self.representation = representation
-    }
-    
-    func setList(_ list: List) {
-        currentList = list
-        currentListRepresentationInput?.setList(list: list)
     }
 
 }

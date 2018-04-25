@@ -22,7 +22,11 @@ final class MainViewController: UIViewController {
     private var menuPanel: MenuPanelInput!
     private var taskCreationPanel: TaskCreationPanelInput!
     
-    private let representationManager = ListRepresentationManager()
+    private lazy var representationManager: ListRepresentationManagerInput = {
+        let manager = ListRepresentationManager()
+        setupRepresentationManager(manager)
+        return manager
+    }()
     
     private let editingModeController = EditingModeController()
     
@@ -46,10 +50,11 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         subscribeToApplicationEvents()
         setupKeyboardManager()
-        setupRepresentationManager()
         setupEditingModeController()
+        
+        representationManager.setRepresentation(.table, animated: false)
+        
         menuPanel.showList(state.currentList)
-        representationManager.setList(state.currentList)
         groupEditingPanelContainer.isHidden = true
     }
     
@@ -90,7 +95,7 @@ extension MainViewController: ListsViewOutput {
         state.currentList = list
         menuPanel.showList(list)
         menuPanel.showControls(animated: true)
-        representationManager.setList(list)
+        representationManager.currentListRepresentationInput.setList(list: list)
         if let smartList = list as? SmartList, smartList.smartListType == .important {
             taskCreationPanel.setImportancy(true)
         }
@@ -105,7 +110,7 @@ extension MainViewController: ListsViewOutput {
     func didUpdateList(_ list: List) {
         state.currentList = list
         menuPanel.showList(list)
-        representationManager.setList(list)
+        representationManager.currentListRepresentationInput.setList(list: list)
     }
     
     func didCreateList() {
@@ -184,6 +189,7 @@ extension MainViewController: EditingModeControllerOutput {
 extension MainViewController: ListRepresentationManagerOutput {
     
     func configureListRepresentation(_ representation: ListRepresentationInput) {
+        representation.setList(list: state.currentList)
         representation.editingOutput = editingModeController
     }
     
@@ -215,12 +221,11 @@ extension MainViewController: TaskEditorOutput {
 
 private extension MainViewController {
     
-    func setupRepresentationManager() {
+    func setupRepresentationManager(_ representationManager: ListRepresentationManager) {
         representationManager.output = self
         representationManager.listRepresentationOutput = self
         representationManager.containerViewController = self
         representationManager.listsContainerView = listRepresentationContainer
-        representationManager.setRepresentation(.table, animated: false)
     }
     
     func setupEditingModeController() {
