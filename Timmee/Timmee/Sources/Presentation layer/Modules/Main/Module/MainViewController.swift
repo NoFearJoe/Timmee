@@ -151,9 +151,15 @@ extension MainViewController: TaskCreationPanelOutput {
     
     func didPressCreateTaskButton() {
         if let title = taskCreationPanel.enteredTaskTitle, !title.isEmpty {
-            router.showTaskEditor(with: title, list: state.currentList, output: self)
+            router.showTaskEditor(with: title,
+                                  list: state.currentList,
+                                  isImportant: taskCreationPanel.isImportancySelected,
+                                  output: self)
         } else {
-            router.showTaskEditor(with: nil, list: state.currentList, output: self)
+            router.showTaskEditor(with: nil,
+                                  list: state.currentList,
+                                  isImportant: taskCreationPanel.isImportancySelected,
+                                  output: self)
         }
     }
     
@@ -206,7 +212,10 @@ extension MainViewController: ListRepresentationOutput {
     }
     
     func didPressEdit(for task: Task) {
-        router.showTaskEditor(with: task, list: state.currentList, output: self)
+        router.showTaskEditor(with: task,
+                              list: state.currentList,
+                              isImportant: taskCreationPanel.isImportancySelected,
+                              output: self)
     }
     
 }

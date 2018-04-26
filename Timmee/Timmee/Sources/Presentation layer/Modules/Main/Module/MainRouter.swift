@@ -9,8 +9,8 @@
 import UIKit
 
 protocol MainRouterInput: class {
-    func showTaskEditor(with task: Task?, list: List?, output: TaskEditorOutput?)
-    func showTaskEditor(with taskTitle: String, list: List?, output: TaskEditorOutput?)
+    func showTaskEditor(with task: Task?, list: List?, isImportant: Bool, output: TaskEditorOutput?)
+    func showTaskEditor(with taskTitle: String, list: List?, isImportant: Bool, output: TaskEditorOutput?)
 }
 
 final class MainRouter {
@@ -21,20 +21,26 @@ final class MainRouter {
 
 extension MainRouter: MainRouterInput {
     
-    func showTaskEditor(with task: Task?, list: List?, output: TaskEditorOutput?) {
-        showTaskEditor(list: list, output: output) { taskEditorInput in
+    func showTaskEditor(with task: Task?, list: List?, isImportant: Bool, output: TaskEditorOutput?) {
+        showTaskEditor(list: list, isImportant: isImportant, output: output) { taskEditorInput in
             taskEditorInput.setTask(task)
+            if let smartList = list as? SmartList, smartList.smartListType == .today, task?.dueDate == nil {
+                taskEditorInput.setDueDate(Date().startOfHour + 1.asHours)
+            }
         }
     }
     
-    func showTaskEditor(with taskTitle: String, list: List?, output: TaskEditorOutput?) {
-        showTaskEditor(list: list, output: output) { taskEditorInput in
+    func showTaskEditor(with taskTitle: String, list: List?, isImportant: Bool, output: TaskEditorOutput?) {
+        showTaskEditor(list: list, isImportant: isImportant, output: output) { taskEditorInput in
             taskEditorInput.setTask(nil)
             taskEditorInput.setTaskTitle(taskTitle)
+            if let smartList = list as? SmartList, smartList.smartListType == .today {
+                taskEditorInput.setDueDate(Date().startOfHour + 1.asHours)
+            }
         }
     }
     
-    private func showTaskEditor(list: List?, output: TaskEditorOutput?, configuration: (TaskEditorInput) -> Void) {
+    private func showTaskEditor(list: List?, isImportant: Bool, output: TaskEditorOutput?, configuration: (TaskEditorInput) -> Void) {
         let taskEditorView = ViewControllersFactory.taskEditor
         
         let taskEditorInput = TaskEditorAssembly.assembly(with: taskEditorView)
@@ -45,9 +51,7 @@ extension MainRouter: MainRouterInput {
         
         configuration(taskEditorInput)
         
-        if let smartList = list as? SmartList, smartList.smartListType == .today {
-            taskEditorInput.setDueDate(Date().startOfHour + 1.asHours)
-        }
+        taskEditorView.setTaskImportant(isImportant)
         
         transitionHandler.present(taskEditorView, animated: true, completion: nil)
     }

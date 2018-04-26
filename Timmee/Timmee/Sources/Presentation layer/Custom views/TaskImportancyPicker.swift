@@ -31,6 +31,8 @@ final class TaskImportancyPicker: UIView {
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
         addGestureRecognizer(recognizer)
+        
+        isPicked = false
     }
     
     @objc private func onTap() {

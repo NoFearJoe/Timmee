@@ -3,7 +3,7 @@ PODS:
     - Fabric (~> 1.7.5)
   - Fabric (1.7.6)
   - Foto (0.3)
-  - SwipeCellKit (2.1.0)
+  - SwipeCellKit (2.2.0)
 
 DEPENDENCIES:
   - Crashlytics
@@ -22,7 +22,7 @@ SPEC CHECKSUMS:
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   Foto: 6eb4eacbbc9a0a56418891347128b2ab0fd16553
-  SwipeCellKit: 80bdb188166484d8a0d813d9fd7748ad33181815
+  SwipeCellKit: 8ae09401e1137566b187980d824310129233c959
 
 PODFILE CHECKSUM: d2333056662ae9539900bc357b71162fe3d27ece
 
