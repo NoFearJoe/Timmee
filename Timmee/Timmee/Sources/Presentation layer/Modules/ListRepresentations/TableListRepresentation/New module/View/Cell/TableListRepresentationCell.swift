@@ -166,6 +166,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         removeModificationAnimations()
+        containerView.removeProgressIndicator()
     }
     
     func setTask(_ task: Task) {
@@ -217,12 +218,14 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         fadeIn.fromValue = AppTheme.current.foregroundColor.cgColor
         fadeIn.toValue = AppTheme.current.yellowColor.withAlphaComponent(0.5).cgColor
         fadeIn.duration = 0.1
+        fadeIn.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         
         let fadeOut = CABasicAnimation(keyPath: "backgroundColor")
         fadeOut.fromValue = AppTheme.current.yellowColor.withAlphaComponent(0.5).cgColor
         fadeOut.toValue = AppTheme.current.foregroundColor.cgColor
-        fadeOut.duration = 2
+        fadeOut.duration = 3
         fadeOut.beginTime = CACurrentMediaTime() + 0.1
+        fadeOut.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         
         let layerForAnimation = CALayer()
         layerForAnimation.name = "layerForAnimation"
@@ -304,6 +307,10 @@ final class TableListRepersentationCellContainerView: UIView {
         }
     }
     
+    var progressIndicatorLayer: CALayer? {
+        return layer.sublayers?.first(where: { $0.name == "progressIndicator" })
+    }
+    
     func addProgressIndicator() {
         let layer = CALayer()
         layer.name = "progressIndicator"
@@ -313,7 +320,12 @@ final class TableListRepersentationCellContainerView: UIView {
     }
     
     func removeProgressIndicator() {
-        layer.sublayers?.first(where: { $0.name == "progressIndicator" })?.removeFromSuperlayer()
+        progressIndicatorLayer?.removeFromSuperlayer()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        progressIndicatorLayer?.frame = CGRect(origin: .zero, size: CGSize(width: 2, height: frame.height)).insetBy(dx: 0, dy: 2)
     }
     
     override func draw(_ rect: CGRect) {
