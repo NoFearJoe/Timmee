@@ -38,6 +38,11 @@ final class TaskDueDateTimeEditor: UIViewController {
     private var hours: Int = 0
     private var minutes: Int = 0
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dueDatePicker.setBackgroundColor(AppTheme.current.panelColor)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DueTimePicker" {
             guard let dueTimePicker = segue.destination as? TaskDueTimePicker else { return }

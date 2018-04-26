@@ -34,6 +34,7 @@ protocol TableListRepresentationInteractorInput: class {
 protocol TableListRepresentationInteractorOutput: class {
     func initialTasksFetched()
     func tasksCountChanged(count: Int)
+    func taskChanged(change: CoreDataChange)
     
     func operationCompleted()
     func groupEditingOperationCompleted()
@@ -212,7 +213,9 @@ private extension TableListRepresentationInteractor {
             onItemsCountChange: { [weak self] count in
                 self?.output.tasksCountChanged(count: count)
             },
-            onItemChange: nil)
+            onItemChange: { [weak self] change in
+                self?.output.taskChanged(change: change)
+            })
         
         output.prepareCacheObserver(tasksObserver)
         

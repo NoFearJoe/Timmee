@@ -79,6 +79,15 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
         }
     }
     
+    func taskChanged(change: CoreDataChange) {
+        switch change {
+        case let .insertion(indexPath): view.animateModification(at: indexPath)
+        case let .update(indexPath): view.animateModification(at: indexPath)
+        case let .move(_, indexPath): view.animateModification(at: indexPath)
+        default: return
+        }
+    }
+    
     func operationCompleted() {
         view.setInteractionsEnabled(true)
     }

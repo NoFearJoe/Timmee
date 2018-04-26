@@ -91,6 +91,11 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         tableView.isUserInteractionEnabled = isEnabled
     }
     
+    func animateModification(at indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TableListRepresentationCell else { return }
+        cell.animateModification()
+    }
+    
 }
 
 private extension TableListRepresentationView {

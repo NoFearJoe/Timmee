@@ -6,6 +6,8 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
+import struct Foundation.IndexPath
+
 protocol TableListRepresentationViewInput: class {
     func showNoTasksPlaceholder()
     func hideNoTasksPlaceholder()
@@ -17,6 +19,8 @@ protocol TableListRepresentationViewInput: class {
     func resetOffset()
     
     func setInteractionsEnabled(_ isEnabled: Bool)
+    
+    func animateModification(at indexPath: IndexPath)
 }
 
 protocol TableListRepresentationViewOutput: class {

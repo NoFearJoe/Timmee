@@ -60,7 +60,7 @@ final class DayNumberLabel: UILabel {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = AppTheme.current.panelColor
+        backgroundColor = AppTheme.current.thirdlyTintColor
         selectedTextColor = AppTheme.current.backgroundTintColor
     }
     

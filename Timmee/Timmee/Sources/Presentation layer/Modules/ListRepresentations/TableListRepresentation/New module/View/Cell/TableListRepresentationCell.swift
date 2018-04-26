@@ -163,6 +163,11 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         importancyPicker.changeStateAutomatically = false
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        removeModificationAnimations()
+    }
+    
     func setTask(_ task: Task) {
         updateTagColors(with:
             task.tags
@@ -204,9 +209,40 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         subtasksLabel.textColor = AppTheme.current.secondaryTintColor
     }
     
+    /// Когда задача изменяется, должна показываться эта анимация
+    func animateModification() {
+        removeModificationAnimations()
+        
+        let fadeIn = CABasicAnimation(keyPath: "backgroundColor")
+        fadeIn.fromValue = AppTheme.current.foregroundColor.cgColor
+        fadeIn.toValue = AppTheme.current.yellowColor.withAlphaComponent(0.5).cgColor
+        fadeIn.duration = 0.1
+        
+        let fadeOut = CABasicAnimation(keyPath: "backgroundColor")
+        fadeOut.fromValue = AppTheme.current.yellowColor.withAlphaComponent(0.5).cgColor
+        fadeOut.toValue = AppTheme.current.foregroundColor.cgColor
+        fadeOut.duration = 2
+        fadeOut.beginTime = CACurrentMediaTime() + 0.1
+        
+        let layerForAnimation = CALayer()
+        layerForAnimation.name = "layerForAnimation"
+        layerForAnimation.frame = containerView.layer.bounds.insetBy(dx: 0, dy: 2)
+        layerForAnimation.cornerRadius = 4
+        layerForAnimation.masksToBounds = true
+        
+        containerView.layer.insertSublayer(layerForAnimation, at: 0)
+        
+        layerForAnimation.add(fadeIn, forKey: "fadeIn")
+        layerForAnimation.add(fadeOut, forKey: "fadeOut")
+    }
+    
+    private func removeModificationAnimations() {
+        containerView.layer.sublayers?.first(where: { $0.name == "layerForAnimation" })?.removeFromSuperlayer()
+    }
+    
 }
 
-fileprivate extension TableListRepresentationCell {
+private extension TableListRepresentationCell {
     
     func updateTimeTemplateView(with timeTemplate: String?) {
         timeTemplateLabel.text = timeTemplate
@@ -260,7 +296,24 @@ final class TableListRepersentationCellContainerView: UIView {
     var cornerRadius: CGFloat = 4
     
     var shouldDrawProgressIndicator: Bool = false {
-        didSet { setNeedsDisplay() }
+        didSet {
+            removeProgressIndicator()
+            if shouldDrawProgressIndicator {
+                addProgressIndicator()
+            }
+        }
+    }
+    
+    func addProgressIndicator() {
+        let layer = CALayer()
+        layer.name = "progressIndicator"
+        layer.frame = CGRect(origin: .zero, size: CGSize(width: 2, height: frame.height)).insetBy(dx: 0, dy: 2)
+        layer.backgroundColor = AppTheme.current.blueColor.cgColor
+        self.layer.addSublayer(layer)
+    }
+    
+    func removeProgressIndicator() {
+        layer.sublayers?.first(where: { $0.name == "progressIndicator" })?.removeFromSuperlayer()
     }
     
     override func draw(_ rect: CGRect) {
@@ -276,11 +329,11 @@ final class TableListRepersentationCellContainerView: UIView {
         path.fill()
         path.addClip()
         
-        if shouldDrawProgressIndicator {
-            context.setFillColor(AppTheme.current.blueColor.cgColor)
-            let indicatorRect = CGRect(x: 0, y: 0, width: 2, height: rect.height)
-            context.fill(indicatorRect)
-        }
+//        if shouldDrawProgressIndicator {
+//            context.setFillColor(AppTheme.current.blueColor.cgColor)
+//            let indicatorRect = CGRect(x: 0, y: 0, width: 2, height: rect.height)
+//            context.fill(indicatorRect)
+//        }
     }
     
 }

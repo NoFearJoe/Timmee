@@ -11,6 +11,7 @@ import UIKit
 protocol TaskDueDatePickerInput: class {
     var minimumAvailableDate: Date { get set }
     func setDueDate(_ date: Date)
+    func setBackgroundColor(_ color: UIColor)
 }
 
 protocol TaskDueDatePickerOutput: class {
@@ -61,6 +62,10 @@ extension TaskDueDatePicker: TaskDueDatePickerInput {
     func setDueDate(_ date: Date) {
         calendarView.selectedDateIndex = calendar.index(of: date)
         calendarView.calendarView.reloadData()
+    }
+    
+    func setBackgroundColor(_ color: UIColor) {
+        view.backgroundColor = color
     }
     
 }

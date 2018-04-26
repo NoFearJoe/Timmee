@@ -47,7 +47,7 @@ class BaseRoundedCollectionViewCell: UICollectionViewCell {
             context.move(to: CGPoint(x: 0, y: 0))
             context.addLine(to: CGPoint(x: rect.maxX, y: 0))
             context.strokePath()
-        } else {
+        } else if roundedCorners.isEmpty {
             context.move(to: CGPoint(x: 0, y: rect.maxY))
             context.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
             context.strokePath()

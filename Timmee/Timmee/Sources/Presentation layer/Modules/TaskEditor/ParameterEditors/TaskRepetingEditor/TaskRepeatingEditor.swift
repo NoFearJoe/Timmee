@@ -113,6 +113,8 @@ extension TaskRepeatingEditor {
             cell.accessoryType = .disclosureIndicator
         }
         
+        cell.setupAppearance()
+        
         return cell
     }
 
