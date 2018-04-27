@@ -41,11 +41,9 @@ final class ListsViewController: UIViewController {
     var currentList: List! {
         didSet {
             output?.didUpdateList(currentList)
+            updateCurrentListIndexPath()
             if let indexPath = listsInteractor.indexPath(ofList: currentList) {
-                currentListIndexPath = indexPath
                 collectionView.reloadItems(at: [indexPath])
-            } else {
-                currentListIndexPath = nil
             }
         }
     }
@@ -143,8 +141,7 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialLists() {
-        guard currentList == nil else { return }
-        setInitialList()
+        updateCurrentListAndIndexPathIfNeeded()
     }
     
     func didUpdateLists(with change: CoreDataChange) {
@@ -196,8 +193,7 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialSmartLists() {
-        guard currentList == nil else { return }
-        setInitialList()
+        updateCurrentListAndIndexPathIfNeeded()
     }
     
     func didUpdateSmartLists(with change: CoreDataChange) {
@@ -234,6 +230,23 @@ private extension ListsViewController {
     func setInitialList() {
         guard listsInteractor.numberOfItems(in: ListsCollectionViewSection.smartLists.rawValue) > 0 else { return }
         currentList = listsInteractor.list(at: 0, in: ListsCollectionViewSection.smartLists.rawValue)
+    }
+    
+    func updateCurrentListIndexPath() {
+        if let indexPath = listsInteractor.indexPath(ofList: currentList) {
+            currentListIndexPath = indexPath
+        } else {
+            currentListIndexPath = nil
+        }
+    }
+    
+    func updateCurrentListAndIndexPathIfNeeded() {
+        if currentList == nil {
+            setInitialList()
+        }
+        if currentListIndexPath == nil {
+            updateCurrentListIndexPath()
+        }
     }
     
     func setPickingListIfPossible() {
