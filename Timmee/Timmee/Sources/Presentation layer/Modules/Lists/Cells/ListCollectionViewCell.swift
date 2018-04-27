@@ -26,6 +26,11 @@ final class ListCollectionViewCell: SwipableCollectionViewCell {
             tasksCountLabel.textColor = AppTheme.current.secondaryTintColor
         }
     }
+    @IBOutlet var favoritePicker: TaskImportancyPicker! {
+        didSet {
+            favoritePicker.changeStateAutomatically = false
+        }
+    }
     
     var title: String? {
         get { return titleLabel.text }
@@ -42,6 +47,17 @@ final class ListCollectionViewCell: SwipableCollectionViewCell {
         set {
             tasksCountLabel.text = newValue
             tasksCountLabel.isHidden = newValue == nil || newValue == ""
+        }
+    }
+    
+    var isFavorite: Bool {
+        get { return favoritePicker.isPicked }
+        set { favoritePicker.isPicked = newValue }
+    }
+    
+    var shouldShowFavoritePicker: Bool = false {
+        didSet {
+            favoritePicker.isHidden = !shouldShowFavoritePicker
         }
     }
     

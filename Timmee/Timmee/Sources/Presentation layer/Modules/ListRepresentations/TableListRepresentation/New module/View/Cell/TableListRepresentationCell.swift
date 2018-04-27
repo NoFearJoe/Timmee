@@ -210,7 +210,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         subtasksLabel.textColor = AppTheme.current.secondaryTintColor
     }
     
-    /// Когда задача изменяется, должна показываться эта анимация
+    /// Когда задача добавляется или перемещается, должна показываться эта анимация
     func animateModification() {
         removeModificationAnimations()
         

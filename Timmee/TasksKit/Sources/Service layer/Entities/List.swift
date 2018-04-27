@@ -19,6 +19,7 @@ public class List {
     public var icon: ListIcon
     public var sortPosition: Int
     public let tasksCount: Int
+    public var isFavorite: Bool
     public let creationDate: Date
     
     public init(listEntity: ListEntity) {
@@ -28,6 +29,7 @@ public class List {
         icon = ListIcon(id: Int(listEntity.iconID))
         sortPosition = Int(listEntity.sortPosition)
         tasksCount = listEntity.tasks?.count ?? 0
+        isFavorite = listEntity.isFavorite
         creationDate = listEntity.creationDate! as Date
     }
     
@@ -37,6 +39,7 @@ public class List {
                 icon: ListIcon,
                 sortPosition: Int = 0,
                 tasksCount: Int = 0,
+                isFavorite: Bool = false,
                 creationDate: Date) {
         self.id = id
         self.title = title
@@ -44,6 +47,7 @@ public class List {
         self.icon = icon
         self.sortPosition = sortPosition
         self.tasksCount = tasksCount
+        self.isFavorite = isFavorite
         self.creationDate = creationDate
     }
     
@@ -54,6 +58,7 @@ public class List {
                     icon: icon,
                     sortPosition: sortPosition,
                     tasksCount: tasksCount,
+                    isFavorite: isFavorite,
                     creationDate: creationDate)
     }
     

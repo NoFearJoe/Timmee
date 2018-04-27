@@ -42,14 +42,14 @@ final class ListsViewController: UIViewController {
         didSet {
             output?.didUpdateList(currentList)
             if let indexPath = listsInteractor.indexPath(ofList: currentList) {
+                currentListIndexPath = indexPath
                 collectionView.reloadItems(at: [indexPath])
+            } else {
+                currentListIndexPath = nil
             }
         }
     }
-    var currentListIndexPath: IndexPath? {
-        guard let list = currentList else { return nil }
-        return listsInteractor.indexPath(ofList: list)
-    }
+    var currentListIndexPath: IndexPath?
     
     private(set) var isPickingList: Bool = false {
         didSet {
@@ -148,44 +148,45 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didUpdateLists(with change: CoreDataChange) {
-        func reloadPreviousCell(for indexPath: IndexPath) {
-            guard indexPath.item > 0 else { return }
-            collectionView.reloadItems(at: [IndexPath(item: indexPath.item - 1, section: indexPath.section)])
+        func previousCellsIndexPaths(for indexPaths: [IndexPath]) -> [IndexPath] {
+            return indexPaths.compactMap { indexPath -> IndexPath? in
+                guard indexPath.item > 0 else { return nil }
+                return IndexPath(item: indexPath.item - 1, section: indexPath.section)
+            }
         }
         
-        func reloadNextCell(for indexPath: IndexPath) {
-            guard collectionView.numberOfItems(inSection: indexPath.section) > indexPath.item else { return }
-            collectionView.reloadItems(at: [IndexPath(item: indexPath.item, section: indexPath.section)])
+        func nextCellsIndexPaths(for indexPaths: [IndexPath]) -> [IndexPath] {
+            return indexPaths.compactMap { indexPath -> IndexPath? in
+                guard collectionView.numberOfItems(inSection: indexPath.section) > indexPath.item else { return nil }
+                return IndexPath(item: indexPath.item, section: indexPath.section)
+            }
         }
         
         switch change {
         case .insertion(let indexPath):
             if ListsCollectionViewSection(rawValue: indexPath.section) == .lists {
-                currentList = listsInteractor.list(at: indexPath.row, in: indexPath.section)
+                currentList = listsInteractor.list(at: indexPath.item, in: indexPath.section)
             }
             
-            collectionView.performBatchUpdates({
-                reloadPreviousCell(for: indexPath)
-                reloadNextCell(for: indexPath)
-            })
+            collectionView.reloadItems(at: previousCellsIndexPaths(for: [indexPath]) + nextCellsIndexPaths(for: [indexPath]))
         case .deletion(let indexPath):
             if currentListIndexPath == nil || indexPath == currentListIndexPath {
                 setInitialList()
             }
             
-            collectionView.performBatchUpdates({
-                reloadPreviousCell(for: indexPath)
-                reloadNextCell(for: indexPath)
-            })
+            collectionView.reloadItems(at: previousCellsIndexPaths(for: [indexPath]) + nextCellsIndexPaths(for: [indexPath]))
         case .update(let indexPath):
+            collectionView.reloadItems(at: [indexPath])
             guard indexPath == currentListIndexPath else { return }
-            if let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) {
+            if let list = listsInteractor.list(at: indexPath.item, in: indexPath.section) {
                 output?.didUpdateList(list)
             }
         case .move(let indexPath, let newIndexPath):
             if indexPath == currentListIndexPath {
-                currentList = listsInteractor.list(at: newIndexPath.row, in: newIndexPath.section)
+                currentList = listsInteractor.list(at: newIndexPath.item, in: newIndexPath.section)
             }
+
+            collectionView.reloadSections(IndexSet(integer: newIndexPath.section))
         default: break
         }
     }

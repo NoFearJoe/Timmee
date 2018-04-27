@@ -55,6 +55,7 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
                     tableView.insertRows(at: [toIndexPath], with: .fade)
                 }
             }
+            
         }
         
         tableView.endUpdates()

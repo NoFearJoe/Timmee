@@ -51,6 +51,7 @@ public final class CollectionViewCacheAdapter: CollectionViewManageble, CacheSub
                 }
             }
         }, completion: { finished in
+            print("::2")
             completion()
         })
     }

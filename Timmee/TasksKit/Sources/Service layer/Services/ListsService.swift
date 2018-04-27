@@ -46,6 +46,7 @@ public protocol ListsObserverProvider: class {
 public protocol ListsManager: class {
     func createOrUpdateList(_ list: List, tasks: [Task], completion: @escaping (ListsService.Error?) -> Void)
     func removeList(_ list: List, completion: @escaping (ListsService.Error?) -> Void)
+    func changeFavoriteState(of list: List, to isFavorite: Bool, completion: @escaping (ListsService.Error?) -> Void)
 }
 
 public protocol SmartListsManager: class {
@@ -73,7 +74,7 @@ extension ListsService: ListsManager {
     public func createOrUpdateList(_ list: List,
                                    tasks: [Task],
                                    completion: @escaping (Error?) -> Void) {
-        Database.localStorage.write({ (context, save) in
+        Database.localStorage.write({ context, save in
             let taskEntities = NSSet(array: tasks.isEmpty ? [] : self.tasksProvider.fetchTaskEntitiesInBackground(tasks: tasks))
             
             if let existingList = self.fetchListEntity(id: list.id, context: context) {
@@ -95,7 +96,7 @@ extension ListsService: ListsManager {
     }
     
     public func removeList(_ list: List, completion: @escaping (Error?) -> Void) {
-        Database.localStorage.write({ (context, save) in
+        Database.localStorage.write({ context, save in
             guard let existingList = self.fetchListEntity(id: list.id, context: context) else {
                 completion(.listIsNotExist)
                 return
@@ -106,6 +107,21 @@ extension ListsService: ListsManager {
             save()
         }) { isSuccess in
             completion(!isSuccess ? .listRemovingError : nil)
+        }
+    }
+    
+    public func changeFavoriteState(of list: List, to isFavorite: Bool, completion: @escaping (ListsService.Error?) -> Void) {
+        Database.localStorage.write({ context, save in
+            guard let existingList = self.fetchListEntity(id: list.id, context: context) else {
+                completion(.listIsNotExist)
+                return
+            }
+            
+            existingList.isFavorite = isFavorite
+            
+            save()
+        }) { isSuccess in
+            completion(!isSuccess ? .listUpdatingError : nil)
         }
     }
     
@@ -268,7 +284,7 @@ private extension ListsService {
     /// Запрос всех списков
     static func listsFetchRequest() -> FetchRequest<ListEntity> {
         let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
-        return ListEntity.request().sorted(sortDescriptor: sortDescriptor)
+        return ListEntity.request().sorted(key: "isFavorite", ascending: false).sorted(sortDescriptor: sortDescriptor)
     }
     
     /// Запрос списка по id

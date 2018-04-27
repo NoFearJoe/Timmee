@@ -43,6 +43,12 @@ extension ListsViewController: UICollectionViewDataSource {
             cell.tasksCount = tasksCount > 0 ? "\(tasksCount)" : nil
             
             cell.isPicked = currentList == list
+            cell.isFavorite = list.isFavorite
+            cell.shouldShowFavoritePicker = !(list is SmartList)
+            cell.favoritePicker.onPick = { [weak self] _ in
+                guard let indexPath = collectionView.indexPath(for: cell) else { return }
+                self?.handleListFavoriteChange(at: indexPath)
+            }
             
             cell.roundedCorners = self.roundedCorners(forListAt: indexPath)
             
@@ -166,6 +172,11 @@ private extension ListsViewController {
     func handleListEditing(at indexPath: IndexPath) {
         guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
         showListEditor(with: list)
+    }
+    
+    func handleListFavoriteChange(at indexPath: IndexPath) {
+        guard let list = listsInteractor.list(at: indexPath.row, in: indexPath.section) else { return }
+        listsInteractor.toggleFavoriteState(of: list)
     }
     
     func showListDeletionAlert(with list: List) {

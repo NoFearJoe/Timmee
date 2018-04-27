@@ -124,7 +124,9 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
     
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         onItemsCountChange?(totalObjectsCount())
+        print("::1")
         subscriber?.processChanges(batchChanges) {
+            print("::3")
             self.batchChanges.forEach { self.onItemChange?($0) }
             self.batchChanges.removeAll()
         }

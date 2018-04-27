@@ -73,6 +73,9 @@ final class ListsInteractor {
         listsService.removeList(list) { error in }
     }
     
+    func toggleFavoriteState(of list: List) {
+        listsService.changeFavoriteState(of: list, to: !list.isFavorite) { error in }
+    }
     
     func hideSmartList(_ list: SmartList) {
         listsService.removeSmartList(list) { error in }

@@ -15,6 +15,8 @@ public extension ListEntity {
         title = list.title
         note = list.note
         iconID = Int16(list.icon.rawValue)
+        sortPosition = Int16(list.sortPosition)
+        isFavorite = list.isFavorite
         creationDate = list.creationDate
     }
 
