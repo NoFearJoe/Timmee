@@ -75,4 +75,10 @@ final class ListCollectionViewCell: SwipableCollectionViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        backgroundColor = AppTheme.current.foregroundColor
+    }
+    
 }

@@ -230,7 +230,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         let layerForAnimation = CALayer()
         layerForAnimation.name = "layerForAnimation"
         layerForAnimation.frame = containerView.layer.bounds.insetBy(dx: 0, dy: 2)
-        layerForAnimation.cornerRadius = 4
+        layerForAnimation.cornerRadius = AppTheme.current.cornerRadius
         layerForAnimation.masksToBounds = true
         
         containerView.layer.insertSublayer(layerForAnimation, at: 0)
@@ -296,7 +296,6 @@ private extension TableListRepresentationCell {
 final class TableListRepersentationCellContainerView: UIView {
     
     var fillColor: UIColor = AppTheme.current.foregroundColor
-    var cornerRadius: CGFloat = 4
     
     var shouldDrawProgressIndicator: Bool = false {
         didSet {
@@ -337,15 +336,9 @@ final class TableListRepersentationCellContainerView: UIView {
         context.setFillColor(fillColor.cgColor)
         
         let path = UIBezierPath(roundedRect: rect.insetBy(dx: 0, dy: 2),
-                                cornerRadius: cornerRadius)
+                                cornerRadius: AppTheme.current.cornerRadius)
         path.fill()
         path.addClip()
-        
-//        if shouldDrawProgressIndicator {
-//            context.setFillColor(AppTheme.current.blueColor.cgColor)
-//            let indicatorRect = CGRect(x: 0, y: 0, width: 2, height: rect.height)
-//            context.fill(indicatorRect)
-//        }
     }
     
 }

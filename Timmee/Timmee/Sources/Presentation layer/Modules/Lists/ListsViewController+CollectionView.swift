@@ -50,7 +50,7 @@ extension ListsViewController: UICollectionViewDataSource {
                 self?.handleListFavoriteChange(at: indexPath)
             }
             
-            cell.roundedCorners = self.roundedCorners(forListAt: indexPath)
+//            cell.roundedCorners = self.roundedCorners(forListAt: indexPath)
             
             cell.actionsProvider = self
         }
@@ -126,6 +126,10 @@ extension ListsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
     }
     
 }

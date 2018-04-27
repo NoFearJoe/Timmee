@@ -33,7 +33,7 @@ public final class CollectionViewCacheAdapter: CollectionViewManageble, CacheSub
     public func processChanges(_ changes: [CoreDataChange], completion: @escaping () -> Void) {
         guard let collectionView = self.collectionView else { return }
         
-        collectionView.performBatchUpdates({
+        collectionView.performSynchronizedBatchUpdates({
             changes.forEach { change in
                 switch change {
                 case let .sectionInsertion(index):

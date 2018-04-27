@@ -145,35 +145,16 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didUpdateLists(with change: CoreDataChange) {
-        func previousCellsIndexPaths(for indexPaths: [IndexPath]) -> [IndexPath] {
-            return indexPaths.compactMap { indexPath -> IndexPath? in
-                guard indexPath.item > 0 else { return nil }
-                return IndexPath(item: indexPath.item - 1, section: indexPath.section)
-            }
-        }
-        
-        func nextCellsIndexPaths(for indexPaths: [IndexPath]) -> [IndexPath] {
-            return indexPaths.compactMap { indexPath -> IndexPath? in
-                guard collectionView.numberOfItems(inSection: indexPath.section) > indexPath.item else { return nil }
-                return IndexPath(item: indexPath.item, section: indexPath.section)
-            }
-        }
-        
         switch change {
         case .insertion(let indexPath):
             if ListsCollectionViewSection(rawValue: indexPath.section) == .lists {
                 currentList = listsInteractor.list(at: indexPath.item, in: indexPath.section)
             }
-            
-            collectionView.reloadItems(at: previousCellsIndexPaths(for: [indexPath]) + nextCellsIndexPaths(for: [indexPath]))
         case .deletion(let indexPath):
             if currentListIndexPath == nil || indexPath == currentListIndexPath {
                 setInitialList()
             }
-            
-            collectionView.reloadItems(at: previousCellsIndexPaths(for: [indexPath]) + nextCellsIndexPaths(for: [indexPath]))
         case .update(let indexPath):
-            collectionView.reloadItems(at: [indexPath])
             guard indexPath == currentListIndexPath else { return }
             if let list = listsInteractor.list(at: indexPath.item, in: indexPath.section) {
                 output?.didUpdateList(list)
@@ -182,8 +163,7 @@ extension ListsViewController: ListsInteractorOutput {
             if indexPath == currentListIndexPath {
                 currentList = listsInteractor.list(at: newIndexPath.item, in: newIndexPath.section)
             }
-
-            collectionView.reloadSections(IndexSet(integer: newIndexPath.section))
+            collectionView.reloadItems(at: [indexPath, newIndexPath])
         default: break
         }
     }

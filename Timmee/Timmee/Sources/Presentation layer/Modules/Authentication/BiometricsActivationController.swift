@@ -76,8 +76,8 @@ fileprivate extension BiometricsActivationController {
         acceptButton.backgroundColor = AppTheme.current.blueColor
         declineButton.backgroundColor = AppTheme.current.secondaryBackgroundTintColor
         
-        acceptButton.layer.cornerRadius = 6
-        declineButton.layer.cornerRadius = 6
+        acceptButton.layer.cornerRadius = AppTheme.current.cornerRadius
+        declineButton.layer.cornerRadius = AppTheme.current.cornerRadius
     }
     
 }

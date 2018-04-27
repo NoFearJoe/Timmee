@@ -37,6 +37,7 @@
 		0C9B24042077B996009EF6DE /* NearestDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24022077B996009EF6DE /* NearestDate.swift */; };
 		0CE018BE2077B52B00633EFF /* Workset.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CE018BC2077B52B00633EFF /* Workset.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57DAC186479AE5DDA38577C4 /* Pods_Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAA4E60F0580B7E43213F56 /* Pods_Workset.framework */; };
+		960E1CC32093B10700225193 /* UICollectionView+syncBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		0CE018BC2077B52B00633EFF /* Workset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Workset.h; sourceTree = "<group>"; };
 		0CE018BD2077B52B00633EFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC7BEA3BE1C74727101F95E /* Pods-Workset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workset.release.xcconfig"; path = "Pods/Target Support Files/Pods-Workset/Pods-Workset.release.xcconfig"; sourceTree = "<group>"; };
+		960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+syncBatchUpdates.swift"; sourceTree = "<group>"; };
 		D4873D1A3475012AECFB0CA8 /* Pods-Workset.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workset.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Workset/Pods-Workset.debug.xcconfig"; sourceTree = "<group>"; };
 		DFAA4E60F0580B7E43213F56 /* Pods_Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				0C9B23CF2077B757009EF6DE /* UIDevice+Idiom.swift */,
 				0C9B23D02077B757009EF6DE /* UIImage+one-colored.swift */,
 				0C9B23D12077B757009EF6DE /* UIView+nib.swift */,
+				960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				0C9B23F32077B757009EF6DE /* Foto.Photo+filename.swift in Sources */,
 				0C9B23F22077B757009EF6DE /* UIView+nib.swift in Sources */,
 				0C9B23EB2077B757009EF6DE /* UIImage+tint.swift in Sources */,
+				960E1CC32093B10700225193 /* UICollectionView+syncBatchUpdates.swift in Sources */,
 				0C9B23EC2077B757009EF6DE /* UIColor+HEX.swift in Sources */,
 				0C9B24002077B757009EF6DE /* Array+Item.swift in Sources */,
 				0C9B23F62077B757009EF6DE /* String+Trimmed.swift in Sources */,
@@ -484,7 +488,11 @@
 				INFOPLIST_FILE = Workset/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.Workset;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -508,7 +516,11 @@
 				INFOPLIST_FILE = Workset/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.Workset;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

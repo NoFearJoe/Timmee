@@ -124,4 +124,6 @@ public struct AppThemeScheme {
         UIColor(rgba: "5856D6"), UIColor(rgba: "FF2D55"), UIColor(rgba: "999999")
     ]
 
+    let cornerRadius: CGFloat = 6
+    
 }

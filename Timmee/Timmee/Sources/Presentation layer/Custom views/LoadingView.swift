@@ -27,7 +27,7 @@ final class LoadingView: UIView {
         addSubview(activityIndicator)
         backgroundColor = AppTheme.white.scheme.panelColor
         clipsToBounds = true
-        layer.cornerRadius = 8
+        layer.cornerRadius = AppTheme.current.cornerRadius
     }
     
     override func layoutSubviews() {

@@ -21,7 +21,7 @@ import UIKit
     }
     
     private func setupAppearance() {
-        layer.cornerRadius = 8
+        layer.cornerRadius = AppTheme.current.cornerRadius
         clipsToBounds = true
         
         setTitleColor(AppTheme.current.backgroundTintColor, for: .normal)
