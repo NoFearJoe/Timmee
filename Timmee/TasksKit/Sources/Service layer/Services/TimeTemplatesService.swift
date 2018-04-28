@@ -46,14 +46,10 @@ extension TimeTemplatesService: TimeTemplatesManager {
                 newTimeTemplate.map(from: template)
                 save()
             } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
+                DispatchQueue.main.async { completion?() }
             }
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
     
@@ -63,14 +59,10 @@ extension TimeTemplatesService: TimeTemplatesManager {
                 context.delete(existingTimeTemplate)
                 save()
             } else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
+                DispatchQueue.main.async { completion?() }
             }
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
     

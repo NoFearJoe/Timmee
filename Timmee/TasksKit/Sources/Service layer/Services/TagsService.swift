@@ -44,9 +44,7 @@ extension TagsService: TagsManager {
             
             save()
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
     
@@ -59,9 +57,7 @@ extension TagsService: TagsManager {
             
             save()
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
     

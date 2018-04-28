@@ -98,7 +98,7 @@ extension TasksService: TasksManager {
     public func addTask(_ task: Task, listID: String, completion: @escaping (Error?) -> Void) {
         Database.localStorage.write({ (context, save) in
             guard self.fetchTaskEntityInBackground(id: task.id) == nil else {
-                completion(.taskIsAlreadyExist)
+                DispatchQueue.main.async { completion(.taskIsAlreadyExist) }
                 return
             }
             
@@ -115,7 +115,7 @@ extension TasksService: TasksManager {
             
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .taskAddingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .taskAddingError : nil) }
         }
     }
     
@@ -133,7 +133,7 @@ extension TasksService: TasksManager {
     
     public func updateTasks(_ tasks: [Task], listID: String? = nil, completion: @escaping (Error?) -> Void) {
         guard !tasks.isEmpty else {
-            completion(nil)
+            DispatchQueue.main.async { completion(nil) }
             return
         }
         
@@ -158,7 +158,7 @@ extension TasksService: TasksManager {
             
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .taskUpdatingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .taskUpdatingError : nil) }
         }
     }
     
@@ -168,7 +168,7 @@ extension TasksService: TasksManager {
     
     public func removeTasks(_ tasks: [Task], completion: @escaping (Error?) -> Void) {
         guard !tasks.isEmpty else {
-            completion(nil)
+            DispatchQueue.main.async { completion(nil) }
             return
         }
         
@@ -183,14 +183,14 @@ extension TasksService: TasksManager {
             
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .taskRemovingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .taskRemovingError : nil) }
         }
     }
     
     public func doneTask(withID id: String, completion: @escaping () -> Void) {
         Database.localStorage.write({ (context, save) in
             guard let task = self.fetchTaskEntityInBackground(id: id) else {
-                completion()
+                DispatchQueue.main.async { completion() }
                 return
             }
             
@@ -198,7 +198,7 @@ extension TasksService: TasksManager {
             
             save()
         }) { _ in
-            completion()
+            DispatchQueue.main.async { completion() }
         }
     }
     

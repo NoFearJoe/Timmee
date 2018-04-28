@@ -22,6 +22,9 @@ protocol ListsInteractorOutput: class {
     func prepareSmartListsObserver(_ cacheSubscribable: CacheSubscribable)
     func didFetchInitialSmartLists()
     func didUpdateSmartLists(with change: CoreDataChange)
+    
+    func blockerOperationBegan()
+    func blockerOperationCompleted()
 }
 
 final class ListsInteractor {
@@ -62,23 +65,38 @@ final class ListsInteractor {
     }
     
     func createNewList(_ list: List) {
-        listsService.createOrUpdateList(list, tasks: []) { error in }
+        output.blockerOperationBegan()
+        listsService.createOrUpdateList(list, tasks: []) { [weak self] error in
+            self?.output.blockerOperationCompleted()
+        }
     }
     
     func updateList(_ list: List) {
-        listsService.createOrUpdateList(list, tasks: []) { error in }
+        output.blockerOperationBegan()
+        listsService.createOrUpdateList(list, tasks: []) { [weak self] error in
+            self?.output.blockerOperationCompleted()
+        }
     }
     
     func removeList(_ list: List) {
-        listsService.removeList(list) { error in }
+        output.blockerOperationBegan()
+        listsService.removeList(list) { [weak self] error in
+            self?.output.blockerOperationCompleted()
+        }
     }
     
     func toggleFavoriteState(of list: List) {
-        listsService.changeFavoriteState(of: list, to: !list.isFavorite) { error in }
+        output.blockerOperationBegan()
+        listsService.changeFavoriteState(of: list, to: !list.isFavorite) { [weak self] error in
+            self?.output.blockerOperationCompleted()
+        }
     }
     
     func hideSmartList(_ list: SmartList) {
-        listsService.removeSmartList(list) { error in }
+        output.blockerOperationBegan()
+        listsService.removeSmartList(list) { [weak self] error in
+            self?.output.blockerOperationCompleted()
+        }
     }
 
 }
@@ -156,6 +174,12 @@ private extension ListsInteractor {
             onItemsCountChange: nil,
             onItemChange: { [weak self] change in
                 self?.output.didUpdateLists(with: change)
+            },
+            onBatchUpdatesStarted: { [weak self] in
+                self?.output.blockerOperationBegan()
+            },
+            onBatchUpdatesCompleted: { [weak self] in
+                self?.output.blockerOperationCompleted()
             })
     }
     
@@ -175,6 +199,12 @@ private extension ListsInteractor {
             onItemsCountChange: nil,
             onItemChange: { [weak self] change in
                 self?.output.didUpdateSmartLists(with: change)
+            },
+            onBatchUpdatesStarted: { [weak self] in
+                self?.output.blockerOperationBegan()
+            },
+            onBatchUpdatesCompleted: { [weak self] in
+                self?.output.blockerOperationCompleted()
             })
     }
     

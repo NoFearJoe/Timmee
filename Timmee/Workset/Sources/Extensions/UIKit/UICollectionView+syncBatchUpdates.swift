@@ -26,16 +26,13 @@ public extension UICollectionView {
             let group = DispatchGroup()
 
             DispatchQueue.main.sync {
-                print("::enter")
                 group.enter()
                 self.performBatchUpdates(updates, completion: { _ in
                     group.leave()
                 })
                 group.notify(queue: .main, execute: {
-                    print("::leave")
                     completion?(true)
                 })
-                
             }
             
             group.wait()

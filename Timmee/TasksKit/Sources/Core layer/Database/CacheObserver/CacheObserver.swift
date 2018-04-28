@@ -44,7 +44,9 @@ public protocol CacheObserverConfigurable: class {
     func setMapping(_ mapping: @escaping (NSManagedObject) -> T)
     func setActions(onInitialFetch: (() -> Void)?,
                     onItemsCountChange: ((Int) -> Void)?,
-                    onItemChange: ((CoreDataChange) -> Void)?)
+                    onItemChange: ((CoreDataChange) -> Void)?,
+                    onBatchUpdatesStarted: (() -> Void)?,
+                    onBatchUpdatesCompleted: (() -> Void)?)
 }
 
 public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsControllerDelegate {
@@ -53,6 +55,8 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
     private var onItemsCountChange: ((Int) -> Void)?
     private var onItemChange: ((CoreDataChange) -> Void)?
     private var onInitialFetch: (() -> Void)?
+    private var onBatchUpdatesStarted: (() -> Void)?
+    private var onBatchUpdatesCompleted: (() -> Void)?
     
     private var sectionOffset: Int = 0
     
@@ -124,9 +128,14 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
     
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         onItemsCountChange?(totalObjectsCount())
+        
+        DispatchQueue.main.async { self.onBatchUpdatesStarted?() }
+        
         subscriber?.processChanges(batchChanges) {
             self.batchChanges.forEach { self.onItemChange?($0) }
             self.batchChanges.removeAll()
+            
+            DispatchQueue.main.async { self.onBatchUpdatesCompleted?() }
         }
     }
 
@@ -150,10 +159,16 @@ extension CacheObserver: CacheObserverConfigurable {
         self.mapping = mapping
     }
     
-    public func setActions(onInitialFetch: (() -> Void)?, onItemsCountChange: ((Int) -> Void)?, onItemChange: ((CoreDataChange) -> Void)?) {
+    public func setActions(onInitialFetch: (() -> Void)?,
+                           onItemsCountChange: ((Int) -> Void)?,
+                           onItemChange: ((CoreDataChange) -> Void)?,
+                           onBatchUpdatesStarted: (() -> Void)?,
+                           onBatchUpdatesCompleted: (() -> Void)?) {
         self.onInitialFetch = onInitialFetch
         self.onItemsCountChange = onItemsCountChange
         self.onItemChange = onItemChange
+        self.onBatchUpdatesStarted = onBatchUpdatesStarted
+        self.onBatchUpdatesCompleted = onBatchUpdatesCompleted
     }
     
 }

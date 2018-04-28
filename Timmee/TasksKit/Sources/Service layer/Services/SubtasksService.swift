@@ -45,9 +45,7 @@ extension SubtasksService: SubtasksManager {
     public func addSubtask(_ subtask: Subtask, to task: Task, completion: (() -> Void)?) {
         Database.localStorage.write({ (context, save) in
             guard self.fetchSubtaskEntityInBackground(id: subtask.id) == nil else {
-                DispatchQueue.main.async {
-                    completion?()
-                }
+                DispatchQueue.main.async { completion?() }
                 return
             }
             
@@ -59,9 +57,7 @@ extension SubtasksService: SubtasksManager {
             
             save()
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
     
@@ -75,9 +71,7 @@ extension SubtasksService: SubtasksManager {
             
             save()
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
     
@@ -89,9 +83,7 @@ extension SubtasksService: SubtasksManager {
             
             save()
         }) { _ in
-            DispatchQueue.main.async {
-                completion?()
-            }
+            DispatchQueue.main.async { completion?() }
         }
     }
 

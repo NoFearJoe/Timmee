@@ -91,7 +91,9 @@ private extension TasksImportInteractor {
             onItemsCountChange: { [weak self] count in
                 self?.output.tasksFetched(count: count)
             },
-            onItemChange: nil)
+            onItemChange: nil,
+            onBatchUpdatesStarted: nil,
+            onBatchUpdatesCompleted: nil)
         
         output.prepareCacheObserver(tasksObserver!)
         

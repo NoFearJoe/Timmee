@@ -53,9 +53,7 @@ extension SearchInteractor: SearchInteractorInput {
     
     func deleteTask(_ task: Task) {
         tasksService.removeTask(task, completion: { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         })
     }
     
@@ -66,9 +64,7 @@ extension SearchInteractor: SearchInteractorInput {
         }
         
         tasksService.updateTask(task) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         }
     }
     
@@ -76,9 +72,7 @@ extension SearchInteractor: SearchInteractorInput {
         task.inProgress = !task.inProgress
         
         tasksService.updateTask(task) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         }
     }
     
@@ -86,9 +80,7 @@ extension SearchInteractor: SearchInteractorInput {
         task.isImportant = !task.isImportant
         
         tasksService.updateTask(task) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         }
     }
     
@@ -124,7 +116,9 @@ fileprivate extension SearchInteractor {
             onItemsCountChange: { [weak self] count in
                 self?.output.tasksFetched(count: count)
             },
-            onItemChange: nil)
+            onItemChange: nil,
+            onBatchUpdatesStarted: nil,
+            onBatchUpdatesCompleted: nil)
         
         output.prepareCacheObserver(tasksObserver!)
         

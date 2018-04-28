@@ -66,18 +66,14 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     func deleteTask(_ task: Task) {
         taskSchedulerService.removeNotifications(for: task)
         tasksService.removeTask(task, completion: { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         })
     }
     
     func deleteTasks(_ tasks: [Task]) {
         tasks.forEach { taskSchedulerService.removeNotifications(for: $0) }
         tasksService.removeTasks(tasks) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         }
     }
     
@@ -88,18 +84,16 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         }
         
         tasksService.updateTask(task) { [weak self] error in
-            DispatchQueue.main.async {
-                guard let `self` = self else { return }
-                
-                if task.isDone {
-                    self.taskSchedulerService.removeNotifications(for: task)
-                } else {
-                    let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
-                    self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
-                }
-                
-                self.output.operationCompleted()
+            guard let `self` = self else { return }
+            
+            if task.isDone {
+                self.taskSchedulerService.removeNotifications(for: task)
+            } else {
+                let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
+                self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
             }
+            
+            self.output.operationCompleted()
         }
     }
     
@@ -113,19 +107,17 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         }
         
         tasksService.updateTasks(tasks) { [weak self] error in
-            DispatchQueue.main.async {
-                guard let `self` = self else { return }
-                
-                tasks.forEach { task in
-                    if task.isDone {
-                        self.taskSchedulerService.removeNotifications(for: task)
-                    } else {
-                        let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
-                        self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
-                    }
+            guard let `self` = self else { return }
+            
+            tasks.forEach { task in
+                if task.isDone {
+                    self.taskSchedulerService.removeNotifications(for: task)
+                } else {
+                    let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
+                    self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
                 }
-                self.output.groupEditingOperationCompleted()
             }
+            self.output.groupEditingOperationCompleted()
         }
     }
     
@@ -133,10 +125,8 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         task.inProgress = !task.inProgress
         
         tasksService.updateTask(task) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.taskSchedulerService.removeNotifications(for: task)
-                self?.output.operationCompleted()
-            }
+            self?.taskSchedulerService.removeNotifications(for: task)
+            self?.output.operationCompleted()
         }
     }
     
@@ -145,10 +135,8 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         tasks.forEach { $0.inProgress = willInProgress }
         
         tasksService.updateTasks(tasks) { [weak self] error in
-            DispatchQueue.main.async {
-                tasks.forEach { self?.taskSchedulerService.removeNotifications(for: $0) }
-                self?.output.groupEditingOperationCompleted()
-            }
+            tasks.forEach { self?.taskSchedulerService.removeNotifications(for: $0) }
+            self?.output.groupEditingOperationCompleted()
         }
     }
     
@@ -156,17 +144,13 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         task.isImportant = !task.isImportant
         
         tasksService.updateTask(task) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.operationCompleted()
-            }
+            self?.output.operationCompleted()
         }
     }
     
     func moveTasks(_ tasks: [Task], toList list: List) {
         tasksService.updateTasks(tasks, listID: list.id) { [weak self] error in
-            DispatchQueue.main.async {
-                self?.output.groupEditingOperationCompleted()
-            }
+            self?.output.groupEditingOperationCompleted()
         }
     }
     
@@ -215,7 +199,9 @@ private extension TableListRepresentationInteractor {
             },
             onItemChange: { [weak self] change in
                 self?.output.taskChanged(change: change)
-            })
+            },
+            onBatchUpdatesStarted: nil,
+            onBatchUpdatesCompleted: nil)
         
         output.prepareCacheObserver(tasksObserver)
         

@@ -156,12 +156,13 @@ extension ListsViewController: ListsInteractorOutput {
             }
         case .update(let indexPath):
             guard indexPath == currentListIndexPath else { return }
+            updateCurrentListAndIndexPathIfNeeded()
             if let list = listsInteractor.list(at: indexPath.item, in: indexPath.section) {
                 output?.didUpdateList(list)
             }
         case .move(let indexPath, let newIndexPath):
             if indexPath == currentListIndexPath {
-                currentList = listsInteractor.list(at: newIndexPath.item, in: newIndexPath.section)
+                currentListIndexPath = newIndexPath
             }
             collectionView.reloadItems(at: [indexPath, newIndexPath])
         default: break
@@ -178,6 +179,14 @@ extension ListsViewController: ListsInteractorOutput {
     
     func didUpdateSmartLists(with change: CoreDataChange) {
         didUpdateLists(with: change)
+    }
+    
+    func blockerOperationBegan() {
+        view.isUserInteractionEnabled = false
+    }
+    
+    func blockerOperationCompleted() {
+        view.isUserInteractionEnabled = true
     }
     
 }

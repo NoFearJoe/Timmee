@@ -52,13 +52,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="faN-1h-kaP">
-                                                            <rect key="frame" x="291" y="10" width="64" height="30"/>
+                                                            <rect key="frame" x="291" y="5" width="64" height="40"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLu-HC-ULF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                     <subviews>
                                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCA-43-kJi">
-                                                                            <rect key="frame" x="5" y="5" width="20" height="20"/>
+                                                                            <rect key="frame" x="5" y="10" width="20" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="Z1x-GA-Wur"/>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="fhX-Dq-Arx"/>
@@ -81,10 +81,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-zr-U1v" customClass="TaskImportancyPicker" customModule="Timmee" customModuleProvider="target">
-                                                                    <rect key="frame" x="34" y="0.0" width="30" height="30"/>
+                                                                    <rect key="frame" x="34" y="0.0" width="30" height="40"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="important_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="C1u-6Z-xYH">
-                                                                            <rect key="frame" x="5" y="5" width="20" height="20"/>
+                                                                            <rect key="frame" x="5" y="10" width="20" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="C1u-6Z-xYH" secondAttribute="height" multiplier="1:1" id="ob7-an-Wq5"/>
                                                                                 <constraint firstAttribute="width" constant="20" id="uqF-Zr-jhQ"/>
@@ -93,13 +93,9 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="bottom" secondItem="C1u-6Z-xYH" secondAttribute="bottom" constant="5" id="7gd-Jp-NlG"/>
-                                                                        <constraint firstAttribute="width" secondItem="lIf-zr-U1v" secondAttribute="height" multiplier="1:1" id="Ewe-3j-vZU"/>
                                                                         <constraint firstItem="C1u-6Z-xYH" firstAttribute="centerX" secondItem="lIf-zr-U1v" secondAttribute="centerX" id="FtU-kX-EBe"/>
                                                                         <constraint firstItem="C1u-6Z-xYH" firstAttribute="centerY" secondItem="lIf-zr-U1v" secondAttribute="centerY" id="Q3J-nM-Ycb"/>
-                                                                        <constraint firstItem="C1u-6Z-xYH" firstAttribute="leading" secondItem="lIf-zr-U1v" secondAttribute="leading" constant="5" id="VvP-XX-CFU"/>
-                                                                        <constraint firstItem="C1u-6Z-xYH" firstAttribute="top" secondItem="lIf-zr-U1v" secondAttribute="top" constant="5" id="fb9-jn-mdI"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="C1u-6Z-xYH" secondAttribute="trailing" constant="5" id="o3N-ZX-Cv9"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="m1Q-0b-rDN"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="iconView" destination="C1u-6Z-xYH" id="Hzd-dq-aFT"/>
@@ -107,7 +103,7 @@
                                                                 </view>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="uHl-it-OuA"/>
+                                                                <constraint firstAttribute="height" constant="40" id="uHl-it-OuA"/>
                                                             </constraints>
                                                         </stackView>
                                                     </subviews>

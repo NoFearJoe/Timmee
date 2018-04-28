@@ -91,14 +91,14 @@ extension ListsService: ListsManager {
             
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .listUpdatingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .listUpdatingError : nil) }
         }
     }
     
     public func removeList(_ list: List, completion: @escaping (Error?) -> Void) {
         Database.localStorage.write({ context, save in
             guard let existingList = self.fetchListEntity(id: list.id, context: context) else {
-                completion(.listIsNotExist)
+                DispatchQueue.main.async { completion(.listIsNotExist) }
                 return
             }
             
@@ -106,14 +106,14 @@ extension ListsService: ListsManager {
             
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .listRemovingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .listRemovingError : nil) }
         }
     }
     
     public func changeFavoriteState(of list: List, to isFavorite: Bool, completion: @escaping (ListsService.Error?) -> Void) {
         Database.localStorage.write({ context, save in
             guard let existingList = self.fetchListEntity(id: list.id, context: context) else {
-                completion(.listIsNotExist)
+                DispatchQueue.main.async { completion(.listIsNotExist) }
                 return
             }
             
@@ -121,7 +121,7 @@ extension ListsService: ListsManager {
             
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .listUpdatingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .listUpdatingError : nil) }
         }
     }
     
@@ -135,7 +135,7 @@ extension ListsService: SmartListsManager {
                              completion: @escaping (Error?) -> Void) {
         Database.localStorage.write({ (context, save) in
             guard self.fetchSmartList(id: list.id, context: context) == nil else {
-                completion(.listAddingError)
+                DispatchQueue.main.async { completion(.listAddingError) }
                 return
             }
             
@@ -144,7 +144,7 @@ extension ListsService: SmartListsManager {
                 save()
             }
         }) { isSuccess in
-            completion(!isSuccess ? .listAddingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .listAddingError : nil) }
         }
     }
     
@@ -152,14 +152,14 @@ extension ListsService: SmartListsManager {
                                 completion: @escaping (Error?) -> Void) {
         Database.localStorage.write({ (context, save) in
             guard let existingList = self.fetchSmartList(id: list.id, context: context) else {
-                completion(.listIsNotExist)
+                DispatchQueue.main.async { completion(.listIsNotExist) }
                 return
             }
             
             context.delete(existingList)
             save()
         }) { isSuccess in
-            completion(!isSuccess ? .listRemovingError : nil)
+            DispatchQueue.main.async { completion(!isSuccess ? .listRemovingError : nil) }
         }
     }
     
