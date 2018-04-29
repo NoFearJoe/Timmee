@@ -21,9 +21,9 @@ final class ControlPanel: BarView {
     @IBOutlet private var searchButton: UIButton!
     @IBOutlet private var editButton: UIButton!
     
-    @IBOutlet private var editButtonWidthConstraint: NSLayoutConstraint!
-    
     private var isControlsHidden = false
+    
+    private var isGroupEditingAvailable = false
     
     func showList(_ list: List) {
         setListIcon(list.icon)
@@ -44,23 +44,30 @@ final class ControlPanel: BarView {
     
     func setGroupEditingVisible(_ isVisible: Bool) {
         editButton.isHidden = !isVisible
-        editButtonWidthConstraint.constant = isVisible ? 32 : 0
-        layoutIfNeeded()
+        isGroupEditingAvailable = isVisible
     }
     
     func changeGroupEditingState(to isEditing: Bool) {
         editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .normal)
         editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .disabled)
         editButton.tintColor = isEditing ? AppTheme.current.greenColor : AppTheme.current.backgroundTintColor
-        
-        settingsButton.isEnabled = !isEditing
-        searchButton.isEnabled = !isEditing
+    }
+    
+    func setNotGroupEditingControlsHidden(_ isHidden: Bool) {
+        UIView.animate(withDuration: 0.33,
+                       delay: 0,
+                       options: .curveEaseOut,
+                       animations: {
+                           self.settingsButton.isHidden = isHidden
+                           self.searchButton.isHidden = isHidden
+                           self.layoutIfNeeded()
+        }, completion: nil)
     }
     
     func showControls(animated: Bool) {
         guard isControlsHidden else { return }
         
-        [settingsButton, searchButton, editButton].forEach { $0?.isHidden = false }
+        controlsToChangeVisibility.forEach { $0.isHidden = false }
         
         if animated {
             UIView.animate(withDuration: 0.25,
@@ -68,7 +75,7 @@ final class ControlPanel: BarView {
                            options: [.beginFromCurrentState, .curveEaseOut],
                            animations:
             {
-                [self.settingsButton, self.searchButton, self.editButton].forEach { $0?.alpha = 1 }
+                self.controlsToChangeVisibility.forEach { $0.alpha = 1 }
             }, completion: { _ in
                 self.isControlsHidden = false
             })
@@ -86,15 +93,22 @@ final class ControlPanel: BarView {
                            options: [.beginFromCurrentState, .curveEaseIn],
                            animations:
             {
-                [self.settingsButton, self.searchButton, self.editButton].forEach { $0?.alpha = 0 }
+                self.controlsToChangeVisibility.forEach { $0.alpha = 0 }
             }, completion: { _ in
-                [self.settingsButton, self.searchButton, self.editButton].forEach { $0?.isHidden = true }
+                self.controlsToChangeVisibility.forEach { $0.isHidden = true }
                 self.isControlsHidden = true
             })
         } else {
-            [settingsButton, searchButton, editButton].forEach { $0?.isHidden = true }
+            controlsToChangeVisibility.forEach { $0.isHidden = true }
             isControlsHidden = true
         }
+    }
+    
+    private var controlsToChangeVisibility: [UIButton] {
+        if isGroupEditingAvailable {
+            return [settingsButton, searchButton, editButton]
+        }
+        return [settingsButton, searchButton]
     }
 
 }

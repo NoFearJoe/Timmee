@@ -178,6 +178,7 @@ extension MainViewController: EditingModeControllerOutput {
         UIView.animate(withDuration: 0.33, animations: {
             self.taskCreationPanelContainer.alpha = mode == .group ? 0 : 1
         })
+        menuPanel.setNotGroupEditingControlsHidden(mode == .group)
         representationManager.currentListRepresentationInput?.setEditingMode(mode) {
             self.menuPanel.setGroupEditingButtonEnabled(true)
             self.menuPanel.changeGroupEditingState(to: mode == .group)

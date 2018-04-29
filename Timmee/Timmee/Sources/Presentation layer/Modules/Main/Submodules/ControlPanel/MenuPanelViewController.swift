@@ -13,6 +13,7 @@ protocol MenuPanelInput: class {
     func setGroupEditingButtonEnabled(_ isEnabled: Bool)
     func setGroupEditingButtonVisible(_ isVisible: Bool)
     func changeGroupEditingState(to isEditing: Bool)
+    func setNotGroupEditingControlsHidden(_ isHidden: Bool)
     
     func showControls(animated: Bool)
     func hideControls(animated: Bool)
@@ -72,6 +73,10 @@ extension MenuPanelViewController: MenuPanelInput {
     
     func changeGroupEditingState(to isEditing: Bool) {
         menuPanel.changeGroupEditingState(to: isEditing)
+    }
+    
+    func setNotGroupEditingControlsHidden(_ isHidden: Bool) {
+        menuPanel.setNotGroupEditingControlsHidden(isHidden)
     }
     
     func showControls(animated: Bool) {
