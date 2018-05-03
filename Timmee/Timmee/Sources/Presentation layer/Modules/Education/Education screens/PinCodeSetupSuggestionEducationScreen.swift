@@ -40,7 +40,7 @@ final class PinCodeSetupSuggestionEducationScreen: UIViewController {
         skipButton.setTitle("education_pin_setup_skip".localized, for: .normal)
         
         continueButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-        skipButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.secondaryBackgroundTintColor), for: .normal)
+        skipButton.backgroundColor = .clear
     }
     
 }

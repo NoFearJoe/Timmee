@@ -67,6 +67,7 @@
 "add_subtask" = "Добавить подзадачу...";
 "subtasks" = "подзадач";
 "overdue" = "Просроченные";
+"audio_note_placeholder" = "Голосовая заметка";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";

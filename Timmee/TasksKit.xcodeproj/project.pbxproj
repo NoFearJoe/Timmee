@@ -42,6 +42,7 @@
 		0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182A2077B2BD00633EFF /* RepeatMask.swift */; };
 		0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182B2077B2BD00633EFF /* ListIcon.swift */; };
 		34AD26EBFFBCF266F491B4C4 /* Pods_TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479E274779193BD76907A349 /* Pods_TasksKit.framework */; };
+		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		479E274779193BD76907A349 /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D59A345854E95AE461E9BBF /* Pods-TasksCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasksCore/Pods-TasksCore.debug.xcconfig"; sourceTree = "<group>"; };
 		8CDD4330FD8EA934DF0F62C9 /* Pods-TasksCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasksCore/Pods-TasksCore.release.xcconfig"; sourceTree = "<group>"; };
+		961656052095FDD9001A8387 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				0CE018132077B2BD00633EFF /* TimeTemplatesService.swift */,
 				0CE0180D2077B2BD00633EFF /* TaskSchedulerService.swift */,
 				0CE018102077B2BD00633EFF /* FilesService.swift */,
+				961656052095FDD9001A8387 /* AudioRecordService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				0CE0185D2077B2BD00633EFF /* SmartList.swift in Sources */,
 				0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */,
 				0CE0185B2077B2BD00633EFF /* Subtask.swift in Sources */,
+				961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */,
 				0CE018632077B2BD00633EFF /* TaskEntity+Mapping.swift in Sources */,
 				0CE0185C2077B2BD00633EFF /* List.swift in Sources */,
 				0CE0185E2077B2BD00633EFF /* Task.swift in Sources */,

@@ -59,6 +59,8 @@ extension EducationViewController: EducationScreenOutput {
         switch screen {
         case .initial:
             didAskToContinueEducation(screen: .features)
+        case .notificationsSetupSuggestion:
+            didAskToContinueEducation(screen: .notificationsSetupSuggestion)
         case .pinCodeSetupSuggestion:
             didAskToContinueEducation(screen: .pinCodeCreation)
         default:

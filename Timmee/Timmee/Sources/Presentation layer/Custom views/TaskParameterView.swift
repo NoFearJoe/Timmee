@@ -89,10 +89,10 @@ extension TaskParameterView: UIGestureRecognizerDelegate {}
 
 final class TaskComplexParameterView: TaskParameterView {
     
-    @IBOutlet fileprivate var subtitleLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
     
-    fileprivate let filledSubtitleColor = AppTheme.current.secondaryTintColor
-    fileprivate let notFilledSubtitleColor = AppTheme.current.thirdlyTintColor
+    private let filledSubtitleColor = AppTheme.current.secondaryTintColor
+    private let notFilledSubtitleColor = AppTheme.current.thirdlyTintColor
     
     var subtitle: String? {
         get { return subtitleLabel.text }
@@ -105,6 +105,20 @@ final class TaskComplexParameterView: TaskParameterView {
         UIView.animate(withDuration: 0.2) {
             self.subtitleLabel.textColor = isFilled ? self.filledSubtitleColor : self.notFilledSubtitleColor
         }
+    }
+    
+}
+
+final class TaskAudioNoteParameterView: TaskParameterView {
+    
+    @IBOutlet private var equalizerView: UIImageView!
+    @IBOutlet private var playButton: UIButton!
+    
+    override func setFilled(_ isFilled: Bool) {
+        super.setFilled(isFilled)
+        
+        equalizerView.isHidden = !isFilled
+        titleView.isHidden = isFilled
     }
     
 }

@@ -16,6 +16,7 @@ protocol TaskEditorViewInput: class {
     
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
+    func setAudioNoteExists(_ isExists: Bool)
     func setTimeTemplate(_ timeTemplate: TimeTemplate?)
     func setDueDateTime(_ dueDate: String?, isOverdue: Bool)
     func setReminder(_ reminder: NotificationMask)
@@ -34,7 +35,7 @@ protocol TaskEditorViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
+protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput, TaskEditorViewAudioNoteOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -54,6 +55,11 @@ protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewD
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
     func willPresentTagsPicker(_ input: TaskTagsPickerInput)
     func willPresentAttachmentsPicker(_ input: TaskPhotoAttachmentsPickerInput)
+}
+
+protocol TaskEditorViewAudioNoteOutput: class {
+    func audioNoteCreated()
+    func audioNoteCleared()
 }
 
 protocol TaskEditorViewTimeTemplateOutput: class {

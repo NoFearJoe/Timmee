@@ -97,6 +97,10 @@ final class ViewControllersFactory {
         return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskPhotoAttachmentsPicker")
     }
     
+    static var taskAudioNoteEditor: TaskAudioNoteEditor {
+        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskAudioNoteEditor")
+    }
+    
     
     static var pinCreation: PinCreationViewController {
         return StoryboardsFactory.pin.viewController(id: "PinCreation")

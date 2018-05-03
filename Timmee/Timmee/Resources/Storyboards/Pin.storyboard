@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -373,10 +373,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYL-aP-9Wp">
-                                <rect key="frame" x="0.0" y="64" width="375" height="471"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="495"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reA-qF-vEK">
-                                        <rect key="frame" x="94" y="177" width="187" height="118"/>
+                                        <rect key="frame" x="94" y="189" width="187" height="118"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUP-Et-TBb">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="53"/>
@@ -413,7 +413,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9F-dF-4Ie">
-                                <rect key="frame" x="20" y="535" width="335" height="112"/>
+                                <rect key="frame" x="20" y="559" width="335" height="96"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7l-Jb-V82" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="52"/>
@@ -427,9 +427,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3V7-YB-K9q" customClass="ContinueEducationButton" customModule="Timmee" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68" width="335" height="44"/>
+                                        <rect key="frame" x="0.0" y="60" width="335" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="5Qa-Kd-yMv"/>
+                                            <constraint firstAttribute="height" constant="36" id="5Qa-Kd-yMv"/>
                                         </constraints>
                                         <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                         <state key="normal" title="Отмена"/>
@@ -446,7 +446,7 @@
                                     <constraint firstItem="a7l-Jb-V82" firstAttribute="leading" secondItem="P9F-dF-4Ie" secondAttribute="leading" id="S3I-FE-qrl"/>
                                     <constraint firstAttribute="trailing" secondItem="3V7-YB-K9q" secondAttribute="trailing" id="lpV-aW-rHh"/>
                                     <constraint firstAttribute="trailing" secondItem="a7l-Jb-V82" secondAttribute="trailing" id="nHg-XX-5TX"/>
-                                    <constraint firstItem="3V7-YB-K9q" firstAttribute="top" secondItem="a7l-Jb-V82" secondAttribute="bottom" constant="16" id="yf3-Df-zm5"/>
+                                    <constraint firstItem="3V7-YB-K9q" firstAttribute="top" secondItem="a7l-Jb-V82" secondAttribute="bottom" constant="8" id="yf3-Df-zm5"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="Omn-8D-iiU"/>
                             </view>
@@ -457,7 +457,7 @@
                             <constraint firstItem="eYL-aP-9Wp" firstAttribute="trailing" secondItem="glj-x5-reu" secondAttribute="trailing" id="8dK-FU-zBY"/>
                             <constraint firstItem="eYL-aP-9Wp" firstAttribute="top" secondItem="glj-x5-reu" secondAttribute="top" id="baK-uW-wUQ"/>
                             <constraint firstItem="eYL-aP-9Wp" firstAttribute="leading" secondItem="glj-x5-reu" secondAttribute="leading" id="kc4-aP-St3"/>
-                            <constraint firstItem="glj-x5-reu" firstAttribute="bottom" secondItem="P9F-dF-4Ie" secondAttribute="bottom" constant="20" id="r5A-xg-L2Z"/>
+                            <constraint firstItem="glj-x5-reu" firstAttribute="bottom" secondItem="P9F-dF-4Ie" secondAttribute="bottom" constant="12" id="r5A-xg-L2Z"/>
                             <constraint firstItem="P9F-dF-4Ie" firstAttribute="leading" secondItem="glj-x5-reu" secondAttribute="leading" constant="20" id="tAK-e2-CZV"/>
                             <constraint firstItem="P9F-dF-4Ie" firstAttribute="top" secondItem="eYL-aP-9Wp" secondAttribute="bottom" id="wZD-uC-fT6"/>
                             <constraint firstItem="glj-x5-reu" firstAttribute="trailing" secondItem="P9F-dF-4Ie" secondAttribute="trailing" constant="20" id="z9C-TM-2o3"/>

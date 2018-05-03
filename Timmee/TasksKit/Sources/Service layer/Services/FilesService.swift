@@ -10,16 +10,16 @@ import Foundation
 
 public final class FilesService {
     
-    private struct URLs {
+    struct URLs {
         static let documents = try? FileManager.default.url(for: .documentDirectory,
-                                                                        in: .userDomainMask,
-                                                                        appropriateFor: nil,
-                                                                        create: true)
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: true)
         
         static let caches = try? FileManager.default.url(for: .cachesDirectory,
-                                                                     in: .userDomainMask,
-                                                                     appropriateFor: nil,
-                                                                     create: true)
+                                                         in: .userDomainMask,
+                                                         appropriateFor: nil,
+                                                         create: true)
     }
     
     public init() {}

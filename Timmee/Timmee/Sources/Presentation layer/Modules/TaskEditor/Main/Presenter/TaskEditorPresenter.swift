@@ -85,6 +85,8 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setTags(self.task.tags)
         
         view.setAttachments(self.task.attachments)
+        
+        updateAudioNoteField()
     }
     
     func setTaskTitle(_ title: String) {
@@ -133,6 +135,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func taskNoteChanged(to taskNote: String) {
         task.note = taskNote
+    }
+    
+    func audioNoteCreated() {
+        updateAudioNoteField()
     }
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
@@ -221,6 +227,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.tags[index] = tag
             view.setTags(task.tags)
         }
+    }
+    
+    func audioNoteCleared() {
+        updateAudioNoteField()
     }
     
     func timeTemplateCleared() {
@@ -355,7 +365,7 @@ extension TaskEditorPresenter: SubtasksEditorTaskProvider {}
 
 extension TaskEditorPresenter: TaskEditorInteractorOutput {}
 
-fileprivate extension TaskEditorPresenter {
+private extension TaskEditorPresenter {
 
     func showFormattedDueDateTime(_ dueDate: Date?) {
         let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
@@ -373,6 +383,11 @@ fileprivate extension TaskEditorPresenter {
         } else {
             view.setLocation(nil)
         }
+    }
+    
+    func updateAudioNoteField() {
+        let isAudioNoteExists = ServicesAssembly.shared.audioRecordService.getRecordedAudio(fileName: self.task.id) != nil
+        view.setAudioNoteExists(isAudioNoteExists)
     }
     
     func decodeLocation(_ location: CLLocation?, completion: @escaping (String?) -> Void) {

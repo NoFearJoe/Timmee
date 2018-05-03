@@ -97,8 +97,7 @@ private extension CoreDataStorage {
     }
     
     var storeURL: URL {
-        let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return documentURL.appendingPathComponent(storeName)
+        return FilesService.URLs.documents!.appendingPathComponent(storeName)
     }
     
     var model: NSManagedObjectModel {

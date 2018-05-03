@@ -20,6 +20,8 @@ public final class ServicesAssembly {
     
     public lazy var timeTemplatesService: TimeTemplatesProvider & TimeTemplatesManager = PrivateServicesAssembly.shared.timeTemplatesService
     
+    public lazy var audioRecordService: AudioRecordServiceInput = AudioRecordService()
+    
 }
 
 final class PrivateServicesAssembly {

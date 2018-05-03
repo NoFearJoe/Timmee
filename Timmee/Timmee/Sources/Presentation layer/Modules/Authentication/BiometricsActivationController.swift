@@ -74,7 +74,7 @@ fileprivate extension BiometricsActivationController {
         declineButton.setTitleColor(AppTheme.current.backgroundTintColor, for: .normal)
         
         acceptButton.backgroundColor = AppTheme.current.blueColor
-        declineButton.backgroundColor = AppTheme.current.secondaryBackgroundTintColor
+        declineButton.backgroundColor = .clear
         
         acceptButton.layer.cornerRadius = AppTheme.current.cornerRadius
         declineButton.layer.cornerRadius = AppTheme.current.cornerRadius

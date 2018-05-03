@@ -20,6 +20,8 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var taskTitleField: GrowingTextView!
     @IBOutlet fileprivate var taskNoteField: GrowingTextView!
     
+    @IBOutlet private var taskAudioNoteView: TaskAudioNoteParameterView!
+    
     @IBOutlet fileprivate var closeButton: UIButton!
     @IBOutlet fileprivate var doneButton: UIButton!
     
@@ -89,7 +91,14 @@ final class TaskEditorView: UIViewController {
                                  attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16,
                                                                                      weight: UIFont.Weight.light),
                                               NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
-                
+        
+        taskAudioNoteView.didClear = { [unowned self] in
+            self.output.audioNoteCleared()
+        }
+//        taskAudioNoteView.didTouchedUp = { [unowned self] in
+//            self.showTaskParameterEditor(with: .audioNote)
+//        }
+        
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
             if isFilled {
                 self.reminderView.isHidden = true
@@ -264,6 +273,15 @@ extension TaskEditorView: TaskEditorViewInput {
         taskNoteField.textView.text = note
     }
     
+    func setAudioNoteExists(_ isExists: Bool) {
+        taskAudioNoteView.isFilled = isExists
+        if isExists {
+            taskAudioNoteView.text = "audio_note_placeholder".localized // TODO: Эквалайзер
+        } else {
+            taskAudioNoteView.text = "audio_note_placeholder".localized
+        }
+    }
+    
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
         timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
@@ -368,6 +386,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output?.locationCleared()
         case .tags: output?.tagsCleared()
         case .timeTemplates: output?.timeTemplateCleared()
+        case .audioNote: output?.audioNoteCleared()
         case .dueDate: return
         case .dueTime: return
         case .attachments: return//output?.attachmentsCleared()
@@ -437,7 +456,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.output = self
             output.willPresentAttachmentsPicker(viewController)
             return viewController
-        case .dueTime:
+        case .audioNote, .dueTime:
             return UIViewController()
         }
     }
