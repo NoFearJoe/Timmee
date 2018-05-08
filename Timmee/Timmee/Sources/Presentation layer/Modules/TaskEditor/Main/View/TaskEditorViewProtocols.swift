@@ -10,13 +10,19 @@ import struct Foundation.Date
 import class CoreLocation.CLLocation
 import class Foto.Photo
 
+enum AudioNoteState {
+    case notRecorded
+    case recording
+    case recorded
+}
+
 protocol TaskEditorViewInput: class {
     func getTaskTitle() -> String
     func getTaskNote() -> String
     
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
-    func setAudioNoteExists(_ isExists: Bool)
+    func setAudioNoteState(_ state: AudioNoteState)
     func setTimeTemplate(_ timeTemplate: TimeTemplate?)
     func setDueDateTime(_ dueDate: String?, isOverdue: Bool)
     func setReminder(_ reminder: NotificationMask)
@@ -58,7 +64,7 @@ protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewD
 }
 
 protocol TaskEditorViewAudioNoteOutput: class {
-    func audioNoteCreated()
+    func audioNoteTouched()
     func audioNoteCleared()
 }
 

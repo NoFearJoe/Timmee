@@ -20,7 +20,7 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var taskTitleField: GrowingTextView!
     @IBOutlet fileprivate var taskNoteField: GrowingTextView!
     
-    @IBOutlet private var taskAudioNoteView: TaskAudioNoteParameterView!
+    @IBOutlet private var taskAudioNoteView: TaskParameterView!
     
     @IBOutlet fileprivate var closeButton: UIButton!
     @IBOutlet fileprivate var doneButton: UIButton!
@@ -95,9 +95,9 @@ final class TaskEditorView: UIViewController {
         taskAudioNoteView.didClear = { [unowned self] in
             self.output.audioNoteCleared()
         }
-//        taskAudioNoteView.didTouchedUp = { [unowned self] in
-//            self.showTaskParameterEditor(with: .audioNote)
-//        }
+        taskAudioNoteView.didTouchedUp = { [unowned self] in
+            self.output.audioNoteTouched()
+        }
         
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
             if isFilled {
@@ -273,12 +273,17 @@ extension TaskEditorView: TaskEditorViewInput {
         taskNoteField.textView.text = note
     }
     
-    func setAudioNoteExists(_ isExists: Bool) {
-        taskAudioNoteView.isFilled = isExists
-        if isExists {
-            taskAudioNoteView.text = "audio_note_placeholder".localized // TODO: Эквалайзер
-        } else {
-            taskAudioNoteView.text = "audio_note_placeholder".localized
+    func setAudioNoteState(_ state: AudioNoteState) {
+        switch state {
+        case .notRecorded:
+            taskAudioNoteView.isFilled = false
+            taskAudioNoteView.text = "record_audio_note_placeholder".localized
+        case .recording:
+            taskAudioNoteView.isFilled = true
+            taskAudioNoteView.text = "recording_audio_note_placeholder".localized
+        case .recorded:
+            taskAudioNoteView.isFilled = true
+            taskAudioNoteView.text = "play_audio_note_placeholder".localized
         }
     }
     
@@ -593,7 +598,7 @@ fileprivate extension TaskEditorView {
                                      /*locationView, locationReminderView,*/
                                      taskImportancyPicker, timeTemplateView,
                                      subtasksContainer, taskTagsView,
-                                     taskAttachmentsView]
+                                     taskAttachmentsView, taskAudioNoteView]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 
                 view.isUserInteractionEnabled = isEnabled

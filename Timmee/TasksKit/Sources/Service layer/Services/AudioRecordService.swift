@@ -14,6 +14,7 @@ public protocol AudioRecordServiceInput: class {
     func stopRecording()
     func cancelRecording()
     func getRecordedAudio(fileName: String) -> Data?
+    func removeRecordedAudio(fileName: String)
 }
 
 final class AudioRecordService: NSObject, AudioRecordServiceInput {
@@ -35,6 +36,7 @@ final class AudioRecordService: NSObject, AudioRecordServiceInput {
         do {
             recordingCompletion = completion
             let outputFileURL = recordsDirectory.appendingPathComponent(outputFileName + ".m4a")
+            createAudioRecordsDirectoryIfNeeded()
             recorder = try AVAudioRecorder(url: outputFileURL, settings: recorderSettings)
             recorder.delegate = self
             recorder.record()
@@ -55,11 +57,7 @@ final class AudioRecordService: NSObject, AudioRecordServiceInput {
     }
     
     func getRecordedAudio(fileName: String) -> Data? {
-        var fileName = fileName
-        if !fileName.hasSuffix(".m4a") {
-            fileName += ".m4a"
-        }
-        return FileManager.default.contents(atPath: recordsDirectory.appendingPathComponent(fileName).path)
+        return FileManager.default.contents(atPath: getPathToAudioFile(named: fileName))
     }
     
     func setupRecordingSession(completion: @escaping (Bool) -> Void) {
@@ -73,6 +71,24 @@ final class AudioRecordService: NSObject, AudioRecordServiceInput {
             }
         } catch {
             completion(false)
+        }
+    }
+    
+    func removeRecordedAudio(fileName: String) {
+        try? FileManager.default.removeItem(atPath: getPathToAudioFile(named: fileName))
+    }
+    
+    private func getPathToAudioFile(named name: String) -> String {
+        var fileName = name
+        if !fileName.hasSuffix(".m4a") {
+            fileName += ".m4a"
+        }
+        return recordsDirectory.appendingPathComponent(fileName).path
+    }
+    
+    private func createAudioRecordsDirectoryIfNeeded() {
+        if !FileManager.default.fileExists(atPath: recordsDirectory.path) {
+            try? FileManager.default.createDirectory(atPath: recordsDirectory.path, withIntermediateDirectories: true, attributes: nil)
         }
     }
     

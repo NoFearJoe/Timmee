@@ -108,17 +108,3 @@ final class TaskComplexParameterView: TaskParameterView {
     }
     
 }
-
-final class TaskAudioNoteParameterView: TaskParameterView {
-    
-    @IBOutlet private var equalizerView: UIImageView!
-    @IBOutlet private var playButton: UIButton!
-    
-    override func setFilled(_ isFilled: Bool) {
-        super.setFilled(isFilled)
-        
-        equalizerView.isHidden = !isFilled
-        titleView.isHidden = isFilled
-    }
-    
-}

@@ -67,7 +67,9 @@
 "add_subtask" = "Add subtask...";
 "subtasks" = "subtasks";
 "overdue" = "Overdue";
-"audio_note_placeholder" = "Voice note";
+"play_audio_note_placeholder" = "Play voice note";
+"record_audio_note_placeholder" = "Record voice note";
+"recording_audio_note_placeholder" = "Recording voice note";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";

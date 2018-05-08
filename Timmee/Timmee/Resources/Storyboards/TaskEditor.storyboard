@@ -104,10 +104,10 @@
                                                             <constraint firstAttribute="height" constant="1" id="rD9-t0-T3n"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWQ-aH-oZ4" customClass="TaskAudioNoteParameterView" customModule="Timmee" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWQ-aH-oZ4" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="105" width="345" height="40"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-G5-t0f">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_note" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-G5-t0f">
                                                                 <rect key="frame" x="0.0" y="10" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="6UY-G5-t0f" secondAttribute="height" multiplier="1:1" id="1VK-Lp-akg"/>
@@ -770,6 +770,7 @@
                         <outletCollection property="separators" destination="76p-hB-vY6" collectionClass="NSMutableArray" id="Q8f-81-i2j"/>
                         <outletCollection property="separators" destination="att-iW-ArN" collectionClass="NSMutableArray" id="FJw-Gr-M9a"/>
                         <outletCollection property="separators" destination="1bb-Qs-hde" collectionClass="NSMutableArray" id="gEV-Qr-h7b"/>
+                        <outletCollection property="separators" destination="uXO-yv-4Sf" collectionClass="NSMutableArray" id="JWF-YE-EDV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLC-vn-kb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -904,6 +905,7 @@
     <resources>
         <image name="alarm" width="20" height="20"/>
         <image name="attachments" width="20" height="20"/>
+        <image name="audio_note" width="20" height="20"/>
         <image name="checkmark" width="20" height="20"/>
         <image name="clock" width="20" height="20"/>
         <image name="cross" width="20" height="20"/>

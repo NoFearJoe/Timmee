@@ -38,9 +38,11 @@ final class TaskEditorPresenter {
     weak var output: TaskEditorOutput?
     
     var task: Task!
-    fileprivate var listID: String?
+    private var listID: String?
     
-    fileprivate var isNewTask = true
+    private var isNewTask = true
+    
+    private var isRecordingAudioNote = false
 
 }
 
@@ -137,8 +139,25 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.note = taskNote
     }
     
-    func audioNoteCreated() {
-        updateAudioNoteField()
+    func audioNoteTouched() {
+        if isRecordingAudioNote {
+            ServicesAssembly.shared.audioRecordService.stopRecording()
+        } else {
+            if audioNote == nil {
+                ServicesAssembly.shared.audioRecordService.setupRecordingSession { [weak self] success in
+                    guard let `self` = self, success else { return }
+                    self.isRecordingAudioNote = true
+                    self.updateAudioNoteField()
+                    ServicesAssembly.shared.audioRecordService.startRecording(outputFileName: self.task.id, completion: { [weak self] _, _  in
+                        guard let `self` = self else { return }
+                        self.isRecordingAudioNote = false
+                        self.updateAudioNoteField()
+                    })
+                }
+            } else {
+                // Play
+            }
+        }
     }
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
@@ -230,6 +249,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func audioNoteCleared() {
+        ServicesAssembly.shared.audioRecordService.removeRecordedAudio(fileName: self.task.id)
         updateAudioNoteField()
     }
     
@@ -386,8 +406,11 @@ private extension TaskEditorPresenter {
     }
     
     func updateAudioNoteField() {
-        let isAudioNoteExists = ServicesAssembly.shared.audioRecordService.getRecordedAudio(fileName: self.task.id) != nil
-        view.setAudioNoteExists(isAudioNoteExists)
+        view.setAudioNoteState(audioNote == nil ? (isRecordingAudioNote ? .recording : .notRecorded) : .recorded)
+    }
+    
+    var audioNote: Data? {
+        return ServicesAssembly.shared.audioRecordService.getRecordedAudio(fileName: self.task.id)
     }
     
     func decodeLocation(_ location: CLLocation?, completion: @escaping (String?) -> Void) {
