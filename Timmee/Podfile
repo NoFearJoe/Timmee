@@ -14,7 +14,7 @@ target 'Timmee' do
 end
 
 target 'TasksKit' do
-  project 'TasksKit.xcodeproj'
+  project 'TasksKit.xcodeproj'  
 end
 
 target 'Workset' do

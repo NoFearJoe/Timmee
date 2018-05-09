@@ -43,6 +43,7 @@ final class TaskEditorPresenter {
     private var isNewTask = true
     
     private var isRecordingAudioNote = false
+    private var isPlayingAudioNote = false
 
 }
 
@@ -140,7 +141,11 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func audioNoteTouched() {
-        if isRecordingAudioNote {
+        if isPlayingAudioNote {
+            ServicesAssembly.shared.audioPlayerService.stop()
+            isPlayingAudioNote = false
+            updateAudioNoteField()
+        } else if isRecordingAudioNote {
             ServicesAssembly.shared.audioRecordService.stopRecording()
         } else {
             if audioNote == nil {
@@ -155,7 +160,12 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
                     })
                 }
             } else {
-                // Play
+                ServicesAssembly.shared.audioPlayerService.play(fileName: self.task.id) { [weak self] in
+                    self?.isPlayingAudioNote = false
+                    self?.updateAudioNoteField()
+                }
+                isPlayingAudioNote = true
+                updateAudioNoteField()
             }
         }
     }
@@ -406,7 +416,11 @@ private extension TaskEditorPresenter {
     }
     
     func updateAudioNoteField() {
-        view.setAudioNoteState(audioNote == nil ? (isRecordingAudioNote ? .recording : .notRecorded) : .recorded)
+        if isPlayingAudioNote {
+             view.setAudioNoteState(.playing)
+        } else {
+            view.setAudioNoteState(audioNote == nil ? (isRecordingAudioNote ? .recording : .notRecorded) : .recorded)
+        }
     }
     
     var audioNote: Data? {

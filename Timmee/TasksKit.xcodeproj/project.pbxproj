@@ -41,8 +41,9 @@
 		0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018292077B2BD00633EFF /* NotificationMask.swift */; };
 		0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182A2077B2BD00633EFF /* RepeatMask.swift */; };
 		0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182B2077B2BD00633EFF /* ListIcon.swift */; };
-		34AD26EBFFBCF266F491B4C4 /* Pods_TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479E274779193BD76907A349 /* Pods_TasksKit.framework */; };
+		9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627A20A353D000B23EDF /* AudioPlayerService.swift */; };
 		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
+		EA1580FFA4C0CE93D6CDB3E1 /* Pods_TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,13 +83,11 @@
 		0CE018292077B2BD00633EFF /* NotificationMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMask.swift; sourceTree = "<group>"; };
 		0CE0182A2077B2BD00633EFF /* RepeatMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatMask.swift; sourceTree = "<group>"; };
 		0CE0182B2077B2BD00633EFF /* ListIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
-		13BE24C472AB4C09E09E3393 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
-		18BB200E41693D5790370B30 /* Pods-TasksKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.release.xcconfig"; sourceTree = "<group>"; };
-		42B1089DA760ADF6D9F82EF5 /* Pods_TasksCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		479E274779193BD76907A349 /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D59A345854E95AE461E9BBF /* Pods-TasksCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasksCore/Pods-TasksCore.debug.xcconfig"; sourceTree = "<group>"; };
-		8CDD4330FD8EA934DF0F62C9 /* Pods-TasksCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasksCore/Pods-TasksCore.release.xcconfig"; sourceTree = "<group>"; };
+		45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9606627A20A353D000B23EDF /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		961656052095FDD9001A8387 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
+		A57EA6AF1391C2F49F6BD524 /* Pods-TasksKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.release.xcconfig"; sourceTree = "<group>"; };
+		C294AC76DF91C6E63EC9ABD3 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C9B23BE2077B688009EF6DE /* Workset.framework in Frameworks */,
-				34AD26EBFFBCF266F491B4C4 /* Pods_TasksKit.framework in Frameworks */,
+				EA1580FFA4C0CE93D6CDB3E1 /* Pods_TasksKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +148,8 @@
 			children = (
 				0CE017F12077B09200633EFF /* TasksKit */,
 				0CE017F02077B09200633EFF /* Products */,
-				5C47FBF5033739683EE54EE0 /* Pods */,
 				A775B53DCC2E8BBC1617B99F /* Frameworks */,
+				5281E0EBE43AED0B2AB155EC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -228,6 +227,7 @@
 				0CE0180D2077B2BD00633EFF /* TaskSchedulerService.swift */,
 				0CE018102077B2BD00633EFF /* FilesService.swift */,
 				961656052095FDD9001A8387 /* AudioRecordService.swift */,
+				9606627A20A353D000B23EDF /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -276,13 +276,11 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		5C47FBF5033739683EE54EE0 /* Pods */ = {
+		5281E0EBE43AED0B2AB155EC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6D59A345854E95AE461E9BBF /* Pods-TasksCore.debug.xcconfig */,
-				8CDD4330FD8EA934DF0F62C9 /* Pods-TasksCore.release.xcconfig */,
-				13BE24C472AB4C09E09E3393 /* Pods-TasksKit.debug.xcconfig */,
-				18BB200E41693D5790370B30 /* Pods-TasksKit.release.xcconfig */,
+				C294AC76DF91C6E63EC9ABD3 /* Pods-TasksKit.debug.xcconfig */,
+				A57EA6AF1391C2F49F6BD524 /* Pods-TasksKit.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -291,8 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9B23BD2077B688009EF6DE /* Workset.framework */,
-				42B1089DA760ADF6D9F82EF5 /* Pods_TasksCore.framework */,
-				479E274779193BD76907A349 /* Pods_TasksKit.framework */,
+				45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,7 +312,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CE017F72077B09200633EFF /* Build configuration list for PBXNativeTarget "TasksKit" */;
 			buildPhases = (
-				EE9D8FEE8A76DA91E5F24F1A /* [CP] Check Pods Manifest.lock */,
+				4DA0193B37F8864251A77971 /* [CP] Check Pods Manifest.lock */,
 				0CE017EA2077B09200633EFF /* Sources */,
 				0CE017EB2077B09200633EFF /* Frameworks */,
 				0CE017EC2077B09200633EFF /* Headers */,
@@ -372,7 +369,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EE9D8FEE8A76DA91E5F24F1A /* [CP] Check Pods Manifest.lock */ = {
+		4DA0193B37F8864251A77971 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */,
+				9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */,
 				0CE018612077B2BD00633EFF /* FetchRequest.swift in Sources */,
 				0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */,
 				0CE018542077B2BD00633EFF /* TaskSchedulerService.swift in Sources */,
@@ -558,7 +556,7 @@
 		};
 		0CE017F82077B09200633EFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13BE24C472AB4C09E09E3393 /* Pods-TasksKit.debug.xcconfig */;
+			baseConfigurationReference = C294AC76DF91C6E63EC9ABD3 /* Pods-TasksKit.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -570,11 +568,7 @@
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TasksKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -585,7 +579,7 @@
 		};
 		0CE017F92077B09200633EFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18BB200E41693D5790370B30 /* Pods-TasksKit.release.xcconfig */;
+			baseConfigurationReference = A57EA6AF1391C2F49F6BD524 /* Pods-TasksKit.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -597,11 +591,7 @@
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TasksKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

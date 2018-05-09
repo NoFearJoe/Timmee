@@ -19,7 +19,7 @@ public protocol AudioRecordServiceInput: class {
 
 final class AudioRecordService: NSObject, AudioRecordServiceInput {
     
-    private var recorder: AVAudioRecorder!
+    private var recorder: AVAudioRecorder?
     
     private var recorderSettings = [
         AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -38,21 +38,21 @@ final class AudioRecordService: NSObject, AudioRecordServiceInput {
             let outputFileURL = recordsDirectory.appendingPathComponent(outputFileName + ".m4a")
             createAudioRecordsDirectoryIfNeeded()
             recorder = try AVAudioRecorder(url: outputFileURL, settings: recorderSettings)
-            recorder.delegate = self
-            recorder.record()
+            recorder?.delegate = self
+            recorder?.record()
         } catch {
             completion(nil, false)
         }
     }
     
     func stopRecording() {
-        recorder.stop()
+        recorder?.stop()
         recorder = nil
     }
     
     func cancelRecording() {
-        recorder.stop()
-        recorder.deleteRecording()
+        recorder?.stop()
+        recorder?.deleteRecording()
         recorder = nil
     }
     
@@ -63,6 +63,7 @@ final class AudioRecordService: NSObject, AudioRecordServiceInput {
     func setupRecordingSession(completion: @escaping (Bool) -> Void) {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeDefault)
             try AVAudioSession.sharedInstance().setActive(true)
             AVAudioSession.sharedInstance().requestRecordPermission { allowed in
                 DispatchQueue.main.async {

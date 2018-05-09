@@ -20,7 +20,7 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var taskTitleField: GrowingTextView!
     @IBOutlet fileprivate var taskNoteField: GrowingTextView!
     
-    @IBOutlet private var taskAudioNoteView: TaskParameterView!
+    @IBOutlet private var taskAudioNoteView: TaskComplexParameterView!
     
     @IBOutlet fileprivate var closeButton: UIButton!
     @IBOutlet fileprivate var doneButton: UIButton!
@@ -278,12 +278,19 @@ extension TaskEditorView: TaskEditorViewInput {
         case .notRecorded:
             taskAudioNoteView.isFilled = false
             taskAudioNoteView.text = "record_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = nil
         case .recording:
             taskAudioNoteView.isFilled = true
             taskAudioNoteView.text = "recording_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = "touch_to_stop".localized
         case .recorded:
             taskAudioNoteView.isFilled = true
             taskAudioNoteView.text = "play_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = nil
+        case .playing:
+            taskAudioNoteView.isFilled = true
+            taskAudioNoteView.text = "playing_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = "touch_to_stop".localized
         }
     }
     

@@ -14,6 +14,7 @@ enum AudioNoteState {
     case notRecorded
     case recording
     case recorded
+    case playing
 }
 
 protocol TaskEditorViewInput: class {

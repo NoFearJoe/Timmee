@@ -22,6 +22,8 @@ public final class ServicesAssembly {
     
     public lazy var audioRecordService: AudioRecordServiceInput = AudioRecordService()
     
+    public lazy var audioPlayerService: AudioPlayerServiceInput = AudioPlayerService()
+    
 }
 
 final class PrivateServicesAssembly {

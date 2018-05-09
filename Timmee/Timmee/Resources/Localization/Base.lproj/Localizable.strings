@@ -70,6 +70,8 @@
 "play_audio_note_placeholder" = "Play voice note";
 "record_audio_note_placeholder" = "Record voice note";
 "recording_audio_note_placeholder" = "Recording voice note";
+"playing_audio_note_placeholder" = "Playing voice note";
+"touch_to_stop" = "Touch to stop";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";

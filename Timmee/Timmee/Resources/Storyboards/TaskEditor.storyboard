@@ -104,7 +104,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="rD9-t0-T3n"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWQ-aH-oZ4" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWQ-aH-oZ4" customClass="TaskComplexParameterView" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="105" width="345" height="40"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_note" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-G5-t0f">
@@ -114,12 +114,6 @@
                                                                     <constraint firstAttribute="width" constant="20" id="6Wz-18-WzQ"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Голосовая заметка" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD3-wn-pbw">
-                                                                <rect key="frame" x="35" y="11" width="143.5" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdG-0v-uJa">
                                                                 <rect key="frame" x="321" y="4" width="32" height="32"/>
                                                                 <constraints>
@@ -131,14 +125,42 @@
                                                                     <action selector="onClear" destination="pWQ-aH-oZ4" eventType="touchUpInside" id="Z2V-73-bTf"/>
                                                                 </connections>
                                                             </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hse-RU-9Kq">
+                                                                <rect key="frame" x="35" y="2.5" width="278" height="35.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Идет запись" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phc-df-Utm">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="278" height="20"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Коснитесь, чтобы остановить" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBk-jw-9FP">
+                                                                        <rect key="frame" x="0.0" y="19.5" width="278" height="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="nBk-jw-9FP" firstAttribute="leading" secondItem="hse-RU-9Kq" secondAttribute="leading" id="5gH-eI-qcc"/>
+                                                                    <constraint firstItem="nBk-jw-9FP" firstAttribute="top" secondItem="phc-df-Utm" secondAttribute="bottom" id="8JD-3O-WJm"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="nBk-jw-9FP" secondAttribute="bottom" id="Sjz-q2-jhu"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="phc-df-Utm" secondAttribute="trailing" id="b0t-XB-Lj9"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="nBk-jw-9FP" secondAttribute="trailing" id="bXa-Ps-E9h"/>
+                                                                    <constraint firstItem="phc-df-Utm" firstAttribute="leading" secondItem="hse-RU-9Kq" secondAttribute="leading" id="iIm-ri-xAK"/>
+                                                                    <constraint firstItem="phc-df-Utm" firstAttribute="top" secondItem="hse-RU-9Kq" secondAttribute="top" id="qws-kL-uaD"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="6UY-G5-t0f" firstAttribute="centerY" secondItem="pWQ-aH-oZ4" secondAttribute="centerY" id="2AI-s7-jXy"/>
                                                             <constraint firstAttribute="trailing" secondItem="RdG-0v-uJa" secondAttribute="trailing" constant="-8" id="3s1-JL-OAb"/>
                                                             <constraint firstItem="6UY-G5-t0f" firstAttribute="leading" secondItem="pWQ-aH-oZ4" secondAttribute="leading" id="8l3-fr-m7d"/>
-                                                            <constraint firstItem="sD3-wn-pbw" firstAttribute="leading" secondItem="6UY-G5-t0f" secondAttribute="trailing" constant="15" id="XuA-gj-BhI"/>
-                                                            <constraint firstItem="sD3-wn-pbw" firstAttribute="centerY" secondItem="pWQ-aH-oZ4" secondAttribute="centerY" id="csN-9h-pM5"/>
+                                                            <constraint firstItem="hse-RU-9Kq" firstAttribute="leading" secondItem="6UY-G5-t0f" secondAttribute="trailing" constant="15" id="Ca1-u8-4Ak"/>
+                                                            <constraint firstItem="hse-RU-9Kq" firstAttribute="centerY" secondItem="pWQ-aH-oZ4" secondAttribute="centerY" id="ZTq-FY-8uw"/>
+                                                            <constraint firstItem="RdG-0v-uJa" firstAttribute="leading" secondItem="hse-RU-9Kq" secondAttribute="trailing" constant="8" id="keH-wb-pm9"/>
                                                             <constraint firstItem="RdG-0v-uJa" firstAttribute="centerY" secondItem="pWQ-aH-oZ4" secondAttribute="centerY" id="v38-5n-pay"/>
                                                             <constraint firstAttribute="height" constant="40" id="zwn-oX-8Tp"/>
                                                         </constraints>
@@ -147,7 +169,8 @@
                                                             <outlet property="clearButton" destination="RdG-0v-uJa" id="PPF-u6-Wbu"/>
                                                             <outlet property="heightConstraint" destination="zwn-oX-8Tp" id="Jwy-D0-HtG"/>
                                                             <outlet property="iconView" destination="6UY-G5-t0f" id="X1w-Ep-k3g"/>
-                                                            <outlet property="titleView" destination="sD3-wn-pbw" id="Dtd-fh-Ghh"/>
+                                                            <outlet property="subtitleLabel" destination="nBk-jw-9FP" id="HLO-iH-2tX"/>
+                                                            <outlet property="titleView" destination="phc-df-Utm" id="8i8-UJ-FYN"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXO-yv-4Sf">

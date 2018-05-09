@@ -69,7 +69,9 @@
 "overdue" = "Просроченные";
 "play_audio_note_placeholder" = "Прослушать голосовую заметку";
 "record_audio_note_placeholder" = "Записать голосовую заметку";
-"recording_audio_note_placeholder" = "Идет запись. Коснитесь для остановки";
+"recording_audio_note_placeholder" = "Идет запись";
+"playing_audio_note_placeholder" = "Проигрывание";
+"touch_to_stop" = "Коснитесь, чтобы остановить";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";
