@@ -46,21 +46,22 @@ final class TaskEditorView: UIViewController {
     @IBOutlet fileprivate var separators: [UIView]!
     
     var output: (TaskEditorViewOutput & SubtasksEditorTaskProvider)!
+    var audioNoteOutput: TaskEditorViewAudioNoteOutput!
     
-    fileprivate var shouldForceResignFirstResponder = false
+    private var shouldForceResignFirstResponder = false
     
-    fileprivate var dueDateEditorHandler = TaskDueDateTimeEditorHandler()
-    fileprivate var repeatEndingDateEditorHandler = TaskDueDateTimeEditorHandler()
+    private var dueDateEditorHandler = TaskDueDateTimeEditorHandler()
+    private var repeatEndingDateEditorHandler = TaskDueDateTimeEditorHandler()
     
-    fileprivate weak var taskParameterEditorContainer: TaskParameterEditorContainer?
+    private weak var taskParameterEditorContainer: TaskParameterEditorContainer?
     
     private let transitionHandler = ModalPresentationTransitionHandler()
         
-    @IBAction fileprivate func closeButtonPressed() {
+    @IBAction private func closeButtonPressed() {
         output.closeButtonPressed()
     }
     
-    @IBAction fileprivate func doneButtonPressed() {
+    @IBAction private func doneButtonPressed() {
         output.doneButtonPressed()
     }
     
@@ -93,10 +94,10 @@ final class TaskEditorView: UIViewController {
                                               NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
         
         taskAudioNoteView.didClear = { [unowned self] in
-            self.output.audioNoteCleared()
+            self.audioNoteOutput.audioNoteCleared()
         }
         taskAudioNoteView.didTouchedUp = { [unowned self] in
-            self.output.audioNoteTouched()
+            self.audioNoteOutput.audioNoteTouched()
         }
         
         timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
@@ -273,27 +274,6 @@ extension TaskEditorView: TaskEditorViewInput {
         taskNoteField.textView.text = note
     }
     
-    func setAudioNoteState(_ state: AudioNoteState) {
-        switch state {
-        case .notRecorded:
-            taskAudioNoteView.isFilled = false
-            taskAudioNoteView.text = "record_audio_note_placeholder".localized
-            taskAudioNoteView.subtitle = nil
-        case .recording:
-            taskAudioNoteView.isFilled = true
-            taskAudioNoteView.text = "recording_audio_note_placeholder".localized
-            taskAudioNoteView.subtitle = "touch_to_stop".localized
-        case .recorded:
-            taskAudioNoteView.isFilled = true
-            taskAudioNoteView.text = "play_audio_note_placeholder".localized
-            taskAudioNoteView.subtitle = nil
-        case .playing:
-            taskAudioNoteView.isFilled = true
-            taskAudioNoteView.text = "playing_audio_note_placeholder".localized
-            taskAudioNoteView.subtitle = "touch_to_stop".localized
-        }
-    }
-    
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
         timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
@@ -385,6 +365,31 @@ extension TaskEditorView: TaskEditorViewInput {
     
 }
 
+extension TaskEditorView: TaskEditorAudioNoteViewInput {
+    
+    func setAudioNoteState(_ state: AudioNoteState) {
+        switch state {
+        case .notRecorded:
+            taskAudioNoteView.isFilled = false
+            taskAudioNoteView.text = "record_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = nil
+        case .recording:
+            taskAudioNoteView.isFilled = true
+            taskAudioNoteView.text = "recording_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = "touch_to_stop".localized
+        case .recorded:
+            taskAudioNoteView.isFilled = true
+            taskAudioNoteView.text = "play_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = nil
+        case .playing:
+            taskAudioNoteView.isFilled = true
+            taskAudioNoteView.text = "playing_audio_note_placeholder".localized
+            taskAudioNoteView.subtitle = "touch_to_stop".localized
+        }
+    }
+    
+}
+
 extension TaskEditorView: TaskParameterEditorContainerOutput {
     
     func taskParameterEditingCancelled(type: TaskParameterEditorType) {
@@ -398,7 +403,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output?.locationCleared()
         case .tags: output?.tagsCleared()
         case .timeTemplates: output?.timeTemplateCleared()
-        case .audioNote: output?.audioNoteCleared()
+        case .audioNote: audioNoteOutput?.audioNoteCleared()
         case .dueDate: return
         case .dueTime: return
         case .attachments: return//output?.attachmentsCleared()

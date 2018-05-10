@@ -23,6 +23,12 @@ final class TaskEditorAssembly {
         
         router.transitionHandler = view
         
+        let audioNotePresenter = TaskEditorAudioNotePresenter()
+        audioNotePresenter.output = presenter
+        audioNotePresenter.view = view
+        view.audioNoteOutput = audioNotePresenter
+        presenter.audioNotePresenter = audioNotePresenter
+        
         return presenter
     }
     

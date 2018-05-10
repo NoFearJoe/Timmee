@@ -10,13 +10,6 @@ import struct Foundation.Date
 import class CoreLocation.CLLocation
 import class Foto.Photo
 
-enum AudioNoteState {
-    case notRecorded
-    case recording
-    case recorded
-    case playing
-}
-
 protocol TaskEditorViewInput: class {
     func getTaskTitle() -> String
     func getTaskNote() -> String
@@ -40,9 +33,13 @@ protocol TaskEditorViewInput: class {
     func setCloseButtonVisible(_ isVisible: Bool)
 }
 
+protocol TaskEditorAudioNoteViewInput: class {
+    func setAudioNoteState(_ state: AudioNoteState)
+}
+
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput, TaskEditorViewAudioNoteOutput {
+protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()

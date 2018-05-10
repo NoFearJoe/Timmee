@@ -37,13 +37,12 @@ final class TaskEditorPresenter {
     
     weak var output: TaskEditorOutput?
     
+    weak var audioNotePresenter: TaskEditorAudioNotePresenterInput!
+    
     var task: Task!
     private var listID: String?
     
     private var isNewTask = true
-    
-    private var isRecordingAudioNote = false
-    private var isPlayingAudioNote = false
 
 }
 
@@ -89,7 +88,7 @@ extension TaskEditorPresenter: TaskEditorInput {
         
         view.setAttachments(self.task.attachments)
         
-        updateAudioNoteField()
+        audioNotePresenter.updateAudioNoteField()
     }
     
     func setTaskTitle(_ title: String) {
@@ -138,36 +137,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func taskNoteChanged(to taskNote: String) {
         task.note = taskNote
-    }
-    
-    func audioNoteTouched() {
-        if isPlayingAudioNote {
-            ServicesAssembly.shared.audioPlayerService.stop()
-            isPlayingAudioNote = false
-            updateAudioNoteField()
-        } else if isRecordingAudioNote {
-            ServicesAssembly.shared.audioRecordService.stopRecording()
-        } else {
-            if audioNote == nil {
-                ServicesAssembly.shared.audioRecordService.setupRecordingSession { [weak self] success in
-                    guard let `self` = self, success else { return }
-                    self.isRecordingAudioNote = true
-                    self.updateAudioNoteField()
-                    ServicesAssembly.shared.audioRecordService.startRecording(outputFileName: self.task.id, completion: { [weak self] _, _  in
-                        guard let `self` = self else { return }
-                        self.isRecordingAudioNote = false
-                        self.updateAudioNoteField()
-                    })
-                }
-            } else {
-                ServicesAssembly.shared.audioPlayerService.play(fileName: self.task.id) { [weak self] in
-                    self?.isPlayingAudioNote = false
-                    self?.updateAudioNoteField()
-                }
-                isPlayingAudioNote = true
-                updateAudioNoteField()
-            }
-        }
     }
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
@@ -256,11 +225,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.tags[index] = tag
             view.setTags(task.tags)
         }
-    }
-    
-    func audioNoteCleared() {
-        ServicesAssembly.shared.audioRecordService.removeRecordedAudio(fileName: self.task.id)
-        updateAudioNoteField()
     }
     
     func timeTemplateCleared() {
@@ -391,9 +355,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
 
 }
 
-extension TaskEditorPresenter: SubtasksEditorTaskProvider {}
-
-extension TaskEditorPresenter: TaskEditorInteractorOutput {}
+extension TaskEditorPresenter: SubtasksEditorTaskProvider, TaskEditorInteractorOutput, TaskEditorAudioNotePresenterOutput {}
 
 private extension TaskEditorPresenter {
 
@@ -413,18 +375,6 @@ private extension TaskEditorPresenter {
         } else {
             view.setLocation(nil)
         }
-    }
-    
-    func updateAudioNoteField() {
-        if isPlayingAudioNote {
-             view.setAudioNoteState(.playing)
-        } else {
-            view.setAudioNoteState(audioNote == nil ? (isRecordingAudioNote ? .recording : .notRecorded) : .recorded)
-        }
-    }
-    
-    var audioNote: Data? {
-        return ServicesAssembly.shared.audioRecordService.getRecordedAudio(fileName: self.task.id)
     }
     
     func decodeLocation(_ location: CLLocation?, completion: @escaping (String?) -> Void) {
