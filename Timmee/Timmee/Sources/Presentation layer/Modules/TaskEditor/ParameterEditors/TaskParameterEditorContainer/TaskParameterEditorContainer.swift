@@ -86,11 +86,10 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var doneButton: UIButton!
     @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var editorContainer: BarView!
-    @IBOutlet fileprivate var editorContainerUnderlyingView: BarView!
+    @IBOutlet fileprivate var editorContainer: UIView!
+    @IBOutlet fileprivate var editorContainerUnderlyingView: RoundedViewWithShadow!
     
     @IBOutlet fileprivate var editorContainerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate var editorContainerBottomConstraint: NSLayoutConstraint!
     
     weak var output: TaskParameterEditorContainerOutput?
     
@@ -99,8 +98,6 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
     fileprivate var viewControllers: [UIViewController] = []
     
     let transitionHandler = FadePresentationTransitionHandler()
-    
-    private var isAppeared = false
     
     @IBAction fileprivate func closeButtonPressed() {
         if viewControllers.count <= 1 {
@@ -136,37 +133,6 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
         titleLabel.textColor = AppTheme.current.backgroundTintColor
         closeButton.tintColor = AppTheme.current.redColor
         doneButton.tintColor = AppTheme.current.greenColor
-        editorContainerUnderlyingView.shadowRadius = 44
-        editorContainerUnderlyingView.showShadow = true
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        guard !isAppeared else { return }
-        
-        isAppeared = true
-        
-        if #available(iOS 11.0, *) {
-            let safeAreaBottomInset = view.safeAreaInsets.bottom
-            editorContainerHeightConstraint.constant += safeAreaBottomInset
-        }
-        
-        let fullHeight: CGFloat = 64 + editorContainerHeightConstraint.constant
-        view.transform = CGAffineTransform(translationX: 0, y: fullHeight)
-        
-        UIView.animate(withDuration: 0.25) {
-            self.view.transform = CGAffineTransform.identity
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        let fullHeight: CGFloat = 64 + editorContainerHeightConstraint.constant
-        UIView.animate(withDuration: 0.25) {
-            self.view.transform = CGAffineTransform(translationX: 0, y: fullHeight)
-        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -224,7 +190,20 @@ extension TaskParameterEditorContainer: TaskTimeTemplatePickerTransitionOutput {
     
 }
 
-fileprivate extension TaskParameterEditorContainer {
+extension TaskParameterEditorContainer: TaskReminderEditorTransitionOutput {
+    
+    func didAskToShowNotificationDatePicker(completion: @escaping (TaskDueDateTimeEditor) -> Void) {
+        let controller = ViewControllersFactory.taskDueDateTimeEditor
+        controller.title = "notification_date".localized
+        pushViewController(controller) { viewController in
+            guard let dueDateTimeEditor = viewController as? TaskDueDateTimeEditor else { return }
+            completion(dueDateTimeEditor)
+        }
+    }
+    
+}
+
+private extension TaskParameterEditorContainer {
     
     func completeEditing() {
         output?.taskParameterEditingFinished(type: type)
@@ -233,7 +212,7 @@ fileprivate extension TaskParameterEditorContainer {
     
 }
 
-fileprivate extension TaskParameterEditorContainer {
+private extension TaskParameterEditorContainer {
 
     func setupEditor(for type: TaskParameterEditorType) {
         guard let viewController = output?.editorViewController(forType: type) else { return }
@@ -264,21 +243,16 @@ fileprivate extension TaskParameterEditorContainer {
     func pushViewController(_ viewController: UIViewController, completion: @escaping (UIViewController) -> Void) {
         addChildViewController(viewController)
         
-        let offset = editorContainer.frame.height
+        let offset = editorContainer.bounds.width
         if let editorInput = viewController as? TaskParameterEditorInput {
             editorInput.container = self
-            
-            if #available(iOS 11.0, *) {
-                let safeAreaBottomInset = view.safeAreaInsets.bottom
-                editorContainerHeightConstraint.constant = editorInput.requiredHeight + safeAreaBottomInset
-            } else {
-                editorContainerHeightConstraint.constant = editorInput.requiredHeight
-            }
+            editorContainerHeightConstraint.constant = editorInput.requiredHeight
         }
         
         if let fromView = editorContainer.subviews.first {
             editorContainer.addSubview(viewController.view)
-            viewController.view.frame.origin.y = offset
+            viewController.view.allEdges().toSuperview()
+            viewController.view.transform = CGAffineTransform(translationX: offset, y: 0)
             
             completion(viewController)
             
@@ -289,8 +263,8 @@ fileprivate extension TaskParameterEditorContainer {
                             self.setEditorTitle(viewController.title ?? "")
                             self.closeButton.tintColor = AppTheme.current.backgroundTintColor
                             self.closeButton.setImage(#imageLiteral(resourceName: "back"), for: .normal)
-                            fromView.transform = CGAffineTransform(translationX: 0, y: -offset)
-                            viewController.view.frame.origin.y = 0
+                            fromView.transform = CGAffineTransform(translationX: -offset, y: 0)
+                            viewController.view.transform = .identity
                             self.view.layoutIfNeeded()
             }, completion: { _ in
                 fromView.removeFromSuperview()
@@ -304,19 +278,14 @@ fileprivate extension TaskParameterEditorContainer {
         guard let fromView = viewControllers.last else { return }
         guard let toView = viewControllers.item(at: viewControllers.count - 2) else { return }
         
-        let offset = editorContainer.frame.height
+        let offset = editorContainer.bounds.width
         if let editorInput = toView as? TaskParameterEditorInput {
-            if #available(iOS 11.0, *) {
-                let safeAreaBottomInset = view.safeAreaInsets.bottom
-                editorContainerHeightConstraint.constant = editorInput.requiredHeight + safeAreaBottomInset
-            } else {
-                editorContainerHeightConstraint.constant = editorInput.requiredHeight
-            }
+            editorContainerHeightConstraint.constant = editorInput.requiredHeight
         }
         
         editorContainer.addSubview(toView.view)
         toView.view.allEdges().toSuperview()
-        toView.view.transform = CGAffineTransform(translationX: 0, y: offset)
+        toView.view.transform = CGAffineTransform(translationX: -offset, y: 0)
         
         UIView.animate(withDuration: 0.2,
                        delay: 0,
@@ -325,8 +294,8 @@ fileprivate extension TaskParameterEditorContainer {
                         self.setEditorTitle(self.type.title)
                         self.closeButton.tintColor = AppTheme.current.redColor
                         self.closeButton.setImage(#imageLiteral(resourceName: "trash"), for: .normal)
-                        toView.view.transform = CGAffineTransform(translationX: 0, y: 0)
-                        fromView.view.transform = CGAffineTransform(translationX: 0, y: -offset)
+                        toView.view.transform = .identity
+                        fromView.view.transform = CGAffineTransform(translationX: offset, y: 0)
                         self.view.layoutIfNeeded()
         }, completion: { _ in
             toView.view.allEdges().toSuperview()

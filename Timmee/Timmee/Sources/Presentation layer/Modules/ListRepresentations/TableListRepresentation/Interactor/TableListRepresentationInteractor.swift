@@ -90,6 +90,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
                 self.taskSchedulerService.removeNotifications(for: task)
             } else {
                 let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
+                NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
                 self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
             }
             
@@ -114,6 +115,7 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
                     self.taskSchedulerService.removeNotifications(for: task)
                 } else {
                     let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
+                    NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
                     self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
                 }
             }

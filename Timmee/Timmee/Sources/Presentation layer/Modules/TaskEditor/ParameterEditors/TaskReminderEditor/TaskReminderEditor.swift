@@ -8,25 +8,44 @@
 
 import UIKit
 
+enum TaskReminderSelectedNotification {
+    case mask(NotificationMask)
+    case date(Date)
+}
+
+extension TaskReminderSelectedNotification: Equatable {
+    static func == (lhs: TaskReminderSelectedNotification, rhs: TaskReminderSelectedNotification) -> Bool {
+        switch (lhs, rhs) {
+        case let (.mask(mask1), .mask(mask2)): return mask1 == mask2
+        case let (.date(date1), .date(date2)): return date1.compare(date2) == .orderedSame
+        default: return false
+        }
+    }
+}
+
 protocol TaskReminderEditorInput: class {
-    func setNotificationMask(_ notificationMask: NotificationMask)
+    func setNotification(_ notification: TaskReminderSelectedNotification)
 }
 
 protocol TaskReminderEditorOutput: class {
-    func didSelectNotificationMask(_ notificationMask: NotificationMask)
+    func didSelectNotification(_ notification: TaskReminderSelectedNotification)
+}
+
+protocol TaskReminderEditorTransitionOutput: class {
+    func didAskToShowNotificationDatePicker(completion: @escaping (TaskDueDateTimeEditor) -> Void)
 }
 
 final class TaskReminderEditor: UITableViewController {
 
     weak var output: TaskReminderEditorOutput?
     weak var container: TaskParameterEditorOutput?
+    weak var transitionOutput: TaskReminderEditorTransitionOutput?
     
-    var selectedMask: NotificationMask = .doNotNotify {
+    var selectedNotification: TaskReminderSelectedNotification = .mask(.doNotNotify) {
         didSet {
-            if selectedMask != oldValue {
-                output?.didSelectNotificationMask(selectedMask)
-                tableView.reloadData()
-            }
+            guard selectedNotification != oldValue else { return }
+            output?.didSelectNotification(selectedNotification)
+            tableView.reloadData()
         }
     }
     
@@ -42,8 +61,8 @@ final class TaskReminderEditor: UITableViewController {
 
 extension TaskReminderEditor: TaskReminderEditorInput {
 
-    func setNotificationMask(_ notificationMask: NotificationMask) {
-        self.selectedMask = notificationMask
+    func setNotification(_ notification: TaskReminderSelectedNotification) {
+        self.selectedNotification = notification
     }
 
 }
@@ -55,20 +74,40 @@ extension TaskReminderEditor {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NotificationMask.all.count
+        return NotificationMask.all.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskReminderCell", for: indexPath) as! TaskReminderCell
-        
-        if let mask = NotificationMask.all.item(at: indexPath.row) {
-            cell.setNotificationMask(mask)
-            cell.setMaskSelected(mask == selectedMask)
+        if indexPath.row == NotificationMask.all.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskReminderDateCell", for: indexPath) as! TaskReminderDateCell
+            
+            if case .date(let notificationDate) = selectedNotification {
+                cell.setNotificationDateString(notificationDate.asNearestDateString)
+                cell.setSelected(true)
+            } else {
+                cell.setNotificationDateString("choose_notification_date".localized)
+                cell.setSelected(false)
+            }
+            
+            cell.setupAppearance()
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskReminderCell", for: indexPath) as! TaskReminderCell
+
+            if let mask = NotificationMask.all.item(at: indexPath.row) {
+                cell.setNotificationMask(mask)
+                if case .mask(let notificationMask) = selectedNotification {
+                    cell.setSelected(mask == notificationMask)
+                } else {
+                    cell.setSelected(false)
+                }
+            }
+            
+            cell.setupAppearance()
+            
+            return cell
         }
-        
-        cell.setupAppearance()
-        
-        return cell
     }
 
 }
@@ -76,8 +115,19 @@ extension TaskReminderEditor {
 extension TaskReminderEditor {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let mask = NotificationMask.all.item(at: indexPath.row) {
-            selectedMask = mask
+        if indexPath.row == NotificationMask.all.count {
+            transitionOutput?.didAskToShowNotificationDatePicker { [unowned self] dueDateTimeEditor in
+                dueDateTimeEditor.output = self
+                if case .date(let notificationDate) = self.selectedNotification {
+                    dueDateTimeEditor.setDueDate(notificationDate)
+                } else {
+                    dueDateTimeEditor.setDueDate(Date())
+                }
+            }
+        } else {
+            if let mask = NotificationMask.all.item(at: indexPath.row) {
+                selectedNotification = .mask(mask)
+            }
         }
     }
     
@@ -87,10 +137,18 @@ extension TaskReminderEditor {
 
 }
 
+extension TaskReminderEditor: TaskDueDateTimeEditorOutput {
+    
+    func didSelectDueDate(_ dueDate: Date) {
+        selectedNotification = .date(dueDate)
+    }
+    
+}
+
 extension TaskReminderEditor: TaskParameterEditorInput {
 
     var requiredHeight: CGFloat {
-        return CGFloat(NotificationMask.all.count) * TaskReminderEditor.rowHeight
+        return CGFloat(NotificationMask.all.count + 1) * TaskReminderEditor.rowHeight
     }
 
 }
@@ -105,7 +163,7 @@ final class TaskReminderCell: UITableViewCell {
         titleView?.text = mask.title
     }
     
-    func setMaskSelected(_ isSelected: Bool) {
+    func setSelected(_ isSelected: Bool) {
         selectedMaskIndicator.isHidden = !isSelected
     }
     
@@ -114,4 +172,24 @@ final class TaskReminderCell: UITableViewCell {
         selectedMaskIndicator.backgroundColor = AppTheme.current.blueColor
     }
 
+}
+
+final class TaskReminderDateCell: UITableViewCell {
+    
+    @IBOutlet fileprivate weak var titleView: UILabel!
+    @IBOutlet fileprivate weak var selectedMaskIndicator: UIView!
+    
+    func setNotificationDateString(_ dateString: String) {
+        titleView?.text = dateString
+    }
+    
+    func setSelected(_ isSelected: Bool) {
+        selectedMaskIndicator.isHidden = !isSelected
+    }
+    
+    func setupAppearance() {
+        titleView.textColor = AppTheme.current.tintColor
+        selectedMaskIndicator.backgroundColor = AppTheme.current.blueColor
+    }
+    
 }

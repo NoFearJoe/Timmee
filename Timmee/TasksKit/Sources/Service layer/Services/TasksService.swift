@@ -38,6 +38,7 @@ public protocol TaskEntitiesProvider: class {
 public protocol TaskEntitiesBackgroundProvider: class {
     func fetchTaskEntityInBackground(id: String) -> TaskEntity?
     func fetchTaskEntitiesToUpdateDueDateInBackground() -> [TaskEntity]
+    func fetchTaskEntitiesToUpdateNotificationDateInBackground() -> [TaskEntity]
     func fetchTaskEntitiesInBackground(tasks: [Task]) -> [TaskEntity]
 }
 
@@ -64,6 +65,7 @@ public protocol TasksManager: class {
     func removeTasks(_ tasks: [Task], completion: @escaping (TasksService.Error?) -> Void)
     func doneTask(withID id: String, completion: @escaping () -> Void)
     func updateTasksDueDates()
+    func updateTasksNotificationDates()
 }
 
 public final class TasksService {
@@ -214,6 +216,18 @@ extension TasksService: TasksManager {
         }
     }
     
+    public func updateTasksNotificationDates() {
+        DispatchQueue.global().async {
+            let tasksToUpdate = self.fetchTaskEntitiesToUpdateNotificationDateInBackground()
+            let updatedTasks = tasksToUpdate.map { entity -> Task in
+                let task = Task(task: entity)
+                task.notificationDate = task.nextNotificationDate
+                return task
+            }
+            self.updateTasks(updatedTasks, completion: { _ in })
+        }
+    }
+    
 }
 
 // MARK: - Tasks observer
@@ -334,6 +348,10 @@ extension TasksService: TaskEntitiesBackgroundProvider {
         return TasksService.tasksToUpdateDueDateFetchRequest().executeInBackground()
     }
     
+    public func fetchTaskEntitiesToUpdateNotificationDateInBackground() -> [TaskEntity] {
+        return TasksService.tasksToUpdateNotificationDateFetchRequest().executeInBackground()
+    }
+    
     public func fetchTaskEntitiesInBackground(tasks: [Task]) -> [TaskEntity] {
         return TasksService.taskEntitiesFetchRequest(tasks: tasks).executeInBackground()
     }
@@ -423,6 +441,13 @@ private extension TasksService {
     
     static func tasksToUpdateDueDateFetchRequest() -> FetchRequest<TaskEntity> {
         let predicate = NSPredicate(format: "dueDate < %@ AND repeatMask != %@",
+                                    NSDate(),
+                                    RepeatType.never.string)
+        return TaskEntity.request().filtered(predicate: predicate)
+    }
+    
+    static func tasksToUpdateNotificationDateFetchRequest() -> FetchRequest<TaskEntity> {
+        let predicate = NSPredicate(format: "notificationDate != nil AND notificationDate < %@ AND repeatMask != %@",
                                     NSDate(),
                                     RepeatType.never.string)
         return TaskEntity.request().filtered(predicate: predicate)

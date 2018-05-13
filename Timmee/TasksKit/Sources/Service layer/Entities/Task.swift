@@ -150,28 +150,36 @@ public class Task {
     }
     
     public var nextDueDate: Date? {
-        guard var dueDate = dueDate else { return nil }
+        return getNextRepeatDate(of: dueDate)
+    }
+    
+    public var nextNotificationDate: Date? {
+        return getNextRepeatDate(of: notificationDate)
+    }
+    
+    private func getNextRepeatDate(of date: Date?) -> Date? {
+        guard var date = date else { return nil }
         
         let now = Date()
         
-        while dueDate <= now {
+        while date <= now {
             switch repeating.type {
             case .every(let unit):
                 switch unit {
-                case .day: dueDate = dueDate + repeating.value.asDays as Date
-                case .week: dueDate = dueDate + repeating.value.asWeeks as Date
-                case .month: dueDate = dueDate + repeating.value.asMonths as Date
-                case .year: dueDate = dueDate + repeating.value.asYears as Date
+                case .day: date = date + repeating.value.asDays as Date
+                case .week: date = date + repeating.value.asWeeks as Date
+                case .month: date = date + repeating.value.asMonths as Date
+                case .year: date = date + repeating.value.asYears as Date
                 }
             case .on(let unit):
                 let dayNumbers = unit.dayNumbers.sorted()
-                let currentDayNumber = dueDate.weekday - 1
+                let currentDayNumber = date.weekday - 1
                 let currentDayNumberIndex = dayNumbers.index(of: currentDayNumber) ?? 0
                 let nextDayNumberIndex = currentDayNumberIndex + 1 >= dayNumbers.count ? 0 : currentDayNumberIndex + 1
                 let nextDayNumber = dayNumbers.item(at: nextDayNumberIndex) ?? dayNumbers.item(at: 0) ?? 0
                 let dayNumbersDifference = nextDayNumberIndex >= currentDayNumberIndex ? nextDayNumber - currentDayNumber : (7 + nextDayNumber) - currentDayNumber
                 
-                dueDate = dueDate + dayNumbersDifference.asDays as Date
+                date = date + dayNumbersDifference.asDays as Date
             case .never: return nil
             }
         }
@@ -180,7 +188,7 @@ public class Task {
             return nil
         }
         
-        return dueDate
+        return date
     }
 
 }

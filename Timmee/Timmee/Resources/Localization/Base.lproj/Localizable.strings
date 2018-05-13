@@ -72,6 +72,8 @@
 "recording_audio_note_placeholder" = "Recording voice note";
 "playing_audio_note_placeholder" = "Playing voice note";
 "touch_to_stop" = "Touch to stop";
+"choose_notification_date" = "Choose date";
+"notification_date" = "Notification date";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";

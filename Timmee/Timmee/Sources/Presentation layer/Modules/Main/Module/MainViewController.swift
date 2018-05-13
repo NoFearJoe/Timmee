@@ -8,6 +8,7 @@
 
 import UIKit
 import SwipeCellKit
+import StoreKit
 
 final class MainViewController: UIViewController {
     
@@ -48,6 +49,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAppLaunchTracker()
         subscribeToApplicationEvents()
         setupKeyboardManager()
         setupEditingModeController()
@@ -56,6 +58,8 @@ final class MainViewController: UIViewController {
         
         menuPanel.showList(state.currentList)
         groupEditingPanelContainer.isHidden = true
+        
+        Trackers.appLaunchTracker?.commit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,10 +67,12 @@ final class MainViewController: UIViewController {
         view.backgroundColor = AppTheme.current.backgroundColor
         
         tasksService.updateTasksDueDates()
+        tasksService.updateTasksNotificationDates()
     }
     
     @objc private func didBecomeActive() {
         tasksService.updateTasksDueDates()
+        tasksService.updateTasksNotificationDates()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -307,6 +313,13 @@ private extension MainViewController {
             return true
         }
         return false
+    }
+    
+    func setupAppLaunchTracker() {
+        Trackers.appLaunchTracker?.checkpoint = {
+            guard #available(iOS 10.3, *) else { return }
+            SKStoreReviewController.requestReview()
+        }
     }
     
 }

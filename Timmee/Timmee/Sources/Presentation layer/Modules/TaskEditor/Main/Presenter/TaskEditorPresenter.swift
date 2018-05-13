@@ -43,6 +43,8 @@ final class TaskEditorPresenter {
     private var listID: String?
     
     private var isNewTask = true
+    
+    private var attachmentsToRemove: [String] = []
 
 }
 
@@ -66,7 +68,7 @@ extension TaskEditorPresenter: TaskEditorInput {
         
         showFormattedDueDateTime(self.task.dueDate)
         
-        view.setReminder(self.task.notification)
+        showNotification()
         view.setRepeat(self.task.repeating)
         
         showFormattedRepeatEndingDate(self.task.repeatEndingDate)
@@ -120,6 +122,8 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         interactor.saveTask(task, listID: isNewTask ? listID : nil, success: { [weak self] in
             guard let `self` = self else { return }
             DispatchQueue.main.async {
+                self.attachmentsToRemove.forEach { FilesService().removeFileFromDocuments(withName: $0) }
+                NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
                 self.interactor.scheduleTask(self.task)
                 if self.isNewTask {
                     self.output?.taskCreated()
@@ -151,12 +155,12 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         showFormattedDueDateTime(task.dueDate)
 
         if timeTemplate == nil {
-            view.setReminder(task.notification)
+            showNotification()
             if task.dueDate != nil {
                 view.setRepeat(task.repeating)
             }
         } else {
-            view.setReminder(.doNotNotify)
+            view.setNotification(.mask(.doNotNotify))
             view.setRepeat(task.repeating)
         }
         
@@ -172,9 +176,14 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         showFormattedDueDateTime(task.dueDate)
     }
     
-    func reminderChanged(to reminder: NotificationMask) {
-        task.notification = reminder
-        view.setReminder(reminder)
+    func notificationChanged(to notification: TaskReminderSelectedNotification) {
+        switch notification {
+        case let .mask(notificationMask):
+            task.notification = notificationMask
+        case let .date(notificationDate):
+            task.notificationDate = notificationDate
+        }
+        view.setNotification(notification)
     }
     
     func repeatChanged(to repeat: RepeatMask) {
@@ -231,7 +240,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.timeTemplate = nil
         
         showFormattedDueDateTime(task.dueDate)
-        view.setReminder(task.notification)
+        showNotification()
         if task.dueDate != nil {
             view.setRepeat(task.repeating)
         }
@@ -245,9 +254,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         view.setDueDateTime(nil, isOverdue: false)
     }
     
-    func reminderCleared() {
+    func notificationCleared() {
         task.notification = .doNotNotify
-        view.setReminder(.doNotNotify)
+        task.notificationDate = nil
+        view.setNotification(.mask(.doNotNotify))
     }
     
     func repeatCleared() {
@@ -275,11 +285,14 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         interactor.handleAttachmentsChange(oldAttachments: task.attachments, newAttachments: attachments) { newAttachmentPaths in
             self.task.attachments = newAttachmentPaths
             self.view.setAttachments(newAttachmentPaths)
+            newAttachmentPaths.forEach { attachment in
+                self.attachmentsToRemove.remove(object: attachment)
+            }
         }
     }
     
     func attachmentsCleared() {
-        task.attachments.forEach { FilesService().removeFileFromDocuments(withName: $0) }
+        attachmentsToRemove = task.attachments
         task.attachments = []
         
         view.setAttachments([])
@@ -316,7 +329,11 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentReminderEditor(_ input: TaskReminderEditorInput) {
-        input.setNotificationMask(task.notification)
+        if let notificationDate = task.notificationDate {
+            input.setNotification(.date(notificationDate))
+        } else {
+            input.setNotification(.mask(task.notification))
+        }
     }
     
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput) {
@@ -374,6 +391,14 @@ private extension TaskEditorPresenter {
             view.setLocation(address)
         } else {
             view.setLocation(nil)
+        }
+    }
+    
+    func showNotification() {
+        if let notificationDate = task.notificationDate {
+            view.setNotification(.date(notificationDate))
+        } else {
+            view.setNotification(.mask(task.notification))
         }
     }
     

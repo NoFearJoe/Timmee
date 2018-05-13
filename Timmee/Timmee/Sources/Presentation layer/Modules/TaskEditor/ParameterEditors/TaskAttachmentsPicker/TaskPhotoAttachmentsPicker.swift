@@ -95,7 +95,7 @@ extension TaskPhotoAttachmentsPicker: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         
         if let photo = photos.item(at: indexPath.item) {
-            photo.loadImage(size: cellSize, contentMode: .aspectFit, completion: { image in
+            photo.loadImage(size: cellSize, contentMode: .aspectFill, completion: { image in
                 DispatchQueue.main.async {
                     cell.image = image
                 }
@@ -116,7 +116,7 @@ extension TaskPhotoAttachmentsPicker: UICollectionViewDelegate {
             if selectedPhotos.contains(photo) {
                 selectedPhotos.remove(object: photo)
             } else {
-                guard selectedPhotos.count <= maxPhotos else {
+                guard selectedPhotos.count < maxPhotos else {
                     output?.maxSelectedPhotosCountReached()
                     return
                 }

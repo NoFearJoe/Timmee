@@ -86,6 +86,7 @@
 		38176EB50AB3D8C8B188E64F /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1DF85975C140C3E76B19CA /* Pods_Timmee.framework */; };
 		9606627C20A3575D00B23EDF /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B243A207E3759009EF6DE /* TasksKit.framework */; };
 		9606627D20A3575D00B23EDF /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B243A207E3759009EF6DE /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9606628320A6FE8100B23EDF /* Trackers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606628220A6FE8100B23EDF /* Trackers.swift */; };
 		960A0DDC1F921551003DCDAD /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */; };
 		960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */; };
 		960D03522035ED9D00321BC3 /* ListEditorTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */; };
@@ -280,6 +281,7 @@
 		31B7E1C2C5BD3C6C7846E986 /* Pods-Timmee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.release.xcconfig"; sourceTree = "<group>"; };
 		4C1DF85975C140C3E76B19CA /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9411A2F120085851CC822876 /* Pods-Timmee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.debug.xcconfig"; sourceTree = "<group>"; };
+		9606628220A6FE8100B23EDF /* Trackers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trackers.swift; sourceTree = "<group>"; };
 		960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
 		960A0DDD1F9533FA003DCDAD /* TableListRepresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationCell.swift; sourceTree = "<group>"; };
 		960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEditorTextFieldController.swift; sourceTree = "<group>"; };
@@ -1299,6 +1301,7 @@
 				96B0B9B91FB82CC10009BA3B /* NotificationsConfigurator.swift */,
 				0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */,
 				0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */,
+				9606628220A6FE8100B23EDF /* Trackers.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -1590,6 +1593,7 @@
 				0CF3097C2021E14700FD7E3E /* ListsViewController+CollectionView.swift in Sources */,
 				0C8738CC1FB9746200EA1571 /* TaskEditorInteractor.swift in Sources */,
 				0C8738D91FB9747700EA1571 /* TaskWeeklyRepeatingPicker.swift in Sources */,
+				9606628320A6FE8100B23EDF /* Trackers.swift in Sources */,
 				9676290F1F69CA60001F5D99 /* SwipeTableActionsProvider.swift in Sources */,
 				960A0DDC1F921551003DCDAD /* BiometricsActivationController.swift in Sources */,
 				960A0DDE1F9533FA003DCDAD /* TableListRepresentationCell.swift in Sources */,

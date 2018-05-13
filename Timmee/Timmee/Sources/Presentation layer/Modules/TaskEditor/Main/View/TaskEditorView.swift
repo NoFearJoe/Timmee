@@ -56,7 +56,7 @@ final class TaskEditorView: UIViewController {
     private weak var taskParameterEditorContainer: TaskParameterEditorContainer?
     
     private let transitionHandler = ModalPresentationTransitionHandler()
-        
+    
     @IBAction private func closeButtonPressed() {
         output.closeButtonPressed()
     }
@@ -135,7 +135,7 @@ final class TaskEditorView: UIViewController {
         }
         
         reminderView.didClear = { [unowned self] in
-            self.output.reminderCleared()
+            self.output.notificationCleared()
         }
         reminderView.didTouchedUp = { [unowned self] in
             self.showTaskParameterEditor(with: .reminder)
@@ -299,10 +299,15 @@ extension TaskEditorView: TaskEditorViewInput {
         dueDateTimeView.isFilled = dueDate != nil
     }
     
-    func setReminder(_ reminder: NotificationMask) {
-        reminderView.text = reminder.title
-        
-        reminderView.isFilled = reminder != .doNotNotify
+    func setNotification(_ notification: TaskReminderSelectedNotification) {
+        switch notification {
+        case let .mask(notificationMask):
+            reminderView.text = notificationMask.title
+            reminderView.isFilled = notificationMask != .doNotNotify
+        case let .date(notificationDate):
+            reminderView.text = notificationDate.asNearestDateString
+            reminderView.isFilled = true
+        }
     }
     
     func setRepeat(_ repeat: RepeatMask) {
@@ -395,7 +400,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
     func taskParameterEditingCancelled(type: TaskParameterEditorType) {
         switch type {
         case .dueDateTime: output?.dueDateTimeCleared()
-        case .reminder: output?.reminderCleared()
+        case .reminder: output?.notificationCleared()
         case .repeating: output?.repeatCleared()
         case .repeatEndingDate: output?.repeatEndingDateCleared()
         case .location:
@@ -434,6 +439,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
         case .reminder:
             let viewController = ViewControllersFactory.taskReminderEditor
             viewController.output = self
+            viewController.transitionOutput = taskParameterEditorContainer
             output.willPresentReminderEditor(viewController)
             return viewController
         case .repeating:
@@ -522,9 +528,9 @@ extension TaskEditorView: TaskDueDatePickerOutput {
 }
 
 extension TaskEditorView: TaskReminderEditorOutput {
-
-    func didSelectNotificationMask(_ notificationMask: NotificationMask) {
-        output.reminderChanged(to: notificationMask)
+    
+    func didSelectNotification(_ notification: TaskReminderSelectedNotification) {
+        output.notificationChanged(to: notification)
     }
 
 }

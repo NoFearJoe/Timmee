@@ -24,11 +24,14 @@ final class FadeInBackgroundModalTransition: NSObject, UIViewControllerAnimatedT
             
             let duration = self.transitionDuration(using: transitionContext)
             
+            toViewController.view.alpha = 0
+            
             UIView.animate(withDuration: duration,
                            delay: 0,
                            options: [.curveEaseInOut],
                            animations:
                 {
+                    toViewController.view.alpha = 1
                     backgroundView.backgroundColor = AppTheme.current.backgroundColor.withAlphaComponent(0.8)
                 },
                 completion: { (complete) in
@@ -55,16 +58,19 @@ final class FadeOutBackgroundModalTransition: NSObject, UIViewControllerAnimated
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let backgroundView = findBackgroundView(in: transitionContext.containerView)
+        guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
         
         let duration = self.transitionDuration(using: transitionContext)
         
         UIView.animate(withDuration: duration,
                        animations:
             {
+                fromViewController.view.alpha = 0
                 backgroundView.backgroundColor = .clear
             },
             completion: { (complete) in
                 backgroundView.removeFromSuperview()
+                fromViewController.dismiss(animated: false, completion: nil)
                 transitionContext.completeTransition(complete)
             }
         )

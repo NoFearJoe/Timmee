@@ -27,12 +27,14 @@ class BarView: UIView {
         }
     }
     
+    var roundedCorners: UIRectCorner = [.topRight, .topLeft]
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         if showShadow {
             layer.shadowPath = UIBezierPath(roundedRect: bounds,
-                                            byRoundingCorners: [.topRight, .topLeft],
+                                            byRoundingCorners: roundedCorners,
                                             cornerRadii: CGSize(width: 8, height: 8)).cgPath
         } else {
             layer.shadowPath = nil
@@ -43,7 +45,7 @@ class BarView: UIView {
     
     private func applyRoundCornersMask() {
         let maskPath = UIBezierPath(roundedRect: bounds,
-                                    byRoundingCorners: [.topLeft, .topRight],
+                                    byRoundingCorners: roundedCorners,
                                     cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
         
         if layer.mask == nil {
@@ -65,4 +67,30 @@ class BarView: UIView {
         }
     }
 
+}
+
+final class RoundedViewWithShadow: UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat = 8 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
+    
+    @IBInspectable var shadowRadius: CGFloat = 8 {
+        didSet {
+            layer.shadowRadius = shadowRadius
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        layer.cornerRadius = cornerRadius
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = .zero
+        layer.shadowRadius = shadowRadius
+        layer.shadowOpacity = 0.2
+    }
+    
 }

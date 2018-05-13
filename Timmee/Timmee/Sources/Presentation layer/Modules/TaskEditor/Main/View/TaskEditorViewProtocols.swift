@@ -19,7 +19,7 @@ protocol TaskEditorViewInput: class {
     func setAudioNoteState(_ state: AudioNoteState)
     func setTimeTemplate(_ timeTemplate: TimeTemplate?)
     func setDueDateTime(_ dueDate: String?, isOverdue: Bool)
-    func setReminder(_ reminder: NotificationMask)
+    func setNotification(_ notification: TaskReminderSelectedNotification)
     func setRepeatEndingDate(_ repeatEndingDate: String?)
     func setRepeat(_ repeat: RepeatMask)
     func setLocation(_ location: String?)
@@ -39,7 +39,7 @@ protocol TaskEditorAudioNoteViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewReminderOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
+protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewNotificationOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -76,9 +76,9 @@ protocol TaskEditorViewDueDateTimeOutput: class {
     func dueDateTimeCleared()
 }
 
-protocol TaskEditorViewReminderOutput: class {
-    func reminderChanged(to reminder: NotificationMask)
-    func reminderCleared()
+protocol TaskEditorViewNotificationOutput: class {
+    func notificationChanged(to notification: TaskReminderSelectedNotification)
+    func notificationCleared()
 }
 
 protocol TaskEditorViewRepeatingOutput: class {

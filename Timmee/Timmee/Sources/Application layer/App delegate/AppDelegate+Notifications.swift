@@ -22,7 +22,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if notification.category == NotificationCategories.task.rawValue {
             if let taskID = notification.userInfo?["task_id"] as? String {
-                updateDueDate(ofTaskWithID: taskID)
+                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
             }
             
             if let endDate = notification.userInfo?["end_date"] as? Date {
@@ -92,7 +92,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
             if let taskID = notification.request.content.userInfo["task_id"] as? String {
-                updateDueDate(ofTaskWithID: taskID)
+                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
             }
             
             if let endDate = notification.request.content.userInfo["end_date"] as? Date {
@@ -152,9 +152,10 @@ private extension AppDelegate {
 
 private extension AppDelegate {
     
-    func updateDueDate(ofTaskWithID id: String) {
+    func updateDueDateAndNotificationDate(ofTaskWithID id: String) {
         guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else { return }
         task.dueDate = task.nextDueDate
+        task.notificationDate = task.nextNotificationDate
         ServicesAssembly.shared.tasksService.updateTask(task, completion: { _ in })
     }
     

@@ -259,6 +259,22 @@ public extension Date {
         }
     }
     
+    public var startOfMonth: Date {
+        return changeComponents { components in
+            components.day = 0
+        }
+    }
+    
+    public var endOfMonth: Date {
+        return changeComponents { components in
+            components.day = daysInMonth
+        }
+    }
+    
+    public var daysInMonth: Int {
+        return Foundation.Calendar.current.range(of: .day, in: .month, for: self)?.count ?? 0
+    }
+    
     
     fileprivate func changeComponents(_ componentsConfiguration: (inout DateComponents) -> Void) -> Date {
         var components = Foundation.Calendar.current.dateComponents(in: TimeZone.current, from: self)

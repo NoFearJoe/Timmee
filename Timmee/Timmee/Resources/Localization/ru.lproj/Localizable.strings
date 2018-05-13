@@ -72,6 +72,8 @@
 "recording_audio_note_placeholder" = "Идет запись";
 "playing_audio_note_placeholder" = "Проигрывание";
 "touch_to_stop" = "Коснитесь, чтобы остановить";
+"choose_notification_date" = "Выбрать дату";
+"notification_date" = "Дата уведомления";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";

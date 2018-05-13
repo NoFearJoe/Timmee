@@ -19,6 +19,7 @@ public extension TaskEntity {
         title = entity.title
         isImportant = entity.isImportant
         notificationMask = entity.notification.rawValue
+        notificationDate = entity.notificationDate
         note = entity.note
         repeatMask = entity.repeating.string
         dueDate = entity.dueDate

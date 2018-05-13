@@ -89,24 +89,14 @@ public final class Calendar {
     }
     
     public func monthDataSource() -> [Calendar.MonthEntry] {
-        let allMonths = dates.map { $0.asMonth }
+        guard var currentDate = dates.first else { return [] }
         
-        var acc: [(String, Int)] = []
-        var previousValue: String = ""
-        var currentCount = 0
-        allMonths.forEach { month in
-            if previousValue == month {
-                currentCount += 1
-            } else if previousValue == "" {
-                previousValue = month
-                currentCount += 1
-            } else {
-                acc.append((previousValue, currentCount))
-                currentCount = 1
-                previousValue = month
-            }
+        return (0..<13).map { _ in
+            let month = currentDate.asMonth
+            let remainingDaysInMonth = currentDate.daysInMonth - (currentDate.dayOfMonth - 1)
+            currentDate = currentDate.endOfMonth.nextDay
+            return MonthEntry(name: month, daysCount: remainingDaysInMonth)
         }
-        return acc.map { MonthEntry(name: $0.0, daysCount: $0.1) }
     }
     
     /**
@@ -191,6 +181,10 @@ extension DateRange: Sequence {
         return DateRangeIterator(range: self)
     }
     
+    var first: Date? {
+        guard self.indices.contains(0) else { return nil }
+        return self[0]
+    }
     
     struct DateRangeIterator: IteratorProtocol {
         
