@@ -72,6 +72,7 @@
 		0CA9EE9A202C5FB100C24003 /* SmartListPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE99202C5FB100C24003 /* SmartListPickerCell.swift */; };
 		0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */; };
 		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
+		0CC5923F20AB1C3C00211653 /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5923E20AB1C3C00211653 /* ProVersionPurchase.swift */; };
 		0CC7C8562005E41F006758C1 /* NextDayNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */; };
 		0CC7C8582008C7F1006758C1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */; };
 		0CC7C85B2008CDFE006758C1 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */; };
@@ -267,6 +268,7 @@
 		0CA9EE99202C5FB100C24003 /* SmartListPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListPickerCell.swift; sourceTree = "<group>"; };
 		0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalEducationScreen.swift; sourceTree = "<group>"; };
 		0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPhotoAttachmentsPicker.swift; sourceTree = "<group>"; };
+		0CC5923E20AB1C3C00211653 /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
 		0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDayNumberTests.swift; sourceTree = "<group>"; };
 		0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenPresenter.swift; sourceTree = "<group>"; };
 		0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewController.swift; sourceTree = "<group>"; };
@@ -1066,6 +1068,7 @@
 				0C5D847B1FF61C6A0019BEB2 /* Submodules */,
 				96AAA5841FB03F8A00F547A0 /* SettingsCells.swift */,
 				96AAA5851FB03F8A00F547A0 /* SettingsViewController.swift */,
+				0CC5923E20AB1C3C00211653 /* ProVersionPurchase.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1627,6 +1630,7 @@
 				96A5F1371F507AC500F94553 /* PinCodeView.swift in Sources */,
 				96115F301F6E52420050D7A3 /* CheckBox.swift in Sources */,
 				0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */,
+				0CC5923F20AB1C3C00211653 /* ProVersionPurchase.swift in Sources */,
 				96115F2E1F6D3D6D0050D7A3 /* PresentTransition.swift in Sources */,
 				9674D911208E76950085F279 /* EditingModeController.swift in Sources */,
 				96A3761E1F9BC35A00A7C55C /* PlaceholderView.swift in Sources */,

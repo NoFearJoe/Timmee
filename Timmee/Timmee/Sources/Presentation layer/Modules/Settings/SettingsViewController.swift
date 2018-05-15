@@ -13,12 +13,14 @@ import protocol MessageUI.MFMailComposeViewControllerDelegate
 
 enum SettingsSection {
     case general
+    case proVersion
     case security
     case about
     
     var title: String {
         switch self {
         case .general: return "general_section".localized
+        case .proVersion: return "pro_version_section".localized
         case .security: return "security_section".localized
         case .about: return "about_section".localized
         }
@@ -33,6 +35,7 @@ struct SettingsItem {
         case titleWithSwitch
         case detailsTitle
         case detailsSubtitle
+        case proVersion
     }
     
     var title: String
@@ -104,6 +107,7 @@ extension SettingsViewController: UITableViewDataSource {
         case .titleWithSwitch: cellIdentifier = SettingsCellWithTitleAndSwitch.identifier
         case .detailsTitle: cellIdentifier = SettingsDetailsCellWithTitle.identifier
         case .detailsSubtitle: cellIdentifier = SettingsDetailsCellWithTitleAndSubtitle.identifier
+        case .proVersion: cellIdentifier = SettingsProVersionCell.identifier
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BaseSettingsCell
@@ -139,6 +143,7 @@ fileprivate extension SettingsViewController {
     func makeSettingsItems() -> [(SettingsSection, [SettingsItem])] {
         return [
             (.general, makeGeneralSectionItems()),
+            (.proVersion, makeProVersionSectionItems()),
             (.security, makeSecuritySectionItems()),
             (.about, makeAboutSectionItems())
         ]
@@ -196,6 +201,40 @@ fileprivate extension SettingsViewController {
 //        }
         
         return generalSectionItems
+    }
+    
+    func makeProVersionSectionItems() -> [SettingsItem] {
+        var proVersionSectionItems: [SettingsItem] = []
+        
+        let buyProVersionAction = { [unowned self] in
+            
+        }
+        let buyProVersionItem = SettingsItem(title: "pro_version".localized,
+                                             subtitle: nil,
+                                             icon: UIImage(),
+                                             isOn: false,
+                                             isDetailed: false,
+                                             isSelectable: true,
+                                             style: .proVersion,
+                                             action: buyProVersionAction)
+        
+        proVersionSectionItems.append(buyProVersionItem)
+        
+        let restoreProVersionAction = { [unowned self] in
+            
+        }
+        let restoreProVersionItem = SettingsItem(title: "restore_pro_version".localized,
+                                                 subtitle: nil,
+                                                 icon: UIImage(),
+                                                 isOn: false,
+                                                 isDetailed: false,
+                                                 isSelectable: true,
+                                                 style: .proVersion,
+                                                 action: restoreProVersionAction)
+        
+        proVersionSectionItems.append(restoreProVersionItem)
+        
+        return proVersionSectionItems
     }
     
     func makeSecuritySectionItems() -> [SettingsItem] {

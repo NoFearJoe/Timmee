@@ -139,6 +139,9 @@
 "about_app_text" = "О программе";
 "mail_us" = "Напишите нам";
 "highlight_overdue_tasks" = "Выделять просроченные задачи";
+"pro_version_section" = "PRO версия";
+"pro_version" = "Приобрести PRO версию";
+"restore_pro_version" = "Восстановить PRO версию";
 
 "remove_list" = "Удаление списка";
 "remove_tasks" = "Удаление задач";

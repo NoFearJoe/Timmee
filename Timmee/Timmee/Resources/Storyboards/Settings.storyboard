@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Ez8-Z7-b9y">
-                                    <rect key="frame" x="0.0" y="336.5" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="388.5" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -267,6 +267,40 @@
                                             <outlet property="iconView" destination="fve-jp-ER4" id="yFQ-Tv-yKD"/>
                                             <outlet property="subtitleLabel" destination="yqt-Xh-842" id="vOz-4L-2Em"/>
                                             <outlet property="titleLabel" destination="J6w-Gm-eg5" id="yU1-IX-2Wo"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionCell" rowHeight="52" id="r3V-Ed-jGg" customClass="SettingsProVersionCell" customModule="Timmee" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="315.5" width="375" height="52"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r3V-Ed-jGg" id="Bj6-ED-xH8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fJE-sl-p3g">
+                                                    <rect key="frame" x="15" y="16" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="Eih-q1-dlL"/>
+                                                        <constraint firstAttribute="width" secondItem="fJE-sl-p3g" secondAttribute="height" multiplier="1:1" id="xOO-pS-bt3"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRO версия" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-rF-tni">
+                                                    <rect key="frame" x="50" y="16" width="310" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fJE-sl-p3g" firstAttribute="leading" secondItem="Bj6-ED-xH8" secondAttribute="leading" constant="15" id="LZW-e2-079"/>
+                                                <constraint firstItem="LXg-rF-tni" firstAttribute="leading" secondItem="fJE-sl-p3g" secondAttribute="trailing" constant="15" id="NRO-le-Lw6"/>
+                                                <constraint firstAttribute="trailing" secondItem="LXg-rF-tni" secondAttribute="trailing" constant="15" id="Vq9-Zs-Weh"/>
+                                                <constraint firstItem="fJE-sl-p3g" firstAttribute="centerY" secondItem="Bj6-ED-xH8" secondAttribute="centerY" id="WW5-Oq-01i"/>
+                                                <constraint firstItem="LXg-rF-tni" firstAttribute="centerY" secondItem="Bj6-ED-xH8" secondAttribute="centerY" id="XG1-qM-gWr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="iconView" destination="fJE-sl-p3g" id="fsb-7y-IiR"/>
+                                            <outlet property="titleLabel" destination="LXg-rF-tni" id="UvD-59-4SD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

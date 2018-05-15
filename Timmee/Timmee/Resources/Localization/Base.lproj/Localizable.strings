@@ -139,6 +139,9 @@
 "about_app_text" = "About App text";
 "mail_us" = "Send a mail to us";
 "highlight_overdue_tasks" = "Highlight overdue tasks";
+"pro_version_section" = "PRO version";
+"pro_version" = "Get PRO version";
+"restore_pro_version" = "Restore PRO version";
 
 "remove_list" = "Remove list";
 "remove_tasks" = "Remove tasks";

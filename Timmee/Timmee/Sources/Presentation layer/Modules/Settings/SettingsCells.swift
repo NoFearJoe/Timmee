@@ -140,3 +140,14 @@ final class SettingsDetailsCellWithTitleAndSubtitle: SettingsCellWithTitleAndSub
     }
     
 }
+
+final class SettingsProVersionCell: SettingsCellWithTitle {
+    
+    override static var identifier: String { return "SettingsProVersionCell" }
+    
+    override func setDisplayItem(_ item: SettingsItem) {
+        super.setDisplayItem(item)
+        iconView.tintColor = AppTheme.current.yellowColor
+    }
+    
+}
