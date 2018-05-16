@@ -142,6 +142,7 @@
 "pro_version_section" = "PRO версия";
 "pro_version" = "Приобрести PRO версию";
 "restore_pro_version" = "Восстановить PRO версию";
+"restore_error_try_again" = "Не удалось восстановить покупку, попробуйте снова или напишите на почту mesterra.co@gmail.com";
 
 "remove_list" = "Удаление списка";
 "remove_tasks" = "Удаление задач";
@@ -166,6 +167,7 @@
 "yes" = "Да";
 "start" = "Начать";
 "stop" = "Остановить";
+"error" = "Ошибка";
 
 "of" = "из";
 

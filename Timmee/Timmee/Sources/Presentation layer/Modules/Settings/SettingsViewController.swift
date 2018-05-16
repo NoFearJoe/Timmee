@@ -72,6 +72,8 @@ final class SettingsViewController: UIViewController {
         title = "settings".localized
                 
         settingsItems = makeSettingsItems()
+        
+        ProVersionPurchase.shared.loadStore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,12 +143,17 @@ extension SettingsViewController: UITableViewDelegate {
 fileprivate extension SettingsViewController {
     
     func makeSettingsItems() -> [(SettingsSection, [SettingsItem])] {
-        return [
+        var settings: [(SettingsSection, [SettingsItem])] = [
             (.general, makeGeneralSectionItems()),
-            (.proVersion, makeProVersionSectionItems()),
             (.security, makeSecuritySectionItems()),
             (.about, makeAboutSectionItems())
         ]
+        
+        if !ProVersionPurchase.shared.isPurchased() {
+            settings.insert((.proVersion, makeProVersionSectionItems()), at: 1)
+        }
+        
+        return settings
     }
     
     func makeGeneralSectionItems() -> [SettingsItem] {
@@ -207,7 +214,7 @@ fileprivate extension SettingsViewController {
         var proVersionSectionItems: [SettingsItem] = []
         
         let buyProVersionAction = { [unowned self] in
-            
+            // Open purchase VC
         }
         let buyProVersionItem = SettingsItem(title: "pro_version".localized,
                                              subtitle: nil,
@@ -221,7 +228,11 @@ fileprivate extension SettingsViewController {
         proVersionSectionItems.append(buyProVersionItem)
         
         let restoreProVersionAction = { [unowned self] in
-            
+            self.setLoadingVisible(true)
+            ProVersionPurchase.shared.restore { success in
+                self.setLoadingVisible(false)
+                self.showErrorAlert(title: "error".localized, message: "restore_error_try_again".localized)
+            }
         }
         let restoreProVersionItem = SettingsItem(title: "restore_pro_version".localized,
                                                  subtitle: nil,
@@ -376,6 +387,14 @@ fileprivate extension SettingsViewController {
         alert.addAction(UIAlertAction(title: "yes".localized, style: .default, handler: { action in
             onConfirm()
         }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showErrorAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "close".localized, style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
     }
