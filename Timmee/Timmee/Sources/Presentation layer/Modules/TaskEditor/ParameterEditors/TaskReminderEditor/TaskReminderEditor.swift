@@ -25,6 +25,7 @@ extension TaskReminderSelectedNotification: Equatable {
 
 protocol TaskReminderEditorInput: class {
     func setNotification(_ notification: TaskReminderSelectedNotification)
+    func setNotificationDatePickerVisible(_ isVisible: Bool)
 }
 
 protocol TaskReminderEditorOutput: class {
@@ -49,7 +50,13 @@ final class TaskReminderEditor: UITableViewController {
         }
     }
     
-    static fileprivate let rowHeight: CGFloat = 44
+    var isNotificationDatePickerVisible: Bool = true
+    
+    static private let rowHeight: CGFloat = 44
+    
+    private var rowsCount: Int {
+        return NotificationMask.all.count + (isNotificationDatePickerVisible ? 1 : 0)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,6 +71,10 @@ extension TaskReminderEditor: TaskReminderEditorInput {
     func setNotification(_ notification: TaskReminderSelectedNotification) {
         self.selectedNotification = notification
     }
+    
+    func setNotificationDatePickerVisible(_ isVisible: Bool) {
+        self.isNotificationDatePickerVisible = isVisible
+    }
 
 }
 
@@ -74,7 +85,7 @@ extension TaskReminderEditor {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NotificationMask.all.count + 1
+        return rowsCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -148,7 +159,7 @@ extension TaskReminderEditor: TaskDueDateTimeEditorOutput {
 extension TaskReminderEditor: TaskParameterEditorInput {
 
     var requiredHeight: CGFloat {
-        return CGFloat(NotificationMask.all.count + 1) * TaskReminderEditor.rowHeight
+        return CGFloat(rowsCount) * TaskReminderEditor.rowHeight
     }
 
 }

@@ -66,13 +66,15 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         view.backgroundColor = AppTheme.current.backgroundColor
         
-        tasksService.updateTasksDueDates()
-        tasksService.updateTasksNotificationDates()
+        tasksService.updateTasksDueDates { [weak self] in
+            self?.tasksService.updateTasksNotificationDates()
+        }
     }
     
     @objc private func didBecomeActive() {
-        tasksService.updateTasksDueDates()
-        tasksService.updateTasksNotificationDates()
+        tasksService.updateTasksDueDates { [weak self] in
+            self?.tasksService.updateTasksNotificationDates()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

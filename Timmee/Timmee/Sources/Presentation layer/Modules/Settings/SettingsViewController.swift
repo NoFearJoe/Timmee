@@ -36,6 +36,7 @@ struct SettingsItem {
         case detailsTitle
         case detailsSubtitle
         case proVersion
+        case proVersionFeatures
     }
     
     var title: String
@@ -48,6 +49,25 @@ struct SettingsItem {
     var style: Style = .title
     
     var action: (() -> Void)?
+    var helpAction: (() -> Void)? = nil
+    
+    init(title: String,
+         subtitle: String? = nil,
+         icon: UIImage,
+         isOn: Bool = false,
+         isDetailed: Bool = false,
+         isSelectable: Bool = true,
+         style: Style = .title,
+         action: (() -> Void)?) {
+        self.title = title
+        self.subtitle = subtitle
+        self.icon = icon
+        self.isOn = isOn
+        self.isDetailed = isDetailed
+        self.isSelectable = isSelectable
+        self.style = style
+        self.action = action
+    }
     
 }
 
@@ -57,6 +77,8 @@ final class SettingsViewController: UIViewController {
     @IBOutlet fileprivate var loadingView: LoadingView!
     
     var settingsItems: [(SettingsSection, [SettingsItem])] = []
+    
+    private var areProVersionFeaturesShown = false
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
@@ -110,6 +132,7 @@ extension SettingsViewController: UITableViewDataSource {
         case .detailsTitle: cellIdentifier = SettingsDetailsCellWithTitle.identifier
         case .detailsSubtitle: cellIdentifier = SettingsDetailsCellWithTitleAndSubtitle.identifier
         case .proVersion: cellIdentifier = SettingsProVersionCell.identifier
+        case .proVersionFeatures: cellIdentifier = SettingsProVersionFeaturesCell.identifier
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BaseSettingsCell
@@ -136,6 +159,13 @@ extension SettingsViewController: UITableViewDelegate {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1, !ProVersionPurchase.shared.isPurchased(), indexPath.row == 1, areProVersionFeaturesShown {
+            return UITableViewAutomaticDimension
+        }
+        return 52
     }
     
 }
@@ -167,9 +197,6 @@ fileprivate extension SettingsViewController {
         let listSortingItem = SettingsItem(title: "list_sorting".localized,
                                            subtitle: currentListSorting.title,
                                            icon: #imageLiteral(resourceName: "list_sort"),
-                                           isOn: false,
-                                           isDetailed: false,
-                                           isSelectable: true,
                                            style: .titleWithSubtitle,
                                            action: listSortingAction)
         
@@ -179,10 +206,8 @@ fileprivate extension SettingsViewController {
             UserProperty.highlightOverdueTasks.setBool(!UserProperty.highlightOverdueTasks.bool())
         }
         let highlightOverdueTasksItem = SettingsItem(title: "highlight_overdue_tasks".localized,
-                                                     subtitle: nil,
                                                      icon: #imageLiteral(resourceName: "overdue"),
                                                      isOn: UserProperty.highlightOverdueTasks.bool(),
-                                                     isDetailed: false,
                                                      isSelectable: false,
                                                      style: .titleWithSwitch,
                                                      action: highlightOverdueTasksAction)
@@ -214,18 +239,40 @@ fileprivate extension SettingsViewController {
         var proVersionSectionItems: [SettingsItem] = []
         
         let buyProVersionAction = { [unowned self] in
-            // Open purchase VC
+            self.setLoadingVisible(true)
+            ProVersionPurchase.shared.purchase { [unowned self] in
+                self.setLoadingVisible(false)
+                self.reloadSettings() // TODO: Проверить
+            }
         }
-        let buyProVersionItem = SettingsItem(title: "pro_version".localized,
-                                             subtitle: nil,
-                                             icon: UIImage(),
-                                             isOn: false,
-                                             isDetailed: false,
-                                             isSelectable: true,
+        var buyProVersionItem = SettingsItem(title: "pro_version".localized,
+                                             subtitle: "Всего за 75р",
+                                             icon: #imageLiteral(resourceName: "crown"),
+                                             isSelectable: false,
                                              style: .proVersion,
                                              action: buyProVersionAction)
+        buyProVersionItem.helpAction = { [unowned self] in
+            self.areProVersionFeaturesShown = !self.areProVersionFeaturesShown
+            self.settingsItems = self.makeSettingsItems()
+            if self.areProVersionFeaturesShown {
+                self.tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .middle)
+            } else {
+                self.tableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .middle)
+            }
+        }
         
         proVersionSectionItems.append(buyProVersionItem)
+        
+        if areProVersionFeaturesShown {
+            let features = (1..<6).map { "pro_version_feature_\($0)".localized }
+            let featuresItem = SettingsItem(title: features.map { "- " + $0 }.joined(separator: "\n"),
+                                            icon: UIImage(),
+                                            isSelectable: false,
+                                            style: .proVersionFeatures,
+                                            action: nil)
+            
+            proVersionSectionItems.append(featuresItem)
+        }
         
         let restoreProVersionAction = { [unowned self] in
             self.setLoadingVisible(true)
@@ -235,12 +282,8 @@ fileprivate extension SettingsViewController {
             }
         }
         let restoreProVersionItem = SettingsItem(title: "restore_pro_version".localized,
-                                                 subtitle: nil,
-                                                 icon: UIImage(),
-                                                 isOn: false,
-                                                 isDetailed: false,
-                                                 isSelectable: true,
-                                                 style: .proVersion,
+                                                 icon: #imageLiteral(resourceName: "repeat"),
+                                                 style: .title,
                                                  action: restoreProVersionAction)
         
         proVersionSectionItems.append(restoreProVersionItem)
@@ -271,9 +314,7 @@ fileprivate extension SettingsViewController {
         let pinCodeItem = SettingsItem(title: "pin_code_protection".localized,
                                        subtitle: pinCodeSubtitle,
                                        icon: #imageLiteral(resourceName: "key"),
-                                       isOn: false,
                                        isDetailed: true,
-                                       isSelectable: true,
                                        style: .detailsSubtitle,
                                        action: pinCodeAction)
         
@@ -286,10 +327,8 @@ fileprivate extension SettingsViewController {
             UserProperty.biometricsAuthenticationEnabled.setBool(value)
         }
         let biometricsItem = SettingsItem(title: biometricsType.localizedTitle,
-                                          subtitle: nil,
                                           icon: biometricsType.settingsImage,
                                           isOn: isBiometricsEnabled,
-                                          isDetailed: false,
                                           isSelectable: false,
                                           style: .titleWithSwitch,
                                           action: biometricsAction)
@@ -314,11 +353,8 @@ fileprivate extension SettingsViewController {
             UserProperty.isAppRated.setBool(true)
         }
         let rateItem = SettingsItem(title: "rate".localized,
-                                    subtitle: nil,
                                     icon: #imageLiteral(resourceName: "starListIcon"),
-                                    isOn: false,
                                     isDetailed: true,
-                                    isSelectable: true,
                                     style: .detailsTitle,
                                     action: rateAction)
         
@@ -332,11 +368,8 @@ fileprivate extension SettingsViewController {
             self.present(viewController, animated: true, completion: nil)
         }
         let mailItem = SettingsItem(title: "mail_us".localized,
-                                       subtitle: nil,
                                        icon: #imageLiteral(resourceName: "mailListIcon"),
-                                       isOn: false,
                                        isDetailed: true,
-                                       isSelectable: true,
                                        style: .detailsTitle,
                                        action: mailAction)
         
@@ -348,7 +381,6 @@ fileprivate extension SettingsViewController {
         let versionItem = SettingsItem(title: "version".localized,
                                      subtitle: version,
                                      icon: #imageLiteral(resourceName: "homeListIcon"),
-                                     isOn: false,
                                      isDetailed: true,
                                      isSelectable: false,
                                      style: .titleWithSubtitle,

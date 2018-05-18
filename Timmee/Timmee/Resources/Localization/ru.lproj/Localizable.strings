@@ -57,13 +57,13 @@
 "in_progress" = "В процессе";
 "time_template" = "Временной шаблон";
 "time_templates" = "Временные шаблоны";
-"time_template_placeholder" = "Временной шаблон не выбран";
+"time_template_placeholder" = "Временной шаблон";
 "no_time_templates" = "Нет временных шаблонов";
 "no_time_templates_hint" = "Временные шаблоны помогают упростить создание задач";
 "add_time_template" = "Создать временной шаблон...";
 "new_time_template" = "Временной шаблон...";
 "attachments" = "Прикрепленные файлы";
-"no_attachments" = "Нет прикрепленных файлов";
+"no_attachments" = "Прикрепленные файлы";
 "add_subtask" = "Добавить подзадачу...";
 "subtasks" = "подзадач";
 "overdue" = "Просроченные";
@@ -143,6 +143,12 @@
 "pro_version" = "Приобрести PRO версию";
 "restore_pro_version" = "Восстановить PRO версию";
 "restore_error_try_again" = "Не удалось восстановить покупку, попробуйте снова или напишите на почту mesterra.co@gmail.com";
+"pro_version_features_title" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\nДополнительные возможности:";
+"pro_version_feature_1" = "Теги";
+"pro_version_feature_2" = "Временные шаблоны";
+"pro_version_feature_3" = "Голосовые заметки";
+"pro_version_feature_4" = "До 15 прикрепляемых файлов";
+"pro_version_feature_5" = "И еще множество функций в следующих обновлениях";
 
 "remove_list" = "Удаление списка";
 "remove_tasks" = "Удаление задач";

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TaskTagsView: UIView {
+final class TaskTagsView: HiddingParameterView {
     
     @IBOutlet fileprivate var iconView: UIImageView!
     @IBOutlet fileprivate var placeholderLabel: UILabel! {

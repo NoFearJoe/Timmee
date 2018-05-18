@@ -64,7 +64,7 @@ public protocol TasksManager: class {
     func removeTask(_ task: Task, completion: @escaping (TasksService.Error?) -> Void)
     func removeTasks(_ tasks: [Task], completion: @escaping (TasksService.Error?) -> Void)
     func doneTask(withID id: String, completion: @escaping () -> Void)
-    func updateTasksDueDates()
+    func updateTasksDueDates(completion: @escaping () -> Void)
     func updateTasksNotificationDates()
 }
 
@@ -204,7 +204,7 @@ extension TasksService: TasksManager {
         }
     }
     
-    public func updateTasksDueDates() {
+    public func updateTasksDueDates(completion: @escaping () -> Void) {
         DispatchQueue.global().async {
             let tasksToUpdate = self.fetchTaskEntitiesToUpdateDueDateInBackground()
             let updatedTasks = tasksToUpdate.map { entity -> Task in
@@ -212,7 +212,7 @@ extension TasksService: TasksManager {
                 task.dueDate = task.nextDueDate
                 return task
             }
-            self.updateTasks(updatedTasks, completion: { _ in })
+            self.updateTasks(updatedTasks, completion: { _ in completion() })
         }
     }
     

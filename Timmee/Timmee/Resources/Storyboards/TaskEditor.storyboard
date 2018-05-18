@@ -169,8 +169,11 @@
                                                             <outlet property="clearButton" destination="RdG-0v-uJa" id="PPF-u6-Wbu"/>
                                                             <outlet property="heightConstraint" destination="zwn-oX-8Tp" id="Jwy-D0-HtG"/>
                                                             <outlet property="iconView" destination="6UY-G5-t0f" id="X1w-Ep-k3g"/>
+                                                            <outlet property="separator" destination="uXO-yv-4Sf" id="KVK-Jt-z33"/>
                                                             <outlet property="subtitleLabel" destination="nBk-jw-9FP" id="HLO-iH-2tX"/>
                                                             <outlet property="titleView" destination="phc-df-Utm" id="8i8-UJ-FYN"/>
+                                                            <outletCollection property="verticalConstraints" destination="S6R-QZ-lgS" collectionClass="NSMutableArray" id="LvW-wz-VDq"/>
+                                                            <outletCollection property="verticalConstraints" destination="HyT-oP-igD" collectionClass="NSMutableArray" id="S4F-Sg-Hg5"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXO-yv-4Sf">
@@ -525,9 +528,13 @@
                                                             <constraint firstAttribute="trailing" secondItem="Hdj-jN-8MW" secondAttribute="trailing" id="wUS-My-VFP"/>
                                                         </constraints>
                                                         <connections>
+                                                            <outlet property="heightConstraint" destination="9CJ-PG-C09" id="4B1-tV-AKp"/>
                                                             <outlet property="iconView" destination="rX9-jf-I4X" id="0SO-z4-RK1"/>
                                                             <outlet property="placeholderLabel" destination="rSk-xE-RWn" id="a9H-sv-2PP"/>
+                                                            <outlet property="separator" destination="att-iW-ArN" id="6Rw-ht-gyU"/>
                                                             <outlet property="tagsView" destination="Hdj-jN-8MW" id="9aG-ly-rfi"/>
+                                                            <outletCollection property="verticalConstraints" destination="H3o-rG-uld" collectionClass="NSMutableArray" id="uHm-23-3dV"/>
+                                                            <outletCollection property="verticalConstraints" destination="GWC-mw-RnQ" collectionClass="NSMutableArray" id="Prd-c2-dbU"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="att-iW-ArN">

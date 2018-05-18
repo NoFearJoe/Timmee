@@ -141,13 +141,36 @@ final class SettingsDetailsCellWithTitleAndSubtitle: SettingsCellWithTitleAndSub
     
 }
 
-final class SettingsProVersionCell: SettingsCellWithTitle {
+final class SettingsProVersionCell: SettingsCellWithTitleAndSubtitle {
     
     override static var identifier: String { return "SettingsProVersionCell" }
     
+    private var onHelp: (() -> Void)?
+    
     override func setDisplayItem(_ item: SettingsItem) {
         super.setDisplayItem(item)
-        iconView.tintColor = AppTheme.current.yellowColor
+        onHelp = item.helpAction
+    }
+    
+    @IBAction func onHelpButtonTap() {
+        onHelp?()
+    }
+    
+}
+
+final class SettingsProVersionFeaturesCell: BaseSettingsCell {
+    
+    override static var identifier: String { return "SettingsProVersionFeaturesCell" }
+    
+    @IBOutlet private var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = "pro_version_features_title".localized
+        }
+    }
+    @IBOutlet private var featuresLabel: UILabel!
+    
+    override func setDisplayItem(_ item: SettingsItem) {
+        featuresLabel.text = item.title
     }
     
 }

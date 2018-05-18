@@ -57,13 +57,13 @@
 "in_progress" = "In progress";
 "time_template" = "Time template";
 "time_templates" = "Time templates";
-"time_template_placeholder" = "Time template is not selected";
+"time_template_placeholder" = "Time template";
 "no_time_templates" = "No time templates";
 "no_time_templates_hint" = "Time templates help you to simplify creation of tasks";
 "add_time_template" = "Create time template...";
 "new_time_template" = "Time template...";
 "attachments" = "Attachments";
-"no_attachments" = "No attachments";
+"no_attachments" = "Attachments";
 "add_subtask" = "Add subtask...";
 "subtasks" = "subtasks";
 "overdue" = "Overdue";
@@ -143,6 +143,12 @@
 "pro_version" = "Get PRO version";
 "restore_pro_version" = "Restore PRO version";
 "restore_error_try_again" = "Unable to restore the purchase, try again or email mesterra.co@gmail.com";
+"pro_version_features_title" = "";
+"pro_version_feature_1" = "Tags";
+"pro_version_feature_2" = "Time templates";
+"pro_version_feature_3" = "Voice notes";
+"pro_version_feature_4" = "15 attachments";
+"pro_version_feature_5" = "And more functions in future versions";
 
 "remove_list" = "Remove list";
 "remove_tasks" = "Remove tasks";

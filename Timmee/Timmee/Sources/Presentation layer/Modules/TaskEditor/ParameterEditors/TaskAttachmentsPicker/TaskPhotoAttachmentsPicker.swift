@@ -23,7 +23,9 @@ final class TaskPhotoAttachmentsPicker: UIViewController {
     weak var output: TaskPhotoAttachmentsPickerOutput?
     weak var container: TaskParameterEditorOutput?
     
-    var maxPhotos = 10
+    var maxPhotos: Int {
+        return ProVersionPurchase.shared.isPurchased() ? 15 : 5
+    }
     
     @IBOutlet fileprivate var collectionView: UICollectionView!
     

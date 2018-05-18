@@ -185,6 +185,7 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
             let viewController = ViewControllersFactory.taskReminderEditor
             viewController.output = self
             viewController.setNotification(.mask(timeTemplate.notification))
+            viewController.setNotificationDatePickerVisible(false)
             return viewController
         default: return UIViewController()
         }
@@ -217,8 +218,7 @@ extension TaskTimeTemplateEditor: TaskReminderEditorOutput {
         case let .mask(notificationMask):
             timeTemplate.notification = notificationMask
             updateNotification()
-        case let .date(notificationDate):
-            break
+        case .date: break
         }
     }
     

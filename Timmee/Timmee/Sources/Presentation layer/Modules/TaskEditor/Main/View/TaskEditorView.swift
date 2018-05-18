@@ -202,6 +202,12 @@ final class TaskEditorView: UIViewController {
         repeatEndingDateEditorHandler.onDateChange = { [unowned self] date in
             self.output.repeatEndingDateChanged(to: date)
         }
+        
+        if !ProVersionPurchase.shared.isPurchased() {
+            taskAudioNoteView.isHidden = true
+            timeTemplateView.isHidden = true
+            taskTagsView.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
