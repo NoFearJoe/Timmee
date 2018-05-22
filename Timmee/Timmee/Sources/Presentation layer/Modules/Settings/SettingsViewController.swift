@@ -152,12 +152,7 @@ extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = settingsItems[indexPath.section].1[indexPath.row]
-        
-        switch item.style {
-        case .detailsTitle, .detailsSubtitle, .titleWithSubtitle: item.action?()
-        default: break
-        }
-        
+        item.action?()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -240,15 +235,16 @@ fileprivate extension SettingsViewController {
         
         let buyProVersionAction = { [unowned self] in
             self.setLoadingVisible(true)
-            ProVersionPurchase.shared.purchase { [unowned self] in
-                self.setLoadingVisible(false)
-                self.reloadSettings() // TODO: Проверить
+            ProVersionPurchase.shared.requestData { [weak self] in
+                ProVersionPurchase.shared.purchase {
+                    self?.setLoadingVisible(false)
+                    self?.reloadSettings()
+                }
             }
         }
         var buyProVersionItem = SettingsItem(title: "pro_version".localized,
-                                             subtitle: "Всего за 75р",
+                                             subtitle: "just_for_1_dollar".localized,
                                              icon: #imageLiteral(resourceName: "crown"),
-                                             isSelectable: false,
                                              style: .proVersion,
                                              action: buyProVersionAction)
         buyProVersionItem.helpAction = { [unowned self] in
@@ -267,7 +263,6 @@ fileprivate extension SettingsViewController {
             let features = (1..<6).map { "pro_version_feature_\($0)".localized }
             let featuresItem = SettingsItem(title: features.map { "- " + $0 }.joined(separator: "\n"),
                                             icon: UIImage(),
-                                            isSelectable: false,
                                             style: .proVersionFeatures,
                                             action: nil)
             

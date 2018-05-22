@@ -28,14 +28,18 @@ final class ProVersionPurchase: NSObject {
     }
     
     func requestData(completion: @escaping () -> Void) {
-        self.productDataObtained = completion
-        
-        let idSet = Set(arrayLiteral: id)
-        request = SKProductsRequest(productIdentifiers: idSet)
-        request?.delegate = self
-        request?.start()
-        
-        isLoading = true
+        if product != nil {
+            completion()
+        } else {
+            self.productDataObtained = completion
+            
+            let idSet = Set(arrayLiteral: id)
+            request = SKProductsRequest(productIdentifiers: idSet)
+            request?.delegate = self
+            request?.start()
+            
+            isLoading = true
+        }
     }
     
     

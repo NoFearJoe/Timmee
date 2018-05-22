@@ -23,9 +23,9 @@ final class LoadingView: UIView {
     }
     
     fileprivate func initialize() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         addSubview(activityIndicator)
-        backgroundColor = AppTheme.white.scheme.panelColor
+        backgroundColor = AppTheme.white.scheme.backgroundColor
         clipsToBounds = true
         layer.cornerRadius = AppTheme.current.cornerRadius
     }

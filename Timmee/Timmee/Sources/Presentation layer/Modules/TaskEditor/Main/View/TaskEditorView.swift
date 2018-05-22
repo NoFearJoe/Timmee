@@ -551,7 +551,7 @@ extension TaskEditorView: TaskRepeatingEditorOutput {
 
 extension TaskEditorView: TaskLocationEditorOutput {
 
-    func didSelectLocation(_ location: CLLocation) {
+    func didSelectLocation(_ location: CLLocation) {`
         output.locationChanged(to: location)
     }
 

@@ -60,7 +60,7 @@ public class Task {
         creationDate = task.creationDate! as Date
         
         tags = (Array(task.tags as? Set<TagEntity> ?? Set())).map { Tag(entity: $0) }
-        subtasks = (Array(task.subtasks!) as! [SubtaskEntity]).map { Subtask(entity: $0) }
+        subtasks = (Array(task.subtasks as? Set<SubtaskEntity> ?? Set())).map { Subtask(entity: $0) }
         
         if let template = task.timeTemplate {
             timeTemplate = TimeTemplate(entity: template)
@@ -103,8 +103,8 @@ public class Task {
         self.creationDate = creationDate
     }
     
-   public  convenience init(id: String,
-                            title: String) {
+   public convenience init(id: String,
+                           title: String) {
         self.init(id: id,
                   title: title,
                   isImportant: false,
