@@ -144,7 +144,7 @@
 "restore_pro_version" = "Восстановить PRO версию";
 "restore_error_try_again" = "Не удалось восстановить покупку, попробуйте снова или напишите на почту mesterra.co@gmail.com";
 "pro_version_features_title" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\nДополнительные возможности:";
-"pro_version_feature_1" = "Теги";
+"pro_version_feature_1" = "Теги к задачам";
 "pro_version_feature_2" = "Временные шаблоны";
 "pro_version_feature_3" = "Голосовые заметки";
 "pro_version_feature_4" = "До 15 прикрепляемых файлов";
