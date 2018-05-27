@@ -220,6 +220,7 @@ private extension TaskSchedulerService {
         notification.alertTitle = title
         notification.alertBody = message
         notification.repeatCalendar = NSCalendar.current
+        notification.soundName = UILocalNotificationDefaultSoundName
         notification.category = "task"
         
         if let unit = repeatUnit {
