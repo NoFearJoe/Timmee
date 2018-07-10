@@ -167,4 +167,9 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
         return state.checkedTasks.contains(task)
     }
     
+    func didPressDeleteCompletedTasks() {
+        view.setInteractionsEnabled(false)
+        interactor.deleteCompletedTasks()
+    }
+    
 }

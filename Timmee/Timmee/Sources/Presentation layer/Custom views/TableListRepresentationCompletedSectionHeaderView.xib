@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TableListRepresentationCompletedSectionHeaderView" customModule="Timmee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Завершенные задачи" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMc-Je-uFL">
+                    <rect key="frame" x="37" y="10" width="300" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaM-Nz-swv">
+                    <rect key="frame" x="345" y="9" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="EaM-Nz-swv" secondAttribute="height" multiplier="1:1" id="0Ae-J1-Ga6"/>
+                        <constraint firstAttribute="width" constant="22" id="U1F-dc-e4W"/>
+                    </constraints>
+                    <state key="normal" image="trash"/>
+                    <connections>
+                        <action selector="deleteButtonTap" destination="iN0-l3-epB" eventType="touchUpInside" id="vDQ-LR-VBk"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KMc-Je-uFL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="5OW-O1-4My"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EaM-Nz-swv" secondAttribute="trailing" constant="8" id="EGc-ho-j9U"/>
+                <constraint firstItem="KMc-Je-uFL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LeV-dP-QOn"/>
+                <constraint firstItem="EaM-Nz-swv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R2s-yW-ySP"/>
+                <constraint firstItem="EaM-Nz-swv" firstAttribute="leading" secondItem="KMc-Je-uFL" secondAttribute="trailing" constant="8" id="VTz-tm-M9o"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="deleteButton" destination="EaM-Nz-swv" id="GqY-39-Vdc"/>
+                <outlet property="titleLabel" destination="KMc-Je-uFL" id="a3Z-xs-DPr"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="trash" width="20" height="20"/>
+    </resources>
+</document>

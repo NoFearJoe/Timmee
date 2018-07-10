@@ -42,6 +42,8 @@ protocol TableListRepresentationAdapterOutput: class {
     func didCheckTask(_ task: Task)
     func didUncheckTask(_ task: Task)
     func taskIsChecked(_ task: Task) -> Bool
+    
+    func didPressDeleteCompletedTasks()
 }
 
 final class TableListRepresentationAdapter: NSObject {
@@ -158,9 +160,12 @@ extension TableListRepresentationAdapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // Если это секция незавершенных задач && есть секция завершенных задач и секция завершенных задач не пустая -> показывать кнопку
         if let sectionInfo = dataSource.sectionInfo(forSectionAt: section), sectionInfo.name == "1", sectionInfo.numberOfItems > 0 {
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ListRepresentationFooter") as! ListRepresentationFooter
+            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableListRepresentationCompletedSectionHeaderView") as! TableListRepresentationCompletedSectionHeaderView
             
             view.title = "completed_tasks".localized
+            view.onDelete = { [unowned self] in
+                self.output.didPressDeleteCompletedTasks()
+            }
             
             view.applyAppearance()
             
@@ -175,6 +180,10 @@ extension TableListRepresentationAdapter: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? TableListRepresentationCell)?.applyAppearance()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as? TableListRepresentationCompletedSectionHeaderView)?.applyAppearance()
     }
     
 }

@@ -26,6 +26,7 @@ protocol TableListRepresentationInteractorInput: class {
     func toggleTasksProgressState(_ tasks: [Task])
     func toggleImportancy(of task: Task)
     func moveTasks(_ tasks: [Task], toList list: List)
+    func deleteCompletedTasks()
     
     func item(at index: Int, in section: Int) -> Task?
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)?
@@ -72,6 +73,24 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     
     func deleteTasks(_ tasks: [Task]) {
         tasks.forEach { taskSchedulerService.removeNotifications(for: $0) }
+        tasksService.removeTasks(tasks) { [weak self] error in
+            self?.output.operationCompleted()
+        }
+    }
+    
+    func deleteCompletedTasks() {
+        guard let listID = lastListID else {
+            output.operationCompleted()
+            return
+        }
+        
+        let tasks: [Task]
+        if SmartListType.isSmartListID(listID) {
+            tasks = tasksService.fetchTasks(smartListID: listID, isDone: true)
+        } else {
+            tasks = tasksService.fetchTasks(listID: listID, isDone: true)
+        }
+        
         tasksService.removeTasks(tasks) { [weak self] error in
             self?.output.operationCompleted()
         }

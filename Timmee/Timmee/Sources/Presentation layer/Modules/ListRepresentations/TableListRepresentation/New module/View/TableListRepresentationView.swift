@@ -105,8 +105,8 @@ private extension TableListRepresentationView {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(UINib(nibName: "TableListRepresentationCell", bundle: nil),
                            forCellReuseIdentifier: "TableListRepresentationCell")
-        tableView.register(ListRepresentationFooter.self,
-                           forHeaderFooterViewReuseIdentifier: "ListRepresentationFooter")
+        tableView.register(UINib(nibName: "TableListRepresentationCompletedSectionHeaderView", bundle: nil),
+                           forHeaderFooterViewReuseIdentifier: "TableListRepresentationCompletedSectionHeaderView")
         
         adapter.setupTableView(tableView)
     }

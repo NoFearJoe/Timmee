@@ -11,6 +11,7 @@
 		0C0816C9208F3ACD008F2645 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0816C8208F3ACD008F2645 /* Lists.storyboard */; };
 		0C0816CB208F4039008F2645 /* MainViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0816CA208F4039008F2645 /* MainViewController+State.swift */; };
 		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
+		0C27281120F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C27281020F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib */; };
 		0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */; };
 		0C5D847D1FF61C8C0019BEB2 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */; };
 		0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */; };
@@ -59,7 +60,7 @@
 		0C9B2455207F5CEC009EF6DE /* TableListRepresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2454207F5CEC009EF6DE /* TableListRepresentationAssembly.swift */; };
 		0C9B2459207F80E5009EF6DE /* ListsSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2458207F80E5009EF6DE /* ListsSeparatorView.swift */; };
 		0C9B245F20808303009EF6DE /* TaskCreationPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B245E20808303009EF6DE /* TaskCreationPanelViewController.swift */; };
-		0C9B24612080859C009EF6DE /* ListRepresentationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24602080859C009EF6DE /* ListRepresentationFooter.swift */; };
+		0C9B24612080859C009EF6DE /* TableListRepresentationCompletedSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24602080859C009EF6DE /* TableListRepresentationCompletedSectionHeaderView.swift */; };
 		0C9B246420808B7B009EF6DE /* GroupEditingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B246320808B7B009EF6DE /* GroupEditingPanelViewController.swift */; };
 		0C9B24742080A259009EF6DE /* MenuPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24732080A259009EF6DE /* MenuPanelViewController.swift */; };
 		0C9B24792080BD84009EF6DE /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24782080BD84009EF6DE /* MainRouter.swift */; };
@@ -206,6 +207,7 @@
 		0C0816C8208F3ACD008F2645 /* Lists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lists.storyboard; sourceTree = "<group>"; };
 		0C0816CA208F4039008F2645 /* MainViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+State.swift"; sourceTree = "<group>"; };
 		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
+		0C27281020F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationCompletedSectionHeaderView.xib; sourceTree = "<group>"; };
 		0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDatePicker.swift; sourceTree = "<group>"; };
@@ -255,7 +257,7 @@
 		0C9B2454207F5CEC009EF6DE /* TableListRepresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationAssembly.swift; sourceTree = "<group>"; };
 		0C9B2458207F80E5009EF6DE /* ListsSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsSeparatorView.swift; sourceTree = "<group>"; };
 		0C9B245E20808303009EF6DE /* TaskCreationPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreationPanelViewController.swift; sourceTree = "<group>"; };
-		0C9B24602080859C009EF6DE /* ListRepresentationFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepresentationFooter.swift; sourceTree = "<group>"; };
+		0C9B24602080859C009EF6DE /* TableListRepresentationCompletedSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationCompletedSectionHeaderView.swift; sourceTree = "<group>"; };
 		0C9B246320808B7B009EF6DE /* GroupEditingPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditingPanelViewController.swift; sourceTree = "<group>"; };
 		0C9B24732080A259009EF6DE /* MenuPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPanelViewController.swift; sourceTree = "<group>"; };
 		0C9B24782080BD84009EF6DE /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
@@ -1347,7 +1349,8 @@
 				96594E53200B6CB000998133 /* ContinueEducationButton.swift */,
 				96594E582013A5B400998133 /* TaskImportancyPicker.swift */,
 				0C9B2458207F80E5009EF6DE /* ListsSeparatorView.swift */,
-				0C9B24602080859C009EF6DE /* ListRepresentationFooter.swift */,
+				0C9B24602080859C009EF6DE /* TableListRepresentationCompletedSectionHeaderView.swift */,
+				0C27281020F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -1500,6 +1503,7 @@
 				963D6A611F5C42990063E295 /* TaskEditor.storyboard in Resources */,
 				96AAA5861FB041D000F547A0 /* Settings.storyboard in Resources */,
 				96BE0A2E1F6314AE0041FBEA /* ListEditor.storyboard in Resources */,
+				0C27281120F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1612,7 +1616,7 @@
 				96115F361F6E7E5D0050D7A3 /* TaskCheckableParameterView.swift in Sources */,
 				965798D51F91340100F65019 /* NumberPadItem.swift in Sources */,
 				96AAA59D1FB231D200F547A0 /* SearchViewController.swift in Sources */,
-				0C9B24612080859C009EF6DE /* ListRepresentationFooter.swift in Sources */,
+				0C9B24612080859C009EF6DE /* TableListRepresentationCompletedSectionHeaderView.swift in Sources */,
 				0C8738DA1FB9747700EA1571 /* TaskTagsPicker.swift in Sources */,
 				96A5F1381F507AC500F94553 /* WeekDaysPicker.swift in Sources */,
 				0C8738D31FB9747700EA1571 /* TaskLocationEditor.swift in Sources */,
