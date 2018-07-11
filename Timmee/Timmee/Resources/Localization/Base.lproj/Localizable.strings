@@ -157,6 +157,10 @@
 "are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Are you sure you want to remove the list with all tasks?";
 "are_you_sure_you_want_to_delete_tasks" = "Are you sure you want to remove this tasks?";
 "are_you_sure_you_want_to_move_tasks" = "Are you sure you want to move this tasks to";
+"are_you_sure_you_want_to_remove_completed_tasks" = "Are you sure you want to remove completed tasks?";
+
+"cancel_last_action" = "Cancel last action";
+"go_to_list" = "Go to";
 
 "attention" = "Attention";
 "change_pin_code" = "Do you want to change pin-code?";

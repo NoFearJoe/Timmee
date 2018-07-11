@@ -24,6 +24,7 @@ final class ControlPanel: BarView {
     private var isControlsHidden = false
     
     private var isGroupEditingAvailable = false
+    private var isGroupEditing = false
     
     func showList(_ list: List) {
         setListIcon(list.icon)
@@ -44,6 +45,7 @@ final class ControlPanel: BarView {
     
     func setGroupEditingVisible(_ isVisible: Bool) {
         editButton.isHidden = !isVisible
+        editButton.alpha = isVisible ? 1 : 0
         isGroupEditingAvailable = isVisible
     }
     
@@ -51,6 +53,7 @@ final class ControlPanel: BarView {
         editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .normal)
         editButton.setImage(isEditing ? #imageLiteral(resourceName: "checkmark") : #imageLiteral(resourceName: "edit"), for: .disabled)
         editButton.tintColor = isEditing ? AppTheme.current.greenColor : AppTheme.current.backgroundTintColor
+        isGroupEditing = isEditing
     }
     
     func setNotGroupEditingControlsHidden(_ isHidden: Bool) {
@@ -58,8 +61,10 @@ final class ControlPanel: BarView {
                        delay: 0,
                        options: .curveEaseOut,
                        animations: {
-                           self.settingsButton.isHidden = isHidden
-                           self.searchButton.isHidden = isHidden
+                        [self.settingsButton, self.searchButton].forEach {
+                            $0?.isHidden = isHidden
+                            $0?.alpha = isHidden ? 0 : 1
+                        }
                            self.layoutIfNeeded()
         }, completion: nil)
     }
@@ -106,6 +111,9 @@ final class ControlPanel: BarView {
     
     private var controlsToChangeVisibility: [UIButton] {
         if isGroupEditingAvailable {
+            if isGroupEditing {
+                return [editButton]
+            }
             return [settingsButton, searchButton, editButton]
         }
         return [settingsButton, searchButton]

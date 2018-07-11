@@ -14,7 +14,7 @@ protocol ListRepresentationInput: TableListRepresentationEditingInput {
     var editingOutput: ListRepresentationEditingOutput? { get set }
         
     func setList(list: List)
-    func performGroupEditingAction(_ action: TargetGroupEditingAction)
+    func performGroupEditingAction(_ action: TargetGroupEditingAction, completion: (([Task]) -> Void)?)
 }
 
 protocol TableListRepresentationEditingInput: class {

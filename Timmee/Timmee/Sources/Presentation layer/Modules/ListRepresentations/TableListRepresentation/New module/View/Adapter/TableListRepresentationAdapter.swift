@@ -163,6 +163,7 @@ extension TableListRepresentationAdapter: UITableViewDelegate {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableListRepresentationCompletedSectionHeaderView") as! TableListRepresentationCompletedSectionHeaderView
             
             view.title = "completed_tasks".localized
+            view.showDeleteButton = editingMode == .default
             view.onDelete = { [unowned self] in
                 self.output.didPressDeleteCompletedTasks()
             }

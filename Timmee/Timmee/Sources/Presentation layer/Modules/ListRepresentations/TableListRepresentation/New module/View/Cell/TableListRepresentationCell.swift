@@ -205,6 +205,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     func applyAppearance() {
         contentView.backgroundColor = .clear
         containerView.fillColor = AppTheme.current.foregroundColor
+        containerView.setNeedsDisplay()
         titleLabel.textColor = AppTheme.current.tintColor
         timeTemplateLabel.textColor = AppTheme.current.specialColor
         subtasksLabel.textColor = AppTheme.current.secondaryTintColor

@@ -22,6 +22,7 @@ final class MainViewController: UIViewController {
     
     private var menuPanel: MenuPanelInput!
     private var taskCreationPanel: TaskCreationPanelInput!
+    private var temporaryActionPanel: TemporaryActionPanelInput!
     
     private lazy var representationManager: ListRepresentationManagerInput = {
         let manager = ListRepresentationManager()
@@ -90,6 +91,10 @@ final class MainViewController: UIViewController {
             guard let groupEditingPanel = segue.destination as? GroupEditingPanelViewController else { return }
             groupEditingPanel.output = editingModeController
             editingModeController.groupEditingPanel = groupEditingPanel
+        } else if segue.identifier == "EmbedTemporaryActionPanel" {
+            guard let temporaryActionPanel = segue.destination as? TemporaryActionPanelViewController else { return }
+            temporaryActionPanel.output = self
+            self.temporaryActionPanel = temporaryActionPanel
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -173,10 +178,28 @@ extension MainViewController: TaskCreationPanelOutput {
     
 }
 
+extension MainViewController: TemporaryActionPanelOutput {
+    
+    func didSelectAction(_ action: TemporaryAction) {
+        switch action {
+        case .rollback: break
+        case let .showList(list):
+            didSelectList(list)
+        }
+    }
+    
+}
+
 extension MainViewController: EditingModeControllerOutput {
     
     func performGroupEditingAction(_ action: TargetGroupEditingAction) {
-        representationManager.currentListRepresentationInput?.performGroupEditingAction(action)
+        representationManager.currentListRepresentationInput?.performGroupEditingAction(action) { [weak self] affectedTasks in
+            switch action {
+            case let .move(list):
+                self?.temporaryActionPanel.show(action: .showList(list), deadline: 5)
+            default: break
+            }
+        }
     }
     
     func performEditingModeChange(to mode: ListRepresentationEditingMode) {

@@ -36,15 +36,20 @@ extension TableListRepresentationPresenter: ListRepresentationInput {
         interactor.subscribeToTasks(in: list)
     }
     
-    func performGroupEditingAction(_ action: TargetGroupEditingAction) {
+    func performGroupEditingAction(_ action: TargetGroupEditingAction, completion: (([Task]) -> Void)?) {
         view.setInteractionsEnabled(false)
+        
+        let tasks = state.checkedTasks
         switch action {
         case .delete:
-            interactor.deleteTasks(state.checkedTasks)
+            interactor.deleteTasks(tasks)
         case .complete:
-            interactor.completeTasks(state.checkedTasks)
+            interactor.completeTasks(tasks)
         case let .move(list):
-            interactor.moveTasks(state.checkedTasks, toList: list)
+            interactor.moveTasks(tasks, toList: list) { [weak self] in
+                self?.view.setInteractionsEnabled(true)
+                completion?(tasks)
+            }
         }
         state.checkedTasks = []
     }
@@ -168,8 +173,16 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     }
     
     func didPressDeleteCompletedTasks() {
-        view.setInteractionsEnabled(false)
-        interactor.deleteCompletedTasks()
+        view.showAlert(title: nil,
+                       message: "are_you_sure_you_want_to_remove_completed_tasks".localized,
+                       actions: [.cancel, .ok("remove".localized)]) { [unowned self] action in
+            switch action {
+            case .ok:
+                self.view.setInteractionsEnabled(false)
+                self.interactor.deleteCompletedTasks()
+            case .cancel: return
+            }
+        }
     }
     
 }

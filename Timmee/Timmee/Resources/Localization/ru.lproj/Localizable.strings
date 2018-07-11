@@ -157,6 +157,10 @@
 "are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Удалить список со всеми задачами?";
 "are_you_sure_you_want_to_delete_tasks" = "Удалить выбранные задачи?";
 "are_you_sure_you_want_to_move_tasks" = "Перенести выбранные задачи в список";
+"are_you_sure_you_want_to_remove_completed_tasks" = "Удалить завершенные задачи?";
+
+"cancel_last_action" = "Отменить последнее действие";
+"go_to_list" = "Перейти в";
 
 "attention" = "Внимание";
 "change_pin_code" = "Хотите сменить пин-код?";

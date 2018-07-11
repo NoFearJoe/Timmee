@@ -161,8 +161,8 @@ extension ListsViewController: ListsInteractorOutput {
                 output?.didUpdateList(list)
             }
         case .move(let indexPath, let newIndexPath):
-            if indexPath == currentListIndexPath {
-                currentListIndexPath = newIndexPath
+            if let newCurrentListIndexPath = listsInteractor.indexPath(ofList: currentList) {
+                currentListIndexPath = newCurrentListIndexPath
             }
             collectionView.reloadItems(at: [indexPath, newIndexPath])
         default: break

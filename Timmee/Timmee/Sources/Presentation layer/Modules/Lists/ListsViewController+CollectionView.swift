@@ -49,9 +49,7 @@ extension ListsViewController: UICollectionViewDataSource {
                 guard let indexPath = collectionView.indexPath(for: cell) else { return }
                 self?.handleListFavoriteChange(at: indexPath)
             }
-            
-//            cell.roundedCorners = self.roundedCorners(forListAt: indexPath)
-            
+                        
             cell.actionsProvider = self
         }
         return cell
@@ -195,44 +193,6 @@ private extension ListsViewController {
         alert.addAction(UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
-    }
-    
-}
-
-private extension ListsViewController {
-    
-    func roundedCorners(forListAt indexPath: IndexPath) -> UIRectCorner {
-        let itemsCount = listsInteractor.numberOfItems(in: indexPath.section)
-        
-        if UIDevice.current.isIpad {
-            switch (indexPath.item, itemsCount) {
-            case (_, 0...1): return .allCorners
-            case (0, _): return [.topLeft]
-            case (1, _): return [.topRight]
-            case (let index, let itemsCount) where index == itemsCount - 1:
-                if index % 2 == 0 {
-                    return [.bottomLeft, .bottomRight]
-                } else {
-                    return .bottomRight
-                }
-            default: return []
-            }
-        } else {
-            switch (indexPath.item, itemsCount) {
-            case (_, 0...1): return .allCorners
-            case (0, _): return [.topLeft, .topRight]
-            case (let index, let itemsCount) where index == itemsCount - 1: return [.bottomLeft, .bottomRight]
-            default: return []
-            }
-        }
-    }
-    
-    func roundedCorners(forAddListCellAt indexPath: IndexPath) -> UIRectCorner {
-        if indexPath.item == 0 {
-            return [.topLeft, .bottomLeft]
-        } else {
-            return [.topRight, .bottomRight]
-        }
     }
     
 }

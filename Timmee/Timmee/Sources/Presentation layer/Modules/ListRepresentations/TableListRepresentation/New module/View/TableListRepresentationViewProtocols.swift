@@ -8,7 +8,7 @@
 
 import struct Foundation.IndexPath
 
-protocol TableListRepresentationViewInput: class {
+protocol TableListRepresentationViewInput: AlertInput {
     func showNoTasksPlaceholder()
     func hideNoTasksPlaceholder()
     

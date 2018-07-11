@@ -25,7 +25,7 @@ protocol TableListRepresentationInteractorInput: class {
     func toggleTaskProgressState(_ task: Task)
     func toggleTasksProgressState(_ tasks: [Task])
     func toggleImportancy(of task: Task)
-    func moveTasks(_ tasks: [Task], toList list: List)
+    func moveTasks(_ tasks: [Task], toList list: List, completion: (() -> Void)?)
     func deleteCompletedTasks()
     
     func item(at index: Int, in section: Int) -> Task?
@@ -169,9 +169,9 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         }
     }
     
-    func moveTasks(_ tasks: [Task], toList list: List) {
-        tasksService.updateTasks(tasks, listID: list.id) { [weak self] error in
-            self?.output.groupEditingOperationCompleted()
+    func moveTasks(_ tasks: [Task], toList list: List, completion: (() -> Void)?) {
+        tasksService.updateTasks(tasks, listID: list.id) { _ in
+            completion?()
         }
     }
     

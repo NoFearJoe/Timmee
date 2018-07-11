@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TableListRepresentationView: UIViewController {
+final class TableListRepresentationView: UIViewController, AlertInput {
     
     var output: TableListRepresentationViewOutput!
     var adapter: TableListRepresentationAdapterInput!
@@ -69,9 +69,13 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
                     adapter.applyEditingMode(mode, toCell: $0, animated: true) {
                         group.leave()
                     }
-                    
-                    group.notify(queue: .main, execute: completion)
+                }
+            if let completedTasksHeaderView =
+                tableView.headerView(forSection: 0) as? TableListRepresentationCompletedSectionHeaderView
+                ?? tableView.headerView(forSection: 1) as? TableListRepresentationCompletedSectionHeaderView {
+                completedTasksHeaderView.showDeleteButton = mode == .default
             }
+            group.notify(queue: .main, execute: completion)
         } else {
             completion()
         }
