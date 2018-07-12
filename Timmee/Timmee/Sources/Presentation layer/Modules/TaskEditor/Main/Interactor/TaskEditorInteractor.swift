@@ -53,8 +53,7 @@ extension TaskEditorInteractor: TaskEditorInteractorInput {
     
     
     func scheduleTask(_ task: Task) {
-        let listTitle = tasksService.retrieveList(of: task)?.title
-        taskSchedulerService.scheduleTask(task, listTitle: listTitle ?? "all_tasks".localized)
+        taskSchedulerService.scheduleTask(task)
     }
     
     

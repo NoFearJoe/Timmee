@@ -108,9 +108,8 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
             if task.isDone {
                 self.taskSchedulerService.removeNotifications(for: task)
             } else {
-                let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
                 NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
-                self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
+                self.taskSchedulerService.scheduleTask(task)
             }
             
             self.output.operationCompleted()
@@ -133,9 +132,8 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
                 if task.isDone {
                     self.taskSchedulerService.removeNotifications(for: task)
                 } else {
-                    let listTitle = self.tasksService.retrieveList(of: task)?.title ?? "all_tasks".localized
                     NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
-                    self.taskSchedulerService.scheduleTask(task, listTitle: listTitle)
+                    self.taskSchedulerService.scheduleTask(task)
                 }
             }
             self.output.groupEditingOperationCompleted()

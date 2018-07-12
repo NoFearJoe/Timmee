@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Завершенные задачи" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMc-Je-uFL">
-                    <rect key="frame" x="41" y="7.5" width="292" height="26"/>
+                    <rect key="frame" x="101" y="7.5" width="172" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="5AY-9h-6Df"/>
                     </constraints>
@@ -54,7 +54,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EaM-Nz-swv" secondAttribute="trailing" constant="8" id="EGc-ho-j9U"/>
                 <constraint firstItem="KMc-Je-uFL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LeV-dP-QOn"/>
                 <constraint firstItem="EaM-Nz-swv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R2s-yW-ySP"/>
-                <constraint firstItem="EaM-Nz-swv" firstAttribute="leading" secondItem="KMc-Je-uFL" secondAttribute="trailing" constant="8" id="VTz-tm-M9o"/>
+                <constraint firstItem="EaM-Nz-swv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KMc-Je-uFL" secondAttribute="trailing" constant="8" id="VTz-tm-M9o"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

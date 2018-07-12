@@ -171,8 +171,7 @@ private extension AppDelegate {
         
         let nextFireDate = oldFireDate + minutes.asMinutes
 
-        let title = ServicesAssembly.shared.tasksService.retrieveList(of: task)?.title
-        TaskSchedulerService().scheduleDeferredTask(task, listTitle: title ?? "all_tasks".localized, fireDate: nextFireDate)
+        TaskSchedulerService().scheduleDeferredTask(task, fireDate: nextFireDate)
         completion()
     }
     

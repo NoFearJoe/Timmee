@@ -25,7 +25,11 @@ final class TableListRepresentationCompletedSectionHeaderView: UITableViewHeader
     
     var title: String? {
         didSet {
-            titleLabel.text = title
+            if let title = title {
+                titleLabel.text = "\(title)    "
+            } else  {
+                titleLabel.text = nil
+            }
         }
     }
     

@@ -17,7 +17,7 @@ public final class TaskSchedulerService {
 
     public init() {}
     
-    public func scheduleTask(_ task: Task, listTitle: String) {
+    public func scheduleTask(_ task: Task) {
         removeNotifications(for: task)
 
         guard !task.isDone else { return }
@@ -38,8 +38,8 @@ public final class TaskSchedulerService {
                 }
                 
                 scheduleLocalNotification(withID: task.id,
-                                          title: listTitle,
-                                          message: task.title,
+                                          title: task.title,
+                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
                                           at: notificationDate,
                                           repeatUnit: nil,
                                           end: task.repeatEndingDate,
@@ -54,8 +54,8 @@ public final class TaskSchedulerService {
                 }
                 
                 scheduleLocalNotification(withID: task.id,
-                                          title: listTitle,
-                                          message: task.title,
+                                          title: task.title,
+                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
                                           at: notificationDate,
                                           repeatUnit: unit.calendarUnit,
                                           end: task.repeatEndingDate,
@@ -69,8 +69,8 @@ public final class TaskSchedulerService {
                     let dayNumber = fireDate.weekday - 1
                     if unit.dayNumbers.contains(dayNumber) {
                         scheduleLocalNotification(withID: task.id,
-                                                  title: listTitle,
-                                                  message: task.title,
+                                                  title: task.title,
+                                                  message: TaskSchedulerService.makeNotificationMessage(for: task),
                                                   at: fireDate,
                                                   repeatUnit: .weekOfYear,
                                                   end: task.repeatEndingDate,
@@ -92,8 +92,8 @@ public final class TaskSchedulerService {
                 }
                 
                 scheduleLocalNotification(withID: task.id,
-                                          title: listTitle,
-                                          message: task.title,
+                                          title: task.title,
+                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
                                           at: fireDate,
                                           repeatUnit: nil,
                                           end: task.repeatEndingDate,
@@ -110,8 +110,8 @@ public final class TaskSchedulerService {
                 }
                 
                 scheduleLocalNotification(withID: task.id,
-                                          title: listTitle,
-                                          message: task.title,
+                                          title: task.title,
+                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
                                           at: fireDate,
                                           repeatUnit: unit.calendarUnit,
                                           end: task.repeatEndingDate,
@@ -127,8 +127,8 @@ public final class TaskSchedulerService {
                     let dayNumber = fireDate.weekday - 1
                     if unit.dayNumbers.contains(dayNumber) {
                         scheduleLocalNotification(withID: task.id,
-                                                  title: listTitle,
-                                                  message: task.title,
+                                                  title: task.title,
+                                                  message: TaskSchedulerService.makeNotificationMessage(for: task),
                                                   at: fireDate,
                                                   repeatUnit: .weekOfYear,
                                                   end: task.repeatEndingDate,
@@ -138,8 +138,8 @@ public final class TaskSchedulerService {
             }
         } else if task.shouldNotifyAtLocation {
             scheduleLocalNotification(withID: task.id,
-                                      title: listTitle,
-                                      message: task.title,
+                                      title: task.title,
+                                      message: TaskSchedulerService.makeNotificationMessage(for: task),
                                       at: nil,
                                       repeatUnit: nil,
                                       end: task.repeatEndingDate,
@@ -150,7 +150,7 @@ public final class TaskSchedulerService {
     /**
      Создает уведомление для задачи, которую пользователь перенес на другое время
      */
-    public func scheduleDeferredTask(_ task: Task, listTitle: String, fireDate: Date) {
+    public func scheduleDeferredTask(_ task: Task, fireDate: Date) {
         removeDeferredNotifications(for: task)
         
         guard !task.isDone else { return }
@@ -158,8 +158,8 @@ public final class TaskSchedulerService {
         let location = task.shouldNotifyAtLocation ? task.location : nil
                 
         scheduleLocalNotification(withID: task.id,
-                                  title: listTitle,
-                                  message: task.title,
+                                  title: task.title,
+                                  message: TaskSchedulerService.makeNotificationMessage(for: task),
                                   at: fireDate,
                                   repeatUnit: nil,
                                   end: task.repeatEndingDate,
@@ -244,4 +244,15 @@ private extension TaskSchedulerService {
         UIApplication.shared.scheduleLocalNotification(notification)
     }
 
+}
+
+private extension TaskSchedulerService {
+    
+    static func makeNotificationMessage(for task: Task) -> String {
+        if let dueDate = task.dueDate {
+            return dueDate.asNearestDateString
+        }
+        return task.note
+    }
+    
 }

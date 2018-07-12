@@ -51,7 +51,7 @@ extension MainRouter: MainRouterInput {
         
         configuration(taskEditorInput)
         
-        taskEditorView.setTaskImportant(isImportant)
+        if isImportant { taskEditorView.setTaskImportant(true) }
         
         transitionHandler.present(taskEditorView, animated: true, completion: nil)
     }
