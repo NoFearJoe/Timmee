@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableListRepresentationBaseCell" rowHeight="40" id="Onz-0d-zT3" customClass="TableListRepresentationBaseCell" customModule="Timmee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Onz-0d-zT3" id="sxr-2X-kPL">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqq-IJ-QVD" customClass="CheckBox" customModule="Timmee" customModuleProvider="target">
+                        <rect key="frame" x="-28" y="6" width="28" height="28"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="28" id="D1K-J3-ThA"/>
+                        </constraints>
+                    </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw7-AR-kTg" customClass="TableListRepersentationCellContainerView" customModule="Timmee" customModuleProvider="target">
+                        <rect key="frame" x="8" y="0.0" width="359" height="39.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjP-9o-cC7">
+                                <rect key="frame" x="8" y="10" width="343" height="19.5"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Задача asd asd asd asd asd asd asd as da asdasdasdasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W40-ow-VHI">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="W40-ow-VHI" secondAttribute="trailing" id="7T4-qf-w2v"/>
+                                    <constraint firstItem="W40-ow-VHI" firstAttribute="top" secondItem="IjP-9o-cC7" secondAttribute="top" id="gTa-RM-E1D"/>
+                                    <constraint firstAttribute="bottom" secondItem="W40-ow-VHI" secondAttribute="bottom" id="q7e-mj-feW"/>
+                                    <constraint firstItem="W40-ow-VHI" firstAttribute="leading" secondItem="IjP-9o-cC7" secondAttribute="leading" id="xBJ-mQ-i25"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IjP-9o-cC7" secondAttribute="trailing" constant="8" id="3UF-b1-btr"/>
+                            <constraint firstItem="IjP-9o-cC7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xw7-AR-kTg" secondAttribute="top" priority="750" constant="8" id="3rb-y3-TBl"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IjP-9o-cC7" secondAttribute="bottom" priority="750" constant="8" id="RTQ-ZZ-08A"/>
+                            <constraint firstItem="IjP-9o-cC7" firstAttribute="centerY" secondItem="xw7-AR-kTg" secondAttribute="centerY" id="mmG-fD-P3U"/>
+                            <constraint firstItem="IjP-9o-cC7" firstAttribute="leading" secondItem="xw7-AR-kTg" secondAttribute="leading" constant="8" id="pdV-lH-KAw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Aqq-IJ-QVD" firstAttribute="centerY" secondItem="sxr-2X-kPL" secondAttribute="centerY" id="5qe-DH-ZEa"/>
+                    <constraint firstItem="xw7-AR-kTg" firstAttribute="leading" secondItem="Aqq-IJ-QVD" secondAttribute="trailing" constant="8" id="AYg-a8-pfL"/>
+                    <constraint firstAttribute="bottom" secondItem="xw7-AR-kTg" secondAttribute="bottom" id="OSC-ao-u21"/>
+                    <constraint firstAttribute="trailing" secondItem="xw7-AR-kTg" secondAttribute="trailing" constant="8" id="Ujo-2q-Fpg"/>
+                    <constraint firstItem="xw7-AR-kTg" firstAttribute="leading" secondItem="sxr-2X-kPL" secondAttribute="leading" constant="8" id="YFm-0n-psk"/>
+                    <constraint firstItem="xw7-AR-kTg" firstAttribute="top" secondItem="sxr-2X-kPL" secondAttribute="top" id="ez5-zk-7Ko"/>
+                    <constraint firstItem="Aqq-IJ-QVD" firstAttribute="width" secondItem="Aqq-IJ-QVD" secondAttribute="height" multiplier="1:1" id="vyT-rL-ZM5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="checkBox" destination="Aqq-IJ-QVD" id="0D3-vW-uKi"/>
+                <outlet property="containerView" destination="xw7-AR-kTg" id="klA-0k-psO"/>
+                <outlet property="containerViewLeadingConstraint" destination="YFm-0n-psk" id="2T1-hb-SPv"/>
+                <outlet property="containerViewTrailingConstraint" destination="Ujo-2q-Fpg" id="bVH-tc-8wi"/>
+                <outlet property="titleLabel" destination="W40-ow-VHI" id="1sR-nT-B5S"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="67"/>
+        </tableViewCell>
+    </objects>
+</document>

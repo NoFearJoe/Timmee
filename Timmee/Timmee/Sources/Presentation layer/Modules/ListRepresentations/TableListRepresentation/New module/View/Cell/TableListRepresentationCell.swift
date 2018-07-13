@@ -9,10 +9,8 @@
 import UIKit
 import SwipeCellKit
 
-final class TableListRepresentationCell: SwipeTableViewCell {
+final class TableListRepresentationCell: TableListRepresentationBaseCell {
     
-    @IBOutlet private var containerView: TableListRepersentationCellContainerView!
-    @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var timeTemplateLabel: UILabel!
     @IBOutlet private var dueDateLabel: UILabel!
     @IBOutlet private var subtasksLabel: UILabel!
@@ -20,28 +18,9 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     
     @IBOutlet private var tagsView: UIScrollView!
     
-    @IBOutlet private var checkBox: CheckBox! {
-        didSet {
-            checkBox.didChangeCkeckedState = { [unowned self] isChecked in
-                self.onCheck?(isChecked)
-            }
-        }
-    }
-    
     @IBOutlet private var dueDateLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private var subtasksLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private var tagsViewHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet private var containerViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet private var containerViewTrailingConstraint: NSLayoutConstraint!
-    
-    var title: String? {
-        get { return titleLabel.attributedText?.string }
-        set {
-            guard let title = newValue else { return }
-            updateTitle(title)
-        }
-    }
     
     var timeTemplate: String? {
         didSet {
@@ -71,13 +50,6 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         didSet {
             guard isImportant != oldValue else { return }
             importancyPicker.isPicked = isImportant
-        }
-    }
-    
-    var isDone: Bool = false {
-        didSet {
-            guard isDone != oldValue else { return }
-            updateDoneState(with: isDone)
         }
     }
     
@@ -114,47 +86,6 @@ final class TableListRepresentationCell: SwipeTableViewCell {
     
     var onTapToImportancy: (() -> Void)?
     
-    private var _isGroupEditing: Bool = false
-    func setGroupEditing(_ isGroupEditing: Bool,
-                         animated: Bool = false,
-                         completion: (() -> Void)? = nil) {
-        guard isGroupEditing != _isGroupEditing else { return }
-        
-        _isGroupEditing = isGroupEditing
-        
-        containerView.isUserInteractionEnabled = !isGroupEditing
-        
-        containerViewLeadingConstraint.constant = isGroupEditing ? 44 : 8
-        containerViewTrailingConstraint.constant = isGroupEditing ? -28 : 8
-        
-        if animated {
-            if isGroupEditing {
-                checkBox.isHidden = false
-            }
-            
-            UIView.animate(withDuration: 0.33, animations: {
-                self.contentView.layoutIfNeeded()
-            }) { finished in
-                if finished && !isGroupEditing {
-                    self.checkBox.isHidden = true
-                }
-                completion?()
-            }
-        } else {
-            checkBox.isHidden = !isGroupEditing
-            contentView.layoutIfNeeded()
-            completion?()
-        }
-    }
-    
-    var isChecked: Bool = false {
-        didSet {
-            checkBox.isChecked = isChecked
-        }
-    }
-    
-    var onCheck: ((Bool) -> Void)?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         applyAppearance()
@@ -169,7 +100,9 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         containerView.removeProgressIndicator()
     }
     
-    func setTask(_ task: Task) {
+    override func setTask(_ task: Task) {
+        super.setTask(task)
+        
         updateTagColors(with:
             task.tags
                 .sorted(by: { $0.title < $1.title })
@@ -177,11 +110,7 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         )
         
         let hasParameters = task.timeTemplate != nil || task.subtasks.count > 0 || task.dueDate != nil
-        maxTitleLinesCount = hasParameters || task.isDone ? 1 : 2
-        
-        title = task.title
-        
-        isDone = task.isDone
+        maxTitleLinesCount = hasParameters ? 1 : 2
         
         inProgress = task.inProgress
         
@@ -202,9 +131,11 @@ final class TableListRepresentationCell: SwipeTableViewCell {
         }
     }
     
-    func applyAppearance() {
+    override func applyAppearance() {
+        super.applyAppearance()
         contentView.backgroundColor = .clear
         containerView.fillColor = AppTheme.current.foregroundColor
+        containerView.alpha = 1
         containerView.setNeedsDisplay()
         titleLabel.textColor = AppTheme.current.tintColor
         timeTemplateLabel.textColor = AppTheme.current.specialColor
@@ -277,19 +208,8 @@ private extension TableListRepresentationCell {
         }
     }
     
-    func updateDoneState(with isDone: Bool) {
-        containerView.alpha = isDone ? 0.75 : 1
-        
-        guard let title = title else { return }
-        updateTitle(title)
-    }
-    
     func updateProgressState(with inProgress: Bool) {
         containerView.shouldDrawProgressIndicator = inProgress
-    }
-    
-    func updateTitle(_ title: String) {
-        titleLabel.text = title
     }
     
 }

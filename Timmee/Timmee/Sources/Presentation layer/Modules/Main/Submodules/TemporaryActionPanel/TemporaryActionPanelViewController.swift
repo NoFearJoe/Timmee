@@ -47,6 +47,7 @@ final class TemporaryActionPanelViewController: UIViewController, TemporaryActio
         view.alpha = 0
         view.isHidden = true
         view.isUserInteractionEnabled = false
+        titleLabel.textColor = AppTheme.current.tintColor
     }
     
     func show(action: TemporaryAction, deadline: TimeInterval) {
@@ -66,7 +67,7 @@ final class TemporaryActionPanelViewController: UIViewController, TemporaryActio
             }
         }
         
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: animations, completion: completion)
+        UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseIn, animations: animations, completion: completion)
     }
     
     private func hide(animated: Bool) {
@@ -78,7 +79,7 @@ final class TemporaryActionPanelViewController: UIViewController, TemporaryActio
         }
         
         if animated {
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: animations, completion: nil)
+            UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseOut, animations: animations, completion: nil)
         } else {
             animations()
         }
@@ -88,10 +89,10 @@ final class TemporaryActionPanelViewController: UIViewController, TemporaryActio
         switch action {
         case .rollback:
             titleLabel.text = "cancel_last_action".localized
-            view.backgroundColor = AppTheme.current.yellowColor.withAlphaComponent(0.5)
+            view.backgroundColor = AppTheme.current.yellowColor
         case let .showList(list):
             titleLabel.text = "go_to_list".localized + " " + list.title
-            view.backgroundColor = AppTheme.current.blueColor.withAlphaComponent(0.5)
+            view.backgroundColor = AppTheme.current.yellowColor
         }
     }
     

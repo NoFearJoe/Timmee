@@ -107,6 +107,8 @@ private extension TableListRepresentationView {
     func setupTableView() {
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(UINib(nibName: "TableListRepresentationBaseCell", bundle: nil),
+                           forCellReuseIdentifier: "TableListRepresentationBaseCell")
         tableView.register(UINib(nibName: "TableListRepresentationCell", bundle: nil),
                            forCellReuseIdentifier: "TableListRepresentationCell")
         tableView.register(UINib(nibName: "TableListRepresentationCompletedSectionHeaderView", bundle: nil),
