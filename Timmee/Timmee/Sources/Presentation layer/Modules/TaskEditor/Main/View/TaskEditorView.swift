@@ -100,17 +100,6 @@ final class TaskEditorView: UIViewController {
             self.audioNoteOutput.audioNoteTouched()
         }
         
-        timeTemplateView.didChangeFilledState = { [unowned self] isFilled in
-            if isFilled {
-                self.reminderView.isHidden = true
-                self.repeatView.isHidden = false
-                self.dueDateTimeView.canClear = false
-            } else {
-                self.reminderView.isHidden = !self.dueDateTimeView.isFilled
-                self.repeatView.isHidden = !self.dueDateTimeView.isFilled
-                self.dueDateTimeView.canClear = true
-            }
-        }
         timeTemplateView.didClear = { [unowned self] in
             self.output.timeTemplateCleared()
         }
@@ -118,11 +107,6 @@ final class TaskEditorView: UIViewController {
             self.showTaskParameterEditor(with: .timeTemplates)
         }
         
-        dueDateTimeView.didChangeFilledState = { [unowned self] isFilled in
-            self.reminderView.isHidden = !isFilled || self.timeTemplateView.isFilled
-            self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
-            self.repeatEndingDateView.isHidden = !isFilled || !self.repeatView.isFilled
-        }
         dueDateTimeView.didClear = { [unowned self] in
             self.output.dueDateTimeCleared()
         }
@@ -140,9 +124,13 @@ final class TaskEditorView: UIViewController {
         reminderView.didTouchedUp = { [unowned self] in
             self.showTaskParameterEditor(with: .reminder)
         }
+        reminderView.didChangeFilledState = { [unowned self] isFilled in
+            self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
+            self.repeatEndingDateView.isHidden = !(isFilled && self.repeatView.isFilled)
+        }
         
         repeatView.didChangeFilledState = { [unowned self] isFilled in
-            self.repeatEndingDateView.isHidden = !isFilled
+            self.repeatEndingDateView.isHidden = !(isFilled && self.reminderView.isFilled)
         }
         repeatView.didClear = { [unowned self] in
             self.output.repeatCleared()

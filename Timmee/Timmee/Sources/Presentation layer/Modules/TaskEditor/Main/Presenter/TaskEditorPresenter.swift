@@ -180,8 +180,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         switch notification {
         case let .mask(notificationMask):
             task.notification = notificationMask
+            task.notificationDate = nil
         case let .date(notificationDate):
             task.notificationDate = notificationDate
+            task.notification = .doNotNotify
         }
         view.setNotification(notification)
     }
@@ -240,7 +242,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.timeTemplate = nil
         
         showFormattedDueDateTime(task.dueDate)
-        showNotification()
+        updateNotification()
         if task.dueDate != nil {
             view.setRepeat(task.repeating)
         }
@@ -252,6 +254,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.dueDate = nil
         
         view.setDueDateTime(nil, isOverdue: false)
+        updateNotification()
     }
     
     func notificationCleared() {
@@ -334,6 +337,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         } else {
             input.setNotification(.mask(task.notification))
         }
+        
+        let shouldHideNotificationMasks = task.dueDate == nil && task.timeTemplate == nil
+        input.setNotificationMasksVisible(!shouldHideNotificationMasks)
     }
     
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput) {
@@ -400,6 +406,15 @@ private extension TaskEditorPresenter {
         } else {
             view.setNotification(.mask(task.notification))
         }
+    }
+    
+    func updateNotification() {
+        // Если дата выполнения и временной шаблон не установлены, надо убрать уведомление
+        if task.dueDate == nil, task.timeTemplate == nil {
+            task.notification = .doNotNotify
+            task.notificationDate = nil
+        }
+        showNotification()
     }
     
     func decodeLocation(_ location: CLLocation?, completion: @escaping (String?) -> Void) {

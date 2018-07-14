@@ -88,8 +88,6 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        applyAppearance()
-        checkBox.isHidden = true
         importancyPicker.isPicked = false
         importancyPicker.changeStateAutomatically = false
     }

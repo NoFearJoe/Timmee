@@ -26,6 +26,7 @@ extension TaskReminderSelectedNotification: Equatable {
 protocol TaskReminderEditorInput: class {
     func setNotification(_ notification: TaskReminderSelectedNotification)
     func setNotificationDatePickerVisible(_ isVisible: Bool)
+    func setNotificationMasksVisible(_ isVisible: Bool)
 }
 
 protocol TaskReminderEditorOutput: class {
@@ -50,12 +51,13 @@ final class TaskReminderEditor: UITableViewController {
         }
     }
     
+    var isNotificationMasksVisible: Bool = true
     var isNotificationDatePickerVisible: Bool = true
     
     static private let rowHeight: CGFloat = 44
     
     private var rowsCount: Int {
-        return NotificationMask.all.count + (isNotificationDatePickerVisible ? 1 : 0)
+        return (isNotificationMasksVisible ? NotificationMask.all.count : 1) + (isNotificationDatePickerVisible ? 1 : 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,11 +71,15 @@ final class TaskReminderEditor: UITableViewController {
 extension TaskReminderEditor: TaskReminderEditorInput {
 
     func setNotification(_ notification: TaskReminderSelectedNotification) {
-        self.selectedNotification = notification
+        selectedNotification = notification
     }
     
     func setNotificationDatePickerVisible(_ isVisible: Bool) {
-        self.isNotificationDatePickerVisible = isVisible
+        isNotificationDatePickerVisible = isVisible
+    }
+    
+    func setNotificationMasksVisible(_ isVisible: Bool) {
+        isNotificationMasksVisible = isVisible
     }
 
 }
@@ -89,7 +95,7 @@ extension TaskReminderEditor {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == NotificationMask.all.count {
+        if indexPath.row == rowsCount - 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TaskReminderDateCell", for: indexPath) as! TaskReminderDateCell
             
             if case .date(let notificationDate) = selectedNotification {
@@ -126,7 +132,7 @@ extension TaskReminderEditor {
 extension TaskReminderEditor {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == NotificationMask.all.count {
+        if indexPath.row == rowsCount - 1 {
             transitionOutput?.didAskToShowNotificationDatePicker { [unowned self] dueDateTimeEditor in
                 dueDateTimeEditor.output = self
                 if case .date(let notificationDate) = self.selectedNotification {

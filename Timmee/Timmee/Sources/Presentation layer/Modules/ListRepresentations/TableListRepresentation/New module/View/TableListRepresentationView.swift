@@ -62,7 +62,7 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         if tableView.visibleCells.count > 0 {
             let group = DispatchGroup()
             tableView.visibleCells
-                .map { $0 as! TableListRepresentationCell }
+                .map { $0 as! TableListRepresentationBaseCell }
                 .forEach {
                     if mode == .group { $0.isChecked = false }
                     group.enter()

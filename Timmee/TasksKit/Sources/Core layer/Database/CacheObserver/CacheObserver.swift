@@ -132,10 +132,11 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
         DispatchQueue.main.async { self.onBatchUpdatesStarted?() }
         
         subscriber?.processChanges(batchChanges) {
-            self.batchChanges.forEach { self.onItemChange?($0) }
-            self.batchChanges.removeAll()
-            
-            DispatchQueue.main.async { self.onBatchUpdatesCompleted?() }
+            DispatchQueue.main.async {
+                self.batchChanges.forEach { self.onItemChange?($0) }
+                self.batchChanges.removeAll()
+                self.onBatchUpdatesCompleted?()
+            }
         }
     }
 

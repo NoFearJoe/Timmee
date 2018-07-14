@@ -108,15 +108,16 @@ final class ListsViewController: UIViewController {
     }
     
     @IBAction func close() {
-        output?.willClose()
         close(completion: nil)
     }
     
     func close(completion: (() -> Void)?) {
+        output?.willClose()
         dismiss(animated: true, completion: completion)
     }
     
     func closeAll(completion: (() -> Void)?) {
+        output?.willClose()
         presentingViewController?.dismiss(animated: true, completion: completion)
     }
     

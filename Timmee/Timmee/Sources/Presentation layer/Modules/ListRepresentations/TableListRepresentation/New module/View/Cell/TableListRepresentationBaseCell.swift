@@ -15,7 +15,7 @@ class TableListRepresentationBaseCell: SwipeTableViewCell, Customizable {
     
     @IBOutlet var titleLabel: UILabel!
     
-    @IBOutlet var checkBox: CheckBox! {
+    @IBOutlet private var checkBox: CheckBox! {
         didSet {
             checkBox.didChangeCkeckedState = { [unowned self] isChecked in
                 self.onCheck?(isChecked)
@@ -67,6 +67,12 @@ class TableListRepresentationBaseCell: SwipeTableViewCell, Customizable {
     
     var onCheck: ((Bool) -> Void)?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        applyAppearance()
+        checkBox.isHidden = true
+    }
+    
     func setTask(_ task: Task) {
         self.titleLabel.text = task.title
     }
@@ -74,7 +80,7 @@ class TableListRepresentationBaseCell: SwipeTableViewCell, Customizable {
     func applyAppearance() {
         contentView.backgroundColor = .clear
         containerView.fillColor = AppTheme.current.foregroundColor
-        containerView.alpha = 0.75
+        containerView.alpha = 0.6
         containerView.setNeedsDisplay()
         titleLabel.textColor = AppTheme.current.tintColor
     }
