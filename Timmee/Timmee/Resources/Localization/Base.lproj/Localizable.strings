@@ -37,6 +37,8 @@
 "new_task" = "New task...";
 "no_tasks_hint" = "There are no tasks in this list";
 
+"no_lists_placeholder" = "You have no lists";
+
 "important_and_urgent" = "Important and urgent";
 "important" = "Important";
 "urgent" = "Urgent";

@@ -45,9 +45,9 @@ extension ListsViewController: UICollectionViewDataSource {
             cell.isPicked = currentList == list
             cell.isFavorite = list.isFavorite
             cell.shouldShowFavoritePicker = !(list is SmartList)
-            cell.favoritePicker.onPick = { [weak self] _ in
+            cell.favoritePicker.onPick = { [unowned self, unowned collectionView, unowned cell] _ in
                 guard let indexPath = collectionView.indexPath(for: cell) else { return }
-                self?.handleListFavoriteChange(at: indexPath)
+                self.handleListFavoriteChange(at: indexPath)
             }
                         
             cell.actionsProvider = self

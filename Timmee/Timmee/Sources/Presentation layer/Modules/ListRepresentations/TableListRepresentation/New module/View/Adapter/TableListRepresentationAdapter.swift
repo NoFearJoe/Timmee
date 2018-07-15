@@ -106,7 +106,7 @@ extension TableListRepresentationAdapter: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationCell",
                                                          for: indexPath) as! TableListRepresentationCell
                 
-                cell.onTapToImportancy = { [unowned self] in
+                cell.onTapToImportancy = { [unowned self, unowned tableView, unowned cell] in
                     guard let indexPath = tableView.indexPath(for: cell) else { return }
                     if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
                         self.output.didToggleImportancy(of: task)

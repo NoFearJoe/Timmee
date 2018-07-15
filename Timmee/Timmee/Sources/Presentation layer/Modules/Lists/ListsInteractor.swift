@@ -35,8 +35,6 @@ final class ListsInteractor {
     private var smartListsObserver: CacheObserver<SmartList>!
     private var listsObserver: CacheObserver<List>!
     
-    private var currentListsSorting: ListSorting!
-    
     weak var output: ListsInteractorOutput!
     
     init() {
@@ -155,11 +153,7 @@ extension ListsInteractor {
 
 private extension ListsInteractor {
     
-    func setupListsObserver() {
-        let listSorting = ListSorting(value: UserProperty.listSorting.int())
-        guard currentListsSorting != listSorting else { return }
-        currentListsSorting = listSorting
-        
+    func setupListsObserver() {        
         listsObserver = listsService.listsObserver()
         
         listsObserver.setMapping { entity in

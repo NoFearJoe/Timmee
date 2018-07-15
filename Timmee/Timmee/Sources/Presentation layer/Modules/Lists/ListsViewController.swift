@@ -34,7 +34,9 @@ final class ListsViewController: UIViewController {
     @IBOutlet private var addListMenuButton: UIButton!
     @IBOutlet private var addSmartListMenuButton: UIButton!
     @IBOutlet private var dimmedBackgroundView: BarView!
-        
+    
+    private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
+    
     let listsInteractor = ListsInteractor()
     let cacheAdapter = CollectionViewCacheAdapter()
     
@@ -59,6 +61,8 @@ final class ListsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupPlaceholder()
         
         cacheAdapter.setCollectionView(collectionView)
         
@@ -92,8 +96,8 @@ final class ListsViewController: UIViewController {
         addListMenuButton.setTitle("list".localized, for: .normal)
         addSmartListMenuButton.setTitle("smart_list".localized, for: .normal)
         
-        initialDataConfigurator.addInitialSmartLists { [unowned self] in
-            self.listsInteractor.requestLists()
+        initialDataConfigurator.addInitialSmartLists { [weak self] in
+            self?.listsInteractor.requestLists()
         }
     }
     
@@ -126,7 +130,7 @@ final class ListsViewController: UIViewController {
 extension ListsViewController: ListsViewInput {
     
     func setCurrentList(_ list: List) {
-        self.currentList = list
+        currentList = list
     }
     
     func setPickingList(_ isPicking: Bool) {
@@ -142,10 +146,13 @@ extension ListsViewController: ListsInteractorOutput {
     }
     
     func didFetchInitialLists() {
+        updatePlaceholder()
         updateCurrentListAndIndexPathIfNeeded()
     }
     
     func didUpdateLists(with change: CoreDataChange) {
+        updatePlaceholder()
+        
         switch change {
         case .insertion(let indexPath):
             if ListsCollectionViewSection(rawValue: indexPath.section) == .lists {
@@ -287,6 +294,42 @@ private extension ListsViewController {
             self.addListMenu.isHidden = true
             self.dimmedBackgroundView.isHidden = true
         }
+    }
+    
+    func setupPlaceholder() {
+        placeholder.setup(into: collectionViewContainer)
+        placeholder.isHidden = true
+    }
+    
+    func updatePlaceholder() {
+        if isPickingList, listsInteractor.numberOfItems(in: ListsCollectionViewSection.lists.rawValue) == 0 {
+            showPlaceholder(withError: "no_lists_placeholder".localized)
+        } else {
+            hidePlaceholder()
+        }
+    }
+    
+    func showPlaceholder(withError error: String) {
+        guard placeholder.isHidden else { return }
+        placeholder.alpha = 0
+        placeholder.icon = #imageLiteral(resourceName: "no_tasks")
+        placeholder.title = error
+        placeholder.subtitle = nil
+        UIView.animate(withDuration: 0.2, animations: {
+            self.placeholder.alpha = 1
+        }, completion: { _ in
+            self.placeholder.isHidden = false
+        })
+    }
+    
+    func hidePlaceholder() {
+        guard !placeholder.isHidden else { return }
+        placeholder.alpha = 1
+        UIView.animate(withDuration: 0.2, animations: {
+            self.placeholder.alpha = 0
+        }, completion: { _ in
+            self.placeholder.isHidden = true
+        })
     }
     
     func makeAddListMenuInitialTransform() -> CGAffineTransform {

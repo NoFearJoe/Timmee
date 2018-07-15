@@ -37,6 +37,8 @@
 "new_task" = "Новая задача...";
 "no_tasks_hint" = "В этом списке нет задач";
 
+"no_lists_placeholder" = "У вас нет списков";
+
 "important_and_urgent" = "Важные и срочные";
 "important" = "Важные";
 "urgent" = "Срочные";
