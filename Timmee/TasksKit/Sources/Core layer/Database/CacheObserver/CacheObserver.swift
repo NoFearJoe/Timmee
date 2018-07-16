@@ -50,7 +50,7 @@ public protocol CacheObserverConfigurable: class {
 }
 
 public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsControllerDelegate {
-
+    
     private var mapping: ((NSManagedObject) -> T)!
     private var onItemsCountChange: ((Int) -> Void)?
     private var onItemChange: ((CoreDataChange) -> Void)?

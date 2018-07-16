@@ -125,6 +125,15 @@ public extension FetchRequest {
         return self
     }
     
+    public func sorted<V>(keyPath: KeyPath<T, V>, ascending: Bool) -> FetchRequest<T> {
+        if let sortDescriptors = self.sortDescriptors {
+            self.sortDescriptors = sortDescriptors + [NSSortDescriptor(keyPath: keyPath, ascending: ascending)]
+        } else {
+            self.sortDescriptors = [NSSortDescriptor(keyPath: keyPath, ascending: ascending)]
+        }
+        return self
+    }
+    
 }
 
 // MARK: - Limits

@@ -81,7 +81,6 @@ class TableListRepresentationBaseCell: SwipeTableViewCell, Customizable {
         contentView.backgroundColor = .clear
         containerView.fillColor = AppTheme.current.foregroundColor
         containerView.alpha = 0.6
-        containerView.setNeedsDisplay()
         titleLabel.textColor = AppTheme.current.tintColor
     }
     

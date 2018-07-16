@@ -249,7 +249,7 @@ extension ListsService: ListsObserverProvider {
         let observer: CacheObserver<List>
         observer = CacheObserver(request: ListsService.listsFetchRequest().nsFetchRequestWithResult,
                                  section: nil,
-                                 cacheName: "lists",
+                                 cacheName: nil,
                                  context: Database.localStorage.readContext)
         observer.setSectionOffset(1)
         return observer
@@ -259,7 +259,7 @@ extension ListsService: ListsObserverProvider {
         let observer: CacheObserver<SmartList>
         observer = CacheObserver(request: ListsService.smartListsFetchRequest().nsFetchRequestWithResult,
                                  section: nil,
-                                 cacheName: "smart_lists",
+                                 cacheName: nil,
                                  context: Database.localStorage.readContext)
         observer.setSectionOffset(0)
         return observer
@@ -273,7 +273,7 @@ private extension ListsService {
     
     /// Запрос всех смарт списков
     static func smartListsFetchRequest() -> FetchRequest<SmartListEntity> {
-        return SmartListEntity.request().sorted(key: "sortPosition", ascending: true)
+        return SmartListEntity.request().sorted(keyPath: \.sortPosition, ascending: true)
     }
     
     /// Запрос смарт списка по id
@@ -284,7 +284,7 @@ private extension ListsService {
     /// Запрос всех списков
     static func listsFetchRequest() -> FetchRequest<ListEntity> {
         let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
-        return ListEntity.request().sorted(key: "isFavorite", ascending: false).sorted(sortDescriptor: sortDescriptor)
+        return ListEntity.request().sorted(keyPath: \.isFavorite, ascending: false).sorted(sortDescriptor: sortDescriptor)
     }
     
     /// Запрос списка по id

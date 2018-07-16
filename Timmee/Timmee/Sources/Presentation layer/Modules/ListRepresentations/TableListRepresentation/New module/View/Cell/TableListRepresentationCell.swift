@@ -112,15 +112,9 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
         
         inProgress = task.inProgress
         
-        if !task.isDone {
-            timeTemplate = task.timeTemplate?.title
-            dueDate = task.dueDate
-            subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
-        } else {
-            timeTemplate = nil
-            dueDate = nil
-            subtasksInfo = nil
-        }
+        timeTemplate = task.timeTemplate?.title
+        dueDate = task.dueDate
+        subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         
         isImportant = task.isImportant
         
@@ -131,11 +125,7 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
     
     override func applyAppearance() {
         super.applyAppearance()
-        contentView.backgroundColor = .clear
-        containerView.fillColor = AppTheme.current.foregroundColor
         containerView.alpha = 1
-        containerView.setNeedsDisplay()
-        titleLabel.textColor = AppTheme.current.tintColor
         timeTemplateLabel.textColor = AppTheme.current.specialColor
         subtasksLabel.textColor = AppTheme.current.secondaryTintColor
     }
@@ -214,7 +204,9 @@ private extension TableListRepresentationCell {
 
 final class TableListRepersentationCellContainerView: UIView {
     
-    var fillColor: UIColor = AppTheme.current.foregroundColor
+    var fillColor: UIColor = AppTheme.current.foregroundColor {
+        didSet { setNeedsDisplay() }
+    }
     
     var shouldDrawProgressIndicator: Bool = false {
         didSet {
