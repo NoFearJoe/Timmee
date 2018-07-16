@@ -94,8 +94,8 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.containerView.shouldDrawProgressIndicator = false
         removeModificationAnimations()
-        containerView.removeProgressIndicator()
     }
     
     override func setTask(_ task: Task) {
@@ -209,33 +209,7 @@ final class TableListRepersentationCellContainerView: UIView {
     }
     
     var shouldDrawProgressIndicator: Bool = false {
-        didSet {
-            removeProgressIndicator()
-            if shouldDrawProgressIndicator {
-                addProgressIndicator()
-            }
-        }
-    }
-    
-    var progressIndicatorLayer: CALayer? {
-        return layer.sublayers?.first(where: { $0.name == "progressIndicator" })
-    }
-    
-    func addProgressIndicator() {
-        let layer = CALayer()
-        layer.name = "progressIndicator"
-        layer.frame = CGRect(origin: .zero, size: CGSize(width: 2, height: frame.height)).insetBy(dx: 0, dy: 2)
-        layer.backgroundColor = AppTheme.current.blueColor.cgColor
-        self.layer.addSublayer(layer)
-    }
-    
-    func removeProgressIndicator() {
-        progressIndicatorLayer?.removeFromSuperlayer()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        progressIndicatorLayer?.frame = CGRect(origin: .zero, size: CGSize(width: 2, height: frame.height)).insetBy(dx: 0, dy: 2)
+        didSet { setNeedsDisplay() }
     }
     
     override func draw(_ rect: CGRect) {
@@ -250,6 +224,12 @@ final class TableListRepersentationCellContainerView: UIView {
                                 cornerRadius: AppTheme.current.cornerRadius)
         path.fill()
         path.addClip()
+        
+        if shouldDrawProgressIndicator {
+            let progressIndicatorRect = CGRect(origin: .zero, size: CGSize(width: 3, height: frame.height)).insetBy(dx: 0, dy: 2)
+            context.setFillColor(AppTheme.current.blueColor.cgColor)
+            context.fill(progressIndicatorRect)
+        }
     }
     
 }

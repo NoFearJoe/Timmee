@@ -79,6 +79,8 @@ class TableListRepresentationBaseCell: SwipeTableViewCell, Customizable {
     
     func applyAppearance() {
         contentView.backgroundColor = .clear
+        containerView.clipsToBounds = true
+        containerView.layer.cornerRadius = AppTheme.current.cornerRadius
         containerView.fillColor = AppTheme.current.foregroundColor
         containerView.alpha = 0.6
         titleLabel.textColor = AppTheme.current.tintColor
