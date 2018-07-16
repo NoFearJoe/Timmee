@@ -37,13 +37,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Photo library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

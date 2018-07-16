@@ -60,7 +60,6 @@ final class TaskPhotoAttachmentsPicker: UIViewController {
                 self.selectedPhotoNames = []
             }
             
-            // Show placeholder if photos.count == 0
             self.collectionView.reloadData()
         }
     }
@@ -90,23 +89,27 @@ extension TaskPhotoAttachmentsPicker: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return 1 + photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-        
-        if let photo = photos.item(at: indexPath.item) {
-            photo.loadImage(size: cellSize, contentMode: .aspectFill, completion: { image in
-                DispatchQueue.main.async {
-                    cell.image = image
-                }
-            })
+        if indexPath.item == 0 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "TakePhotoCell", for: indexPath)
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
             
-            cell.isPicked = selectedPhotos.contains(photo)
+            if let photo = photos.item(at: indexPath.item - 1) {
+                photo.loadImage(size: cellSize, contentMode: .aspectFill, completion: { image in
+                    DispatchQueue.main.async {
+                        cell.image = image
+                    }
+                })
+                
+                cell.isPicked = selectedPhotos.contains(photo)
+            }
+            
+            return cell
         }
-        
-        return cell
     }
     
 }
@@ -114,7 +117,9 @@ extension TaskPhotoAttachmentsPicker: UICollectionViewDataSource {
 extension TaskPhotoAttachmentsPicker: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let photo = photos.item(at: indexPath.item) {
+        if indexPath.item == 0 {
+            showTakePhotoController()
+        } else if let photo = photos.item(at: indexPath.item - 1) {
             if selectedPhotos.contains(photo) {
                 selectedPhotos.remove(object: photo)
             } else {
@@ -157,6 +162,42 @@ extension TaskPhotoAttachmentsPicker: TaskParameterEditorInput {
     
 }
 
+extension TaskPhotoAttachmentsPicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            // TODO: Save
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+private extension TaskPhotoAttachmentsPicker {
+    
+    func showTakePhotoController() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let controller = UIImagePickerController()
+            controller.allowsEditing = false
+            controller.sourceType = .camera
+            controller.cameraCaptureMode = .photo
+            controller.cameraDevice = .rear
+            controller.cameraFlashMode = .auto
+            controller.showsCameraControls = true
+            controller.modalPresentationStyle = .fullScreen
+            controller.delegate = self
+            present(controller, animated: true, completion: nil)
+        } else {
+            // TODO: Show alert "No camera"
+        }
+    }
+    
+}
+
 
 final class PhotoCell: UICollectionViewCell {
     
@@ -192,3 +233,5 @@ final class PhotoCell: UICollectionViewCell {
     }
     
 }
+
+final class TakePhotoCell: UICollectionViewCell {}
