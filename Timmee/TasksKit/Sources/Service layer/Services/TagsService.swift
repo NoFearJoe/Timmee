@@ -106,7 +106,7 @@ private extension TagsService {
     }
     
     static func tagsFetchRequest() -> FetchRequest<TagEntity> {
-        return TagEntity.request().sorted(key: "title", ascending: true)
+        return TagEntity.request().sorted(keyPath: \.title, ascending: true)
     }
     
 }

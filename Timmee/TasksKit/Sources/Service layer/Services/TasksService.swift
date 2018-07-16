@@ -236,10 +236,10 @@ extension TasksService: TasksObserverProvider {
     
     public func tasksObserver(listID: String) -> CacheObserver<Task> {
         var request: FetchRequest<TaskEntity> = TaskEntity.request()
-            .sorted(key: "isDone", ascending: true)
-            .sorted(key: "isImportant", ascending: false)
-            .sorted(key: "inProgress", ascending: false)
-            .sorted(key: "creationDate", ascending: false)
+            .sorted(keyPath: \.isDone, ascending: true)
+            .sorted(keyPath: \.isImportant, ascending: false)
+            .sorted(keyPath: \.inProgress, ascending: false)
+            .sorted(keyPath: \.creationDate, ascending: false)
             .batchSize(10)
         
         if SmartListType.isSmartListID(listID) {
@@ -389,12 +389,12 @@ extension TasksService: TaskEntitiesCountProvider {
 private extension TasksService {
     
     static func tasksFetchRequest(listID: String) -> FetchRequest<TaskEntity> {
-        return TaskEntity.request().filtered(key: "list.id", value: listID).sorted(key: "isDone", ascending: true)
+        return TaskEntity.request().filtered(key: "list.id", value: listID).sorted(keyPath: \.isDone, ascending: true)
     }
     
     static func tasksFetchRequest(smartListID: String) -> FetchRequest<TaskEntity> {
         let smartList = SmartList(type: SmartListType(id: smartListID))
-        var request: FetchRequest<TaskEntity> = TaskEntity.request().sorted(key: "isDone", ascending: true)
+        var request: FetchRequest<TaskEntity> = TaskEntity.request().sorted(keyPath: \.isDone, ascending: true)
         
         if let predicate = smartList.tasksFetchPredicate {
             request = request.filtered(predicate: predicate)
@@ -405,12 +405,12 @@ private extension TasksService {
     
     static func tasksFetchRequest(listID: String, isDone: Bool) -> FetchRequest<TaskEntity> {
         let predicate = NSPredicate(format: "list.id == %@ && isDone == %@", listID, NSNumber(value: isDone))
-        return TaskEntity.request().filtered(predicate: predicate).sorted(key: "isDone", ascending: true)
+        return TaskEntity.request().filtered(predicate: predicate).sorted(keyPath: \.isDone, ascending: true)
     }
     
     static func tasksFetchRequest(smartListID: String, isDone: Bool) -> FetchRequest<TaskEntity> {
         let smartList = SmartList(type: SmartListType(id: smartListID))
-        var request: FetchRequest<TaskEntity> = TaskEntity.request().sorted(key: "isDone", ascending: true)
+        var request: FetchRequest<TaskEntity> = TaskEntity.request().sorted(keyPath: \.isDone, ascending: true)
         
         if let predicate = smartList.tasksFetchPredicate {
             let donePredicate = NSPredicate(format: "isDone == %@", NSNumber(value: isDone))
@@ -432,11 +432,11 @@ private extension TasksService {
     
     static func allTasksFetchRequest() -> FetchRequest<TaskEntity> {
         return TaskEntity.request()
-            .sorted(key: "list.title", ascending: true)
-            .sorted(key: "isDone", ascending: true)
-            .sorted(key: "isImportant", ascending: false)
-            .sorted(key: "inProgress", ascending: false)
-            .sorted(key: "creationDate", ascending: false)
+            .sorted(keyPath: \.list?.title, ascending: true)
+            .sorted(keyPath: \.isDone, ascending: true)
+            .sorted(keyPath: \.isImportant, ascending: false)
+            .sorted(keyPath: \.inProgress, ascending: false)
+            .sorted(keyPath: \.creationDate, ascending: false)
     }
     
     static func tasksToUpdateDueDateFetchRequest() -> FetchRequest<TaskEntity> {

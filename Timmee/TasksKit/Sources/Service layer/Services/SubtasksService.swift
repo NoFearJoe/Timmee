@@ -148,7 +148,7 @@ private extension SubtasksService {
     
     /// Запрос подзадач для задачи с определенным id
     static func subtasksFetchRequest(taskID: String) -> FetchRequest<SubtaskEntity> {
-        return SubtaskEntity.request().filtered(key: "task.id", value: taskID).sorted(key: "sortPosition", ascending: true)
+        return SubtaskEntity.request().filtered(key: "task.id", value: taskID).sorted(keyPath: \.sortPosition, ascending: true)
     }
 
 }

@@ -116,7 +116,7 @@ extension TimeTemplatesService: TimeTemplateEntitiesBackgroundProvider {
 private extension TimeTemplatesService {
     
     static func timeTemplatesFetchRequest() -> FetchRequest<TimeTemplateEntity> {
-        return TimeTemplateEntity.request().sorted(key: "title", ascending: true)
+        return TimeTemplateEntity.request().sorted(keyPath: \.title, ascending: true)
     }
     
     static func timeTemplateFetchRequest(id: String) -> FetchRequest<TimeTemplateEntity> {
