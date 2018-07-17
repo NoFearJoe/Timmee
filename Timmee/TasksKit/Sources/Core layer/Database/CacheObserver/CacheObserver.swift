@@ -30,6 +30,7 @@ public enum CoreDataChange {
 
 public protocol CacheSubscriber: class {
     func reloadData()
+    func prepareToProcessChanges()
     func processChanges(_ changes: [CoreDataChange], completion: @escaping () -> Void)
 }
 
@@ -126,17 +127,19 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
         }
     }
     
+    public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        subscriber?.prepareToProcessChanges()
+    }
+    
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         onItemsCountChange?(totalObjectsCount())
         
-        DispatchQueue.main.async { self.onBatchUpdatesStarted?() }
+        onBatchUpdatesStarted?()
         
         subscriber?.processChanges(batchChanges) {
-            DispatchQueue.main.async {
-                self.batchChanges.forEach { self.onItemChange?($0) }
-                self.batchChanges.removeAll()
-                self.onBatchUpdatesCompleted?()
-            }
+            self.batchChanges.forEach { self.onItemChange?($0) }
+            self.batchChanges.removeAll()
+            self.onBatchUpdatesCompleted?()
         }
     }
 

@@ -30,6 +30,8 @@ public final class CollectionViewCacheAdapter: CollectionViewManageble, CacheSub
         collectionView?.reloadData()
     }
     
+    public func prepareToProcessChanges() {}
+    
     public func processChanges(_ changes: [CoreDataChange], completion: @escaping () -> Void) {
         guard let collectionView = self.collectionView else { return }
         

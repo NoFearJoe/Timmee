@@ -50,7 +50,7 @@ final class SearchViewController: UIViewController {
     private let swipeTableActionsProvider = SwipeTaskActionsProvider()
     
     private let keyboardManager = KeyboardManager()
-    private let cacheAdapter = TableViewCacheAdapter()
+    private lazy var cacheAdapter = TableViewCacheAdapter(tableView: tableView)
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
@@ -64,14 +64,14 @@ final class SearchViewController: UIViewController {
         setupKeyboardManager()
         
         tableView.backgroundView = UIView()
+        tableView.register(UINib(nibName: "TableListRepresentationBaseCell", bundle: nil),
+                           forCellReuseIdentifier: "TableListRepresentationBaseCell")
         tableView.register(UINib(nibName: "TableListRepresentationCell", bundle: nil),
                            forCellReuseIdentifier: "TableListRepresentationCell")
         tableView.register(TasksImportHeaderView.self,
                            forHeaderFooterViewReuseIdentifier: "TasksImportHeaderView")
         
         subscribeToSearchStringChanges()
-        
-        cacheAdapter.setTableView(tableView)
         
         swipeTableActionsProvider.onDelete = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath) {
@@ -179,26 +179,34 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationCell",
-                                                 for: indexPath) as! TableListRepresentationCell
-        
         if let task = dataSource.item(at: indexPath) {
-            cell.setTask(task)
-            
-            cell.setGroupEditing(false)
-            cell.isChecked = false
-            
-            cell.onTapToImportancy = { [unowned self] in
-                guard let indexPath = tableView.indexPath(for: cell) else { return }
-                if let task = self.dataSource.item(at: indexPath) {
-                    self.output.toggleImportancy(of: task)
+            let listRepresentationCell: TableListRepresentationBaseCell
+            if task.isDone {
+                listRepresentationCell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationBaseCell",
+                                                                       for: indexPath) as! TableListRepresentationBaseCell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationCell",
+                                                         for: indexPath) as! TableListRepresentationCell
+                
+                cell.onTapToImportancy = { [unowned self, unowned tableView, unowned cell] in
+                    guard let indexPath = tableView.indexPath(for: cell) else { return }
+                    if let task = self.dataSource.item(at: indexPath) {
+                        self.output.toggleImportancy(of: task)
+                    }
                 }
+                
+                listRepresentationCell = cell
             }
+            
+            listRepresentationCell.setTask(task)
+            listRepresentationCell.isChecked = false
+            listRepresentationCell.setGroupEditing(false)
+            listRepresentationCell.delegate = swipeTableActionsProvider
+            
+            return listRepresentationCell
         }
         
-        cell.delegate = swipeTableActionsProvider
-        
-        return cell
+        return UITableViewCell()
     }
     
 }
@@ -214,14 +222,15 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height: CGFloat = 56
-        
         if let item = dataSource.item(at: indexPath) {
-            if item.isDone { height -= 15 }
-            if item.tags.count > 0 { height += 6 }
-            return height
+            if item.isDone {
+                return 40
+            } else if item.tags.count > 0 {
+                return 62
+            }
+            return 56
         }
-        return height
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -265,7 +274,7 @@ private extension SearchViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(searchStringChanged),
                                                name: .UITextFieldTextDidChange,
-                                               object: nil)
+                                               object: searchTextField)
     }
     
     @objc func searchStringChanged() {

@@ -30,11 +30,13 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
         tableView?.reloadData()
     }
     
+    public func prepareToProcessChanges() {
+        tableView?.beginUpdates()
+    }
+    
     public func processChanges(_ changes: [CoreDataChange], completion: @escaping () -> Void) {
         guard let tableView = tableView else { return }
-        
-        tableView.beginUpdates()
-        
+                
         changes.forEach { change in
             switch change {
             case let .sectionInsertion(index):
@@ -55,7 +57,6 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
                     tableView.insertRows(at: [toIndexPath], with: .fade)
                 }
             }
-            
         }
         
         tableView.endUpdates()
