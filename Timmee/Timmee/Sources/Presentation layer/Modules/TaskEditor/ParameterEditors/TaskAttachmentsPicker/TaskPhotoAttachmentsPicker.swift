@@ -170,7 +170,9 @@ extension TaskPhotoAttachmentsPicker: UIImagePickerControllerDelegate, UINavigat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            // TODO: Save
+            DispatchQueue.global().async {
+                UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil)
+            }
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -234,4 +236,12 @@ final class PhotoCell: UICollectionViewCell {
     
 }
 
-final class TakePhotoCell: UICollectionViewCell {}
+final class TakePhotoCell: UICollectionViewCell {
+    
+    @IBOutlet private var imageView: UIImageView! {
+        didSet {
+            imageView.tintColor = AppTheme.current.blueColor
+        }
+    }
+    
+}

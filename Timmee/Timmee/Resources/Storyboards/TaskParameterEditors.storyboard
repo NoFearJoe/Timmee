@@ -1045,6 +1045,9 @@
                                             <constraint firstAttribute="bottom" secondItem="zqf-jH-RH5" secondAttribute="bottom" id="ONP-14-aRb"/>
                                             <constraint firstItem="zqf-jH-RH5" firstAttribute="top" secondItem="fTx-2i-BVY" secondAttribute="top" id="nKd-Oz-cl6"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="zqf-jH-RH5" id="7O8-p9-COw"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="sK4-oJ-bGT" customClass="PhotoCell" customModule="Timmee" customModuleProvider="target">
                                         <rect key="frame" x="137.5" y="0.0" width="100" height="100"/>
