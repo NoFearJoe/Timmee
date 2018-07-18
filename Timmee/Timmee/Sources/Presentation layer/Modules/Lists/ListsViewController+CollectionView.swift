@@ -132,6 +132,22 @@ extension ListsViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
+extension ListsViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        dismissTransitionController.scrollViewWillBeginDragging(scrollView)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        dismissTransitionController.scrollViewDidScroll(scrollView)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        dismissTransitionController.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+    }
+    
+}
+
 extension ListsViewController: SwipableCollectionViewCellActionsProvider {
     
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction] {

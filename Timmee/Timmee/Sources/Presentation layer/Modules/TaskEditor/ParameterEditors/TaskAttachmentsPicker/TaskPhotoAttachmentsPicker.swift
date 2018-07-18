@@ -27,16 +27,16 @@ final class TaskPhotoAttachmentsPicker: UIViewController {
         return ProVersionPurchase.shared.isPurchased() ? 15 : 5
     }
     
-    @IBOutlet fileprivate var collectionView: UICollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
     
-    fileprivate var album = Album<Photo>(type: AlbumType.composite)
-    fileprivate var photos: [Photo] = []
+    private var album = Album<Photo>(type: AlbumType.composite)
+    private var photos: [Photo] = []
     
-    fileprivate var selectedPhotos: [Photo] = []
-    fileprivate var selectedPhotoNames: [String] = []
+    private var selectedPhotos: [Photo] = []
+    private var selectedPhotoNames: [String] = []
     
-    fileprivate var _cellSize: CGSize?
-    fileprivate var cellSize: CGSize {
+    private var _cellSize: CGSize?
+    private var cellSize: CGSize {
         if let size = _cellSize {
             return size
         }
@@ -142,7 +142,7 @@ extension TaskPhotoAttachmentsPicker: UICollectionViewDelegateFlowLayout {
         return cellSize
     }
     
-    fileprivate func calculateSizeForPhotoCell(collectionView: UICollectionView) -> CGSize {
+    private func calculateSizeForPhotoCell(collectionView: UICollectionView) -> CGSize {
         let size = collectionView.frame.width / 3
         return CGSize(width: size, height: size)
     }

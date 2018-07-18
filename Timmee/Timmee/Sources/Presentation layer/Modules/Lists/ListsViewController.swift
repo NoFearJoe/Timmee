@@ -40,6 +40,8 @@ final class ListsViewController: UIViewController {
     let listsInteractor = ListsInteractor()
     let cacheAdapter = CollectionViewCacheAdapter()
     
+    let dismissTransitionController = InteractiveDismissTransition()
+    
     var currentList: List! {
         didSet {
             output?.didUpdateList(currentList)
@@ -61,6 +63,12 @@ final class ListsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        transitioningDelegate = self
+        dismissTransitionController.viewController = self
+        dismissTransitionController.onClose = { [unowned self] in
+            self.close()
+        }
         
         setupPlaceholder()
         
@@ -89,9 +97,11 @@ final class ListsViewController: UIViewController {
             button.tintColor = AppTheme.current.backgroundTintColor
         }
         
-        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: UIControlState.selected)
+        addListButton.adjustsImageWhenHighlighted = false
         addListButton.tintColor = AppTheme.current.backgroundTintColor
+        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
+        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: .highlighted)
+        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: .selected)
         
         addListMenuButton.setTitle("list".localized, for: .normal)
         addSmartListMenuButton.setTitle("smart_list".localized, for: .normal)
@@ -213,6 +223,18 @@ extension ListsViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view?.isDescendant(of: collectionViewContainer) == false
+    }
+    
+}
+
+extension ListsViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return dismissTransitionController.hasStarted ? dismissTransitionController : nil
     }
     
 }

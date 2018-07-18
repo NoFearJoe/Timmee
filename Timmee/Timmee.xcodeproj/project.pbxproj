@@ -17,6 +17,8 @@
 		0C5DBF4C20F8A71A00D3228E /* TableListRepresentationBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */; };
 		0C5DBF4E20F8A8B400D3228E /* TableListRepresentationBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */; };
 		0C5DBF5020F8D28700D3228E /* Customizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4F20F8D28700D3228E /* Customizable.swift */; };
+		0C5DBF8C20FF140200D3228E /* InteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF8B20FF140200D3228E /* InteractiveDismissTransition.swift */; };
+		0C5DBF8E20FF16B600D3228E /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF8D20FF16B600D3228E /* DismissAnimator.swift */; };
 		0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */; };
 		0C74D81B1FEAA31300CDA0BE /* PhotoPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C74D81A1FEAA31300CDA0BE /* PhotoPreviewViewController.swift */; };
 		0C74D81F1FEAA65200CDA0BE /* PhotoPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C74D81E1FEAA65200CDA0BE /* PhotoPreview.storyboard */; };
@@ -218,6 +220,8 @@
 		0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationBaseCell.swift; sourceTree = "<group>"; };
 		0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationBaseCell.xib; sourceTree = "<group>"; };
 		0C5DBF4F20F8D28700D3228E /* Customizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customizable.swift; sourceTree = "<group>"; };
+		0C5DBF8B20FF140200D3228E /* InteractiveDismissTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveDismissTransition.swift; sourceTree = "<group>"; };
+		0C5DBF8D20FF16B600D3228E /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDatePicker.swift; sourceTree = "<group>"; };
 		0C74D81A1FEAA31300CDA0BE /* PhotoPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewViewController.swift; sourceTree = "<group>"; };
 		0C74D81E1FEAA65200CDA0BE /* PhotoPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoPreview.storyboard; sourceTree = "<group>"; };
@@ -439,6 +443,15 @@
 				0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */,
 			);
 			path = Submodules;
+			sourceTree = "<group>";
+		};
+		0C5DBF8A20FF115F00D3228E /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				0C5DBF8D20FF16B600D3228E /* DismissAnimator.swift */,
+				0C5DBF8B20FF140200D3228E /* InteractiveDismissTransition.swift */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		0C713F501FC54F1200D8FF8B /* TaskDueDatePicker */ = {
@@ -1372,6 +1385,7 @@
 		96E543751F49ED890081C6F0 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				0C5DBF8A20FF115F00D3228E /* Transitions */,
 				961D67681FA65F3900511042 /* GrowingTextView */,
 				96A5F12C1F507AC500F94553 /* GradientView.swift */,
 				96A5F12E1F507AC500F94553 /* NumPadButton.swift */,
@@ -1662,6 +1676,7 @@
 				0C9B244D207F4719009EF6DE /* TableListRepresentationAdapter.swift in Sources */,
 				0C74D8241FEB89E500CDA0BE /* PhotoPreviewCollectionLayout.swift in Sources */,
 				0CCD3BA020A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift in Sources */,
+				0C5DBF8C20FF140200D3228E /* InteractiveDismissTransition.swift in Sources */,
 				96CF79301FB2377B00AD0594 /* SearchInteractor.swift in Sources */,
 				96115F361F6E7E5D0050D7A3 /* TaskCheckableParameterView.swift in Sources */,
 				965798D51F91340100F65019 /* NumberPadItem.swift in Sources */,
@@ -1765,6 +1780,7 @@
 				0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */,
 				0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */,
 				0C74D8221FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift in Sources */,
+				0C5DBF8E20FF16B600D3228E /* DismissAnimator.swift in Sources */,
 				0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */,
 				96594E50200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
 				96AAA5871FB041D500F547A0 /* SettingsCells.swift in Sources */,
