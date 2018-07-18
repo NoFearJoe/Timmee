@@ -33,7 +33,7 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
         }
         
         let contentOffsetDifference = -(scrollView.contentOffset.y - previousContentOffset)
-        if contentOffsetDifference > 0, currentTranslation > 0 {
+        if currentTranslation > 0 {
             scrollView.contentOffset.y = -scrollView.contentInset.top
         }
         previousContentOffset = scrollView.contentOffset.y
