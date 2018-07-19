@@ -130,7 +130,7 @@ extension MainViewController: ListsViewOutput {
         taskCreationPanel.setTaskTitleFieldFirstResponder(true)
     }
     
-    func willClose() {
+    func didClose() {
         menuPanel.showControls(animated: true)
         taskCreationPanel.setTaskTitleFieldFirstResponder(false)
         state.isPickingList = false

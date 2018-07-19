@@ -16,26 +16,41 @@ final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let source = transitionContext.viewController(forKey: .from) else { return }
-//        guard let sourceViewSnapshot = source.view.snapshotView(afterScreenUpdates: true) else { return }
         
-//        transitionContext.containerView.addSubview(sourceViewSnapshot)
-//        source.view.isHidden = true
+        UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext),
+                                delay: 0,
+                                options: .calculationModeLinear,
+                                animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0,
+                                                       relativeDuration: 0.33,
+                                                       animations: {
+                                                           source.view.transform = CGAffineTransform(translationX: 0, y: 48)
+                                                       })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.33,
+                                                       relativeDuration: 0.67,
+                                                       animations: {
+                                                           source.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.frame.height)
+                                                       })
+        }) { finished in
+            guard !transitionContext.transitionWasCancelled, finished else {
+                transitionContext.completeTransition(false)
+                return
+            }
+            source.removeFromParentViewController()
+            transitionContext.completeTransition(true)
+        }
         
-        UIView.animate(withDuration: transitionDuration(using: transitionContext),
-                       animations: {
-                           source.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.frame.height)
-                       }) { finished in
-                           guard !transitionContext.transitionWasCancelled, finished else {
-                            print("!completed")
-                            transitionContext.completeTransition(false)
-                            return
-                        }
-//                           source.view.isHidden = false
-//                           sourceViewSnapshot.removeFromSuperview()
-                           print("completed")
-                           source.removeFromParentViewController()
-                           transitionContext.completeTransition(true)
-                       }
+//        UIView.animate(withDuration: transitionDuration(using: transitionContext),
+//                       animations: {
+//                           source.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.frame.height)
+//                       }) { finished in
+//                           guard !transitionContext.transitionWasCancelled, finished else {
+//                               transitionContext.completeTransition(false)
+//                               return
+//                           }
+//                           source.removeFromParentViewController()
+//                           transitionContext.completeTransition(true)
+//                       }
     }
     
 }

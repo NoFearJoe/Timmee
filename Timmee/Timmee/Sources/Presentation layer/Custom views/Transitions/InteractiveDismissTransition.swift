@@ -27,7 +27,7 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard !isBeingFinished else { return }
         
-        if !hasStarted {
+        if !hasStarted, currentTranslation > 0 {
             hasStarted = true
             onClose?()
         }
@@ -40,7 +40,7 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
         currentTranslation += contentOffsetDifference
         
         let progress = max(0, min(1, currentTranslation / scrollView.bounds.height))
-        shouldFinish = progress > 0.33
+        shouldFinish = progress > 0.40
         print("progress \(progress) translation \(currentTranslation) diff \(contentOffsetDifference)")
         update(progress)
     }

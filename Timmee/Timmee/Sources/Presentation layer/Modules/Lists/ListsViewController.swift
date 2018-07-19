@@ -19,7 +19,7 @@ protocol ListsViewOutput: class {
     func didUpdateList(_ list: List)
     func didCreateList()
     
-    func willClose()
+    func didClose()
 }
 
 final class ListsViewController: UIViewController {
@@ -126,13 +126,20 @@ final class ListsViewController: UIViewController {
     }
     
     func close(completion: (() -> Void)?) {
-        output?.willClose()
-        dismiss(animated: true, completion: completion)
+        dismiss(animated: true, completion: {
+            // Если window == nil, то экран закрыт и надо об этом сообщить
+            guard self.view.window == nil else { return }
+            completion?()
+            self.output?.didClose()
+        })
     }
     
     func closeAll(completion: (() -> Void)?) {
-        output?.willClose()
-        presentingViewController?.dismiss(animated: true, completion: completion)
+        presentingViewController?.dismiss(animated: true, completion: {
+            guard self.view.window == nil else { return }
+            completion?()
+            self.output?.didClose()
+        })
     }
     
 }
