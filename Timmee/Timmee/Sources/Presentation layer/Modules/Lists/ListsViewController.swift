@@ -65,7 +65,6 @@ final class ListsViewController: UIViewController {
         super.viewDidLoad()
         
         transitioningDelegate = self
-        dismissTransitionController.viewController = self
         dismissTransitionController.onClose = { [unowned self] in
             self.close()
         }
