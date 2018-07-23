@@ -10,12 +10,18 @@ import UIKit
 
 final class ModalPresentationTransitionHandler: NSObject, UIViewControllerTransitioningDelegate {
     
+    let dismissTransitionController = InteractiveDismissTransition()
+    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ModalPresentationTransition()
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ModalDismissalTransition()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return dismissTransitionController.hasStarted ? dismissTransitionController : nil
     }
     
 }

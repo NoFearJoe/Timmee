@@ -10,6 +10,7 @@
 		0C0816C7208F2E32008F2645 /* TransitionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0816C6208F2E32008F2645 /* TransitionHandlers.swift */; };
 		0C0816C9208F3ACD008F2645 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0816C8208F3ACD008F2645 /* Lists.storyboard */; };
 		0C0816CB208F4039008F2645 /* MainViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0816CA208F4039008F2645 /* MainViewController+State.swift */; };
+		0C14D24D2105AD46004C0559 /* FlipDismissInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D24C2105AD46004C0559 /* FlipDismissInteractor.swift */; };
 		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
 		0C27281120F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C27281020F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib */; };
 		0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */; };
@@ -213,6 +214,7 @@
 		0C0816C6208F2E32008F2645 /* TransitionHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandlers.swift; sourceTree = "<group>"; };
 		0C0816C8208F3ACD008F2645 /* Lists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lists.storyboard; sourceTree = "<group>"; };
 		0C0816CA208F4039008F2645 /* MainViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+State.swift"; sourceTree = "<group>"; };
+		0C14D24C2105AD46004C0559 /* FlipDismissInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipDismissInteractor.swift; sourceTree = "<group>"; };
 		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
 		0C27281020F4D0A1008277F3 /* TableListRepresentationCompletedSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationCompletedSectionHeaderView.xib; sourceTree = "<group>"; };
 		0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 			children = (
 				0C5DBF8D20FF16B600D3228E /* DismissAnimator.swift */,
 				0C5DBF8B20FF140200D3228E /* InteractiveDismissTransition.swift */,
+				0C14D24C2105AD46004C0559 /* FlipDismissInteractor.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -1710,6 +1713,7 @@
 				963D6A411F59ECBD0063E295 /* ListRepresentation.swift in Sources */,
 				0CC7C85D2008D208006758C1 /* AppearanceConfigurator.swift in Sources */,
 				0CC7C85F2008FE48006758C1 /* EducationState.swift in Sources */,
+				0C14D24D2105AD46004C0559 /* FlipDismissInteractor.swift in Sources */,
 				963D6A861F6074F20063E295 /* ListsInteractor.swift in Sources */,
 				0C9B2449207F3860009EF6DE /* TableListRepresentationView.swift in Sources */,
 				96115F2A1F6B0C780050D7A3 /* StoryboardsFactory.swift in Sources */,

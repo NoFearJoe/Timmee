@@ -14,6 +14,8 @@ final class PhotoPreviewViewController: UIViewController {
     @IBOutlet private var photosCountLabel: UILabel!
     @IBOutlet private var closeButton: UIButton!
     
+    private let dismissTransitionController = FlipDismissInteractor()
+    
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
     }
@@ -43,6 +45,8 @@ final class PhotoPreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        transitioningDelegate = dismissTransitionController
         
         addTapGestureRecognizer()
         
@@ -123,6 +127,14 @@ private extension PhotoPreviewViewController {
     func updatePhotosCount() {
         photosCountLabel.isHidden = photos.count <= 1 || isInterfaceHidden
         photosCountLabel.text = "\(photosCollectionView.currentIndex + 1) \("of".localized) \(photos.count)"
+    }
+    
+    @IBAction func onPan(_ recognizer: UIPanGestureRecognizer) {
+        dismissTransitionController.interactWith(panGestureRecognizer: recognizer,
+                                                 onClose: { [unowned self] in
+                                                     self.close()
+                                                 },
+                                                 onCancel: nil)
     }
     
 }

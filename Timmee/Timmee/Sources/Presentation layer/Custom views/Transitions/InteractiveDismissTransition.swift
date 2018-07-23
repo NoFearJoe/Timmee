@@ -37,25 +37,22 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
         }
         if hasStarted, currentTranslation < 0, !isCancelled {
             previousContentOffset = 0
-//            currentTranslation = 0
             isCancelled = true
             hasStarted = false
             cancel()
         }
         
         let contentOffsetDifference = -(scrollView.contentOffset.y - previousContentOffset)
-        if currentTranslation >= 0 {
+        if currentTranslation + contentOffsetDifference >= 0 {
             scrollView.contentOffset.y = -scrollView.contentInset.top
         }
         previousContentOffset = scrollView.contentOffset.y
         currentTranslation += contentOffsetDifference
-        print("translation \(currentTranslation)")
         
         guard !isCancelled, isDragging else { return }
         
         let progress = max(0, min(1, currentTranslation / scrollView.bounds.height))
-        shouldFinish = progress > 0.40
-//        print("progress \(progress) translation \(currentTranslation) diff \(contentOffsetDifference)")
+        shouldFinish = progress > 0.4
         update(progress)
     }
     
@@ -66,10 +63,8 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
             isBeingFinished = true
             finish()
         } else {
-//            if !decelerate {
-                previousContentOffset = 0
-                currentTranslation = 0
-//            }
+            previousContentOffset = 0
+            currentTranslation = 0
             isCancelled = true
             cancel()
         }

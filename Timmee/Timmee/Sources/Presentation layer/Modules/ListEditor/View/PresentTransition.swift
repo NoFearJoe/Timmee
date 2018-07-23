@@ -62,7 +62,7 @@ final class ModalDismissalTransition: NSObject, UIViewControllerAnimatedTransiti
         if let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
             let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) {
             
-            let backgroundView = findBackgroundView(in: transitionContext.containerView)
+            guard let backgroundView = findBackgroundView(in: transitionContext.containerView) else { return }
             
             transitionContext.containerView.insertSubview(toViewController.view,
                                                           belowSubview: backgroundView)
@@ -78,16 +78,18 @@ final class ModalDismissalTransition: NSObject, UIViewControllerAnimatedTransiti
                     backgroundView.backgroundColor = .clear
                     fromViewController.view.transform = CGAffineTransform(translationX: 0, y: frameHeight)
                 },
-                completion: { (complete) in
-                    backgroundView.removeFromSuperview()
-                    transitionContext.completeTransition(complete)
+                completion: { finished in
+                    if !transitionContext.transitionWasCancelled, finished {
+                        backgroundView.removeFromSuperview()
+                    }
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled && finished)
                 }
             )
         }
     }
     
-    private func findBackgroundView(in view: UIView) -> UIView {
-        return view.viewWithTag(901)!
+    private func findBackgroundView(in view: UIView) -> UIView? {
+        return view.viewWithTag(901)
     }
 
 }

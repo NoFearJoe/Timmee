@@ -32,11 +32,7 @@ final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                                                            source.view.transform = CGAffineTransform(translationX: 0, y: transitionContext.containerView.frame.height)
                                                        })
         }) { finished in
-            guard !transitionContext.transitionWasCancelled, finished else {
-                transitionContext.completeTransition(false)
-                return
-            }
-            transitionContext.completeTransition(true)
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled && finished)
         }
     }
     
