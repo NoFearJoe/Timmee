@@ -251,7 +251,7 @@ extension TasksService: TasksObserverProvider {
         let context = Database.localStorage.readContext
         let tasksObserver = CacheObserver<Task>(request: request.nsFetchRequestWithResult,
                                                 section: "isDone",
-                                                cacheName: "tasks\(listID)",
+                                                cacheName: nil,
                                                 context: context)
         
         tasksObserver.setMapping { entity in
