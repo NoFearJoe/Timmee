@@ -36,6 +36,7 @@ protocol TableListRepresentationInteractorOutput: class {
     func initialTasksFetched()
     func tasksCountChanged(count: Int)
     func taskChanged(change: CoreDataChange)
+    func didNotSubscribeToTasks()
     
     func operationCompleted()
     func groupEditingOperationCompleted()
@@ -60,6 +61,8 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     func subscribeToTasks(in list: List?) {
         if let listID = list?.id, tasksObserver == nil || lastListID != listID {
             setupTasksObserver(listID: listID)
+        } else {
+            output.didNotSubscribeToTasks()
         }
         lastListID = list?.id
     }

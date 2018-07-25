@@ -100,6 +100,10 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
         cell.animateModification()
     }
     
+    func reloadTasks() {
+        tableView.reloadData()
+    }
+    
 }
 
 private extension TableListRepresentationView {

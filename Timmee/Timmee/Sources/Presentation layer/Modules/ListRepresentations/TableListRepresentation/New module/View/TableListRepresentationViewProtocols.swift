@@ -21,6 +21,8 @@ protocol TableListRepresentationViewInput: AlertInput {
     func setInteractionsEnabled(_ isEnabled: Bool)
     
     func animateModification(at indexPath: IndexPath)
+    
+    func reloadTasks()
 }
 
 protocol TableListRepresentationViewOutput: class {

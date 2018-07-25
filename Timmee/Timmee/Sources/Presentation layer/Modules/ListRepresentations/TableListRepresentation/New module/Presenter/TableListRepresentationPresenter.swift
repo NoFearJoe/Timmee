@@ -94,6 +94,10 @@ extension TableListRepresentationPresenter: TableListRepresentationInteractorOut
         }
     }
     
+    func didNotSubscribeToTasks() {
+        view.reloadTasks()
+    }
+    
     func operationCompleted() {
         view.setInteractionsEnabled(true)
     }

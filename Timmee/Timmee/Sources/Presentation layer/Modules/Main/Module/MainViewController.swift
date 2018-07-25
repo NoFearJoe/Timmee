@@ -132,7 +132,6 @@ extension MainViewController: ListsViewOutput {
     
     func didClose() {
         menuPanel.showControls(animated: true)
-        taskCreationPanel.setTaskTitleFieldFirstResponder(false)
         state.isPickingList = false
     }
     
@@ -237,6 +236,7 @@ extension MainViewController: ListRepresentationManagerOutput {
 extension MainViewController: ListRepresentationOutput {
     
     func tasksCountChanged(count: Int) {
+        guard presentedViewController == nil else { return }
         menuPanel.setGroupEditingButtonVisible(count > 0)
     }
     

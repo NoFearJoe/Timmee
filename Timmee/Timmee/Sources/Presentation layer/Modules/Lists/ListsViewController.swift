@@ -71,6 +71,8 @@ final class ListsViewController: UIViewController {
         
         setupPlaceholder()
         
+        collectionView.contentInset.bottom = 104
+        
         cacheAdapter.setCollectionView(collectionView)
         
         listsInteractor.output = self
@@ -84,6 +86,7 @@ final class ListsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        collectionViewContainer.showShadow = true
         collectionViewContainer.backgroundColor = AppTheme.current.middlegroundColor
         
         dimmedBackgroundView.backgroundColor = AppTheme.current.foregroundColor.withAlphaComponent(0.75)

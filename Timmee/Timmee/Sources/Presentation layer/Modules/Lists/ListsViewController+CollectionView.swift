@@ -146,6 +146,10 @@ extension ListsViewController: UIScrollViewDelegate {
         dismissTransitionController.scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        dismissTransitionController.scrollViewDidEndDecelerating(scrollView)
+    }
+    
 }
 
 extension ListsViewController: SwipableCollectionViewCellActionsProvider {

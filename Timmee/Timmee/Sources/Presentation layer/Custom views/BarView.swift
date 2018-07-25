@@ -29,8 +29,29 @@ class BarView: UIView {
     
     var roundedCorners: UIRectCorner = [.topRight, .topLeft]
     
+    private let containerLayer = CALayer()
+    
+    override var backgroundColor: UIColor? {
+        didSet {
+            containerLayer.backgroundColor = backgroundColor?.cgColor
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layer.insertSublayer(containerLayer, at: 0)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.insertSublayer(containerLayer, at: 0)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        layer.cornerRadius = cornerRadius
+        containerLayer.frame = layer.bounds
         
         if showShadow {
             layer.shadowPath = UIBezierPath(roundedRect: bounds,
@@ -52,9 +73,9 @@ class BarView: UIView {
             let maskLayer = CAShapeLayer()
             maskLayer.path = maskPath.cgPath
             
-            layer.mask = maskLayer
+            containerLayer.mask = maskLayer
         } else {
-            guard let maskLayer = layer.mask as? CAShapeLayer else { return }
+            guard let maskLayer = containerLayer.mask as? CAShapeLayer else { return }
             if let animation = layer.animation(forKey: "bounds.size")?.copy() as? CABasicAnimation {
                 animation.keyPath = "path"
                 animation.fromValue = maskLayer.path

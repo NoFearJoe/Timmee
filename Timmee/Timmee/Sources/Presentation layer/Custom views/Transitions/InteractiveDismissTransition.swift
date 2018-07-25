@@ -30,13 +30,12 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard !isBeingFinished else { return }
         
-        if !hasStarted, currentTranslation > 0 {
+        if !hasStarted, isDragging, currentTranslation > 0, scrollView.contentOffset.y <= 0 {
             isCancelled = false
             hasStarted = true
             onClose?()
         }
         if hasStarted, currentTranslation < 0, !isCancelled {
-            previousContentOffset = 0
             isCancelled = true
             hasStarted = false
             cancel()
@@ -57,6 +56,21 @@ final class InteractiveDismissTransition: UIPercentDrivenInteractiveTransition {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isDragging = false
+        guard !decelerate else { return }
+        hasStarted = false
+        if shouldFinish {
+            isBeingFinished = true
+            finish()
+        } else {
+            previousContentOffset = 0
+            currentTranslation = 0
+            isCancelled = true
+            cancel()
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         hasStarted = false
         isDragging = false
         if shouldFinish {
