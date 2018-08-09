@@ -24,10 +24,10 @@ import UIKit
 	
 }
 
-class ReorderableTableView: UITableView {
+public class ReorderableTableView: UITableView {
 	
 	/** The object that acts as the delegate of the receiving table view. */
-	weak var longPressReorderDelegate: ReorderableTableViewDelegate?
+	public weak var longPressReorderDelegate: ReorderableTableViewDelegate?
 	
 	fileprivate var longPressGestureRecognizer: UILongPressGestureRecognizer!
 	

@@ -8,31 +8,31 @@
 
 import UIKit
 
-@IBDesignable final class GradientView: UIView {
+@IBDesignable public final class GradientView: UIView {
     
-    @IBInspectable var startAlpha: CGFloat = 0.25 {
+    @IBInspectable public var startAlpha: CGFloat = 0.25 {
         didSet { updateColors() }
     }
-    @IBInspectable var color: UIColor = .white {
+    @IBInspectable public var color: UIColor = .white {
         didSet {
             updateColors()
         }
     }
-    @IBInspectable var startLocation: CGFloat = 0 {
+    @IBInspectable public var startLocation: CGFloat = 0 {
         didSet { updateLocations() }
     }
-    @IBInspectable var endLocation: CGFloat = 1 {
+    @IBInspectable public var endLocation: CGFloat = 1 {
         didSet { updateLocations() }
     }
-    @IBInspectable var isVertical: Bool = true {
+    @IBInspectable public var isVertical: Bool = true {
         didSet { updatePoints() }
     }
     
-    override class var layerClass: AnyClass {
+    public override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
-    var gradientLayer: CAGradientLayer {
+    public var gradientLayer: CAGradientLayer {
         return layer as! CAGradientLayer
     }
     
@@ -47,7 +47,7 @@ import UIKit
         gradientLayer.colors = [color.withAlphaComponent(startAlpha).cgColor, color.cgColor]
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         updateLocations()
         updatePoints()

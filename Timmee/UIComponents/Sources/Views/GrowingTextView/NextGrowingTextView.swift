@@ -223,7 +223,7 @@ open class GrowingTextView: UIScrollView {
     contentOffset.y = contentSize.height - frame.height
   }
 
-  func updateMinimumAndMaximumHeight() {
+  public func updateMinimumAndMaximumHeight() {
     _minHeight = simulateHeight(1)
     _maxHeight = simulateHeight(maxNumberOfLines)
     fitToScrollView()

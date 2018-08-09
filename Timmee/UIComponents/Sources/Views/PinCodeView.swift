@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol PinCodeViewDelegate: class {
+public protocol PinCodeViewDelegate: class {
     func pinCodeViewDidFilled(_ pinCodeView: PinCodeView)
 }
 
-final class PinCodeView: UIView {
+public final class PinCodeView: UIView {
 
     fileprivate enum State {
         case empty
@@ -21,22 +21,22 @@ final class PinCodeView: UIView {
         case wrong
     }
     
-    @IBInspectable var emptyDotColor: UIColor = .gray {
+    @IBInspectable public var emptyDotColor: UIColor = .gray {
         didSet { updateDotsColor() }
     }
-    @IBInspectable var filledDotColor: UIColor = .black {
+    @IBInspectable public var filledDotColor: UIColor = .black {
         didSet { updateDotsColor() }
     }
-    @IBInspectable var rightPinCodeDotColor: UIColor = .green {
+    @IBInspectable public var rightPinCodeDotColor: UIColor = .green {
         didSet { updateDotsColor() }
     }
-    @IBInspectable var wrongPinCodeDotColor: UIColor = .red {
+    @IBInspectable public var wrongPinCodeDotColor: UIColor = .red {
         didSet { updateDotsColor() }
     }
     
-    @IBInspectable var pinCodeLength: Int = 4
+    @IBInspectable public var pinCodeLength: Int = 4
     
-    @IBInspectable var dotSize: CGFloat = 12
+    @IBInspectable public var dotSize: CGFloat = 12
     
     fileprivate var state: State = .empty {
         didSet {
@@ -44,21 +44,21 @@ final class PinCodeView: UIView {
         }
     }
     
-    weak var delegate: PinCodeViewDelegate?
+    public weak var delegate: PinCodeViewDelegate?
     
     fileprivate var dots: [UIView] = []
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         createDots()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         createDots()
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         layoutDots()
     }
@@ -68,7 +68,7 @@ final class PinCodeView: UIView {
 extension PinCodeView {
 
     // Заполняет следующую точку
-    func fillNext() {
+    public func fillNext() {
         switch state {
         case .empty: state = .filled(count: 1)
         case .filled(let count): state = .filled(count: min(count + 1, pinCodeLength))
@@ -78,26 +78,26 @@ extension PinCodeView {
     }
     
     // Заполняет все точки
-    func fillAll() {
+    public func fillAll() {
         state = .filled(count: pinCodeLength)
         checkIsFilled()
     }
     
     // Показывает правильный ввод кода
-    func showPinCodeRight() {
+    public func showPinCodeRight() {
         state = .right
     }
     
     // Показывает неправильный ввод кода
-    func showPinCodeWrong() {
+    public func showPinCodeWrong() {
         state = .wrong
     }
     
-    func clear() {
+    public func clear() {
         state = .empty
     }
     
-    func removeLast() {
+    public func removeLast() {
         switch state {
         case .filled(let count):
             if count <= 1 {

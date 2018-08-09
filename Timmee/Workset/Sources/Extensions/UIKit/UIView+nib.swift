@@ -17,7 +17,7 @@ public extension UIView {
     private static func loadFromNib<T: UIView>(named name: String? = nil) -> T {
         let nibName = name ?? String(describing: T.classForCoder())
         return UINib(nibName: nibName,
-                     bundle: nil)
+                     bundle: Bundle(for: T.self))
             .instantiate(withOwner: nil,
                          options: nil)
             .first as! T

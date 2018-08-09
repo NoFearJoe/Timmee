@@ -5,6 +5,9 @@
       location = "group:Timmee.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:UIComponents.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:TasksKit.xcodeproj">
    </FileRef>
    <FileRef

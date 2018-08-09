@@ -37,7 +37,7 @@
         <scene sceneID="ZVS-xg-MVj">
             <objects>
                 <viewController storyboardIdentifier="InitialEducationScreen" id="YIr-p7-VZc" customClass="InitialEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mTC-M6-yT3" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="mTC-M6-yT3" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -161,7 +161,7 @@
         <scene sceneID="yKZ-NZ-uUy">
             <objects>
                 <viewController storyboardIdentifier="FeaturesEducationScreen" id="7SQ-p2-iNt" customClass="FeaturesEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ByO-3r-Mgt" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="ByO-3r-Mgt" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -287,7 +287,7 @@
         <scene sceneID="Nly-Ni-Hbw">
             <objects>
                 <viewController storyboardIdentifier="PinCodeSetupSuggestionEducationScreen" id="zPZ-oH-Gdt" customClass="PinCodeSetupSuggestionEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="b9J-xF-GF4" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="b9J-xF-GF4" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -413,7 +413,7 @@
         <scene sceneID="bUD-0V-a5a">
             <objects>
                 <viewController storyboardIdentifier="FinalEducationScreen" id="ttC-ap-RvW" customClass="FinalEducationScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WAQ-LP-Ju6" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="WAQ-LP-Ju6" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -523,7 +523,7 @@
         <scene sceneID="UcX-s4-q0q">
             <objects>
                 <viewController storyboardIdentifier="NotificationsSetupSuggestionScreen" id="FwG-fq-P9j" customClass="NotificationsSetupSuggestionScreen" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hnk-Ud-S6a" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="hnk-Ud-S6a" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

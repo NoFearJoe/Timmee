@@ -56,28 +56,28 @@ public enum AppTheme {
 public struct AppThemeScheme {
 
     public static let white = AppThemeScheme(backgroundColor: UIColor(rgba: "272727"),
-                                      middlegroundColor: UIColor(rgba: "E7E7E7"),
-                                      foregroundColor: UIColor(rgba: "FFFFFF"),
-                                      tintColor: UIColor(rgba: "2C3539"),
-                                      secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.6),
-                                      thirdlyTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.3),
-                                      backgroundTintColor: .white,
-                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.6),
-                                      specialColor: UIColor(rgba: "0EAEE4"),
-                                      panelColor: UIColor(rgba: "EEEEEE"),
-                                      tagColors: whiteThemeTagColors)
+                                             middlegroundColor: UIColor(rgba: "E7E7E7"),
+                                             foregroundColor: UIColor(rgba: "FFFFFF"),
+                                             tintColor: UIColor(rgba: "2C3539"),
+                                             secondaryTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.6),
+                                             thirdlyTintColor: UIColor(rgba: "2C3539").withAlphaComponent(0.3),
+                                             backgroundTintColor: .white,
+                                             secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.6),
+                                             specialColor: UIColor(rgba: "0EAEE4"),
+                                             panelColor: UIColor(rgba: "EEEEEE"),
+                                             tagColors: whiteThemeTagColors)
     
     public static let black = AppThemeScheme(backgroundColor: UIColor(rgba: "141311"),
-                                      middlegroundColor: UIColor(rgba: "686766"),
-                                      foregroundColor: UIColor(rgba: "B7B7B6"),
-                                      tintColor: UIColor(rgba: "141311"),
-                                      secondaryTintColor: UIColor(rgba: "141311").withAlphaComponent(0.6),
-                                      thirdlyTintColor: UIColor(rgba: "141311").withAlphaComponent(0.3),
-                                      backgroundTintColor: .white,
-                                      secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.6),
-                                      specialColor: UIColor(rgba: "FFD700"),
-                                      panelColor: UIColor(rgba: "EEEEEE"),
-                                      tagColors: blackThemeTagColors)
+                                             middlegroundColor: UIColor(rgba: "686766"),
+                                             foregroundColor: UIColor(rgba: "B7B7B6"),
+                                             tintColor: UIColor(rgba: "141311"),
+                                             secondaryTintColor: UIColor(rgba: "141311").withAlphaComponent(0.6),
+                                             thirdlyTintColor: UIColor(rgba: "141311").withAlphaComponent(0.3),
+                                             backgroundTintColor: .white,
+                                             secondaryBackgroundTintColor: UIColor.white.withAlphaComponent(0.6),
+                                             specialColor: UIColor(rgba: "FFD700"),
+                                             panelColor: UIColor(rgba: "EEEEEE"),
+                                             tagColors: blackThemeTagColors)
     
     public static let new = AppThemeScheme(backgroundColor: UIColor(rgba: "2E2F30"),
                                            middlegroundColor: UIColor(rgba: "EAECEE"),

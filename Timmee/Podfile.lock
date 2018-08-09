@@ -12,7 +12,7 @@ DEPENDENCIES:
   - SwipeCellKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Crashlytics
     - Fabric
     - Foto
@@ -24,6 +24,6 @@ SPEC CHECKSUMS:
   Foto: 6eb4eacbbc9a0a56418891347128b2ab0fd16553
   SwipeCellKit: 8ae09401e1137566b187980d824310129233c959
 
-PODFILE CHECKSUM: 647d9b93483771e15c5558026071d3a8dea79740
+PODFILE CHECKSUM: 738572cdda4775341e488009e86339676c693cad
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

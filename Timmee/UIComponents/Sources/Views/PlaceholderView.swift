@@ -11,23 +11,23 @@ import class UIKit.UILabel
 import class UIKit.UIImage
 import class UIKit.UIImageView
 
-final class PlaceholderView: UIView {
+public final class PlaceholderView: UIView {
     
-    @IBOutlet fileprivate var iconView: UIImageView!
-    @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var subtitleLabel: UILabel!
+    @IBOutlet public var iconView: UIImageView!
+    @IBOutlet public var titleLabel: UILabel!
+    @IBOutlet public var subtitleLabel: UILabel!
     
-    var icon: UIImage? {
+    public var icon: UIImage? {
         get { return iconView.image }
         set { iconView.image = newValue }
     }
     
-    var title: String? {
+    public var title: String? {
         get { return titleLabel.text }
         set { titleLabel.text = newValue }
     }
     
-    var subtitle: String? {
+   public  var subtitle: String? {
         get { return subtitleLabel.text }
         set { subtitleLabel.text = newValue }
     }
@@ -36,23 +36,13 @@ final class PlaceholderView: UIView {
 
 extension PlaceholderView {
  
-    func setup(into view: UIView) {
+    public func setup(into view: UIView) {
         view.addSubview(self)
         view.bringSubview(toFront: self)
         
         [centerX(), centerY(), leading(20), trailing(20)].toSuperview()
         
-        setupAppearance()
-    }
-    
-}
-
-fileprivate extension PlaceholderView {
-    
-    func setupAppearance() {
-        iconView.tintColor = AppTheme.current.secondaryTintColor
-        titleLabel.textColor = AppTheme.current.tintColor
-        subtitleLabel.textColor = AppTheme.current.secondaryTintColor
+        (self as? Customizable)?.applyAppearance()
     }
     
 }

@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import Workset
 
-final class LoadingView: UIView {
+public final class LoadingView: UIView {
     
     fileprivate var activityIndicator: UIActivityIndicatorView!
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initialize()
     }
@@ -25,17 +26,17 @@ final class LoadingView: UIView {
     fileprivate func initialize() {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
         addSubview(activityIndicator)
-        backgroundColor = AppTheme.white.scheme.backgroundColor
+        backgroundColor = UIColor(rgba: "272727")
         clipsToBounds = true
-        layer.cornerRadius = AppTheme.current.cornerRadius
+        layer.cornerRadius = 6
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
     
-    override var isHidden: Bool {
+    public override var isHidden: Bool {
         didSet {
             activityIndicator?.startAnimating()
         }

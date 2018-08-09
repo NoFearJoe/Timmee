@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Workset
 
 protocol PageControlDelegate: class {
     func pageControl(_ pageControl: PageControl, selectedPageChangedTo page: Int, isPlus: Bool)

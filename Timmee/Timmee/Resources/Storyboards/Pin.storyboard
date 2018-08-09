@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <scene sceneID="6nx-3G-byp">
             <objects>
                 <viewController storyboardIdentifier="PinAuthentication" modalTransitionStyle="crossDissolve" id="2Py-2u-goK" customClass="PinAuthenticationViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CBH-jT-a0K" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="CBH-jT-a0K" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -115,7 +115,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-1Q-UAD" customClass="PinCodeView" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDM-1Q-UAD" customClass="PinCodeView" customModule="UIComponents">
                                 <rect key="frame" x="123" y="170" width="128" height="12"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -194,7 +194,7 @@
         <scene sceneID="FD7-RT-Rqt">
             <objects>
                 <viewController storyboardIdentifier="PinCreation" modalTransitionStyle="crossDissolve" id="GnP-dN-Ukl" customClass="PinCreationViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lUW-H2-EkG" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="lUW-H2-EkG" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -295,7 +295,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-cZ-DQO" customClass="PinCodeView" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7N-cZ-DQO" customClass="PinCodeView" customModule="UIComponents">
                                 <rect key="frame" x="123" y="192" width="128" height="12"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -368,7 +368,7 @@
         <scene sceneID="rPM-YE-gaI">
             <objects>
                 <viewController storyboardIdentifier="BiometricsActivation" id="www-LZ-htV" customClass="BiometricsActivationController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cfD-RB-9Rb" customClass="GradientView" customModule="Timmee" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="cfD-RB-9Rb" customClass="GradientView" customModule="UIComponents">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

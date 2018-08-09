@@ -6,6 +6,6 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-protocol Customizable {
+public protocol Customizable {
     func applyAppearance()
 }

@@ -8,17 +8,17 @@
 
 import UIKit
 
-class BarView: UIView {
+open class BarView: UIView {
 
-    @IBInspectable var cornerRadius: CGFloat = 8
+    @IBInspectable open var cornerRadius: CGFloat = 8
     
-    var shadowRadius: CGFloat = 4 {
+    open var shadowRadius: CGFloat = 4 {
         didSet {
             layer.shadowRadius = shadowRadius
         }
     }
     
-    var showShadow: Bool = false {
+    open var showShadow: Bool = false {
         didSet {
             layer.shadowColor = showShadow ? UIColor.black.cgColor : UIColor.clear.cgColor
             layer.shadowOffset = CGSize(width: 0, height: -1)
@@ -27,27 +27,27 @@ class BarView: UIView {
         }
     }
     
-    var roundedCorners: UIRectCorner = [.topRight, .topLeft]
+    open var roundedCorners: UIRectCorner = [.topRight, .topLeft]
     
     private let containerLayer = CALayer()
     
-    override var backgroundColor: UIColor? {
+    open override var backgroundColor: UIColor? {
         didSet {
             containerLayer.backgroundColor = backgroundColor?.cgColor
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         layer.insertSublayer(containerLayer, at: 0)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         layer.insertSublayer(containerLayer, at: 0)
     }
     
-    override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         layer.cornerRadius = cornerRadius
@@ -90,21 +90,21 @@ class BarView: UIView {
 
 }
 
-final class RoundedViewWithShadow: UIView {
+public final class RoundedViewWithShadow: UIView {
     
-    @IBInspectable var cornerRadius: CGFloat = 8 {
+    @IBInspectable public var cornerRadius: CGFloat = 8 {
         didSet {
             layer.cornerRadius = cornerRadius
         }
     }
     
-    @IBInspectable var shadowRadius: CGFloat = 8 {
+    @IBInspectable public var shadowRadius: CGFloat = 8 {
         didSet {
             layer.shadowRadius = shadowRadius
         }
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         
         layer.cornerRadius = cornerRadius

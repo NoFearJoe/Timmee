@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class NumPadButton: UIButton {
+public final class NumPadButton: UIButton {
 
-    @IBInspectable dynamic var borderWidth: CGFloat = 1
-    @IBInspectable dynamic var borderColor: UIColor = .black
+    @IBInspectable public dynamic var borderWidth: CGFloat = 1
+    @IBInspectable public dynamic var borderColor: UIColor = .black
     
-    var number: Int? {
+    public var number: Int? {
         get {
             guard let title = title(for: .normal) else { return nil }
             return Int(title)
@@ -24,17 +24,17 @@ final class NumPadButton: UIButton {
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         configureBorder()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configureBorder()
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         layer.cornerRadius = frame.size.width * 0.5

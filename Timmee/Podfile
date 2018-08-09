@@ -13,6 +13,10 @@ target 'Timmee' do
   pod 'Crashlytics'
 end
 
+target 'UIComponents' do
+    project 'UIComponents.xcodeproj'
+end
+
 target 'TasksKit' do
   project 'TasksKit.xcodeproj'  
 end

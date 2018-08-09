@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class FlipDismissInteractor: NSObject {
+public final class FlipDismissInteractor: NSObject {
     
-    let interactor = Interactor()
+    public let interactor = Interactor()
     
-    func interactWith(panGestureRecognizer recognizer: UIPanGestureRecognizer, onClose: (() -> Void)?, onCancel: (() -> Void)?) {
+    public func interactWith(panGestureRecognizer recognizer: UIPanGestureRecognizer, onClose: (() -> Void)?, onCancel: (() -> Void)?) {
         let treshold: CGFloat = 0.4
         
         let translation = recognizer.translation(in: recognizer.view)
@@ -41,20 +41,20 @@ final class FlipDismissInteractor: NSObject {
         }
     }
     
-    class Interactor: UIPercentDrivenInteractiveTransition {
-        var hasStarted = false
-        var shouldFinish = false
+    public class Interactor: UIPercentDrivenInteractiveTransition {
+        public var hasStarted = false
+        public var shouldFinish = false
     }
     
 }
 
 extension FlipDismissInteractor: UIViewControllerTransitioningDelegate {
     
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
     
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissAnimator()
     }
     

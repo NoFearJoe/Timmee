@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PassthrowView: UIView {
+open class PassthrowView: UIView {
 
-    var shouldPassTouches = true
+    open var shouldPassTouches = true
     
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         guard shouldPassTouches else { return true }
         return pointInside(point, inside: subviews, with: event)
     }

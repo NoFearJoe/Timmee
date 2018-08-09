@@ -8,17 +8,17 @@
 
 import UIKit
 
-enum AlertAction {
+public enum AlertAction {
     case ok(String)
     case cancel
 }
 
-protocol AlertInput: class {
+public protocol AlertInput: class {
     func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?)
 }
 
-extension AlertInput where Self: UIViewController {
-    func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?) {
+public extension AlertInput where Self: UIViewController {
+    public func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach { action in
             switch action {

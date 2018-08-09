@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public final class DismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let source = transitionContext.viewController(forKey: .from) else { return }
         
         UIView.animateKeyframes(withDuration: transitionDuration(using: transitionContext),

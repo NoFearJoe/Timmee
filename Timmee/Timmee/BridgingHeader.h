@@ -11,5 +11,6 @@
 
 #import <Workset/Workset.h>
 #import <TasksKit/TasksKit.h>
+#import <UIComponents/UIComponents.h>
 
 #endif /* BridgingHeader_h */
