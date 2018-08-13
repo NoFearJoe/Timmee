@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C14D476211C55D9004C0559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D475211C55D9004C0559 /* AppDelegate.swift */; };
-		0C14D478211C55D9004C0559 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D477211C55D9004C0559 /* ViewController.swift */; };
 		0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D479211C55D9004C0559 /* Main.storyboard */; };
 		0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
 		0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
@@ -18,6 +16,18 @@
 		0C14D491211C564F004C0559 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C14D492211C564F004C0559 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
 		0C14D493211C564F004C0559 /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4A7212160B5004C0559 /* EducationViewController.swift */; };
+		0C14D4AA21216129004C0559 /* Education.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4A921216129004C0559 /* Education.storyboard */; };
+		0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */; };
+		0C14D4CE21217390004C0559 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
+		0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
+		0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
+		0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
+		0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E3212183A9004C0559 /* AppDelegate.swift */; };
+		0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */; };
+		0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4ED21219669004C0559 /* SprintCreation.storyboard */; };
+		0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
+		0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +49,6 @@
 
 /* Begin PBXFileReference section */
 		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C14D475211C55D9004C0559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C14D477211C55D9004C0559 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C14D47A211C55D9004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +56,23 @@
 		0C14D488211C564A004C0559 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D48A211C564A004C0559 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D48C211C564A004C0559 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C14D4A7212160B5004C0559 /* EducationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewController.swift; sourceTree = "<group>"; };
+		0C14D4A921216129004C0559 /* Education.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Education.storyboard; sourceTree = "<group>"; };
+		0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
+		0C14D4AE21216CAF004C0559 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		0C14D4C721217390004C0559 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C14D4C921217390004C0559 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		0C14D4CA21217390004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C14D4CB21217390004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		0C14D4CC21217390004C0559 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C14D4CD21217390004C0559 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenPresenter.swift; sourceTree = "<group>"; };
+		0C14D4E1212182B2004C0559 /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
+		0C14D4E3212183A9004C0559 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationViewController.swift; sourceTree = "<group>"; };
+		0C14D4ED21219669004C0559 /* SprintCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SprintCreation.storyboard; sourceTree = "<group>"; };
+		0C14D4F02121974E004C0559 /* LargeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeHeaderView.swift; sourceTree = "<group>"; };
+		0C14D4F221219FF4004C0559 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,12 +114,13 @@
 		0C14D474211C55D9004C0559 /* Agile diary */ = {
 			isa = PBXGroup;
 			children = (
-				0C14D475211C55D9004C0559 /* AppDelegate.swift */,
-				0C14D477211C55D9004C0559 /* ViewController.swift */,
+				0C14D4A12121604A004C0559 /* Sources */,
+				0C14D4A021216048004C0559 /* Resources */,
 				0C14D479211C55D9004C0559 /* Main.storyboard */,
 				0C14D47C211C55DA004C0559 /* Assets.xcassets */,
 				0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */,
 				0C14D481211C55DA004C0559 /* Info.plist */,
+				0C14D4AE21216CAF004C0559 /* BridgingHeader.h */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -108,6 +134,144 @@
 				9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0C14D4A021216048004C0559 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4C521217390004C0559 /* Localization */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0C14D4A12121604A004C0559 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4A421216059004C0559 /* Application layer */,
+				0C14D4A321216058004C0559 /* Presentation layer */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0C14D4A321216058004C0559 /* Presentation layer */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4EF21219696004C0559 /* UI components */,
+				0C14D4AB212167DD004C0559 /* Factories */,
+				0C14D4A521216085004C0559 /* Modules */,
+			);
+			path = "Presentation layer";
+			sourceTree = "<group>";
+		};
+		0C14D4A421216059004C0559 /* Application layer */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4DA21218164004C0559 /* Application delegate */,
+				0C14D4D921218161004C0559 /* Configurators */,
+				0C14D4E02121828E004C0559 /* User properties */,
+			);
+			path = "Application layer";
+			sourceTree = "<group>";
+		};
+		0C14D4A521216085004C0559 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4E7212195DE004C0559 /* Sprint creation */,
+				0C14D4A62121608E004C0559 /* Education */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		0C14D4A62121608E004C0559 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4A7212160B5004C0559 /* EducationViewController.swift */,
+				0C14D4A921216129004C0559 /* Education.storyboard */,
+			);
+			path = Education;
+			sourceTree = "<group>";
+		};
+		0C14D4AB212167DD004C0559 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		0C14D4C521217390004C0559 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4C621217390004C0559 /* Localizable.strings */,
+				0C14D4C821217390004C0559 /* Localizable.stringsdict */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		0C14D4D921218161004C0559 /* Configurators */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */,
+			);
+			path = Configurators;
+			sourceTree = "<group>";
+		};
+		0C14D4DA21218164004C0559 /* Application delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4E3212183A9004C0559 /* AppDelegate.swift */,
+			);
+			path = "Application delegate";
+			sourceTree = "<group>";
+		};
+		0C14D4E02121828E004C0559 /* User properties */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4E1212182B2004C0559 /* UserProperties.swift */,
+			);
+			path = "User properties";
+			sourceTree = "<group>";
+		};
+		0C14D4E7212195DE004C0559 /* Sprint creation */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4EA2121961E004C0559 /* Main */,
+				0C14D4E921219611004C0559 /* Habit creation */,
+				0C14D4E8212195FE004C0559 /* Target creation */,
+				0C14D4ED21219669004C0559 /* SprintCreation.storyboard */,
+			);
+			path = "Sprint creation";
+			sourceTree = "<group>";
+		};
+		0C14D4E8212195FE004C0559 /* Target creation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Target creation";
+			sourceTree = "<group>";
+		};
+		0C14D4E921219611004C0559 /* Habit creation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Habit creation";
+			sourceTree = "<group>";
+		};
+		0C14D4EA2121961E004C0559 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		0C14D4EF21219696004C0559 /* UI components */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4F02121974E004C0559 /* LargeHeaderView.swift */,
+				0C14D4F221219FF4004C0559 /* Switcher.swift */,
+			);
+			path = "UI components";
 			sourceTree = "<group>";
 		};
 		422F11A515C6CEDFA0FD93B5 /* Pods */ = {
@@ -164,6 +328,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 0C14D469211C55D9004C0559;
 			productRefGroup = 0C14D473211C55D9004C0559 /* Products */;
@@ -180,9 +345,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
+				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
 				0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */,
+				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
+				0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,8 +403,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C14D478211C55D9004C0559 /* ViewController.swift in Sources */,
-				0C14D476211C55D9004C0559 /* AppDelegate.swift in Sources */,
+				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
+				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
+				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
+				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
+				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
+				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
+				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
+				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +431,26 @@
 				0C14D47F211C55DA004C0559 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0C14D4C621217390004C0559 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C14D4C721217390004C0559 /* en */,
+				0C14D4CA21217390004C0559 /* Base */,
+				0C14D4CC21217390004C0559 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0C14D4C821217390004C0559 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C14D4C921217390004C0559 /* en */,
+				0C14D4CB21217390004C0559 /* Base */,
+				0C14D4CD21217390004C0559 /* ru */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -390,6 +585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.Agile-diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -410,6 +606,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.Agile-diary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

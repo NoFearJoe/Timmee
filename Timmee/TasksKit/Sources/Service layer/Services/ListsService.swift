@@ -283,7 +283,7 @@ private extension ListsService {
     
     /// Запрос всех списков
     static func listsFetchRequest() -> FetchRequest<ListEntity> {
-        let sortDescriptor = ListSorting(value: UserProperty.listSorting.int()).sortDescriptor
+        let sortDescriptor = ListSorting(value: ListSorting.asUserProperty.int()).sortDescriptor
         return ListEntity.request().sorted(keyPath: \.isFavorite, ascending: false).sorted(sortDescriptor: sortDescriptor)
     }
     

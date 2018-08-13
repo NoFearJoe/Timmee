@@ -1,0 +1,80 @@
+{
+	"every_n_weeks" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U043a\U0430\U0436\U0434\U044b\U0435";
+			one = "\U043a\U0430\U0436\U0434\U0443\U044e";
+		};
+	};
+	"imported_n_tasks" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U043e %lu \U0437\U0430\U0434\U0430\U0447";
+			one = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U0430 \U043e\U0434\U043d\U0430 \U0437\U0430\U0434\U0430\U0447\U0430";
+			few = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U043e %lu \U0437\U0430\U0434\U0430\U0447\U0438";
+		};
+	};
+	"n_years" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U043b\U0435\U0442";
+			one = "\U0433\U043e\U0434";
+			few = "\U0433\U043e\U0434\U0430";
+		};
+	};
+	"n_months" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U043c\U0435\U0441\U044f\U0446\U0435\U0432";
+			one = "\U043c\U0435\U0441\U044f\U0446";
+			few = "\U043c\U0435\U0441\U044f\U0446\U0430";
+		};
+	};
+	"n_weeks" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U043d\U0435\U0434\U0435\U043b\U044c";
+			one = "\U043d\U0435\U0434\U0435\U043b\U044e";
+			few = "\U043d\U0435\U0434\U0435\U043b\U0438";
+		};
+	};
+	"n_days" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U0434\U043d\U0435\U0439";
+			one = "\U0434\U0435\U043d\U044c";
+			few = "\U0434\U043d\U044f";
+		};
+	};
+	"every_n_units" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U043a\U0430\U0436\U0434\U044b\U0435";
+			one = "\U043a\U0430\U0436\U0434\U044b\U0439";
+		};
+	};
+	"n_attachments" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = lu;
+			few = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0445 \U0444\U0430\U0439\U043b\U0430";
+			one = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0439 \U0444\U0430\U0439\U043b";
+			other = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0445 \U0444\U0430\U0439\U043b\U043e\U0432";
+		};
+	};
+}

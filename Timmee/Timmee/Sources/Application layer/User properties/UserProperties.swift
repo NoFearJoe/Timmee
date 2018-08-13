@@ -8,7 +8,7 @@
 
 import class Foundation.UserDefaults
 
-public enum UserProperty {
+public enum UserProperty: UserPropertyProtocol {
     case isFirstLoad
     case isEducationShown
     case isAppRated
@@ -18,8 +18,6 @@ public enum UserProperty {
     
     case appTheme
     
-    case listSorting
-    
     case highlightOverdueTasks
     
     case pinCode
@@ -27,7 +25,7 @@ public enum UserProperty {
     
     case inApp(String)
     
-    public var rawValue: String {
+    public var key: String {
         switch self {
         case .isFirstLoad: return "isFirstLoad"
         case .isEducationShown: return "isEducationShown"
@@ -35,7 +33,6 @@ public enum UserProperty {
         case .isInitialSmartListsAdded: return "isInitialSmartListsAdded"
         case .isDefaultTimeTemplatesAdded: return "isDefaultTimeTemplatesAdded"
         case .appTheme: return "appTheme"
-        case .listSorting: return "listSorting"
         case .highlightOverdueTasks: return "highlightOverdueTasks"
         case .pinCode: return "pinCode"
         case .biometricsAuthenticationEnabled: return "biometricsAuthenticationEnabled"
@@ -43,40 +40,4 @@ public enum UserProperty {
         }
     }
     
-}
-
-public extension UserProperty {
-
-    public func setValue(_ value: Any?) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-    
-    public func value() -> Any? {
-        return UserDefaults.standard.value(forKey: self.rawValue)
-    }
-    
-    public func setBool(_ value: Bool) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-    
-    public func bool() -> Bool {
-        return UserDefaults.standard.bool(forKey: self.rawValue)
-    }
-    
-    public func setInt(_ value: Int) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-    
-    public func int() -> Int {
-        return UserDefaults.standard.integer(forKey: self.rawValue)
-    }
-    
-    public func setString(_ value: String) {
-        UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-    
-    public func string() -> String {
-        return UserDefaults.standard.string(forKey: self.rawValue) ?? ""
-    }
-
 }

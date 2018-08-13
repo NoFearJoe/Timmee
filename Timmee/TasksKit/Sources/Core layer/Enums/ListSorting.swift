@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import Workset
 import class Foundation.NSSortDescriptor
 
 public enum ListSorting: Int {
@@ -59,4 +60,14 @@ public extension ListSorting {
         }
     }
 
+}
+
+extension ListSorting: UserPropertyProtocol, UserPropertyRepresentable {
+    public var key: String {
+        return "listSorting"
+    }
+    
+    public static var asUserProperty: UserPropertyProtocol {
+        return self as! UserPropertyProtocol
+    }
 }

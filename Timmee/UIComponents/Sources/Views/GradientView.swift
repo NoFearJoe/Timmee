@@ -8,48 +8,64 @@
 
 import UIKit
 
-@IBDesignable public final class GradientView: UIView {
+open class GradientView: UIView {
     
-    @IBInspectable public var startAlpha: CGFloat = 0.25 {
-        didSet { updateColors() }
-    }
-    @IBInspectable public var color: UIColor = .white {
+    @IBInspectable public var startColor: UIColor = .white {
         didSet {
-            updateColors()
+            self.updateColors()
         }
     }
-    @IBInspectable public var startLocation: CGFloat = 0 {
-        didSet { updateLocations() }
-    }
-    @IBInspectable public var endLocation: CGFloat = 1 {
-        didSet { updateLocations() }
-    }
-    @IBInspectable public var isVertical: Bool = true {
-        didSet { updatePoints() }
+    @IBInspectable public var endColor: UIColor = .black {
+        didSet {
+            self.updateColors()
+        }
     }
     
-    public override class var layerClass: AnyClass {
+    @IBInspectable public var startLocation: CGFloat = 0 {
+        didSet {
+            self.updateLocations()
+        }
+    }
+    @IBInspectable public var endLocation: CGFloat = 1 {
+        didSet {
+            self.updateLocations()
+        }
+    }
+    
+    @IBInspectable public var startPoint: CGPoint = .zero {
+        didSet {
+            self.gradientLayer.startPoint = startPoint
+        }
+    }
+    @IBInspectable public var endPoint: CGPoint = CGPoint(x: 0, y: 1) {
+        didSet {
+            self.gradientLayer.endPoint = endPoint
+        }
+    }
+    
+    override open static var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
     public var gradientLayer: CAGradientLayer {
-        return layer as! CAGradientLayer
+        return self.layer as! CAGradientLayer
     }
     
-    func updatePoints() {
-        gradientLayer.startPoint = isVertical ? CGPoint(x: 0, y: 0) : CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint   = isVertical ? CGPoint(x: 0, y: 1) : CGPoint(x: 1, y: 0)
-    }
-    func updateLocations() {
-        gradientLayer.locations = [startLocation as NSNumber, endLocation as NSNumber]
-    }
-    func updateColors() {
-        gradientLayer.colors = [color.withAlphaComponent(startAlpha).cgColor, color.cgColor]
-    }
-    
-    public override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
-        updateLocations()
-        updatePoints()
+        self.updateLocations()
     }
 }
+
+private extension GradientView {
+    
+    func updateLocations() {
+        self.gradientLayer.locations = [self.startLocation as NSNumber, self.endLocation as NSNumber]
+    }
+    
+    func updateColors() {
+        self.gradientLayer.colors = [self.startColor.cgColor, self.endColor.cgColor]
+    }
+    
+}
+

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */; };
 		0C9B23E42077B757009EF6DE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C12077B757009EF6DE /* Date.swift */; };
 		0C9B23E52077B757009EF6DE /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C22077B757009EF6DE /* KeyboardManager.swift */; };
 		0C9B23E62077B757009EF6DE /* TimeRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C32077B757009EF6DE /* TimeRounder.swift */; };
@@ -33,7 +34,6 @@
 		0C9B23FE2077B757009EF6DE /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23E12077B757009EF6DE /* Array+Unique.swift */; };
 		0C9B23FF2077B757009EF6DE /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23E22077B757009EF6DE /* Array+RemoveObject.swift */; };
 		0C9B24002077B757009EF6DE /* Array+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23E32077B757009EF6DE /* Array+Item.swift */; };
-		0C9B24032077B996009EF6DE /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24012077B996009EF6DE /* UserProperties.swift */; };
 		0C9B24042077B996009EF6DE /* NearestDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24022077B996009EF6DE /* NearestDate.swift */; };
 		0CE018BE2077B52B00633EFF /* Workset.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CE018BC2077B52B00633EFF /* Workset.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9606627F20A359FF00B23EDF /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627E20A359FF00B23EDF /* Sound.swift */; };
@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyProtocol.swift; sourceTree = "<group>"; };
 		0C9B23C12077B757009EF6DE /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0C9B23C22077B757009EF6DE /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		0C9B23C32077B757009EF6DE /* TimeRounder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRounder.swift; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 		0C9B23E12077B757009EF6DE /* Array+Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
 		0C9B23E22077B757009EF6DE /* Array+RemoveObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		0C9B23E32077B757009EF6DE /* Array+Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Item.swift"; sourceTree = "<group>"; };
-		0C9B24012077B996009EF6DE /* UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
 		0C9B24022077B996009EF6DE /* NearestDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestDate.swift; sourceTree = "<group>"; };
 		0CE018B92077B52B00633EFF /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE018BC2077B52B00633EFF /* Workset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Workset.h; sourceTree = "<group>"; };
@@ -107,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				0C9B24022077B996009EF6DE /* NearestDate.swift */,
-				0C9B24012077B996009EF6DE /* UserProperties.swift */,
 				0C9B23C12077B757009EF6DE /* Date.swift */,
 				0C9B23C22077B757009EF6DE /* KeyboardManager.swift */,
 				0C9B23C32077B757009EF6DE /* TimeRounder.swift */,
@@ -117,6 +116,7 @@
 				0C9B23C72077B757009EF6DE /* Calendar.swift */,
 				9606627E20A359FF00B23EDF /* Sound.swift */,
 				9606628020A6FE0100B23EDF /* Tracker.swift */,
+				0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -338,11 +338,11 @@
 				0C9B23FD2077B757009EF6DE /* Sequence+Dictionarised.swift in Sources */,
 				0C9B23E42077B757009EF6DE /* Date.swift in Sources */,
 				0C9B23E72077B757009EF6DE /* DatesKit.swift in Sources */,
-				0C9B24032077B996009EF6DE /* UserProperties.swift in Sources */,
 				0C9B23ED2077B757009EF6DE /* UIDevice+biometrics.swift in Sources */,
 				0C9B23F72077B757009EF6DE /* String+capitalizeFirst.swift in Sources */,
 				0C9B23E92077B757009EF6DE /* LayoutKit.swift in Sources */,
 				0C9B23FB2077B757009EF6DE /* Array+IndexOf.swift in Sources */,
+				0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */,
 				0C9B23E62077B757009EF6DE /* TimeRounder.swift in Sources */,
 				0C9B23F02077B757009EF6DE /* UIDevice+Idiom.swift in Sources */,
 				0C9B24042077B996009EF6DE /* NearestDate.swift in Sources */,

@@ -184,9 +184,9 @@ fileprivate extension SettingsViewController {
     func makeGeneralSectionItems() -> [SettingsItem] {
         var generalSectionItems: [SettingsItem] = []
         
-        let currentListSorting = ListSorting(value: UserProperty.listSorting.int())
+        let currentListSorting = ListSorting(value: ListSorting.asUserProperty.int())
         let listSortingAction = { [unowned self] in
-            UserProperty.listSorting.setInt(currentListSorting.next.rawValue)
+            ListSorting.asUserProperty.setInt(currentListSorting.next.rawValue)
             self.reloadSettings()
         }
         let listSortingItem = SettingsItem(title: "list_sorting".localized,

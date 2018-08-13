@@ -52,6 +52,16 @@ public extension Date {
         }
     }
     
+    public var asNearestShortDateString: String {
+        let nearestDate = NearestDate(date: self)
+        
+        if case .custom = nearestDate {
+            return self.asDayMonth
+        } else {
+            return nearestDate.title
+        }
+    }
+    
 }
 
 public extension Date {

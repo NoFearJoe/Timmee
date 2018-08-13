@@ -1,0 +1,163 @@
+/* 
+  Localizable.strings
+  Timmee
+
+  Created by Ilya Kharabet on 05.09.17.
+  Copyright © 2017 Mesterra. All rights reserved.
+*/
+
+"yesterday" = "Вчера";
+"today" = "Сегодня";
+"tomorrow" = "Завтра";
+"week" = "Неделя";
+
+"search" = "Поиск...";
+"initial_search_title" = "Поиск задач";
+"initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
+"empty_section" = "Неопознанный список";
+
+"reminder" = "Напоминание";
+"remind" = "Напомнить"; // в среду
+"location" = "Место";
+"due_date" = "Дата выполнения";
+"due_time" = "Время выполнения";
+
+"repeat" = "Повтор";
+"everyday" = "Ежедневно";
+"weekly" = "Еженедельно";
+"on_weekdays" = "По будням";
+"on_weekends" = "По выходным";
+"weekdays" = "будни";
+"weekends" = "выходные";
+"monthly" = "Ежемесячно";
+"every_year" = "Ежегодно";
+"at" = "в"; // 21:00
+"upon" = "За"; // 15 минут
+"no_repeat" = "Не повторять";
+"and" = "и";
+
+"hours" = "часы";
+"minutes" = "минуты";
+
+"choose_interval" = "Выбрать интервал";
+"choose_days" = "Выбрать дни повтора";
+
+"monday" = "Понедельник";
+"tuesday" = "Вторник";
+"wednesday" = "Среда";
+"thursday" = "Четверг";
+"friday" = "Пятница";
+"saturday" = "Суббота";
+"sunday" = "Воскресенье";
+"mon" = "пн";
+"tue" = "вт";
+"wed" = "ср";
+"thu" = "чт";
+"fri" = "пт";
+"sat" = "сб";
+"sun" = "вс";
+
+"on_monday" = "В понедельник";
+"on_tuesday" = "Во вторник";
+"on_wednesday" = "В среду";
+"on_thursday" = "В четверг";
+"on_friday" = "В пятницу";
+"on_saturday" = "В субботу";
+"on_sunday" = "В воскресенье";
+
+"template_at_morning" = "Утром";
+"template_at_launch" = "В обед";
+"template_at_afternoon" = "Вечером";
+
+"no_reminder" = "Не напоминать";
+"remind_just_in_time" = "Напомнить точно в срок";
+"remind_10_minutes_before" = "Напомнить за 10 минут";
+"remind_30_minutes_before" = "Напомнить за 30 минут";
+"remind_1_hour_before" = "Напомнить за час";
+"remind_1_day_before" = "Напомнить за день";
+
+"settings" = "Настройки";
+"background_color" = "Цвет фона";
+"password_protection" = "Защита паролем";
+"licenses" = "Лицензии";
+"give_feedback" = "Оставить отзыв";
+"additional_features" = "Дополнительные функции";
+"about_app" = "О программе";
+"about_app_text" = "О программе";
+"mail_us" = "Напишите нам";
+
+"attention" = "Внимание";
+"change_pin_code" = "Хотите сменить пин-код?";
+
+"remove" = "Удалить";
+"edit" = "Изменить";
+"done" = "Готово";
+"close" = "Закрыть";
+"back" = "Назад";
+"continue" = "Далее";
+"complete" = "Выполнено";
+"restore" = "Восстановить";
+"move" = "Переместить";
+"cancel" = "Отмена";
+"yes" = "Да";
+"start" = "Начать";
+"stop" = "Остановить";
+"error" = "Ошибка";
+"continue" = "Продолжить";
+
+"of" = "из";
+
+"create_password" = "Придумайте пароль";
+"enter_password" = "Введите пароль";
+"wrong_password" = "Неверный пароль";
+"repeat_password" = "Повторите пароль";
+"passwords_are_not_equal" = "Пароли не совпадают";
+
+"enter_with" = "Вход по";
+"device_is_not_support_biometrics" = "Ваше устройство не поддерживает вход по биометрическим параметрам";
+"touch_id" = "TouchID";
+"face_id" = "FaceID";
+"enter_with_touch_id" = "Вход по TouchID";
+"enter_with_face_id" = "Вход по FaceID";
+"enter_with_touch_id_question" = "Хотите активировать вход по TouchID?";
+"enter_with_face_id_question" = "Хотите активировать вход по FaceID?";
+"activate" = "Активировать";
+"no_thanks" = "Нет, спасибо";
+"touch_id_reason" = "Используйте отпечаток пальца для входа";
+"face_id_reason" = "Используйте сканирование лица для входа";
+
+"general_section" = "Основные";
+"security_section" = "Безопасность";
+"about_section" = "Дополнительно";
+"pin_code_protection" = "Защита паролем";
+"is_on" = "Включена";
+"is_off" = "Выключена";
+"rate" = "Оценить приложение";
+"license" = "Лицензия";
+"restore_purchases" = "Восстановить покупки";
+
+"every_n_units" = "n %lu";
+"every_n_weeks" = "n %lu";
+"n_days" = "%lu n";
+"n_weeks" = "%lu n";
+"n_months" = "%lu n";
+"n_years" = "%lu n";
+"imported_n_tasks" = "%lu n";
+"n_attachments" = "%lu n";
+
+"remind_after_10" = "Напомнить через 10 минут";
+"remind_after_30" = "Напомнить через 30 минут";
+"remind_after_60" = "Напомнить через час";
+
+"education_title_0" = "Что такое Agile ежедневник?";
+"education_subtitle_0" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки.";
+"education_continue_0" = "Продолжить";
+"education_title_1" = "Цели";
+"education_subtitle_1" = "Это Memori - нечто большее, чем просто список дел";
+"education_continue_1" = "Продолжить";
+"education_title_2" = "Привычки";
+"education_subtitle_2" = "Это Memori - нечто большее, чем просто список дел";
+"education_continue_2" = "Продолжить";
+"education_title_3" = "Первый спринт";
+"education_subtitle_3" = "Теперь нужно создать первый спринт";
+"education_continue_3" = "Создать";

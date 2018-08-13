@@ -28,6 +28,7 @@
 		0C14D45E211C222D004C0559 /* WeekDaysPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D45B211C222D004C0559 /* WeekDaysPicker.swift */; };
 		0C14D45F211C222D004C0559 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D45C211C222D004C0559 /* ContinueEducationButton.swift */; };
 		0C14D462211C23C3004C0559 /* PlaceholderView+appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D461211C23C3004C0559 /* PlaceholderView+appearance.swift */; };
+		0C14D4DF21218266004C0559 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DE21218266004C0559 /* UserProperties.swift */; };
 		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
 		0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */; };
 		0C5D847D1FF61C8C0019BEB2 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */; };
@@ -217,6 +218,7 @@
 		0C14D45B211C222D004C0559 /* WeekDaysPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDaysPicker.swift; sourceTree = "<group>"; };
 		0C14D45C211C222D004C0559 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
 		0C14D461211C23C3004C0559 /* PlaceholderView+appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaceholderView+appearance.swift"; sourceTree = "<group>"; };
+		0C14D4DE21218266004C0559 /* UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
 		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
 		0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +433,14 @@
 				0C14D461211C23C3004C0559 /* PlaceholderView+appearance.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0C14D4DD21218248004C0559 /* User properties */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D4DE21218266004C0559 /* UserProperties.swift */,
+			);
+			path = "User properties";
 			sourceTree = "<group>";
 		};
 		0C1E25E01FC2F01E0060E673 /* TaskDueTimePicker */ = {
@@ -1296,6 +1306,7 @@
 		96E5436B1F49ED890081C6F0 /* Application layer */ = {
 			isa = PBXGroup;
 			children = (
+				0C14D4DD21218248004C0559 /* User properties */,
 				96E5436C1F49ED890081C6F0 /* App delegate */,
 				96E5436E1F49ED890081C6F0 /* Configurators */,
 				0C7B2A53208F610600009096 /* Theme */,
@@ -1683,6 +1694,7 @@
 				0C8738D61FB9747700EA1571 /* TaskReminderEditor.swift in Sources */,
 				96594E4C200A6F9000998133 /* InitialEducationScreen.swift in Sources */,
 				0C8738CE1FB9746200EA1571 /* TaskEditorRouter.swift in Sources */,
+				0C14D4DF21218266004C0559 /* UserProperties.swift in Sources */,
 				0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */,
 				0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */,
 				0C74D8221FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift in Sources */,

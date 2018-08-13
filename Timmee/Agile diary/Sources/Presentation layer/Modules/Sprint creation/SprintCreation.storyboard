@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGf-Ss-mFQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sprint Creation View Controller-->
+        <scene sceneID="htE-dq-daH">
+            <objects>
+                <viewController id="cGf-Ss-mFQ" customClass="SprintCreationViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yis-mR-02L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMI-H3-bli" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltR-h9-pQz">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="150"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHj-6h-dgu" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="114" width="345" height="28"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="vCZ-2e-N9a"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Начало сегодня" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsR-YY-jI1">
+                                                <rect key="frame" x="15" y="86.5" width="345" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huO-qj-L0b">
+                                                <rect key="frame" x="15" y="8" width="28" height="28"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="K55-l7-hL0"/>
+                                                    <constraint firstAttribute="width" constant="28" id="SFZ-V0-mbB"/>
+                                                </constraints>
+                                                <state key="normal" image="cross"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpp-6h-tC7">
+                                                <rect key="frame" x="332" y="8" width="28" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="6ee-tW-nG5"/>
+                                                    <constraint firstAttribute="width" constant="28" id="LLB-Zh-Jeh"/>
+                                                </constraints>
+                                                <state key="normal" image="clock"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sprint #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBR-oG-gpS">
+                                                <rect key="frame" x="15" y="48" width="345" height="38.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="UHj-6h-dgu" firstAttribute="top" secondItem="AsR-YY-jI1" secondAttribute="bottom" constant="8" id="00g-TZ-bWk"/>
+                                            <constraint firstItem="UHj-6h-dgu" firstAttribute="leading" secondItem="ltR-h9-pQz" secondAttribute="leading" constant="15" id="3NO-HR-CoK"/>
+                                            <constraint firstAttribute="trailing" secondItem="UHj-6h-dgu" secondAttribute="trailing" constant="15" id="Hut-EO-Nzs"/>
+                                            <constraint firstItem="AsR-YY-jI1" firstAttribute="leading" secondItem="ltR-h9-pQz" secondAttribute="leading" constant="15" id="M69-nk-HNg"/>
+                                            <constraint firstAttribute="trailing" secondItem="jBR-oG-gpS" secondAttribute="trailing" constant="15" id="NMw-6S-0xF"/>
+                                            <constraint firstItem="huO-qj-L0b" firstAttribute="top" secondItem="ltR-h9-pQz" secondAttribute="top" constant="8" id="OfA-7H-ffL"/>
+                                            <constraint firstItem="huO-qj-L0b" firstAttribute="leading" secondItem="ltR-h9-pQz" secondAttribute="leading" constant="15" id="R4Q-LI-vD8"/>
+                                            <constraint firstItem="jBR-oG-gpS" firstAttribute="top" secondItem="huO-qj-L0b" secondAttribute="bottom" constant="12" id="aUh-vU-W0j"/>
+                                            <constraint firstItem="AsR-YY-jI1" firstAttribute="top" secondItem="jBR-oG-gpS" secondAttribute="bottom" id="aoB-6W-C6D"/>
+                                            <constraint firstAttribute="trailing" secondItem="bpp-6h-tC7" secondAttribute="trailing" constant="15" id="hG9-gH-8OQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="UHj-6h-dgu" secondAttribute="bottom" constant="8" id="kG0-fH-XKC"/>
+                                            <constraint firstAttribute="trailing" secondItem="AsR-YY-jI1" secondAttribute="trailing" constant="15" id="kR8-9A-QUh"/>
+                                            <constraint firstItem="bpp-6h-tC7" firstAttribute="top" secondItem="ltR-h9-pQz" secondAttribute="top" constant="8" id="wnd-mv-1db"/>
+                                            <constraint firstItem="jBR-oG-gpS" firstAttribute="leading" secondItem="ltR-h9-pQz" secondAttribute="leading" constant="15" id="zAD-i6-xos"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ltR-h9-pQz" firstAttribute="top" secondItem="U4g-MX-brg" secondAttribute="top" id="KyO-Rl-UiN"/>
+                                    <constraint firstAttribute="bottom" secondItem="ltR-h9-pQz" secondAttribute="bottom" id="iBZ-yG-SP3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ltR-h9-pQz" secondAttribute="trailing" id="l9o-52-qij"/>
+                                    <constraint firstItem="ltR-h9-pQz" firstAttribute="leading" secondItem="YMI-H3-bli" secondAttribute="leading" id="w3p-1U-Ygl"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="U4g-MX-brg"/>
+                                <connections>
+                                    <outlet property="leftButton" destination="huO-qj-L0b" id="20p-KK-6xr"/>
+                                    <outlet property="rightButton" destination="bpp-6h-tC7" id="9ed-Uf-sQx"/>
+                                    <outlet property="subtitleLabel" destination="AsR-YY-jI1" id="Zv4-DW-wZW"/>
+                                    <outlet property="titleLabel" destination="jBR-oG-gpS" id="Wc9-ue-BDI"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YMI-H3-bli" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="EDF-Rj-Um8"/>
+                            <constraint firstItem="YMI-H3-bli" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="EfT-hm-liK"/>
+                            <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="YMI-H3-bli" secondAttribute="trailing" id="bsJ-dq-r0r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KP9-bl-viw"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
+                        <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="70z-Zb-68B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26.399999999999999" y="111.99400299850076"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clock" width="20" height="20"/>
+        <image name="cross" width="20" height="20"/>
+    </resources>
+</document>

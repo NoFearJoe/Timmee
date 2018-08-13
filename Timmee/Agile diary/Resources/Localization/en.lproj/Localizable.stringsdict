@@ -1,0 +1,72 @@
+{
+	"every_n_weeks" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = every;
+		};
+	};
+	"imported_n_tasks" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "%lu tasks added";
+			one = "%lu task added";
+		};
+	};
+	"n_years" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = years;
+			one = year;
+		};
+	};
+	"n_months" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = months;
+			one = month;
+		};
+	};
+	"n_weeks" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = weeks;
+			one = week;
+		};
+	};
+	"n_days" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = days;
+			one = day;
+		};
+	};
+	"every_n_units" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = every;
+		};
+	};
+	"n_attachments" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			"NSStringFormatValueTypeKey" = lu;
+			other = attachments;
+			one = attachment;
+		};
+	};
+}
