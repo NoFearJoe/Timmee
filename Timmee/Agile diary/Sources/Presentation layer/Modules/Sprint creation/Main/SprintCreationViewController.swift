@@ -62,8 +62,8 @@ final class SprintCreationViewController: UIViewController {
     }
     
     private func showStartDate(_ date: Date) {
-        let resultStirng = NSMutableAttributedString(string: "Начало ")
-        let dateString = NSAttributedString(string: date.asNearestShortDateString.lowercased(), attributes: [.foregroundColor: UIColor.blue])
+        let resultStirng = NSMutableAttributedString(string: "Начало ", attributes: [.foregroundColor: UIColor(rgba: "444444")])
+        let dateString = NSAttributedString(string: date.asNearestShortDateString.lowercased(), attributes: [.foregroundColor: UIColor(rgba: "3ECAFF")])
         resultStirng.append(dateString)
         headerView.subtitleLabel.attributedText = resultStirng
     }

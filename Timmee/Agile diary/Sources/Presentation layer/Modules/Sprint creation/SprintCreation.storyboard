@@ -46,12 +46,18 @@
                                                 </constraints>
                                                 <state key="normal" image="cross"/>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sprint #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBR-oG-gpS">
+                                                <rect key="frame" x="15" y="48" width="345" height="38.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpp-6h-tC7">
-                                                <rect key="frame" x="306" y="8" width="54" height="28"/>
+                                                <rect key="frame" x="305" y="8" width="55" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="6ee-tW-nG5"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
                                                 <state key="normal" title="Готово">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -59,12 +65,6 @@
                                                     <action selector="onDone" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="XtJ-Im-QUn"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sprint #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBR-oG-gpS">
-                                                <rect key="frame" x="15" y="48" width="345" height="38.5"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -108,7 +108,7 @@
                             </containerView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkS-e4-0x0">
                                 <rect key="frame" x="155.5" y="595" width="64" height="64"/>
-                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.24313725490196078" green="0.792156862745098" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="eGU-rY-3Gc"/>
                                     <constraint firstAttribute="height" constant="64" id="eV5-Mb-BY2"/>

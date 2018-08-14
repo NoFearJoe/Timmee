@@ -77,8 +77,8 @@ private extension SprintContentViewController {
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
-        placeholderView.titleLabel.font = UIFont.avenirNextMedium(20)
-        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(17)
+        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
         placeholderView.isHidden = true
     }
     

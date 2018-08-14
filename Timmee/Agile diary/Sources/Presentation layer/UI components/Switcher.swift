@@ -68,8 +68,8 @@ class SwitcherItemView: GradientView {
     
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.textColor = .black
-        label.font = UIFont.avenirNextRegular(16)
+        label.textColor = UIColor(rgba: "444444")
+        label.font = UIFont.avenirNextMedium(14)
         label.textAlignment = .center
         return label
     }()
@@ -88,9 +88,9 @@ class SwitcherItemView: GradientView {
     
     var isSelected: Bool = false {
         didSet {
-            startColor = isSelected ? UIColor(rgba: "7FFDFE") : UIColor(rgba: "f9f9f9")
-            endColor = isSelected ? UIColor(rgba: "8CDFFC") : UIColor(rgba: "f5f5f5")
-            titleLabel.textColor = isSelected ? .white : .black
+            startColor = isSelected ? UIColor(rgba: "97FD9E") : UIColor(rgba: "f2f2f2")
+            endColor = isSelected ? UIColor(rgba: "B3F765") : UIColor(rgba: "e8e8e8")
+            titleLabel.textColor = UIColor(rgba: "444444")
         }
     }
     

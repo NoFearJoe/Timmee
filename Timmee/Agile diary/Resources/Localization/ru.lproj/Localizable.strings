@@ -149,10 +149,10 @@
 "remind_after_30" = "Напомнить через 30 минут";
 "remind_after_60" = "Напомнить через час";
 
-"targets_section_placeholder_title" = "Создайте первую цель";
-"targets_section_placeholder_subtitle" = "Фыв";
+"targets_section_placeholder_title" = "Добавьте первую цель";
+"targets_section_placeholder_subtitle" = "Вы можете добавить не больше 3 целей в один спринт";
 "habits_section_placeholder_title" = "Добавьте первую привычку";
-"habits_section_placeholder_subtitle" = "Йцу";
+"habits_section_placeholder_subtitle" = "Придумайте несложные действия, которые хотите делать каждый день. Например, чтение книги 15 минут в день или утренняя пробежка. Рекомендуем в каждый спринт добавлять не очень много привычек, но стараться выполнять их каждый день.";
 
 "education_title_0" = "Что такое Agile ежедневник?";
 "education_subtitle_0" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки.";
