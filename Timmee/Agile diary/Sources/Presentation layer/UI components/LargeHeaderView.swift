@@ -42,8 +42,8 @@ class LargeHeaderView: GradientView {
     }
     
     private func setupAppearance() {
-        startColor = UIColor.white
-        endColor = UIColor.lightGray
+        startColor = UIColor(rgba: "f5f5f5")
+        endColor = UIColor(rgba: "f0f0f0")
         startPoint = CGPoint(x: 0.75, y: 0)
         endPoint = CGPoint(x: 0.25, y: 1)
     }

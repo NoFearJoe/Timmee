@@ -28,6 +28,11 @@
 		0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4ED21219669004C0559 /* SprintCreation.storyboard */; };
 		0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
 		0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
+		0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5022122AA31004C0559 /* SprintContentViewController.swift */; };
+		0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5052122B067004C0559 /* UIFont+Avenir.swift */; };
+		0C14D5082122B1A5004C0559 /* SprintCreationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */; };
+		0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
+		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +78,11 @@
 		0C14D4ED21219669004C0559 /* SprintCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SprintCreation.storyboard; sourceTree = "<group>"; };
 		0C14D4F02121974E004C0559 /* LargeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeHeaderView.swift; sourceTree = "<group>"; };
 		0C14D4F221219FF4004C0559 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
+		0C14D5022122AA31004C0559 /* SprintContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintContentViewController.swift; sourceTree = "<group>"; };
+		0C14D5052122B067004C0559 /* UIFont+Avenir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Avenir.swift"; sourceTree = "<group>"; };
+		0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationSection.swift; sourceTree = "<group>"; };
+		0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TasksKitConfiguration.plist; sourceTree = "<group>"; };
+		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +149,7 @@
 		0C14D4A021216048004C0559 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0C14D5092122BE7F004C0559 /* Plists */,
 				0C14D4C521217390004C0559 /* Localization */,
 			);
 			path = Resources;
@@ -147,6 +158,7 @@
 		0C14D4A12121604A004C0559 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0C14D5042122B052004C0559 /* Extensions */,
 				0C14D4A421216059004C0559 /* Application layer */,
 				0C14D4A321216058004C0559 /* Presentation layer */,
 			);
@@ -260,7 +272,9 @@
 		0C14D4EA2121961E004C0559 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */,
 				0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */,
+				0C14D5022122AA31004C0559 /* SprintContentViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -272,6 +286,23 @@
 				0C14D4F221219FF4004C0559 /* Switcher.swift */,
 			);
 			path = "UI components";
+			sourceTree = "<group>";
+		};
+		0C14D5042122B052004C0559 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D5052122B067004C0559 /* UIFont+Avenir.swift */,
+				0C14D50C2122E232004C0559 /* List+Sprint.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0C14D5092122BE7F004C0559 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */,
+			);
+			path = Plists;
 			sourceTree = "<group>";
 		};
 		422F11A515C6CEDFA0FD93B5 /* Pods */ = {
@@ -350,6 +381,7 @@
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
 				0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */,
+				0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */,
 				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
 				0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */,
 			);
@@ -404,13 +436,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
+				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
+				0C14D5082122B1A5004C0559 /* SprintCreationSection.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
+				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
+				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,8 +20,9 @@ class Switcher: UIControl {
     
     var selectedItemIndex: Int = 0 {
         didSet {
-            itemViews.item(at: oldValue)?.isSelected = true
+            itemViews.item(at: oldValue)?.isSelected = false
             itemViews.item(at: selectedItemIndex)?.isSelected = true
+            sendActions(for: .touchUpInside)
         }
     }
     
@@ -33,6 +34,7 @@ class Switcher: UIControl {
             let view = SwitcherItemView(frame: .zero)
             view.titleLabel.text = item
             view.roundedCorners = index == 0 ? .left : index >= items.count - 1 ? .right : .none
+            view.isSelected = false
             addSubview(view)
             itemViews.append(view)
         }
@@ -52,6 +54,14 @@ class Switcher: UIControl {
         }
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        selectedItemIndex = itemViews.index { itemView in
+            return touches.contains(where: { touch in
+                itemView.frame.contains(touch.location(in: self))
+            })
+        } ?? 0
+    }
+    
 }
 
 class SwitcherItemView: GradientView {
@@ -59,7 +69,7 @@ class SwitcherItemView: GradientView {
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.textColor = .black
-        label.font = UIFont(name: "AvenirNext", size: 16)
+        label.font = UIFont.avenirNextRegular(16)
         label.textAlignment = .center
         return label
     }()
@@ -78,8 +88,9 @@ class SwitcherItemView: GradientView {
     
     var isSelected: Bool = false {
         didSet {
-            startColor = isSelected ? .blue : .lightGray
-            endColor = isSelected ? .green : .white
+            startColor = isSelected ? UIColor(rgba: "7FFDFE") : UIColor(rgba: "f9f9f9")
+            endColor = isSelected ? UIColor(rgba: "8CDFFC") : UIColor(rgba: "f5f5f5")
+            titleLabel.textColor = isSelected ? .white : .black
         }
     }
     

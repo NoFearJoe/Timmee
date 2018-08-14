@@ -149,6 +149,11 @@
 "remind_after_30" = "Напомнить через 30 минут";
 "remind_after_60" = "Напомнить через час";
 
+"targets_section_placeholder_title" = "Создайте первую цель";
+"targets_section_placeholder_subtitle" = "Фыв";
+"habits_section_placeholder_title" = "Добавьте первую привычку";
+"habits_section_placeholder_subtitle" = "Йцу";
+
 "education_title_0" = "Что такое Agile ежедневник?";
 "education_subtitle_0" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки.";
 "education_continue_0" = "Продолжить";

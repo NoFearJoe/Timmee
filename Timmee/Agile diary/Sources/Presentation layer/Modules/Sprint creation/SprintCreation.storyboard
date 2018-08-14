@@ -47,12 +47,17 @@
                                                 <state key="normal" image="cross"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpp-6h-tC7">
-                                                <rect key="frame" x="332" y="8" width="28" height="28"/>
+                                                <rect key="frame" x="306" y="8" width="54" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="6ee-tW-nG5"/>
-                                                    <constraint firstAttribute="width" constant="28" id="LLB-Zh-Jeh"/>
                                                 </constraints>
-                                                <state key="normal" image="clock"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                                <state key="normal" title="Готово">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onDone" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="XtJ-Im-QUn"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sprint #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBR-oG-gpS">
                                                 <rect key="frame" x="15" y="48" width="345" height="38.5"/>
@@ -95,16 +100,49 @@
                                     <outlet property="titleLabel" destination="jBR-oG-gpS" id="Wc9-ue-BDI"/>
                                 </connections>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejl-6k-3JG">
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
+                                <connections>
+                                    <segue destination="6Y5-NV-rD5" kind="embed" identifier="SprintContent" id="F9o-xz-vjm"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkS-e4-0x0">
+                                <rect key="frame" x="155.5" y="595" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="eGU-rY-3Gc"/>
+                                    <constraint firstAttribute="height" constant="64" id="eV5-Mb-BY2"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="plus">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onAdd" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="Yhs-Bd-adt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ejl-6k-3JG" firstAttribute="top" secondItem="YMI-H3-bli" secondAttribute="bottom" id="Ao9-Vd-y4W"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="EDF-Rj-Um8"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="EfT-hm-liK"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="YMI-H3-bli" secondAttribute="trailing" id="bsJ-dq-r0r"/>
+                            <constraint firstAttribute="bottom" secondItem="ejl-6k-3JG" secondAttribute="bottom" id="d0V-Ey-XQ7"/>
+                            <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="ejl-6k-3JG" secondAttribute="trailing" id="mNc-r0-Hmb"/>
+                            <constraint firstItem="mkS-e4-0x0" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="nfj-FR-K0l"/>
+                            <constraint firstItem="ejl-6k-3JG" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="psl-oM-hMK"/>
+                            <constraint firstItem="KP9-bl-viw" firstAttribute="bottom" secondItem="mkS-e4-0x0" secondAttribute="bottom" constant="8" id="wVA-Nk-rCW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KP9-bl-viw"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="mkS-e4-0x0" id="EDn-TL-cpY"/>
                         <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
                     </connections>
@@ -113,9 +151,55 @@
             </objects>
             <point key="canvasLocation" x="-26.399999999999999" y="111.99400299850076"/>
         </scene>
+        <!--Sprint Content View Controller-->
+        <scene sceneID="e1Q-Y2-9VW">
+            <objects>
+                <viewController id="6Y5-NV-rD5" customClass="SprintContentViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Q5-Hy-BNV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeI-jU-tAj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="cRx-sI-ooj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPV-0J-f30">
+                                <rect key="frame" x="0.0" y="20" width="375" height="397"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OJf-3e-PCf" firstAttribute="bottom" secondItem="YPV-0J-f30" secondAttribute="bottom" constant="80" id="A23-Ji-mSf"/>
+                            <constraint firstItem="OJf-3e-PCf" firstAttribute="bottom" secondItem="EeI-jU-tAj" secondAttribute="bottom" id="Il2-t4-O4y"/>
+                            <constraint firstItem="YPV-0J-f30" firstAttribute="top" secondItem="OJf-3e-PCf" secondAttribute="top" id="L1H-6t-i5j"/>
+                            <constraint firstItem="OJf-3e-PCf" firstAttribute="trailing" secondItem="YPV-0J-f30" secondAttribute="trailing" id="Ssq-az-YUZ"/>
+                            <constraint firstItem="EeI-jU-tAj" firstAttribute="leading" secondItem="OJf-3e-PCf" secondAttribute="leading" id="VNg-ZI-ztj"/>
+                            <constraint firstItem="EeI-jU-tAj" firstAttribute="top" secondItem="4Q5-Hy-BNV" secondAttribute="top" id="Wfe-k4-jbe"/>
+                            <constraint firstItem="YPV-0J-f30" firstAttribute="leading" secondItem="OJf-3e-PCf" secondAttribute="leading" id="hfF-hh-fPU"/>
+                            <constraint firstItem="OJf-3e-PCf" firstAttribute="trailing" secondItem="EeI-jU-tAj" secondAttribute="trailing" id="iHH-b6-UXA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OJf-3e-PCf"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="EeI-jU-tAj" id="0ha-To-FQE"/>
+                        <outlet property="placeholderContainer" destination="YPV-0J-f30" id="vsh-nR-8Ab"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3C-qy-Kj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="188"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="clock" width="20" height="20"/>
         <image name="cross" width="20" height="20"/>
+        <image name="plus" width="20" height="20"/>
     </resources>
 </document>

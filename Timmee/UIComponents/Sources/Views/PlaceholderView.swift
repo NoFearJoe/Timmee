@@ -19,7 +19,10 @@ public final class PlaceholderView: UIView {
     
     public var icon: UIImage? {
         get { return iconView.image }
-        set { iconView.image = newValue }
+        set {
+            iconView.image = newValue
+            iconView.superview?.isHidden = newValue == nil
+        }
     }
     
     public var title: String? {

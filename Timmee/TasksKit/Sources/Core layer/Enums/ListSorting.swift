@@ -62,12 +62,14 @@ public extension ListSorting {
 
 }
 
-extension ListSorting: UserPropertyProtocol, UserPropertyRepresentable {
+extension ListSorting: UserPropertyProtocol {
     public var key: String {
         return "listSorting"
     }
-    
+}
+
+extension ListSorting: UserPropertyRepresentable {
     public static var asUserProperty: UserPropertyProtocol {
-        return self as! UserPropertyProtocol
+        return ListSorting(value: 0)
     }
 }
