@@ -56,6 +56,9 @@ final class SprintCreationViewController: UIViewController {
         if segue.identifier == "SprintContent" {
             contentViewController = segue.destination as! SprintContentViewController
             contentViewController.section = currentSection
+        } else if segue.identifier == "ShowTargetCreation" {
+            guard let controller = segue.destination as? TargetCreationViewController else { return }
+            controller.setTarget(sender as? Task)
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -79,8 +82,8 @@ final class SprintCreationViewController: UIViewController {
     
     @IBAction private func onAdd() {
         switch currentSection {
-        case .targets: break
-        case .habits: break
+        case .targets: performSegue(withIdentifier: "ShowTargetCreation", sender: nil)
+        case .habits: performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
         }
     }
     
