@@ -59,7 +59,10 @@ final class SprintCreationViewController: UIViewController {
         } else if segue.identifier == "ShowTargetCreation" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
             controller.setTarget(sender as? Task)
-        } else {
+        } else if segue.identifier == "ShowHabitCreation" {
+            guard let controller = segue.destination as? HabitCreationViewController else { return }
+            controller.setHabit(sender as? Task)
+        }else {
             super.prepare(for: segue, sender: sender)
         }
     }

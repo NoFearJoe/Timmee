@@ -43,7 +43,7 @@ extension TargetCreationInteractor {
     }
     
     func saveTarget(_ target: Task, listID: String?, success: (() -> Void)?, fail: (() -> Void)?) {
-        guard isValidTask(target) else {
+        guard isValidTarget(target) else {
             fail?()
             return
         }
@@ -57,7 +57,7 @@ extension TargetCreationInteractor {
         }
     }
     
-    func isValidTask(_ target: Task) -> Bool {
+    func isValidTarget(_ target: Task) -> Bool {
         return !target.title.trimmed.isEmpty
     }
     

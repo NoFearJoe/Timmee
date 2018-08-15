@@ -57,10 +57,6 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     @IBAction private func onClose() {
         dismiss(animated: true, completion: nil)
     }
