@@ -16,6 +16,7 @@ import class CoreLocation.CLLocation
 public class Task {
 
     public var id: String
+    public var kind: String
     public var title: String
     public var isImportant: Bool
     public var notification: NotificationMask
@@ -40,6 +41,7 @@ public class Task {
     
     public init(task: TaskEntity) {
         id = task.id!
+        kind = task.kind ?? ""
         title = task.title ?? ""
         isImportant = task.isImportant
         notification = NotificationMask(mask: task.notificationMask)
@@ -70,6 +72,7 @@ public class Task {
     }
     
     public init(id: String,
+                kind: String,
                 title: String,
                 isImportant: Bool,
                 notification: NotificationMask,
@@ -86,6 +89,7 @@ public class Task {
                 inProgress: Bool,
                 creationDate: Date) {
         self.id = id
+        self.kind = kind
         self.title = title
         self.isImportant = isImportant
         self.notification = notification
@@ -106,6 +110,7 @@ public class Task {
    public convenience init(id: String,
                            title: String) {
         self.init(id: id,
+                  kind: "",
                   title: title,
                   isImportant: false,
                   notification: .doNotNotify,
@@ -125,6 +130,7 @@ public class Task {
     
     public var copy: Task {
         let task = Task(id: id,
+                        kind: kind,
                         title: title,
                         isImportant: isImportant,
                         notification: notification,

@@ -26,6 +26,7 @@
 		0C14D42F211C1B6C004C0559 /* InteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D42C211C1B6C004C0559 /* InteractiveDismissTransition.swift */; };
 		0C14D430211C1B6C004C0559 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D42D211C1B6C004C0559 /* DismissAnimator.swift */; };
 		0C14D451211C1FE8004C0559 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D450211C1FE8004C0559 /* Workset.framework */; };
+		0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */; };
 		9E4A8C6C7DA7495553B0AE82 /* Pods_UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279254AB751F727F989F812F /* Pods_UIComponents.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		0C14D42C211C1B6C004C0559 /* InteractiveDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveDismissTransition.swift; sourceTree = "<group>"; };
 		0C14D42D211C1B6C004C0559 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		0C14D450211C1FE8004C0559 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 		279254AB751F727F989F812F /* Pods_UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		297CDAB991356C03C3AFC669 /* Pods-UIComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponents/Pods-UIComponents.release.xcconfig"; sourceTree = "<group>"; };
 		D9671A3E2B967FE267FA3894 /* Pods-UIComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponents/Pods-UIComponents.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				0C14D3FB211C1B61004C0559 /* PlaceholderView.swift */,
 				0C14D408211C1B64004C0559 /* PlaceholderView.xib */,
 				0C14D400211C1B62004C0559 /* ReorderableTableView.swift */,
+				0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				0C14D42E211C1B6C004C0559 /* FlipDismissInteractor.swift in Sources */,
 				0C14D3F3211C1B56004C0559 /* AlertInput.swift in Sources */,
 				0C14D414211C1B65004C0559 /* NextGrowingTextView.swift in Sources */,
+				0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */,
 				0C14D415211C1B65004C0559 /* NextGrowingInternalTextView.swift in Sources */,
 				0C14D416211C1B65004C0559 /* PlaceholderView.swift in Sources */,
 			);

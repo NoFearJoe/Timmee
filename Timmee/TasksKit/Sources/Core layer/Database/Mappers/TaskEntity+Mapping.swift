@@ -16,6 +16,7 @@ public extension TaskEntity {
 
     public func map(from entity: Task) {
         id = entity.id
+        kind = entity.kind
         title = entity.title
         isImportant = entity.isImportant
         notificationMask = entity.notification.rawValue

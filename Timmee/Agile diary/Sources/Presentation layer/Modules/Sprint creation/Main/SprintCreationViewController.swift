@@ -27,7 +27,7 @@ final class SprintCreationViewController: UIViewController {
     
     private var contentViewController: SprintContentViewController!
     
-    private var currentSection = SprintCreationSection.targets
+    private var currentSection = SprintCreationSection.habits
     
     var sprint: List! {
         didSet {
@@ -42,7 +42,7 @@ final class SprintCreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.leftButton?.isHidden = sprint == nil
-        sectionSwitcher.items = [SprintCreationSection.targets.title, SprintCreationSection.habits.title]
+        sectionSwitcher.items = [SprintCreationSection.habits.title, SprintCreationSection.targets.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
     }
@@ -56,12 +56,13 @@ final class SprintCreationViewController: UIViewController {
         if segue.identifier == "SprintContent" {
             contentViewController = segue.destination as! SprintContentViewController
             contentViewController.section = currentSection
+            contentViewController.transitionHandler = self
         } else if segue.identifier == "ShowTargetCreation" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
             controller.setTarget(sender as? Task)
         } else if segue.identifier == "ShowHabitCreation" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
-            controller.setHabit(sender as? Task)
+            controller.setHabit(sender as? Task, listID: sprint.id)
         }else {
             super.prepare(for: segue, sender: sender)
         }
@@ -75,7 +76,7 @@ final class SprintCreationViewController: UIViewController {
     }
     
     @objc private func onSwitchSection() {
-        currentSection = SprintCreationSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .targets
+        currentSection = SprintCreationSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
         contentViewController.section = currentSection
     }
     

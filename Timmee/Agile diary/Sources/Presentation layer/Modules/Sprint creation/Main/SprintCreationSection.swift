@@ -7,8 +7,8 @@
 //
 
 enum SprintCreationSection: Int {
-    case targets = 0
-    case habits
+    case habits = 0
+    case targets
     
     var title: String {
         switch self {

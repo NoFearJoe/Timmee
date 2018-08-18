@@ -12,17 +12,28 @@ final class HabitCreationViewController: UIViewController {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
-    @IBOutlet private var dayButtons: [UIButton]!
+    @IBOutlet private var dayButtons: [SelectableButton]!
     @IBOutlet private var notificationLabel: UILabel!
     
-    var habit: Task!
+    private let interactor = HabitCreationInteractor()
     
-    func setHabit(_ habit: Task?) {
-//        self.habit = habit?.copy ?? interactor.createHabit()
+    var habit: Task!
+    var listID: String!
+    
+    func setHabit(_ habit: Task?, listID: String) {
+        self.habit = habit?.copy ?? interactor.createHabit()
+        self.listID = listID
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTitleField()
+        setupDayButtons()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUI(habit: habit)
     }
     
     @IBAction private func onClose() {
@@ -30,8 +41,12 @@ final class HabitCreationViewController: UIViewController {
     }
     
     @IBAction private func onDone() {
-        // Save
-        dismiss(animated: true, completion: nil)
+        guard interactor.isValidHabit(habit) else { return }
+        interactor.saveHabit(habit, listID: listID, success: { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }) { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction private func endEditing() {
@@ -39,7 +54,8 @@ final class HabitCreationViewController: UIViewController {
     }
     
     @IBAction private func onSelectDay(_ button: UIButton) {
-        
+        guard !button.isSelected || dayButtons.filter({ $0.isSelected }).count > 1 else { return }
+        button.isSelected = !button.isSelected
     }
     
 }
@@ -48,6 +64,16 @@ extension HabitCreationViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         titleField.setContentOffset(.zero, animated: true)
+    }
+    
+}
+
+private extension HabitCreationViewController {
+    
+    func updateUI(habit: Habit) {
+        titleField.textView.text = habit.title
+        notificationLabel.text = habit.notificationDate?.asTimeString
+        updateDayButtons()
     }
     
 }
@@ -70,18 +96,44 @@ private extension HabitCreationViewController {
     
     func setupTitleObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(targetTitleDidChange),
+                                               selector: #selector(habitTitleDidChange),
                                                name: .UITextViewTextDidChange,
                                                object: titleField.textView)
     }
     
-    @objc func targetTitleDidChange(notification: Notification) {
-        let text = getTargetTitle()
+    @objc func habitTitleDidChange(notification: Notification) {
+        let text = getHabitTitle()
         habit.title = text
     }
     
-    func getTargetTitle() -> String {
+    func getHabitTitle() -> String {
         return titleField.textView.text.trimmed
+    }
+    
+}
+
+private extension HabitCreationViewController {
+    
+    func setupDayButtons() {
+        dayButtons.forEach {
+            $0.selectedBackgroundColor = $0.tag < 5 ? UIColor(rgba: "2222ee") : UIColor(rgba: "ee2222")
+            $0.defaultBackgroundColor = UIColor(rgba: "f7f7f7")
+            $0.tintColor = .clear
+            $0.setTitleColor(UIColor(rgba: "444444"), for: .normal)
+            $0.setTitleColor(UIColor.white, for: .selected)
+            $0.setTitleColor(UIColor.white, for: .highlighted)
+        }
+    }
+    
+    func updateDayButtons() {
+        guard case .on(let units) = self.habit.repeating.type else { return }
+        dayButtons.forEach {
+            $0.isSelected = units.dayNumbers.contains($0.tag)
+        }
+    }
+    
+    func updateHabitRepeatingDays() {
+        habit.repeating = RepeatMask(type: .on(WeekRepeatUnit(string: dayButtons.filter { $0.isSelected }.map { DayUnit(number: $0.tag).string }.joined(separator: ","))))
     }
     
 }

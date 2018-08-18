@@ -200,13 +200,15 @@ public enum WeekRepeatUnit {
 }
 
 public enum DayUnit: String {
-    case monthday
+    case monday
     case tuesday
     case wednesday
     case thusday
     case friday
     case saturday
     case sunday
+    
+    public static let all: [DayUnit] = [monday, tuesday, wednesday, thusday, friday, saturday, sunday]
     
     public init(string: String) {
         switch string.lowercased() {
@@ -216,7 +218,7 @@ public enum DayUnit: String {
         case "fri": self = .friday
         case "sat": self = .saturday
         case "sun": self = .sunday
-        default: self = .monthday
+        default: self = .monday
         }
     }
     
@@ -228,13 +230,13 @@ public enum DayUnit: String {
         case 4: self = .friday
         case 5: self = .saturday
         case 6: self = .sunday
-        default: self = .monthday
+        default: self = .monday
         }
     }
     
     public var string: String {
         switch self {
-        case .monthday: return "mon"
+        case .monday: return "mon"
         case .tuesday: return "tue"
         case .wednesday: return "wed"
         case .thusday: return "thu"
@@ -246,7 +248,7 @@ public enum DayUnit: String {
     
     public var number: Int {
         switch self {
-        case .monthday: return 0
+        case .monday: return 0
         case .tuesday: return 1
         case .wednesday: return 2
         case .thusday: return 3
@@ -258,7 +260,7 @@ public enum DayUnit: String {
     
     public var localized: String {
         switch self {
-        case .monthday: return "monday".localized
+        case .monday: return "monday".localized
         case .tuesday: return "tuesday".localized
         case .wednesday: return "wednesday".localized
         case .thusday: return "thursday".localized
@@ -270,7 +272,7 @@ public enum DayUnit: String {
     
     public var localizedShort: String {
         switch self {
-        case .monthday: return "mon".localized
+        case .monday: return "mon".localized
         case .tuesday: return "tue".localized
         case .wednesday: return "wed".localized
         case .thusday: return "thu".localized

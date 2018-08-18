@@ -20,18 +20,17 @@ final class HabitCreationInteractor {
 
 extension HabitCreationInteractor {
     
-    func createTarget() -> Task {
-        return Task(id: RandomStringGenerator.randomString(length: 24),
-                    title: "")
+    func createHabit() -> Habit {
+        return Habit(id: RandomStringGenerator.randomString(length: 24))
     }
     
-    func saveTarget(_ target: Task, listID: String?, success: (() -> Void)?, fail: (() -> Void)?) {
-        guard isValidTarget(target) else {
+    func saveHabit(_ habit: Habit, listID: String?, success: (() -> Void)?, fail: (() -> Void)?) {
+        guard isValidHabit(habit) else {
             fail?()
             return
         }
         
-        habitsService.updateTask(target, listID: listID) { error in
+        habitsService.updateTask(habit, listID: listID) { error in
             if error == nil {
                 success?()
             } else {
@@ -40,8 +39,8 @@ extension HabitCreationInteractor {
         }
     }
     
-    func isValidTarget(_ target: Task) -> Bool {
-        return !target.title.trimmed.isEmpty
+    func isValidHabit(_ habit: Habit) -> Bool {
+        return !habit.title.trimmed.isEmpty
     }
     
 }
