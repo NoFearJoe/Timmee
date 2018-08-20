@@ -55,7 +55,9 @@ extension NumberPicker: UICollectionViewDataSource {
                                                       for: indexPath) as! NumberPickerCell
         
         cell.shouldAddZero = shouldAddZero
-        cell.number = numbers.item(at: indexPath.item) ?? 0
+        let number = numbers.item(at: indexPath.item) ?? 0
+        cell.number = number
+        cell.isPicked = number == currentNumber
         
         return cell
     }
@@ -116,11 +118,7 @@ fileprivate extension NumberPicker {
 
 final class NumberPickerCell: UICollectionViewCell {
     
-    @IBOutlet fileprivate weak var numberLabel: UILabel! {
-        didSet {
-            numberLabel.textColor = UIColor(rgba: "3ECAFF")
-        }
-    }
+    @IBOutlet private var numberLabel: UILabel!
     
     var shouldAddZero = true
     
@@ -134,6 +132,12 @@ final class NumberPickerCell: UICollectionViewCell {
             } else {
                 numberLabel.text = String(newValue)
             }
+        }
+    }
+    
+    var isPicked: Bool = false {
+        didSet {
+            numberLabel.textColor = isPicked ? AppTheme.current.colors.selectedElementColor : AppTheme.current.colors.inactiveElementColor
         }
     }
     
