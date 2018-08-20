@@ -13,7 +13,8 @@ final class HabitCreationViewController: UIViewController {
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
     @IBOutlet private var dayButtons: [SelectableButton]!
-    @IBOutlet private var notificationLabel: UILabel!
+    
+    private var notificationTimePicker: NotificationTimePickerInput!
     
     private let interactor = HabitCreationInteractor()
     
@@ -36,6 +37,16 @@ final class HabitCreationViewController: UIViewController {
         updateUI(habit: habit)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EmbedNotificationTimePicker" {
+            guard let picker = segue.destination as? NotificationTimePicker else { return }
+            picker.output = self
+            notificationTimePicker = picker
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
     @IBAction private func onClose() {
         dismiss(animated: true, completion: nil)
     }
@@ -56,6 +67,19 @@ final class HabitCreationViewController: UIViewController {
     @IBAction private func onSelectDay(_ button: UIButton) {
         guard !button.isSelected || dayButtons.filter({ $0.isSelected }).count > 1 else { return }
         button.isSelected = !button.isSelected
+        updateHabitRepeatingDays()
+    }
+    
+}
+
+extension HabitCreationViewController: NotificationTimePickerOutput {
+    
+    func didChangeHours(to hours: Int) {
+        habit.notificationDate! => hours.asHours
+    }
+    
+    func didChangeMinutes(to minutes: Int) {
+        habit.notificationDate! => minutes.asMinutes
     }
     
 }
@@ -72,7 +96,8 @@ private extension HabitCreationViewController {
     
     func updateUI(habit: Habit) {
         titleField.textView.text = habit.title
-        notificationLabel.text = habit.notificationDate?.asTimeString
+        notificationTimePicker.setHours(habit.notificationDate?.hours ?? 0)
+        notificationTimePicker.setMinutes(habit.notificationDate?.minutes ?? 0)
         updateDayButtons()
     }
     

@@ -35,12 +35,15 @@
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
 		0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */; };
 		0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
 		0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
+		0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
+		0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,12 +96,15 @@
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
+		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
 		0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationHabitCell.swift; sourceTree = "<group>"; };
 		0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationTargetCell.swift; sourceTree = "<group>"; };
 		0CDF8D852125B8AB001A2F70 /* Task+Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Target.swift"; sourceTree = "<group>"; };
+		0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
+		0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePicker.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +289,7 @@
 		0C14D4E921219611004C0559 /* Habit creation */ = {
 			isa = PBXGroup;
 			children = (
+				0CDF8D97212A8D24001A2F70 /* NotificationTimePicker */,
 				0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */,
 				0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */,
 			);
@@ -316,6 +323,7 @@
 				0C14D50C2122E232004C0559 /* List+Sprint.swift */,
 				0CDF8D7E21259271001A2F70 /* Task+Habit.swift */,
 				0CDF8D852125B8AB001A2F70 /* Task+Target.swift */,
+				0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +343,15 @@
 				0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		0CDF8D97212A8D24001A2F70 /* NotificationTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */,
+				0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */,
+			);
+			path = NotificationTimePicker;
 			sourceTree = "<group>";
 		};
 		422F11A515C6CEDFA0FD93B5 /* Pods */ = {
@@ -474,11 +491,14 @@
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
+				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
+				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintCreationSection.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
+				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,

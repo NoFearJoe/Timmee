@@ -32,7 +32,7 @@ final class FadeInBackgroundModalTransition: NSObject, UIViewControllerAnimatedT
                            animations:
                 {
                     toViewController.view.alpha = 1
-                    backgroundView.backgroundColor = AppTheme.current.backgroundColor.withAlphaComponent(0.8)
+                    backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
                 },
                 completion: { (complete) in
                     transitionContext.completeTransition(complete)
