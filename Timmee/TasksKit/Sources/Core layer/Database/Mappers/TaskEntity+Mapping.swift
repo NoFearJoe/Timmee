@@ -22,6 +22,7 @@ public extension TaskEntity {
         notificationMask = entity.notification.rawValue
         notificationDate = entity.notificationDate
         note = entity.note
+        link = entity.link
         repeatMask = entity.repeating.string
         dueDate = entity.dueDate
         repeatEndingDate = entity.repeatEndingDate

@@ -176,3 +176,8 @@ fileprivate extension UIStoryboard {
     }
 
 }
+
+/// @storyboard:ViewController @id:initial
+class ViewController: UIViewController {
+    
+}

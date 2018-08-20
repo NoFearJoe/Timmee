@@ -22,6 +22,7 @@ public class Task {
     public var notification: NotificationMask
     public var notificationDate: Date?
     public var note: String
+    public var link: String
     public var repeating: RepeatMask
     public var repeatEndingDate: Date?
     public var dueDate: Date?
@@ -47,6 +48,7 @@ public class Task {
         notification = NotificationMask(mask: task.notificationMask)
         notificationDate = task.notificationDate
         note = task.note ?? ""
+        link = task.link ?? ""
         repeating = RepeatMask(string: task.repeatMask ?? "")
         dueDate = task.dueDate as Date?
         repeatEndingDate = task.repeatEndingDate as Date?
@@ -78,6 +80,7 @@ public class Task {
                 notification: NotificationMask,
                 notificationDate: Date?,
                 note: String,
+                link: String,
                 repeating: RepeatMask,
                 repeatEndingDate: Date?,
                 dueDate: Date?,
@@ -95,6 +98,7 @@ public class Task {
         self.notification = notification
         self.notificationDate = notificationDate
         self.note = note
+        self.link = link
         self.repeating = repeating
         self.repeatEndingDate = repeatEndingDate
         self.dueDate = dueDate
@@ -116,6 +120,7 @@ public class Task {
                   notification: .doNotNotify,
                   notificationDate: nil,
                   note: "",
+                  link: "",
                   repeating: .init(string: ""),
                   repeatEndingDate: nil,
                   dueDate: nil,
@@ -136,6 +141,7 @@ public class Task {
                         notification: notification,
                         notificationDate: notificationDate,
                         note: note,
+                        link: link,
                         repeating: repeating,
                         repeatEndingDate: repeatEndingDate,
                         dueDate: dueDate,

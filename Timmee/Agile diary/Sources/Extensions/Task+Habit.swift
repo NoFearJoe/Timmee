@@ -18,6 +18,7 @@ extension Habit {
                   notification: .doNotNotify,
                   notificationDate: Date(),
                   note: "",
+                  link: "",
                   repeating: .init(type: RepeatType.on(WeekRepeatUnit(string: DayUnit.all.map { $0.string }.joined(separator: ",")))),
                   repeatEndingDate: nil,
                   dueDate: nil,
