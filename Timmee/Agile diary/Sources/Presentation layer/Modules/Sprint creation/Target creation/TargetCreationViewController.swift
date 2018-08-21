@@ -38,10 +38,12 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
     
     private let stageCellActionsProvider = StageCellActionsProvider()
     
-    var target: Task!
+    var target: Target!
+    var listID: String!
     
-    func setTarget(_ target: Task?) {
+    func setTarget(_ target: Task?, listID: String) {
         self.target = target?.copy ?? interactor.createTarget()
+        self.listID = listID
     }
     
     override func viewDidLoad() {
@@ -57,13 +59,23 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUI(target: target)
+    }
+    
     @IBAction private func onClose() {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func onDone() {
-        // Save
-        dismiss(animated: true, completion: nil)
+        updateTargetTitle()
+        guard interactor.isValidTarget(target) else { return }
+        interactor.saveTarget(target, listID: listID, success: { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }) { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction private func endEditing() {
@@ -162,7 +174,7 @@ extension TargetCreationViewController: ReorderableTableViewDelegate {
     func tableView(_ tableView: UITableView,
                    reorderRowsFrom fromIndexPath: IndexPath,
                    to toIndexPath: IndexPath) {
-//        output.exchangeSubtasks(at: (fromIndexPath.row, toIndexPath.row))
+        interactor.exchangeStages(at: (fromIndexPath.row, toIndexPath.row))
     }
     
     func tableView(_ tableView: UITableView, showDraggingView view: UIView, at indexPath: IndexPath) {
@@ -179,6 +191,19 @@ extension TargetCreationViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         titleField.setContentOffset(.zero, animated: true)
+    }
+    
+}
+
+private extension TargetCreationViewController {
+ 
+    func updateUI(target: Target) {
+        titleField.textView.text = target.title
+        // importancySwitcher.selectedItemIndex = 
+    }
+    
+    func updateTargetTitle() {
+        target.title = getTargetTitle()
     }
     
 }
@@ -203,14 +228,15 @@ private extension TargetCreationViewController {
     
     func setupTitleField() {
         titleField.textView.delegate = self
-        titleField.textView.textContainerInset = .zero
-        titleField.textView.font = UIFont.avenirNextMedium(24)
+        titleField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -2, bottom: -1, right: 0)
+        titleField.textView.textColor = AppTheme.current.colors.activeElementColor
+        titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
         titleField.placeholderAttributedText
             = NSAttributedString(string: "target_title_placeholder".localized,
-                                 attributes: [.font: UIFont.avenirNextMedium(24),
-                                              .foregroundColor: UIColor(rgba: "dddddd")])
+                                 attributes: [.font: AppTheme.current.fonts.bold(28),
+                                              .foregroundColor: AppTheme.current.colors.inactiveElementColor])
         
         setupTitleObserver()
     }
@@ -223,8 +249,7 @@ private extension TargetCreationViewController {
     }
     
     @objc func targetTitleDidChange(notification: Notification) {
-        let text = getTargetTitle()
-        target.title = text
+        updateTargetTitle()
     }
     
     func getTargetTitle() -> String {
