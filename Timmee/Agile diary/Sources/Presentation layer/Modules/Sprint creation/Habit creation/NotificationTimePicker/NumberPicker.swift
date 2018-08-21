@@ -10,7 +10,7 @@ import UIKit
 
 final class NumberPicker: UIView {
     
-    @IBOutlet fileprivate weak var collectionView: UICollectionView! {
+    @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
@@ -26,7 +26,11 @@ final class NumberPicker: UIView {
     
     var shouldAddZero = true
     
-    fileprivate var currentNumber: Int = 0
+    private var currentNumber: Int = -1 {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     var didChangeNumber: ((Int) -> Void)?
     
@@ -36,6 +40,7 @@ final class NumberPicker: UIView {
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
                                     at: .centeredVertically,
                                     animated: false)
+        handleNumberChange()
     }
     
 }
@@ -88,7 +93,7 @@ extension NumberPicker: UICollectionViewDelegate, UICollectionViewDelegateFlowLa
     
 }
 
-fileprivate extension NumberPicker {
+private extension NumberPicker {
     
     func scrollToCenterOfCurrentCell() {
         let limitedIndex = getIndexOfCenterItem()
@@ -137,7 +142,7 @@ final class NumberPickerCell: UICollectionViewCell {
     
     var isPicked: Bool = false {
         didSet {
-            numberLabel.textColor = isPicked ? AppTheme.current.colors.selectedElementColor : AppTheme.current.colors.inactiveElementColor
+            numberLabel.textColor = isPicked ? AppTheme.current.colors.mainElementColor : AppTheme.current.colors.inactiveElementColor
         }
     }
     

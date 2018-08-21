@@ -12,8 +12,14 @@ final class HabitCreationViewController: UIViewController {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
+    @IBOutlet private var dueDaysTitleLabel: UILabel!
     @IBOutlet private var dayButtons: [SelectableButton]!
-    @IBOutlet private var linkField: GrowingTextView!
+    @IBOutlet private var notificationTimeCheckbox: Checkbox!
+    @IBOutlet private var notificationTimeTitleLabel: UILabel!
+    @IBOutlet private var notificationTimePickerContainer: UIView!
+    @IBOutlet private var linkTitleLabel: UILabel!
+    @IBOutlet private var linkField: UITextField!
+    @IBOutlet private var linkSubtitleLabel: UILabel!
     
     private var notificationTimePicker: NotificationTimePickerInput!
     
@@ -22,9 +28,12 @@ final class HabitCreationViewController: UIViewController {
     var habit: Task!
     var listID: String!
     
+    private var lastSelectedNotificationTime: Date?
+    
     func setHabit(_ habit: Task?, listID: String) {
         self.habit = habit?.copy ?? interactor.createHabit()
         self.listID = listID
+        self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date()
     }
     
     override func viewDidLoad() {
@@ -32,11 +41,21 @@ final class HabitCreationViewController: UIViewController {
         setupTitleField()
         setupDayButtons()
         setupLinkField()
+        setupLabels()
+        setupNotificationCheckbox()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI(habit: habit)
+        if titleField.textView.text.isEmpty {
+            titleField.becomeFirstResponder()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        titleField.resignFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,11 +98,13 @@ final class HabitCreationViewController: UIViewController {
 extension HabitCreationViewController: NotificationTimePickerOutput {
     
     func didChangeHours(to hours: Int) {
-        habit.notificationDate! => hours.asHours
+        habit.notificationDate => hours.asHours
+        lastSelectedNotificationTime => hours.asHours
     }
     
     func didChangeMinutes(to minutes: Int) {
-        habit.notificationDate! => minutes.asMinutes
+        habit.notificationDate => minutes.asMinutes
+        lastSelectedNotificationTime => minutes.asMinutes
     }
     
 }
@@ -91,11 +112,7 @@ extension HabitCreationViewController: NotificationTimePickerOutput {
 extension HabitCreationViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView === titleField.textView {
-            titleField.setContentOffset(.zero, animated: true)
-        } else if textView === linkField.textView {
-            linkField.setContentOffset(.zero, animated: true)
-        }
+        titleField.setContentOffset(.zero, animated: true)
     }
     
 }
@@ -104,11 +121,18 @@ private extension HabitCreationViewController {
     
     func updateUI(habit: Habit) {
         titleField.textView.text = habit.title
-        notificationTimePicker.setHours(habit.notificationDate?.hours ?? 0)
-        notificationTimePicker.setMinutes(habit.notificationDate?.minutes ?? 0)
+        notificationTimeCheckbox.isChecked = habit.notificationDate != nil
+        updateNotificationTime()
         updateDayButtons()
-        linkField.textView.text = habit.link
+        linkField.text = habit.link
         updateDoneButtonState()
+    }
+    
+    func updateNotificationTime() {
+        notificationTimePicker.setHours(habit.notificationDate?.hours ?? lastSelectedNotificationTime?.hours ?? 0)
+        notificationTimePicker.setMinutes(habit.notificationDate?.minutes ?? lastSelectedNotificationTime?.minutes ?? 0)
+        notificationTimePickerContainer.alpha = habit.notificationDate != nil ? 1 : 0.5
+        notificationTimePickerContainer.isUserInteractionEnabled = habit.notificationDate != nil
     }
     
     func updateDoneButtonState() {
@@ -116,7 +140,31 @@ private extension HabitCreationViewController {
     }
     
     func updateHabitLinkValidity() {
-        linkField.textView.textColor = isHabitLinkValid(link: getHabitLink()) ? AppTheme.current.colors.activeElementColor : AppTheme.current.colors.wrongElementColor
+        linkField.textColor = isHabitLinkValid(link: getHabitLink()) ? AppTheme.current.colors.activeElementColor : AppTheme.current.colors.wrongElementColor
+    }
+    
+}
+
+private extension HabitCreationViewController {
+    
+    func setupLabels() {
+        dueDaysTitleLabel.text = "due_days".localized
+        notificationTimeTitleLabel.text = "reminder".localized
+        linkTitleLabel.text = "link".localized
+        linkSubtitleLabel.text = "link_hint".localized
+        [dueDaysTitleLabel, notificationTimeTitleLabel, linkTitleLabel, linkSubtitleLabel].forEach {
+            $0?.textColor = AppTheme.current.colors.inactiveElementColor
+        }
+    }
+    
+    func setupNotificationCheckbox() {
+        notificationTimeCheckbox.didChangeCkeckedState = { [unowned self] isChecked in
+            self.habit.notificationDate = isChecked ? self.lastSelectedNotificationTime ?? Date() : nil
+            if self.habit.notificationDate != nil {
+                self.lastSelectedNotificationTime = self.habit.notificationDate
+            }
+            self.updateNotificationTime()
+        }
     }
     
 }
@@ -125,7 +173,8 @@ private extension HabitCreationViewController {
     
     func setupTitleField() {
         titleField.textView.delegate = self
-        titleField.textView.textContainerInset = UIEdgeInsets(top: 0, left: -2, bottom: -3, right: 0)
+        titleField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -2, bottom: -1, right: 0)
+        titleField.textView.textColor = AppTheme.current.colors.activeElementColor
         titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
@@ -162,12 +211,9 @@ private extension HabitCreationViewController {
 private extension HabitCreationViewController {
     
     func setupLinkField() {
-        linkField.textView.delegate = self
-        linkField.textView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
-        linkField.textView.font = AppTheme.current.fonts.medium(20)
-        linkField.maxNumberOfLines = 5
-        linkField.showsVerticalScrollIndicator = false
-        linkField.placeholderAttributedText
+        linkField.textColor = AppTheme.current.colors.activeElementColor
+        linkField.font = AppTheme.current.fonts.medium(20)
+        linkField.attributedPlaceholder
             = NSAttributedString(string: "habit_link_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.medium(20),
                                               .foregroundColor: AppTheme.current.colors.inactiveElementColor])
@@ -178,8 +224,8 @@ private extension HabitCreationViewController {
     func setupLinkObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(habitLinkDidChange),
-                                               name: .UITextViewTextDidChange,
-                                               object: linkField.textView)
+                                               name: .UITextFieldTextDidChange,
+                                               object: linkField)
     }
     
     @objc func habitLinkDidChange(notification: Notification) {
@@ -189,7 +235,7 @@ private extension HabitCreationViewController {
     }
     
     func getHabitLink() -> String {
-        return linkField.textView.text.trimmed
+        return linkField.text?.trimmed ?? ""
     }
     
     func isHabitLinkValid(link: String) -> Bool {

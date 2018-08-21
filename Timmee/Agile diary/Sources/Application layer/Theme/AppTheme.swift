@@ -26,27 +26,27 @@ struct AppTheme {
     
     struct Fonts {
         func regular(_ size: CGFloat) -> UIFont {
-            return UIFont.avenirNextRegular(size)
+            return .systemFont(ofSize: size) //UIFont.avenirNextRegular(size)
         }
         
         func medium(_ size: CGFloat) -> UIFont {
-            return UIFont.avenirNextMedium(size)
+            return .systemFont(ofSize: size, weight: .medium) //UIFont.avenirNextMedium(size)
         }
         
         func bold(_ size: CGFloat) -> UIFont {
-            return UIFont.avenirNextBold(size)
+            return .boldSystemFont(ofSize: size) //UIFont.avenirNextBold(size)
         }
     }
     
     let colors: Colors
     let fonts: Fonts
     
-    static let light = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: ""),
-                                               activeElementColor: UIColor(rgba: ""),
-                                               mainElementColor: UIColor(rgba: ""),
-                                               wrongElementColor: UIColor(rgba: ""),
-                                               selectedElementColor: UIColor(rgba: ""),
-                                               decorationElementColor: UIColor(rgba: "")),
+    static let light = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: "AAAAAA"),
+                                               activeElementColor: UIColor(rgba: "444444"),
+                                               mainElementColor: UIColor(rgba: "29C3FE"),
+                                               wrongElementColor: UIColor(rgba: "FF3100"),
+                                               selectedElementColor: UIColor(rgba: "0EEB95"),
+                                               decorationElementColor: UIColor(rgba: "F7F7F7")),
                                 fonts: Fonts())
     
     static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: ""),
