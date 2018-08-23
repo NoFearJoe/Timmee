@@ -75,12 +75,10 @@ final class HabitCreationViewController: UIViewController {
     @IBAction private func onDone() {
         updateHabitTitle()
         updateHabitLink()
-        guard interactor.isValidHabit(habit) else { return }
-        interactor.saveHabit(habit, listID: listID, success: { [weak self] in
+        interactor.saveTask(habit, listID: listID, completion: { [weak self] success in
+            guard success else { return }
             self?.dismiss(animated: true, completion: nil)
-        }) { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
-        }
+        })
     }
     
     @IBAction private func endEditing() {

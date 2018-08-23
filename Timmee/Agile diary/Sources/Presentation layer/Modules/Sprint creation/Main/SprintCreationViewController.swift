@@ -19,7 +19,7 @@ import UIKit
            3. Сохраняем в БД
  */
 
-final class SprintCreationViewController: UIViewController {
+final class SprintCreationViewController: UIViewController, SprintInteractorTrait {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
@@ -37,7 +37,7 @@ final class SprintCreationViewController: UIViewController {
         }
     }
     
-    private let sprintsService = ServicesAssembly.shared.listsService
+    let sprintsService = ServicesAssembly.shared.listsService
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +45,15 @@ final class SprintCreationViewController: UIViewController {
         sectionSwitcher.items = [SprintCreationSection.habits.title, SprintCreationSection.targets.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
+        if sprint == nil {
+            getOrCreateSprint { [weak self] sprint in
+                self?.sprint = sprint
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getOrCreateExistingSprintIfNeeded()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,7 +63,7 @@ final class SprintCreationViewController: UIViewController {
             contentViewController.transitionHandler = self
         } else if segue.identifier == "ShowTargetCreation" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
-            controller.setTarget(sender as? Task)
+            controller.setTarget(sender as? Task, listID: sprint.id)
         } else if segue.identifier == "ShowHabitCreation" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
             controller.setHabit(sender as? Task, listID: sprint.id)
@@ -69,8 +73,8 @@ final class SprintCreationViewController: UIViewController {
     }
     
     private func showStartDate(_ date: Date) {
-        let resultStirng = NSMutableAttributedString(string: "Начало ", attributes: [.foregroundColor: UIColor(rgba: "444444")])
-        let dateString = NSAttributedString(string: date.asNearestShortDateString.lowercased(), attributes: [.foregroundColor: UIColor(rgba: "3ECAFF")])
+        let resultStirng = NSMutableAttributedString(string: "starts".localized + " ", attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
+        let dateString = NSAttributedString(string: date.asNearestShortDateString.lowercased(), attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor])
         resultStirng.append(dateString)
         headerView.subtitleLabel.attributedText = resultStirng
     }
@@ -93,21 +97,9 @@ final class SprintCreationViewController: UIViewController {
     
     @IBAction private func onDone() {
         // Alert, then set list.note = "", then save, then close
-    }
-    
-    private func getOrCreateExistingSprintIfNeeded() {
-        if sprint == nil {
-            let existingSprints = sprintsService.fetchLists()
-            if let temporarySprint = existingSprints.first(where: { $0.note == "temporary" }) {
-                sprint = temporarySprint
-            } else {
-                let latestSprint = existingSprints.max(by: { $0.sortPosition < $1.sortPosition })
-                let nextSprintNumber = (latestSprint?.sortPosition ?? 0) + 1
-                let sprint = Sprint(number: nextSprintNumber)
-                sprintsService.createOrUpdateList(sprint, tasks: []) { [weak self] _ in
-                    self?.sprint = sprint
-                }
-            }
+        sprint.note = ""
+        saveSprint(sprint) { [weak self] success in
+            self?.dismiss(animated: true, completion: nil)
         }
     }
     

@@ -64,12 +64,12 @@ class Switcher: UIControl {
     
 }
 
-class SwitcherItemView: GradientView {
+class SwitcherItemView: UIView {
     
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.textColor = UIColor(rgba: "444444")
-        label.font = UIFont.avenirNextMedium(14)
+        label.textColor = AppTheme.current.colors.activeElementColor
+        label.font = AppTheme.current.fonts.medium(14)
         label.textAlignment = .center
         return label
     }()
@@ -88,22 +88,19 @@ class SwitcherItemView: GradientView {
     
     var isSelected: Bool = false {
         didSet {
-            startColor = isSelected ? UIColor(rgba: "97FD9E") : UIColor(rgba: "f2f2f2")
-            endColor = isSelected ? UIColor(rgba: "B3F765") : UIColor(rgba: "e8e8e8")
-            titleLabel.textColor = UIColor(rgba: "444444")
+            backgroundColor = isSelected ? AppTheme.current.colors.selectedElementColor : AppTheme.current.colors.decorationElementColor
+            titleLabel.textColor = AppTheme.current.colors.activeElementColor
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(titleLabel)
-        setupAppearance()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addSubview(titleLabel)
-        setupAppearance()
     }
     
     override func layoutSubviews() {
@@ -122,11 +119,6 @@ class SwitcherItemView: GradientView {
         }
         maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
         layer.mask = maskLayer
-    }
-    
-    private func setupAppearance() {
-        startPoint = CGPoint(x: 1, y: 0)
-        endPoint = CGPoint(x: 0, y: 1)
     }
     
 }

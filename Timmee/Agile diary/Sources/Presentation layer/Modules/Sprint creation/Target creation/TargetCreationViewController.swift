@@ -26,10 +26,13 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
+    @IBOutlet private var stagesTitleLabel: UILabel!
+    @IBOutlet private var stagesHintLabel: UILabel!
     @IBOutlet private var stageTextField: UITextField!
     @IBOutlet private var stagesTableView: ReorderableTableView!
     @IBOutlet private var stagesTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var stagesTableViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private var importancyTitleLabel: UILabel!
     @IBOutlet private var importancySwitcher: Switcher!
     
     private var selectedImportancy = TargetImportancy.normal
@@ -50,6 +53,7 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
         super.viewDidLoad()
         interactor.output = self
         interactor.targetProvider = self
+        setupLabels()
         setupTitleField()
         setupStageTextField()
         setupStagesTableView()
@@ -62,6 +66,9 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI(target: target)
+        if titleField.textView.text.isEmpty {
+            titleField.becomeFirstResponder()
+        }
     }
     
     @IBAction private func onClose() {
@@ -70,12 +77,10 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
     
     @IBAction private func onDone() {
         updateTargetTitle()
-        guard interactor.isValidTarget(target) else { return }
-        interactor.saveTarget(target, listID: listID, success: { [weak self] in
+        interactor.saveTask(target, listID: listID, completion: { [weak self] success in
+            guard success else { return }
             self?.dismiss(animated: true, completion: nil)
-        }) { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
-        }
+        })
     }
     
     @IBAction private func endEditing() {
@@ -199,11 +204,18 @@ private extension TargetCreationViewController {
  
     func updateUI(target: Target) {
         titleField.textView.text = target.title
-        // importancySwitcher.selectedItemIndex = 
+        // importancySwitcher.selectedItemIndex =
     }
     
     func updateTargetTitle() {
         target.title = getTargetTitle()
+    }
+    
+    func setupLabels() {
+        stagesTitleLabel.text = "stages".localized
+        stagesHintLabel.text = "stages_hint".localized
+        importancyTitleLabel.text = "importancy".localized
+        [stagesTitleLabel, stagesHintLabel, importancyTitleLabel].forEach { $0?.textColor = AppTheme.current.colors.inactiveElementColor }
     }
     
 }
@@ -262,9 +274,10 @@ private extension TargetCreationViewController {
     
     func setupStageTextField() {
         stageTextField.delegate = self
-        stageTextField.textColor = UIColor(rgba: "444444")
+        stageTextField.font = AppTheme.current.fonts.regular(16)
+        stageTextField.textColor = AppTheme.current.colors.activeElementColor
         stageTextField.attributedPlaceholder = NSAttributedString(string: "add_stage".localized,
-                                                                  attributes: [.foregroundColor: UIColor(rgba: "dddddd")])
+                                                                  attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
     }
     
 }
@@ -377,7 +390,7 @@ final class StageCellActionsProvider {
                 action.fulfill(with: .delete)
         })
         deleteAction.image = #imageLiteral(resourceName: "trash")
-        deleteAction.textColor = UIColor.red
+        deleteAction.textColor = AppTheme.current.colors.wrongElementColor
         deleteAction.title = nil
         deleteAction.backgroundColor = StageCellActionsProvider.backgroundColor
         deleteAction.transitionDelegate = nil

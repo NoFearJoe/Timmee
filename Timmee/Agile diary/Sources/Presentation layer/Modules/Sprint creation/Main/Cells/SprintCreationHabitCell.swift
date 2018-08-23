@@ -19,10 +19,6 @@ final class SprintCreationHabitCell: SwipeTableViewCell {
         super.awakeFromNib()
         containerView.backgroundColor = UIColor(rgba: "f5f5f5")
         containerView.layer.cornerRadius = 8
-//        containerView.layer.shadowColor = UIColor.black.cgColor
-//        containerView.layer.shadowOffset = .zero
-//        containerView.layer.shadowRadius = 4
-//        containerView.layer.shadowOpacity = 0.2
     }
     
     func configure(habit: Habit) {

@@ -38,6 +38,8 @@
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
 		0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
 		0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
+		0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
+		0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -101,6 +103,8 @@
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		0C8D075F212BE5B5008122A6 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintInteractorTrait.swift; sourceTree = "<group>"; };
+		0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAndHabitInteractorTrait.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 		0C14D4EA2121961E004C0559 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C8D0793212ECC63008122A6 /* Interactors */,
 				0CDF8D802125B75A001A2F70 /* Cells */,
 				0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */,
 				0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */,
@@ -348,6 +353,15 @@
 				0C8D0745212AD14A008122A6 /* AppTheme.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		0C8D0793212ECC63008122A6 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */,
+				0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 		0CDF8D802125B75A001A2F70 /* Cells */ = {
@@ -514,7 +528,9 @@
 				0C14D5082122B1A5004C0559 /* SprintCreationSection.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
+				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
+				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,

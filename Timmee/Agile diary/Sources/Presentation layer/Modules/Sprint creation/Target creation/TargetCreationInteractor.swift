@@ -21,12 +21,12 @@ protocol TargetCreationDataSource: class {
     func stage(at index: Int) -> Subtask?
 }
 
-final class TargetCreationInteractor {
+final class TargetCreationInteractor: TargetAndHabitInteractorTrait {
     
     weak var output: TargetCreationInteractorOutput?
     weak var targetProvider: TargetProvider!
     
-    let targetsService = ServicesAssembly.shared.tasksService
+    let tasksService = ServicesAssembly.shared.tasksService
     let stagesService = ServicesAssembly.shared.subtasksService
     
     var sortedStages: [Subtask] {
@@ -40,25 +40,6 @@ extension TargetCreationInteractor {
     func createTarget() -> Task {
         return Task(id: RandomStringGenerator.randomString(length: 24),
                     title: "")
-    }
-    
-    func saveTarget(_ target: Task, listID: String?, success: (() -> Void)?, fail: (() -> Void)?) {
-        guard isValidTarget(target) else {
-            fail?()
-            return
-        }
-        
-        targetsService.updateTask(target, listID: listID) { error in
-            if error == nil {
-                success?()
-            } else {
-                fail?()
-            }
-        }
-    }
-    
-    func isValidTarget(_ target: Task) -> Bool {
-        return !target.title.trimmed.isEmpty
     }
     
 }

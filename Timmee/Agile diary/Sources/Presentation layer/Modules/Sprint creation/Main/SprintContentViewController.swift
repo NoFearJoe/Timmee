@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SprintContentViewController: UIViewController {
+final class SprintContentViewController: UIViewController, TargetAndHabitInteractorTrait {
     
     enum State {
         case empty
@@ -44,6 +44,8 @@ final class SprintContentViewController: UIViewController {
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
+    let tasksService = ServicesAssembly.shared.tasksService
+    
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
     private var cacheObserver: CacheObserver<Task>?
     
@@ -59,10 +61,12 @@ final class SprintContentViewController: UIViewController {
         setupPlaceholder()
         setupCacheObserver(forSection: section, sprintID: sprintID)
         targetCellActionsProvider.onDelete = { [unowned self] indexPath in
-            
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
+            self.removeTask(target, completion: nil)
         }
         habitCellActionsProvider.onDelete = { [unowned self] indexPath in
-            
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
+            self.removeTask(habit, completion: nil)
         }
     }
     
