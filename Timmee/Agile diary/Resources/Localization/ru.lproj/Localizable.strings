@@ -163,10 +163,9 @@
 "habits_section_placeholder_subtitle" = "Придумайте несложные действия, которые хотите делать каждый день. Например, чтение книги 15 минут в день или утренняя пробежка. Рекомендуем в каждый спринт добавлять не очень много привычек, но стараться выполнять их каждый день.";
 
 "target_title_placeholder" = "Новая цель";
-"importancy_low" = "Низкая";
-"importancy_normal" = "Средняя";
-"importancy_high" = "Высокая";
-"add_stage" = "Введите название этапа";
+"note" = "Заметка";
+"target_note_placeholder" = "Введите текст заметки...";
+"add_stage" = "Введите название этапа...";
 
 "habit_title_placeholder" = "Новая привычка";
 "habit_link_placeholder" = "https://google.com";

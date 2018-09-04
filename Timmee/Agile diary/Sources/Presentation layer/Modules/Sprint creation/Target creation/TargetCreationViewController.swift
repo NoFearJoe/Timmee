@@ -32,10 +32,8 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
     @IBOutlet private var stagesTableView: ReorderableTableView!
     @IBOutlet private var stagesTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var stagesTableViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet private var importancyTitleLabel: UILabel!
-    @IBOutlet private var importancySwitcher: Switcher!
-    
-    private var selectedImportancy = TargetImportancy.normal
+    @IBOutlet private var noteTitleLabel: UILabel!
+    @IBOutlet private var noteField: GrowingTextView!
     
     private let interactor = TargetCreationInteractor()
     
@@ -55,9 +53,9 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
         interactor.targetProvider = self
         setupLabels()
         setupTitleField()
+        setupNoteField()
         setupStageTextField()
         setupStagesTableView()
-        setupImportancySwitcher()
         stageCellActionsProvider.onDelete = { [unowned self] indexPath in
             self.interactor.removeStage(at: indexPath.row)
         }
@@ -204,18 +202,27 @@ private extension TargetCreationViewController {
  
     func updateUI(target: Target) {
         titleField.textView.text = target.title
-        // importancySwitcher.selectedItemIndex =
+        noteField.textView.text = target.note
+        updateDoneButtonState()
     }
     
     func updateTargetTitle() {
         target.title = getTargetTitle()
     }
     
+    func updateTargetNote() {
+        target.note = getTargetNote()
+    }
+    
     func setupLabels() {
         stagesTitleLabel.text = "stages".localized
         stagesHintLabel.text = "stages_hint".localized
-        importancyTitleLabel.text = "importancy".localized
-        [stagesTitleLabel, stagesHintLabel, importancyTitleLabel].forEach { $0?.textColor = AppTheme.current.colors.inactiveElementColor }
+        noteTitleLabel.text = "note".localized
+        [stagesTitleLabel, stagesHintLabel, noteTitleLabel].forEach { $0?.textColor = AppTheme.current.colors.inactiveElementColor }
+    }
+    
+    func updateDoneButtonState() {
+        headerView.rightButton?.isEnabled = !target.title.isEmpty
     }
     
 }
@@ -262,10 +269,46 @@ private extension TargetCreationViewController {
     
     @objc func targetTitleDidChange(notification: Notification) {
         updateTargetTitle()
+        updateDoneButtonState()
     }
     
     func getTargetTitle() -> String {
         return titleField.textView.text.trimmed
+    }
+    
+}
+
+private extension TargetCreationViewController {
+    
+    func setupNoteField() {
+        noteField.textView.delegate = self
+        noteField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -4, bottom: -1, right: 0)
+        noteField.textView.textColor = AppTheme.current.colors.activeElementColor
+        noteField.textView.font = AppTheme.current.fonts.medium(17)
+        noteField.maxNumberOfLines = 100
+        noteField.showsVerticalScrollIndicator = false
+        noteField.showsHorizontalScrollIndicator = false
+        noteField.placeholderAttributedText
+            = NSAttributedString(string: "target_note_placeholder".localized,
+                                 attributes: [.font: AppTheme.current.fonts.medium(17),
+                                              .foregroundColor: AppTheme.current.colors.inactiveElementColor])
+        
+        setupNoteObserver()
+    }
+    
+    func setupNoteObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(targetNoteDidChange),
+                                               name: .UITextViewTextDidChange,
+                                               object: noteField.textView)
+    }
+    
+    @objc func targetNoteDidChange(notification: Notification) {
+        updateTargetNote()
+    }
+    
+    func getTargetNote() -> String {
+        return noteField.textView.text.trimmed
     }
     
 }
@@ -291,20 +334,6 @@ extension TargetCreationViewController: UITextFieldDelegate {
         return true
     }
     
-}
-
-private extension TargetCreationViewController {
-
-    func setupImportancySwitcher() {
-        importancySwitcher.items = [TargetImportancy.low.title, TargetImportancy.normal.title, TargetImportancy.high.title]
-        importancySwitcher.selectedItemIndex = selectedImportancy.rawValue
-        importancySwitcher.addTarget(self, action: #selector(onSwitchImportancy), for: .touchUpInside)
-    }
-    
-    @objc func onSwitchImportancy() {
-        selectedImportancy = TargetImportancy(rawValue: importancySwitcher.selectedItemIndex) ?? .normal
-    }
-
 }
 
 import SwipeCellKit

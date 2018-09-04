@@ -45,8 +45,8 @@ struct AppTheme {
                                                activeElementColor: UIColor(rgba: "444444"),
                                                mainElementColor: UIColor(rgba: "29C3FE"),
                                                wrongElementColor: UIColor(rgba: "FF3100"),
-                                               selectedElementColor: UIColor(rgba: "0EEB95"),
-                                               decorationElementColor: UIColor(rgba: "F7F7F7")),
+                                               selectedElementColor: UIColor(rgba: "12FFA3"),
+                                               decorationElementColor: UIColor(rgba: "E9E9E9")),
                                 fonts: Fonts())
     
     static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: ""),
