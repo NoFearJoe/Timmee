@@ -22,18 +22,26 @@ enum TargetImportancy: Int {
     }
 }
 
-final class TargetCreationViewController: UIViewController, TargetProvider {
+final class TargetCreationViewController: UIViewController, TargetProvider, HintViewTrait {
     
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
     @IBOutlet private var stagesTitleLabel: UILabel!
-    @IBOutlet private var stagesHintLabel: UILabel!
+    @IBOutlet private var stagesHintButton: UIButton!
     @IBOutlet private var stageTextField: UITextField!
     @IBOutlet private var stagesTableView: ReorderableTableView!
     @IBOutlet private var stagesTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var stagesTableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private var noteTitleLabel: UILabel!
     @IBOutlet private var noteField: GrowingTextView!
+    
+    var hintPopover: HintPopoverView? {
+        didSet {
+            hintPopover?.willCloseBlock = { self.contentView.isUserInteractionEnabled = false }
+            hintPopover?.didCloseBlock = { self.contentView.isUserInteractionEnabled = true }
+        }
+    }
     
     private let interactor = TargetCreationInteractor()
     
@@ -52,6 +60,7 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
         interactor.output = self
         interactor.targetProvider = self
         setupLabels()
+        setupDoneButton()
         setupTitleField()
         setupNoteField()
         setupStageTextField()
@@ -69,6 +78,11 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.updateHintPopover()
+    }
+    
     @IBAction private func onClose() {
         dismiss(animated: true, completion: nil)
     }
@@ -83,6 +97,17 @@ final class TargetCreationViewController: UIViewController, TargetProvider {
     
     @IBAction private func endEditing() {
         view.endEditing(true)
+        stagesHintButton.isSelected = false
+        hideHintPopover()
+    }
+    
+    @IBAction private func onTapToHint(_ button: UIButton) {
+        button.isSelected = !button.isSelected
+        if button.isSelected {
+            self.showFullWidthHintPopover("stages_hint".localized, button: button)
+        } else {
+            self.hideHintPopover()
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -158,10 +183,17 @@ extension TargetCreationViewController: UITableViewDataSource {
         
         if let stage = interactor.stage(at: indexPath.row) {
             cell.title = stage.title
+            cell.stageNumber = stage.sortPosition
             
             cell.onChangeTitle = { [unowned self, unowned cell] title in
                 guard let actualIndexPath = tableView.indexPath(for: cell) else { return }
                 self.interactor.updateStage(at: actualIndexPath.row, newTitle: title)
+            }
+            cell.onChangeHeight = { [unowned self] height in
+                UIView.performWithoutAnimation {
+                    self.stagesTableView.beginUpdates()
+                    self.stagesTableView.endUpdates()
+                }
             }
             
             cell.delegate = stageCellActionsProvider
@@ -216,9 +248,13 @@ private extension TargetCreationViewController {
     
     func setupLabels() {
         stagesTitleLabel.text = "stages".localized
-        stagesHintLabel.text = "stages_hint".localized
         noteTitleLabel.text = "note".localized
-        [stagesTitleLabel, stagesHintLabel, noteTitleLabel].forEach { $0?.textColor = AppTheme.current.colors.inactiveElementColor }
+        [stagesTitleLabel, noteTitleLabel].forEach { $0?.textColor = AppTheme.current.colors.inactiveElementColor }
+    }
+    
+    func setupDoneButton() {
+        headerView.rightButton?.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .disabled)
+        headerView.rightButton?.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
     }
     
     func updateDoneButtonState() {
@@ -317,7 +353,7 @@ private extension TargetCreationViewController {
     
     func setupStageTextField() {
         stageTextField.delegate = self
-        stageTextField.font = AppTheme.current.fonts.regular(16)
+        stageTextField.font = AppTheme.current.fonts.medium(17)
         stageTextField.textColor = AppTheme.current.colors.activeElementColor
         stageTextField.attributedPlaceholder = NSAttributedString(string: "add_stage".localized,
                                                                   attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
@@ -340,19 +376,38 @@ import SwipeCellKit
 
 final class StageCell: SwipeTableViewCell {
     
+    var stageNumber: Int = 1 {
+        didSet {
+            stageNumberLabel.text = "#\(stageNumber)"
+        }
+    }
+    
     var title: String {
         get { return titleView.textView.text }
         set { titleView.textView.text = newValue }
     }
     
     var onChangeTitle: ((String) -> Void)?
+    var onChangeHeight: ((CGFloat) -> Void)?
     
     @IBOutlet private var titleView: GrowingTextView! {
         didSet {
             titleView.textView.delegate = self
             titleView.textView.isEditable = false
             titleView.textView.isSelectable = false
+            titleView.textView.textContainerInset.left = -4
+            titleView.maxNumberOfLines = 5
+            titleView.delegates.didChangeHeight = { [unowned self] height in
+                self.onChangeHeight?(height)
+            }
             addTapGestureRecognizer()
+        }
+    }
+    
+    @IBOutlet private var stageNumberLabel: UILabel! {
+        didSet {
+            stageNumberLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            stageNumberLabel.font = AppTheme.current.fonts.regular(15)
         }
     }
     

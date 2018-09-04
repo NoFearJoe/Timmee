@@ -26,6 +26,8 @@
 		0C14D42F211C1B6C004C0559 /* InteractiveDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D42C211C1B6C004C0559 /* InteractiveDismissTransition.swift */; };
 		0C14D430211C1B6C004C0559 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D42D211C1B6C004C0559 /* DismissAnimator.swift */; };
 		0C14D451211C1FE8004C0559 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D450211C1FE8004C0559 /* Workset.framework */; };
+		0C5C4688213E9A5D00390F85 /* HintPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C4687213E9A5D00390F85 /* HintPopoverView.swift */; };
+		0C5C468A213E9DA500390F85 /* HintViewTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C4689213E9DA500390F85 /* HintViewTrait.swift */; };
 		0C8D0738212A8F93008122A6 /* FadeBackgroundModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */; };
 		0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */; };
 		9E4A8C6C7DA7495553B0AE82 /* Pods_UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279254AB751F727F989F812F /* Pods_UIComponents.framework */; };
@@ -53,6 +55,8 @@
 		0C14D42C211C1B6C004C0559 /* InteractiveDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveDismissTransition.swift; sourceTree = "<group>"; };
 		0C14D42D211C1B6C004C0559 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		0C14D450211C1FE8004C0559 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C5C4687213E9A5D00390F85 /* HintPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintPopoverView.swift; sourceTree = "<group>"; };
+		0C5C4689213E9DA500390F85 /* HintViewTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewTrait.swift; sourceTree = "<group>"; };
 		0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeBackgroundModalTransition.swift; sourceTree = "<group>"; };
 		0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 		279254AB751F727F989F812F /* Pods_UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +140,7 @@
 				0C14D408211C1B64004C0559 /* PlaceholderView.xib */,
 				0C14D400211C1B62004C0559 /* ReorderableTableView.swift */,
 				0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */,
+				0C5C4687213E9A5D00390F85 /* HintPopoverView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 			children = (
 				0C14D3F1211C1B56004C0559 /* AlertInput.swift */,
 				0C14D3F0211C1B56004C0559 /* Customizable.swift */,
+				0C5C4689213E9DA500390F85 /* HintViewTrait.swift */,
 			);
 			path = "Protocol extensions";
 			sourceTree = "<group>";
@@ -315,10 +321,12 @@
 				0C14D3F2211C1B56004C0559 /* Customizable.swift in Sources */,
 				0C8D0738212A8F93008122A6 /* FadeBackgroundModalTransition.swift in Sources */,
 				0C14D41B211C1B65004C0559 /* ReorderableTableView.swift in Sources */,
+				0C5C468A213E9DA500390F85 /* HintViewTrait.swift in Sources */,
 				0C14D42E211C1B6C004C0559 /* FlipDismissInteractor.swift in Sources */,
 				0C14D3F3211C1B56004C0559 /* AlertInput.swift in Sources */,
 				0C14D414211C1B65004C0559 /* NextGrowingTextView.swift in Sources */,
 				0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */,
+				0C5C4688213E9A5D00390F85 /* HintPopoverView.swift in Sources */,
 				0C14D415211C1B65004C0559 /* NextGrowingInternalTextView.swift in Sources */,
 				0C14D416211C1B65004C0559 /* PlaceholderView.swift in Sources */,
 			);

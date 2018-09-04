@@ -30,7 +30,7 @@ final class TargetCreationInteractor: TargetAndHabitInteractorTrait {
     let stagesService = ServicesAssembly.shared.subtasksService
     
     var sortedStages: [Subtask] {
-        return targetProvider.target.subtasks.sorted(by: { $0.sortPosition > $1.sortPosition })
+        return targetProvider.target.subtasks.sorted(by: { $0.sortPosition < $1.sortPosition })
     }
     
 }
@@ -90,7 +90,7 @@ extension TargetCreationInteractor {
             range.forEach { index in
                 guard index != indexes.0 else { return }
                 if let stage = stages.item(at: index) {
-                    if indexes.0 > indexes.1 {
+                    if indexes.0 < indexes.1 {
                         stage.sortPosition -= 1
                     } else {
                         stage.sortPosition += 1
@@ -143,7 +143,7 @@ fileprivate extension TargetCreationInteractor {
 fileprivate extension TargetCreationInteractor {
     
     func nextStageSortPosition() -> Int {
-        return (sortedStages.first?.sortPosition ?? 0) + 1
+        return (sortedStages.last?.sortPosition ?? 0) + 1
     }
     
 }

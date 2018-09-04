@@ -41,6 +41,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
         sectionSwitcher.items = [SprintCreationSection.habits.title, SprintCreationSection.targets.title]
         sectionSwitcher.selectedItemIndex = 0
@@ -101,6 +102,11 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         saveSprint(sprint) { [weak self] success in
             self?.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func setupDoneButton() {
+        headerView.rightButton?.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .disabled)
+        headerView.rightButton?.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
     }
     
 }

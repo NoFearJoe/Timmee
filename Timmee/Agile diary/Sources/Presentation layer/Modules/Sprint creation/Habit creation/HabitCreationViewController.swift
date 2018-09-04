@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HabitCreationViewController: UIViewController {
+final class HabitCreationViewController: UIViewController, HintViewTrait {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
@@ -19,7 +19,9 @@ final class HabitCreationViewController: UIViewController {
     @IBOutlet private var notificationTimePickerContainer: UIView!
     @IBOutlet private var linkTitleLabel: UILabel!
     @IBOutlet private var linkField: UITextField!
-    @IBOutlet private var linkSubtitleLabel: UILabel!
+    @IBOutlet private var linkHintButton: UIButton!
+    
+    var hintPopover: HintPopoverView?
     
     private var notificationTimePicker: NotificationTimePickerInput!
     
@@ -38,6 +40,7 @@ final class HabitCreationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDoneButton()
         setupTitleField()
         setupDayButtons()
         setupLinkField()
@@ -56,6 +59,11 @@ final class HabitCreationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         titleField.resignFirstResponder()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.updateHintPopover()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,12 +91,23 @@ final class HabitCreationViewController: UIViewController {
     
     @IBAction private func endEditing() {
         view.endEditing(true)
+        linkHintButton.isSelected = false
+        hideHintPopover()
     }
     
     @IBAction private func onSelectDay(_ button: UIButton) {
         guard !button.isSelected || dayButtons.filter({ $0.isSelected }).count > 1 else { return }
         button.isSelected = !button.isSelected
         updateHabitRepeatingDays()
+    }
+    
+    @IBAction private func onTapToHint(_ button: UIButton) {
+        button.isSelected = !button.isSelected
+        if button.isSelected {
+            self.showFullWidthHintPopover("link_hint".localized, button: button)
+        } else {
+            self.hideHintPopover()
+        }
     }
     
 }
@@ -133,6 +152,11 @@ private extension HabitCreationViewController {
         notificationTimePickerContainer.isUserInteractionEnabled = habit.notificationDate != nil
     }
     
+    func setupDoneButton() {
+        headerView.rightButton?.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .disabled)
+        headerView.rightButton?.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
+    }
+    
     func updateDoneButtonState() {
         headerView.rightButton?.isEnabled = !habit.title.isEmpty && isHabitLinkValid(link: getHabitLink())
     }
@@ -149,8 +173,7 @@ private extension HabitCreationViewController {
         dueDaysTitleLabel.text = "due_days".localized
         notificationTimeTitleLabel.text = "reminder".localized
         linkTitleLabel.text = "link".localized
-        linkSubtitleLabel.text = "link_hint".localized
-        [dueDaysTitleLabel, notificationTimeTitleLabel, linkTitleLabel, linkSubtitleLabel].forEach {
+        [dueDaysTitleLabel, notificationTimeTitleLabel, linkTitleLabel].forEach {
             $0?.textColor = AppTheme.current.colors.inactiveElementColor
         }
     }
@@ -210,10 +233,10 @@ private extension HabitCreationViewController {
     
     func setupLinkField() {
         linkField.textColor = AppTheme.current.colors.activeElementColor
-        linkField.font = AppTheme.current.fonts.medium(20)
+        linkField.font = AppTheme.current.fonts.medium(17)
         linkField.attributedPlaceholder
             = NSAttributedString(string: "habit_link_placeholder".localized,
-                                 attributes: [.font: AppTheme.current.fonts.medium(20),
+                                 attributes: [.font: AppTheme.current.fonts.medium(17),
                                               .foregroundColor: AppTheme.current.colors.inactiveElementColor])
         
         setupLinkObserver()
