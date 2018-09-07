@@ -26,4 +26,12 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "NotificationTimePicker") as! NotificationTimePicker
     }
     
+    static var editorContainer: EditorContainer {
+        return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "EditorContainer") as! EditorContainer
+    }
+    
+    static var dueDatePicker: DueDatePicker {
+        return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "DueDatePicker") as! DueDatePicker
+    }
+    
 }

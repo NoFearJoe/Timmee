@@ -19,7 +19,7 @@ import UIKit
            3. Сохраняем в БД
  */
 
-final class SprintCreationViewController: UIViewController, SprintInteractorTrait {
+final class SprintCreationViewController: UIViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
@@ -55,6 +55,10 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if sprint.creationDate.compare(Date().startOfDay) == .orderedAscending {
+            sprint.creationDate = Date().nextDay.startOfDay
+            showStartDate(sprint.creationDate)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,8 +89,21 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         contentViewController.section = currentSection
     }
     
+    @IBAction private func onTapToSprintStartDate() {
+        let editorContainer = ViewControllersFactory.editorContainer
+        editorContainer.loadViewIfNeeded()
+        let dueDatePicker = ViewControllersFactory.dueDatePicker
+        dueDatePicker.output = self
+        dueDatePicker.loadViewIfNeeded()
+        dueDatePicker.setDueDate(sprint.creationDate)
+        editorContainer.setViewController(dueDatePicker)
+        editorContainer.output = self
+        present(editorContainer, animated: true, completion: nil)
+    }
+    
     @IBAction private func onClose() {
-        // Alert, then close
+        // TODO: Alert, then close
+        close()
     }
     
     @IBAction private func onAdd() {
@@ -97,16 +114,46 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     }
     
     @IBAction private func onDone() {
-        // Alert, then set list.note = "", then save, then close
-        sprint.note = ""
-        saveSprint(sprint) { [weak self] success in
-            self?.dismiss(animated: true, completion: nil)
-        }
+        showAlert(title: "attention".localized,
+                  message: "are_you_sure_you_want_to_finish_sprint_creation".localized,
+                  actions: [.cancel, .ok("finish".localized)])
+            { action in
+                guard case .ok = action else { return }
+                self.sprint.note = ""
+                self.saveSprint(self.sprint) { [weak self] success in
+                    self?.close()
+                }
+            }
     }
     
     func setupDoneButton() {
         headerView.rightButton?.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .disabled)
         headerView.rightButton?.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
     }
+    
+    func close() {
+        if presentingViewController == nil {
+            // TODO: Present main screen
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+}
+
+extension SprintCreationViewController: DueDatePickerOutput {
+    
+    func didChangeDueDate(to date: Date) {
+        sprint.creationDate = date
+        showStartDate(date)
+    }
+    
+}
+
+extension SprintCreationViewController: EditorContainerOutput {
+    
+    func editingFinished(viewController: UIViewController) {}
+    
+    func editingCancelled(viewController: UIViewController) {}
     
 }

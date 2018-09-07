@@ -11,7 +11,14 @@ import SwipeCellKit
 
 final class SprintCreationTargetCell: SwipeTableViewCell {
     
+    @IBOutlet private var containerView: UIView!
     @IBOutlet private var titleLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        containerView.backgroundColor = UIColor(rgba: "f5f5f5")
+        containerView.layer.cornerRadius = 8
+    }
     
     func configure(target: Target) {
         titleLabel.text = target.title

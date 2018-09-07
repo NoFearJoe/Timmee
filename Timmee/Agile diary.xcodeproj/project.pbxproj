@@ -35,6 +35,10 @@
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
+		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
+		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
+		0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
 		0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
 		0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
@@ -100,6 +104,10 @@
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
+		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
+		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
+		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		0C5C469C2141014000390F85 /* EditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContainer.swift; sourceTree = "<group>"; };
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		0C8D075F212BE5B5008122A6 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -308,6 +316,7 @@
 		0C14D4EA2121961E004C0559 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C5C46952140FDF900390F85 /* DueDatePicker */,
 				0C8D0793212ECC63008122A6 /* Interactors */,
 				0CDF8D802125B75A001A2F70 /* Cells */,
 				0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */,
@@ -345,6 +354,17 @@
 				0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */,
 			);
 			path = Plists;
+			sourceTree = "<group>";
+		};
+		0C5C46952140FDF900390F85 /* DueDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0C5C46962140FDF900390F85 /* CalendarDayCell.swift */,
+				0C5C46972140FDF900390F85 /* DueDatePicker.swift */,
+				0C5C46982140FDF900390F85 /* CalendarView.swift */,
+				0C5C469C2141014000390F85 /* EditorContainer.swift */,
+			);
+			path = DueDatePicker;
 			sourceTree = "<group>";
 		};
 		0C8D0744212AD13A008122A6 /* Theme */ = {
@@ -512,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
 				0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
@@ -531,9 +552,12 @@
 				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
+				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
+				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,
+				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
 				0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */,

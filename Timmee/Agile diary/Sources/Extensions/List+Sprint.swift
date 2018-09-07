@@ -11,7 +11,14 @@ typealias Sprint = List
 extension Sprint {
     
     convenience init(number: Int) {
-        self.init(id: "sprint_\(number)", title: "", note: "temporary", icon: .allTasks, sortPosition: number, tasksCount: 0, isFavorite: false, creationDate: Date())
+        self.init(id: "sprint_\(number)",
+            title: "",
+            note: "temporary",
+            icon: .allTasks,
+            sortPosition: number,
+            tasksCount: 0,
+            isFavorite: false,
+            creationDate: Date().nextDay.startOfDay)
     }
     
 }

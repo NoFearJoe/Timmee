@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class FadeInBackgroundModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
+public final class FadeInBackgroundModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) {
             
             let backgroundView = makeClearView(size: UIScreen.main.bounds.size)
@@ -50,13 +50,13 @@ final class FadeInBackgroundModalTransition: NSObject, UIViewControllerAnimatedT
     
 }
 
-final class FadeOutBackgroundModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
+public final class FadeOutBackgroundModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let backgroundView = findBackgroundView(in: transitionContext.containerView)
         guard let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
         

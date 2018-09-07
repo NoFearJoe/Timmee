@@ -157,6 +157,7 @@
 "remind_after_30" = "Напомнить через 30 минут";
 "remind_after_60" = "Напомнить через час";
 
+"sprint_start_date" = "Начало спринта";
 "targets_section_placeholder_title" = "Добавьте первую цель";
 "targets_section_placeholder_subtitle" = "Вы можете добавить не больше 3 целей в один спринт";
 "habits_section_placeholder_title" = "Добавьте первую привычку";

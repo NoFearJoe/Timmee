@@ -20,7 +20,7 @@ public class List {
     public var sortPosition: Int
     public let tasksCount: Int
     public var isFavorite: Bool
-    public let creationDate: Date
+    public var creationDate: Date
     
     public init(listEntity: ListEntity) {
         id = listEntity.id!

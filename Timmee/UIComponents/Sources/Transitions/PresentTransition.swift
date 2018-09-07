@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class ModalPresentationTransition: NSObject, UIViewControllerAnimatedTransitioning {
+public final class ModalPresentationTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
             let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) {
             
@@ -33,7 +33,7 @@ final class ModalPresentationTransition: NSObject, UIViewControllerAnimatedTrans
                            options: [.curveEaseInOut],
                            animations:
                 {
-                    backgroundView.backgroundColor = AppTheme.current.backgroundColor
+                    backgroundView.backgroundColor = .black
                     toViewController.view.transform = CGAffineTransform(translationX: 0, y: 0)
                 },
                 completion: { (complete) in
@@ -52,13 +52,13 @@ final class ModalPresentationTransition: NSObject, UIViewControllerAnimatedTrans
 
 }
 
-final class ModalDismissalTransition: NSObject, UIViewControllerAnimatedTransitioning {
+public final class ModalDismissalTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
             let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) {
             
