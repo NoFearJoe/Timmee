@@ -165,9 +165,15 @@ public enum WeekRepeatUnit {
                 return "everyday".localized
             } else if containsWeekdays {
                 let otherDaysString = Array(dayUnits.sorted(by: { $0.number < $1.number }).dropFirst(5)).map(localizedDay).joined(separator: ", ")
+                if otherDaysString.isEmpty {
+                    return "weekdays".localized
+                }
                 return "weekdays".localized + " \("and".localized) " + otherDaysString
             } else if containsWeekends {
                 let otherDaysString = Array(dayUnits.sorted(by: { $0.number < $1.number }).dropLast(2)).map(localizedDay).joined(separator: ", ")
+                if otherDaysString.isEmpty {
+                    return "weekends".localized
+                }
                 return otherDaysString + " \("and".localized) " + "weekends".localized
             }
             return dayUnits.sorted(by: { $0.number < $1.number }).map(localizedDay).joined(separator: ", ")

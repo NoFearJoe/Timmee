@@ -163,6 +163,8 @@
 "habits_section_placeholder_title" = "Добавьте первую привычку";
 "habits_section_placeholder_subtitle" = "Придумайте несложные действия, которые хотите делать каждый день. Например, чтение книги 15 минут в день или утренняя пробежка. Рекомендуем в каждый спринт добавлять не очень много привычек, но стараться выполнять их каждый день.";
 
+"Sprint" = "Спринт";
+
 "target_title_placeholder" = "Новая цель";
 "note" = "Заметка";
 "target_note_placeholder" = "Введите текст заметки...";
@@ -170,6 +172,9 @@
 
 "habit_title_placeholder" = "Новая привычка";
 "habit_link_placeholder" = "https://google.com";
+
+"are_you_sure_you_want_to_finish_sprint_creation" = "Спринт нельзя будет изменить. Завершить создание спринта?";
+"finish" = "Завершить";
 
 "education_title_0" = "Что такое Agile ежедневник?";
 "education_subtitle_0" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки.";

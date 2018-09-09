@@ -38,8 +38,7 @@ final class TargetCreationInteractor: TargetAndHabitInteractorTrait {
 extension TargetCreationInteractor {
     
     func createTarget() -> Task {
-        return Task(id: RandomStringGenerator.randomString(length: 24),
-                    title: "")
+        return Task(targetID: RandomStringGenerator.randomString(length: 24))
     }
     
 }

@@ -21,7 +21,7 @@ final class HabitCreationInteractor: TargetAndHabitInteractorTrait {
 extension HabitCreationInteractor {
     
     func createHabit() -> Habit {
-        return Habit(id: RandomStringGenerator.randomString(length: 24))
+        return Habit(habitID: RandomStringGenerator.randomString(length: 24))
     }
     
 }

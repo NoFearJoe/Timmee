@@ -55,6 +55,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard sprint != nil else { return }
         if sprint.creationDate.compare(Date().startOfDay) == .orderedAscending {
             sprint.creationDate = Date().nextDay.startOfDay
             showStartDate(sprint.creationDate)

@@ -10,8 +10,25 @@ typealias Target = Task
 
 extension Target {
     
-//    convenience init(id: String) {
-//        self.init(id: id, title: "")
-//    }
+    convenience init(targetID: String) {
+        self.init(id: targetID,
+                  kind: "target",
+                  title: "",
+                  isImportant: false,
+                  notification: .doNotNotify,
+                  notificationDate: nil,
+                  note: "",
+                  link: "",
+                  repeating: .init(type: .never),
+                  repeatEndingDate: nil,
+                  dueDate: nil,
+                  location: nil,
+                  address: nil,
+                  shouldNotifyAtLocation: false,
+                  attachments: [],
+                  isDone: false,
+                  inProgress: false,
+                  creationDate: Date())
+    }
     
 }

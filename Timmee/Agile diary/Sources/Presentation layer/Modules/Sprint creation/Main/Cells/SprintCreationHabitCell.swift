@@ -19,16 +19,19 @@ final class SprintCreationHabitCell: SwipeTableViewCell {
         super.awakeFromNib()
         containerView.backgroundColor = UIColor(rgba: "f5f5f5")
         containerView.layer.cornerRadius = 8
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        titleLabel.font = AppTheme.current.fonts.medium(20)
+        subtitleLabel.font = AppTheme.current.fonts.regular(14)
     }
     
     func configure(habit: Habit) {
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()
-        attributedSubtitle.append(NSAttributedString(string: habit.repeating.localized, attributes: [.foregroundColor: UIColor(rgba: "888888")]))
+        attributedSubtitle.append(NSAttributedString(string: habit.repeating.localized.capitalizedFirst, attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         if let notificationDate = habit.notificationDate {
-            attributedSubtitle.append(NSAttributedString(string: " " + "at".localized + " ", attributes: [.foregroundColor: UIColor(rgba: "888888")]))
-            attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString, attributes: [.foregroundColor: UIColor(rgba: "3ECAFF")]))
+            attributedSubtitle.append(NSAttributedString(string: " " + "at".localized + " ", attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+            attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString, attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         }
         subtitleLabel.attributedText = attributedSubtitle
     }

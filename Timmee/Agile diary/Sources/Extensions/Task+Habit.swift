@@ -10,8 +10,8 @@ typealias Habit = Task
 
 extension Habit {
     
-    convenience init(id: String) {
-        self.init(id: id,
+    convenience init(habitID: String) {
+        self.init(id: habitID,
                   kind: "habit",
                   title: "",
                   isImportant: false,
