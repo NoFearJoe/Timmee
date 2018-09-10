@@ -45,7 +45,7 @@ final class TargetCreationViewController: UIViewController, TargetProvider, Hint
     
     private let interactor = TargetCreationInteractor()
     
-    private let stageCellActionsProvider = StageCellActionsProvider()
+    private let stageCellActionsProvider = CellDeleteSwipeActionProvider()
     
     var target: Target!
     var listID: String!
@@ -445,57 +445,6 @@ fileprivate extension StageCell {
         titleView.textView.isEditable = true
         titleView.textView.isSelectable = true
         titleView.becomeFirstResponder()
-    }
-    
-}
-
-final class StageCellActionsProvider {
-    
-    var onDelete: ((IndexPath) -> Void)?
-    
-    static var backgroundColor: UIColor {
-        return .clear
-    }
-    
-    fileprivate lazy var swipeTableOptions: SwipeTableOptions = {
-        var options = SwipeTableOptions()
-        options.expansionStyle = nil
-        options.transitionStyle = SwipeTransitionStyle.drag
-        options.backgroundColor = StageCellActionsProvider.backgroundColor
-        return options
-    }()
-    
-    fileprivate lazy var swipeDeleteAction: SwipeAction = {
-        let deleteAction = SwipeAction(style: .default,
-                                       title: "delete".localized,
-                                       handler:
-            { [weak self] (action, indexPath) in
-                self?.onDelete?(indexPath)
-                action.fulfill(with: .delete)
-        })
-        deleteAction.image = #imageLiteral(resourceName: "trash")
-        deleteAction.textColor = AppTheme.current.colors.wrongElementColor
-        deleteAction.title = nil
-        deleteAction.backgroundColor = StageCellActionsProvider.backgroundColor
-        deleteAction.transitionDelegate = nil
-        return deleteAction
-    }()
-    
-}
-
-extension StageCellActionsProvider: SwipeTableViewCellDelegate {
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        switch orientation {
-        case .left: return nil
-        case .right: return [swipeDeleteAction]
-        }
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   editActionsOptionsForRowAt indexPath: IndexPath,
-                   for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        return swipeTableOptions
     }
     
 }

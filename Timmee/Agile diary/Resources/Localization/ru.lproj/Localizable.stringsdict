@@ -18,6 +18,15 @@
 			few = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U043e %lu \U0437\U0430\U0434\U0430\U0447\U0438";
 		};
 	};
+	"remains_n" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U041e\U0441\U0442\U0430\U043b\U043e\U0441\U044c";
+			one = "\U041e\U0441\U0442\U0430\U043b\U0441\U044f";
+		};
+	};
 	"n_years" = {
 		"NSStringLocalizedFormatKey" = "%#@n@";
 		n = {

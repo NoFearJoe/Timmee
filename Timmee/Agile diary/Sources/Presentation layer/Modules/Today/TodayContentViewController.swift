@@ -1,14 +1,14 @@
 //
-//  SprintContentViewController.swift
+//  TodayContentViewController.swift
 //  Agile diary
 //
-//  Created by i.kharabet on 14.08.2018.
+//  Created by i.kharabet on 10.09.2018.
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
 import UIKit
 
-final class SprintContentViewController: UIViewController, TargetAndHabitInteractorTrait {
+final class TodayContentViewController: UIViewController, TargetAndHabitInteractorTrait {
     
     enum State {
         case empty
@@ -21,6 +21,7 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
             setupCacheObserver(forSection: section, sprintID: sprintID)
         }
     }
+    
     var state = State.empty {
         didSet {
             switch state {
@@ -50,7 +51,7 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
     private var cacheObserver: CacheObserver<Task>?
     
     private let targetCellActionsProvider = CellDeleteSwipeActionProvider()
-    private let habitCellActionsProvider = CellDeleteSwipeActionProvider()
+    private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,19 +61,28 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
         contentView.rowHeight = UITableViewAutomaticDimension
         setupPlaceholder()
         setupCacheObserver(forSection: section, sprintID: sprintID)
+        habitCellActionsProvider.shouldShowLink = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return false }
+            return !habit.link.trimmed.isEmpty
+        }
+        habitCellActionsProvider.onLink = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
+            guard let linkURL = URL(string: habit.link.trimmed), UIApplication.shared.canOpenURL(linkURL) else { return }
+            UIApplication.shared.open(linkURL, options: [:], completionHandler: nil)
+        }
+        habitCellActionsProvider.onEdit = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
+//            self.removeTask(target, completion: nil)
+        }
         targetCellActionsProvider.onDelete = { [unowned self] indexPath in
             guard let target = self.cacheObserver?.item(at: indexPath) else { return }
             self.removeTask(target, completion: nil)
-        }
-        habitCellActionsProvider.onDelete = { [unowned self] indexPath in
-            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
-            self.removeTask(habit, completion: nil)
         }
     }
     
 }
 
-extension SprintContentViewController: UITableViewDataSource {
+extension TodayContentViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return cacheObserver?.numberOfSections() ?? 0
@@ -85,10 +95,14 @@ extension SprintContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch section.itemsKind {
         case .habit:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SprintCreationHabitCell", for: indexPath) as! SprintCreationHabitCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayHabitCell", for: indexPath) as! TodayHabitCell
             if let habit = cacheObserver?.item(at: indexPath) {
                 cell.configure(habit: habit)
                 cell.delegate = habitCellActionsProvider
+                cell.onChangeCheckedState = { [unowned self] isChecked in
+                    habit.isDone = isChecked
+                    self.saveTask(habit, listID: self.sprintID, completion: nil) // TODO: Обработать?
+                }
             }
             return cell
         case .target:
@@ -103,22 +117,22 @@ extension SprintContentViewController: UITableViewDataSource {
     
 }
 
-extension SprintContentViewController: UITableViewDelegate {
+extension TodayContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch section.itemsKind {
-        case .habit:
-            guard let habit = cacheObserver?.item(at: indexPath) else { return }
-            transitionHandler?.performSegue(withIdentifier: "ShowHabitCreation", sender: habit)
-        case .target:
-            guard let target = cacheObserver?.item(at: indexPath) else { return }
-            transitionHandler?.performSegue(withIdentifier: "ShowTargetCreation", sender: target)
-        }
+//        switch section.itemsKind {
+//        case .habit:
+//            guard let habit = cacheObserver?.item(at: indexPath) else { return }
+//            transitionHandler?.performSegue(withIdentifier: "ShowHabitDetails", sender: habit)
+//        case .target:
+//            guard let target = cacheObserver?.item(at: indexPath) else { return }
+//            transitionHandler?.performSegue(withIdentifier: "ShowTargetDetails", sender: target)
+//        }
     }
     
 }
 
-private extension SprintContentViewController {
+private extension TodayContentViewController {
     
     func setupCacheObserver(forSection section: SprintSection, sprintID: String) {
         let predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
@@ -136,7 +150,7 @@ private extension SprintContentViewController {
     
 }
 
-private extension SprintContentViewController {
+private extension TodayContentViewController {
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
@@ -150,11 +164,11 @@ private extension SprintContentViewController {
         placeholderView.icon = nil
         switch section {
         case .targets:
-            placeholderView.title = "targets_section_placeholder_title".localized
-            placeholderView.subtitle = "targets_section_placeholder_subtitle".localized
+            placeholderView.title = "toady_targets_section_placeholder_title".localized
+            placeholderView.subtitle = "today_targets_section_placeholder_subtitle".localized
         case .habits:
-            placeholderView.title = "habits_section_placeholder_title".localized
-            placeholderView.subtitle = "habits_section_placeholder_subtitle".localized
+            placeholderView.title = "today_habits_section_placeholder_title".localized
+            placeholderView.subtitle = "today_habits_section_placeholder_subtitle".localized
         }
     }
     

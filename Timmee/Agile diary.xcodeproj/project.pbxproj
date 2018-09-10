@@ -30,7 +30,7 @@
 		0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
 		0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5022122AA31004C0559 /* SprintContentViewController.swift */; };
 		0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5052122B067004C0559 /* UIFont+Avenir.swift */; };
-		0C14D5082122B1A5004C0559 /* SprintCreationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */; };
+		0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
 		0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
@@ -52,6 +52,12 @@
 		0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
 		0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
 		0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
+		0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E51C2146697C0071DABD /* TodayViewController.swift */; };
+		0CF7E51F21466A830071DABD /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E51E21466A830071DABD /* Today.storyboard */; };
+		0CF7E52121466EB10071DABD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
+		0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5222146833A0071DABD /* TodayContentViewController.swift */; };
+		0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
+		0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,7 +105,7 @@
 		0C14D4F221219FF4004C0559 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		0C14D5022122AA31004C0559 /* SprintContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintContentViewController.swift; sourceTree = "<group>"; };
 		0C14D5052122B067004C0559 /* UIFont+Avenir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Avenir.swift"; sourceTree = "<group>"; };
-		0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationSection.swift; sourceTree = "<group>"; };
+		0C14D5072122B1A4004C0559 /* SprintSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintSection.swift; sourceTree = "<group>"; };
 		0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TasksKitConfiguration.plist; sourceTree = "<group>"; };
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +127,12 @@
 		0CDF8D852125B8AB001A2F70 /* Task+Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Target.swift"; sourceTree = "<group>"; };
 		0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePicker.swift; sourceTree = "<group>"; };
+		0CF7E51C2146697C0071DABD /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		0CF7E51E21466A830071DABD /* Today.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Today.storyboard; sourceTree = "<group>"; };
+		0CF7E52021466EB10071DABD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0CF7E5222146833A0071DABD /* TodayContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayContentViewController.swift; sourceTree = "<group>"; };
+		0CF7E526214687C40071DABD /* TodayHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHabitCell.swift; sourceTree = "<group>"; };
+		0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCellActionsProviders.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +218,7 @@
 		0C14D4A321216058004C0559 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				0CF7E5242146838F0071DABD /* Models */,
 				0C14D4EF21219696004C0559 /* UI components */,
 				0C14D4AB212167DD004C0559 /* Factories */,
 				0C14D4A521216085004C0559 /* Modules */,
@@ -219,7 +232,7 @@
 				0C8D0744212AD13A008122A6 /* Theme */,
 				0C14D4DA21218164004C0559 /* Application delegate */,
 				0C14D4D921218161004C0559 /* Configurators */,
-				0C14D4E02121828E004C0559 /* User properties */,
+				0C14D4E02121828E004C0559 /* Global */,
 			);
 			path = "Application layer";
 			sourceTree = "<group>";
@@ -227,6 +240,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0CF7E51B214669520071DABD /* Today */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
 				0C14D4A62121608E004C0559 /* Education */,
 			);
@@ -275,12 +289,13 @@
 			path = "Application delegate";
 			sourceTree = "<group>";
 		};
-		0C14D4E02121828E004C0559 /* User properties */ = {
+		0C14D4E02121828E004C0559 /* Global */ = {
 			isa = PBXGroup;
 			children = (
 				0C14D4E1212182B2004C0559 /* UserProperties.swift */,
+				0CF7E52021466EB10071DABD /* Constants.swift */,
 			);
-			path = "User properties";
+			path = Global;
 			sourceTree = "<group>";
 		};
 		0C14D4E7212195DE004C0559 /* Sprint creation */ = {
@@ -319,7 +334,6 @@
 				0C5C46952140FDF900390F85 /* DueDatePicker */,
 				0C8D0793212ECC63008122A6 /* Interactors */,
 				0CDF8D802125B75A001A2F70 /* Cells */,
-				0C14D5072122B1A4004C0559 /* SprintCreationSection.swift */,
 				0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */,
 				0C14D5022122AA31004C0559 /* SprintContentViewController.swift */,
 			);
@@ -332,6 +346,7 @@
 				0C14D4F02121974E004C0559 /* LargeHeaderView.swift */,
 				0C14D4F221219FF4004C0559 /* Switcher.swift */,
 				0C8D075F212BE5B5008122A6 /* Checkbox.swift */,
+				0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -400,6 +415,33 @@
 				0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */,
 			);
 			path = NotificationTimePicker;
+			sourceTree = "<group>";
+		};
+		0CF7E51B214669520071DABD /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				0CF7E5252146878C0071DABD /* Cells */,
+				0CF7E51C2146697C0071DABD /* TodayViewController.swift */,
+				0CF7E5222146833A0071DABD /* TodayContentViewController.swift */,
+				0CF7E51E21466A830071DABD /* Today.storyboard */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		0CF7E5242146838F0071DABD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D5072122B1A4004C0559 /* SprintSection.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0CF7E5252146878C0071DABD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0CF7E526214687C40071DABD /* TodayHabitCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		422F11A515C6CEDFA0FD93B5 /* Pods */ = {
@@ -473,6 +515,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
@@ -541,19 +584,24 @@
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
+				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
+				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
-				0C14D5082122B1A5004C0559 /* SprintCreationSection.swift in Sources */,
+				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
+				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
+				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
+				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,

@@ -194,6 +194,10 @@ public extension CacheObserver {
         return mapping(entity(at: indexPath))
     }
     
+    public func items(in section: Int) -> [T] {
+        return fetchedResultsController.fetchedObjects?.compactMap { self.mapping($0 as! NSManagedObject) } ?? []
+    }
+    
     public func entity(at indexPath: IndexPath) -> NSManagedObject {
         var indexPathWithOffset = indexPath
         indexPathWithOffset.section -= sectionOffset

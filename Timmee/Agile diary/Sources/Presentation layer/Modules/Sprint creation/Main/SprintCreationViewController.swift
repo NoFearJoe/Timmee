@@ -27,7 +27,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     private var contentViewController: SprintContentViewController!
     
-    private var currentSection = SprintCreationSection.habits
+    private var currentSection = SprintSection.habits
     
     var sprint: List! {
         didSet {
@@ -43,7 +43,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         super.viewDidLoad()
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
-        sectionSwitcher.items = [SprintCreationSection.habits.title, SprintCreationSection.targets.title]
+        sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         if sprint == nil {
@@ -73,7 +73,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         } else if segue.identifier == "ShowHabitCreation" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
             controller.setHabit(sender as? Task, listID: sprint.id)
-        }else {
+        } else {
             super.prepare(for: segue, sender: sender)
         }
     }
@@ -86,7 +86,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     }
     
     @objc private func onSwitchSection() {
-        currentSection = SprintCreationSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
+        currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
         contentViewController.section = currentSection
     }
     
@@ -134,7 +134,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     func close() {
         if presentingViewController == nil {
-            // TODO: Present main screen
+            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = ViewControllersFactory.toady
         } else {
             dismiss(animated: true, completion: nil)
         }

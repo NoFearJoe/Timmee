@@ -333,6 +333,36 @@ public extension Date {
     
 }
 
+// MARK: - Date intervals
+
+public extension Date {
+    
+    public func minutes(before date: Date) -> Int {
+        return Foundation.Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
+    }
+    
+    public func hours(before date: Date) -> Int {
+        return Foundation.Calendar.current.dateComponents([.hour], from: self, to: date).hour ?? 0
+    }
+    
+    public func days(before date: Date) -> Int {
+        return Foundation.Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
+    }
+    
+    public func weeks(before date: Date) -> Int {
+        return Foundation.Calendar.current.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
+    }
+    
+    public func months(before date: Date) -> Int {
+        return Foundation.Calendar.current.dateComponents([.month], from: self, to: date).month ?? 0
+    }
+    
+    public func years(before date: Date) -> Int {
+        return Foundation.Calendar.current.dateComponents([.year], from: self, to: date).year ?? 0
+    }
+    
+}
+
 // MARK: - Date strings
 
 public extension Date {

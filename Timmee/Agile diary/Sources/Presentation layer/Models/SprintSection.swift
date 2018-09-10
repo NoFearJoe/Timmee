@@ -1,12 +1,12 @@
 //
-//  SprintCreationSection.swift
+//  SprintSection.swift
 //  Agile diary
 //
 //  Created by i.kharabet on 14.08.2018.
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-enum SprintCreationSection: Int {
+enum SprintSection: Int {
     case habits = 0
     case targets
     
@@ -36,7 +36,7 @@ enum SprintItemKind: String {
         }
     }
     
-    var section: SprintCreationSection {
+    var section: SprintSection {
         switch self {
         case .target: return .targets
         case .habit: return .habits

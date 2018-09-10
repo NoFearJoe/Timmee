@@ -34,4 +34,8 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "DueDatePicker") as! DueDatePicker
     }
     
+    static var toady: TodayViewController {
+        return UIStoryboard(name: "Today", bundle: nil).instantiateInitialViewController() as! TodayViewController
+    }
+    
 }

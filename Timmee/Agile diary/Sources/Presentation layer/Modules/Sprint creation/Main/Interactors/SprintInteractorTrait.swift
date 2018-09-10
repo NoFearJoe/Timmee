@@ -9,12 +9,28 @@
 protocol SprintInteractorTrait: class {
     var sprintsService: ListsManager & ListsObserverProvider & ListsProvider & SmartListsManager & SmartListsProvider { get }
     
+    func getCurrentSprint() -> Sprint?
+    func getNextSprint() -> Sprint?
     func getOrCreateSprint(completion: @escaping (Sprint) -> Void)
     func saveSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void)
     func removeSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void)
 }
 
 extension SprintInteractorTrait {
+    
+    func getCurrentSprint() -> Sprint? {
+        let existingSprints = sprintsService.fetchLists()
+        return existingSprints.first(where: { sprint in
+            sprint.creationDate <= Date().startOfDay && (sprint.creationDate + Constants.sprintDuration.asWeeks) >= Date().endOfDay
+        })
+    }
+    
+    func getNextSprint() -> Sprint? {
+        let existingSprints = sprintsService.fetchLists()
+        return existingSprints.first(where: { sprint in
+            sprint.creationDate >= Date().endOfDay
+        })
+    }
     
     func getOrCreateSprint(completion: @escaping (Sprint) -> Void) {
         let existingSprints = sprintsService.fetchLists()

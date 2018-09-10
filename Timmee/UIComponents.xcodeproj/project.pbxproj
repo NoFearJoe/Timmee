@@ -32,6 +32,7 @@
 		0C5C46A12141040200390F85 /* PresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46A02141040100390F85 /* PresentTransition.swift */; };
 		0C8D0738212A8F93008122A6 /* FadeBackgroundModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */; };
 		0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */; };
+		0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52A2146AAC50071DABD /* ProgressBar.swift */; };
 		9E4A8C6C7DA7495553B0AE82 /* Pods_UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279254AB751F727F989F812F /* Pods_UIComponents.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		0C5C46A02141040100390F85 /* PresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTransition.swift; sourceTree = "<group>"; };
 		0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeBackgroundModalTransition.swift; sourceTree = "<group>"; };
 		0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
+		0CF7E52A2146AAC50071DABD /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		279254AB751F727F989F812F /* Pods_UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		297CDAB991356C03C3AFC669 /* Pods-UIComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponents/Pods-UIComponents.release.xcconfig"; sourceTree = "<group>"; };
 		D9671A3E2B967FE267FA3894 /* Pods-UIComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UIComponents/Pods-UIComponents.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				0C14D400211C1B62004C0559 /* ReorderableTableView.swift */,
 				0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */,
 				0C5C4687213E9A5D00390F85 /* HintPopoverView.swift */,
+				0CF7E52A2146AAC50071DABD /* ProgressBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				0C5C469F214103C100390F85 /* TransitionHandlers.swift in Sources */,
 				0C14D411211C1B65004C0559 /* PinCodeView.swift in Sources */,
 				0C14D42A211C1B65004C0559 /* LoadingView.swift in Sources */,
+				0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */,
 				0C14D422211C1B65004C0559 /* NumPadButton.swift in Sources */,
 				0C14D41E211C1B65004C0559 /* GradientView.swift in Sources */,
 				0C14D430211C1B6C004C0559 /* DismissAnimator.swift in Sources */,
