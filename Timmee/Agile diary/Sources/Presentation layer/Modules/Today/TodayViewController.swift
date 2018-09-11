@@ -22,9 +22,9 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     
     var sprint: Sprint! {
         didSet {
+            setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
             contentViewController.sprintID = sprint.id
-            let daysRemaining = Date().days(before: (sprint.creationDate + Constants.sprintDuration.asWeeks))
-            headerView.subtitleLabel.text = "Sprint".localized + " #\(sprint.sortPosition), " + "remains_n".localized(with: daysRemaining) + " \(daysRemaining) " + "n_days".localized(with: daysRemaining) // TODO: Выделить кол-во дней цветом
+            updateHeaderSubtitle(sprint: sprint)
         }
     }
     
@@ -75,7 +75,7 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
         progressBar.setProgress(progress, animated: true)
     }
     
-    func setupCacheObserver(forSection section: SprintSection, sprintID: String) {
+    private func setupCacheObserver(forSection section: SprintSection, sprintID: String) {
         let predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
         cacheObserver = ServicesAssembly.shared.tasksService.tasksObserver(predicate: predicate)
         cacheObserver?.setMapping { Task(task: $0 as! TaskEntity) }
@@ -86,6 +86,17 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
             onBatchUpdatesStarted: nil,
             onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(tasks: self.cacheObserver?.items(in: 0) ?? []) })
         cacheObserver?.fetchInitialEntities()
+    }
+    
+    private func updateHeaderSubtitle(sprint: Sprint) {
+        let daysRemaining = Date().days(before: (sprint.creationDate + Constants.sprintDuration.asWeeks))
+        let subtitle = NSMutableAttributedString()
+        subtitle.append(NSAttributedString(string: "Sprint".localized, attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+        subtitle.append(NSAttributedString(string: " #\(sprint.sortPosition)", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
+        subtitle.append(NSAttributedString(string: ", " + "remains_n".localized(with: daysRemaining), attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+        subtitle.append(NSAttributedString(string: " \(daysRemaining) ", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
+        subtitle.append(NSAttributedString(string: "n_days".localized(with: daysRemaining), attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+        headerView.subtitleLabel.attributedText = subtitle
     }
     
 }

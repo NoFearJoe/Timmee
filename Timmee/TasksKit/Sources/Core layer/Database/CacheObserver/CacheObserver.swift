@@ -136,7 +136,13 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
         
         onBatchUpdatesStarted?()
         
-        subscriber?.processChanges(batchChanges) {
+        if let subscriber = self.subscriber {
+            subscriber.processChanges(batchChanges) {
+                self.batchChanges.forEach { self.onItemChange?($0) }
+                self.batchChanges.removeAll()
+                self.onBatchUpdatesCompleted?()
+            }
+        } else {
             self.batchChanges.forEach { self.onItemChange?($0) }
             self.batchChanges.removeAll()
             self.onBatchUpdatesCompleted?()

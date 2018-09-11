@@ -12,13 +12,17 @@ import UIKit
     
     @IBInspectable open dynamic var fillColor: UIColor = .black {
         didSet {
-            progressLayer.fillColor = fillColor.cgColor
+            progressLayer.backgroundColor = fillColor.cgColor
         }
     }
     
     private(set) open var progress: CGFloat = 0.5
     
-    private let progressLayer = CAShapeLayer()
+    private lazy var progressLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        self.layer.addSublayer(layer)
+        return layer
+    }()
     
     open func setProgress(_ progress: CGFloat, animated: Bool = false) {
         self.progress = progress
@@ -32,7 +36,7 @@ import UIKit
     
     private func updateProgress(animated: Bool) {
         CATransaction.begin()
-        CATransaction.setAnimationDuration(0.1)
+        CATransaction.setAnimationDuration(0.2)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
         updateProgressLayer()
         CATransaction.commit()
@@ -40,7 +44,6 @@ import UIKit
     
     private func updateProgressLayer() {
         progressLayer.frame = CGRect(x: 0, y: 0, width: progress * layer.frame.width, height: layer.frame.height)
-//        progressLayer.cornerRadius = layer.frame.height * 0.5
     }
     
 }

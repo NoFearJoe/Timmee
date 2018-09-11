@@ -58,6 +58,9 @@
 		0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5222146833A0071DABD /* TodayContentViewController.swift */; };
 		0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
 		0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */; };
+		0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */; };
+		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
+		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +136,9 @@
 		0CF7E5222146833A0071DABD /* TodayContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayContentViewController.swift; sourceTree = "<group>"; };
 		0CF7E526214687C40071DABD /* TodayHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHabitCell.swift; sourceTree = "<group>"; };
 		0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCellActionsProviders.swift; sourceTree = "<group>"; };
+		0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTargetCell.swift; sourceTree = "<group>"; };
+		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
+		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -439,9 +445,20 @@
 		0CF7E5252146878C0071DABD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0CF7E53C2147E3B50071DABD /* StageView */,
 				0CF7E526214687C40071DABD /* TodayHabitCell.swift */,
+				0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		0CF7E53C2147E3B50071DABD /* StageView */ = {
+			isa = PBXGroup;
+			children = (
+				0CF7E53D2147E3C20071DABD /* StageView.swift */,
+				0CF7E53F2147E3CD0071DABD /* StageView.xib */,
+			);
+			path = StageView;
 			sourceTree = "<group>";
 		};
 		422F11A515C6CEDFA0FD93B5 /* Pods */ = {
@@ -522,6 +539,7 @@
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
 				0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */,
 				0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */,
+				0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */,
 				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
 				0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */,
 			);
@@ -590,6 +608,7 @@
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
+				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
@@ -602,6 +621,7 @@
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
+				0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,

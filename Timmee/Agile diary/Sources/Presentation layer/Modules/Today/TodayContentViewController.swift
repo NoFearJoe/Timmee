@@ -50,7 +50,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
     private var cacheObserver: CacheObserver<Task>?
     
-    private let targetCellActionsProvider = CellDeleteSwipeActionProvider()
+    private let targetCellActionsProvider = TodayTargetCellSwipeActionsProvider()
     private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
     
     override func viewDidLoad() {
@@ -59,8 +59,11 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
         contentView.rowHeight = UITableViewAutomaticDimension
+        
         setupPlaceholder()
+        
         setupCacheObserver(forSection: section, sprintID: sprintID)
+        
         habitCellActionsProvider.shouldShowLink = { [unowned self] indexPath in
             guard let habit = self.cacheObserver?.item(at: indexPath) else { return false }
             return !habit.link.trimmed.isEmpty
@@ -72,11 +75,21 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         }
         habitCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
-//            self.removeTask(target, completion: nil)
+            
         }
-        targetCellActionsProvider.onDelete = { [unowned self] indexPath in
+        
+        targetCellActionsProvider.shouldShowDoneAction = { [unowned self] indexPath in
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return false }
+            return !target.isDone
+        }
+        targetCellActionsProvider.onDone = { [unowned self] indexPath in
             guard let target = self.cacheObserver?.item(at: indexPath) else { return }
-            self.removeTask(target, completion: nil)
+            target.isDone = true
+            self.saveTask(target, listID: self.sprintID, completion: nil)
+        }
+        targetCellActionsProvider.onEdit = { [unowned self] indexPath in
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
+            
         }
     }
     
