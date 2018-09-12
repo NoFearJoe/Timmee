@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StageView" customModule="Agile_diary" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -25,14 +25,14 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eB0-cS-2o7" customClass="Checkbox" customModule="Agile_diary" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="10" width="24" height="24"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="eB0-cS-2o7" secondAttribute="height" multiplier="1:1" id="rAg-L1-Peu"/>
                         <constraint firstAttribute="width" constant="24" id="ryn-8S-Dz8"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="eB0-cS-2o7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0Cz-ZL-3M9"/>
                 <constraint firstItem="k8B-dV-sli" firstAttribute="leading" secondItem="eB0-cS-2o7" secondAttribute="trailing" constant="8" id="24q-T7-JAh"/>
@@ -44,6 +44,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="checkbox" destination="eB0-cS-2o7" id="iBM-PY-WVC"/>
+                <outlet property="titleLabel" destination="k8B-dV-sli" id="04f-dd-1mQ"/>
+            </connections>
         </view>
     </objects>
 </document>

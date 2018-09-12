@@ -170,7 +170,7 @@
         <!--Target Creation View Controller-->
         <scene sceneID="LS3-rO-4dl">
             <objects>
-                <viewController id="cgA-Id-diN" customClass="TargetCreationViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TargetCreationViewController" id="cgA-Id-diN" customClass="TargetCreationViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yrb-0z-XaR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -458,7 +458,7 @@
         <!--Habit Creation View Controller-->
         <scene sceneID="Map-oI-MyH">
             <objects>
-                <viewController id="aS1-37-JFS" customClass="HabitCreationViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HabitCreationViewController" id="aS1-37-JFS" customClass="HabitCreationViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1pQ-PA-3ce">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

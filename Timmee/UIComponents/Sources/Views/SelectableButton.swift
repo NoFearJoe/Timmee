@@ -25,6 +25,12 @@ open class SelectableButton: UIButton {
         }
     }
     
+    open override var isEnabled: Bool {
+        didSet {
+            alpha = isEnabled ? 1 : 0.75
+        }
+    }
+    
     private func updateBackgroundColor() {
         backgroundColor = isSelected || isHighlighted ? selectedBackgroundColor : defaultBackgroundColor
     }

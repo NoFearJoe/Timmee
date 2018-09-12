@@ -30,12 +30,18 @@ final class HabitCreationViewController: UIViewController, HintViewTrait {
     var habit: Task!
     var listID: String!
     
+    var editingMode: TargetAndHabitEditingMode = .full
+    
     private var lastSelectedNotificationTime: Date?
     
     func setHabit(_ habit: Task?, listID: String) {
         self.habit = habit?.copy ?? interactor.createHabit()
         self.listID = listID
         self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date()
+    }
+    
+    func setEditingMode(_ mode: TargetAndHabitEditingMode) {
+        self.editingMode = mode
     }
     
     override func viewDidLoad() {
@@ -199,6 +205,7 @@ private extension HabitCreationViewController {
         titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
+        titleField.isUserInteractionEnabled = editingMode == .full
         titleField.placeholderAttributedText
             = NSAttributedString(string: "habit_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),
@@ -286,6 +293,7 @@ private extension HabitCreationViewController {
             $0.setTitleColor(AppTheme.current.colors.activeElementColor, for: .normal)
             $0.setTitleColor(UIColor.white, for: .selected)
             $0.setTitleColor(UIColor.white, for: .highlighted)
+            $0.setTitleColor(UIColor.white, for: .disabled)
         }
     }
     
@@ -293,6 +301,7 @@ private extension HabitCreationViewController {
         guard case .on(let units) = self.habit.repeating.type else { return }
         dayButtons.forEach {
             $0.isSelected = units.dayNumbers.contains($0.tag)
+            $0.isEnabled = editingMode == .full
         }
     }
     

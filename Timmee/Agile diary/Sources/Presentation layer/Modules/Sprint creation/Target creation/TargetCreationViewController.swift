@@ -22,6 +22,11 @@ enum TargetImportancy: Int {
     }
 }
 
+enum TargetAndHabitEditingMode {
+    case full
+    case short
+}
+
 final class TargetCreationViewController: UIViewController, TargetProvider, HintViewTrait {
     
     @IBOutlet private var contentView: UIView!
@@ -50,9 +55,15 @@ final class TargetCreationViewController: UIViewController, TargetProvider, Hint
     var target: Target!
     var listID: String!
     
+    var editingMode: TargetAndHabitEditingMode = .full
+    
     func setTarget(_ target: Task?, listID: String) {
         self.target = target?.copy ?? interactor.createTarget()
         self.listID = listID
+    }
+    
+    func setEditingMode(_ mode: TargetAndHabitEditingMode) {
+        self.editingMode = mode
     }
     
     override func viewDidLoad() {
@@ -288,6 +299,7 @@ private extension TargetCreationViewController {
         titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
+        titleField.isUserInteractionEnabled = editingMode == .full
         titleField.placeholderAttributedText
             = NSAttributedString(string: "target_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),

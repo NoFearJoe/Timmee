@@ -121,6 +121,8 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
             { action in
                 guard case .ok = action else { return }
                 self.sprint.note = ""
+                // Выставить у всех задач repeatEndingDate = sprint.creationDate + Constants.sprintDuration.asWeeks
+                // Создать уведомления
                 self.saveSprint(self.sprint) { [weak self] success in
                     self?.close()
                 }

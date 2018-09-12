@@ -59,6 +59,14 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
             contentViewController = segue.destination as! TodayContentViewController
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
+        } else if segue.identifier == "ShowTargetEditor" {
+            guard let controller = segue.destination as? TargetCreationViewController else { return }
+            controller.setTarget(sender as? Task, listID: sprint.id)
+            controller.setEditingMode(.short)
+        } else if segue.identifier == "ShowHabitEditor" {
+            guard let controller = segue.destination as? HabitCreationViewController else { return }
+            controller.setHabit(sender as? Task, listID: sprint.id)
+            controller.setEditingMode(.short)
         } else {
             super.prepare(for: segue, sender: sender)
         }

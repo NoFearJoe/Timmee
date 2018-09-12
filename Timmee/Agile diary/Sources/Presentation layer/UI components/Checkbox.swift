@@ -68,11 +68,11 @@ class Checkbox: UIView {
             
             context.setFillColor(uncheckedColor.cgColor)
             
-            let image = UIImage(named: "checkmark")!
-            let imageInset = rect.width * 0.25
-            image.draw(in: rect.insetBy(dx: imageInset, dy: imageInset),
-                       blendMode: CGBlendMode.normal,
-                       alpha: 1)
+//            let image = UIImage(named: "checkmark")!
+//            let imageInset = rect.width * 0.25
+//            image.draw(in: rect.insetBy(dx: imageInset, dy: imageInset),
+//                       blendMode: CGBlendMode.normal,
+//                       alpha: 1)
         }
     }
     

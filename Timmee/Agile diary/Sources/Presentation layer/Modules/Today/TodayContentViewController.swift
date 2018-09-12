@@ -46,6 +46,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     let tasksService = ServicesAssembly.shared.tasksService
+    let stagesService = ServicesAssembly.shared.subtasksService
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
     private var cacheObserver: CacheObserver<Task>?
@@ -75,7 +76,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         }
         habitCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
-            
+            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
         }
         
         targetCellActionsProvider.shouldShowDoneAction = { [unowned self] indexPath in
@@ -89,7 +90,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         }
         targetCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let target = self.cacheObserver?.item(at: indexPath) else { return }
-            
+            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: target)
         }
     }
     
@@ -119,10 +120,14 @@ extension TodayContentViewController: UITableViewDataSource {
             }
             return cell
         case .target:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SprintCreationTargetCell", for: indexPath) as! SprintCreationTargetCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTargetCell", for: indexPath) as! TodayTargetCell
             if let target = cacheObserver?.item(at: indexPath) {
                 cell.configure(target: target)
                 cell.delegate = targetCellActionsProvider
+                cell.onChangeCheckedState = { [unowned self] isChecked, stage in
+                    stage.isDone = isChecked
+                    self.stagesService.updateSubtask(stage, completion: nil)
+                }
             }
             return cell
         }
@@ -133,14 +138,7 @@ extension TodayContentViewController: UITableViewDataSource {
 extension TodayContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch section.itemsKind {
-//        case .habit:
-//            guard let habit = cacheObserver?.item(at: indexPath) else { return }
-//            transitionHandler?.performSegue(withIdentifier: "ShowHabitDetails", sender: habit)
-//        case .target:
-//            guard let target = cacheObserver?.item(at: indexPath) else { return }
-//            transitionHandler?.performSegue(withIdentifier: "ShowTargetDetails", sender: target)
-//        }
+        
     }
     
 }
