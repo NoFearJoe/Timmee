@@ -26,6 +26,7 @@ public extension TaskEntity {
         repeatMask = entity.repeating.string
         dueDate = entity.dueDate
         repeatEndingDate = entity.repeatEndingDate
+        doneDates = entity.doneDates as NSArray
         
 //        if let location = entity.location {
 //            self.location = NSKeyedArchiver.archivedData(withRootObject: location)

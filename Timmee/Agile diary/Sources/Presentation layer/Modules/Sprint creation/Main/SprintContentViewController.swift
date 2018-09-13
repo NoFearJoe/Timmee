@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SprintContentViewControllerDelegate: class {
+    func didChangeItemsCount(in section: SprintSection, to count: Int)
+}
+
 final class SprintContentViewController: UIViewController, TargetAndHabitInteractorTrait {
     
     enum State {
@@ -38,6 +42,7 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
     }
     
     weak var transitionHandler: UIViewController?
+    weak var delegate: SprintContentViewControllerDelegate?
     
     @IBOutlet private var contentView: UITableView!
     
@@ -126,7 +131,10 @@ private extension SprintContentViewController {
         cacheObserver?.setMapping { Task(task: $0 as! TaskEntity) }
         cacheObserver?.setActions(
             onInitialFetch: nil,
-            onItemsCountChange: { count in self.state = count == 0 ? .empty : .content },
+            onItemsCountChange: { count in
+                self.state = count == 0 ? .empty : .content
+                self.delegate?.didChangeItemsCount(in: self.section, to: count)
+            },
             onItemChange: nil,
             onBatchUpdatesStarted: nil,
             onBatchUpdatesCompleted: nil)

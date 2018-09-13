@@ -154,7 +154,7 @@ private extension HabitCreationViewController {
     func updateNotificationTime() {
         notificationTimePicker.setHours(habit.notificationDate?.hours ?? lastSelectedNotificationTime?.hours ?? 0)
         notificationTimePicker.setMinutes(habit.notificationDate?.minutes ?? lastSelectedNotificationTime?.minutes ?? 0)
-        notificationTimePickerContainer.alpha = habit.notificationDate != nil ? 1 : 0.5
+        notificationTimePickerContainer.alpha = habit.notificationDate == nil ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
         notificationTimePickerContainer.isUserInteractionEnabled = habit.notificationDate != nil
     }
     

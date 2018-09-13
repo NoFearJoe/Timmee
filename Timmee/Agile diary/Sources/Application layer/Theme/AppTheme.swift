@@ -38,8 +38,21 @@ struct AppTheme {
         }
     }
     
+    struct Style {
+        
+        struct Alpha {
+            let transparent: CGFloat = 0
+            let disabled: CGFloat = 0.5
+            let enabled: CGFloat = 1
+        }
+        
+        let alpha = Alpha()
+        
+    }
+    
     let colors: Colors
     let fonts: Fonts
+    let style = Style()
     
     static let light = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: "AAAAAA"),
                                                activeElementColor: UIColor(rgba: "444444"),

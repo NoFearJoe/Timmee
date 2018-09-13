@@ -32,6 +32,7 @@ public class Task {
     public var isDone: Bool
     public var inProgress: Bool
     public let creationDate: Date
+    public var doneDates: [Date]
     
     public var tags: [Tag] = []
     public var subtasks: [Subtask] = []
@@ -71,6 +72,7 @@ public class Task {
         }
         
         attachments = task.attachments as? [String] ?? []
+        doneDates = task.doneDates as? [Date] ?? []
     }
     
     public init(id: String,
@@ -90,7 +92,8 @@ public class Task {
                 attachments: [String],
                 isDone: Bool,
                 inProgress: Bool,
-                creationDate: Date) {
+                creationDate: Date,
+                doneDates: [Date]) {
         self.id = id
         self.kind = kind
         self.title = title
@@ -109,6 +112,7 @@ public class Task {
         self.isDone = isDone
         self.inProgress = inProgress
         self.creationDate = creationDate
+        self.doneDates = doneDates
     }
     
    public convenience init(id: String,
@@ -130,7 +134,8 @@ public class Task {
                   attachments: [],
                   isDone: false,
                   inProgress: false,
-                  creationDate: Date())
+                  creationDate: Date(),
+                  doneDates: [])
     }
     
     public var copy: Task {
@@ -151,7 +156,8 @@ public class Task {
                         attachments: attachments,
                         isDone: isDone,
                         inProgress: inProgress,
-                        creationDate: creationDate)
+                        creationDate: creationDate,
+                        doneDates: doneDates)
         
         task.tags = tags
         task.subtasks = subtasks
@@ -201,6 +207,16 @@ public class Task {
         }
         
         return date
+    }
+    
+    public func isDone(at date: Date) -> Bool {
+        let date = date.startOfDay
+        return doneDates.contains(where: { date.isWithinSameDay(of: $0) })
+    }
+    
+    public func setDone(_ isDone: Bool, at date: Date) {
+        let date = date.startOfDay
+        isDone ? doneDates.append(date) : doneDates.remove(object: date)
     }
 
 }

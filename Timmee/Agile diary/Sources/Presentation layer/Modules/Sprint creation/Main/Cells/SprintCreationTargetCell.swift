@@ -43,7 +43,7 @@ final class SprintCreationTargetCell: SwipeTableViewCell {
         for (index, stage) in stages.enumerated() {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.paragraphSpacing = 4
-            let stageNumberString = NSAttributedString(string: "#\(stage.sortPosition) ", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor, .font: AppTheme.current.fonts.regular(14), .paragraphStyle: paragraphStyle])
+            let stageNumberString = NSAttributedString(string: "#\(index + 1) ", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor, .font: AppTheme.current.fonts.regular(14), .paragraphStyle: paragraphStyle])
             let stageTitleString = NSAttributedString(string: stage.title, attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor, .paragraphStyle: paragraphStyle])
             resultString.append(stageNumberString)
             resultString.append(stageTitleString)

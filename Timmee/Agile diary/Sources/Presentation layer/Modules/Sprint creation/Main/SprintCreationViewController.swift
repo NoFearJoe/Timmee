@@ -19,7 +19,7 @@ import UIKit
            3. Сохраняем в БД
  */
 
-final class SprintCreationViewController: UIViewController, SprintInteractorTrait, AlertInput {
+final class SprintCreationViewController: UIViewController, SprintInteractorTrait, TargetsAndHabitsInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
@@ -28,6 +28,8 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     private var contentViewController: SprintContentViewController!
     
     private var currentSection = SprintSection.habits
+    
+    private var itemsCountBySection: [SprintSection: Int] = [:]
     
     var sprint: List! {
         didSet {
@@ -38,6 +40,8 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     }
     
     let sprintsService = ServicesAssembly.shared.listsService
+    let tasksService = ServicesAssembly.shared.tasksService
+    let schedulerService = TaskSchedulerService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +63,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         if sprint.creationDate.compare(Date().startOfDay) == .orderedAscending {
             sprint.creationDate = Date().nextDay.startOfDay
             showStartDate(sprint.creationDate)
+            updateDoneButtonState() // FIXME: Нужно сначала запросить все цели и привычки и потом обновлять кнопку готово при первом показе
         }
     }
     
@@ -67,6 +72,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
             contentViewController = segue.destination as! SprintContentViewController
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
+            contentViewController.delegate = self
         } else if segue.identifier == "ShowTargetCreation" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
             controller.setTarget(sender as? Task, listID: sprint.id)
@@ -98,7 +104,6 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         dueDatePicker.loadViewIfNeeded()
         dueDatePicker.setDueDate(sprint.creationDate)
         editorContainer.setViewController(dueDatePicker)
-        editorContainer.output = self
         present(editorContainer, animated: true, completion: nil)
     }
     
@@ -121,10 +126,12 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
             { action in
                 guard case .ok = action else { return }
                 self.sprint.note = ""
-                // Выставить у всех задач repeatEndingDate = sprint.creationDate + Constants.sprintDuration.asWeeks
-                // Создать уведомления
-                self.saveSprint(self.sprint) { [weak self] success in
-                    self?.close()
+                self.updateNotificationInfoForAllTargetsAndHabits { [weak self] targetsAndHabits in
+                    guard let `self` = self else { return }
+                    targetsAndHabits.forEach { self.schedulerService.scheduleTask($0) }
+                    self.saveSprint(self.sprint) { [weak self] success in
+                        self?.close()
+                    }
                 }
             }
     }
@@ -153,10 +160,37 @@ extension SprintCreationViewController: DueDatePickerOutput {
     
 }
 
-extension SprintCreationViewController: EditorContainerOutput {
+extension SprintCreationViewController: SprintContentViewControllerDelegate {
     
-    func editingFinished(viewController: UIViewController) {}
+    func didChangeItemsCount(in section: SprintSection, to count: Int) {
+        itemsCountBySection[section] = count
+        updateDoneButtonState()
+    }
     
-    func editingCancelled(viewController: UIViewController) {}
+}
+
+private extension SprintCreationViewController {
+    
+    func updateDoneButtonState() {
+        let isHabitsEnough = itemsCountBySection[.habits].flatMap { $0 >= 3 } ?? false
+        let isTargetsEnough = itemsCountBySection[.targets].flatMap { $0 >= 1 } ?? false
+        headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isTargetsEnough
+    }
+    
+    func updateNotificationInfoForAllTargetsAndHabits(completion: @escaping ([Task]) -> Void) {
+        let targetsAndHabits = getTasks(listID: sprint.id)
+        let repeatEndingDate = sprint.creationDate + Constants.sprintDuration.asWeeks
+        targetsAndHabits.forEach {
+            let notificationHour = $0.notificationDate?.hours ?? 0
+            let notificationMinute = $0.notificationDate?.minutes ?? 0
+            $0.notificationDate = sprint.creationDate.startOfDay
+            $0.notificationDate => notificationHour.asHours
+            $0.notificationDate => notificationMinute.asMinutes
+            $0.repeatEndingDate = repeatEndingDate
+        }
+        saveTasks(targetsAndHabits, completion: {
+            completion(targetsAndHabits)
+        })
+    }
     
 }

@@ -28,7 +28,8 @@ extension Target {
                   attachments: [],
                   isDone: false,
                   inProgress: false,
-                  creationDate: Date())
+                  creationDate: Date(),
+                  doneDates: [])
     }
     
 }

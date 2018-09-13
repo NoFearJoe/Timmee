@@ -62,7 +62,8 @@ extension CellDeleteSwipeActionProvider: SwipeTableViewCellDelegate {
 
 final class TodayHabitCellSwipeActionsProvider {
     
-    var shouldShowLink: ((IndexPath) -> Bool)?
+    var shouldShowLinkAction: ((IndexPath) -> Bool)?
+    var shouldShowEditAction: ((IndexPath) -> Bool)?
     
     var onLink: ((IndexPath) -> Void)?
     var onEdit: ((IndexPath) -> Void)?
@@ -119,10 +120,14 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         switch orientation {
         case .left: return nil
         case .right:
-            if shouldShowLink?(indexPath) == true {
-                return [swipeEditAction, swipeLinkAction]
+            var actions: [SwipeAction] = []
+            if shouldShowEditAction?(indexPath) == true {
+                actions.append(swipeEditAction)
             }
-            return [swipeEditAction]
+            if shouldShowLinkAction?(indexPath) == true {
+                actions.append(swipeLinkAction)
+            }
+            return actions
         }
     }
     
@@ -137,6 +142,7 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
 final class TodayTargetCellSwipeActionsProvider {
     
     var shouldShowDoneAction: ((IndexPath) -> Bool)?
+    var shouldShowEditAction: ((IndexPath) -> Bool)?
     
     var onDone: ((IndexPath) -> Void)?
     var onEdit: ((IndexPath) -> Void)?
@@ -169,6 +175,22 @@ final class TodayTargetCellSwipeActionsProvider {
         return action
     }()
     
+    private lazy var swipeRecoverAction: SwipeAction = {
+        let action = SwipeAction(style: .default,
+                                 title: "recover_target".localized,
+                                 handler:
+            { [weak self] (action, indexPath) in
+                self?.onDone?(indexPath)
+                action.fulfill(with: .reset)
+        })
+        action.image = #imageLiteral(resourceName: "repeat")
+        action.textColor = AppTheme.current.colors.mainElementColor
+        action.title = nil
+        action.backgroundColor = TodayTargetCellSwipeActionsProvider.backgroundColor
+        action.transitionDelegate = nil
+        return action
+    }()
+    
     private lazy var swipeEditAction: SwipeAction = {
         let action = SwipeAction(style: .default,
                                  title: "edit".localized,
@@ -193,10 +215,16 @@ extension TodayTargetCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         switch orientation {
         case .left: return nil
         case .right:
-            if shouldShowDoneAction?(indexPath) == true {
-                return [swipeEditAction, swipeDoneAction]
+            var actions: [SwipeAction] = []
+            if shouldShowEditAction?(indexPath) == true {
+                actions.append(swipeEditAction)
             }
-            return [swipeEditAction]
+            if shouldShowDoneAction?(indexPath) == true {
+                actions.append(swipeDoneAction)
+            } else {
+                actions.append(swipeRecoverAction)
+            }
+            return actions
         }
     }
     

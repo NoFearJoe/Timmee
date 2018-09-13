@@ -65,33 +65,8 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         
         setupCacheObserver(forSection: section, sprintID: sprintID)
         
-        habitCellActionsProvider.shouldShowLink = { [unowned self] indexPath in
-            guard let habit = self.cacheObserver?.item(at: indexPath) else { return false }
-            return !habit.link.trimmed.isEmpty
-        }
-        habitCellActionsProvider.onLink = { [unowned self] indexPath in
-            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
-            guard let linkURL = URL(string: habit.link.trimmed), UIApplication.shared.canOpenURL(linkURL) else { return }
-            UIApplication.shared.open(linkURL, options: [:], completionHandler: nil)
-        }
-        habitCellActionsProvider.onEdit = { [unowned self] indexPath in
-            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
-            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
-        }
-        
-        targetCellActionsProvider.shouldShowDoneAction = { [unowned self] indexPath in
-            guard let target = self.cacheObserver?.item(at: indexPath) else { return false }
-            return !target.isDone
-        }
-        targetCellActionsProvider.onDone = { [unowned self] indexPath in
-            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
-            target.isDone = true
-            self.saveTask(target, listID: self.sprintID, completion: nil)
-        }
-        targetCellActionsProvider.onEdit = { [unowned self] indexPath in
-            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
-            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: target)
-        }
+        setupHabitCellActionsProvider()
+        setupTargetCellActionsProvider()
     }
     
 }
@@ -114,7 +89,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.configure(habit: habit)
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
-                    habit.isDone = isChecked
+                    habit.setDone(isChecked, at: Date())
                     self.saveTask(habit, listID: self.sprintID, completion: nil) // TODO: Обработать?
                 }
             }
@@ -185,6 +160,50 @@ private extension TodayContentViewController {
     
     func hidePlaceholder() {
         placeholderContainer.isHidden = true
+    }
+    
+}
+
+private extension TodayContentViewController {
+    
+    func setupHabitCellActionsProvider() {
+        habitCellActionsProvider.shouldShowLinkAction = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return false }
+            return !habit.link.trimmed.isEmpty
+        }
+        habitCellActionsProvider.shouldShowEditAction = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return false }
+            return !habit.isDone(at: Date())
+        }
+        habitCellActionsProvider.onLink = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
+            guard let linkURL = URL(string: habit.link.trimmed), UIApplication.shared.canOpenURL(linkURL) else { return }
+            UIApplication.shared.open(linkURL, options: [:], completionHandler: nil)
+        }
+        habitCellActionsProvider.onEdit = { [unowned self] indexPath in
+            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
+            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
+        }
+    }
+    
+    func setupTargetCellActionsProvider() {
+        targetCellActionsProvider.shouldShowDoneAction = { [unowned self] indexPath in
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return false }
+            return !target.isDone
+        }
+        targetCellActionsProvider.shouldShowEditAction = { [unowned self] indexPath in
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return false }
+            return !target.isDone
+        }
+        targetCellActionsProvider.onDone = { [unowned self] indexPath in
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
+            target.isDone = !target.isDone
+            self.saveTask(target, listID: self.sprintID, completion: nil)
+        }
+        targetCellActionsProvider.onEdit = { [unowned self] indexPath in
+            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
+            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: target)
+        }
     }
     
 }

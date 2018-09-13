@@ -61,6 +61,8 @@
 		0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */; };
 		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
+		0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */; };
+		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +141,8 @@
 		0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTargetCell.swift; sourceTree = "<group>"; };
 		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
+		0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsAndHabitsInteractorTrait.swift; sourceTree = "<group>"; };
+		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +304,7 @@
 			children = (
 				0C14D4E1212182B2004C0559 /* UserProperties.swift */,
 				0CF7E52021466EB10071DABD /* Constants.swift */,
+				0CF7E561214A7A280071DABD /* Environment.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 			children = (
 				0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */,
 				0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */,
+				0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
+				0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */,
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
@@ -613,6 +620,7 @@
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
+				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,

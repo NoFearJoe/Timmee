@@ -174,7 +174,7 @@ extension TargetCreationViewController: TargetCreationInteractorOutput {
     }
     
     func stagesRemoved(at indexes: [Int]) {
-        batchReloadStages(deletions: indexes)
+        reloadStages()
     }
     
 }
@@ -194,7 +194,7 @@ extension TargetCreationViewController: UITableViewDataSource {
         
         if let stage = interactor.stage(at: indexPath.row) {
             cell.title = stage.title
-            cell.stageNumber = stage.sortPosition
+            cell.stageNumber = indexPath.row + 1
             
             cell.onChangeTitle = { [unowned self, unowned cell] title in
                 guard let actualIndexPath = tableView.indexPath(for: cell) else { return }

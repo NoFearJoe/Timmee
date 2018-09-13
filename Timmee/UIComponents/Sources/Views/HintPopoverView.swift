@@ -33,8 +33,6 @@ public final class HintPopoverView: UIView {
         }
     }
     
-    public var shouldHideOnPopoverViewTap: Bool = true
-    
     public var maximumWidth: CGFloat = 0 {
         didSet {
             if maximumWidth > 0 {
@@ -100,6 +98,11 @@ public final class HintPopoverView: UIView {
         self.roundedView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
         self.triangleView = UIImageView(image: UIImage(named: "popoverTriangle"))
         self.triangleView.translatesAutoresizingMaskIntoConstraints = false
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+    }
+    
+    @objc private func onTap() {
+        hide()
     }
     
     override public init(frame: CGRect) {
@@ -376,7 +379,6 @@ extension HintPopoverView {
                                        leftInset: CGFloat = 15,
                                        rightInset: CGFloat = 15) -> HintPopoverView {
         let popoverView = HintPopoverView(contentView: contentView)
-        popoverView.shouldHideOnPopoverViewTap = false
         
         popoverView.didCloseBlock = { (view as? UIButton)?.isSelected = false }
         
