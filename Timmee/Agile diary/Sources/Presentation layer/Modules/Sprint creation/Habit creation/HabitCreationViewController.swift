@@ -26,6 +26,7 @@ final class HabitCreationViewController: UIViewController, HintViewTrait {
     private var notificationTimePicker: NotificationTimePickerInput!
     
     private let interactor = HabitCreationInteractor()
+    let schedulerService = TaskSchedulerService()
     
     var habit: Task!
     var listID: String!
@@ -90,8 +91,25 @@ final class HabitCreationViewController: UIViewController, HintViewTrait {
         updateHabitTitle()
         updateHabitLink()
         interactor.saveTask(habit, listID: listID, completion: { [weak self] success in
-            guard success else { return }
-            self?.dismiss(animated: true, completion: nil)
+            guard let `self` = self, success else { return }
+            if self.editingMode == .full {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                let scheduleHabitThanClose = {
+                    self.schedulerService.scheduleTask(self.habit)
+                    self.dismiss(animated: true, completion: nil)
+                }
+                NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
+                    if isAuthorized {
+                        scheduleHabitThanClose()
+                    } else {
+                        NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
+                            guard isAuthorized else { return }
+                            scheduleHabitThanClose()
+                        }
+                    }
+                }
+            }
         })
     }
     
@@ -293,7 +311,6 @@ private extension HabitCreationViewController {
             $0.setTitleColor(AppTheme.current.colors.activeElementColor, for: .normal)
             $0.setTitleColor(UIColor.white, for: .selected)
             $0.setTitleColor(UIColor.white, for: .highlighted)
-            $0.setTitleColor(UIColor.white, for: .disabled)
         }
     }
     
@@ -301,7 +318,8 @@ private extension HabitCreationViewController {
         guard case .on(let units) = self.habit.repeating.type else { return }
         dayButtons.forEach {
             $0.isSelected = units.dayNumbers.contains($0.tag)
-            $0.isEnabled = editingMode == .full
+            $0.isUserInteractionEnabled = editingMode == .full
+            $0.alpha = editingMode == .full ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
         }
     }
     

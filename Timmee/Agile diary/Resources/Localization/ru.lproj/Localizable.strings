@@ -176,6 +176,8 @@
 "are_you_sure_you_want_to_finish_sprint_creation" = "Спринт нельзя будет изменить. Завершить создание спринта?";
 "finish" = "Завершить";
 
+"notifications_are_disabled_message" = "Уведомления были отключены. Чтобы включить уведомления, перейдите в настройки.";
+
 "education_title_0" = "Что такое Agile ежедневник?";
 "education_subtitle_0" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки.";
 "education_continue_0" = "Продолжить";

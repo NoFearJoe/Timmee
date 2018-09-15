@@ -128,9 +128,30 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
                 self.sprint.note = ""
                 self.updateNotificationInfoForAllTargetsAndHabits { [weak self] targetsAndHabits in
                     guard let `self` = self else { return }
-                    targetsAndHabits.forEach { self.schedulerService.scheduleTask($0) }
-                    self.saveSprint(self.sprint) { [weak self] success in
-                        self?.close()
+                    let scheduleTasksAndSaveSprintThanClose = {
+                        targetsAndHabits.forEach { self.schedulerService.scheduleTask($0) }
+                        self.saveSprint(self.sprint) { [weak self] success in
+                            self?.close()
+                        }
+                    }
+                    NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
+                        if isAuthorized {
+                            scheduleTasksAndSaveSprintThanClose()
+                        } else {
+                            NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
+                                if isAuthorized {
+                                    scheduleTasksAndSaveSprintThanClose()
+                                }
+//                                else {
+//                                    self.showAlert(title: "attention".localized,
+//                                                   message: "notifications_are_disabled_message".localized,
+//                                                   actions: [.cancel, .ok("settings".localized)]) { action in
+//                                                       guard case .ok = action else { return }
+//                                                       UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+//                                                   }
+//                                }
+                            }
+                        }
                     }
                 }
             }
@@ -143,7 +164,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     func close() {
         if presentingViewController == nil {
-            (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = ViewControllersFactory.toady
+            AppDelegate.shared.window?.rootViewController = ViewControllersFactory.toady
         } else {
             dismiss(animated: true, completion: nil)
         }

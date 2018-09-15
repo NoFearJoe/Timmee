@@ -64,6 +64,8 @@
 		0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */; };
 		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
+		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
+		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -145,6 +147,8 @@
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
+		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
+		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -287,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */,
+				96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D4E3212183A9004C0559 /* AppDelegate.swift */,
+				96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */,
 			);
 			path = "Application delegate";
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
 				0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */,
+				96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */,
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
@@ -627,6 +634,7 @@
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
+				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */,
