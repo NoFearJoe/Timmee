@@ -150,7 +150,7 @@ private extension TodayContentViewController {
         placeholderView.icon = nil
         switch section {
         case .targets:
-            placeholderView.title = "toady_targets_section_placeholder_title".localized
+            placeholderView.title = "today_targets_section_placeholder_title".localized
             placeholderView.subtitle = "today_targets_section_placeholder_subtitle".localized
         case .habits:
             placeholderView.title = "today_habits_section_placeholder_title".localized

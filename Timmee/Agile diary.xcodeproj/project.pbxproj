@@ -44,6 +44,21 @@
 		0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
 		0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
 		0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
+		0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
+		0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
+		0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
+		0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */; };
+		0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */; };
+		0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */; };
+		0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */; };
+		0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */; };
+		0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */; };
+		0CB2EDF2214F971700AA4FB8 /* PinAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */; };
+		0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDED214F971700AA4FB8 /* BiometricsActivationController.swift */; };
+		0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEE214F971700AA4FB8 /* NumberPadCells.swift */; };
+		0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */; };
+		0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */; };
+		0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -126,6 +141,21 @@
 		0C8D075F212BE5B5008122A6 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintInteractorTrait.swift; sourceTree = "<group>"; };
 		0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAndHabitInteractorTrait.swift; sourceTree = "<group>"; };
+		0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
+		0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
+		0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsEducationScreen.swift; sourceTree = "<group>"; };
+		0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsEducationScreen.swift; sourceTree = "<group>"; };
+		0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupSuggestionScreen.swift; sourceTree = "<group>"; };
+		0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeSetupSuggestionEducationScreen.swift; sourceTree = "<group>"; };
+		0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalEducationScreen.swift; sourceTree = "<group>"; };
+		0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPadItem.swift; sourceTree = "<group>"; };
+		0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPadAdapter.swift; sourceTree = "<group>"; };
+		0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinAuthenticationViewController.swift; sourceTree = "<group>"; };
+		0CB2EDED214F971700AA4FB8 /* BiometricsActivationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
+		0CB2EDEE214F971700AA4FB8 /* NumberPadCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPadCells.swift; sourceTree = "<group>"; };
+		0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCreationViewController.swift; sourceTree = "<group>"; };
+		0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -254,6 +284,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0CF7E51B214669520071DABD /* Today */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
 				0C14D4A62121608E004C0559 /* Education */,
@@ -264,6 +295,8 @@
 		0C14D4A62121608E004C0559 /* Education */ = {
 			isa = PBXGroup;
 			children = (
+				0CB2EDDC214F943400AA4FB8 /* Screens */,
+				0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */,
 				0C14D4A7212160B5004C0559 /* EducationViewController.swift */,
 				0C14D4A921216129004C0559 /* Education.storyboard */,
 			);
@@ -417,6 +450,34 @@
 			path = Interactors;
 			sourceTree = "<group>";
 		};
+		0CB2EDDC214F943400AA4FB8 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */,
+				0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */,
+				0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */,
+				0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */,
+				0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */,
+				0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */,
+				0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		0CB2EDE9214F970600AA4FB8 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				0CB2EDED214F971700AA4FB8 /* BiometricsActivationController.swift */,
+				0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */,
+				0CB2EDEE214F971700AA4FB8 /* NumberPadCells.swift */,
+				0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */,
+				0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */,
+				0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */,
+				0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		0CDF8D802125B75A001A2F70 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +608,7 @@
 				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
+				0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
 				0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */,
@@ -610,6 +672,8 @@
 				0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
 				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
+				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
+				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
@@ -618,13 +682,19 @@
 				96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */,
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
+				0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
+				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
+				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
+				0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */,
 				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
+				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
+				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
@@ -637,15 +707,21 @@
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
+				0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */,
 				0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
+				0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */,
+				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
+				0CB2EDF2214F971700AA4FB8 /* PinAuthenticationViewController.swift in Sources */,
 				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
+				0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
 				0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
+				0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

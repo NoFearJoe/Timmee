@@ -164,7 +164,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     func close() {
         if presentingViewController == nil {
-            AppDelegate.shared.window?.rootViewController = ViewControllersFactory.toady
+            AppDelegate.shared.window?.rootViewController = ViewControllersFactory.today
         } else {
             dismiss(animated: true, completion: nil)
         }

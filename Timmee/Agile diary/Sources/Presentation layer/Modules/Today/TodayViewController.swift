@@ -79,7 +79,7 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     }
     
     private func updateSprintProgress(tasks: [Task]) {
-        let progress = CGFloat(tasks.filter { $0.isDone }.count) / CGFloat(tasks.count)
+        let progress = CGFloat(tasks.filter { $0.isDone(at: Date()) }.count) / CGFloat(tasks.count)
         progressBar.setProgress(progress, animated: true)
     }
     

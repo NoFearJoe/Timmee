@@ -10,14 +10,6 @@ import UIKit
 
 final class ViewControllersFactory {
     
-    static var educationRoot: EducationPageViewController {
-        return UIStoryboard(name: "Education", bundle: nil).instantiateInitialViewController() as! EducationPageViewController
-    }
-    
-    static var education: EducationViewController {
-        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "Education") as! EducationViewController
-    }
-    
     static var sprintCreation: SprintCreationViewController {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateInitialViewController() as! SprintCreationViewController
     }
@@ -34,8 +26,52 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "DueDatePicker") as! DueDatePicker
     }
     
-    static var toady: TodayViewController {
+    static var today: TodayViewController {
         return UIStoryboard(name: "Today", bundle: nil).instantiateInitialViewController() as! TodayViewController
+    }
+    
+    // Authorization
+    
+    static var pinCreation: PinCreationViewController {
+        return UIStoryboard(name: "Authentication", bundle: nil).instantiateViewController(withIdentifier: "PinCreation") as! PinCreationViewController
+    }
+    
+    static var pinAuthentication: PinAuthenticationViewController {
+        return UIStoryboard(name: "Authentication", bundle: nil).instantiateViewController(withIdentifier: "PinAuthentication") as! PinAuthenticationViewController
+    }
+    
+    static var biometricsActivation: BiometricsActivationController {
+        return UIStoryboard(name: "Authentication", bundle: nil).instantiateViewController(withIdentifier: "BiometricsActivation") as! BiometricsActivationController
+    }
+    
+    // Education
+    
+    static var education: EducationViewController {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateInitialViewController() as! EducationViewController
+    }
+    
+    static var initialEducationScreen: InitialEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "InitialEducationScreen") as! InitialEducationScreen
+    }
+    
+    static var targetsEducationScreen: TargetsEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "TargetsEducationScreen") as! TargetsEducationScreen
+    }
+    
+    static var habitsEducationScreen: HabitsEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "HabitsEducationScreen") as! HabitsEducationScreen
+    }
+    
+    static var notificationsSetupSuggestionScreen: NotificationsSetupSuggestionScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "NotificationsSetupSuggestionScreen") as! NotificationsSetupSuggestionScreen
+    }
+    
+    static var pinCodeSetupSuggestionEducationScreen: PinCodeSetupSuggestionEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "PinCodeSetupSuggestionEducationScreen") as! PinCodeSetupSuggestionEducationScreen
+    }
+    
+    static var finalEducationScreen: FinalEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "FinalEducationScreen") as! FinalEducationScreen
     }
     
 }

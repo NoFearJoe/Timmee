@@ -8,70 +8,96 @@
 
 import UIKit
 
-final class EducationPageViewController: UIPageViewController, UIPageViewControllerDataSource {
-    
-    private let pagesCount: Int = 4
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        (view.subviews.first as? UIScrollView)?.bounces = false
-        dataSource = self
-        setViewControllers([getViewController(at: 0)!], direction: .forward, animated: false, completion: nil)
-    }
-    
-    private func getViewController(at index: Int) -> EducationViewController? {
-        guard index >= 0, index < pagesCount else { return nil }
-        let viewController = ViewControllersFactory.education
-        viewController.view.tag = index
-        viewController.setup(title: "education_title_\(index)".localized,
-                             subtitle: "education_subtitle_\(index)".localized,
-                             continueTitle: "education_continue_\(index)".localized)
-        viewController.onContinue = { [unowned self] in
-            guard let viewController = self.getViewController(at: index + 1) else { return }
-            self.view.isUserInteractionEnabled = false
-            self.setViewControllers([viewController], direction: .forward, animated: true) { _ in
-                self.view.isUserInteractionEnabled = true
-            }
-        }
-        return viewController
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return getViewController(at: viewController.view.tag + 1)
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return getViewController(at: viewController.view.tag - 1)
-    }
-    
+protocol EducationScreenInput: class {
+    func setupOutput(_ output: EducationScreenOutput)
 }
 
-final class EducationViewController: UIViewController {
+protocol EducationScreenOutput: class {
+    func didAskToContinueEducation(screen: EducationScreen)
+    func didAskToSkipEducation(screen: EducationScreen)
+}
+
+final class EducationViewController: UINavigationController {
     
-    var onContinue: (() -> Void)?
-    
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var subtitleLabel: UILabel!
-    @IBOutlet private var continueButton: UIButton!
-    
-    @IBAction private func `continue`() {
-        onContinue?()
-    }
-    
-    func setup(title: String, subtitle: String, continueTitle: String) {
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
-        UIView.performWithoutAnimation {
-            continueButton.setTitle(continueTitle, for: .normal)
-        }
-    }
+    private let educationState = EducationState()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let initialScreen = educationState.screensToShow.first {
+            setViewControllers([viewController(forScreen: initialScreen)], animated: false)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+//        UserProperty.isEducationShown.setBool(true)
+    }
+    
+}
+
+extension EducationViewController: EducationScreenOutput {
+    
+    func didAskToContinueEducation(screen: EducationScreen) {
+        if let screenIndex = educationState.screensToShow.index(of: screen) {
+            if let nextScreen = educationState.screensToShow.item(at: screenIndex + 1) {
+                pushViewController(viewController(forScreen: nextScreen), animated: true)
+            } else {
+                performSegue(withIdentifier: "ShowSprintCreationViewController", sender: nil)
+            }
+        } else {
+            performSegue(withIdentifier: "ShowSprintCreationViewController", sender: nil)
+        }
+    }
+    
+    func didAskToSkipEducation(screen: EducationScreen) {
+        switch screen {
+        case .initial:
+            didAskToContinueEducation(screen: .habits)
+        case .notificationsSetupSuggestion:
+            didAskToContinueEducation(screen: .notificationsSetupSuggestion)
+        case .pinCodeSetupSuggestion:
+            didAskToContinueEducation(screen: .pinCodeCreation)
+        default:
+            performSegue(withIdentifier: "ShowSprintCreationViewController", sender: nil)
+        }
+    }
+    
+}
+
+fileprivate extension EducationViewController {
+    
+    func viewController(forScreen screen: EducationScreen) -> UIViewController {
+        let viewController: UIViewController
+        switch screen {
+        case .initial:
+            viewController = ViewControllersFactory.initialEducationScreen
+        case .targets:
+            viewController = ViewControllersFactory.targetsEducationScreen
+        case .habits:
+            viewController = ViewControllersFactory.habitsEducationScreen
+        case .notificationsSetupSuggestion:
+            viewController = ViewControllersFactory.notificationsSetupSuggestionScreen
+        case .pinCodeSetupSuggestion:
+            viewController = ViewControllersFactory.pinCodeSetupSuggestionEducationScreen
+        case .pinCodeCreation:
+            let pinCreationViewController = ViewControllersFactory.pinCreation
+            
+            pinCreationViewController.onComplete = { [unowned self] in
+                self.didAskToContinueEducation(screen: .pinCodeCreation)
+            }
+            
+            viewController = pinCreationViewController
+        case .final:
+            viewController = ViewControllersFactory.finalEducationScreen
+        }
+        
+        if let educationScreenInput = viewController as? EducationScreenInput {
+            educationScreenInput.setupOutput(self)
+        }
+        
+        return viewController
     }
     
 }
