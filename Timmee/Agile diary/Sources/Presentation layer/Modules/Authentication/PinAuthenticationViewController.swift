@@ -121,7 +121,7 @@ fileprivate extension PinAuthenticationViewController {
     
 }
 
-fileprivate extension PinAuthenticationViewController {
+private extension PinAuthenticationViewController {
     
     func showMessage(_ text: String) {
         messageLabel.text = text
@@ -140,7 +140,7 @@ fileprivate extension PinAuthenticationViewController {
     
 }
 
-fileprivate extension PinAuthenticationViewController {
+private extension PinAuthenticationViewController {
     
     func showBiometricsAuthenticationIfPossible() {
         if UserProperty.biometricsAuthenticationEnabled.bool(), isBiometricsAuthenticationAvailable {
@@ -172,7 +172,7 @@ fileprivate extension PinAuthenticationViewController {
     
 }
 
-fileprivate extension PinAuthenticationViewController {
+private extension PinAuthenticationViewController {
 
     func setupAppearance() {
         navigationController?.navigationBar.barTintColor = .white

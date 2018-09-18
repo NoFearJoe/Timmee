@@ -87,14 +87,36 @@
                                     <constraint firstAttribute="height" constant="4" id="Yll-UQ-hp0"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG5-iM-CHH">
+                                <rect key="frame" x="0.0" y="170.5" width="375" height="496.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-ev-KnK">
+                                <rect key="frame" x="20" y="595" width="335" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Aol-cT-QB7"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                <state key="normal" title="Создать спринт"/>
+                                <connections>
+                                    <action selector="onTapToCreateSprint" destination="YFK-lV-GWC" eventType="touchUpInside" id="aqa-nN-h6Q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="Wcp-ev-KnK" secondAttribute="trailing" constant="20" id="0Hf-BL-37g"/>
                             <constraint firstAttribute="bottom" secondItem="UQc-5J-Nm5" secondAttribute="bottom" id="0T8-Ui-Ya7"/>
                             <constraint firstItem="UQc-5J-Nm5" firstAttribute="top" secondItem="n2E-og-p5R" secondAttribute="bottom" id="4py-fg-r6J"/>
+                            <constraint firstItem="ibh-Jp-ctc" firstAttribute="bottom" secondItem="Wcp-ev-KnK" secondAttribute="bottom" constant="20" id="74b-9j-7nk"/>
                             <constraint firstItem="UQc-5J-Nm5" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="DD4-39-dv9"/>
+                            <constraint firstItem="ibh-Jp-ctc" firstAttribute="bottom" secondItem="MG5-iM-CHH" secondAttribute="bottom" id="FHl-UA-e4D"/>
+                            <constraint firstItem="Wcp-ev-KnK" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" constant="20" id="IgT-GY-dx3"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="UQc-5J-Nm5" secondAttribute="trailing" id="cQH-s0-btn"/>
+                            <constraint firstItem="MG5-iM-CHH" firstAttribute="top" secondItem="n2E-og-p5R" secondAttribute="bottom" id="dFP-J0-YiY"/>
+                            <constraint firstItem="MG5-iM-CHH" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="g9o-2E-03G"/>
                             <constraint firstItem="Rfn-qH-ddK" firstAttribute="top" secondItem="nei-Q3-f4w" secondAttribute="top" id="mDU-RN-Pye"/>
+                            <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="MG5-iM-CHH" secondAttribute="trailing" id="o0t-D3-pi9"/>
                             <constraint firstItem="Rfn-qH-ddK" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="oUc-IV-h7T"/>
                             <constraint firstItem="n2E-og-p5R" firstAttribute="top" secondItem="Rfn-qH-ddK" secondAttribute="bottom" id="spG-Rb-Q6l"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="Rfn-qH-ddK" secondAttribute="trailing" id="u6i-gf-n9k"/>
@@ -104,11 +126,14 @@
                         <viewLayoutGuide key="safeArea" id="ibh-Jp-ctc"/>
                     </view>
                     <connections>
+                        <outlet property="createSprintButton" destination="Wcp-ev-KnK" id="daE-Gb-K8C"/>
                         <outlet property="headerView" destination="Rfn-qH-ddK" id="zts-nc-UUT"/>
+                        <outlet property="placeholderContainer" destination="MG5-iM-CHH" id="N37-uL-dWc"/>
                         <outlet property="progressBar" destination="n2E-og-p5R" id="qiV-v9-HZL"/>
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
                         <segue destination="m5L-p8-Gva" kind="presentation" identifier="ShowHabitEditor" modalTransitionStyle="coverVertical" id="c90-3s-KUG"/>
                         <segue destination="3ji-X3-ILJ" kind="presentation" identifier="ShowTargetEditor" modalTransitionStyle="coverVertical" id="xpM-BJ-OZs"/>
+                        <segue destination="3PD-La-aYY" kind="presentation" identifier="ShowSprintCreation" modalTransitionStyle="coverVertical" id="chU-p5-Cmv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YL-zk-Dkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,6 +147,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wFO-qL-jew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-222" y="569"/>
+        </scene>
+        <!--SprintCreation-->
+        <scene sceneID="1wb-V5-OWQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SprintCreation" id="3PD-La-aYY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aLd-eV-2cX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-26" y="634"/>
         </scene>
         <!--TargetCreationViewController-->
         <scene sceneID="Abr-a6-sOO">

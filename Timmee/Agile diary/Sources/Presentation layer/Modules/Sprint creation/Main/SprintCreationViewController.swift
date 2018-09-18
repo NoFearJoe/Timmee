@@ -45,6 +45,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserProperty.isInitialSprintCreated.setBool(false)
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
         sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
@@ -128,11 +129,15 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
                 self.sprint.note = ""
                 self.updateNotificationInfoForAllTargetsAndHabits { [weak self] targetsAndHabits in
                     guard let `self` = self else { return }
-                    let scheduleTasksAndSaveSprintThanClose = {
-                        targetsAndHabits.forEach { self.schedulerService.scheduleTask($0) }
+                    let saveSprintThanClose = {
                         self.saveSprint(self.sprint) { [weak self] success in
+                            UserProperty.isInitialSprintCreated.setBool(true)
                             self?.close()
                         }
+                    }
+                    let scheduleTasksAndSaveSprintThanClose = {
+                        targetsAndHabits.forEach { self.schedulerService.scheduleTask($0) }
+                        saveSprintThanClose()
                     }
                     NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
                         if isAuthorized {
@@ -141,15 +146,9 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
                             NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
                                 if isAuthorized {
                                     scheduleTasksAndSaveSprintThanClose()
+                                } else {
+                                    saveSprintThanClose()
                                 }
-//                                else {
-//                                    self.showAlert(title: "attention".localized,
-//                                                   message: "notifications_are_disabled_message".localized,
-//                                                   actions: [.cancel, .ok("settings".localized)]) { action in
-//                                                       guard case .ok = action else { return }
-//                                                       UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
-//                                                   }
-//                                }
                             }
                         }
                     }
@@ -202,6 +201,7 @@ private extension SprintCreationViewController {
         let targetsAndHabits = getTasks(listID: sprint.id)
         let repeatEndingDate = sprint.creationDate + Constants.sprintDuration.asWeeks
         targetsAndHabits.forEach {
+            guard $0.notificationDate != nil else { return }
             let notificationHour = $0.notificationDate?.hours ?? 0
             let notificationMinute = $0.notificationDate?.minutes ?? 0
             $0.notificationDate = sprint.creationDate.startOfDay

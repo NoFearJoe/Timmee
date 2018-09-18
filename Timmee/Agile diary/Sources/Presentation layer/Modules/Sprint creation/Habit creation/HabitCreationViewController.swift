@@ -104,8 +104,11 @@ final class HabitCreationViewController: UIViewController, HintViewTrait {
                         scheduleHabitThanClose()
                     } else {
                         NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
-                            guard isAuthorized else { return }
-                            scheduleHabitThanClose()
+                            if isAuthorized {
+                                scheduleHabitThanClose()
+                            } else {
+                                self.dismiss(animated: true, completion: nil)
+                            }
                         }
                     }
                 }

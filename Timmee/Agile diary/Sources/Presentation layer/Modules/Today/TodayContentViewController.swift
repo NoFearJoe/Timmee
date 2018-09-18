@@ -67,6 +67,17 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         
         setupHabitCellActionsProvider()
         setupTargetCellActionsProvider()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onBecameActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cacheObserver?.fetchInitialEntities()
+    }
+    
+    @objc private func onBecameActive() {
+        cacheObserver?.fetchInitialEntities()
     }
     
 }

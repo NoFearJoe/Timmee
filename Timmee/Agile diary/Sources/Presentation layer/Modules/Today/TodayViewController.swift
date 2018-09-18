@@ -13,6 +13,10 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
+    @IBOutlet private var createSprintButton: UIButton!
+    
+    @IBOutlet private var placeholderContainer: UIView!
+    private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     private var contentViewController: TodayContentViewController!
     
@@ -22,6 +26,7 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     
     var sprint: Sprint! {
         didSet {
+            hidePlaceholder()
             setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
             contentViewController.sprintID = sprint.id
             updateHeaderSubtitle(sprint: sprint)
@@ -39,13 +44,24 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
+        progressBar.setProgress(0)
+        setupPlaceholder()
+        setupCreateSprintButton()
         if sprint == nil {
             if let currentSprint = getCurrentSprint() {
-                self.sprint = currentSprint
+                createSprintButton.isHidden = true
+                setSwitcherEnabled(true)
+                sprint = currentSprint
             } else if let nextSprint = getNextSprint() {
-//                 Show next sprint placeholder???
+                createSprintButton.isHidden = true
+                setSwitcherEnabled(false)
+                headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.creationDate.asNearestShortDateString.lowercased()
+                showNextSprintPlaceholder(sprintNumber: nextSprint.sortPosition, startDate: nextSprint.creationDate)
             } else {
-//                 Show placeholder
+                createSprintButton.isHidden = false
+                setSwitcherEnabled(false)
+                headerView.subtitleLabel.text = nil
+                showCreateSprintPlaceholder()
             }
         }
     }
@@ -75,11 +91,16 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     @objc private func onSwitchSection() {
         currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
         contentViewController.section = currentSection
+        guard sprint != nil else { return }
         setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
     }
     
+    @IBAction private func onTapToCreateSprint() {
+        performSegue(withIdentifier: "ShowSprintCreation", sender: nil)
+    }
+    
     private func updateSprintProgress(tasks: [Task]) {
-        let progress = CGFloat(tasks.filter { $0.isDone(at: Date()) }.count) / CGFloat(tasks.count)
+        let progress = CGFloat(tasks.filter { $0.isDone(at: Date()) || $0.isDone }.count) / CGFloat(tasks.count)
         progressBar.setProgress(progress, animated: true)
     }
     
@@ -105,6 +126,53 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
         subtitle.append(NSAttributedString(string: " \(daysRemaining) ", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         subtitle.append(NSAttributedString(string: "n_days".localized(with: daysRemaining), attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         headerView.subtitleLabel.attributedText = subtitle
+    }
+    
+    private func setSwitcherEnabled(_ isEnabled: Bool) {
+        self.sectionSwitcher.isEnabled = isEnabled
+        self.sectionSwitcher.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+    }
+    
+}
+
+private extension TodayViewController {
+    
+    func setupCreateSprintButton() {
+        createSprintButton.setTitle("create_sprint".localized, for: .normal)
+        createSprintButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        createSprintButton.setTitleColor(.white, for: .normal)
+        createSprintButton.layer.cornerRadius = 12
+        createSprintButton.clipsToBounds = true
+        createSprintButton.isHidden = true
+    }
+    
+}
+
+private extension TodayViewController {
+    
+    func setupPlaceholder() {
+        placeholderView.setup(into: placeholderContainer)
+        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
+        placeholderContainer.isHidden = true
+    }
+    
+    func showNextSprintPlaceholder(sprintNumber: Int, startDate: Date) {
+        placeholderContainer.isHidden = false
+        placeholderView.icon = #imageLiteral(resourceName: "calendar")
+        placeholderView.title = "next_sprint_is".localized + " \("Sprint".localized) #\(sprintNumber)"
+        placeholderView.subtitle = "starts".localized + " " + startDate.asNearestShortDateString.lowercased()
+    }
+    
+    func showCreateSprintPlaceholder() {
+        placeholderContainer.isHidden = false
+        placeholderView.icon = #imageLiteral(resourceName: "calendar")
+        placeholderView.title = "there_is_no_sprints".localized
+        placeholderView.subtitle = "do_you_want_to_create_new_sprint".localized
+    }
+    
+    func hidePlaceholder() {
+        placeholderContainer.isHidden = true
     }
     
 }

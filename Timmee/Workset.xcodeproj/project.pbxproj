@@ -486,6 +486,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F2B66F9223C5A92774D9AB72 /* Pods-Workset.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -514,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A4BC4520B1B7B07A3D482269 /* Pods-Workset.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

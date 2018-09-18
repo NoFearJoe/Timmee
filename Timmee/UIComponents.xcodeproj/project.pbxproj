@@ -471,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9671A3E2B967FE267FA3894 /* Pods-UIComponents.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -500,6 +501,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 297CDAB991356C03C3AFC669 /* Pods-UIComponents.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;

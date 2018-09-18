@@ -6,6 +6,9 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
+import Foundation
+import TasksKit
+
 typealias Habit = Task
 
 extension Habit {

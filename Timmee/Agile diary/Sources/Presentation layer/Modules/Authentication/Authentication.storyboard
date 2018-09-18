@@ -160,20 +160,11 @@
                         <outlet property="messageLabel" destination="kdv-yF-uIf" id="WOP-nX-yyq"/>
                         <outlet property="numberPadView" destination="sBV-sR-8VD" id="l7n-jP-Swu"/>
                         <outlet property="pinCodeView" destination="VDM-1Q-UAD" id="9pU-zM-y2n"/>
-                        <segue destination="dBo-58-WfZ" kind="showDetail" identifier="ShowTodayViewController" id="BfB-jE-LO0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejR-9O-ab6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-252" y="138.98050974512745"/>
-        </scene>
-        <!--Today-->
-        <scene sceneID="xed-za-BCM">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Today" id="dBo-58-WfZ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gIY-nf-E5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="364" y="139"/>
         </scene>
         <!--Pin Creation View Controller-->
         <scene sceneID="FD7-RT-Rqt">

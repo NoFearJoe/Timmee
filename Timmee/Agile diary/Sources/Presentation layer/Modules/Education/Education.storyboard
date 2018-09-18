@@ -17,21 +17,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LxM-sc-Iuu">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="Wn9-IC-XHs" kind="showDetail" identifier="ShowSprintCreationViewController" id="g1W-TK-pFd"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5zr-xu-u0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-535" y="164"/>
-        </scene>
-        <!--SprintCreation-->
-        <scene sceneID="35S-fZ-CWX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SprintCreation" id="Wn9-IC-XHs" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="75R-3E-iXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-535" y="625"/>
         </scene>
         <!--Initial Education Screen-->
         <scene sceneID="EeT-Lq-Sxd">

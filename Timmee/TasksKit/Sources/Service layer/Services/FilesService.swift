@@ -20,6 +20,8 @@ public final class FilesService {
                                                          in: .userDomainMask,
                                                          appropriateFor: nil,
                                                          create: true)
+        
+        static let shared = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.agilediary")
     }
     
     public init() {}

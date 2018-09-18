@@ -6,6 +6,9 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
+import Workset
+import TasksKit
+
 protocol SprintInteractorTrait: class {
     var sprintsService: ListsManager & ListsObserverProvider & ListsProvider & SmartListsManager & SmartListsProvider { get }
     

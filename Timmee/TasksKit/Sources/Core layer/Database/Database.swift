@@ -97,7 +97,7 @@ private extension CoreDataStorage {
     }
     
     var storeURL: URL {
-        return FilesService.URLs.documents!.appendingPathComponent(storeName)
+        return FilesService.URLs.shared!.appendingPathComponent(storeName)
     }
     
     var model: NSManagedObjectModel {

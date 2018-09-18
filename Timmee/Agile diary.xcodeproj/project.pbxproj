@@ -35,6 +35,7 @@
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */; };
 		0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
@@ -67,6 +68,25 @@
 		0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
 		0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
 		0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
+		0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
+		0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */; };
+		0CE883CF2150F6EC00637BD9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE883CD2150F6EC00637BD9 /* MainInterface.storyboard */; };
+		0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0CE883DA2150FCFA00637BD9 /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
+		0CE883DB215105A400637BD9 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
+		0CE883DC215106EC00637BD9 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
+		0CE883DD215106F000637BD9 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
+		0CE883DE2151073A00637BD9 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
+		0CE883DF2151073D00637BD9 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
+		0CE883E02151074200637BD9 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
+		0CE883E12151079300637BD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
+		0CE883E2215107CE00637BD9 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
+		0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
+		0CE883E421510C7F00637BD9 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
+		0CE883E72151134700637BD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
+		0CE883E9215123FF00637BD9 /* TodayExtensionHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883E8215123FF00637BD9 /* TodayExtensionHabitCell.swift */; };
+		0CE883EA2151391300637BD9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
+		0CE883EB2151391500637BD9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
 		0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E51C2146697C0071DABD /* TodayViewController.swift */; };
 		0CF7E51F21466A830071DABD /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E51E21466A830071DABD /* Today.storyboard */; };
 		0CF7E52121466EB10071DABD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
@@ -81,7 +101,18 @@
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
+		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0CE883D12150F6EC00637BD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C14D46A211C55D9004C0559 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0CE883C62150F6EB00637BD9;
+			remoteInfo = HabitsTodayExtension;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0C14D494211C564F004C0559 /* Embed Frameworks */ = {
@@ -95,6 +126,17 @@
 				0C14D48F211C564E004C0559 /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CE883D72150F6EC00637BD9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -132,6 +174,8 @@
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
+		0C3DA4BB21513BB000CAE635 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0C3DA4BD21513BB200CAE635 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -164,6 +208,14 @@
 		0CDF8D852125B8AB001A2F70 /* Task+Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Target.swift"; sourceTree = "<group>"; };
 		0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePicker.swift; sourceTree = "<group>"; };
+		0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HabitsTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayExtensionViewController.swift; sourceTree = "<group>"; };
+		0CE883CE2150F6EC00637BD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		0CE883E521510D2200637BD9 /* Agile diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Agile diary.entitlements"; sourceTree = "<group>"; };
+		0CE883E621510ECD00637BD9 /* HabitsTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitsTodayExtension.entitlements; sourceTree = "<group>"; };
+		0CE883E8215123FF00637BD9 /* TodayExtensionHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayExtensionHabitCell.swift; sourceTree = "<group>"; };
+		0CE883EC215139A400637BD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		0CF7E51C2146697C0071DABD /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		0CF7E51E21466A830071DABD /* Today.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Today.storyboard; sourceTree = "<group>"; };
 		0CF7E52021466EB10071DABD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -176,10 +228,13 @@
 		0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsAndHabitsInteractorTrait.swift; sourceTree = "<group>"; };
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
+		45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
+		F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +249,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CE883C42150F6EB00637BD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE883DD215106F000637BD9 /* Workset.framework in Frameworks */,
+				0CE883DC215106EC00637BD9 /* TasksKit.framework in Frameworks */,
+				0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */,
+				C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -201,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D474211C55D9004C0559 /* Agile diary */,
+				0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */,
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
 				422F11A515C6CEDFA0FD93B5 /* Pods */,
@@ -211,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D472211C55D9004C0559 /* Agile diary.app */,
+				0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +286,7 @@
 		0C14D474211C55D9004C0559 /* Agile diary */ = {
 			isa = PBXGroup;
 			children = (
+				0CE883E521510D2200637BD9 /* Agile diary.entitlements */,
 				0C14D4A12121604A004C0559 /* Sources */,
 				0C14D4A021216048004C0559 /* Resources */,
 				0C14D479211C55D9004C0559 /* Main.storyboard */,
@@ -236,6 +305,8 @@
 				0C14D48A211C564A004C0559 /* UIComponents.framework */,
 				0C14D48C211C564A004C0559 /* Workset.framework */,
 				9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */,
+				0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */,
+				F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -496,6 +567,19 @@
 			path = NotificationTimePicker;
 			sourceTree = "<group>";
 		};
+		0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0CE883E621510ECD00637BD9 /* HabitsTodayExtension.entitlements */,
+				0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */,
+				0CE883E8215123FF00637BD9 /* TodayExtensionHabitCell.swift */,
+				0CE883CD2150F6EC00637BD9 /* MainInterface.storyboard */,
+				0CE883ED215139A400637BD9 /* Info.plist */,
+				0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */,
+			);
+			path = HabitsTodayExtension;
+			sourceTree = "<group>";
+		};
 		0CF7E51B214669520071DABD /* Today */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +623,8 @@
 			children = (
 				0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */,
 				8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */,
+				45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */,
+				9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -556,15 +642,35 @@
 				0C14D470211C55D9004C0559 /* Resources */,
 				0C14D494211C564F004C0559 /* Embed Frameworks */,
 				F8F04FD59F4FE3586B4DBF27 /* [CP] Embed Pods Frameworks */,
+				0CE883D72150F6EC00637BD9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0CE883D22150F6EC00637BD9 /* PBXTargetDependency */,
 			);
 			name = "Agile diary";
 			productName = "Agile diary";
 			productReference = 0C14D472211C55D9004C0559 /* Agile diary.app */;
 			productType = "com.apple.product-type.application";
+		};
+		0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CE883D62150F6EC00637BD9 /* Build configuration list for PBXNativeTarget "HabitsTodayExtension" */;
+			buildPhases = (
+				746B725D533005ED0858E405 /* [CP] Check Pods Manifest.lock */,
+				0CE883C32150F6EB00637BD9 /* Sources */,
+				0CE883C42150F6EB00637BD9 /* Frameworks */,
+				0CE883C52150F6EB00637BD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HabitsTodayExtension;
+			productName = HabitsTodayExtension;
+			productReference = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -578,6 +684,19 @@
 				TargetAttributes = {
 					0C14D471211C55D9004C0559 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					0CE883C62150F6EB00637BD9 = {
+						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -596,6 +715,7 @@
 			projectRoot = "";
 			targets = (
 				0C14D471211C55D9004C0559 /* Agile diary */,
+				0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -619,6 +739,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CE883C52150F6EB00637BD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE883CF2150F6EC00637BD9 /* MainInterface.storyboard in Resources */,
+				0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */,
+				0CE883EA2151391300637BD9 /* Localizable.strings in Resources */,
+				0CE883E72151134700637BD9 /* Assets.xcassets in Resources */,
+				0CE883EB2151391500637BD9 /* Localizable.stringsdict in Resources */,
+				0CE883E421510C7F00637BD9 /* TasksKitConfiguration.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -634,6 +767,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Agile diary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		746B725D533005ED0858E405 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HabitsTodayExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -726,7 +877,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CE883C32150F6EB00637BD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE883E9215123FF00637BD9 /* TodayExtensionHabitCell.swift in Sources */,
+				0CE883E2215107CE00637BD9 /* Checkbox.swift in Sources */,
+				0CE883DA2150FCFA00637BD9 /* TodayHabitCell.swift in Sources */,
+				0CE883DF2151073D00637BD9 /* List+Sprint.swift in Sources */,
+				0CE883DE2151073A00637BD9 /* Task+Habit.swift in Sources */,
+				0CE883E02151074200637BD9 /* AppTheme.swift in Sources */,
+				0CE883E12151079300637BD9 /* Constants.swift in Sources */,
+				0CE883DB215105A400637BD9 /* SprintInteractorTrait.swift in Sources */,
+				0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */,
+				0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0CE883D22150F6EC00637BD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */;
+			targetProxy = 0CE883D12150F6EC00637BD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0C14D479211C55D9004C0559 /* Main.storyboard */ = {
@@ -763,6 +939,31 @@
 				0C14D4CD21217390004C0559 /* ru */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C3DA4BB21513BB000CAE635 /* en */,
+				0C3DA4BD21513BB200CAE635 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0CE883CD2150F6EC00637BD9 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0CE883CE2150F6EC00637BD9 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		0CE883ED215139A400637BD9 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0CE883EC215139A400637BD9 /* Base */,
+			);
+			name = Info.plist;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -886,7 +1087,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = "Agile diary/Info.plist";
@@ -895,7 +1098,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.Agile-diary";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.0;
@@ -907,7 +1110,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = "Agile diary/Info.plist";
@@ -916,9 +1121,53 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.Agile-diary";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0CE883D42150F6EC00637BD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				INFOPLIST_FILE = "$(SRCROOT)/HabitsTodayExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0CE883D52150F6EC00637BD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				INFOPLIST_FILE = "$(SRCROOT)/HabitsTodayExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -941,6 +1190,15 @@
 			buildConfigurations = (
 				0C14D485211C55DA004C0559 /* Debug */,
 				0C14D486211C55DA004C0559 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CE883D62150F6EC00637BD9 /* Build configuration list for PBXNativeTarget "HabitsTodayExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CE883D42150F6EC00637BD9 /* Debug */,
+				0CE883D52150F6EC00637BD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

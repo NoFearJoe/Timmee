@@ -32,7 +32,15 @@ final class EducationViewController: UINavigationController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        UserProperty.isEducationShown.setBool(true)
+        UserProperty.isEducationShown.setBool(true)
+    }
+    
+    private func showSprintCreation() {
+        let sprintCreationViewController = ViewControllersFactory.sprintCreation
+        sprintCreationViewController.loadViewIfNeeded()
+        UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: {
+            AppDelegate.shared.window?.rootViewController = sprintCreationViewController
+        }, completion: nil)
     }
     
 }
@@ -44,10 +52,10 @@ extension EducationViewController: EducationScreenOutput {
             if let nextScreen = educationState.screensToShow.item(at: screenIndex + 1) {
                 pushViewController(viewController(forScreen: nextScreen), animated: true)
             } else {
-                performSegue(withIdentifier: "ShowSprintCreationViewController", sender: nil)
+                showSprintCreation()
             }
         } else {
-            performSegue(withIdentifier: "ShowSprintCreationViewController", sender: nil)
+            showSprintCreation()
         }
     }
     
@@ -60,7 +68,7 @@ extension EducationViewController: EducationScreenOutput {
         case .pinCodeSetupSuggestion:
             didAskToContinueEducation(screen: .pinCodeCreation)
         default:
-            performSegue(withIdentifier: "ShowSprintCreationViewController", sender: nil)
+            showSprintCreation()
         }
     }
     

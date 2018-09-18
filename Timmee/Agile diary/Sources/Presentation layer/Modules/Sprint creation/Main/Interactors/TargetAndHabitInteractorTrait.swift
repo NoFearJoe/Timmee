@@ -6,6 +6,8 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
+import TasksKit
+
 protocol TargetAndHabitInteractorTrait: class {
     var tasksService: TaskEntitiesCountProvider & TasksManager & TasksObserverProvider & TasksProvider { get }
     

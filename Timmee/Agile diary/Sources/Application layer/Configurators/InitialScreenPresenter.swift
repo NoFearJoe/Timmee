@@ -20,8 +20,12 @@ final class InitialScreenPresenter {
             initialViewController = ViewControllersFactory.education
         } else if UserProperty.pinCode.value() != nil {
             let pinAuthenticationViewController = ViewControllersFactory.pinAuthentication
-            pinAuthenticationViewController.onComplete = { [unowned pinAuthenticationViewController] in
-                pinAuthenticationViewController.performSegue(withIdentifier: "ShowTodayViewController", sender: nil)
+            pinAuthenticationViewController.onComplete = {
+                if !UserProperty.isInitialSprintCreated.bool() {
+                    showSprintCreation()
+                } else {
+                    showToday()
+                }
             }
 
             initialViewController = pinAuthenticationViewController
@@ -33,6 +37,24 @@ final class InitialScreenPresenter {
         
         window.rootViewController = initialViewController
         window.makeKeyAndVisible()
+    }
+    
+    private static func showSprintCreation() {
+        guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
+        let sprintCreationViewController = ViewControllersFactory.sprintCreation
+        sprintCreationViewController.loadViewIfNeeded()
+        UIView.transition(with: rootView, duration: 0.25, options: .transitionCrossDissolve, animations: {
+            AppDelegate.shared.window?.rootViewController = sprintCreationViewController
+        }, completion: nil)
+    }
+    
+    private static func showToday() {
+        guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
+        let todayViewController = ViewControllersFactory.today
+        todayViewController.loadViewIfNeeded()
+        UIView.transition(with: rootView, duration: 0.25, options: .transitionCrossDissolve, animations: {
+            AppDelegate.shared.window?.rootViewController = todayViewController
+        }, completion: nil)
     }
     
 }
