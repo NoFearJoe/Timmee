@@ -45,17 +45,31 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpe-6U-L3n">
+                                                <rect key="frame" x="15" y="8" width="28" height="28"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="28" id="lTJ-It-M97"/>
+                                                    <constraint firstAttribute="height" constant="28" id="mJv-2C-qnC"/>
+                                                </constraints>
+                                                <state key="normal" image="settings"/>
+                                                <connections>
+                                                    <segue destination="nsd-BC-zjE" kind="presentation" identifier="ShowSettings" modalTransitionStyle="coverVertical" id="2sr-ex-LEz"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ePM-y5-lDE" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="4IG-Tf-7iv"/>
+                                            <constraint firstItem="Jpe-6U-L3n" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="7pt-5D-lJD"/>
                                             <constraint firstAttribute="trailing" secondItem="ePM-y5-lDE" secondAttribute="trailing" constant="15" id="9qi-K9-MCS"/>
+                                            <constraint firstItem="Jpe-6U-L3n" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="GXE-mr-Pli"/>
                                             <constraint firstItem="aBf-PW-p5z" firstAttribute="top" secondItem="ePM-y5-lDE" secondAttribute="bottom" id="KFh-9O-JjD"/>
                                             <constraint firstAttribute="trailing" secondItem="aBf-PW-p5z" secondAttribute="trailing" constant="15" id="UBm-Jx-EFL"/>
                                             <constraint firstItem="aBf-PW-p5z" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="bot-tB-J78"/>
                                             <constraint firstAttribute="trailing" secondItem="Gac-Hz-mav" secondAttribute="trailing" constant="15" id="ibF-En-8yX"/>
                                             <constraint firstItem="Gac-Hz-mav" firstAttribute="top" secondItem="aBf-PW-p5z" secondAttribute="bottom" constant="8" id="lpy-mK-KCW"/>
-                                            <constraint firstItem="ePM-y5-lDE" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="44" id="wv0-Sb-uda"/>
+                                            <constraint firstItem="ePM-y5-lDE" firstAttribute="top" secondItem="Jpe-6U-L3n" secondAttribute="bottom" constant="8" id="uJO-6d-eUT"/>
                                             <constraint firstItem="Gac-Hz-mav" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="zDV-p0-Tuk"/>
                                             <constraint firstAttribute="bottom" secondItem="Gac-Hz-mav" secondAttribute="bottom" constant="8" id="zsY-wX-Axi"/>
                                         </constraints>
@@ -140,13 +154,21 @@
             </objects>
             <point key="canvasLocation" x="-26.399999999999999" y="111.99400299850076"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="i93-et-4un">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="nsd-BC-zjE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wEe-vE-BcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="616"/>
+        </scene>
         <!--HabitCreationViewController-->
         <scene sceneID="yk7-MD-D6w">
             <objects>
                 <viewControllerPlaceholder storyboardName="SprintCreation" referencedIdentifier="HabitCreationViewController" id="m5L-p8-Gva" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wFO-qL-jew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-222" y="569"/>
+            <point key="canvasLocation" x="-512" y="569"/>
         </scene>
         <!--SprintCreation-->
         <scene sceneID="1wb-V5-OWQ">
@@ -154,7 +176,7 @@
                 <viewControllerPlaceholder storyboardName="SprintCreation" id="3PD-La-aYY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLd-eV-2cX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26" y="634"/>
+            <point key="canvasLocation" x="-190" y="616"/>
         </scene>
         <!--TargetCreationViewController-->
         <scene sceneID="Abr-a6-sOO">
@@ -162,7 +184,7 @@
                 <viewControllerPlaceholder storyboardName="SprintCreation" referencedIdentifier="TargetCreationViewController" id="3ji-X3-ILJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrT-c7-zcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="165" y="569"/>
+            <point key="canvasLocation" x="474" y="569"/>
         </scene>
         <!--Today Content View Controller-->
         <scene sceneID="mzz-VX-Sgc">
@@ -378,4 +400,7 @@
             <point key="canvasLocation" x="765.60000000000002" y="177.66116941529236"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="20" height="20"/>
+    </resources>
 </document>

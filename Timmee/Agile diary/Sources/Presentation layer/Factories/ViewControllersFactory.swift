@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import class MessageUI.MFMailComposeViewController
 
 final class ViewControllersFactory {
     
@@ -72,6 +73,17 @@ final class ViewControllersFactory {
     
     static var finalEducationScreen: FinalEducationScreen {
         return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "FinalEducationScreen") as! FinalEducationScreen
+    }
+    
+    // Other
+    
+    static var mail: MFMailComposeViewController {
+        let viewController = MFMailComposeViewController()
+        if #available(iOS 11.0, *) {
+            viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
+        }
+        viewController.setToRecipients(["mesterra.co@gmail.com"])
+        return viewController
     }
     
 }

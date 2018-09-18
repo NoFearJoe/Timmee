@@ -101,6 +101,10 @@
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
+		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
+		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
+		967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328921517F3C00B9201A /* SettingsViewController.swift */; };
+		967C328C215181D700B9201A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C328B215181D700B9201A /* Settings.storyboard */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +236,10 @@
 		8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
+		967C328221517DC500B9201A /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
+		967C328721517E4100B9201A /* SettingsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCells.swift; sourceTree = "<group>"; };
+		967C328921517F3C00B9201A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		967C328B215181D700B9201A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,6 +363,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				967C328421517DF400B9201A /* Settings */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0CF7E51B214669520071DABD /* Today */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
@@ -595,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D5072122B1A4004C0559 /* SprintSection.swift */,
+				967C328221517DC500B9201A /* ProVersionPurchase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -627,6 +637,32 @@
 				9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		967C328421517DF400B9201A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				967C328621517E0700B9201A /* Pro version purchase */,
+				967C328521517DFE00B9201A /* Main */,
+				967C328B215181D700B9201A /* Settings.storyboard */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		967C328521517DFE00B9201A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				967C328721517E4100B9201A /* SettingsCells.swift */,
+				967C328921517F3C00B9201A /* SettingsViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		967C328621517E0700B9201A /* Pro version purchase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Pro version purchase";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -728,6 +764,7 @@
 				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
+				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
 				0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
@@ -823,12 +860,14 @@
 				0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
 				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
+				967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */,
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
+				967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */,
 				0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */,
 				96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */,
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
@@ -847,6 +886,7 @@
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
+				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
