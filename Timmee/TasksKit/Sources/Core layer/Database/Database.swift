@@ -97,6 +97,10 @@ private extension CoreDataStorage {
     }
     
     var storeURL: URL {
+        return FilesService.URLs.documents!.appendingPathComponent(storeName)
+    }
+    
+    var sharedStoreURL: URL {
         return FilesService.URLs.shared!.appendingPathComponent(storeName)
     }
     
@@ -114,6 +118,14 @@ private extension CoreDataStorage {
                                                 NSInferMappingModelAutomaticallyOption: true,
                                                 NSSQLitePragmasOption: ["journal_mode": "DELETE"]
                                             ])
+        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                            configurationName: nil,
+                                            at: self.sharedStoreURL,
+                                            options: [
+                                                NSMigratePersistentStoresAutomaticallyOption: true,
+                                                NSInferMappingModelAutomaticallyOption: true,
+                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
+            ])
         return coordinator
     }
     
