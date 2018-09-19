@@ -58,15 +58,15 @@ final class BiometricsActivationController: UIViewController {
 fileprivate extension BiometricsActivationController {
     
     func applyAppearance() {
-        navigationController?.navigationBar.barTintColor = .white // TODO: bg color
+        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
         
-        view.backgroundColor = .white // TODO: Add background color to style
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
         
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         
-        acceptButton.setTitleColor(.white, for: .normal)
+        acceptButton.setTitleColor(AppTheme.current.colors.foregroundColor, for: .normal)
         declineButton.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .normal)
         
         acceptButton.backgroundColor = AppTheme.current.colors.mainElementColor

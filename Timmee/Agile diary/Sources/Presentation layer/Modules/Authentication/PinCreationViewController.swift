@@ -97,13 +97,12 @@ final class PinCreationViewController: UIViewController {
         
         numberPadView.delegate = numberPadAdapter
         numberPadView.dataSource = numberPadAdapter
-        
-        pinEnterState = .pin1
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
+        pinEnterState = .pin1
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -230,10 +229,10 @@ fileprivate extension PinCreationViewController {
 fileprivate extension PinCreationViewController {
     
     func setupAppearance() {
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
         
-        view.backgroundColor = .white
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
         messageLabel.textColor = AppTheme.current.colors.activeElementColor
         
         pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor

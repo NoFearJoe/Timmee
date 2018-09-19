@@ -20,28 +20,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfn-qH-ddK" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="166.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="165.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8C-Jk-aYp">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="146.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="375" height="145.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gac-Hz-mav" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="110.5" width="345" height="28"/>
+                                                <rect key="frame" x="15" y="109.5" width="345" height="28"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="GhP-zb-Y5p"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сегодня" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePM-y5-lDE">
-                                                <rect key="frame" x="15" y="44" width="345" height="39"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="28"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сегодня" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePM-y5-lDE">
+                                                <rect key="frame" x="15" y="44" width="345" height="41"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Спринт #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBf-PW-p5z">
-                                                <rect key="frame" x="15" y="82.5" width="345" height="20"/>
+                                                <rect key="frame" x="15" y="84.5" width="345" height="17"/>
                                                 <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -57,6 +57,18 @@
                                                     <segue destination="nsd-BC-zjE" kind="presentation" identifier="ShowSettings" modalTransitionStyle="coverVertical" id="2sr-ex-LEz"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjR-Bh-1q4">
+                                                <rect key="frame" x="332" y="8" width="28" height="28"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="28" id="Ovm-bi-eIV"/>
+                                                    <constraint firstAttribute="height" constant="28" id="mZN-Kc-kx4"/>
+                                                </constraints>
+                                                <state key="normal" image="chart"/>
+                                                <connections>
+                                                    <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="vDn-wA-otH"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -66,6 +78,8 @@
                                             <constraint firstItem="Jpe-6U-L3n" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="GXE-mr-Pli"/>
                                             <constraint firstItem="aBf-PW-p5z" firstAttribute="top" secondItem="ePM-y5-lDE" secondAttribute="bottom" id="KFh-9O-JjD"/>
                                             <constraint firstAttribute="trailing" secondItem="aBf-PW-p5z" secondAttribute="trailing" constant="15" id="UBm-Jx-EFL"/>
+                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="Xwb-TS-3HG"/>
+                                            <constraint firstAttribute="trailing" secondItem="fjR-Bh-1q4" secondAttribute="trailing" constant="15" id="bHY-m8-YFQ"/>
                                             <constraint firstItem="aBf-PW-p5z" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="bot-tB-J78"/>
                                             <constraint firstAttribute="trailing" secondItem="Gac-Hz-mav" secondAttribute="trailing" constant="15" id="ibF-En-8yX"/>
                                             <constraint firstItem="Gac-Hz-mav" firstAttribute="top" secondItem="aBf-PW-p5z" secondAttribute="bottom" constant="8" id="lpy-mK-KCW"/>
@@ -84,25 +98,27 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="Loe-lt-MwF"/>
                                 <connections>
+                                    <outlet property="leftButton" destination="Jpe-6U-L3n" id="ghB-I8-SKk"/>
+                                    <outlet property="rightButton" destination="fjR-Bh-1q4" id="ro4-KR-i2g"/>
                                     <outlet property="subtitleLabel" destination="aBf-PW-p5z" id="xA7-NM-mYX"/>
                                     <outlet property="titleLabel" destination="ePM-y5-lDE" id="CMa-7J-MyV"/>
                                 </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQc-5J-Nm5">
-                                <rect key="frame" x="0.0" y="170.5" width="375" height="496.5"/>
+                                <rect key="frame" x="0.0" y="169.5" width="375" height="497.5"/>
                                 <connections>
                                     <segue destination="3rx-bc-jDa" kind="embed" identifier="SprintContent" id="afp-QC-2gL"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-og-p5R" customClass="ProgressBar" customModule="UIComponents">
-                                <rect key="frame" x="0.0" y="166.5" width="375" height="4"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="165.5" width="375" height="4"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="Yll-UQ-hp0"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG5-iM-CHH">
-                                <rect key="frame" x="0.0" y="170.5" width="375" height="496.5"/>
+                                <rect key="frame" x="0.0" y="169.5" width="375" height="497.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-ev-KnK">
@@ -114,6 +130,7 @@
                                 <state key="normal" title="Создать спринт"/>
                                 <connections>
                                     <action selector="onTapToCreateSprint" destination="YFK-lV-GWC" eventType="touchUpInside" id="aqa-nN-h6Q"/>
+                                    <segue destination="3PD-La-aYY" kind="presentation" identifier="ShowSprintCreation" modalTransitionStyle="coverVertical" id="d2T-Np-dId"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -147,7 +164,6 @@
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
                         <segue destination="m5L-p8-Gva" kind="presentation" identifier="ShowHabitEditor" modalTransitionStyle="coverVertical" id="c90-3s-KUG"/>
                         <segue destination="3ji-X3-ILJ" kind="presentation" identifier="ShowTargetEditor" modalTransitionStyle="coverVertical" id="xpM-BJ-OZs"/>
-                        <segue destination="3PD-La-aYY" kind="presentation" identifier="ShowSprintCreation" modalTransitionStyle="coverVertical" id="chU-p5-Cmv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YL-zk-Dkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -160,7 +176,15 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="nsd-BC-zjE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEe-vE-BcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="143" y="616"/>
+            <point key="canvasLocation" x="207" y="615"/>
+        </scene>
+        <!--Charts-->
+        <scene sceneID="fdY-yB-8SB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Charts" id="slG-Si-CNb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oFD-u6-Pif" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="394" y="569"/>
         </scene>
         <!--HabitCreationViewController-->
         <scene sceneID="yk7-MD-D6w">
@@ -176,7 +200,7 @@
                 <viewControllerPlaceholder storyboardName="SprintCreation" id="3PD-La-aYY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLd-eV-2cX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-190" y="616"/>
+            <point key="canvasLocation" x="-26" y="656"/>
         </scene>
         <!--TargetCreationViewController-->
         <scene sceneID="Abr-a6-sOO">
@@ -184,22 +208,22 @@
                 <viewControllerPlaceholder storyboardName="SprintCreation" referencedIdentifier="TargetCreationViewController" id="3ji-X3-ILJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrT-c7-zcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="569"/>
+            <point key="canvasLocation" x="-285" y="615"/>
         </scene>
         <!--Today Content View Controller-->
         <scene sceneID="mzz-VX-Sgc">
             <objects>
                 <viewController storyboardIdentifier="TodayContentViewController" id="3rx-bc-jDa" customClass="TodayContentViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L1I-dJ-39k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="496.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="497.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoB-oY-pys">
-                                <rect key="frame" x="0.0" y="20" width="375" height="396.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="397"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Me0-Vd-6eW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="496.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="rP5-UP-6AA">
                                     <rect key="frame" x="0.0" y="198" width="375" height="0.0"/>
@@ -216,7 +240,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMK-QK-AJr" customClass="Checkbox" customModule="Agile_diary" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="22" width="24" height="24"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="SMK-QK-AJr" secondAttribute="height" multiplier="1:1" id="QmL-Kf-KWC"/>
                                                         <constraint firstAttribute="width" constant="24" id="psx-0m-Lxc"/>
@@ -401,6 +425,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart" width="28" height="28"/>
         <image name="settings" width="20" height="20"/>
     </resources>
 </document>

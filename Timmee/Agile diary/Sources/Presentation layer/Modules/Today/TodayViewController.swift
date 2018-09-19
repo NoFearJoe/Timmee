@@ -37,9 +37,10 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerView.leftButton?.isHidden = true
-        headerView.rightButton?.isHidden = true
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
         headerView.titleLabel.text = "today".localized
+        headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
+        headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
@@ -93,10 +94,6 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
         contentViewController.section = currentSection
         guard sprint != nil else { return }
         setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
-    }
-    
-    @IBAction private func onTapToCreateSprint() {
-        performSegue(withIdentifier: "ShowSprintCreation", sender: nil)
     }
     
     private func updateSprintProgress(tasks: [Task]) {
@@ -166,7 +163,7 @@ private extension TodayViewController {
     
     func showCreateSprintPlaceholder() {
         placeholderContainer.isHidden = false
-        placeholderView.icon = #imageLiteral(resourceName: "calendar")
+        placeholderView.icon = #imageLiteral(resourceName: "calendar") // TODO: Change icon
         placeholderView.title = "there_is_no_sprints".localized
         placeholderView.subtitle = "do_you_want_to_create_new_sprint".localized
     }

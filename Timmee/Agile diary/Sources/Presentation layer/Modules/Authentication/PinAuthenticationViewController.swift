@@ -175,10 +175,10 @@ private extension PinAuthenticationViewController {
 private extension PinAuthenticationViewController {
 
     func setupAppearance() {
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
         
-        view.backgroundColor = .white
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
         messageLabel.textColor = AppTheme.current.colors.activeElementColor
         
         pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor

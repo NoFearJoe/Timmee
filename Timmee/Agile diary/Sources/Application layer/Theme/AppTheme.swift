@@ -22,6 +22,10 @@ struct AppTheme {
         let wrongElementColor: UIColor
         let selectedElementColor: UIColor
         let decorationElementColor: UIColor
+        
+        let foregroundColor: UIColor
+        let middlegroundColor: UIColor
+        let backgroundColor: UIColor
     }
     
     struct Fonts {
@@ -59,7 +63,10 @@ struct AppTheme {
                                                mainElementColor: UIColor(rgba: "29C3FE"),
                                                wrongElementColor: UIColor(rgba: "FF3100"),
                                                selectedElementColor: UIColor(rgba: "12FFA3"),
-                                               decorationElementColor: UIColor(rgba: "E9E9E9")),
+                                               decorationElementColor: UIColor(rgba: "E9E9E9"),
+                                               foregroundColor: UIColor(rgba: "FFFFFF"),
+                                               middlegroundColor: UIColor(rgba: "F5F5F5"),
+                                               backgroundColor: UIColor(rgba: "888888")),
                                 fonts: Fonts())
     
     static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: ""),
@@ -67,7 +74,10 @@ struct AppTheme {
                                               mainElementColor: UIColor(rgba: ""),
                                               wrongElementColor: UIColor(rgba: ""),
                                               selectedElementColor: UIColor(rgba: ""),
-                                              decorationElementColor: UIColor(rgba: "")),
+                                              decorationElementColor: UIColor(rgba: ""),
+                                              foregroundColor: UIColor(rgba: ""),
+                                              middlegroundColor: UIColor(rgba: ""),
+                                              backgroundColor: UIColor(rgba: "")),
                                fonts: Fonts())
     
     static var current: AppTheme {

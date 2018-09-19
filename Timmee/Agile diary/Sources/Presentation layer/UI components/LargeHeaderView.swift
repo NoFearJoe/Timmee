@@ -12,22 +12,24 @@ class LargeHeaderView: GradientView {
     
     @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
-            titleLabel.textColor = UIColor(rgba: "444444")
+            titleLabel.textColor = AppTheme.current.colors.activeElementColor
+            titleLabel.font = AppTheme.current.fonts.bold(34)
         }
     }
     @IBOutlet private(set) var subtitleLabel: UILabel! {
         didSet {
-            subtitleLabel.textColor = UIColor(rgba: "444444")
+            subtitleLabel.textColor = AppTheme.current.colors.activeElementColor
+            subtitleLabel.font = AppTheme.current.fonts.regular(14)
         }
     }
     @IBOutlet private(set) var leftButton: UIButton? {
         didSet {
-            leftButton?.tintColor = UIColor(rgba: "444444")
+            leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         }
     }
     @IBOutlet private(set) var rightButton: UIButton? {
         didSet {
-            rightButton?.tintColor = UIColor(rgba: "444444")
+            rightButton?.tintColor = AppTheme.current.colors.activeElementColor
         }
     }
     
@@ -43,7 +45,7 @@ class LargeHeaderView: GradientView {
     
     private func setupAppearance() {
         startColor = UIColor(rgba: "F7F7F7")
-        endColor = UIColor(rgba: "f5f5f5")
+        endColor = AppTheme.current.colors.middlegroundColor
         startPoint = CGPoint(x: 0.75, y: 0)
         endPoint = CGPoint(x: 0.25, y: 1)
     }

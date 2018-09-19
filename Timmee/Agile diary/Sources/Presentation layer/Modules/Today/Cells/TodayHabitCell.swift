@@ -24,8 +24,13 @@ final class TodayHabitCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.backgroundColor = UIColor(rgba: "f5f5f5")
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         containerView.layer.cornerRadius = 8
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOffset = .zero
+        containerView.layer.shadowOpacity = 0.2
+        containerView.layer.shadowRadius = 4
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         titleLabel.font = AppTheme.current.fonts.medium(20)
         subtitleLabel.font = AppTheme.current.fonts.regular(14)

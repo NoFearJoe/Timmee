@@ -73,8 +73,8 @@ struct SettingsItem {
 
 final class SettingsViewController: UIViewController {
     
-    @IBOutlet fileprivate var tableView: UITableView!
-    @IBOutlet fileprivate var loadingView: LoadingView!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var loadingView: LoadingView!
     
     var settingsItems: [(SettingsSection, [SettingsItem])] = []
     
@@ -100,7 +100,7 @@ final class SettingsViewController: UIViewController {
         reloadSettings()
     }
     
-    fileprivate func reloadSettings() {
+    private func reloadSettings() {
         settingsItems = makeSettingsItems()
         tableView.reloadData()
     }
@@ -228,7 +228,7 @@ fileprivate extension SettingsViewController {
             }
         }
         var buyProVersionItem = SettingsItem(title: "pro_version".localized,
-                                             subtitle: "just_for_1_dollar".localized,
+                                             subtitle: "pro_version_price".localized,
                                              icon: #imageLiteral(resourceName: "crown"),
                                              style: .proVersion,
                                              action: buyProVersionAction)
@@ -417,16 +417,16 @@ fileprivate extension SettingsViewController {
     
     func setupAppearance() {
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.colors.activeElementColor]
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.colors.activeElementColor]
         }
         
-        view.backgroundColor = .lightGray
-        tableView.backgroundColor = .lightGray
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
+        tableView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
 }

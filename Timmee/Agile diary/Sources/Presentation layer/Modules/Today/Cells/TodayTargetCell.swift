@@ -24,8 +24,13 @@ final class TodayTargetCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.backgroundColor = UIColor(rgba: "f5f5f5")
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         containerView.layer.cornerRadius = 8
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOffset = .zero
+        containerView.layer.shadowOpacity = 0.2
+        containerView.layer.shadowRadius = 4
         stagesTitleLabel.text = "stages".localized
         stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
     }

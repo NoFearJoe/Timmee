@@ -36,6 +36,8 @@
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
 		0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */; };
+		0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
+		0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */; };
 		0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
@@ -180,6 +182,8 @@
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
 		0C3DA4BB21513BB000CAE635 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4BD21513BB200CAE635 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
+		0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Charts.storyboard; sourceTree = "<group>"; };
 		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0C3DA4DB21525EAA00CAE635 /* Charts */,
 				967C328421517DF400B9201A /* Settings */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0CF7E51B214669520071DABD /* Today */,
@@ -499,6 +504,15 @@
 				0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */,
 			);
 			path = Plists;
+			sourceTree = "<group>";
+		};
+		0C3DA4DB21525EAA00CAE635 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */,
+				0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		0C5C46952140FDF900390F85 /* DueDatePicker */ = {
@@ -772,6 +786,7 @@
 				0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */,
 				0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */,
 				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
+				0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */,
 				0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -876,6 +891,7 @@
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
 				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
+				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,

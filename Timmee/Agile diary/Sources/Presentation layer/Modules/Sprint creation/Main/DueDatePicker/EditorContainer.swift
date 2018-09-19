@@ -63,8 +63,8 @@ final class EditorContainer: UIViewController {
         
         transitioningDelegate = transitionHandler
         
-        editorContainer.backgroundColor = UIColor.white // TODO: Theme
-        titleLabel.textColor = UIColor.white
+        editorContainer.backgroundColor = AppTheme.current.colors.foregroundColor
+        titleLabel.textColor = AppTheme.current.colors.foregroundColor
         closeButton.tintColor = AppTheme.current.colors.wrongElementColor
         doneButton.tintColor = AppTheme.current.colors.selectedElementColor
     }

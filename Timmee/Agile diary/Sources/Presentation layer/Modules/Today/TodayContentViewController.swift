@@ -60,6 +60,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
         contentView.rowHeight = UITableViewAutomaticDimension
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
         
         setupPlaceholder()
         

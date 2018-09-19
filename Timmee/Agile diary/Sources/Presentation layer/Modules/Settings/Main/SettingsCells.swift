@@ -18,12 +18,12 @@ class BaseSettingsCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .white
+        backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = .white
+        backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
 }
