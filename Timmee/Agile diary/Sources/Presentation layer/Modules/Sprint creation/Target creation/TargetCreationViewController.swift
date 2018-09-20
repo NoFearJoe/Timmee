@@ -27,7 +27,7 @@ enum TargetAndHabitEditingMode {
     case short
 }
 
-final class TargetCreationViewController: UIViewController, TargetProvider, HintViewTrait {
+final class TargetCreationViewController: BaseViewController, TargetProvider, HintViewTrait {
     
     @IBOutlet private var contentView: UIView!
     @IBOutlet private var headerView: LargeHeaderView!

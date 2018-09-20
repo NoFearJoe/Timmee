@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="KJ9-O8-Vbq">
-                                    <rect key="frame" x="0.0" y="463.5" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="515.5" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -378,6 +378,40 @@
                                             <outlet property="titleLabel" destination="O3e-2G-JPm" id="4YM-Ra-Zaf"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsBackgroundImageCell" rowHeight="52" id="P1V-JN-dlo" customClass="SettingsBackgroundImageCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="442.5" width="375" height="52"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P1V-JN-dlo" id="L8t-RZ-pJM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G9R-oP-WDF">
+                                                    <rect key="frame" x="5" y="6" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="LgX-ew-xRw"/>
+                                                        <constraint firstAttribute="width" secondItem="G9R-oP-WDF" secondAttribute="height" multiplier="1:1" id="PwF-ko-S9G"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="sWH-A1-0av">
+                                                    <rect key="frame" x="50" y="16" width="310" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sWH-A1-0av" firstAttribute="centerY" secondItem="L8t-RZ-pJM" secondAttribute="centerY" id="DeD-zQ-Whf"/>
+                                                <constraint firstAttribute="trailing" secondItem="sWH-A1-0av" secondAttribute="trailing" constant="15" id="VUZ-c5-hNd"/>
+                                                <constraint firstItem="sWH-A1-0av" firstAttribute="leading" secondItem="G9R-oP-WDF" secondAttribute="trailing" constant="5" id="sig-pZ-1kT"/>
+                                                <constraint firstItem="G9R-oP-WDF" firstAttribute="leading" secondItem="L8t-RZ-pJM" secondAttribute="leading" constant="5" id="tFV-i5-RPj"/>
+                                                <constraint firstItem="G9R-oP-WDF" firstAttribute="centerY" secondItem="L8t-RZ-pJM" secondAttribute="centerY" id="xIs-s1-qJY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backgroundImageView" destination="G9R-oP-WDF" id="piC-FU-WbG"/>
+                                            <outlet property="titleLabel" destination="sWH-A1-0av" id="W0w-sd-aTw"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="HAu-kR-eUY" id="uQ8-sZ-oWb"/>
@@ -414,14 +448,97 @@
                     <connections>
                         <outlet property="loadingView" destination="5vO-Yd-lgs" id="o82-p1-Rqk"/>
                         <outlet property="tableView" destination="oh4-jT-h53" id="b43-9h-33G"/>
+                        <segue destination="bQW-7f-0SV" kind="show" identifier="ShowBackgroundImagePicker" id="AuS-V5-JXC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nau-A3-mzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="230" y="154"/>
         </scene>
+        <!--Выбор фона-->
+        <scene sceneID="VpT-UM-LQu">
+            <objects>
+                <viewController storyboardIdentifier="BackgroundImagePicker" title="Выбор фона" id="bQW-7f-0SV" customClass="BackgroundImagePickerViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lvj-Uv-3lr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsN-i8-Is6">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KvR-i4-yKm">
+                                    <size key="itemSize" width="375" height="551"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackgroundImagePickerCell" id="jy7-eA-H5a" customClass="BackgroundImagePickerCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImage0" translatesAutoresizingMaskIntoConstraints="NO" id="cut-b6-L2d">
+                                                    <rect key="frame" x="20" y="20" width="335" height="511"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNF-ZA-B8j" customClass="Checkbox" customModule="Agile_diary" customModuleProvider="target">
+                                                    <rect key="frame" x="307" y="28" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="cNF-ZA-B8j" secondAttribute="height" id="cV5-Ze-Pe0"/>
+                                                        <constraint firstAttribute="width" constant="40" id="vuX-IJ-RRP"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="cut-b6-L2d" secondAttribute="trailing" constant="20" id="5UQ-h7-Hew"/>
+                                            <constraint firstItem="cNF-ZA-B8j" firstAttribute="trailing" secondItem="cut-b6-L2d" secondAttribute="trailing" constant="-8" id="bFd-yG-eI5"/>
+                                            <constraint firstAttribute="bottom" secondItem="cut-b6-L2d" secondAttribute="bottom" constant="20" id="nfs-uu-q6e"/>
+                                            <constraint firstItem="cut-b6-L2d" firstAttribute="leading" secondItem="jy7-eA-H5a" secondAttribute="leading" constant="20" id="oCN-ae-VYE"/>
+                                            <constraint firstItem="cNF-ZA-B8j" firstAttribute="top" secondItem="cut-b6-L2d" secondAttribute="top" constant="8" id="tt8-st-xez"/>
+                                            <constraint firstItem="cut-b6-L2d" firstAttribute="top" secondItem="jy7-eA-H5a" secondAttribute="top" constant="20" id="z5Y-ti-9zL"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="checkbox" destination="cNF-ZA-B8j" id="iJt-Vz-AJP"/>
+                                            <outlet property="imageView" destination="cut-b6-L2d" id="VO5-Fk-msU"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="bQW-7f-0SV" id="WzU-Qd-x7R"/>
+                                    <outlet property="delegate" destination="bQW-7f-0SV" id="ogw-oy-fUs"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9qB-dp-hqh" firstAttribute="trailing" secondItem="VsN-i8-Is6" secondAttribute="trailing" id="0fp-6n-MCU"/>
+                            <constraint firstItem="VsN-i8-Is6" firstAttribute="top" secondItem="9qB-dp-hqh" secondAttribute="top" id="2oU-1R-dHw"/>
+                            <constraint firstItem="9qB-dp-hqh" firstAttribute="bottom" secondItem="VsN-i8-Is6" secondAttribute="bottom" id="NT4-bK-1T7"/>
+                            <constraint firstItem="VsN-i8-Is6" firstAttribute="leading" secondItem="9qB-dp-hqh" secondAttribute="leading" id="QhQ-Dj-pcl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9qB-dp-hqh"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="VsN-i8-Is6" id="cpj-fV-Fm5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b76-bx-Lmb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1213.5999999999999" y="152.47376311844079"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="bgImage0" width="984" height="984"/>
         <image name="cross" width="20" height="20"/>
     </resources>
 </document>

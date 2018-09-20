@@ -103,6 +103,7 @@ extension SprintContentViewController: UITableViewDataSource {
                 cell.delegate = targetCellActionsProvider
             }
             return cell
+        case .water: return UITableViewCell()
         }
     }
     
@@ -118,6 +119,7 @@ extension SprintContentViewController: UITableViewDelegate {
         case .target:
             guard let target = cacheObserver?.item(at: indexPath) else { return }
             transitionHandler?.performSegue(withIdentifier: "ShowTargetCreation", sender: target)
+        case .water: break
         }
     }
     
@@ -163,6 +165,7 @@ private extension SprintContentViewController {
         case .habits:
             placeholderView.title = "habits_section_placeholder_title".localized
             placeholderView.subtitle = "habits_section_placeholder_subtitle".localized
+        case .water: break
         }
     }
     

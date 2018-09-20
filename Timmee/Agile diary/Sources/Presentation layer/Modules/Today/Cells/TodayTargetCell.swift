@@ -24,18 +24,17 @@ final class TodayTargetCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
-        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         containerView.layer.cornerRadius = 8
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = .zero
-        containerView.layer.shadowOpacity = 0.2
-        containerView.layer.shadowRadius = 4
+//        containerView.layer.shadowColor = UIColor.black.cgColor
+//        containerView.layer.shadowOffset = .zero
+//        containerView.layer.shadowOpacity = 0.2
+//        containerView.layer.shadowRadius = 4
         stagesTitleLabel.text = "stages".localized
         stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
     }
     
     func configure(target: Target) {
+        setupAppearance()
         containerView.alpha = target.isDone ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
         titleLabel.text = target.title
         addStageViews(target: target)
@@ -52,6 +51,7 @@ final class TodayTargetCell: SwipeTableViewCell {
             let stageView = StageView.loadedFromNib()
             stageView.title = subtask.title
             stageView.isChecked = subtask.isDone
+            stageView.setupAppearance()
             stageView.onChangeCheckedState = { [unowned self] isChecked in
                 self.onChangeCheckedState?(isChecked, subtask)
             }
@@ -68,6 +68,12 @@ final class TodayTargetCell: SwipeTableViewCell {
                 stageView.topToBottom().to(previousView, addTo: stagesContainer)
             }
         }
+    }
+    
+    private func setupAppearance() {
+        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        stagesTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
     }
     
 }

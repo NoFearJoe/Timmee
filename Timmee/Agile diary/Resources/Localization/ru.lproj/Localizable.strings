@@ -192,6 +192,11 @@
 "restore_error_try_again" = "Не удалось восстановить PRO версию. Попробуйте снова";
 "pro_version_section" = "PRO версия";
 "version" = "Версия приложения";
+"theme" = "Тема";
+"light_theme" = "Светлая";
+"dark_theme" = "Темная";
+"background_image" = "Картинка на фоне";
+"pick_background_image" = "Выбор фона";
 
 "my_progress" = "Мой прогресс";
 

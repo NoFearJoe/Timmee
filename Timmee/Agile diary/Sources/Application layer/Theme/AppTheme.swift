@@ -8,9 +8,27 @@
 
 import UIKit
 
-enum AppThemeType {
-    case light
+enum AppThemeType: Int {
+    case light = 0
     case dark
+    
+    var title: String {
+        switch self {
+        case .light: return "light_theme".localized
+        case .dark: return "dark_theme".localized
+        }
+    }
+    
+    var next: AppThemeType {
+        switch self {
+        case .light: return .dark
+        case .dark: return .light
+        }
+    }
+    
+    static var current: AppThemeType {
+        return AppThemeType(rawValue: UserProperty.appTheme.int()) ?? .light
+    }
 }
 
 struct AppTheme {
@@ -69,19 +87,22 @@ struct AppTheme {
                                                backgroundColor: UIColor(rgba: "888888")),
                                 fonts: Fonts())
     
-    static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: ""),
-                                              activeElementColor: UIColor(rgba: ""),
-                                              mainElementColor: UIColor(rgba: ""),
-                                              wrongElementColor: UIColor(rgba: ""),
-                                              selectedElementColor: UIColor(rgba: ""),
-                                              decorationElementColor: UIColor(rgba: ""),
-                                              foregroundColor: UIColor(rgba: ""),
-                                              middlegroundColor: UIColor(rgba: ""),
-                                              backgroundColor: UIColor(rgba: "")),
+    static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: "999999"),
+                                              activeElementColor: UIColor(rgba: "EEEEEE"),
+                                              mainElementColor: UIColor(rgba: "29C3FE"),
+                                              wrongElementColor: UIColor(rgba: "FF3100"),
+                                              selectedElementColor: UIColor(rgba: "12FFA3"),
+                                              decorationElementColor: UIColor(rgba: "090909"),
+                                              foregroundColor: UIColor(rgba: "232425"),
+                                              middlegroundColor: UIColor(rgba: "1F1F1F"),
+                                              backgroundColor: UIColor(rgba: "0A0A0A")),
                                fonts: Fonts())
     
     static var current: AppTheme {
-        return .light
+        switch AppThemeType.current {
+        case .light: return .light
+        case .dark: return .dark
+        }
     }
     
 }

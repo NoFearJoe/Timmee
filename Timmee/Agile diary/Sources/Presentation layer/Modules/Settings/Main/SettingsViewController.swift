@@ -37,6 +37,7 @@ struct SettingsItem {
         case detailsSubtitle
         case proVersion
         case proVersionFeatures
+        case backgroundImage
     }
     
     var title: String
@@ -71,7 +72,7 @@ struct SettingsItem {
     
 }
 
-final class SettingsViewController: UIViewController {
+final class SettingsViewController: BaseViewController {
     
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var loadingView: LoadingView!
@@ -98,6 +99,11 @@ final class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         setupAppearance()
         reloadSettings()
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        tableView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
     private func reloadSettings() {
@@ -129,11 +135,13 @@ extension SettingsViewController: UITableViewDataSource {
         case .detailsSubtitle: cellIdentifier = SettingsDetailsCellWithTitleAndSubtitle.identifier
         case .proVersion: cellIdentifier = SettingsProVersionCell.identifier
         case .proVersionFeatures: cellIdentifier = SettingsProVersionFeaturesCell.identifier
+        case .backgroundImage: cellIdentifier = SettingsBackgroundImageCell.identifier
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BaseSettingsCell
         
         cell.setDisplayItem(item)
+        cell.setupAppearance()
         
         return cell
     }
@@ -180,37 +188,35 @@ fileprivate extension SettingsViewController {
     func makeGeneralSectionItems() -> [SettingsItem] {
         var generalSectionItems: [SettingsItem] = []
         
-        let currentListSorting = ListSorting(value: ListSorting.asUserProperty.int())
-        let listSortingAction = { [unowned self] in
-            ListSorting.asUserProperty.setInt(currentListSorting.next.rawValue)
+        let currentTheme = AppThemeType.current
+        let themeAction = { [unowned self] in
+            UserProperty.appTheme.setInt(currentTheme.next.rawValue)
+            self.setupAppearance()
             self.reloadSettings()
         }
-        let listSortingItem = SettingsItem(title: "list_sorting".localized,
-                                           subtitle: currentListSorting.title,
-                                           icon: #imageLiteral(resourceName: "list_sort"),
-                                           style: .titleWithSubtitle,
-                                           action: listSortingAction)
+        let themeItem = SettingsItem(title: "theme".localized,
+                                     subtitle: currentTheme.title,
+                                     icon: #imageLiteral(resourceName: "artListIcon"),
+                                     isOn: false,
+                                     isDetailed: false,
+                                     style: .titleWithSubtitle,
+                                     action: themeAction)
         
-        generalSectionItems.append(listSortingItem)
         
+        generalSectionItems.append(themeItem)
         
-        //        let currentTheme = AppTheme.current
-        //        let themeAction = { [unowned self] in
-        //            UserProperty.appTheme.setInt(currentTheme.next.code)
-        //            // Redraw???
-        //            self.reloadSettings()
-        //        }
-        //        let themeItem = SettingsItem(title: "theme".localized,
-        //                                     subtitle: currentTheme.title,
-        //                                     icon: #imageLiteral(resourceName: "artListIcon"),
-        //                                     isOn: false,
-        //                                     isDetailed: false,
-        //                                     style: .titleWithSubtitle,
-        //                                     action: themeAction)
-        
-        //        if UserProperty.inApp(InAppPurchaseItem.darkTheme.id).bool() {
-        //            generalSectionItems.append(themeItem)
-        //        }
+        if ProVersionPurchase.shared.isPurchased() {
+            let backgroundImageAction = { [unowned self] in
+                self.performSegue(withIdentifier: "ShowBackgroundImagePicker", sender: nil)
+            }
+            let backgroundImageItem = SettingsItem(title: "background_image".localized,
+                                                   subtitle: nil,
+                                                   icon: BackgroundImage.current.image,
+                                                   style: .backgroundImage,
+                                                   action: backgroundImageAction)
+            
+            generalSectionItems.append(backgroundImageItem)
+        }
         
         return generalSectionItems
     }
@@ -409,24 +415,6 @@ fileprivate extension SettingsViewController {
         alert.addAction(UIAlertAction(title: "close".localized, style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
-    }
-    
-}
-
-fileprivate extension SettingsViewController {
-    
-    func setupAppearance() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
-        navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.colors.activeElementColor]
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.colors.activeElementColor]
-        }
-        
-        view.backgroundColor = AppTheme.current.colors.middlegroundColor
-        tableView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
 }

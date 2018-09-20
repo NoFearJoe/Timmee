@@ -8,12 +8,13 @@
 
 import UIKit
 
-final class TodayViewController: UIViewController, SprintInteractorTrait, AlertInput {
+final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
+    @IBOutlet private var backgroundImageView: UIImageView!
     
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
@@ -37,17 +38,16 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = AppTheme.current.colors.middlegroundColor
         headerView.titleLabel.text = "today".localized
-        headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
-        headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
-        sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
+        if ProVersionPurchase.shared.isPurchased() {
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title, SprintSection.water.title]
+        } else {
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
+        }
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
-        progressBar.fillColor = AppTheme.current.colors.mainElementColor
         progressBar.setProgress(0)
         setupPlaceholder()
-        setupCreateSprintButton()
         if sprint == nil {
             if let currentSprint = getCurrentSprint() {
                 createSprintButton.isHidden = true
@@ -69,6 +69,20 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if ProVersionPurchase.shared.isPurchased() {
+            backgroundImageView.image = BackgroundImage.current.image
+        }
+        setupCreateSprintButton()
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
+        headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
+        headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
+        progressBar.fillColor = AppTheme.current.colors.mainElementColor
+        headerView.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.85)
+        sectionSwitcher.setupAppearance()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -93,7 +107,11 @@ final class TodayViewController: UIViewController, SprintInteractorTrait, AlertI
         currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
         contentViewController.section = currentSection
         guard sprint != nil else { return }
-        setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
+        switch currentSection {
+        case .habits, .targets:
+            setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
+        case .water: break
+        }
     }
     
     private func updateSprintProgress(tasks: [Task]) {

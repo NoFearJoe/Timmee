@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LargeHeaderView: GradientView {
+class LargeHeaderView: UIView {
     
     @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
@@ -44,10 +44,7 @@ class LargeHeaderView: GradientView {
     }
     
     private func setupAppearance() {
-        startColor = UIColor(rgba: "F7F7F7")
-        endColor = AppTheme.current.colors.middlegroundColor
-        startPoint = CGPoint(x: 0.75, y: 0)
-        endPoint = CGPoint(x: 0.25, y: 1)
+        backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
 }

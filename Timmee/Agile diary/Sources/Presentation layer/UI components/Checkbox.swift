@@ -22,7 +22,7 @@ class Checkbox: UIView {
     }
     
     var checkedColor: UIColor { return AppTheme.current.colors.selectedElementColor }
-    var uncheckedColor: UIColor { return AppTheme.current.colors.inactiveElementColor }
+    var uncheckedColor: UIColor { return AppTheme.current.colors.selectedElementColor }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

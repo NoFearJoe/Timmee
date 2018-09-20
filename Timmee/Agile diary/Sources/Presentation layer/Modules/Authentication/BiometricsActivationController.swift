@@ -14,7 +14,7 @@ import class UIKit.UIImageView
 import enum UIKit.UIStatusBarStyle
 import class UIKit.UIViewController
 
-final class BiometricsActivationController: UIViewController {
+final class BiometricsActivationController: BaseViewController {
     
     @IBOutlet fileprivate var titleLabel: UILabel!
     @IBOutlet fileprivate var subtitleLabel: UILabel!

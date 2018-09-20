@@ -33,4 +33,9 @@ final class StageView: UIView {
         }
     }
     
+    func setupAppearance() {
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        checkbox.setNeedsDisplay()
+    }
+    
 }

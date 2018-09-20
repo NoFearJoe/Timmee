@@ -35,6 +35,7 @@ class Switcher: UIControl {
             view.titleLabel.text = item
             view.roundedCorners = index == 0 ? .left : index >= items.count - 1 ? .right : .none
             view.isSelected = false
+            view.setupAppearance()
             addSubview(view)
             itemViews.append(view)
         }
@@ -62,13 +63,16 @@ class Switcher: UIControl {
         } ?? 0
     }
     
+    func setupAppearance() {
+        itemViews.forEach { $0.setupAppearance() }
+    }
+    
 }
 
 class SwitcherItemView: UIView {
     
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.textColor = AppTheme.current.colors.activeElementColor
         label.font = AppTheme.current.fonts.medium(14)
         label.textAlignment = .center
         return label
@@ -89,7 +93,6 @@ class SwitcherItemView: UIView {
     var isSelected: Bool = false {
         didSet {
             backgroundColor = isSelected ? AppTheme.current.colors.selectedElementColor : AppTheme.current.colors.decorationElementColor
-            titleLabel.textColor = AppTheme.current.colors.activeElementColor
         }
     }
     
@@ -119,6 +122,12 @@ class SwitcherItemView: UIView {
         }
         maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
         layer.mask = maskLayer
+    }
+    
+    func setupAppearance() {
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        backgroundColor = isSelected ? AppTheme.current.colors.selectedElementColor : AppTheme.current.colors.decorationElementColor
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
     }
     
 }

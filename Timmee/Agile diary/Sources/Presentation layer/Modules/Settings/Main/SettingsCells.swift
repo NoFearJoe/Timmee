@@ -18,11 +18,21 @@ class BaseSettingsCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = AppTheme.current.colors.foregroundColor
+        setupAppearance()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setupAppearance()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setupAppearance()
+    }
+    
+    func setupAppearance() {
+        tintColor = AppTheme.current.colors.mainElementColor
         backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
@@ -32,16 +42,8 @@ class SettingsCellWithTitle: BaseSettingsCell {
     
     override class var identifier: String { return "SettingsCellWithTitle" }
     
-    @IBOutlet fileprivate var iconView: UIImageView! {
-        didSet {
-            iconView.tintColor = AppTheme.current.colors.inactiveElementColor
-        }
-    }
-    @IBOutlet fileprivate var titleLabel: UILabel! {
-        didSet {
-            titleLabel.textColor = AppTheme.current.colors.activeElementColor
-        }
-    }
+    @IBOutlet private var iconView: UIImageView!
+    @IBOutlet private var titleLabel: UILabel!
     
     override func setDisplayItem(_ item: SettingsItem) {
         super.setDisplayItem(item)
@@ -55,17 +57,19 @@ class SettingsCellWithTitle: BaseSettingsCell {
         titleLabel.text = nil
     }
     
+    override func setupAppearance() {
+        super.setupAppearance()
+        iconView?.tintColor = AppTheme.current.colors.inactiveElementColor
+        titleLabel?.textColor = AppTheme.current.colors.activeElementColor
+    }
+    
 }
 
 class SettingsCellWithTitleAndSubtitle: SettingsCellWithTitle {
     
     override class var identifier: String { return "SettingsCellWithTitleAndSubtitle" }
     
-    @IBOutlet fileprivate var subtitleLabel: UILabel! {
-        didSet {
-            subtitleLabel.textColor = AppTheme.current.colors.mainElementColor
-        }
-    }
+    @IBOutlet fileprivate var subtitleLabel: UILabel!
     
     override func setDisplayItem(_ item: SettingsItem) {
         super.setDisplayItem(item)
@@ -77,18 +81,18 @@ class SettingsCellWithTitleAndSubtitle: SettingsCellWithTitle {
         subtitleLabel.text = nil
     }
     
+    override func setupAppearance() {
+        super.setupAppearance()
+        subtitleLabel?.textColor = AppTheme.current.colors.mainElementColor
+    }
+    
 }
 
 final class SettingsCellWithTitleAndSwitch: SettingsCellWithTitle {
     
     override static var identifier: String { return "SettingsCellWithTitleAndSwitch" }
     
-    @IBOutlet fileprivate var switcher: UISwitch! {
-        didSet {
-            switcher.tintColor = AppTheme.current.colors.decorationElementColor
-            switcher.onTintColor = AppTheme.current.colors.selectedElementColor
-        }
-    }
+    @IBOutlet fileprivate var switcher: UISwitch!
     
     fileprivate var action: (() -> Void)?
     
@@ -105,6 +109,12 @@ final class SettingsCellWithTitleAndSwitch: SettingsCellWithTitle {
     override func prepareForReuse() {
         super.prepareForReuse()
         switcher.isOn = false
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        switcher?.tintColor = AppTheme.current.colors.decorationElementColor
+        switcher?.onTintColor = AppTheme.current.colors.selectedElementColor
     }
     
 }
@@ -171,6 +181,34 @@ final class SettingsProVersionFeaturesCell: BaseSettingsCell {
     
     override func setDisplayItem(_ item: SettingsItem) {
         featuresLabel.text = item.title
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        titleLabel?.textColor = AppTheme.current.colors.activeElementColor
+        featuresLabel?.textColor = AppTheme.current.colors.inactiveElementColor
+    }
+    
+}
+
+final class SettingsBackgroundImageCell: BaseSettingsCell {
+    
+    override static var identifier: String { return "SettingsBackgroundImageCell" }
+    
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var backgroundImageView: UIImageView!
+    
+    override func setDisplayItem(_ item: SettingsItem) {
+        super.setDisplayItem(item)
+        titleLabel.text = item.title
+        backgroundImageView.image = item.icon
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        titleLabel?.textColor = AppTheme.current.colors.activeElementColor
+        backgroundImageView?.layer.cornerRadius = 8
+        backgroundImageView?.layer.masksToBounds = true
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import class Foundation.UserDefaults
+import protocol Workset.UserPropertyProtocol
 
 public enum UserProperty: UserPropertyProtocol {
     case isFirstLoad
@@ -20,6 +21,10 @@ public enum UserProperty: UserPropertyProtocol {
     
     case inApp(String)
     
+    case appTheme
+    
+    case backgroundImage
+    
     public var key: String {
         switch self {
         case .isFirstLoad: return "isFirstLoad"
@@ -29,6 +34,8 @@ public enum UserProperty: UserPropertyProtocol {
         case .pinCode: return "pinCode"
         case .biometricsAuthenticationEnabled: return "biometricsAuthenticationEnabled"
         case .inApp(let id): return "inApp_\(id)"
+        case .appTheme: return "appTheme"
+        case .backgroundImage: return "backgroundImage"
         }
     }
     

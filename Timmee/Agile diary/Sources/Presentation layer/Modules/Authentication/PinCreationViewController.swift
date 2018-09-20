@@ -15,7 +15,7 @@ import enum UIKit.UIStatusBarStyle
 import class UIKit.UIStoryboardSegue
 import class LocalAuthentication.LAContext
 
-final class PinCreationViewController: UIViewController {
+final class PinCreationViewController: BaseViewController {
     
     enum PinEnterState {
         case pin1
@@ -103,6 +103,16 @@ final class PinCreationViewController: UIViewController {
         super.viewWillAppear(animated)
         setupAppearance()
         pinEnterState = .pin1
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        messageLabel.textColor = AppTheme.current.colors.activeElementColor
+        
+        pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor
+        pinCodeView.filledDotColor = AppTheme.current.colors.mainElementColor
+        pinCodeView.wrongPinCodeDotColor = AppTheme.current.colors.wrongElementColor
+        pinCodeView.rightPinCodeDotColor = AppTheme.current.colors.selectedElementColor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -222,23 +232,6 @@ fileprivate extension PinCreationViewController {
     @objc func removePinCode() {
         UserProperty.pinCode.setValue(nil)
         closeAuthorization()
-    }
-    
-}
-
-fileprivate extension PinCreationViewController {
-    
-    func setupAppearance() {
-        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
-        navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
-        
-        view.backgroundColor = AppTheme.current.colors.middlegroundColor
-        messageLabel.textColor = AppTheme.current.colors.activeElementColor
-        
-        pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor
-        pinCodeView.filledDotColor = AppTheme.current.colors.mainElementColor
-        pinCodeView.wrongPinCodeDotColor = AppTheme.current.colors.wrongElementColor
-        pinCodeView.rightPinCodeDotColor = AppTheme.current.colors.selectedElementColor
     }
     
 }

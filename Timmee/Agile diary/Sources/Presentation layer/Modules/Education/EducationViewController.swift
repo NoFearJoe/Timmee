@@ -21,6 +21,10 @@ final class EducationViewController: UINavigationController {
     
     private let educationState = EducationState()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return AppThemeType.current == .dark ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

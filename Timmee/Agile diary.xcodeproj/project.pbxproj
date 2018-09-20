@@ -38,6 +38,10 @@
 		0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */; };
 		0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
 		0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */; };
+		0C3DA5232153731600CAE635 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
+		0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */; };
+		0C3DA5282153BF7500CAE635 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */; };
+		0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */; };
 		0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
@@ -184,6 +188,9 @@
 		0C3DA4BD21513BB200CAE635 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Charts.storyboard; sourceTree = "<group>"; };
+		0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
+		0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagePickerViewController.swift; sourceTree = "<group>"; };
 		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -345,6 +352,7 @@
 		0C14D4A321216058004C0559 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				0C3DA5242153B5BD00CAE635 /* Common */,
 				0CF7E5242146838F0071DABD /* Models */,
 				0C14D4EF21219696004C0559 /* UI components */,
 				0C14D4AB212167DD004C0559 /* Factories */,
@@ -515,6 +523,22 @@
 			path = Charts;
 			sourceTree = "<group>";
 		};
+		0C3DA5242153B5BD00CAE635 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0C3DA5292153C0AD00CAE635 /* Backgrund image picker */ = {
+			isa = PBXGroup;
+			children = (
+				0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */,
+			);
+			path = "Backgrund image picker";
+			sourceTree = "<group>";
+		};
 		0C5C46952140FDF900390F85 /* DueDatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +643,7 @@
 			children = (
 				0C14D5072122B1A4004C0559 /* SprintSection.swift */,
 				967C328221517DC500B9201A /* ProVersionPurchase.swift */,
+				0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -656,6 +681,7 @@
 		967C328421517DF400B9201A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				0C3DA5292153C0AD00CAE635 /* Backgrund image picker */,
 				967C328621517E0700B9201A /* Pro version purchase */,
 				967C328521517DFE00B9201A /* Main */,
 				967C328B215181D700B9201A /* Settings.storyboard */,
@@ -875,6 +901,7 @@
 				0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
 				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
+				0C3DA5282153BF7500CAE635 /* BackgroundImage.swift in Sources */,
 				967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */,
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
@@ -909,6 +936,7 @@
 				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
+				0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */,
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
@@ -916,6 +944,7 @@
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */,
 				0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */,
+				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */,
@@ -947,6 +976,7 @@
 				0CE883DB215105A400637BD9 /* SprintInteractorTrait.swift in Sources */,
 				0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */,
+				0C3DA5232153731600CAE635 /* UserProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ import UIKit
            3. Сохраняем в БД
  */
 
-final class SprintCreationViewController: UIViewController, SprintInteractorTrait, TargetsAndHabitsInteractorTrait, AlertInput {
+final class SprintCreationViewController: BaseViewController, SprintInteractorTrait, TargetsAndHabitsInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
@@ -117,6 +117,7 @@ final class SprintCreationViewController: UIViewController, SprintInteractorTrai
         switch currentSection {
         case .targets: performSegue(withIdentifier: "ShowTargetCreation", sender: nil)
         case .habits: performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
+        case .water: break
         }
     }
     

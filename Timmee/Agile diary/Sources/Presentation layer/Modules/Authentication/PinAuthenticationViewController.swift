@@ -15,7 +15,7 @@ import class UIKit.UIViewController
 import struct LocalAuthentication.LAError
 import class LocalAuthentication.LAContext
 
-final class PinAuthenticationViewController: UIViewController {
+final class PinAuthenticationViewController: BaseViewController {
     
     @IBOutlet fileprivate var messageLabel: UILabel!
     @IBOutlet fileprivate var pinCodeView: PinCodeView!
@@ -68,6 +68,16 @@ final class PinAuthenticationViewController: UIViewController {
         super.viewWillAppear(animated)
         setupAppearance()
         showBiometricsAuthenticationIfPossible()
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        messageLabel.textColor = AppTheme.current.colors.activeElementColor
+        
+        pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor
+        pinCodeView.filledDotColor = AppTheme.current.colors.activeElementColor
+        pinCodeView.wrongPinCodeDotColor = AppTheme.current.colors.wrongElementColor
+        pinCodeView.rightPinCodeDotColor = AppTheme.current.colors.selectedElementColor
     }
     
 }
@@ -170,21 +180,4 @@ private extension PinAuthenticationViewController {
                                error: nil)
     }
     
-}
-
-private extension PinAuthenticationViewController {
-
-    func setupAppearance() {
-        navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
-        navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
-        
-        view.backgroundColor = AppTheme.current.colors.middlegroundColor
-        messageLabel.textColor = AppTheme.current.colors.activeElementColor
-        
-        pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor
-        pinCodeView.filledDotColor = AppTheme.current.colors.activeElementColor
-        pinCodeView.wrongPinCodeDotColor = AppTheme.current.colors.wrongElementColor
-        pinCodeView.rightPinCodeDotColor = AppTheme.current.colors.selectedElementColor
-    }
-
 }

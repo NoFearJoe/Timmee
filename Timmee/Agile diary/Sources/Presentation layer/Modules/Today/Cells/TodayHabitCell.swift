@@ -24,19 +24,17 @@ final class TodayHabitCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
-        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         containerView.layer.cornerRadius = 8
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = .zero
-        containerView.layer.shadowOpacity = 0.2
-        containerView.layer.shadowRadius = 4
-        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+//        containerView.layer.shadowColor = UIColor.black.cgColor
+//        containerView.layer.shadowOffset = .zero
+//        containerView.layer.shadowOpacity = 0.2
+//        containerView.layer.shadowRadius = 4
         titleLabel.font = AppTheme.current.fonts.medium(20)
         subtitleLabel.font = AppTheme.current.fonts.regular(14)
     }
     
     func configure(habit: Habit) {
+        setupAppearance()
         checkbox.isChecked = habit.isDone(at: Date())
         containerView.alpha = habit.isDone(at: Date()) ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
         titleLabel.text = habit.title
@@ -55,6 +53,12 @@ final class TodayHabitCell: SwipeTableViewCell {
                                                          attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         }
         subtitleLabel.attributedText = attributedSubtitle
+    }
+    
+    private func setupAppearance() {
+        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        checkbox.setNeedsDisplay()
     }
     
 }

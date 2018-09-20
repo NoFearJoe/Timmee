@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HabitCreationViewController: UIViewController, HintViewTrait {
+final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!

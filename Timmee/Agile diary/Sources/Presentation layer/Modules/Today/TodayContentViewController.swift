@@ -60,7 +60,6 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
         contentView.rowHeight = UITableViewAutomaticDimension
-        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
         
         setupPlaceholder()
         
@@ -117,6 +116,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 }
             }
             return cell
+        case .water: return UITableViewCell()
         }
     }
     
@@ -167,6 +167,7 @@ private extension TodayContentViewController {
         case .habits:
             placeholderView.title = "today_habits_section_placeholder_title".localized
             placeholderView.subtitle = "today_habits_section_placeholder_subtitle".localized
+        case .water: break
         }
     }
     
