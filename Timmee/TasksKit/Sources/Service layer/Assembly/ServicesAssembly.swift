@@ -20,6 +20,8 @@ public final class ServicesAssembly {
     
     public lazy var timeTemplatesService: TimeTemplatesProvider & TimeTemplatesManager = PrivateServicesAssembly.shared.timeTemplatesService
     
+    public lazy var waterControlService: WaterControlProvider & WaterControlManager = PrivateServicesAssembly.shared.waterControlService
+    
     public lazy var audioRecordService: AudioRecordServiceInput = AudioRecordService()
     
     public lazy var audioPlayerService: AudioPlayerServiceInput = AudioPlayerService()
@@ -77,5 +79,11 @@ final class PrivateServicesAssembly {
         TimeTemplateEntitiesBackgroundProvider &
         TimeTemplatesManager
         = TimeTemplatesService()
+    
+    lazy var waterControlService:
+        WaterControlProvider &
+        WaterControlEntityBackgroundProvider &
+        WaterControlManager
+        = WaterControlService()
     
 }

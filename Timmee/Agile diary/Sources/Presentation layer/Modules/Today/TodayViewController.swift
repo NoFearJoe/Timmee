@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TodayViewSectionProgressListener: class {
+    func didChangeProgress(for section: SprintSection, to progress: CGFloat)
+}
+
 final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
@@ -16,10 +20,14 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     @IBOutlet private var createSprintButton: UIButton!
     @IBOutlet private var backgroundImageView: UIImageView!
     
+    @IBOutlet private var contentViewContainer: UIView!
+    @IBOutlet private var waterControlViewContainer: UIView!
+    
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     private var contentViewController: TodayContentViewController!
+    private var waterControlViewController: WaterControlViewController!
     
     private var currentSection = SprintSection.habits
     
@@ -28,8 +36,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     var sprint: Sprint! {
         didSet {
             hidePlaceholder()
-            setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
             contentViewController.sprintID = sprint.id
+            waterControlViewController.sprintID = sprint.id
             updateHeaderSubtitle(sprint: sprint)
         }
     }
@@ -47,6 +55,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         progressBar.setProgress(0)
+        contentViewContainer.isHidden = false
+        waterControlViewContainer.isHidden = true
         setupPlaceholder()
         if sprint == nil {
             if let currentSprint = getCurrentSprint() {
@@ -73,15 +83,18 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             backgroundImageView.image = BackgroundImage.current.image
         }
         setupCreateSprintButton()
+        guard let sprint = sprint else { return }
+        updateHeaderSubtitle(sprint: sprint)
     }
     
     override func setupAppearance() {
         super.setupAppearance()
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
+        headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
-        headerView.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.85)
+        headerView.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.9)
         sectionSwitcher.setupAppearance()
     }
     
@@ -90,6 +103,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             contentViewController = segue.destination as! TodayContentViewController
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
+            contentViewController.progressListener = self
+        } else if segue.identifier == "WaterControl" {
+            waterControlViewController = segue.destination as! WaterControlViewController
+            waterControlViewController.progressListener = self
         } else if segue.identifier == "ShowTargetEditor" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
             controller.setTarget(sender as? Task, listID: sprint.id)
@@ -105,31 +122,16 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     @objc private func onSwitchSection() {
         currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
-        contentViewController.section = currentSection
         guard sprint != nil else { return }
         switch currentSection {
         case .habits, .targets:
-            setupCacheObserver(forSection: currentSection, sprintID: sprint.id)
-        case .water: break
+            contentViewController.performAppearanceTransition(isAppearing: true) { contentViewContainer.isHidden = false }
+            waterControlViewController.performAppearanceTransition(isAppearing: false) { waterControlViewContainer.isHidden = true }
+            contentViewController.section = currentSection
+        case .water:
+            contentViewController.performAppearanceTransition(isAppearing: false) { contentViewContainer.isHidden = true }
+            waterControlViewController.performAppearanceTransition(isAppearing: true) { waterControlViewContainer.isHidden = false }
         }
-    }
-    
-    private func updateSprintProgress(tasks: [Task]) {
-        let progress = CGFloat(tasks.filter { $0.isDone(at: Date()) || $0.isDone }.count) / CGFloat(tasks.count)
-        progressBar.setProgress(progress, animated: true)
-    }
-    
-    private func setupCacheObserver(forSection section: SprintSection, sprintID: String) {
-        let predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
-        cacheObserver = ServicesAssembly.shared.tasksService.tasksObserver(predicate: predicate)
-        cacheObserver?.setMapping { Task(task: $0 as! TaskEntity) }
-        cacheObserver?.setActions(
-            onInitialFetch: { [unowned self] in self.updateSprintProgress(tasks: self.cacheObserver?.items(in: 0) ?? []) },
-            onItemsCountChange: nil,
-            onItemChange: nil,
-            onBatchUpdatesStarted: nil,
-            onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(tasks: self.cacheObserver?.items(in: 0) ?? []) })
-        cacheObserver?.fetchInitialEntities()
     }
     
     private func updateHeaderSubtitle(sprint: Sprint) {
@@ -146,6 +148,15 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     private func setSwitcherEnabled(_ isEnabled: Bool) {
         self.sectionSwitcher.isEnabled = isEnabled
         self.sectionSwitcher.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+    }
+    
+}
+
+extension TodayViewController: TodayViewSectionProgressListener {
+    
+    func didChangeProgress(for section: SprintSection, to progress: CGFloat) {
+        guard section == currentSection else { return }
+        progressBar.setProgress(progress, animated: true)
     }
     
 }

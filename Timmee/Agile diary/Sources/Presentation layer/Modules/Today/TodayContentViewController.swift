@@ -39,6 +39,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
     }
     
     weak var transitionHandler: UIViewController?
+    weak var progressListener: TodayViewSectionProgressListener?
     
     @IBOutlet private var contentView: UITableView!
     
@@ -137,13 +138,22 @@ private extension TodayContentViewController {
         cacheObserver = ServicesAssembly.shared.tasksService.tasksObserver(predicate: predicate)
         cacheObserver?.setMapping { Task(task: $0 as! TaskEntity) }
         cacheObserver?.setActions(
-            onInitialFetch: nil,
+            onInitialFetch: { [unowned self] in self.updateSprintProgress(tasks: self.cacheObserver?.items(in: 0) ?? []) },
             onItemsCountChange: { count in self.state = count == 0 ? .empty : .content },
             onItemChange: nil,
             onBatchUpdatesStarted: nil,
-            onBatchUpdatesCompleted: nil)
+            onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(tasks: self.cacheObserver?.items(in: 0) ?? []) })
         cacheObserver?.setSubscriber(cacheAdapter)
         cacheObserver?.fetchInitialEntities()
+    }
+    
+}
+
+private extension TodayContentViewController {
+    
+    private func updateSprintProgress(tasks: [Task]) {
+        let progress = CGFloat(tasks.filter { $0.isDone(at: Date()) || $0.isDone }.count).safeDivide(by: CGFloat(tasks.count))
+        progressListener?.didChangeProgress(for: section, to: progress)
     }
     
 }

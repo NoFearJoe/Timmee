@@ -8,6 +8,7 @@
 
 import UIKit
 import SwipeCellKit
+import UIComponents
 
 final class TodayHabitCell: SwipeTableViewCell {
     
@@ -25,10 +26,7 @@ final class TodayHabitCell: SwipeTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 8
-//        containerView.layer.shadowColor = UIColor.black.cgColor
-//        containerView.layer.shadowOffset = .zero
-//        containerView.layer.shadowOpacity = 0.2
-//        containerView.layer.shadowRadius = 4
+        containerView.configureShadow(radius: 4, opacity: 0.1)
         titleLabel.font = AppTheme.current.fonts.medium(20)
         subtitleLabel.font = AppTheme.current.fonts.regular(14)
     }

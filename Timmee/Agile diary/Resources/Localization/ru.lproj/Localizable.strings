@@ -200,6 +200,15 @@
 
 "my_progress" = "Мой прогресс";
 
+"configure_water_control" = "Настроить контроль воды";
+"water_control_not_initialized" = "Вы еще не настраивали контроль воды в этом спринте";
+"male" = "Мужской";
+"female" = "Женский";
+"activity_low" = "Низкая";
+"activity_medium" = "Средняя";
+"activity_high" = "Высокая";
+"l" = "л";
+
 "education_initial_title" = "Что такое Agile ежедневник?";
 "education_initial_text" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки. В основе всего - спринты. Это временные отрезки длинной в 9 недель, в течение которых нужно вырабатывать привычки и добиваться целей";
 "education_initial_continue" = "Понятно";

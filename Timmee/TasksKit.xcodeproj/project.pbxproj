@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C3DA5342154D73700CAE635 /* WaterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5332154D73700CAE635 /* WaterControl.swift */; };
+		0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */; };
+		0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5372154D8D200CAE635 /* WaterControlService.swift */; };
 		0C9B23BE2077B688009EF6DE /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B23BD2077B688009EF6DE /* Workset.framework */; };
 		0C9B24092077B9EE009EF6DE /* NSManagedObjectContext+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24072077B9EE009EF6DE /* NSManagedObjectContext+Create.swift */; };
 		0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24082077B9EE009EF6DE /* NSManagedObject+entityName.swift */; };
@@ -47,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C3DA5332154D73700CAE635 /* WaterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControl.swift; sourceTree = "<group>"; };
+		0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Mapping.swift"; sourceTree = "<group>"; };
+		0C3DA5372154D8D200CAE635 /* WaterControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlService.swift; sourceTree = "<group>"; };
 		0C9B23BD2077B688009EF6DE /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9B24072077B9EE009EF6DE /* NSManagedObjectContext+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Create.swift"; sourceTree = "<group>"; };
 		0C9B24082077B9EE009EF6DE /* NSManagedObject+entityName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+entityName.swift"; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 				0CE018232077B2BD00633EFF /* ListEntity+Mapping.swift */,
 				0CE018242077B2BD00633EFF /* SmartListEntity+Mapping.swift */,
 				0CE018252077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift */,
+				0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -224,6 +231,7 @@
 				0CE018112077B2BD00633EFF /* SubtasksService.swift */,
 				0CE0180F2077B2BD00633EFF /* TagsService.swift */,
 				0CE018132077B2BD00633EFF /* TimeTemplatesService.swift */,
+				0C3DA5372154D8D200CAE635 /* WaterControlService.swift */,
 				0CE0180D2077B2BD00633EFF /* TaskSchedulerService.swift */,
 				0CE018102077B2BD00633EFF /* FilesService.swift */,
 				961656052095FDD9001A8387 /* AudioRecordService.swift */,
@@ -241,6 +249,7 @@
 				0CE018152077B2BD00633EFF /* Subtask.swift */,
 				0CE018192077B2BD00633EFF /* Tag.swift */,
 				0CE0181A2077B2BD00633EFF /* TimeTemplate.swift */,
+				0C3DA5332154D73700CAE635 /* WaterControl.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -398,6 +407,7 @@
 				9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */,
 				0CE018612077B2BD00633EFF /* FetchRequest.swift in Sources */,
 				0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */,
+				0C3DA5342154D73700CAE635 /* WaterControl.swift in Sources */,
 				0CE018542077B2BD00633EFF /* TaskSchedulerService.swift in Sources */,
 				0CE018582077B2BD00633EFF /* SubtasksService.swift in Sources */,
 				0CE018682077B2BD00633EFF /* SmartListEntity+Mapping.swift in Sources */,
@@ -407,7 +417,9 @@
 				0CE018562077B2BD00633EFF /* TagsService.swift in Sources */,
 				0CE018592077B2BD00633EFF /* TasksService.swift in Sources */,
 				0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */,
+				0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */,
 				0C9B2431207E2457009EF6DE /* CollectionViewCacheAdapter.swift in Sources */,
+				0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */,
 				0CE0186A2077B2BD00633EFF /* ListSorting.swift in Sources */,
 				0C9B242F207E244B009EF6DE /* TableViewCacheAdapter.swift in Sources */,
 				0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */,

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */; };
+		0C9364F02155305100B4EB48 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364EF2155305100B4EB48 /* Double+Extensions.swift */; };
 		0C9B23E42077B757009EF6DE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C12077B757009EF6DE /* Date.swift */; };
 		0C9B23E52077B757009EF6DE /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C22077B757009EF6DE /* KeyboardManager.swift */; };
 		0C9B23E62077B757009EF6DE /* TimeRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C32077B757009EF6DE /* TimeRounder.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyProtocol.swift; sourceTree = "<group>"; };
+		0C9364EF2155305100B4EB48 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		0C9B23C12077B757009EF6DE /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0C9B23C22077B757009EF6DE /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		0C9B23C32077B757009EF6DE /* TimeRounder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRounder.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9B23D32077B757009EF6DE /* Foto.Photo+filename.swift */,
+				0C9364EF2155305100B4EB48 /* Double+Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				0C9B23EC2077B757009EF6DE /* UIColor+HEX.swift in Sources */,
 				0C9B24002077B757009EF6DE /* Array+Item.swift in Sources */,
 				0C9B23F62077B757009EF6DE /* String+Trimmed.swift in Sources */,
+				0C9364F02155305100B4EB48 /* Double+Extensions.swift in Sources */,
 				0C9B23E82077B757009EF6DE /* RandomStringGenerator.swift in Sources */,
 				0C9B23E52077B757009EF6DE /* KeyboardManager.swift in Sources */,
 				0C9B23FD2077B757009EF6DE /* Sequence+Dictionarised.swift in Sources */,
