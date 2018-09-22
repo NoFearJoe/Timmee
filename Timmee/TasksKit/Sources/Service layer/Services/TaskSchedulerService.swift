@@ -167,6 +167,22 @@ public final class TaskSchedulerService {
                                   isDeferred: true)
     }
     
+    public func scheduleWaterControl(_ waterControl: WaterControl, startDate: Date, endDate: Date) {
+        removeWaterControlNotifications()
+        
+        guard waterControl.notificationsEnabled else { return }
+        
+        // TODO: Schedule by interval
+        
+        scheduleLocalNotification(withID: "water_control",
+                                  title: "water_time_title".localized,
+                                  message: "water_time_subtitle".localized,
+                                  at: startDate,
+                                  repeatUnit: .day,
+                                  end: endDate,
+                                  location: nil)
+    }
+    
     public func removeNotifications(for task: Task) {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
@@ -198,6 +214,31 @@ public final class TaskSchedulerService {
                 guard let taskID = notification.userInfo?["task_id"] as? String, taskID == task.id else { return }
                 guard let isDeferred = notification.userInfo?["isDeferred"] as? Bool, isDeferred else { return }
                 UIApplication.shared.cancelLocalNotification(notification)
+            }
+        }
+    }
+    
+    public func removeWaterControlNotifications() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+                let identifiers = requests.filter { request in
+                    if let taskID = request.content.userInfo["task_id"] as? String {
+                        return taskID == "water_control"
+                    }
+                    return false
+                }.map { request in
+                    request.identifier
+                }
+                
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            }
+        } else {
+            if let notifications = UIApplication.shared.scheduledLocalNotifications {
+                notifications.forEach { notification in
+                    if let taskID = notification.userInfo?["task_id"] as? String, taskID == "water_control" {
+                        UIApplication.shared.cancelLocalNotification(notification)
+                    }
+                }
             }
         }
     }

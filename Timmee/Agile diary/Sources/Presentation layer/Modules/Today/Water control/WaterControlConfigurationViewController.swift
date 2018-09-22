@@ -11,6 +11,12 @@ import UIComponents
 
 final class WaterControlConfigurationViewController: BaseViewController {
     
+    // MARK: Required dependencies
+    
+    var sprint: Sprint!
+    
+    // MARK: - Outlets
+    
     @IBOutlet private var contentView: UIView!
     
     @IBOutlet private var dailyWaterVolumeContainerView: UIView!
@@ -31,14 +37,35 @@ final class WaterControlConfigurationViewController: BaseViewController {
     
     @IBOutlet private var notificationsContainerView: UIView!
     @IBOutlet private var notificationsTitleLabel: UILabel!
+    @IBOutlet private var notificationsSwitcher: Switcher!
+    @IBOutlet private var notificationsIntervalTitleLabel: UILabel!
+    @IBOutlet private var notificationsIntervalSwitcher: Switcher!
+    @IBOutlet private var notificationsStartTimeTitleLabel: UILabel!
+    @IBOutlet private var notificationsEndTimeTitleLabel: UILabel!
+    @IBOutlet private var notificationsStartTimeContainer: UIView!
+    @IBOutlet private var notificationsEndTimeContainer: UIView!
+    
+    @IBOutlet private var doneButton: UIButton!
+    
+    private var startNotificationTimePicker: NotificationTimePickerInput!
+    private var endNotificationTimePicker: NotificationTimePickerInput!
+    
+    private lazy var startNotificationsTimeHandler = NotificationsTimeHandler(date: notificationsStartDate)
+    private lazy var endNotificationsTimeHandler = NotificationsTimeHandler(date: notificationsEndDate)
     
     private var containerViews: [UIView] {
         return [dailyWaterVolumeContainerView, genderContainerView, weightContainerView, activityContainerView, notificationsContainerView]
     }
     
     private var titleLabels: [UILabel] {
-        return [dailyWaterVolumeTitleLabel, genderTitleLabel, weightTitleLabel, activityTitleLabel, notificationsTitleLabel]
+        return [dailyWaterVolumeTitleLabel, genderTitleLabel, weightTitleLabel, activityTitleLabel, notificationsTitleLabel, notificationsStartTimeTitleLabel, notificationsEndTimeTitleLabel]
     }
+    
+    // MARK: - Services
+    
+    private let waterControlService = ServicesAssembly.shared.waterControlService
+    
+    // MARK: - State properties
     
     private var gender: Gender = .male {
         didSet { updateNeededWaterVolume() }
@@ -50,9 +77,66 @@ final class WaterControlConfigurationViewController: BaseViewController {
         didSet { updateNeededWaterVolume() }
     }
     
+    private var notificationsEnabled: Bool = false {
+        didSet {
+            updateNotificationsAvailability()
+        }
+    }
+    private var notificationsInterval: Int = 2
+    
+    private var notificationsStartDate: Date = {
+        var date = Date()
+        date => 8.asHours
+        return date.startOfHour
+    }()
+    
+    private var notificationsEndDate: Date = {
+        var date = Date()
+        date => 22.asHours
+        return date.startOfHour
+    }()
+    
+    // MARK: - Actions
+    
+    @IBAction private func onDone() {
+        let waterControl = makeWaterControlModel()
+        waterControlService.createOrUpdateWaterControl(waterControl) { [weak self] in
+            guard let `self` = self else { return }
+            TaskSchedulerService().scheduleWaterControl(waterControl, startDate: self.sprint.creationDate, endDate: self.sprint.endDate)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     @IBAction private func onClose() {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction private func onTapToBackground() {
+        view.endEditing(true)
+    }
+    
+    @objc private func onSwitchGender() {
+        gender = Gender(rawValue: genderSwitcher.selectedItemIndex) ?? .male
+    }
+    
+    @objc private func onSwitchActivity() {
+        activity = Activity(rawValue: activitySwitcher.selectedItemIndex) ?? .low
+    }
+    
+    @objc private func onSwitchNotifications() {
+        notificationsEnabled = notificationsSwitcher.selectedItemIndex == 1
+    }
+    
+    @objc private func onSwitchNotificationsInterval() {
+        notificationsInterval = notificationsSwitcher.selectedItemIndex + 1
+    }
+    
+    @objc private func onChangeWeight() {
+        guard let text = weightField.text else { return }
+        weight = Int(text) ?? 0
+    }
+    
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +149,39 @@ final class WaterControlConfigurationViewController: BaseViewController {
         activitySwitcher.selectedItemIndex = 1
         activitySwitcher.addTarget(self, action: #selector(onSwitchActivity), for: .touchUpInside)
         
+        notificationsSwitcher.items = ["notifications_disabled".localized, "notifications_enabled".localized]
+        notificationsSwitcher.selectedItemIndex = 0
+        notificationsSwitcher.addTarget(self, action: #selector(onSwitchNotifications), for: .touchUpInside)
+        
+        notificationsIntervalSwitcher.items = ["1h".localized, "2h".localized, "3h".localized, "4h".localized]
+        notificationsIntervalSwitcher.selectedItemIndex = 1
+        notificationsIntervalSwitcher.addTarget(self, action: #selector(onSwitchNotificationsInterval), for: .touchUpInside)
+        
+        dailyWaterVolumeTitleLabel.text = "daily_water_volume".localized
+        genderTitleLabel.text = "gender".localized
+        weightTitleLabel.text = "weight".localized
+        activityTitleLabel.text = "activity".localized
+        notificationsTitleLabel.text = "notifications".localized
+        notificationsIntervalTitleLabel.text = "notifications_interval".localized
+        notificationsStartTimeTitleLabel.text = "notifications_interval_start".localized
+        notificationsEndTimeTitleLabel.text = "notifications_interval_finish".localized
+        doneButton.setTitle("done".localized, for: .normal)
+        
+        startNotificationsTimeHandler.date = notificationsStartDate
+        startNotificationsTimeHandler.onChangeDate = { [unowned self] date in
+            self.notificationsStartDate = date
+        }
+        
+        endNotificationsTimeHandler.date = notificationsEndDate
+        endNotificationsTimeHandler.onChangeDate = { [unowned self] date in
+            self.notificationsEndDate = date
+        }
+        
+        startNotificationTimePicker.setHours(notificationsStartDate.hours)
+        startNotificationTimePicker.setMinutes(notificationsStartDate.minutes)
+        endNotificationTimePicker.setHours(notificationsEndDate.hours)
+        endNotificationTimePicker.setMinutes(notificationsEndDate.minutes)
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onChangeWeight),
                                                name: NSNotification.Name.UITextFieldTextDidChange,
@@ -75,14 +192,21 @@ final class WaterControlConfigurationViewController: BaseViewController {
         super.viewWillAppear(animated)
         updateWeightField()
         updateNeededWaterVolume()
+        updateNotificationsAvailability()
     }
     
-    @objc private func onSwitchGender() {
-        gender = Gender(rawValue: genderSwitcher.selectedItemIndex) ?? .male
-    }
-    
-    @objc private func onSwitchActivity() {
-        activity = Activity(rawValue: activitySwitcher.selectedItemIndex) ?? .low
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EmbedStartNotificationsTime" {
+            guard let picker = segue.destination as? NotificationTimePicker else { return }
+            picker.output = startNotificationsTimeHandler
+            startNotificationTimePicker = picker
+        } else if segue.identifier == "EmbedEndNotificationsTime" {
+            guard let picker = segue.destination as? NotificationTimePicker else { return }
+            picker.output = endNotificationsTimeHandler
+            endNotificationTimePicker = picker
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
     override func setupAppearance() {
@@ -90,6 +214,8 @@ final class WaterControlConfigurationViewController: BaseViewController {
         contentView.backgroundColor = .clear
         genderSwitcher.setupAppearance()
         activitySwitcher.setupAppearance()
+        notificationsSwitcher.setupAppearance()
+        notificationsIntervalSwitcher.setupAppearance()
         weightField.textColor = AppTheme.current.colors.mainElementColor
         weightField.font = AppTheme.current.fonts.bold(24)
         weightField.borderStyle = .none
@@ -97,30 +223,73 @@ final class WaterControlConfigurationViewController: BaseViewController {
             label.textColor = AppTheme.current.colors.inactiveElementColor
             label.font = AppTheme.current.fonts.medium(20)
         }
+        notificationsIntervalTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        notificationsIntervalTitleLabel.font = AppTheme.current.fonts.medium(16)
         containerViews.forEach { container in
             container.configureShadow(radius: 4, opacity: 0.1)
             container.backgroundColor = AppTheme.current.colors.foregroundColor
         }
+        doneButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        doneButton.setTitleColor(AppTheme.current.colors.foregroundColor, for: .normal)
     }
+    
+    // MARK: - Private methods
     
     private func updateWeightField() {
         weightField.text = "\(weight)"
     }
     
-    @objc private func onChangeWeight() {
-        guard let text = weightField.text else { return }
-        weight = Int(text) ?? 0
-    }
-    
     private func updateNeededWaterVolume() {
         let fullNeededVolume = WaterVolumeCalculator.calculateNeededWaterVolume(gender: gender, weight: weight, activity: activity).full
         let neededVolume = WaterVolumeCalculator.calculatePureNeededWaterVolume(waterVolume: fullNeededVolume)
-        let neededVolumeInLiters = Double(neededVolume - neededVolume % 100) / 1000
+        let neededVolumeInLiters = round((Double(neededVolume) / 1000) * 10) / 10
         dailyWaterVolumeLabel.text = "\(neededVolumeInLiters)" + "l".localized
+    }
+    
+    private func updateNotificationsAvailability() {
+        notificationsIntervalSwitcher.isEnabled = notificationsEnabled
+        notificationsIntervalSwitcher.alpha = notificationsEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+        notificationsStartTimeContainer.alpha = notificationsEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+        notificationsStartTimeContainer.isUserInteractionEnabled = notificationsEnabled
+        notificationsEndTimeContainer.alpha = notificationsEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+        notificationsEndTimeContainer.isUserInteractionEnabled = notificationsEnabled
+    }
+    
+    private func makeWaterControlModel() -> WaterControl {
+        let fullNeededVolume = WaterVolumeCalculator.calculateNeededWaterVolume(gender: gender, weight: weight, activity: activity).full
+        let neededVolume = WaterVolumeCalculator.calculatePureNeededWaterVolume(waterVolume: fullNeededVolume)
+        return WaterControl(neededVolume: neededVolume,
+                            drunkVolume: [],
+                            lastConfiguredSprintID: sprint.id,
+                            notificationsEnabled: notificationsEnabled,
+                            notificationsInterval: notificationsInterval,
+                            notificationsStartTime: notificationsStartDate,
+                            notificationsEndTime: notificationsEndDate)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+}
+
+private final class NotificationsTimeHandler: NotificationTimePickerOutput {
+    
+    var onChangeDate: ((Date) -> Void)?
+    var date: Date
+    
+    init(date: Date) {
+        self.date = date
+    }
+    
+    func didChangeHours(to hours: Int) {
+        date => hours.asHours
+        onChangeDate?(date)
+    }
+    
+    func didChangeMinutes(to minutes: Int) {
+        date => minutes.asMinutes
+        onChangeDate?(date)
     }
     
 }
@@ -178,6 +347,7 @@ private enum Activity: Int {
 private final class WaterVolumeCalculator {
     
     static func calculateNeededWaterVolume(gender: Gender, weight: Int, activity: Activity) -> (rest: Milliliters, full: Milliliters) {
+        guard weight > 0 else { return (0, 0) }
         let restVaterVolume = weight * gender.waterVolumePerKilogram
         let fullWaterVolume = restVaterVolume + Int(activity.averageTrainingHoursPerDay * Double(gender.waterVolumePerTrainingHour))
         return (restVaterVolume, fullWaterVolume)

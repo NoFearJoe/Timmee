@@ -21,7 +21,7 @@ final class WaterControlViewController: UIViewController {
     
     private lazy var waterControlLoader = WaterControlLoader(provider: waterControlService)
     
-    var sprintID: String!
+    var sprint: Sprint!
     
     private var waterControl: WaterControl? {
         didSet {
@@ -41,7 +41,7 @@ final class WaterControlViewController: UIViewController {
         
         updateProgress()
         
-        waterControlLoader.loadWaterControl(sprintID: sprintID) { state in
+        waterControlLoader.loadWaterControl(sprintID: sprint.id) { state in
             switch state {
             case .notConfigured:
                 showPlaceholder()
@@ -53,6 +53,15 @@ final class WaterControlViewController: UIViewController {
                 hidePlaceholder()
                 self.waterControl = waterControl
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowWaterControlConfiguration" {
+            guard let navigationController = segue.destination as? UINavigationController, let viewController = navigationController.viewControllers.first as? WaterControlConfigurationViewController else { return }
+            viewController.sprint = sprint
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import TasksKit
+import Workset
 
 typealias Sprint = List
 
@@ -21,6 +22,10 @@ extension Sprint {
             tasksCount: 0,
             isFavorite: false,
             creationDate: Date().nextDay.startOfDay)
+    }
+    
+    var endDate: Date {
+        return creationDate + Constants.sprintDuration.asWeeks
     }
     
 }

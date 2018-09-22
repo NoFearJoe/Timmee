@@ -200,7 +200,7 @@ private extension SprintCreationViewController {
     
     func updateNotificationInfoForAllTargetsAndHabits(completion: @escaping ([Task]) -> Void) {
         let targetsAndHabits = getTasks(listID: sprint.id)
-        let repeatEndingDate = sprint.creationDate + Constants.sprintDuration.asWeeks
+        let repeatEndingDate = sprint.endDate
         targetsAndHabits.forEach {
             guard $0.notificationDate != nil else { return }
             let notificationHour = $0.notificationDate?.hours ?? 0

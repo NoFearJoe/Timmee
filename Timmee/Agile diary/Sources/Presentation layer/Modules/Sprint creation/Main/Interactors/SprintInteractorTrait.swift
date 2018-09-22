@@ -24,7 +24,7 @@ extension SprintInteractorTrait {
     func getCurrentSprint() -> Sprint? {
         let existingSprints = sprintsService.fetchLists()
         return existingSprints.first(where: { sprint in
-            sprint.creationDate <= Date().startOfDay && (sprint.creationDate + Constants.sprintDuration.asWeeks) >= Date().endOfDay
+            sprint.creationDate <= Date().startOfDay && sprint.endDate >= Date().endOfDay
         })
     }
     

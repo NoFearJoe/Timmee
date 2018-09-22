@@ -37,7 +37,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         didSet {
             hidePlaceholder()
             contentViewController.sprintID = sprint.id
-            waterControlViewController.sprintID = sprint.id
+            waterControlViewController.sprint = sprint
             updateHeaderSubtitle(sprint: sprint)
         }
     }
@@ -135,7 +135,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     private func updateHeaderSubtitle(sprint: Sprint) {
-        let daysRemaining = Date().days(before: (sprint.creationDate + Constants.sprintDuration.asWeeks))
+        let daysRemaining = Date().days(before: sprint.endDate)
         let subtitle = NSMutableAttributedString()
         subtitle.append(NSAttributedString(string: "Sprint".localized, attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         subtitle.append(NSAttributedString(string: " #\(sprint.sortPosition)", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))

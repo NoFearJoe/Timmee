@@ -35,7 +35,11 @@ extension WaterControlService: WaterControlProvider {
     public func createWaterControl() -> WaterControl {
         return WaterControl(neededVolume: 0,
                             drunkVolume: [],
-                            lastConfiguredSprintID: "")
+                            lastConfiguredSprintID: "",
+                            notificationsEnabled: false,
+                            notificationsInterval: 2,
+                            notificationsStartTime: Date(),
+                            notificationsEndTime: Date())
     }
     
     public func fetchWaterControl() -> WaterControl? {

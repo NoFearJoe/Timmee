@@ -14,6 +14,10 @@ public extension WaterControlEntity {
         neededVolume = Int32(waterControl.neededVolume)
         drunkVolumes = waterControl.drunkVolume as NSArray
         lastConfiguredSprintID = waterControl.lastConfiguredSprintID
+        notificationsEnabled = waterControl.notificationsEnabled
+        notificationsInterval = Int16(waterControl.notificationsInterval)
+        notificationsStartTime = waterControl.notificationsStartTime
+        notificationsEndTime = waterControl.notificationsEndTime
     }
     
 }
