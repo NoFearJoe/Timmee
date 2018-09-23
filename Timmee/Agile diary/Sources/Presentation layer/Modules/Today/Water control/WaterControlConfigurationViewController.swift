@@ -128,7 +128,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
     }
     
     @objc private func onSwitchNotificationsInterval() {
-        notificationsInterval = notificationsSwitcher.selectedItemIndex + 1
+        notificationsInterval = notificationsIntervalSwitcher.selectedItemIndex + 1
     }
     
     @objc private func onChangeWeight() {
@@ -229,6 +229,8 @@ final class WaterControlConfigurationViewController: BaseViewController {
             container.configureShadow(radius: 4, opacity: 0.1)
             container.backgroundColor = AppTheme.current.colors.foregroundColor
         }
+        notificationsStartTimeTitleLabel.font = AppTheme.current.fonts.medium(16)
+        notificationsEndTimeTitleLabel.font = AppTheme.current.fonts.medium(16)
         doneButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
         doneButton.setTitleColor(AppTheme.current.colors.foregroundColor, for: .normal)
     }
@@ -259,7 +261,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
         let fullNeededVolume = WaterVolumeCalculator.calculateNeededWaterVolume(gender: gender, weight: weight, activity: activity).full
         let neededVolume = WaterVolumeCalculator.calculatePureNeededWaterVolume(waterVolume: fullNeededVolume)
         return WaterControl(neededVolume: neededVolume,
-                            drunkVolume: [],
+                            drunkVolume: [:],
                             lastConfiguredSprintID: sprint.id,
                             notificationsEnabled: notificationsEnabled,
                             notificationsInterval: notificationsInterval,

@@ -10,7 +10,7 @@ import struct Foundation.Date
 
 public final class WaterControl {
     public var neededVolume: Int
-    public var drunkVolume: [(Date, Int)]
+    public var drunkVolume: [Date: Int]
     public var lastConfiguredSprintID: String
     public var notificationsEnabled: Bool
     public var notificationsInterval: Int
@@ -18,7 +18,7 @@ public final class WaterControl {
     public var notificationsEndTime: Date
     
     public init(neededVolume: Int,
-                drunkVolume: [(Date, Int)],
+                drunkVolume: [Date: Int],
                 lastConfiguredSprintID: String,
                 notificationsEnabled: Bool,
                 notificationsInterval: Int,
@@ -35,7 +35,7 @@ public final class WaterControl {
     
     public init(entity: WaterControlEntity) {
         neededVolume = Int(entity.neededVolume)
-        drunkVolume = entity.drunkVolumes as? [(Date, Int)] ?? []
+        drunkVolume = entity.drunkVolumes as? [Date: Int] ?? [:]
         lastConfiguredSprintID = entity.lastConfiguredSprintID ?? ""
         notificationsEnabled = entity.notificationsEnabled
         notificationsInterval = Int(entity.notificationsInterval)

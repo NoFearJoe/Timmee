@@ -172,15 +172,21 @@ public final class TaskSchedulerService {
         
         guard waterControl.notificationsEnabled else { return }
         
-        // TODO: Schedule by interval
-        
-        scheduleLocalNotification(withID: "water_control",
-                                  title: "water_time_title".localized,
-                                  message: "water_time_subtitle".localized,
-                                  at: startDate,
-                                  repeatUnit: .day,
-                                  end: endDate,
-                                  location: nil)
+        let endHours = waterControl.notificationsEndTime.hours
+        var date = startDate.compare(Date().startOfDay) == .orderedDescending ? startDate : Date().startOfDay
+        date => waterControl.notificationsStartTime.hours.asHours
+        date => waterControl.notificationsStartTime.minutes.asMinutes
+        while date.hours < endHours {
+            scheduleLocalNotification(withID: "water_control",
+                                      title: "water_time_title".localized,
+                                      message: "water_time_subtitle".localized,
+                                      at: date,
+                                      repeatUnit: .day,
+                                      end: endDate,
+                                      location: nil,
+                                      category: "water_control")
+            date = date + waterControl.notificationsInterval.asHours
+        }
     }
     
     public func removeNotifications(for task: Task) {
@@ -254,6 +260,7 @@ private extension TaskSchedulerService {
                                    repeatUnit: NSCalendar.Unit?,
                                    end: Date?,
                                    location: CLLocation?,
+                                   category: String = "task",
                                    isDeferred: Bool = false) {
         let notification = UILocalNotification()
         notification.fireDate = date?.startOfMinute
@@ -262,7 +269,7 @@ private extension TaskSchedulerService {
         notification.alertBody = message
         notification.repeatCalendar = NSCalendar.current
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.category = "task"
+        notification.category = category
         
         if let unit = repeatUnit {
             notification.repeatInterval = unit

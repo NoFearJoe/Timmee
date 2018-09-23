@@ -49,9 +49,11 @@ final class WaterControlViewController: UIViewController {
             case let .configured(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
+                waterControlConfigurationButton.isHidden = true
             case let .outdated(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
+                waterControlConfigurationButton.isHidden = true 
             }
         }
     }
@@ -75,7 +77,7 @@ private extension WaterControlViewController {
     
     func updateWaterControlUI() {
         guard let waterControl = waterControl else { return }
-        let todayDrunkVolume = waterControl.drunkVolume.first(where: { $0.0.isWithinSameDay(of: Date()) })?.1 ?? 0
+        let todayDrunkVolume = waterControl.drunkVolume[Date().startOfDay] ?? 0
         print(todayDrunkVolume)
     }
     

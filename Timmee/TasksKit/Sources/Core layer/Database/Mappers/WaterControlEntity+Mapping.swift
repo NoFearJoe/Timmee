@@ -12,7 +12,7 @@ public extension WaterControlEntity {
     
     public func map(from waterControl: WaterControl) {
         neededVolume = Int32(waterControl.neededVolume)
-        drunkVolumes = waterControl.drunkVolume as NSArray
+        drunkVolumes = waterControl.drunkVolume as NSDictionary
         lastConfiguredSprintID = waterControl.lastConfiguredSprintID
         notificationsEnabled = waterControl.notificationsEnabled
         notificationsInterval = Int16(waterControl.notificationsInterval)

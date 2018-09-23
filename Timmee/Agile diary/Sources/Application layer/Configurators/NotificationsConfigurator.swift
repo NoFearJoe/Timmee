@@ -25,11 +25,13 @@ import protocol UserNotifications.UNUserNotificationCenterDelegate
 
 enum NotificationCategories: String {
     case task
+    case waterControl = "water_control"
 }
 
 enum NotificationAction {
     case done // Закончить задачу
     case remindAfter(Int) // Напомнить позже
+    case drunkWater(Int) // Выпил воды (в миллилитрах)
     
     init?(rawValue: String) {
         if rawValue == "done" {
@@ -37,6 +39,9 @@ enum NotificationAction {
         } else if rawValue.starts(with: "remind_after") {
             let minutes = Int(String(rawValue[rawValue.index(rawValue.startIndex, offsetBy: 13)...])) ?? 0
             self = .remindAfter(minutes)
+        } else if rawValue.starts(with: "drunk_water") {
+            let milliliters = Int(String(rawValue[rawValue.index(rawValue.startIndex, offsetBy: 12)...])) ?? 0
+            self = .drunkWater(milliliters)
         } else {
             return nil
         }
@@ -45,7 +50,8 @@ enum NotificationAction {
     var rawValue: String {
         switch self {
         case .done: return "done"
-        case .remindAfter(let minutes): return "remind_after_\(minutes)"
+        case let .remindAfter(minutes): return "remind_after_\(minutes)"
+        case let .drunkWater(milliliters): return "drunk_water_\(milliliters)"
         }
     }
     
@@ -90,8 +96,14 @@ final class NotificationsConfigurator {
                                                             makeRemindLaterAction(minutes: 60)],
                                                   intentIdentifiers: [],
                                                   options: [])
+        let waterControlCategory = UNNotificationCategory(identifier: NotificationCategories.waterControl.rawValue,
+                                                          actions: [makeDrunkWaterAction(milliliters: 100),
+                                                                    makeDrunkWaterAction(milliliters: 200),
+                                                                    makeDrunkWaterAction(milliliters: 300)],
+                                                          intentIdentifiers: [],
+                                                          options: [])
         
-        return Set(arrayLiteral: taskCategory)
+        return Set([taskCategory, waterControlCategory])
     }
     
     private static func makeDoneAction() -> UNNotificationAction {
@@ -103,6 +115,12 @@ final class NotificationsConfigurator {
     private static func makeRemindLaterAction(minutes: Int) -> UNNotificationAction {
         return UNNotificationAction(identifier: NotificationAction.remindAfter(minutes).rawValue,
                                     title: NotificationAction.remindAfter(minutes).rawValue.localized,
+                                    options: [])
+    }
+    
+    private static func makeDrunkWaterAction(milliliters: Int) -> UNNotificationAction {
+        return UNNotificationAction(identifier: NotificationAction.drunkWater(milliliters).rawValue,
+                                    title: NotificationAction.drunkWater(milliliters).rawValue.localized,
                                     options: [])
     }
     

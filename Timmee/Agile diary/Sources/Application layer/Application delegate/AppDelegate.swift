@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
+        ServicesAssembly.shared.waterControlService.removeWaterControl(completion: nil)
         
         if let window = window {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)

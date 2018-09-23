@@ -20,18 +20,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if let endDate = notification.request.content.userInfo["end_date"] as? Date {
+            if endDate <= Date() {
+                center.removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
+                center.removePendingNotificationRequests(withIdentifiers: [notification.request.identifier])
+            }
+        }
+        
         if notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
             if let taskID = notification.request.content.userInfo["task_id"] as? String {
                 updateDueDateAndNotificationDate(ofTaskWithID: taskID)
             }
             
-            if let endDate = notification.request.content.userInfo["end_date"] as? Date {
-                if endDate <= Date() {
-                    center.removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
-                    center.removePendingNotificationRequests(withIdentifiers: [notification.request.identifier])
-                }
-            }
-            
+            completionHandler([.alert, .sound])
+        } else if notification.request.content.categoryIdentifier == NotificationCategories.waterControl.rawValue {
             completionHandler([.alert, .sound])
         }
     }
@@ -39,14 +41,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
-            if let endDate = response.notification.request.content.userInfo["end_date"] as? Date {
-                if endDate <= Date() {
-                    center.removeDeliveredNotifications(withIdentifiers: [response.notification.request.identifier])
-                    center.removePendingNotificationRequests(withIdentifiers: [response.notification.request.identifier])
-                }
+        if let endDate = response.notification.request.content.userInfo["end_date"] as? Date {
+            if endDate <= Date() {
+                center.removeDeliveredNotifications(withIdentifiers: [response.notification.request.identifier])
+                center.removePendingNotificationRequests(withIdentifiers: [response.notification.request.identifier])
             }
-            
+        }
+        
+        if response.notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
             guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
                 completionHandler()
                 return
@@ -56,6 +58,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                              taskID: taskID,
                              fireDate: response.notification.date,
                              completion: completionHandler)
+        } else if response.notification.request.content.categoryIdentifier == NotificationCategories.waterControl.rawValue {
+            handleWaterControlAction(withIdentifier: response.actionIdentifier,
+                                     fireDate: response.notification.date,
+                                     completion: completionHandler)
         }
     }
     
@@ -76,6 +82,25 @@ private extension AppDelegate {
                 }
             case .remindAfter(let minutes):
                 deferNotification(ofTaskWithID: taskID, by: minutes, fireDate: fireDate, completion: completion)
+            default: completion()
+            }
+        } else {
+            completion()
+        }
+    }
+    
+    func handleWaterControlAction(withIdentifier identifier: String, fireDate: Date, completion: @escaping () -> Void) {
+        if let action = NotificationAction(rawValue: identifier) {
+            switch action {
+            case let .drunkWater(milliliters):
+                guard let waterControl = ServicesAssembly.shared.waterControlService.fetchWaterControl() else { completion(); return }
+                if let todayDrunk = waterControl.drunkVolume[fireDate.startOfDay] {
+                    waterControl.drunkVolume[fireDate.startOfDay] = todayDrunk + milliliters
+                } else {
+                    waterControl.drunkVolume[fireDate.startOfDay] = milliliters
+                }
+                ServicesAssembly.shared.waterControlService.createOrUpdateWaterControl(waterControl, completion: completion)
+            default: completion()
             }
         } else {
             completion()

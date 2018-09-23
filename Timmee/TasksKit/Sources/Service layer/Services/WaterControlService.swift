@@ -26,6 +26,7 @@ public protocol WaterControlEntityBackgroundProvider: class {
 
 public protocol WaterControlManager: class {
     func createOrUpdateWaterControl(_ waterControl: WaterControl, completion: (() -> Void)?)
+    func removeWaterControl(completion: (() -> Void)?)
 }
 
 public final class WaterControlService {}
@@ -34,7 +35,7 @@ extension WaterControlService: WaterControlProvider {
     
     public func createWaterControl() -> WaterControl {
         return WaterControl(neededVolume: 0,
-                            drunkVolume: [],
+                            drunkVolume: [:],
                             lastConfiguredSprintID: "",
                             notificationsEnabled: false,
                             notificationsInterval: 2,
@@ -57,6 +58,19 @@ extension WaterControlService: WaterControlManager {
                 save()
             } else if let newWaterControl = self.createWaterControlEntity() {
                 newWaterControl.map(from: waterControl)
+                save()
+            } else {
+                DispatchQueue.main.async { completion?() }
+            }
+        }) { _ in
+            DispatchQueue.main.async { completion?() }
+        }
+    }
+    
+    public func removeWaterControl(completion: (() -> Void)?) {
+        Database.localStorage.write({ (context, save) in
+            if let waterControl = self.fetchWaterControlEntityInBakground() {
+                context.delete(waterControl)
                 save()
             } else {
                 DispatchQueue.main.async { completion?() }

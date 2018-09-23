@@ -33,7 +33,64 @@
                     <view key="view" contentMode="scaleToFill" id="sXN-Fl-dmU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-rc-FA7">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="cDR-ZJ-bPG">
+                                    <size key="itemSize" width="345" height="256"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HabitsChartCell" id="fQ8-cd-CZs" customClass="HabitsChartCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15" width="345" height="256"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="256"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привычки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-kA-E4m">
+                                                    <rect key="frame" x="8" y="8" width="329" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzu-CN-XWl" customClass="BarChartView" customModule="Charts">
+                                                    <rect key="frame" x="8" y="40" width="329" height="208"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Feg-kA-E4m" secondAttribute="trailing" constant="8" id="0jg-0D-yqC"/>
+                                            <constraint firstItem="uzu-CN-XWl" firstAttribute="leading" secondItem="fQ8-cd-CZs" secondAttribute="leading" constant="8" id="28G-n2-WUU"/>
+                                            <constraint firstItem="Feg-kA-E4m" firstAttribute="top" secondItem="fQ8-cd-CZs" secondAttribute="top" constant="8" id="6uZ-QE-BDt"/>
+                                            <constraint firstItem="Feg-kA-E4m" firstAttribute="leading" secondItem="fQ8-cd-CZs" secondAttribute="leading" constant="8" id="Qee-a4-3xC"/>
+                                            <constraint firstAttribute="trailing" secondItem="uzu-CN-XWl" secondAttribute="trailing" constant="8" id="RM6-ME-g79"/>
+                                            <constraint firstAttribute="bottom" secondItem="uzu-CN-XWl" secondAttribute="bottom" constant="8" id="SVb-ye-v90"/>
+                                            <constraint firstItem="uzu-CN-XWl" firstAttribute="top" secondItem="Feg-kA-E4m" secondAttribute="bottom" constant="8" id="WKg-fB-Tgt"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="chartView" destination="uzu-CN-XWl" id="b8P-r2-Pu5"/>
+                                            <outlet property="titleLabel" destination="Feg-kA-E4m" id="L3N-Qf-Tw7"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="rC1-gM-x1M" id="Ld2-hG-Zg8"/>
+                                    <outlet property="delegate" destination="rC1-gM-x1M" id="gkx-PT-uES"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qsr-ad-LLS" firstAttribute="bottom" secondItem="CIu-rc-FA7" secondAttribute="bottom" id="Cjz-cH-u7U"/>
+                            <constraint firstItem="CIu-rc-FA7" firstAttribute="leading" secondItem="qsr-ad-LLS" secondAttribute="leading" id="Olp-Wx-EbW"/>
+                            <constraint firstItem="CIu-rc-FA7" firstAttribute="top" secondItem="qsr-ad-LLS" secondAttribute="top" id="RdQ-ZK-oRr"/>
+                            <constraint firstItem="qsr-ad-LLS" firstAttribute="trailing" secondItem="CIu-rc-FA7" secondAttribute="trailing" id="s9t-fj-588"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qsr-ad-LLS"/>
                     </view>
                     <toolbarItems/>
@@ -44,11 +101,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="CIu-rc-FA7" id="hsH-T5-Cty"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMl-m7-LyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="148"/>
+            <point key="canvasLocation" x="384.80000000000001" y="147.97601199400302"/>
         </scene>
     </scenes>
     <resources>

@@ -18,6 +18,7 @@ target 'Agile diary' do
     
   pod 'SwipeCellKit'
   pod 'Foto'
+  pod 'Charts'
   
   pod 'Fabric'
   pod 'Crashlytics'

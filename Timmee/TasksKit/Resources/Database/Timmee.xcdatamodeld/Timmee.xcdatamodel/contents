@@ -91,7 +91,7 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="timeTemplate" inverseEntity="TaskEntity" syncable="YES"/>
     </entity>
     <entity name="WaterControlEntity" representedClassName="WaterControlEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="drunkVolumes" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="drunkVolumes" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
         <attribute name="lastConfiguredSprintID" attributeType="String" syncable="YES"/>
         <attribute name="neededVolume" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
