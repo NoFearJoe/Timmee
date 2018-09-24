@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIComponents
 
 /*
  Есть 2 кейса при редактировании спринта:

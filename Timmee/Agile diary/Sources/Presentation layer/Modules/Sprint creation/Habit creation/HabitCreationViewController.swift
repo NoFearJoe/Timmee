@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import UIComponents
 
 final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     @IBOutlet private var headerView: LargeHeaderView!
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private var titleField: GrowingTextView!
     @IBOutlet private var dueDaysTitleLabel: UILabel!
     @IBOutlet private var dayButtons: [SelectableButton]!
@@ -61,6 +63,12 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         if titleField.textView.text.isEmpty {
             titleField.becomeFirstResponder()
         }
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        view.backgroundColor = AppTheme.current.colors.foregroundColor
+        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {

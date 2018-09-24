@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIComponents
 import enum MessageUI.MFMailComposeResult
 import class MessageUI.MFMailComposeViewController
 import protocol MessageUI.MFMailComposeViewControllerDelegate

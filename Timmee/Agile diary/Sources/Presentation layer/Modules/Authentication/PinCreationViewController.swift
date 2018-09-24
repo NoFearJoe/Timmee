@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIComponents
 import class UIKit.UILabel
 import class UIKit.UIBarButtonItem
 import class UIKit.UIViewController

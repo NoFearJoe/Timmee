@@ -57,7 +57,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzu-CN-XWl" customClass="BarChartView" customModule="Charts">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzu-CN-XWl" customClass="LineChartView" customModule="Charts">
                                                     <rect key="frame" x="8" y="40" width="329" height="208"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
@@ -75,6 +75,39 @@
                                         <connections>
                                             <outlet property="chartView" destination="uzu-CN-XWl" id="b8P-r2-Pu5"/>
                                             <outlet property="titleLabel" destination="Feg-kA-E4m" id="L3N-Qf-Tw7"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WaterChartCell" id="jiY-qN-YcQ" customClass="WaterChartCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="286" width="345" height="256"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="256"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вода" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-dE-Nnr">
+                                                    <rect key="frame" x="8" y="8" width="329" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LG-j9-diP" customClass="BarChartView" customModule="Charts">
+                                                    <rect key="frame" x="8" y="40" width="329" height="208"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="hVH-dE-Nnr" secondAttribute="trailing" constant="8" id="KsX-aZ-h56"/>
+                                            <constraint firstItem="hVH-dE-Nnr" firstAttribute="leading" secondItem="jiY-qN-YcQ" secondAttribute="leading" constant="8" id="Mro-fb-lgJ"/>
+                                            <constraint firstItem="2LG-j9-diP" firstAttribute="leading" secondItem="jiY-qN-YcQ" secondAttribute="leading" constant="8" id="cSr-vl-Hqv"/>
+                                            <constraint firstAttribute="bottom" secondItem="2LG-j9-diP" secondAttribute="bottom" constant="8" id="gQJ-7C-KQ9"/>
+                                            <constraint firstItem="hVH-dE-Nnr" firstAttribute="top" secondItem="jiY-qN-YcQ" secondAttribute="top" constant="8" id="lWA-cf-k0X"/>
+                                            <constraint firstItem="2LG-j9-diP" firstAttribute="top" secondItem="hVH-dE-Nnr" secondAttribute="bottom" constant="8" id="pQo-sq-aPh"/>
+                                            <constraint firstAttribute="trailing" secondItem="2LG-j9-diP" secondAttribute="trailing" constant="8" id="zFZ-nA-9s2"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="chartView" destination="2LG-j9-diP" id="eQ8-HL-cp1"/>
+                                            <outlet property="titleLabel" destination="hVH-dE-Nnr" id="ntz-lb-k0H"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

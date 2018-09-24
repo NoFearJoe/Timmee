@@ -830,6 +830,7 @@
                         <viewLayoutGuide key="safeArea" id="ZnJ-sB-7Bl"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="4Pt-0Q-2oz" id="8MD-Fk-YV4"/>
                         <outlet property="dueDaysTitleLabel" destination="1lM-7I-P7A" id="xZu-Af-ydB"/>
                         <outlet property="headerView" destination="0zP-as-NhU" id="j8r-qn-opS"/>
                         <outlet property="linkField" destination="bDK-LX-8kL" id="FIc-gY-xWc"/>

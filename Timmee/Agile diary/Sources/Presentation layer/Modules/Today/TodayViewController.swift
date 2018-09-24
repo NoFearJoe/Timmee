@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIComponents
 
 protocol TodayViewSectionProgressListener: class {
     func didChangeProgress(for section: SprintSection, to progress: CGFloat)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIComponents
 
 protocol EditorContainerInput: class {
     func setViewController(_ viewController: UIViewController)

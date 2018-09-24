@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIComponents
 
 final class WaterControlViewController: UIViewController {
     

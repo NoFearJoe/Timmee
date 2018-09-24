@@ -10,18 +10,27 @@ import UIKit
 
 enum Charts {
     case habits
+    case water
     
-    static let all: [Charts] = [habits]
+    static var all: [Charts] {
+        if ProVersionPurchase.shared.isPurchased() {
+            return [habits, water]
+        } else {
+            return [habits]
+        }
+    }
     
     var title: String {
         switch self {
         case .habits: return "habits".localized
+        case .water: return "water".localized
         }
     }
     
     var cellType: BaseChartCell.Type {
         switch self {
         case .habits: return HabitsChartCell.self
+        case .water: return WaterChartCell.self
         }
     }
 }

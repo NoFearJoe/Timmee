@@ -1,58 +1,47 @@
 //
-//  HabitsChartCell.swift
+//  WaterChartCell.swift
 //  Agile diary
 //
-//  Created by Илья Харабет on 23.09.2018.
+//  Created by i.kharabet on 24.09.2018.
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
 import UIKit
 import Charts
 
-final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHabitsInteractorTrait {
+final class WaterChartCell: BaseChartCell {
     
-    let sprintsService = ServicesAssembly.shared.listsService
-    let tasksService = ServicesAssembly.shared.tasksService
+    let waterControlService = ServicesAssembly.shared.waterControlService
     
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
-            titleLabel.text = "habits".localized
+            titleLabel.text = "water".localized
             titleLabel.textColor = AppTheme.current.colors.activeElementColor
         }
     }
-    @IBOutlet private var chartView: LineChartView! {
+    
+    @IBOutlet private var chartView: BarChartView! {
         didSet { setupChartView() }
     }
     
     override func update() {
-        guard let currentSprint = getCurrentSprint() else { return } // TODO: Handle
-        let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
+        guard let waterControl = waterControlService.fetchWaterControl() else { return }
         
-        var chartEntries: [ChartDataEntry] = []
+        var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []
         for i in stride(from: 6, through: 0, by: -1) {
             let date = (Date() - i.asDays).startOfDay
-            let completedHabits = habits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
-            chartEntries.append(ChartDataEntry(x: Double(6 - i), y: Double(completedHabits)))
+            let drunkVolume = Double((waterControl.drunkVolume[date] ?? 0)) / 1000
+            chartEntries.append(BarChartDataEntry(x: Double(6 - i), y: drunkVolume))
             xAxisTitles.append(date.asShortWeekday)
         }
-        let dataSet = LineChartDataSet(values: chartEntries, label: nil)
+        let dataSet = BarChartDataSet(values: chartEntries, label: nil)
         dataSet.label = nil
         dataSet.colors = [AppTheme.current.colors.mainElementColor]
         dataSet.valueColors = [AppTheme.current.colors.mainElementColor]
-        dataSet.circleRadius = 4
-        dataSet.circleColors = [AppTheme.current.colors.mainElementColor]
-        dataSet.circleHoleRadius = 0
         dataSet.drawValuesEnabled = false
-        dataSet.drawFilledEnabled = true
-        if let fillGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
-                                         colors: [AppTheme.current.colors.mainElementColor.cgColor,
-                                                  AppTheme.current.colors.mainElementColor.withAlphaComponent(0).cgColor] as CFArray,
-                                         locations: [1, 0]) {
-            dataSet.fill = Fill.init(linearGradient: fillGradient, angle: 90)
-        }
         
-        let limitLine = ChartLimitLine(limit: Double(habits.count))
+        let limitLine = ChartLimitLine(limit: Double(waterControl.neededVolume / 1000))
         limitLine.lineColor = AppTheme.current.colors.inactiveElementColor
         limitLine.lineDashLengths = [4, 4]
         limitLine.lineWidth = 1
@@ -62,9 +51,9 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
             xAxisTitles[Int(i)]
         })
         
-        chartView.leftAxis.axisMaximum = Double(habits.count + 1)
+        chartView.leftAxis.axisMaximum = Double((waterControl.neededVolume / 1000) + 1)
         
-        chartView.data = LineChartData(dataSet: dataSet)
+        chartView.data = BarChartData(dataSet: dataSet)
         chartView.notifyDataSetChanged()
     }
     
@@ -73,10 +62,12 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
     }
     
     private func setupChartView() {
+        chartView.drawBarShadowEnabled = false
+        chartView.drawValueAboveBarEnabled = false
         chartView.drawGridBackgroundEnabled = false
         chartView.drawMarkers = false
         chartView.noDataFont = AppTheme.current.fonts.medium(14)
-        chartView.noDataText = "habits_chart_no_data".localized
+        chartView.noDataText = "water_chart_no_data".localized
         chartView.noDataTextColor = AppTheme.current.colors.inactiveElementColor
         chartView.chartDescription = nil
         

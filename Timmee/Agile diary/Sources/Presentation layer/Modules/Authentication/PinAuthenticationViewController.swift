@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIComponents
 import class UIKit.UILabel
 import class UIKit.UIDevice
 import enum UIKit.UIStatusBarStyle

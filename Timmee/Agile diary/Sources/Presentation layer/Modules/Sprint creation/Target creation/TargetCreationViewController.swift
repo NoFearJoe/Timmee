@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIComponents
 
 enum TargetImportancy: Int {
     case low = 0
@@ -87,6 +88,12 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
         if titleField.textView.text.isEmpty {
             titleField.becomeFirstResponder()
         }
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        view.backgroundColor = AppTheme.current.colors.foregroundColor
+        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
