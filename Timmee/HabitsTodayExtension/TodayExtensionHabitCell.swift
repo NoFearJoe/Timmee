@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Workset
 
 final class TodayExtensionHabitCell: UITableViewCell {
     
@@ -25,28 +26,28 @@ final class TodayExtensionHabitCell: UITableViewCell {
         super.awakeFromNib()
         containerView.backgroundColor = .white
         containerView.layer.cornerRadius = 8
-        titleLabel.textColor = AppTheme.current.colors.activeElementColor
-        titleLabel.font = AppTheme.current.fonts.medium(20)
-        subtitleLabel.font = AppTheme.current.fonts.regular(14)
+        titleLabel.textColor = UIColor(rgba: "444444")
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        subtitleLabel.font = UIFont.systemFont(ofSize: 14)
     }
     
     func configure(habit: Habit) {
-        checkbox.isChecked = habit.isDone(at: Date())
-        containerView.alpha = habit.isDone(at: Date()) ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
+        checkbox.isChecked = habit.isDone(at: Date.now)
+        containerView.alpha = habit.isDone(at: Date.now) ? 0.5 : 1
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()
         if let notificationDate = habit.notificationDate {
             attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString,
-                                                         attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+                                                         attributes: [.foregroundColor: UIColor(rgba: "AAAAAA")]))
         }
         if !habit.link.trimmed.isEmpty {
             if habit.notificationDate != nil {
                 attributedSubtitle.append(NSAttributedString(string: ", ",
-                                                             attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+                                                             attributes: [.foregroundColor: UIColor(rgba: "AAAAAA")]))
             }
             attributedSubtitle.append(NSAttributedString(string: habit.link.trimmed,
-                                                         attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
+                                                         attributes: [.foregroundColor: UIColor(rgba: "29C3FE")]))
         }
         subtitleLabel.attributedText = attributedSubtitle
     }

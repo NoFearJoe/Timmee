@@ -85,13 +85,13 @@ final class WaterControlConfigurationViewController: BaseViewController {
     private var notificationsInterval: Int = 2
     
     private var notificationsStartDate: Date = {
-        var date = Date()
+        var date = Date.now
         date => 8.asHours
         return date.startOfHour
     }()
     
     private var notificationsEndDate: Date = {
-        var date = Date()
+        var date = Date.now
         date => 22.asHours
         return date.startOfHour
     }()
@@ -244,7 +244,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
     private func updateNeededWaterVolume() {
         let fullNeededVolume = WaterVolumeCalculator.calculateNeededWaterVolume(gender: gender, weight: weight, activity: activity).full
         let neededVolume = WaterVolumeCalculator.calculatePureNeededWaterVolume(waterVolume: fullNeededVolume)
-        let neededVolumeInLiters = round((Double(neededVolume) / 1000) * 10) / 10
+        let neededVolumeInLiters = WaterVolumeCalculator.roundWaterWolume(volume: neededVolume)
         dailyWaterVolumeLabel.text = "\(neededVolumeInLiters)" + "l".localized
     }
     
@@ -346,17 +346,21 @@ private enum Activity: Int {
     }
 }
 
-private final class WaterVolumeCalculator {
+final class WaterVolumeCalculator {
     
-    static func calculateNeededWaterVolume(gender: Gender, weight: Int, activity: Activity) -> (rest: Milliliters, full: Milliliters) {
+    fileprivate static func calculateNeededWaterVolume(gender: Gender, weight: Int, activity: Activity) -> (rest: Milliliters, full: Milliliters) {
         guard weight > 0 else { return (0, 0) }
         let restVaterVolume = weight * gender.waterVolumePerKilogram
         let fullWaterVolume = restVaterVolume + Int(activity.averageTrainingHoursPerDay * Double(gender.waterVolumePerTrainingHour))
         return (restVaterVolume, fullWaterVolume)
     }
     
-    static func calculatePureNeededWaterVolume(waterVolume: Milliliters) -> Milliliters {
+    fileprivate static func calculatePureNeededWaterVolume(waterVolume: Milliliters) -> Milliliters {
         return Int(Double(waterVolume) * 0.8)
+    }
+    
+    static func roundWaterWolume(volume: Int) -> Double {
+        return round((Double(volume) / 1000) * 10) / 10
     }
     
 }

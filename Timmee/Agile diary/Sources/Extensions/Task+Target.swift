@@ -28,7 +28,7 @@ extension Target {
                   attachments: [],
                   isDone: false,
                   inProgress: false,
-                  creationDate: Date(),
+                  creationDate: Date.now,
                   doneDates: [])
     }
     

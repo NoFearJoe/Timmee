@@ -24,9 +24,9 @@ final class DueDatePicker: UIViewController {
     
     @IBOutlet private var calendarView: CalendarView!
     
-    private let calendar = Calendar(start: Date(), shift: -1, daysCount: 357)
+    private let calendar = Calendar(start: Date.now, shift: -1, daysCount: 357)
     
-    var minimumAvailableDate: Date = Date() {
+    var minimumAvailableDate: Date = Date.now {
         didSet {
             calendar.changeStartDate(to: minimumAvailableDate)
             calendarView.calendar = (calendar, calendar.monthDataSource())

@@ -55,6 +55,9 @@
 		0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
 		0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
 		0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
+		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
+		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
+		0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
 		0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
 		0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
 		0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
@@ -87,7 +90,6 @@
 		0CE883DD215106F000637BD9 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
 		0CE883DE2151073A00637BD9 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
 		0CE883DF2151073D00637BD9 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
-		0CE883E02151074200637BD9 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
 		0CE883E12151079300637BD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
 		0CE883E2215107CE00637BD9 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
 		0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
@@ -209,6 +211,8 @@
 		0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintInteractorTrait.swift; sourceTree = "<group>"; };
 		0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAndHabitInteractorTrait.swift; sourceTree = "<group>"; };
 		0C9365192158F04F00B4EB48 /* WaterChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterChartCell.swift; sourceTree = "<group>"; };
+		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
+		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
 		0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
 		0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsEducationScreen.swift; sourceTree = "<group>"; };
@@ -513,6 +517,7 @@
 				0CDF8D7E21259271001A2F70 /* Task+Habit.swift */,
 				0CDF8D852125B8AB001A2F70 /* Task+Target.swift */,
 				0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */,
+				0C936543215A0B1A00B4EB48 /* Date+Today.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */,
 				0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */,
 				0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */,
+				0C936560215BB0C100B4EB48 /* WaterLevelView.swift */,
 			);
 			path = "Water control";
 			sourceTree = "<group>";
@@ -992,6 +998,7 @@
 				967C328E2157709900B9201A /* BaseChartCell.swift in Sources */,
 				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
+				0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */,
 				0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
@@ -999,6 +1006,7 @@
 				0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */,
+				0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1011,9 +1019,9 @@
 				0CE883E2215107CE00637BD9 /* Checkbox.swift in Sources */,
 				0CE883DF2151073D00637BD9 /* List+Sprint.swift in Sources */,
 				0CE883DE2151073A00637BD9 /* Task+Habit.swift in Sources */,
-				0CE883E02151074200637BD9 /* AppTheme.swift in Sources */,
 				0CE883E12151079300637BD9 /* Constants.swift in Sources */,
 				0CE883DB215105A400637BD9 /* SprintInteractorTrait.swift in Sources */,
+				0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */,
 				0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */,
 				0C3DA5232153731600CAE635 /* UserProperties.swift in Sources */,
@@ -1269,9 +1277,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TODAY_EXTENSION";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1291,9 +1301,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TODAY_EXTENSION;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

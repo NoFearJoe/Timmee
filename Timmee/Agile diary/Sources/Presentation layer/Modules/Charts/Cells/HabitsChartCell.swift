@@ -31,7 +31,7 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
         var chartEntries: [ChartDataEntry] = []
         var xAxisTitles: [String] = []
         for i in stride(from: 6, through: 0, by: -1) {
-            let date = (Date() - i.asDays).startOfDay
+            let date = (Date.now - i.asDays).startOfDay
             let completedHabits = habits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
             chartEntries.append(ChartDataEntry(x: Double(6 - i), y: Double(completedHabits)))
             xAxisTitles.append(date.asShortWeekday)

@@ -13,6 +13,16 @@ final class WaterControlViewController: UIViewController {
     
     weak var progressListener: TodayViewSectionProgressListener?
     
+    @IBOutlet private var drunkVolumeLabel: UILabel!
+    
+    @IBOutlet private var drinkButtonsContainer: UIView!
+    @IBOutlet private var drink100mlButton: UIButton!
+    @IBOutlet private var drink100mlLabel: UILabel!
+    @IBOutlet private var drink200mlButton: UIButton!
+    @IBOutlet private var drink200mlLabel: UILabel!
+    @IBOutlet private var drink300mlButton: UIButton!
+    @IBOutlet private var drink300mlLabel: UILabel!
+    
     @IBOutlet private var placeholderContainer: UIView!
     @IBOutlet private var waterControlConfigurationButton: UIButton!
     
@@ -30,10 +40,22 @@ final class WaterControlViewController: UIViewController {
         }
     }
     
+    @IBAction private func onTapToDrinkButton(_ button: UIButton) {
+        switch button {
+        case drink100mlButton: addDrunkVolume(milliliters: 100)
+        case drink200mlButton: addDrunkVolume(milliliters: 200)
+        case drink300mlButton: addDrunkVolume(milliliters: 300)
+        default: return
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitialState()
         setupPlaceholder()
+        drink100mlLabel.text = "+100ml".localized
+        drink200mlLabel.text = "+200ml".localized
+        drink300mlLabel.text = "+300ml".localized
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,14 +69,20 @@ final class WaterControlViewController: UIViewController {
             case .notConfigured:
                 showPlaceholder()
                 waterControlConfigurationButton.isHidden = false
+                setDrinkWaterButtonsVisible(false)
+                drunkVolumeLabel.isHidden = true
             case let .configured(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
                 waterControlConfigurationButton.isHidden = true
+                setDrinkWaterButtonsVisible(true)
+                drunkVolumeLabel.isHidden = false
             case let .outdated(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
-                waterControlConfigurationButton.isHidden = true 
+                waterControlConfigurationButton.isHidden = true
+                setDrinkWaterButtonsVisible(true)
+                drunkVolumeLabel.isHidden = false
             }
         }
     }
@@ -70,6 +98,12 @@ final class WaterControlViewController: UIViewController {
     
     func setupAppearance() {
         setupWaterControlConfigurationButton()
+        placeholderView.titleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+        drunkVolumeLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+        [drink100mlLabel, drink200mlLabel, drink300mlLabel].forEach {
+            $0?.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+            $0?.font = AppTheme.current.fonts.medium(12)
+        }
     }
     
 }
@@ -78,12 +112,38 @@ private extension WaterControlViewController {
     
     func updateWaterControlUI() {
         guard let waterControl = waterControl else { return }
-        let todayDrunkVolume = waterControl.drunkVolume[Date().startOfDay] ?? 0
-        print(todayDrunkVolume)
+        let todayDrunkVolume = waterControl.drunkVolume[Date.now.startOfDay] ?? 0
+        let todayDrunkVolumeInLiters = WaterVolumeCalculator.roundWaterWolume(volume: todayDrunkVolume)
+        let neededVolume = WaterVolumeCalculator.roundWaterWolume(volume: waterControl.neededVolume)
+        drunkVolumeLabel.text =
+            "\(todayDrunkVolumeInLiters)"
+            + "l".localized
+            + " "
+            + "of".localized
+            + " "
+            + "\(neededVolume)"
+            + "l".localized
     }
     
     func updateProgress() {
-        progressListener?.didChangeProgress(for: .water, to: 0)
+        guard let waterControl = waterControl else { return }
+        let todayDrunkVolume = waterControl.drunkVolume[Date.now.startOfDay] ?? 0
+        let progress = min(1, CGFloat(todayDrunkVolume).safeDivide(by: CGFloat(waterControl.neededVolume)))
+        progressListener?.didChangeProgress(for: .water, to: progress)
+    }
+    
+    func addDrunkVolume(milliliters: Int) {
+        guard let waterControl = waterControl else { return }
+        let todayDrunkVolume = waterControl.drunkVolume[Date.now.startOfDay] ?? 0
+        waterControl.drunkVolume[Date.now.startOfDay] = todayDrunkVolume + milliliters
+        waterControlService.createOrUpdateWaterControl(waterControl) { [weak self] in
+            self?.updateProgress()
+            self?.updateWaterControlUI()
+        }
+    }
+    
+    func setDrinkWaterButtonsVisible(_ isVisible: Bool) {
+        drinkButtonsContainer.isHidden = !isVisible
     }
     
 }
@@ -92,6 +152,7 @@ private extension WaterControlViewController {
     
     func setInitialState() {
         waterControlConfigurationButton.isHidden = true
+        setDrinkWaterButtonsVisible(false)
     }
     
     func setupWaterControlConfigurationButton() {

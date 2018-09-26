@@ -46,7 +46,7 @@ class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintI
         
         self.sprint = sprint
         
-        habits = tasksService.fetchTasks(listID: sprint.id).filter { $0.kind == "habit" && !$0.isDone(at: Date()) }
+        habits = tasksService.fetchTasks(listID: sprint.id).filter { $0.kind == "habit" && !$0.isDone(at: Date.now) }
         tableView.reloadData()
         
         messageLabel.isHidden = !habits.isEmpty
@@ -69,7 +69,7 @@ extension TodayExtensionViewController: UITableViewDataSource, UITableViewDelega
         if let habit = habits.item(at: indexPath.row) {
             cell.configure(habit: habit)
             cell.onChangeCheckedState = { [unowned self] isChecked in
-                habit.setDone(isChecked, at: Date())
+                habit.setDone(isChecked, at: Date.now)
                 guard let sprint = self.sprint else { return }
                 self.saveTask(habit, listID: sprint.id, completion: { [weak self] _ in
                     self?.reloadHabits()

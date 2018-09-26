@@ -30,7 +30,7 @@ final class WaterChartCell: BaseChartCell {
         var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []
         for i in stride(from: 6, through: 0, by: -1) {
-            let date = (Date() - i.asDays).startOfDay
+            let date = (Date.now - i.asDays).startOfDay
             let drunkVolume = Double((waterControl.drunkVolume[date] ?? 0)) / 1000
             chartEntries.append(BarChartDataEntry(x: Double(6 - i), y: drunkVolume))
             xAxisTitles.append(date.asShortWeekday)

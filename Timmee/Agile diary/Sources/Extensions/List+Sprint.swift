@@ -21,7 +21,7 @@ extension Sprint {
             sortPosition: number,
             tasksCount: 0,
             isFavorite: false,
-            creationDate: Date().nextDay.startOfDay)
+            creationDate: Date.now.nextDay.startOfDay)
     }
     
     var endDate: Date {

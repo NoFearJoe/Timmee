@@ -24,6 +24,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCH-gD-OAS" customClass="WaterLevelView" customModule="Agile_diary" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozm-ij-xLO">
                                 <rect key="frame" x="20" y="595" width="335" height="52"/>
                                 <constraints>
@@ -40,22 +44,152 @@
                                     <segue destination="dCS-XQ-p7P" kind="presentation" identifier="ShowWaterControlConfiguration" modalTransitionStyle="coverVertical" id="hms-dp-98w"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы выпили 1.5л" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ9-mQ-9og">
+                                <rect key="frame" x="20" y="60" width="335" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="Jug-KO-tjf">
+                                <rect key="frame" x="73.5" y="579" width="228" height="68"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGa-dv-wJ2">
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="68"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gd2-YK-daE">
+                                                <rect key="frame" x="-0.5" y="0.0" width="52" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Gd2-YK-daE" secondAttribute="height" id="Afa-gc-BJt"/>
+                                                    <constraint firstAttribute="width" constant="52" id="z9X-Rg-Je1"/>
+                                                </constraints>
+                                                <state key="normal" image="glass100ml"/>
+                                                <connections>
+                                                    <action selector="onTapToDrinkButton:" destination="7kn-qs-nnw" eventType="touchUpInside" id="v6q-BH-WJP"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 100ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1F-NS-ybO">
+                                                <rect key="frame" x="0.0" y="52" width="52" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="2cl-dr-kfJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="j1F-NS-ybO" secondAttribute="bottom" id="MgF-Gt-3or"/>
+                                            <constraint firstItem="Gd2-YK-daE" firstAttribute="top" secondItem="mGa-dv-wJ2" secondAttribute="top" id="PVi-Us-ChD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gd2-YK-daE" secondAttribute="trailing" id="aQv-2J-PNB"/>
+                                            <constraint firstItem="Gd2-YK-daE" firstAttribute="leading" secondItem="mGa-dv-wJ2" secondAttribute="leading" id="boU-X8-j1v"/>
+                                            <constraint firstAttribute="trailing" secondItem="j1F-NS-ybO" secondAttribute="trailing" id="cdf-tl-5NN"/>
+                                            <constraint firstItem="j1F-NS-ybO" firstAttribute="leading" secondItem="mGa-dv-wJ2" secondAttribute="leading" id="df6-MW-lYb"/>
+                                            <constraint firstAttribute="width" constant="52" id="dtK-A2-bum"/>
+                                            <constraint firstItem="j1F-NS-ybO" firstAttribute="top" secondItem="Gd2-YK-daE" secondAttribute="bottom" id="flY-aU-jzQ"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oE-WH-yAb">
+                                        <rect key="frame" x="88" y="0.0" width="52" height="68"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLZ-Ht-pYu">
+                                                <rect key="frame" x="-0.5" y="0.0" width="52" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="52" id="6wB-dd-UMH"/>
+                                                    <constraint firstAttribute="width" secondItem="XLZ-Ht-pYu" secondAttribute="height" id="ncy-RW-MoX"/>
+                                                </constraints>
+                                                <state key="normal" title="asd" image="glass200ml"/>
+                                                <connections>
+                                                    <action selector="onTapToDrinkButton:" destination="7kn-qs-nnw" eventType="touchUpInside" id="dah-NQ-gK6"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 200ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4h-d6-5Gp">
+                                                <rect key="frame" x="-0.5" y="52" width="52" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="XLZ-Ht-pYu" secondAttribute="trailing" id="49c-We-ziM"/>
+                                            <constraint firstAttribute="height" constant="68" id="9Yn-8b-W1g"/>
+                                            <constraint firstAttribute="trailing" secondItem="p4h-d6-5Gp" secondAttribute="trailing" id="Cla-Wh-fh3"/>
+                                            <constraint firstItem="XLZ-Ht-pYu" firstAttribute="top" secondItem="9oE-WH-yAb" secondAttribute="top" id="L6z-Bx-sJl"/>
+                                            <constraint firstAttribute="width" constant="52" id="Lf5-vp-IhT"/>
+                                            <constraint firstItem="XLZ-Ht-pYu" firstAttribute="leading" secondItem="9oE-WH-yAb" secondAttribute="leading" id="M5x-D4-Udr"/>
+                                            <constraint firstItem="p4h-d6-5Gp" firstAttribute="top" secondItem="XLZ-Ht-pYu" secondAttribute="bottom" id="V1q-mK-mDt"/>
+                                            <constraint firstItem="p4h-d6-5Gp" firstAttribute="leading" secondItem="9oE-WH-yAb" secondAttribute="leading" id="s1J-tO-JP2"/>
+                                            <constraint firstAttribute="bottom" secondItem="p4h-d6-5Gp" secondAttribute="bottom" id="yYN-aR-wUa"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oir-wU-R3s">
+                                        <rect key="frame" x="176" y="0.0" width="52" height="68"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agj-6o-yoj">
+                                                <rect key="frame" x="-0.5" y="0.0" width="52" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="agj-6o-yoj" secondAttribute="height" id="Nud-OH-p58"/>
+                                                    <constraint firstAttribute="width" constant="52" id="l30-yi-79O"/>
+                                                </constraints>
+                                                <state key="normal" image="glass300ml"/>
+                                                <connections>
+                                                    <action selector="onTapToDrinkButton:" destination="7kn-qs-nnw" eventType="touchUpInside" id="iPS-Wq-09u"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 300ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acV-h3-tjV">
+                                                <rect key="frame" x="-0.5" y="52" width="52" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="agj-6o-yoj" firstAttribute="top" secondItem="oir-wU-R3s" secondAttribute="top" id="65Y-Dp-NDp"/>
+                                            <constraint firstItem="acV-h3-tjV" firstAttribute="leading" secondItem="oir-wU-R3s" secondAttribute="leading" id="NOY-Q3-RN7"/>
+                                            <constraint firstItem="agj-6o-yoj" firstAttribute="leading" secondItem="oir-wU-R3s" secondAttribute="leading" id="VFd-i1-gqU"/>
+                                            <constraint firstAttribute="trailing" secondItem="acV-h3-tjV" secondAttribute="trailing" id="aet-xw-SiE"/>
+                                            <constraint firstAttribute="height" constant="68" id="m0o-O7-rLE"/>
+                                            <constraint firstAttribute="width" constant="52" id="mLx-gC-65W"/>
+                                            <constraint firstItem="acV-h3-tjV" firstAttribute="top" secondItem="agj-6o-yoj" secondAttribute="bottom" id="mO2-nn-OCm"/>
+                                            <constraint firstAttribute="bottom" secondItem="acV-h3-tjV" secondAttribute="bottom" id="nXv-m8-Ff9"/>
+                                            <constraint firstAttribute="trailing" secondItem="agj-6o-yoj" secondAttribute="trailing" id="v96-EQ-qFy"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FWJ-uj-dWi" firstAttribute="top" secondItem="Nvd-Cm-9F3" secondAttribute="top" id="1TQ-q1-YVx"/>
                             <constraint firstItem="FWJ-uj-dWi" firstAttribute="leading" secondItem="Nvd-Cm-9F3" secondAttribute="leading" id="6Mb-BR-RE6"/>
+                            <constraint firstItem="NCH-gD-OAS" firstAttribute="top" secondItem="tha-Pk-Xxj" secondAttribute="top" id="7kt-G9-zT1"/>
+                            <constraint firstAttribute="bottom" secondItem="NCH-gD-OAS" secondAttribute="bottom" id="8Ui-6r-grn"/>
+                            <constraint firstItem="eZ9-mQ-9og" firstAttribute="leading" secondItem="tha-Pk-Xxj" secondAttribute="leading" constant="20" id="HLj-6o-Cjm"/>
                             <constraint firstItem="Ozm-ij-xLO" firstAttribute="leading" secondItem="Nvd-Cm-9F3" secondAttribute="leading" constant="20" id="SNH-jE-j3f"/>
                             <constraint firstAttribute="bottom" secondItem="Ozm-ij-xLO" secondAttribute="bottom" constant="20" id="UXj-ls-T46"/>
+                            <constraint firstItem="eZ9-mQ-9og" firstAttribute="top" secondItem="tha-Pk-Xxj" secondAttribute="top" constant="40" id="WTj-3m-lso"/>
+                            <constraint firstItem="tha-Pk-Xxj" firstAttribute="bottom" secondItem="Jug-KO-tjf" secondAttribute="bottom" constant="20" id="XLc-4b-Z0O"/>
                             <constraint firstItem="Ozm-ij-xLO" firstAttribute="top" secondItem="FWJ-uj-dWi" secondAttribute="bottom" constant="20" id="Xs5-yq-NIa"/>
+                            <constraint firstItem="NCH-gD-OAS" firstAttribute="leading" secondItem="tha-Pk-Xxj" secondAttribute="leading" id="YSB-FI-YMk"/>
+                            <constraint firstItem="tha-Pk-Xxj" firstAttribute="trailing" secondItem="NCH-gD-OAS" secondAttribute="trailing" id="hTX-vA-fWO"/>
                             <constraint firstAttribute="trailing" secondItem="Ozm-ij-xLO" secondAttribute="trailing" constant="20" id="nz6-Jt-24T"/>
+                            <constraint firstItem="Jug-KO-tjf" firstAttribute="centerX" secondItem="Nvd-Cm-9F3" secondAttribute="centerX" id="pmV-Uz-VSP"/>
                             <constraint firstAttribute="trailing" secondItem="FWJ-uj-dWi" secondAttribute="trailing" id="t5s-Hp-HbG"/>
+                            <constraint firstItem="tha-Pk-Xxj" firstAttribute="trailing" secondItem="eZ9-mQ-9og" secondAttribute="trailing" constant="20" id="tk3-Oh-fCl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tha-Pk-Xxj"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="drink100mlButton" destination="Gd2-YK-daE" id="BkX-ki-66L"/>
+                        <outlet property="drink100mlLabel" destination="j1F-NS-ybO" id="k4y-tf-lf6"/>
+                        <outlet property="drink200mlButton" destination="XLZ-Ht-pYu" id="jzP-zv-MdI"/>
+                        <outlet property="drink200mlLabel" destination="p4h-d6-5Gp" id="tam-Mk-JzO"/>
+                        <outlet property="drink300mlButton" destination="agj-6o-yoj" id="eb6-l7-85N"/>
+                        <outlet property="drink300mlLabel" destination="acV-h3-tjV" id="eYf-k6-hLv"/>
+                        <outlet property="drinkButtonsContainer" destination="Jug-KO-tjf" id="cwU-Jz-S2V"/>
+                        <outlet property="drunkVolumeLabel" destination="eZ9-mQ-9og" id="uiR-Ab-MVt"/>
                         <outlet property="placeholderContainer" destination="FWJ-uj-dWi" id="O5l-U7-liM"/>
                         <outlet property="waterControlConfigurationButton" destination="Ozm-ij-xLO" id="edl-2k-qwA"/>
                     </connections>
@@ -949,5 +1083,8 @@
     </scenes>
     <resources>
         <image name="cross" width="20" height="20"/>
+        <image name="glass100ml" width="52" height="52"/>
+        <image name="glass200ml" width="52" height="52"/>
+        <image name="glass300ml" width="52" height="52"/>
     </resources>
 </document>

@@ -62,8 +62,8 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard sprint != nil else { return }
-        if sprint.creationDate.compare(Date().startOfDay) == .orderedAscending {
-            sprint.creationDate = Date().nextDay.startOfDay
+        if sprint.creationDate.compare(Date.now.startOfDay) == .orderedAscending {
+            sprint.creationDate = Date.now.nextDay.startOfDay
             showStartDate(sprint.creationDate)
             updateDoneButtonState() // FIXME: Нужно сначала запросить все цели и привычки и потом обновлять кнопку готово при первом показе
         }

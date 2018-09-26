@@ -136,7 +136,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     private func updateHeaderSubtitle(sprint: Sprint) {
-        let daysRemaining = Date().days(before: sprint.endDate)
+        let daysRemaining = Date.now.days(before: sprint.endDate)
         let subtitle = NSMutableAttributedString()
         subtitle.append(NSAttributedString(string: "Sprint".localized, attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         subtitle.append(NSAttributedString(string: " #\(sprint.sortPosition)", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))

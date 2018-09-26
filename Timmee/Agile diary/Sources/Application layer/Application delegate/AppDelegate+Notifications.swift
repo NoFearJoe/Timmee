@@ -21,7 +21,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if let endDate = notification.request.content.userInfo["end_date"] as? Date {
-            if endDate <= Date() {
+            if endDate <= Date.now {
                 center.removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
                 center.removePendingNotificationRequests(withIdentifiers: [notification.request.identifier])
             }
@@ -42,7 +42,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         if let endDate = response.notification.request.content.userInfo["end_date"] as? Date {
-            if endDate <= Date() {
+            if endDate <= Date.now {
                 center.removeDeliveredNotifications(withIdentifiers: [response.notification.request.identifier])
                 center.removePendingNotificationRequests(withIdentifiers: [response.notification.request.identifier])
             }
@@ -74,7 +74,7 @@ private extension AppDelegate {
             switch action {
             case .done:
                 guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: taskID) else { completion(); return }
-                let doneDate = fireDate?.startOfDay ?? Date().startOfDay
+                let doneDate = fireDate?.startOfDay ?? Date.now.startOfDay
                 guard !task.doneDates.contains(doneDate) else { completion(); return }
                 task.doneDates.append(doneDate)
                 ServicesAssembly.shared.tasksService.updateTask(task) { _ in

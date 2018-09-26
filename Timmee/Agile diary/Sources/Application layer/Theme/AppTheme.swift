@@ -44,6 +44,14 @@ struct AppTheme {
         let foregroundColor: UIColor
         let middlegroundColor: UIColor
         let backgroundColor: UIColor
+        
+        var textColorForTodayLabelsOnBackground: UIColor {
+            if ProVersionPurchase.shared.isPurchased() {
+                return foregroundColor
+            } else {
+                return activeElementColor
+            }
+        }
     }
     
     struct Fonts {

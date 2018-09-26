@@ -102,7 +102,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.configure(habit: habit)
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
-                    habit.setDone(isChecked, at: Date())
+                    habit.setDone(isChecked, at: Date.now)
                     self.saveTask(habit, listID: self.sprintID, completion: nil) // TODO: Обработать?
                 }
             }
@@ -153,7 +153,7 @@ private extension TodayContentViewController {
 private extension TodayContentViewController {
     
     private func updateSprintProgress(tasks: [Task]) {
-        let progress = CGFloat(tasks.filter { $0.isDone(at: Date()) || $0.isDone }.count).safeDivide(by: CGFloat(tasks.count))
+        let progress = CGFloat(tasks.filter { $0.isDone(at: Date.now) || $0.isDone }.count).safeDivide(by: CGFloat(tasks.count))
         progressListener?.didChangeProgress(for: section, to: progress)
     }
     
@@ -197,7 +197,7 @@ private extension TodayContentViewController {
         }
         habitCellActionsProvider.shouldShowEditAction = { [unowned self] indexPath in
             guard let habit = self.cacheObserver?.item(at: indexPath) else { return false }
-            return !habit.isDone(at: Date())
+            return !habit.isDone(at: Date.now)
         }
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
             guard let habit = self.cacheObserver?.item(at: indexPath) else { return }

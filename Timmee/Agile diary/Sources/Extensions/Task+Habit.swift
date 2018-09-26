@@ -31,7 +31,7 @@ extension Habit {
                   attachments: [],
                   isDone: false,
                   inProgress: false,
-                  creationDate: Date(),
+                  creationDate: Date.now,
                   doneDates: [])
     }
     

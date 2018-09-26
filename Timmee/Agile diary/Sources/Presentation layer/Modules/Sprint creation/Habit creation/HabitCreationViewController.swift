@@ -40,7 +40,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     func setHabit(_ habit: Task?, listID: String) {
         self.habit = habit?.copy ?? interactor.createHabit()
         self.listID = listID
-        self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date()
+        self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date.now
     }
     
     func setEditingMode(_ mode: TargetAndHabitEditingMode) {
@@ -215,7 +215,7 @@ private extension HabitCreationViewController {
     
     func setupNotificationCheckbox() {
         notificationTimeCheckbox.didChangeCkeckedState = { [unowned self] isChecked in
-            self.habit.notificationDate = isChecked ? self.lastSelectedNotificationTime ?? Date() : nil
+            self.habit.notificationDate = isChecked ? self.lastSelectedNotificationTime ?? Date.now : nil
             if self.habit.notificationDate != nil {
                 self.lastSelectedNotificationTime = self.habit.notificationDate
             }

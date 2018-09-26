@@ -21,8 +21,20 @@ class Checkbox: UIView {
         }
     }
     
-    var checkedColor: UIColor { return AppTheme.current.colors.selectedElementColor }
-    var uncheckedColor: UIColor { return AppTheme.current.colors.selectedElementColor }
+    var checkedColor: UIColor {
+        #if TODAY_EXTENSION
+        return UIColor(rgba: "12FFA3")
+        #else
+        return AppTheme.current.colors.selectedElementColor
+        #endif
+    }
+    var uncheckedColor: UIColor {
+        #if TODAY_EXTENSION
+        return UIColor(rgba: "12FFA3")
+        #else
+        return AppTheme.current.colors.selectedElementColor
+        #endif
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,7 +92,19 @@ class Checkbox: UIView {
 
 final class InversedCheckBox: Checkbox {
     
-    override var checkedColor: UIColor { return AppTheme.current.colors.inactiveElementColor }
-    override var uncheckedColor: UIColor { return AppTheme.current.colors.selectedElementColor }
+    override var checkedColor: UIColor {
+        #if TODAY_EXTENSION
+        return UIColor(rgba: "AAAAAA")
+        #else
+        return AppTheme.current.colors.inactiveElementColor
+        #endif
+    }
+    override var uncheckedColor: UIColor {
+        #if TODAY_EXTENSION
+        return UIColor(rgba: "12FFA3")
+        #else
+        return AppTheme.current.colors.selectedElementColor
+        #endif
+    }
     
 }
