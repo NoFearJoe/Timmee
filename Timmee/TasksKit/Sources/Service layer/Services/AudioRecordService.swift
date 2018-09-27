@@ -62,8 +62,11 @@ final class AudioRecordService: NSObject, AudioRecordServiceInput {
     
     func setupRecordingSession(completion: @escaping (Bool) -> Void) {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeDefault)
+            if #available(iOS 10.0, *) {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord,
+                                                                mode: AVAudioSession.Mode.default,
+                                                                options: [])
+            }
             try AVAudioSession.sharedInstance().setActive(true)
             AVAudioSession.sharedInstance().requestRecordPermission { allowed in
                 DispatchQueue.main.async {

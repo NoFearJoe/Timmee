@@ -27,7 +27,7 @@ final class DayNameLabel: UILabel {
     
     @objc dynamic var color = UIColor.black
     
-    var state: UIControlState = .normal {
+    var state: UIControl.State = .normal {
         didSet {
             changeTextColor()
         }
@@ -43,7 +43,7 @@ final class DayNameLabel: UILabel {
     
     func changeTextColor() {
         switch state {
-        case UIControlState.disabled:
+        case UIControl.State.disabled:
             textColor = color.withAlphaComponent(0.5)
         default:
             textColor = color
@@ -64,7 +64,7 @@ final class DayNumberLabel: UILabel {
     }
     
     
-    var state: UIControlState = .normal {
+    var state: UIControl.State = .normal {
         didSet {
             changeTextColor()
             setNeedsDisplay()
@@ -81,9 +81,9 @@ final class DayNumberLabel: UILabel {
     
     func changeTextColor() {
         switch state {
-        case UIControlState.selected:
+        case UIControl.State.selected:
             textColor = selectedTextColor
-        case UIControlState.disabled:
+        case UIControl.State.disabled:
             textColor = color.withAlphaComponent(0.5)
         default:
             textColor = color

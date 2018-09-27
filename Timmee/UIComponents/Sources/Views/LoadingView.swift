@@ -24,7 +24,7 @@ public final class LoadingView: UIView {
     }
     
     fileprivate func initialize() {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        activityIndicator = UIActivityIndicatorView(style: .white)
         addSubview(activityIndicator)
         backgroundColor = UIColor(rgba: "272727")
         clipsToBounds = true

@@ -99,10 +99,10 @@ private extension EditorContainer {
 private extension EditorContainer {
     
     func setupEditor() {
-        addChildViewController(viewController)
+        addChild(viewController)
         editorContainer.addSubview(viewController.view)
         viewController.view.allEdges().toSuperview()
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         if let editorInput = viewController as? EditorInput {
             editorContainerHeightConstraint.constant = editorInput.requiredHeight

@@ -73,7 +73,7 @@ public class ReorderableTableView: UITableView {
 		self.init(frame: CGRect.zero)
 	}
 	
-	public override init(frame: CGRect, style: UITableViewStyle) {
+	public override init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
 		initialize()
 	}
@@ -120,9 +120,9 @@ fileprivate extension ReorderableTableView {
 		// Get out of here if the long press was not on a valid row or our table is empty
 		// or the dataSource tableView:canMoveRowAtIndexPath: doesn't allow moving the row.
 		if (rows == 0) ||
-			((gesture.state == UIGestureRecognizerState.began) && (indexPath == nil)) ||
-			((gesture.state == UIGestureRecognizerState.ended) && (currentLocationIndexPath == nil)) ||
-			((gesture.state == UIGestureRecognizerState.began) && !canMoveRowAt(indexPath: indexPath!)) {
+			((gesture.state == UIGestureRecognizer.State.began) && (indexPath == nil)) ||
+			((gesture.state == UIGestureRecognizer.State.ended) && (currentLocationIndexPath == nil)) ||
+			((gesture.state == UIGestureRecognizer.State.began) && !canMoveRowAt(indexPath: indexPath!)) {
 				cancelGesture()
 				return
 		}
@@ -185,7 +185,7 @@ fileprivate extension ReorderableTableView {
 					// Enable scrolling for cell.
 					scrollDisplayLink = CADisplayLink(target: self,
                                                       selector: #selector(ReorderableTableView._scrollTableWithCell(_:)))
-					scrollDisplayLink?.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+					scrollDisplayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
 				}
 			}
 		}

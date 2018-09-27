@@ -32,7 +32,7 @@ final class WaterControlViewController: UIViewController {
     
     private lazy var waterControlLoader = WaterControlLoader(provider: waterControlService)
     
-    var sprint: Sprint!
+    var sprint: Sprint?
     
     private var waterControl: WaterControl? {
         didSet {
@@ -63,6 +63,8 @@ final class WaterControlViewController: UIViewController {
         setupAppearance()
         
         updateProgress()
+        
+        guard let sprint = sprint else { return }
         
         waterControlLoader.loadWaterControl(sprintID: sprint.id) { state in
             switch state {

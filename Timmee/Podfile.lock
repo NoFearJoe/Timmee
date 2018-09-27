@@ -1,12 +1,12 @@
 PODS:
-  - Charts (3.1.1):
-    - Charts/Core (= 3.1.1)
-  - Charts/Core (3.1.1)
-  - Crashlytics (3.10.1):
-    - Fabric (~> 1.7.5)
-  - Fabric (1.7.6)
+  - Charts (3.2.0):
+    - Charts/Core (= 3.2.0)
+  - Charts/Core (3.2.0)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
+  - Fabric (1.7.11)
   - Foto (0.3)
-  - SwipeCellKit (2.2.0)
+  - SwipeCellKit (2.5.0)
 
 DEPENDENCIES:
   - Charts
@@ -24,12 +24,12 @@ SPEC REPOS:
     - SwipeCellKit
 
 SPEC CHECKSUMS:
-  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
-  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   Foto: 6eb4eacbbc9a0a56418891347128b2ab0fd16553
-  SwipeCellKit: 8ae09401e1137566b187980d824310129233c959
+  SwipeCellKit: d8f2617538ce3021cb0a11d1b93856a06a2f2e20
 
 PODFILE CHECKSUM: f4ad8503671bc195759914be0bc3aa3a54133412
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

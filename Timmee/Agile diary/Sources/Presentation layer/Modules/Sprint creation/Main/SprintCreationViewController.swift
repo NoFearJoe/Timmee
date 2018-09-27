@@ -71,7 +71,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SprintContent" {
-            contentViewController = segue.destination as! SprintContentViewController
+            contentViewController = segue.destination as? SprintContentViewController
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
             contentViewController.delegate = self

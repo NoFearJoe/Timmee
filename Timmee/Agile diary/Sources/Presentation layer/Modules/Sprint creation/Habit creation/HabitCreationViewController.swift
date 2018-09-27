@@ -246,7 +246,7 @@ private extension HabitCreationViewController {
     func setupTitleObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(habitTitleDidChange),
-                                               name: .UITextViewTextDidChange,
+                                               name: UITextView.textDidChangeNotification,
                                                object: titleField.textView)
     }
     
@@ -281,7 +281,7 @@ private extension HabitCreationViewController {
     func setupLinkObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(habitLinkDidChange),
-                                               name: .UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: linkField)
     }
     

@@ -14,7 +14,7 @@ final class NumberPicker: UIView {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
-            collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+            collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         }
     }
     

@@ -110,14 +110,14 @@ private extension CoreDataStorage {
     
     var coordinator: NSPersistentStoreCoordinator {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                            configurationName: nil,
-                                            at: self.storeURL,
-                                            options: [
-                                                NSMigratePersistentStoresAutomaticallyOption: true,
-                                                NSInferMappingModelAutomaticallyOption: true,
-                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
-                                            ])
+//        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+//                                            configurationName: nil,
+//                                            at: self.storeURL,
+//                                            options: [
+//                                                NSMigratePersistentStoresAutomaticallyOption: true,
+//                                                NSInferMappingModelAutomaticallyOption: true,
+//                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
+//                                            ])
         try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
                                             configurationName: nil,
                                             at: self.sharedStoreURL,

@@ -63,7 +63,7 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
         contentView.contentInset.top = 10
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
-        contentView.rowHeight = UITableViewAutomaticDimension
+        contentView.rowHeight = UITableView.automaticDimension
         setupPlaceholder()
         setupCacheObserver(forSection: section, sprintID: sprintID)
         targetCellActionsProvider.onDelete = { [unowned self] indexPath in

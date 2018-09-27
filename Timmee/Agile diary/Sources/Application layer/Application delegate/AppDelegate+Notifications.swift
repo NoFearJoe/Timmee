@@ -131,6 +131,7 @@ private extension AppDelegate {
         let nextFireDate = oldFireDate + minutes.asMinutes
         
         TaskSchedulerService().scheduleDeferredTask(task, fireDate: nextFireDate)
+        
         completion()
     }
     

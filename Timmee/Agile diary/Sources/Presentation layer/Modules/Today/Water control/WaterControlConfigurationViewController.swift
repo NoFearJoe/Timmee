@@ -184,7 +184,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onChangeWeight),
-                                               name: NSNotification.Name.UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: weightField)
     }
     

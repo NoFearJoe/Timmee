@@ -61,7 +61,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         contentView.contentInset.top = 10
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
-        contentView.rowHeight = UITableViewAutomaticDimension
+        contentView.rowHeight = UITableView.automaticDimension
         
         setupPlaceholder()
         
@@ -70,7 +70,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
         setupHabitCellActionsProvider()
         setupTargetCellActionsProvider()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(onBecameActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -164,7 +164,9 @@ private extension TodayContentViewController {
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
         placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.titleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
         placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
+        placeholderView.subtitleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
         placeholderContainer.isHidden = true
     }
     

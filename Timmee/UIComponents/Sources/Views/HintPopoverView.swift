@@ -323,7 +323,7 @@ public final class HintPopoverView: UIView {
         self.alpha = 0
         self.removeFromSuperview()
         viewToAdd.addSubview(self)
-        viewToAdd.bringSubview(toFront: self)
+        viewToAdd.bringSubviewToFront(self)
         
         viewToAdd.addConstraint(NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: viewToAdd, attribute: .left, multiplier: 1, constant: self.leftInset))
         viewToAdd.addConstraint(NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: viewToAdd, attribute: .right, multiplier: 1, constant: -self.rightInset))
@@ -338,7 +338,7 @@ public final class HintPopoverView: UIView {
         
         self.updateTrianglePosition()
         
-        UIView.animate(withDuration: 0.25, delay: 0, options: [UIViewAnimationOptions.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: [UIView.AnimationOptions.allowUserInteraction], animations: {
             self.alpha = 1
         }, completion: nil)
     }
@@ -397,7 +397,7 @@ extension HintPopoverView {
 private extension HintPopoverView {
     
     var estimatedHeight: CGFloat {
-        return self.roundedView.systemLayoutSizeFitting(CGSize(width: self.maximumWidth, height: CGFloat.greatestFiniteMagnitude)).height + self.triangleView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return self.roundedView.systemLayoutSizeFitting(CGSize(width: self.maximumWidth, height: CGFloat.greatestFiniteMagnitude)).height + self.triangleView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
     
 }

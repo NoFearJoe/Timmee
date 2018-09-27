@@ -48,6 +48,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.titleLabel.text = "today".localized
+        headerView.subtitleLabel.text = nil
         if ProVersionPurchase.shared.isPurchased() {
             sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title, SprintSection.water.title]
         } else {
@@ -58,24 +59,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         progressBar.setProgress(0)
         contentViewContainer.isHidden = false
         waterControlViewContainer.isHidden = true
+        createSprintButton.isHidden = true
+        
         setupPlaceholder()
-        if sprint == nil {
-            if let currentSprint = getCurrentSprint() {
-                createSprintButton.isHidden = true
-                setSwitcherEnabled(true)
-                sprint = currentSprint
-            } else if let nextSprint = getNextSprint() {
-                createSprintButton.isHidden = true
-                setSwitcherEnabled(false)
-                headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.creationDate.asNearestShortDateString.lowercased()
-                showNextSprintPlaceholder(sprintNumber: nextSprint.sortPosition, startDate: nextSprint.creationDate)
-            } else {
-                createSprintButton.isHidden = false
-                setSwitcherEnabled(false)
-                headerView.subtitleLabel.text = nil
-                showCreateSprintPlaceholder()
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +70,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             backgroundImageView.image = BackgroundImage.current.image
         }
         setupCreateSprintButton()
-        guard let sprint = sprint else { return }
-        updateHeaderSubtitle(sprint: sprint)
+        loadSprint()
     }
     
     override func setupAppearance() {
@@ -101,12 +86,12 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SprintContent" {
-            contentViewController = segue.destination as! TodayContentViewController
+            contentViewController = segue.destination as? TodayContentViewController
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
             contentViewController.progressListener = self
         } else if segue.identifier == "WaterControl" {
-            waterControlViewController = segue.destination as! WaterControlViewController
+            waterControlViewController = segue.destination as? WaterControlViewController
             waterControlViewController.progressListener = self
         } else if segue.identifier == "ShowTargetEditor" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
@@ -126,12 +111,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         guard sprint != nil else { return }
         switch currentSection {
         case .habits, .targets:
-            contentViewController.performAppearanceTransition(isAppearing: true) { contentViewContainer.isHidden = false }
-            waterControlViewController.performAppearanceTransition(isAppearing: false) { waterControlViewContainer.isHidden = true }
+            setSectionContainersVisible(content: true, water: false)
             contentViewController.section = currentSection
         case .water:
-            contentViewController.performAppearanceTransition(isAppearing: false) { contentViewContainer.isHidden = true }
-            waterControlViewController.performAppearanceTransition(isAppearing: true) { waterControlViewContainer.isHidden = false }
+            setSectionContainersVisible(content: false, water: true)
         }
     }
     
@@ -149,6 +132,35 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     private func setSwitcherEnabled(_ isEnabled: Bool) {
         self.sectionSwitcher.isEnabled = isEnabled
         self.sectionSwitcher.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+    }
+    
+    private func setSectionContainersVisible(content: Bool, water: Bool) {
+        contentViewController.performAppearanceTransition(isAppearing: true) { contentViewContainer.isHidden = !content }
+        waterControlViewController.performAppearanceTransition(isAppearing: false) { waterControlViewContainer.isHidden = !water }
+    }
+    
+}
+
+private extension TodayViewController {
+    
+    func loadSprint() {
+        if let currentSprint = getCurrentSprint() {
+            createSprintButton.isHidden = true
+            setSwitcherEnabled(true)
+            sprint = currentSprint
+        } else if let nextSprint = getNextSprint() {
+            createSprintButton.isHidden = true
+            setSwitcherEnabled(false)
+            headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.creationDate.asNearestShortDateString.lowercased()
+            showNextSprintPlaceholder(sprintNumber: nextSprint.sortPosition, startDate: nextSprint.creationDate)
+            setSectionContainersVisible(content: false, water: false)
+        } else {
+            createSprintButton.isHidden = false
+            setSwitcherEnabled(false)
+            headerView.subtitleLabel.text = nil
+            showCreateSprintPlaceholder()
+            setSectionContainersVisible(content: false, water: false)
+        }
     }
     
 }
@@ -170,7 +182,6 @@ private extension TodayViewController {
         createSprintButton.setTitleColor(.white, for: .normal)
         createSprintButton.layer.cornerRadius = 12
         createSprintButton.clipsToBounds = true
-        createSprintButton.isHidden = true
     }
     
 }
@@ -180,7 +191,9 @@ private extension TodayViewController {
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
         placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.titleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
         placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
+        placeholderView.subtitleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
         placeholderContainer.isHidden = true
     }
     

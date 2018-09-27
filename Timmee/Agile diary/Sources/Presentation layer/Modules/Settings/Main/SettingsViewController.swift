@@ -163,7 +163,7 @@ extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1, !ProVersionPurchase.shared.isPurchased(), indexPath.row == 1, areProVersionFeaturesShown {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         return 52
     }

@@ -14,16 +14,16 @@ import class UIKit.NSLayoutConstraint
 
 public struct Constraint {
     let view: UIView
-    let attribute1: NSLayoutAttribute
-    let attribute2: NSLayoutAttribute
-    let relation: NSLayoutRelation
+    let attribute1: NSLayoutConstraint.Attribute
+    let attribute2: NSLayoutConstraint.Attribute
+    let relation: NSLayoutConstraint.Relation
     let multiplier: CGFloat
     let constant: CGFloat
     
     init(view: UIView,
-         attribute1: NSLayoutAttribute,
-         attribute2: NSLayoutAttribute,
-         relation: NSLayoutRelation = .equal,
+         attribute1: NSLayoutConstraint.Attribute,
+         attribute2: NSLayoutConstraint.Attribute,
+         relation: NSLayoutConstraint.Relation = .equal,
          multiplier: CGFloat = 1,
          constant: CGFloat = 0) {
         self.view = view
@@ -143,7 +143,7 @@ public extension UIView {
     
     // MARK: - Size
     
-    private func size(_ attribute: NSLayoutAttribute, constant: CGFloat, relation: NSLayoutRelation = .equal) -> NSLayoutConstraint {
+    private func size(_ attribute: NSLayoutConstraint.Attribute, constant: CGFloat, relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let constraint = NSLayoutConstraint(item: self,

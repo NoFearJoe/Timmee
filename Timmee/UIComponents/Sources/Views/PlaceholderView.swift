@@ -41,7 +41,7 @@ extension PlaceholderView {
  
     public func setup(into view: UIView) {
         view.addSubview(self)
-        view.bringSubview(toFront: self)
+        view.bringSubviewToFront(self)
         
         [centerX(), centerY(), leading(20), trailing(20)].toSuperview()
         

@@ -285,7 +285,7 @@ private extension TargetCreationViewController {
     
     func setupStagesTableView() {
         stagesTableView.estimatedRowHeight = 36
-        stagesTableView.rowHeight = UITableViewAutomaticDimension
+        stagesTableView.rowHeight = UITableView.automaticDimension
         stagesTableView.longPressReorderDelegate = self
         stagesTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
@@ -318,7 +318,7 @@ private extension TargetCreationViewController {
     func setupTitleObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(targetTitleDidChange),
-                                               name: .UITextViewTextDidChange,
+                                               name: UITextView.textDidChangeNotification,
                                                object: titleField.textView)
     }
     
@@ -354,7 +354,7 @@ private extension TargetCreationViewController {
     func setupNoteObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(targetNoteDidChange),
-                                               name: .UITextViewTextDidChange,
+                                               name: UITextView.textDidChangeNotification,
                                                object: noteField.textView)
     }
     

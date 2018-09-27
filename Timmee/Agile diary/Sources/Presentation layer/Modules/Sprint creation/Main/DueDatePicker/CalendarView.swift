@@ -56,7 +56,7 @@ final class CalendarView: UIView {
             let visibleItems = calendarView.indexPathsForVisibleItems.sorted()
             
             var targetIndexPath = IndexPath(item: selectedDateIndex, section: 0)
-            var scrollPosition = UICollectionViewScrollPosition.centeredHorizontally
+            var scrollPosition = UICollectionView.ScrollPosition.centeredHorizontally
             
             if let firstIndexPath = visibleItems.first, targetIndexPath <= firstIndexPath {
                 scrollPosition = .left
@@ -104,7 +104,7 @@ extension CalendarView: UICollectionViewDataSource {
                 cell.dayNameLabel.text = day.dayName.uppercased()
                 cell.dayNumberLabel.text = "\(day.dayNumber)"
                 
-                let notSelectedState: UIControlState = day.isEnabled ? .normal : .disabled
+                let notSelectedState: UIControl.State = day.isEnabled ? .normal : .disabled
                 cell.dayNameLabel.state = notSelectedState
                 cell.dayNumberLabel.state = selectedDateIndex == indexPath.item ? .selected : notSelectedState
             }
@@ -234,7 +234,7 @@ final class CalendarViewLayout: UICollectionViewFlowLayout {
                     let daysCount = delegate?.daysCount(forIndex: item) ?? 0
                     
                     let maxWidth = CGFloat(daysCount) * CGFloat(48)
-                    let width = (month as NSString).size(withAttributes: [ NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12) ]).width + 4
+                    let width = (month as NSString).size(withAttributes: [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12) ]).width + 4
                     let minOffset = xOffset
                     let maxOffset = (xOffset + maxWidth) - width
                     let offsetX = (collectionView.frame.width * 0.5 - width * 0.5) + collectionView.contentOffset.x

@@ -31,23 +31,23 @@ public final class KeyboardManager {
     private func subscribeToKeyboardEvents() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(KeyboardManager.keyboardWillAppear(_:)),
-                                               name: NSNotification.Name.UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(KeyboardManager.keyboardWillDisappear(_:)),
-                                               name: NSNotification.Name.UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(KeyboardManager.keyboardFrameDidChange(_:)),
-                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
                                                object: nil)
     }
     
     
     @objc private func keyboardWillAppear(_ notification: Notification) {
         if let userInfo = notification.userInfo,
-            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval {
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval {
             
             keyboardWillAppear?(keyboardFrame, animationDuration)
         }
@@ -55,8 +55,8 @@ public final class KeyboardManager {
     
     @objc private func keyboardWillDisappear(_ notification: Notification) {
         if let userInfo = notification.userInfo,
-            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval {
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval {
             
             keyboardWillDisappear?(keyboardFrame, animationDuration)
         }
@@ -64,8 +64,8 @@ public final class KeyboardManager {
     
     @objc private func keyboardFrameDidChange(_ notification: Notification) {
         if let userInfo = notification.userInfo,
-            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval {
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval {
             
             keyboardFrameDidChange?(keyboardFrame, animationDuration)
         }

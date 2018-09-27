@@ -106,7 +106,7 @@ private extension ListIcon {
         let textRect = CGRect(x: 0, y: 6, width: sourceImage.size.width, height: sourceImage.size.height - 6)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-        let textAttributes: [NSAttributedStringKey: Any] = [
+        let textAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 10, weight: .medium),
             .paragraphStyle: paragraphStyle
         ]

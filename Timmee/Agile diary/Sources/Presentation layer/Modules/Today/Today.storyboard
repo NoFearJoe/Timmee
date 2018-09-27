@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFK-lV-GWC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFK-lV-GWC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,21 +22,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfn-qH-ddK" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPi-wi-dIO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7MI-wZ-pGh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="169.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8C-Jk-aYp">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="145.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="375" height="146"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gac-Hz-mav" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="109.5" width="345" height="28"/>
+                                                <rect key="frame" x="15" y="110" width="345" height="28"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="GhP-zb-Y5p"/>
@@ -50,7 +49,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Спринт #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBf-PW-p5z">
-                                                <rect key="frame" x="15" y="84.5" width="345" height="17"/>
+                                                <rect key="frame" x="15" y="85" width="345" height="17"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -100,7 +99,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-og-p5R" customClass="ProgressBar" customModule="UIComponents">
-                                        <rect key="frame" x="0.0" y="165.5" width="375" height="4"/>
+                                        <rect key="frame" x="0.0" y="166" width="375" height="4"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="4" id="Yll-UQ-hp0"/>
@@ -130,7 +129,7 @@
                                 </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQc-5J-Nm5">
-                                <rect key="frame" x="0.0" y="169.5" width="375" height="497.5"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="3rx-bc-jDa" kind="embed" identifier="SprintContent" id="afp-QC-2gL"/>
@@ -144,7 +143,7 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG5-iM-CHH">
-                                <rect key="frame" x="0.0" y="169.5" width="375" height="497.5"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-ev-KnK">
@@ -155,7 +154,6 @@
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <state key="normal" title="Создать спринт"/>
                                 <connections>
-                                    <action selector="onTapToCreateSprint" destination="YFK-lV-GWC" eventType="touchUpInside" id="aqa-nN-h6Q"/>
                                     <segue destination="3PD-La-aYY" kind="presentation" identifier="ShowSprintCreation" modalTransitionStyle="coverVertical" id="d2T-Np-dId"/>
                                 </connections>
                             </button>
@@ -257,7 +255,7 @@
             <objects>
                 <viewController storyboardIdentifier="TodayContentViewController" id="3rx-bc-jDa" customClass="TodayContentViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L1I-dJ-39k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="497.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoB-oY-pys">
@@ -363,16 +361,16 @@
                                                     <rect key="frame" x="15" y="6" width="345" height="90"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Opd-dx-ajS">
-                                                            <rect key="frame" x="8" y="4" width="329" height="83.5"/>
+                                                            <rect key="frame" x="8" y="4" width="329" height="82"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цель" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jR-07-7ng">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="23.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="22"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Этапы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymx-Ve-Aov">
-                                                                    <rect key="frame" x="0.0" y="27.5" width="329" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="26" width="329" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="HWe-qs-gAf"/>
                                                                     </constraints>
@@ -381,7 +379,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Qx-BG-AZS">
-                                                                    <rect key="frame" x="0.0" y="55.5" width="329" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="54" width="329" height="20"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" placeholder="YES" id="Khg-aD-Z8G"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 import NotificationCenter
-import Agile_diary
+import TasksKit
 
 class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintInteractorTrait, TargetAndHabitInteractorTrait {
     

@@ -37,7 +37,7 @@ import UIKit
     private func updateProgress(animated: Bool) {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.2)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut))
         updateProgressLayer()
         CATransaction.commit()
     }
