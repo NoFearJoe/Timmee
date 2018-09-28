@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */; };
+		0C4D2E39215E1D1B00F8D450 /* Range+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4D2E38215E1D1B00F8D450 /* Range+NSRange.swift */; };
 		0C9364F02155305100B4EB48 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364EF2155305100B4EB48 /* Double+Extensions.swift */; };
 		0C9B23E42077B757009EF6DE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C12077B757009EF6DE /* Date.swift */; };
 		0C9B23E52077B757009EF6DE /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C22077B757009EF6DE /* KeyboardManager.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyProtocol.swift; sourceTree = "<group>"; };
+		0C4D2E38215E1D1B00F8D450 /* Range+NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Range+NSRange.swift"; sourceTree = "<group>"; };
 		0C9364EF2155305100B4EB48 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		0C9B23C12077B757009EF6DE /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0C9B23C22077B757009EF6DE /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				0C9B23E12077B757009EF6DE /* Array+Unique.swift */,
 				0C9B23E22077B757009EF6DE /* Array+RemoveObject.swift */,
 				0C9B23E32077B757009EF6DE /* Array+Item.swift */,
+				0C4D2E38215E1D1B00F8D450 /* Range+NSRange.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				0C9B24042077B996009EF6DE /* NearestDate.swift in Sources */,
 				0C9B23FE2077B757009EF6DE /* Array+Unique.swift in Sources */,
 				0C9B23EE2077B757009EF6DE /* UITableView+hideSwipeCell.swift in Sources */,
+				0C4D2E39215E1D1B00F8D450 /* Range+NSRange.swift in Sources */,
 				0C9B23EA2077B757009EF6DE /* Calendar.swift in Sources */,
 				0C9B23F82077B757009EF6DE /* String+Localized.swift in Sources */,
 				0C9B23EF2077B757009EF6DE /* UIColor+Interpolate.swift in Sources */,

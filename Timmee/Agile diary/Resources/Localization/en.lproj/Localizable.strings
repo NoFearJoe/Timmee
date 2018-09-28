@@ -11,17 +11,14 @@
 "tomorrow" = "Tomorrow";
 "week" = "Week";
 
-"search" = "Search...";
-"initial_search_title" = "Search";
-"initial_search_subtitle" = "Start to typing task title in search field";
-"empty_section" = "Unrecognized list";
-
 "reminder" = "Reminder";
-"remind" = "Remind"; // в среду
-"due_date" = "Due date";
-"due_time" = "Due time";
+"due_days" = "Дни выполнения";
+"link" = "Ссылка";
+"link_hint" = "В качестве ссылки можно указать любой интернет ресурс.";
+"stages" = "Этапы";
+"stages_hint" = "Этапы - это небольшие задачи, необходимые для достижения цели";
+"importancy" = "Важность";
 
-"repeat" = "Repeat";
 "everyday" = "Everyday";
 "weekly" = "Weekly";
 "on_weekdays" = "On weekdays";
@@ -34,12 +31,6 @@
 "upon" = ""; // 15 минут
 "no_repeat" = "No repeat";
 "and" = "and";
-
-"hours" = "hours";
-"minutes" = "minutes";
-
-"choose_interval" = "Choose interval";
-"choose_days" = "Choose days";
 
 "monday" = "Monday";
 "tuesday" = "Tuesday";
@@ -55,18 +46,6 @@
 "fri" = "fri";
 "sat" = "sat";
 "sun" = "sun";
-
-"on_monday" = "On monday";
-"on_tuesday" = "On tuesday";
-"on_wednesday" = "On wednesday";
-"on_thursday" = "On thursday";
-"on_friday" = "On friday";
-"on_saturday" = "On saturday";
-"on_sunday" = "On sunday";
-
-"template_at_morning" = "At morning";
-"template_at_launch" = "At launch";
-"template_at_afternoon" = "At afternoon";
 
 "no_reminder" = "Don't remind";
 "remind_just_in_time" = "Remind just in time";
@@ -100,6 +79,7 @@
 "cancel" = "Cancel";
 "yes" = "Yes";
 "start" = "Start";
+"starts" = "Beginning";
 "stop" = "Stop";
 "error" = "Error";
 "continue" = "Continue";
@@ -124,11 +104,11 @@
 "no_thanks" = "No, thanks";
 "touch_id_reason" = "Use touchID to enter";
 "face_id_reason" = "Use faceID to enter";
-"pin_code_protection" = "Pin-code protection";
 
 "general_section" = "General";
 "security_section" = "Security";
 "about_section" = "Additional";
+"pin_code_protection" = "Pin-code protection";
 "is_on" = "Enabled";
 "is_off" = "Not set";
 "rate" = "Rate the App";
@@ -141,22 +121,109 @@
 "n_weeks" = "%lu n";
 "n_months" = "%lu n";
 "n_years" = "%lu n";
-"imported_n_tasks" = "%lu n";
-"n_attachments" = "%lu n";
 
-"remind_after_10" = "Remind after 10 minutes";
-"remind_after_30" = "Remind after 30 minutes";
-"remind_after_60" = "Remind after 1 hour";
+"sprint_start_date" = "Начало спринта";
+"targets_section_placeholder_title" = "Добавьте первую цель";
+"targets_section_placeholder_subtitle" = "Нужно добавить как минимум одну цель, но и не стоит ставить слишком много целей. 3 цели - оптимальное решение.";
+"habits_section_placeholder_title" = "Добавьте первую привычку";
+"habits_section_placeholder_subtitle" = "Придумайте минимум 3 несложные действия, которые хотите делать каждый день. Например, чтение книги 15 минут в день или утренняя пробежка. Рекомендуем в каждый спринт добавлять не очень много привычек, но стараться выполнять их каждый день.";
 
-"education_title_0" = "Что такое Agile ежедневник?";
-"education_subtitle_0" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки.";
-"education_continue_0" = "Продолжить";
-"education_title_1" = "Цели";
-"education_subtitle_1" = "Это Memori - нечто большее, чем просто список дел";
-"education_continue_1" = "Продолжить";
-"education_title_2" = "Привычки";
-"education_subtitle_2" = "Это Memori - нечто большее, чем просто список дел";
-"education_continue_2" = "Продолжить";
-"education_title_3" = "Первый спринт";
-"education_subtitle_3" = "Теперь нужно создать первый спринт";
-"education_continue_3" = "Создать";
+"Sprint" = "Спринт";
+"next_sprint_is" = "Следующий спринт -";
+"next_sprint_starts" = "Следующий спринт начнется";
+
+"there_is_no_sprints" = "Нет спринтов";
+"do_you_want_to_create_new_sprint" = "Хотите создать новый спринт?";
+"create_sprint" = "Создать спринт";
+
+"no_habits_for_today" = "Нет привычек на сегодня";
+
+"target_title_placeholder" = "Новая цель";
+"note" = "Заметка";
+"target_note_placeholder" = "Введите текст заметки...";
+"add_stage" = "Введите название этапа...";
+
+"habit_title_placeholder" = "Новая привычка";
+"habit_link_placeholder" = "https://google.com";
+
+"are_you_sure_you_want_to_finish_sprint_creation" = "Спринт нельзя будет изменить. Завершить создание спринта?";
+"finish" = "Завершить";
+
+"notifications_are_disabled_message" = "Уведомления были отключены. Чтобы включить уведомления, перейдите в настройки.";
+
+"today_targets_section_placeholder_title" = "На сегодня привычек нет";
+"today_habits_section_placeholder_title" = "У вас нет целей";
+
+"pro_version" = "Приобрести PRO версию";
+"pro_version_price" = "Всего за 75 рублей";
+"restore_pro_version" = "Восстановить PRO версию";
+"restore_error_try_again" = "Не удалось восстановить PRO версию. Попробуйте снова";
+"pro_version_section" = "PRO версия";
+"version" = "Версия приложения";
+"theme" = "Тема";
+"light_theme" = "Светлая";
+"dark_theme" = "Темная";
+"background_image" = "Картинка на фоне";
+"pick_background_image" = "Выбор фона";
+
+"my_progress" = "My progress";
+"targets" = "Targets";
+"habits" = "Habits";
+"habits_chart_no_data" = "Начните выполнять привычки, чтобы видеть прогресс";
+"water" = "Water";
+"water_chart_no_data" = "Начните контролировать выпитую воду, чтобы видеть прогресс";
+"+100ml" = "+ 100ml";
+"+200ml" = "+ 200ml";
+"+300ml" = "+ 300ml";
+
+"configure_water_control" = "Настроить контроль воды";
+"water_control_not_initialized" = "Вы еще не настраивали контроль воды в этом спринте";
+"male" = "Мужской";
+"female" = "Женский";
+"activity_low" = "Низкая";
+"activity_medium" = "Средняя";
+"activity_high" = "Высокая";
+"l" = "л";
+"daily_water_volume" = "Ваша суточная норма";
+"gender" = "Пол";
+"weight" = "Вес";
+"activity" = "Активность";
+"notifications" = "Напоминания";
+"notifications_interval" = "Интервал напоминаний";
+"notifications_enabled" = "Включены";
+"notifications_disabled" = "Выключены";
+"notifications_interval_start" = "Начало";
+"notifications_interval_finish" = "Конец";
+"1h" = "1ч";
+"2h" = "2ч";
+"3h" = "3ч";
+"4h" = "4ч";
+"water_time_title" = "Вода";
+"water_time_subtitle" = "Время выпить стакан воды";
+"drunk_water_100" = "Выпил 100мл";
+"drunk_water_200" = "Выпил 200мл";
+"drunk_water_300" = "Выпил 300мл";
+
+"education_initial_title" = "Что такое Agile ежедневник?";
+"education_initial_text" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки. В основе всего - спринты. Это временные отрезки длинной в 9 недель, в течение которых нужно вырабатывать привычки и добиваться целей";
+"education_initial_continue" = "Понятно";
+"education_initial_skip" = "Я уже все знаю";
+"education_targets_title" = "Цели";
+"education_targets_text" = "В каждом спринте вы назначаете несколько целей, которых хотите добиться за 9 недель";
+"education_targets_continue" = "Хорошо, что дальше?";
+"education_targets_skip" = "Ну все, хватит";
+"education_habits_title" = "Привычки";
+"education_habits_text" = "Привычки - это простые регулярные действия, которые вы хотите привыкнуть делать. Например, утренняя пробежка или чтение книги";
+"education_habits_continue" = "Отлично!";
+"education_habits_skip" = "Ну все, хватит";
+"education_notifications_setup_title" = "Как помнить о привычках?";
+"education_notifications_setup_text" = "Нужно просто включить уведомления и приложение напомнит о самом важном";
+"education_notifications_setup_continue" = "Включить уведомления";
+"education_notifications_setup_skip" = "Не стоит";
+"education_pin_setup_title" = "Не хотите делиться секретами?";
+"education_pin_setup_text" = "Можно поставить короткий пароль и спать спокойно";
+"education_pin_setup_continue" = "Да, хочу поставить пароль";
+"education_pin_setup_skip" = "Мне это не нужно";
+"education_final_title" = "🚀";
+"education_final_text" = "Настало время создать первый спринт!";
+"education_final_continue" = "Создать";

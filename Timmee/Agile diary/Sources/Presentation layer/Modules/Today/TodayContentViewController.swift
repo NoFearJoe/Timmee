@@ -135,7 +135,15 @@ extension TodayContentViewController: UITableViewDelegate {
 private extension TodayContentViewController {
     
     func setupCacheObserver(forSection section: SprintSection, sprintID: String) {
-        let predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
+        let predicate: NSPredicate
+        switch section {
+        case .habits:
+            let todayRepeatDay = DayUnit(number: Date.now.weekday - 1).string
+            predicate = NSPredicate(format: "list.id = %@ AND kind = %@ AND repeatMask CONTAINS[cd] %@", sprintID, section.itemsKind.id, todayRepeatDay)
+        case .targets:
+            predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
+        case .water: return
+        }
         cacheObserver = ServicesAssembly.shared.tasksService.tasksObserver(predicate: predicate)
         cacheObserver?.setMapping { Task(task: $0 as! TaskEntity) }
         cacheObserver?.setActions(
@@ -176,10 +184,10 @@ private extension TodayContentViewController {
         switch section {
         case .targets:
             placeholderView.title = "today_targets_section_placeholder_title".localized
-            placeholderView.subtitle = "today_targets_section_placeholder_subtitle".localized
+            placeholderView.subtitle = nil
         case .habits:
             placeholderView.title = "today_habits_section_placeholder_title".localized
-            placeholderView.subtitle = "today_habits_section_placeholder_subtitle".localized
+            placeholderView.subtitle = nil
         case .water: break
         }
     }

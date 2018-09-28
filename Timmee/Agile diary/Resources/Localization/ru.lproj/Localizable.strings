@@ -11,17 +11,7 @@
 "tomorrow" = "Завтра";
 "week" = "Неделя";
 
-"search" = "Поиск...";
-"initial_search_title" = "Поиск задач";
-"initial_search_subtitle" = "Начните вводить название задачи в строку поиска";
-"empty_section" = "Неопознанный список";
-
 "reminder" = "Напоминание";
-"reminder_time" = "Время напоминания";
-"remind" = "Напомнить"; // в среду
-"location" = "Место";
-"due_date" = "Дата выполнения";
-"due_time" = "Время выполнения";
 "due_days" = "Дни выполнения";
 "link" = "Ссылка";
 "link_hint" = "В качестве ссылки можно указать любой интернет ресурс.";
@@ -29,7 +19,6 @@
 "stages_hint" = "Этапы - это небольшие задачи, необходимые для достижения цели";
 "importancy" = "Важность";
 
-"repeat" = "Повтор";
 "everyday" = "Ежедневно";
 "weekly" = "Еженедельно";
 "on_weekdays" = "По будням";
@@ -42,12 +31,6 @@
 "upon" = "За"; // 15 минут
 "no_repeat" = "Не повторять";
 "and" = "и";
-
-"hours" = "часы";
-"minutes" = "минуты";
-
-"choose_interval" = "Выбрать интервал";
-"choose_days" = "Выбрать дни повтора";
 
 "monday" = "Понедельник";
 "tuesday" = "Вторник";
@@ -63,18 +46,6 @@
 "fri" = "пт";
 "sat" = "сб";
 "sun" = "вс";
-
-"on_monday" = "В понедельник";
-"on_tuesday" = "Во вторник";
-"on_wednesday" = "В среду";
-"on_thursday" = "В четверг";
-"on_friday" = "В пятницу";
-"on_saturday" = "В субботу";
-"on_sunday" = "В воскресенье";
-
-"template_at_morning" = "Утром";
-"template_at_launch" = "В обед";
-"template_at_afternoon" = "Вечером";
 
 "no_reminder" = "Не напоминать";
 "remind_just_in_time" = "Напомнить точно в срок";
@@ -150,12 +121,6 @@
 "n_weeks" = "%lu n";
 "n_months" = "%lu n";
 "n_years" = "%lu n";
-"imported_n_tasks" = "%lu n";
-"n_attachments" = "%lu n";
-
-"remind_after_10" = "Напомнить через 10 минут";
-"remind_after_30" = "Напомнить через 30 минут";
-"remind_after_60" = "Напомнить через час";
 
 "sprint_start_date" = "Начало спринта";
 "targets_section_placeholder_title" = "Добавьте первую цель";
@@ -186,6 +151,9 @@
 
 "notifications_are_disabled_message" = "Уведомления были отключены. Чтобы включить уведомления, перейдите в настройки.";
 
+"today_targets_section_placeholder_title" = "На сегодня привычек нет";
+"today_habits_section_placeholder_title" = "У вас нет целей";
+
 "pro_version" = "Приобрести PRO версию";
 "pro_version_price" = "Всего за 75 рублей";
 "restore_pro_version" = "Восстановить PRO версию";
@@ -199,6 +167,7 @@
 "pick_background_image" = "Выбор фона";
 
 "my_progress" = "Мой прогресс";
+"targets" = "Цели";
 "habits" = "Привычки";
 "habits_chart_no_data" = "Начните выполнять привычки, чтобы видеть прогресс";
 "water" = "Вода";

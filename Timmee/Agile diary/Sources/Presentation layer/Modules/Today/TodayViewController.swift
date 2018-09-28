@@ -123,9 +123,13 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         let subtitle = NSMutableAttributedString()
         subtitle.append(NSAttributedString(string: "Sprint".localized, attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         subtitle.append(NSAttributedString(string: " #\(sprint.sortPosition)", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
-        subtitle.append(NSAttributedString(string: ", " + "remains_n".localized(with: daysRemaining), attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
-        subtitle.append(NSAttributedString(string: " \(daysRemaining) ", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
-        subtitle.append(NSAttributedString(string: "n_days".localized(with: daysRemaining), attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+        
+        let remainingDaysString = NSMutableAttributedString(string: ", " + "remains_n_days".localized(with: daysRemaining),
+                                                            attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
+        if let daysCountRange = remainingDaysString.string.range(of: "\(daysRemaining)")?.nsRange {
+            remainingDaysString.setAttributes([.foregroundColor: AppTheme.current.colors.mainElementColor], range: daysCountRange)
+        }
+        subtitle.append(remainingDaysString)
         headerView.subtitleLabel.attributedText = subtitle
     }
     
@@ -135,8 +139,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     private func setSectionContainersVisible(content: Bool, water: Bool) {
-        contentViewController.performAppearanceTransition(isAppearing: true) { contentViewContainer.isHidden = !content }
-        waterControlViewController.performAppearanceTransition(isAppearing: false) { waterControlViewContainer.isHidden = !water }
+        contentViewController.performAppearanceTransition(isAppearing: content) { contentViewContainer.isHidden = !content }
+        waterControlViewController.performAppearanceTransition(isAppearing: water) { waterControlViewContainer.isHidden = !water }
     }
     
 }

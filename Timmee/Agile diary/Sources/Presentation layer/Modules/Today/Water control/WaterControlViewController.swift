@@ -15,6 +15,10 @@ final class WaterControlViewController: UIViewController {
     
     @IBOutlet private var drunkVolumeLabel: UILabel!
     
+    @IBOutlet private var waterLevelView: WaterLevelView!
+    
+    @IBOutlet private var waterControlCompletedTodayImageView: UIImageView!
+    
     @IBOutlet private var drinkButtonsContainer: UIView!
     @IBOutlet private var drink100mlButton: UIButton!
     @IBOutlet private var drink100mlLabel: UILabel!
@@ -62,6 +66,8 @@ final class WaterControlViewController: UIViewController {
         super.viewWillAppear(animated)
         setupAppearance()
         
+        waterLevelView.animationHasStoped = false
+        
         updateProgress()
         
         guard let sprint = sprint else { return }
@@ -86,7 +92,13 @@ final class WaterControlViewController: UIViewController {
                 setDrinkWaterButtonsVisible(true)
                 drunkVolumeLabel.isHidden = false
             }
+            updateProgress()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        waterLevelView.animationHasStoped = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -125,6 +137,11 @@ private extension WaterControlViewController {
             + " "
             + "\(neededVolume)"
             + "l".localized
+        
+        let drunkWaterInPercents = min(1, CGFloat(todayDrunkVolume).safeDivide(by: CGFloat(waterControl.neededVolume)))
+        waterLevelView.waterLevel = drunkWaterInPercents
+        
+        waterControlCompletedTodayImageView.isHidden = drunkWaterInPercents < 1
     }
     
     func updateProgress() {
@@ -155,6 +172,7 @@ private extension WaterControlViewController {
     func setInitialState() {
         waterControlConfigurationButton.isHidden = true
         setDrinkWaterButtonsVisible(false)
+        waterControlCompletedTodayImageView.isHidden = true
     }
     
     func setupWaterControlConfigurationButton() {

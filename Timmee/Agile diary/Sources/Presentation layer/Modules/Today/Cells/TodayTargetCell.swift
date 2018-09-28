@@ -27,6 +27,7 @@ final class TodayTargetCell: SwipeTableViewCell {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 8
         containerView.configureShadow(radius: 4, opacity: 0.1)
+        titleLabel.font = AppTheme.current.fonts.medium(18)
         stagesTitleLabel.text = "stages".localized
         stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
     }

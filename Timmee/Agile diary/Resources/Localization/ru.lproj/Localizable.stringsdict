@@ -8,25 +8,6 @@
 			one = "\U043a\U0430\U0436\U0434\U0443\U044e";
 		};
 	};
-	"imported_n_tasks" = {
-		"NSStringLocalizedFormatKey" = "%#@n@";
-		n = {
-			"NSStringFormatValueTypeKey" = lu;
-			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
-			other = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U043e %lu \U0437\U0430\U0434\U0430\U0447";
-			one = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U0430 \U043e\U0434\U043d\U0430 \U0437\U0430\U0434\U0430\U0447\U0430";
-			few = "\U0414\U043e\U0431\U0430\U0432\U043b\U0435\U043d\U043e %lu \U0437\U0430\U0434\U0430\U0447\U0438";
-		};
-	};
-	"remains_n" = {
-		"NSStringLocalizedFormatKey" = "%#@n@";
-		n = {
-			"NSStringFormatValueTypeKey" = lu;
-			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
-			other = "\U041e\U0441\U0442\U0430\U043b\U043e\U0441\U044c";
-			one = "\U041e\U0441\U0442\U0430\U043b\U0441\U044f";
-		};
-	};
 	"n_years" = {
 		"NSStringLocalizedFormatKey" = "%#@n@";
 		n = {
@@ -76,14 +57,13 @@
 			one = "\U043a\U0430\U0436\U0434\U044b\U0439";
 		};
 	};
-	"n_attachments" = {
+	"remains_n_days" = {
 		"NSStringLocalizedFormatKey" = "%#@n@";
 		n = {
-			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
 			"NSStringFormatValueTypeKey" = lu;
-			few = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0445 \U0444\U0430\U0439\U043b\U0430";
-			one = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0439 \U0444\U0430\U0439\U043b";
-			other = "\U043f\U0440\U0438\U043a\U0440\U0435\U043f\U043b\U0435\U043d\U043d\U044b\U0445 \U0444\U0430\U0439\U043b\U043e\U0432";
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "\U041e\U0441\U0442\U0430\U043b\U043e\U0441\U044c %lu \U0434\U043d\U0435\U0439";
+			one = "\U041e\U0441\U0442\U0430\U043b\U0441\U044f %lu \U0434\U0435\U043d\U044c";
 		};
 	};
 }

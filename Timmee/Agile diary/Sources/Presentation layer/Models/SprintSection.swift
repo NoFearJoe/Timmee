@@ -13,9 +13,9 @@ enum SprintSection: Int {
     
     var title: String {
         switch self {
-        case .targets: return "Цели" // TODO: Localize
-        case .habits: return "Привычки"
-        case .water: return "Вода"
+        case .targets: return "targets".localized
+        case .habits: return "habits".localized
+        case .water: return "water".localized
         }
     }
     
