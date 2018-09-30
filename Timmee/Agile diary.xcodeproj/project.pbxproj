@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		96A17C9A215FFDA80002FBB6 /* Cocoapods installer */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 96A17C9B215FFDA80002FBB6 /* Build configuration list for PBXAggregateTarget "Cocoapods installer" */;
+			buildPhases = (
+				96D67EE6215FFDEA00AE23D0 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Cocoapods installer";
+			productName = "Cocoapods installer";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D479211C55D9004C0559 /* Main.storyboard */; };
 		0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
@@ -813,6 +827,9 @@
 							};
 						};
 					};
+					96A17C9A215FFDA80002FBB6 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 				};
 			};
 			buildConfigurationList = 0C14D46D211C55D9004C0559 /* Build configuration list for PBXProject "Agile diary" */;
@@ -831,6 +848,7 @@
 			targets = (
 				0C14D471211C55D9004C0559 /* Agile diary */,
 				0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */,
+				96A17C9A215FFDA80002FBB6 /* Cocoapods installer */,
 			);
 		};
 /* End PBXProject section */
@@ -908,6 +926,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		96D67EE6215FFDEA00AE23D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pod install\n";
 		};
 		F8F04FD59F4FE3586B4DBF27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1331,6 +1366,24 @@
 			};
 			name = Release;
 		};
+		96A17C9C215FFDA80002FBB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		96A17C9D215FFDA80002FBB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1357,6 +1410,15 @@
 			buildConfigurations = (
 				0CE883D42150F6EC00637BD9 /* Debug */,
 				0CE883D52150F6EC00637BD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96A17C9B215FFDA80002FBB6 /* Build configuration list for PBXAggregateTarget "Cocoapods installer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96A17C9C215FFDA80002FBB6 /* Debug */,
+				96A17C9D215FFDA80002FBB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

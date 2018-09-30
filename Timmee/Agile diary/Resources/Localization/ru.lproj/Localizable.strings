@@ -205,7 +205,7 @@
 "drunk_water_300" = "Выпил 300мл";
 
 "education_initial_title" = "Что такое Agile ежедневник?";
-"education_initial_text" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки. В основе всего - спринты. Это временные отрезки длинной в 9 недель, в течение которых нужно вырабатывать привычки и добиваться целей";
+"education_initial_text" = "Agile ежедневник помогает добиваться целей и вырабатывать привычки. В основе всего - спринты - временные отрезки длинной в 9 недель";
 "education_initial_continue" = "Понятно";
 "education_initial_skip" = "Я уже все знаю";
 "education_targets_title" = "Цели";
@@ -213,11 +213,11 @@
 "education_targets_continue" = "Хорошо, что дальше?";
 "education_targets_skip" = "Ну все, хватит";
 "education_habits_title" = "Привычки";
-"education_habits_text" = "Привычки - это простые регулярные действия, которые вы хотите привыкнуть делать. Например, утренняя пробежка или чтение книги";
+"education_habits_text" = "Это простые регулярные действия. Например, утренняя пробежка или чтение книги";
 "education_habits_continue" = "Отлично!";
 "education_habits_skip" = "Ну все, хватит";
 "education_notifications_setup_title" = "Как помнить о привычках?";
-"education_notifications_setup_text" = "Нужно просто включить уведомления и приложение напомнит о самом важном";
+"education_notifications_setup_text" = "Нужно просто включить уведомления и приложение поможет о них не забыть";
 "education_notifications_setup_continue" = "Включить уведомления";
 "education_notifications_setup_skip" = "Не стоит";
 "education_pin_setup_title" = "Не хотите делиться секретами?";
