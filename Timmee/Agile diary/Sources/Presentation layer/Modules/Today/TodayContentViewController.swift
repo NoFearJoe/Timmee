@@ -172,9 +172,9 @@ private extension TodayContentViewController {
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
         placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
-        placeholderView.titleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
-        placeholderView.subtitleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         placeholderContainer.isHidden = true
     }
     

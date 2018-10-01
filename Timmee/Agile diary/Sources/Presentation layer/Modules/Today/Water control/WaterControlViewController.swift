@@ -112,10 +112,10 @@ final class WaterControlViewController: UIViewController {
     
     func setupAppearance() {
         setupWaterControlConfigurationButton()
-        placeholderView.titleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
-        drunkVolumeLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        drunkVolumeLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         [drink100mlLabel, drink200mlLabel, drink300mlLabel].forEach {
-            $0?.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
+            $0?.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
             $0?.font = AppTheme.current.fonts.medium(12)
         }
     }
@@ -178,7 +178,7 @@ private extension WaterControlViewController {
     func setupWaterControlConfigurationButton() {
         waterControlConfigurationButton.setTitle("configure_water_control".localized, for: .normal)
         waterControlConfigurationButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
-        waterControlConfigurationButton.setTitleColor(AppTheme.current.colors.foregroundColor, for: .normal)
+        waterControlConfigurationButton.setTitleColor(.white, for: .normal)
     }
     
     func setupPlaceholder() {

@@ -105,7 +105,6 @@ final class TodayHabitCellSwipeActionsProvider {
                 action.fulfill(with: .reset)
         })
         action.image = #imageLiteral(resourceName: "edit")
-        action.textColor = AppTheme.current.colors.activeElementColor // TODO: Желтые цвет?
         action.title = nil
         action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
         action.transitionDelegate = nil
@@ -122,6 +121,7 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         case .right:
             var actions: [SwipeAction] = []
             if shouldShowEditAction?(indexPath) == true {
+                swipeEditAction.textColor = AppTheme.current.colors.activeElementColor
                 actions.append(swipeEditAction)
             }
             if shouldShowLinkAction?(indexPath) == true {
@@ -200,7 +200,6 @@ final class TodayTargetCellSwipeActionsProvider {
                 action.fulfill(with: .reset)
         })
         action.image = #imageLiteral(resourceName: "edit")
-        action.textColor = AppTheme.current.colors.activeElementColor // TODO: Желтые цвет?
         action.title = nil
         action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
         action.transitionDelegate = nil
@@ -217,6 +216,7 @@ extension TodayTargetCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         case .right:
             var actions: [SwipeAction] = []
             if shouldShowEditAction?(indexPath) == true {
+                swipeEditAction.textColor = AppTheme.current.colors.activeElementColor
                 actions.append(swipeEditAction)
             }
             if shouldShowDoneAction?(indexPath) == true {

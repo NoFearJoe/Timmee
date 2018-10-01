@@ -44,7 +44,7 @@ class LargeHeaderView: UIView {
     }
     
     private func setupAppearance() {
-        backgroundColor = AppTheme.current.colors.middlegroundColor
+        backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
 }

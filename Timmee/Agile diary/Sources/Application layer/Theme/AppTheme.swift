@@ -44,14 +44,6 @@ struct AppTheme {
         let foregroundColor: UIColor
         let middlegroundColor: UIColor
         let backgroundColor: UIColor
-        
-        var textColorForTodayLabelsOnBackground: UIColor {
-            if ProVersionPurchase.shared.isPurchased() {
-                return foregroundColor
-            } else {
-                return activeElementColor
-            }
-        }
     }
     
     struct Fonts {
@@ -95,14 +87,14 @@ struct AppTheme {
                                                backgroundColor: UIColor(rgba: "888888")),
                                 fonts: Fonts())
     
-    static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: "999999"),
-                                              activeElementColor: UIColor(rgba: "EEEEEE"),
+    static let dark = AppTheme(colors: Colors(inactiveElementColor: UIColor(rgba: "BBBBBB"),
+                                              activeElementColor: UIColor(rgba: "FFFFFF"),
                                               mainElementColor: UIColor(rgba: "29C3FE"),
                                               wrongElementColor: UIColor(rgba: "FF3100"),
                                               selectedElementColor: UIColor(rgba: "12FFA3"),
-                                              decorationElementColor: UIColor(rgba: "090909"),
-                                              foregroundColor: UIColor(rgba: "232425"),
-                                              middlegroundColor: UIColor(rgba: "1F1F1F"),
+                                              decorationElementColor: UIColor(rgba: "666666"),
+                                              foregroundColor: UIColor(rgba: "5D5D5D"),
+                                              middlegroundColor: UIColor(rgba: "444444"),
                                               backgroundColor: UIColor(rgba: "0A0A0A")),
                                fonts: Fonts())
     
@@ -111,6 +103,26 @@ struct AppTheme {
         case .light: return .light
         case .dark: return .dark
         }
+    }
+    
+}
+
+extension AppTheme {
+    
+    var textColorForTodayLabelsOnBackground: UIColor {
+        if ProVersionPurchase.shared.isPurchased() {
+            return AppThemeType.current == .light ? colors.foregroundColor : colors.activeElementColor
+        } else {
+            return colors.activeElementColor
+        }
+    }
+    
+}
+
+extension AppTheme {
+    
+    var keyboardStyleForTheme: UIKeyboardAppearance {
+        return AppThemeType.current == .light ? .light : .dark
     }
     
 }

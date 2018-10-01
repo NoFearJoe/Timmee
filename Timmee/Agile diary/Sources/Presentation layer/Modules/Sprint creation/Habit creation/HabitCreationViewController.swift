@@ -67,8 +67,8 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     override func setupAppearance() {
         super.setupAppearance()
-        view.backgroundColor = AppTheme.current.colors.foregroundColor
-        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -235,6 +235,7 @@ private extension HabitCreationViewController {
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
         titleField.isUserInteractionEnabled = editingMode == .full
+        titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         titleField.placeholderAttributedText
             = NSAttributedString(string: "habit_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),
@@ -270,6 +271,7 @@ private extension HabitCreationViewController {
     func setupLinkField() {
         linkField.textColor = AppTheme.current.colors.activeElementColor
         linkField.font = AppTheme.current.fonts.medium(17)
+        linkField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         linkField.attributedPlaceholder
             = NSAttributedString(string: "habit_link_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.medium(17),

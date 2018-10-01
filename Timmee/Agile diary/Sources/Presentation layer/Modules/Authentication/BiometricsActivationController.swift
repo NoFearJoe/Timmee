@@ -66,7 +66,7 @@ fileprivate extension BiometricsActivationController {
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         
-        acceptButton.setTitleColor(AppTheme.current.colors.foregroundColor, for: .normal)
+        acceptButton.setTitleColor(.white, for: .normal)
         declineButton.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .normal)
         
         acceptButton.backgroundColor = AppTheme.current.colors.mainElementColor

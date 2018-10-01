@@ -69,7 +69,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         if ProVersionPurchase.shared.isPurchased() {
             backgroundImageView.image = BackgroundImage.current.image
         }
-        setupCreateSprintButton()
         loadSprint()
     }
     
@@ -80,8 +79,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
-        headerView.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.9)
+        headerView.backgroundColor = AppTheme.current.colors.foregroundColor
         sectionSwitcher.setupAppearance()
+        setupPlaceholderAppearance()
+        setupCreateSprintButton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -194,11 +195,15 @@ private extension TodayViewController {
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
-        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
-        placeholderView.titleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
-        placeholderView.subtitleLabel.textColor = AppTheme.current.colors.textColorForTodayLabelsOnBackground
         placeholderContainer.isHidden = true
+    }
+    
+    func setupPlaceholderAppearance() {
+        placeholderView.backgroundColor = .clear
+        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
+        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
     }
     
     func showNextSprintPlaceholder(sprintNumber: Int, startDate: Date) {

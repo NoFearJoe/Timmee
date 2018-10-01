@@ -56,11 +56,12 @@ class Switcher: UIControl {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        selectedItemIndex = itemViews.index { itemView in
-            return touches.contains(where: { touch in
+        guard let selectedViewIndex = itemViews.index(where: { itemView in
+            touches.contains(where: { touch in
                 itemView.frame.contains(touch.location(in: self))
             })
-        } ?? 0
+        }) else  { return }
+        selectedItemIndex = selectedViewIndex
     }
     
     func setupAppearance() {

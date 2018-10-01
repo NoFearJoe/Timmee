@@ -92,8 +92,8 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
     
     override func setupAppearance() {
         super.setupAppearance()
-        view.backgroundColor = AppTheme.current.colors.foregroundColor
-        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
+        view.backgroundColor = AppTheme.current.colors.middlegroundColor
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -215,6 +215,8 @@ extension TargetCreationViewController: UITableViewDataSource {
             }
             
             cell.delegate = stageCellActionsProvider
+            
+            cell.applyAppearance()
         }
         
         return cell
@@ -307,6 +309,7 @@ private extension TargetCreationViewController {
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
         titleField.isUserInteractionEnabled = editingMode == .full
+        titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         titleField.placeholderAttributedText
             = NSAttributedString(string: "target_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),
@@ -343,6 +346,7 @@ private extension TargetCreationViewController {
         noteField.maxNumberOfLines = 100
         noteField.showsVerticalScrollIndicator = false
         noteField.showsHorizontalScrollIndicator = false
+        noteField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         noteField.placeholderAttributedText
             = NSAttributedString(string: "target_note_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.medium(17),
@@ -374,6 +378,7 @@ private extension TargetCreationViewController {
         stageTextField.delegate = self
         stageTextField.font = AppTheme.current.fonts.medium(17)
         stageTextField.textColor = AppTheme.current.colors.activeElementColor
+        stageTextField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         stageTextField.attributedPlaceholder = NSAttributedString(string: "add_stage".localized,
                                                                   attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
     }
@@ -431,6 +436,11 @@ final class StageCell: SwipeTableViewCell {
     }
     
     private var titleBeforeEditing: String?
+    
+    func applyAppearance() {
+        titleView.textView.textColor = AppTheme.current.colors.activeElementColor
+        titleView.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+    }
     
 }
 

@@ -219,6 +219,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
         weightField.textColor = AppTheme.current.colors.mainElementColor
         weightField.font = AppTheme.current.fonts.bold(24)
         weightField.borderStyle = .none
+        weightField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         titleLabels.forEach { label in
             label.textColor = AppTheme.current.colors.inactiveElementColor
             label.font = AppTheme.current.fonts.medium(20)
@@ -232,7 +233,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
         notificationsStartTimeTitleLabel.font = AppTheme.current.fonts.medium(16)
         notificationsEndTimeTitleLabel.font = AppTheme.current.fonts.medium(16)
         doneButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
-        doneButton.setTitleColor(AppTheme.current.colors.foregroundColor, for: .normal)
+        doneButton.setTitleColor(.white, for: .normal)
     }
     
     // MARK: - Private methods
