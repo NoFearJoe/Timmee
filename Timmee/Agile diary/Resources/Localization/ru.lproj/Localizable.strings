@@ -150,8 +150,8 @@
 
 "notifications_are_disabled_message" = "Уведомления были отключены. Чтобы включить уведомления, перейдите в настройки.";
 
-"today_targets_section_placeholder_title" = "На сегодня привычек нет";
-"today_habits_section_placeholder_title" = "У вас нет целей";
+"today_targets_section_placeholder_title" = "У вас нет целей";
+"today_habits_section_placeholder_title" = "На сегодня привычек нет";
 
 "pro_version" = "Приобрести PRO версию";
 "pro_version_price" = "Всего за 75 рублей";

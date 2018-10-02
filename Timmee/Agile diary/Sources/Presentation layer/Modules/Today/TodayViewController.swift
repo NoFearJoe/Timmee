@@ -69,6 +69,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         if ProVersionPurchase.shared.isPurchased() {
             backgroundImageView.image = BackgroundImage.current.image
         }
+        sprint.flatMap { updateHeaderSubtitle(sprint: $0) }
         loadSprint()
     }
     
@@ -76,6 +77,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         super.setupAppearance()
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
         headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
@@ -135,8 +137,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     private func setSwitcherEnabled(_ isEnabled: Bool) {
-        self.sectionSwitcher.isEnabled = isEnabled
-        self.sectionSwitcher.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+        sectionSwitcher.isEnabled = isEnabled
+        sectionSwitcher.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
+        sectionSwitcher.isHidden = !isEnabled
     }
     
     private func setSectionContainersVisible(content: Bool, water: Bool) {
