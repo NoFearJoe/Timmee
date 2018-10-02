@@ -8,6 +8,6 @@
 
 public struct Constants {
     
-    static let sprintDuration = 9 // In weeks
+    static let sprintDuration = 7 // In weeks
     
 }

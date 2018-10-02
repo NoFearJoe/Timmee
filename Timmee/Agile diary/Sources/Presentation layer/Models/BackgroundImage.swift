@@ -29,8 +29,8 @@ enum BackgroundImage: String {
     var image: UIImage {
         switch self {
         case .bgImage0: return #imageLiteral(resourceName: "bgImage0")
-        case .bgImage1: return #imageLiteral(resourceName: "bgImage0")
-        case .bgImage2: return #imageLiteral(resourceName: "bgImage0")
+        case .bgImage1: return UIImage(named: "bgImage1")!
+        case .bgImage2: return UIImage(named: "bgImage2")!
         case .bgImage3: return #imageLiteral(resourceName: "bgImage0")
         case .bgImage4: return #imageLiteral(resourceName: "bgImage0")
         case .bgImage5: return #imageLiteral(resourceName: "bgImage0")

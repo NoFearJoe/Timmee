@@ -12,12 +12,11 @@
 "week" = "Week";
 
 "reminder" = "Reminder";
-"due_days" = "Дни выполнения";
-"link" = "Ссылка";
-"link_hint" = "В качестве ссылки можно указать любой интернет ресурс.";
-"stages" = "Этапы";
-"stages_hint" = "Этапы - это небольшие задачи, необходимые для достижения цели";
-"importancy" = "Важность";
+"due_days" = "Due dates";
+"link" = "Link";
+"link_hint" = "As a link, you can specify any online resource";
+"stages" = "Stages";
+"stages_hint" = "Stages are small tasks necessary to achieve a goal";
 
 "everyday" = "Everyday";
 "weekly" = "Weekly";
@@ -122,37 +121,37 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 
-"sprint_start_date" = "Начало спринта";
-"targets_section_placeholder_title" = "Добавьте первую цель";
-"targets_section_placeholder_subtitle" = "Нужно добавить как минимум одну цель, но и не стоит ставить слишком много целей. 3 цели - оптимальное решение.";
-"habits_section_placeholder_title" = "Добавьте первую привычку";
-"habits_section_placeholder_subtitle" = "Придумайте минимум 3 несложные действия, которые хотите делать каждый день. Например, чтение книги 15 минут в день или утренняя пробежка. Рекомендуем в каждый спринт добавлять не очень много привычек, но стараться выполнять их каждый день.";
+"sprint_start_date" = "Start of the sprint";
+"targets_section_placeholder_title" = "Add first goal";
+"targets_section_placeholder_subtitle" = "You need to add at least one goal, but you should not set too many goals. 3 goals - optimal amount";
+"habits_section_placeholder_title" = "Add first habit";
+"habits_section_placeholder_subtitle" = "Add at least 3 simple actions you want to do every day. For example, reading a book 15 minutes a day or a morning jog";
 
-"Sprint" = "Спринт";
-"next_sprint_is" = "Следующий спринт -";
-"next_sprint_starts" = "Следующий спринт начнется";
+"Sprint" = "Sprint";
+"next_sprint_is" = "Next sprint is";
+"next_sprint_starts" = "The next sprint will start";
 
-"there_is_no_sprints" = "Нет спринтов";
-"do_you_want_to_create_new_sprint" = "Хотите создать новый спринт?";
-"create_sprint" = "Создать спринт";
+"there_is_no_sprints" = "No sprints";
+"do_you_want_to_create_new_sprint" = "Do you want to create new sprint?";
+"create_sprint" = "Create sprint";
 
-"no_habits_for_today" = "Нет привычек на сегодня";
+"no_habits_for_today" = "No habits today";
 
-"target_title_placeholder" = "Новая цель";
-"note" = "Заметка";
-"target_note_placeholder" = "Введите текст заметки...";
-"add_stage" = "Введите название этапа...";
+"target_title_placeholder" = "New goal";
+"note" = "Note";
+"target_note_placeholder" = "Enter note text...";
+"add_stage" = "Enter stage name...";
 
-"habit_title_placeholder" = "Новая привычка";
+"habit_title_placeholder" = "New habit";
 "habit_link_placeholder" = "https://google.com";
 
-"are_you_sure_you_want_to_finish_sprint_creation" = "Спринт нельзя будет изменить. Завершить создание спринта?";
-"finish" = "Завершить";
+"are_you_sure_you_want_to_finish_sprint_creation" = "Sprint can no longer be changed. Complete sprint creation?";
+"finish" = "Complete";
 
-"notifications_are_disabled_message" = "Уведомления были отключены. Чтобы включить уведомления, перейдите в настройки.";
+"notifications_are_disabled_message" = "Notifications have been disabled. To enable notifications, go to settings.";
 
-"today_targets_section_placeholder_title" = "На сегодня привычек нет";
-"today_habits_section_placeholder_title" = "У вас нет целей";
+"today_targets_section_placeholder_title" = "No habits today";
+"today_habits_section_placeholder_title" = "you have no goals";
 
 "pro_version" = "Приобрести PRO версию";
 "pro_version_price" = "Всего за 75 рублей";
@@ -215,7 +214,7 @@
 "education_habits_title" = "Привычки";
 "education_habits_text" = "Привычки - это простые регулярные действия, которые вы хотите привыкнуть делать. Например, утренняя пробежка или чтение книги";
 "education_habits_continue" = "Отлично!";
-"education_habits_skip" = "Ну все, хватит";
+"education_habits_skip" = "Пропустить";
 "education_notifications_setup_title" = "Как помнить о привычках?";
 "education_notifications_setup_text" = "Нужно просто включить уведомления и приложение напомнит о самом важном";
 "education_notifications_setup_continue" = "Включить уведомления";
