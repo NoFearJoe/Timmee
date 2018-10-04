@@ -16,18 +16,16 @@ import class UIKit.UIViewController
 
 final class BiometricsActivationController: BaseViewController {
     
-    @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var subtitleLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
     
-    @IBOutlet fileprivate var acceptButton: UIButton!
-    @IBOutlet fileprivate var declineButton: UIButton!
+    @IBOutlet private var acceptButton: UIButton!
+    @IBOutlet private var declineButton: UIButton!
     
     var onComplete: (() -> Void)?
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        applyAppearance()
+    override func refresh() {
+        super.refresh()
         
         let biometricsType = UIDevice.current.biometricsType
         
@@ -43,21 +41,9 @@ final class BiometricsActivationController: BaseViewController {
         }
     }
     
-    @IBAction func accept() {
-        UserProperty.biometricsAuthenticationEnabled.setBool(true)
-        onComplete?()
-    }
-    
-    @IBAction func decline() {
-        UserProperty.biometricsAuthenticationEnabled.setBool(false)
-        onComplete?()
-    }
-    
-}
-
-fileprivate extension BiometricsActivationController {
-    
-    func applyAppearance() {
+    override func setupAppearance() {
+        super.setupAppearance()
+        
         navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.colors.activeElementColor
         
@@ -74,6 +60,16 @@ fileprivate extension BiometricsActivationController {
         
         acceptButton.layer.cornerRadius = 12
         declineButton.layer.cornerRadius = 12
+    }
+    
+    @IBAction func accept() {
+        UserProperty.biometricsAuthenticationEnabled.setBool(true)
+        onComplete?()
+    }
+    
+    @IBAction func decline() {
+        UserProperty.biometricsAuthenticationEnabled.setBool(false)
+        onComplete?()
     }
     
 }

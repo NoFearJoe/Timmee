@@ -45,8 +45,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     let sprintsService = ServicesAssembly.shared.listsService
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
+        
         headerView.titleLabel.text = "today".localized
         headerView.subtitleLabel.text = nil
         if ProVersionPurchase.shared.isPurchased() {
@@ -64,17 +65,18 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupPlaceholder()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
+        super.refresh()
+        
         if ProVersionPurchase.shared.isPurchased() {
             backgroundImageView.image = BackgroundImage.current.image
         }
-        sprint.flatMap { updateHeaderSubtitle(sprint: $0) }
         loadSprint()
     }
     
     override func setupAppearance() {
         super.setupAppearance()
+        
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
         headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
         headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
@@ -85,6 +87,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         sectionSwitcher.setupAppearance()
         setupPlaceholderAppearance()
         setupCreateSprintButton()
+        sprint.flatMap { updateHeaderSubtitle(sprint: $0) }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -119,7 +122,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         case .water:
             setSectionContainersVisible(content: false, water: true)
         }
-    }
+    }   
     
     private func updateHeaderSubtitle(sprint: Sprint) {
         let daysRemaining = Date.now.days(before: sprint.endDate)

@@ -197,11 +197,24 @@ final class SettingsBackgroundImageCell: BaseSettingsCell {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var backgroundImageView: UIImageView!
+    @IBOutlet private var deleteButton: UIButton! {
+        didSet {
+            deleteButton.tintColor = AppTheme.current.colors.wrongElementColor
+        }
+    }
+    
+    private var onDelete: (() -> Void)?
+    
+    @IBAction private func onTapToDeleteButton() {
+        onDelete?()
+    }
     
     override func setDisplayItem(_ item: SettingsItem) {
         super.setDisplayItem(item)
         titleLabel.text = item.title
         backgroundImageView.image = item.icon
+        onDelete = item.helpAction
+        deleteButton.isHidden = !item.isDetailed
     }
     
     override func setupAppearance() {

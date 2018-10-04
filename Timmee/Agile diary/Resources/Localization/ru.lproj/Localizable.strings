@@ -162,7 +162,8 @@
 "theme" = "Тема";
 "light_theme" = "Светлая";
 "dark_theme" = "Темная";
-"background_image" = "Картинка на фоне";
+"background_image" = "Фоновое изображение";
+"no_background_image" = "Фоновое изображение не выбрано";
 "pick_background_image" = "Выбор фона";
 
 "my_progress" = "Мой прогресс";

@@ -86,8 +86,8 @@ final class SettingsViewController: BaseViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         title = "settings".localized
         
@@ -96,14 +96,15 @@ final class SettingsViewController: BaseViewController {
         ProVersionPurchase.shared.loadStore()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupAppearance()
+    override func refresh() {
+        super.refresh()
+        
         reloadSettings()
     }
     
     override func setupAppearance() {
         super.setupAppearance()
+        
         tableView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
@@ -210,11 +211,17 @@ fileprivate extension SettingsViewController {
             let backgroundImageAction = { [unowned self] in
                 self.performSegue(withIdentifier: "ShowBackgroundImagePicker", sender: nil)
             }
-            let backgroundImageItem = SettingsItem(title: "background_image".localized,
+            let title = BackgroundImage.current == .noImage ? "no_background_image".localized : "background_image".localized
+            var backgroundImageItem = SettingsItem(title: title,
                                                    subtitle: nil,
-                                                   icon: BackgroundImage.current.image,
+                                                   icon: BackgroundImage.current.image ?? UIImage(),
+                                                   isDetailed: BackgroundImage.current != .noImage,
                                                    style: .backgroundImage,
                                                    action: backgroundImageAction)
+            backgroundImageItem.helpAction = { [unowned self] in
+                UserProperty.backgroundImage.setString(BackgroundImage.noImage.rawValue)
+                self.reloadSettings()
+            }
             
             generalSectionItems.append(backgroundImageItem)
         }

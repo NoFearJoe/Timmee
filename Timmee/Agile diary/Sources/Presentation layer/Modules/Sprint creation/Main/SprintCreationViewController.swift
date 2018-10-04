@@ -44,8 +44,9 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     let tasksService = ServicesAssembly.shared.tasksService
     let schedulerService = TaskSchedulerService()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
+        
         UserProperty.isInitialSprintCreated.setBool(false)
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
@@ -59,9 +60,11 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard sprint != nil else { return }
+    override func refresh() {
+        super.refresh()
+        
+        guard let sprint = sprint else { return }
+        
         if sprint.creationDate.compare(Date.now.startOfDay) == .orderedAscending {
             sprint.creationDate = Date.now.nextDay.startOfDay
             showStartDate(sprint.creationDate)

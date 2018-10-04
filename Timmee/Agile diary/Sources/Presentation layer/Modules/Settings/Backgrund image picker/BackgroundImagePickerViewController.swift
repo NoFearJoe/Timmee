@@ -22,8 +22,9 @@ final class BackgroundImagePickerViewController: BaseViewController {
         self.title = "pick_background_image".localized
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
+        super.refresh()
+        
         collectionView.reloadData()
     }
     
@@ -41,8 +42,8 @@ extension BackgroundImagePickerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BackgroundImagePickerCell", for: indexPath) as! BackgroundImagePickerCell
-        let image = BackgroundImage.all[indexPath.item]
-        cell.configure(image: image.image, isPicked: image == BackgroundImage.current)
+        let backgroundImage = BackgroundImage.all[indexPath.item]
+        cell.configure(image: backgroundImage.image, isPicked: backgroundImage == BackgroundImage.current)
         return cell
     }
     
@@ -73,7 +74,7 @@ final class BackgroundImagePickerCell: UICollectionViewCell {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var checkbox: Checkbox!
     
-    func configure(image: UIImage, isPicked: Bool) {
+    func configure(image: UIImage?, isPicked: Bool) {
         imageView.image = image
         checkbox.isChecked = isPicked
     }

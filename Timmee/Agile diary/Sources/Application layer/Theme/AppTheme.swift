@@ -93,7 +93,7 @@ struct AppTheme {
                                               wrongElementColor: UIColor(rgba: "FF3100"),
                                               selectedElementColor: UIColor(rgba: "12FFA3"),
                                               decorationElementColor: UIColor(rgba: "666666"),
-                                              foregroundColor: UIColor(rgba: "5D5D5D"),
+                                              foregroundColor: UIColor(rgba: "5B5B5B"),
                                               middlegroundColor: UIColor(rgba: "444444"),
                                               backgroundColor: UIColor(rgba: "0A0A0A")),
                                fonts: Fonts())

@@ -88,8 +88,8 @@ final class PinCreationViewController: BaseViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         pinCodeView.pinCodeLength = pinCodeLength
         
@@ -100,16 +100,16 @@ final class PinCreationViewController: BaseViewController {
         numberPadView.dataSource = numberPadAdapter
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupAppearance()
+    override func refresh() {
+        super.refresh()
+        
         pinEnterState = .pin1
     }
     
     override func setupAppearance() {
         super.setupAppearance()
-        messageLabel.textColor = AppTheme.current.colors.activeElementColor
         
+        messageLabel.textColor = AppTheme.current.colors.activeElementColor
         pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor
         pinCodeView.filledDotColor = AppTheme.current.colors.mainElementColor
         pinCodeView.wrongPinCodeDotColor = AppTheme.current.colors.wrongElementColor

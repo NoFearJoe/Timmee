@@ -43,15 +43,15 @@ final class ChartsViewController: BaseViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         title = "my_progress".localized
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupAppearance()
+    override func refresh() {
+        super.refresh()
+        
         collectionView.reloadData()
     }
     

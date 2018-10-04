@@ -163,6 +163,7 @@
 "light_theme" = "Light";
 "dark_theme" = "Dark";
 "background_image" = "Background image";
+"no_background_image" = "Background image not set";
 "pick_background_image" = "Pick image";
 
 "my_progress" = "My progress";

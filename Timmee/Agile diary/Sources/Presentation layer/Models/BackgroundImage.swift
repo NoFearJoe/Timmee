@@ -9,6 +9,7 @@
 import UIKit
 
 enum BackgroundImage: String {
+    case noImage
     case bgImage0
     case bgImage1
     case bgImage2
@@ -23,12 +24,13 @@ enum BackgroundImage: String {
     static let all: [BackgroundImage] = [bgImage0, bgImage1, bgImage2, bgImage3, bgImage4, bgImage5, bgImage6, bgImage7, bgImage8, bgImage9]
     
     static var current: BackgroundImage {
-        return BackgroundImage(rawValue: UserProperty.backgroundImage.string()) ?? .bgImage0
+        return BackgroundImage(rawValue: UserProperty.backgroundImage.string()) ?? .noImage
     }
     
-    var image: UIImage {
+    var image: UIImage? {
         switch self {
-        case .bgImage0: return #imageLiteral(resourceName: "bgImage0")
+        case .noImage: return nil
+        case .bgImage0: return UIImage(named: "bgImage0")!
         case .bgImage1: return UIImage(named: "bgImage1")!
         case .bgImage2: return UIImage(named: "bgImage2")!
         case .bgImage3: return #imageLiteral(resourceName: "bgImage0")

@@ -138,8 +138,8 @@ final class WaterControlConfigurationViewController: BaseViewController {
     
     // MARK: - Lifecycle methods
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         genderSwitcher.items = [Gender.male.title, Gender.female.title]
         genderSwitcher.selectedItemIndex = 0
@@ -188,29 +188,17 @@ final class WaterControlConfigurationViewController: BaseViewController {
                                                object: weightField)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
+        super.refresh()
+        
         updateWeightField()
         updateNeededWaterVolume()
         updateNotificationsAvailability()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EmbedStartNotificationsTime" {
-            guard let picker = segue.destination as? NotificationTimePicker else { return }
-            picker.output = startNotificationsTimeHandler
-            startNotificationTimePicker = picker
-        } else if segue.identifier == "EmbedEndNotificationsTime" {
-            guard let picker = segue.destination as? NotificationTimePicker else { return }
-            picker.output = endNotificationsTimeHandler
-            endNotificationTimePicker = picker
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-    
     override func setupAppearance() {
         super.setupAppearance()
+        
         contentView.backgroundColor = .clear
         genderSwitcher.setupAppearance()
         activitySwitcher.setupAppearance()
@@ -234,6 +222,20 @@ final class WaterControlConfigurationViewController: BaseViewController {
         notificationsEndTimeTitleLabel.font = AppTheme.current.fonts.medium(16)
         doneButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
         doneButton.setTitleColor(.white, for: .normal)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EmbedStartNotificationsTime" {
+            guard let picker = segue.destination as? NotificationTimePicker else { return }
+            picker.output = startNotificationsTimeHandler
+            startNotificationTimePicker = picker
+        } else if segue.identifier == "EmbedEndNotificationsTime" {
+            guard let picker = segue.destination as? NotificationTimePicker else { return }
+            picker.output = endNotificationsTimeHandler
+            endNotificationTimePicker = picker
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
     // MARK: - Private methods

@@ -55,7 +55,9 @@ final class TodayTargetCell: SwipeTableViewCell {
                 self.onChangeCheckedState?(isChecked, subtask)
             }
             stagesContainer.addSubview(stageView)
-            if index == 0 {
+            if subtasks.count == 1 {
+                stageView.allEdges().toSuperview()
+            } else if index == 0 {
                 [stageView.top(), stageView.leading(), stageView.trailing()].toSuperview()
             } else if index >= subtasks.count - 1 {
                 [stageView.leading(), stageView.trailing(), stageView.bottom()].toSuperview()

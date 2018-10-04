@@ -47,8 +47,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         self.editingMode = mode
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
+        
         setupDoneButton()
         setupTitleField()
         setupDayButtons()
@@ -57,8 +58,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         setupNotificationCheckbox()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
+        super.refresh()
+        
         updateUI(habit: habit)
         if titleField.textView.text.isEmpty {
             titleField.becomeFirstResponder()
@@ -67,6 +69,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     override func setupAppearance() {
         super.setupAppearance()
+        
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
         contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }

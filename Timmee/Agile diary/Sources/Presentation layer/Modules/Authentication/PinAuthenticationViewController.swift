@@ -51,8 +51,8 @@ final class PinAuthenticationViewController: BaseViewController {
     
     var onComplete: (() -> Void)?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         pinCodeView.pinCodeLength = pinCodeLength
         
@@ -65,16 +65,17 @@ final class PinAuthenticationViewController: BaseViewController {
         showMessage("enter_password".localized)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
+        super.refresh()
+        
         setupAppearance()
         showBiometricsAuthenticationIfPossible()
     }
     
     override func setupAppearance() {
         super.setupAppearance()
-        messageLabel.textColor = AppTheme.current.colors.activeElementColor
         
+        messageLabel.textColor = AppTheme.current.colors.activeElementColor
         pinCodeView.emptyDotColor = AppTheme.current.colors.inactiveElementColor
         pinCodeView.filledDotColor = AppTheme.current.colors.activeElementColor
         pinCodeView.wrongPinCodeDotColor = AppTheme.current.colors.wrongElementColor

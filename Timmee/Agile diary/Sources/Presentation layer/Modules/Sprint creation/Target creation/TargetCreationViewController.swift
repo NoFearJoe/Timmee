@@ -67,8 +67,9 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
         self.editingMode = mode
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
+        
         interactor.output = self
         interactor.targetProvider = self
         setupLabels()
@@ -82,8 +83,9 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
+        super.refresh()
+        
         updateUI(target: target)
         if titleField.textView.text.isEmpty {
             titleField.becomeFirstResponder()

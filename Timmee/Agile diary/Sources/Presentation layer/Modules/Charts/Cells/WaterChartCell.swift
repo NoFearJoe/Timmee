@@ -69,6 +69,7 @@ final class WaterChartCell: BaseChartCell {
         chartView.noDataFont = AppTheme.current.fonts.medium(14)
         chartView.noDataText = "water_chart_no_data".localized
         chartView.noDataTextColor = AppTheme.current.colors.inactiveElementColor
+        chartView.noDataTextAlignment = .center
         chartView.chartDescription = nil
         
         let leftAxis = chartView.leftAxis

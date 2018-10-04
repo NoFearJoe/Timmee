@@ -8,16 +8,47 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+public protocol Screen: class {
+    var isVisible: Bool { get }
+    
+    func prepare()
+    func setupAppearance()
+    func refresh()
+}
+
+class BaseViewController: UIViewController, Screen {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppThemeType.current == .dark ? .lightContent : .default
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    final override func viewDidLoad() {
+        super.viewDidLoad()
+        subscribeToAppBecomeActive()
+        prepare()
+    }
+    
+    final override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
+        refresh()
     }
+    
+    private func subscribeToAppBecomeActive() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc private func onBecomeActive() {
+        refresh()
+    }
+    
+    // MARK: - Screen
+    
+    var isVisible: Bool {
+        return self.isViewLoaded && self.view.window != nil
+    }
+    
+    func prepare() {}
     
     func setupAppearance() {
         navigationController?.navigationBar.isTranslucent = false
@@ -31,5 +62,7 @@ class BaseViewController: UIViewController {
         
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
+    
+    func refresh() {}
     
 }
