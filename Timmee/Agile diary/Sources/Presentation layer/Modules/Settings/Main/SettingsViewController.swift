@@ -259,7 +259,7 @@ fileprivate extension SettingsViewController {
         proVersionSectionItems.append(buyProVersionItem)
         
         if areProVersionFeaturesShown {
-            let features = (1..<6).map { "pro_version_feature_\($0)".localized }
+            let features = (1..<4).map { "pro_version_feature_\($0)".localized }
             let featuresItem = SettingsItem(title: features.map { "- " + $0 }.joined(separator: "\n"),
                                             icon: UIImage(),
                                             style: .proVersionFeatures,

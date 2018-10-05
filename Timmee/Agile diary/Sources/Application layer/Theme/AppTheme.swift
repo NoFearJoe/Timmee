@@ -110,7 +110,7 @@ struct AppTheme {
 extension AppTheme {
     
     var textColorForTodayLabelsOnBackground: UIColor {
-        if ProVersionPurchase.shared.isPurchased() {
+        if ProVersionPurchase.shared.isPurchased() && BackgroundImage.current != .noImage {
             return AppThemeType.current == .light ? colors.foregroundColor : colors.activeElementColor
         } else {
             return colors.activeElementColor

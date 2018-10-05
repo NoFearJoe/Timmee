@@ -155,6 +155,12 @@
 
 "pro_version" = "Приобрести PRO версию";
 "pro_version_price" = "Всего за 75 рублей";
+"pro_version_features_title" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\nДополнительные возможности:";
+"pro_version_feature_1" = "Расширенный просмотр прогресса";
+"pro_version_feature_2" = "Контроль воды";
+"pro_version_feature_3" = "Выбор фонового изображения";
+"pro_version_feature_4" = "";
+"pro_version_feature_5" = "";
 "restore_pro_version" = "Восстановить PRO версию";
 "restore_error_try_again" = "Не удалось восстановить PRO версию. Попробуйте снова";
 "pro_version_section" = "PRO версия";
