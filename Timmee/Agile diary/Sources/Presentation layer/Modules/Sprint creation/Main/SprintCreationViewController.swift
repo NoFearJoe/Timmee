@@ -37,6 +37,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             contentViewController.sprintID = sprint.id
             headerView.titleLabel.text = "Sprint".localized + " #\(sprint.sortPosition)"
             showStartDate(sprint.creationDate)
+            updateDoneButtonState()
         }
     }
     
@@ -68,7 +69,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         if sprint.creationDate.compare(Date.now.startOfDay) == .orderedAscending {
             sprint.creationDate = Date.now.nextDay.startOfDay
             showStartDate(sprint.creationDate)
-            updateDoneButtonState() // FIXME: Нужно сначала запросить все цели и привычки и потом обновлять кнопку готово при первом показе
+            updateDoneButtonState()
         }
     }
     
@@ -113,8 +114,12 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     }
     
     @IBAction private func onClose() {
-        // TODO: Alert, then close
-        close()
+        showAlert(title: "attention".localized,
+                  message: "are_you_sure_you_want_to_cancel_sprint_creation".localized,
+                  actions: [.cancel, .ok("close".localized)])
+            { action in
+                self.close()
+            }
     }
     
     @IBAction private func onAdd() {

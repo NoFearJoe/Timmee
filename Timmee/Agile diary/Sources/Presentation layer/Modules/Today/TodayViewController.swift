@@ -206,9 +206,9 @@ private extension TodayViewController {
     
     func setupPlaceholderAppearance() {
         placeholderView.backgroundColor = .clear
-        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
+        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
         placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
     }
     
@@ -221,7 +221,7 @@ private extension TodayViewController {
     
     func showCreateSprintPlaceholder() {
         placeholderContainer.isHidden = false
-        placeholderView.icon = #imageLiteral(resourceName: "calendar") // TODO: Change icon
+        placeholderView.icon = #imageLiteral(resourceName: "calendar")
         placeholderView.title = "there_is_no_sprints".localized
         placeholderView.subtitle = "do_you_want_to_create_new_sprint".localized
     }

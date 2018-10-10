@@ -29,7 +29,7 @@ class ExtendedChartViewController: BaseViewController, SprintInteractorTrait, Ta
 private extension ExtendedChartViewController {
     
     func refreshWaterControlProgress() {
-        guard let currentSprint = getCurrentSprint() else { return } // TODO: Handle
+        guard let currentSprint = getCurrentSprint() else { return }
         guard let waterControl = waterControlService.fetchWaterControl() else { return }
         
         var chartEntries: [BarChartDataEntry] = []

@@ -103,7 +103,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     habit.setDone(isChecked, at: Date.now)
-                    self.saveTask(habit, listID: self.sprintID, completion: nil) // TODO: Обработать?
+                    self.saveTask(habit, listID: self.sprintID, completion: nil)
                 }
             }
             return cell
@@ -171,9 +171,9 @@ private extension TodayContentViewController {
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
-        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
+        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
+        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
         placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         placeholderContainer.isHidden = true
     }

@@ -19,16 +19,16 @@ public protocol HintViewTrait: class {
 
 extension HintViewTrait where Self: UIViewController {
     public func showHintPopover(_ hint: String, button: UIButton) {
-        self.hintPopover = HintPopoverView.showPopoverWithMessage(hint,
-                                                                  from: button,
-                                                                  holderView: self.view,
-                                                                  rightInset: self.view.bounds.width - button.center.x)
+        self.hintPopover = HintPopoverView.showPopover(with: hint,
+                                                       from: button,
+                                                       holderView: self.view,
+                                                       rightInset: self.view.bounds.width - button.center.x)
     }
     
     public func showFullWidthHintPopover(_ hint: String, button: UIButton) {
-        self.hintPopover = HintPopoverView.showPopoverWithMessage(hint,
-                                                                  from: button,
-                                                                  holderView: self.view)
+        self.hintPopover = HintPopoverView.showPopover(with: hint,
+                                                       from: button,
+                                                       holderView: self.view)
     }
     
     public func hideHintPopover() {

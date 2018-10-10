@@ -145,6 +145,7 @@
 "habit_title_placeholder" = "New habit";
 "habit_link_placeholder" = "https://google.com";
 
+"are_you_sure_you_want_to_cancel_sprint_creation" = "Created sprint will not be saved. Close sprint creation?";
 "are_you_sure_you_want_to_finish_sprint_creation" = "Sprint can no longer be changed. Complete sprint creation?";
 "finish" = "Complete";
 
@@ -156,12 +157,10 @@
 "pro_version" = "Buy PRO version";
 "pro_version_price" = "Just for $1";
 "restore_pro_version" = "Restore PRO version";
-"pro_version_features_title" = "Возможности PRO версии";
-"pro_version_feature_1" = "Расширенный просмотр прогресса";
-"pro_version_feature_2" = "Контроль воды";
-"pro_version_feature_3" = "Выбор фонового изображения";
-"pro_version_feature_4" = "";
-"pro_version_feature_5" = "";
+"pro_version_features_title" = "By purchasing the PRO version, you open access to additional features, as well as help the development of the application.\nAdditional features:";
+"pro_version_feature_1" = "Advanced progress view";
+"pro_version_feature_2" = "Water control";
+"pro_version_feature_3" = "Background image";
 "restore_error_try_again" = "Failed to restore the PRO version. Try again";
 "pro_version_section" = "PRO version";
 "version" = "Version";

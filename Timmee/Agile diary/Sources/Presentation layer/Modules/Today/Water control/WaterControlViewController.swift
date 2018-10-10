@@ -116,6 +116,7 @@ final class WaterControlViewController: UIViewController {
         setupWaterControlConfigurationButton()
         waterControlReconfigurationButton.tintColor = AppTheme.current.colors.mainElementColor
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         drunkVolumeLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         [drink100mlLabel, drink200mlLabel, drink300mlLabel].forEach {
             $0?.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
@@ -184,14 +185,15 @@ private extension WaterControlViewController {
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
-        placeholderView.titleLabel.font = UIFont.avenirNextMedium(18)
-        placeholderView.subtitleLabel.font = UIFont.avenirNextRegular(14)
+        placeholderView.backgroundColor = .clear
+        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
+        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
         placeholderContainer.isHidden = true
     }
     
     func showPlaceholder() {
         placeholderContainer.isHidden = false
-        placeholderView.icon = nil // TODO: Add icon
+        placeholderView.icon = UIImage(imageLiteralResourceName: "glass300ml")
         placeholderView.title = "water_control_not_initialized".localized
         placeholderView.subtitle = nil
     }

@@ -346,14 +346,13 @@ public final class HintPopoverView: UIView {
 
 extension HintPopoverView {
     
-    // TODO: rename to `showPopover(with message:, from view:, holderView:)`
     @discardableResult
-    public class func showPopoverWithMessage(_ message: String? = nil,
-                                             attributedString: NSAttributedString? = nil,
-                                             from view: UIView,
-                                             holderView: UIView,
-                                             leftInset: CGFloat = 15,
-                                             rightInset: CGFloat = 15) -> HintPopoverView {
+    public class func showPopover(with message: String? = nil,
+                                  attributedString: NSAttributedString? = nil,
+                                  from view: UIView,
+                                  holderView: UIView,
+                                  leftInset: CGFloat = 15,
+                                  rightInset: CGFloat = 15) -> HintPopoverView {
         HintPopoverView.roundedViewCornerRadius = 6.0
         let targetDistance: CGFloat = 20.0
         let label = HintPopoverView.messageLabel

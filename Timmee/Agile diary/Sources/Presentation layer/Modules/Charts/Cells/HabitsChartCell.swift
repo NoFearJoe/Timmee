@@ -36,7 +36,7 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
     }
     
     override func update() {
-        guard let currentSprint = getCurrentSprint() else { return } // TODO: Handle
+        guard let currentSprint = getCurrentSprint() else { return }
         let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
         
         var chartEntries: [ChartDataEntry] = []

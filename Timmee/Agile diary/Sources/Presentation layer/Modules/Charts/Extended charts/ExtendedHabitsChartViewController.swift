@@ -24,7 +24,7 @@ final class ExtendedHabitsChartViewController: ExtendedChartViewController {
 private extension ExtendedHabitsChartViewController {
     
     func refreshHabitsProgress() {
-        guard let currentSprint = getCurrentSprint() else { return } // TODO: Handle
+        guard let currentSprint = getCurrentSprint() else { return }
         let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
         
         var chartEntries: [BarChartDataEntry] = []
