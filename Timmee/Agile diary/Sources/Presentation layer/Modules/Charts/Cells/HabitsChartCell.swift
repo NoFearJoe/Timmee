@@ -43,7 +43,9 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
         var xAxisTitles: [String] = []
         for i in stride(from: 6, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
-            let completedHabits = habits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
+            let repeatDay = DayUnit(number: date.weekday - 1).string
+            let allHabits = habits.filter { $0.repeating.string.contains(repeatDay) }
+            let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
             chartEntries.append(ChartDataEntry(x: Double(6 - i), y: Double(completedHabits)))
             xAxisTitles.append(date.asShortWeekday)
         }
@@ -62,12 +64,6 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
                                          locations: [1, 0]) {
             dataSet.fill = Fill.init(linearGradient: fillGradient, angle: 90)
         }
-        
-        let limitLine = ChartLimitLine(limit: Double(habits.count))
-        limitLine.lineColor = AppTheme.current.colors.inactiveElementColor
-        limitLine.lineDashLengths = [4, 4]
-        limitLine.lineWidth = 1
-        chartView.leftAxis.addLimitLine(limitLine)
         
         chartView.xAxis.valueFormatter = DefaultAxisValueFormatter(block: { (i, _) -> String in
             xAxisTitles[Int(i)]
