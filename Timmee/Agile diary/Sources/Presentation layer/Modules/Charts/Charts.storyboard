@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +52,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привычки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-kA-E4m">
-                                                    <rect key="frame" x="8" y="8" width="329" height="24"/>
+                                                    <rect key="frame" x="8" y="8" width="267" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -61,19 +61,32 @@
                                                     <rect key="frame" x="8" y="40" width="329" height="208"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSC-j5-z76">
+                                                    <rect key="frame" x="283" y="5.5" width="54" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="Show all">
+                                                        <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showFullProgress" destination="fQ8-cd-CZs" eventType="touchUpInside" id="bdZ-r4-ppL"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Feg-kA-E4m" secondAttribute="trailing" constant="8" id="0jg-0D-yqC"/>
+                                            <constraint firstItem="VSC-j5-z76" firstAttribute="leading" secondItem="Feg-kA-E4m" secondAttribute="trailing" constant="8" id="0eM-zU-u1I"/>
                                             <constraint firstItem="uzu-CN-XWl" firstAttribute="leading" secondItem="fQ8-cd-CZs" secondAttribute="leading" constant="8" id="28G-n2-WUU"/>
                                             <constraint firstItem="Feg-kA-E4m" firstAttribute="top" secondItem="fQ8-cd-CZs" secondAttribute="top" constant="8" id="6uZ-QE-BDt"/>
+                                            <constraint firstAttribute="trailing" secondItem="VSC-j5-z76" secondAttribute="trailing" constant="8" id="DYP-z1-WJg"/>
                                             <constraint firstItem="Feg-kA-E4m" firstAttribute="leading" secondItem="fQ8-cd-CZs" secondAttribute="leading" constant="8" id="Qee-a4-3xC"/>
                                             <constraint firstAttribute="trailing" secondItem="uzu-CN-XWl" secondAttribute="trailing" constant="8" id="RM6-ME-g79"/>
                                             <constraint firstAttribute="bottom" secondItem="uzu-CN-XWl" secondAttribute="bottom" constant="8" id="SVb-ye-v90"/>
                                             <constraint firstItem="uzu-CN-XWl" firstAttribute="top" secondItem="Feg-kA-E4m" secondAttribute="bottom" constant="8" id="WKg-fB-Tgt"/>
+                                            <constraint firstItem="VSC-j5-z76" firstAttribute="centerY" secondItem="Feg-kA-E4m" secondAttribute="centerY" id="sfr-A9-0At"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="chartView" destination="uzu-CN-XWl" id="b8P-r2-Pu5"/>
+                                            <outlet property="fullProgressButton" destination="VSC-j5-z76" id="aJO-lY-Arg"/>
                                             <outlet property="titleLabel" destination="Feg-kA-E4m" id="L3N-Qf-Tw7"/>
                                         </connections>
                                     </collectionViewCell>
@@ -85,7 +98,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вода" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-dE-Nnr">
-                                                    <rect key="frame" x="8" y="8" width="329" height="24"/>
+                                                    <rect key="frame" x="8" y="8" width="267" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -94,19 +107,32 @@
                                                     <rect key="frame" x="8" y="40" width="329" height="208"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIw-4u-tS5">
+                                                    <rect key="frame" x="283" y="5.5" width="54" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="Show all">
+                                                        <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showFullProgress" destination="jiY-qN-YcQ" eventType="touchUpInside" id="QTs-Fe-Pul"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="hVH-dE-Nnr" secondAttribute="trailing" constant="8" id="KsX-aZ-h56"/>
+                                            <constraint firstItem="HIw-4u-tS5" firstAttribute="centerY" secondItem="hVH-dE-Nnr" secondAttribute="centerY" id="F5u-JC-g3K"/>
                                             <constraint firstItem="hVH-dE-Nnr" firstAttribute="leading" secondItem="jiY-qN-YcQ" secondAttribute="leading" constant="8" id="Mro-fb-lgJ"/>
                                             <constraint firstItem="2LG-j9-diP" firstAttribute="leading" secondItem="jiY-qN-YcQ" secondAttribute="leading" constant="8" id="cSr-vl-Hqv"/>
                                             <constraint firstAttribute="bottom" secondItem="2LG-j9-diP" secondAttribute="bottom" constant="8" id="gQJ-7C-KQ9"/>
+                                            <constraint firstItem="HIw-4u-tS5" firstAttribute="leading" secondItem="hVH-dE-Nnr" secondAttribute="trailing" constant="8" id="iTX-L3-yxx"/>
+                                            <constraint firstAttribute="trailing" secondItem="HIw-4u-tS5" secondAttribute="trailing" constant="8" id="kok-Us-QkZ"/>
                                             <constraint firstItem="hVH-dE-Nnr" firstAttribute="top" secondItem="jiY-qN-YcQ" secondAttribute="top" constant="8" id="lWA-cf-k0X"/>
                                             <constraint firstItem="2LG-j9-diP" firstAttribute="top" secondItem="hVH-dE-Nnr" secondAttribute="bottom" constant="8" id="pQo-sq-aPh"/>
                                             <constraint firstAttribute="trailing" secondItem="2LG-j9-diP" secondAttribute="trailing" constant="8" id="zFZ-nA-9s2"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="chartView" destination="2LG-j9-diP" id="eQ8-HL-cp1"/>
+                                            <outlet property="fullProgressButton" destination="HIw-4u-tS5" id="KP4-Sk-o9h"/>
                                             <outlet property="titleLabel" destination="hVH-dE-Nnr" id="ntz-lb-k0H"/>
                                         </connections>
                                     </collectionViewCell>
@@ -137,11 +163,44 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="CIu-rc-FA7" id="hsH-T5-Cty"/>
+                        <segue destination="Zn7-Z2-pN3" kind="show" identifier="ShowFullProgress" id="XNy-46-0bZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMl-m7-LyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="384.80000000000001" y="147.97601199400302"/>
+        </scene>
+        <!--Весь прогресс-->
+        <scene sceneID="eRI-FJ-EqS">
+            <objects>
+                <viewController title="Весь прогресс" id="Zn7-Z2-pN3" customClass="ExtendedChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nOp-sM-R5k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0A-Pm-XcK" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="205.5" width="375" height="256"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="teK-Ie-3aW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="D0A-Pm-XcK" firstAttribute="centerY" secondItem="nOp-sM-R5k" secondAttribute="centerY" id="Zxq-zP-R9u"/>
+                            <constraint firstItem="Gco-hr-DAm" firstAttribute="trailing" secondItem="D0A-Pm-XcK" secondAttribute="trailing" id="bhk-C3-cHJ"/>
+                            <constraint firstItem="D0A-Pm-XcK" firstAttribute="leading" secondItem="Gco-hr-DAm" secondAttribute="leading" id="skF-Xe-uY2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gco-hr-DAm"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="D0A-Pm-XcK" id="eDJ-rV-hkj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHg-0G-8Fn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1238" y="148"/>
         </scene>
     </scenes>
     <resources>

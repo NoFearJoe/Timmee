@@ -214,7 +214,7 @@ fileprivate extension SettingsViewController {
             let title = BackgroundImage.current == .noImage ? "no_background_image".localized : "background_image".localized
             var backgroundImageItem = SettingsItem(title: title,
                                                    subtitle: nil,
-                                                   icon: BackgroundImage.current.image ?? UIImage(),
+                                                   icon: BackgroundImage.current.previewImage ?? UIImage(),
                                                    isDetailed: BackgroundImage.current != .noImage,
                                                    style: .backgroundImage,
                                                    action: backgroundImageAction)

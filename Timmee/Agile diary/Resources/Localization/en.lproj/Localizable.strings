@@ -181,6 +181,7 @@
 "+100ml" = "+ 100ml";
 "+200ml" = "+ 200ml";
 "+300ml" = "+ 300ml";
+"show_full_progress" = "Show all";
 
 "configure_water_control" = "Set up water control";
 "water_control_not_initialized" = "You have not yet set up water control in this sprint";

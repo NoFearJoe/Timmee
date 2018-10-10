@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum Charts {
+enum ChartType {
     case habits
     case water
     
-    static var all: [Charts] {
+    static var all: [ChartType] {
         if ProVersionPurchase.shared.isPurchased() {
             return [habits, water]
         } else {
@@ -55,6 +55,19 @@ final class ChartsViewController: BaseViewController {
         collectionView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowFullProgress" {
+            guard let chartType = sender as? ChartType else { return }
+            guard let viewController = segue.destination as? ExtendedChartViewController else { return }
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
+    private func showFullProgress(chartType: ChartType) {
+        performSegue(withIdentifier: "ShowFullProgress", sender: chartType)
+    }
+    
 }
 
 extension ChartsViewController: UICollectionViewDataSource {
@@ -64,13 +77,16 @@ extension ChartsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Charts.all.count
+        return ChartType.all.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let chart = Charts.all[indexPath.item]
+        let chart = ChartType.all[indexPath.item]
         let cell = dequeueChartCell(ofType: chart.cellType, collectionView: collectionView, indexPath: indexPath)
         cell.update()
+        cell.onShowFullProgress = { [unowned self] in
+            self.showFullProgress(chartType: chart)
+        }
         return cell
     }
     
@@ -91,7 +107,7 @@ extension ChartsViewController: UICollectionViewDelegate {
 extension ChartsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return Charts.all[indexPath.item].cellType.size(for: collectionView.bounds.size)
+        return ChartType.all[indexPath.item].cellType.size(for: collectionView.bounds.size)
     }
     
 }

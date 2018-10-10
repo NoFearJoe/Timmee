@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 final class WaterChartCell: BaseChartCell {
-    
+        
     let waterControlService = ServicesAssembly.shared.waterControlService
     
     @IBOutlet private var titleLabel: UILabel! {
@@ -22,6 +22,17 @@ final class WaterChartCell: BaseChartCell {
     
     @IBOutlet private var chartView: BarChartView! {
         didSet { setupChartView() }
+    }
+    
+    @IBOutlet private var fullProgressButton: UIButton! {
+        didSet {
+            fullProgressButton.setTitle("show_full_progress".localized, for: .normal)
+            fullProgressButton.tintColor = AppTheme.current.colors.mainElementColor
+        }
+    }
+    
+    @IBAction private func showFullProgress() {
+        onShowFullProgress?()
     }
     
     override func update() {

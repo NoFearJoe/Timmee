@@ -17,8 +17,6 @@ final class WaterControlViewController: UIViewController {
     
     @IBOutlet private var waterLevelView: WaterLevelView!
     
-    @IBOutlet private var waterControlCompletedTodayImageView: UIImageView!
-    
     @IBOutlet private var drinkButtonsContainer: UIView!
     @IBOutlet private var drink100mlButton: UIButton!
     @IBOutlet private var drink100mlLabel: UILabel!
@@ -29,6 +27,7 @@ final class WaterControlViewController: UIViewController {
     
     @IBOutlet private var placeholderContainer: UIView!
     @IBOutlet private var waterControlConfigurationButton: UIButton!
+    @IBOutlet private var waterControlReconfigurationButton: UIButton!
     
     private let placeholderView = PlaceholderView.loadedFromNib()
     
@@ -77,18 +76,21 @@ final class WaterControlViewController: UIViewController {
             case .notConfigured:
                 showPlaceholder()
                 waterControlConfigurationButton.isHidden = false
+                waterControlReconfigurationButton.isHidden = true
                 setDrinkWaterButtonsVisible(false)
                 drunkVolumeLabel.isHidden = true
             case let .configured(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
                 waterControlConfigurationButton.isHidden = true
+                waterControlReconfigurationButton.isHidden = true
                 setDrinkWaterButtonsVisible(true)
                 drunkVolumeLabel.isHidden = false
             case let .outdated(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
                 waterControlConfigurationButton.isHidden = true
+                waterControlReconfigurationButton.isHidden = false
                 setDrinkWaterButtonsVisible(true)
                 drunkVolumeLabel.isHidden = false
             }
@@ -112,6 +114,7 @@ final class WaterControlViewController: UIViewController {
     
     func setupAppearance() {
         setupWaterControlConfigurationButton()
+        waterControlReconfigurationButton.tintColor = AppTheme.current.colors.mainElementColor
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         drunkVolumeLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         [drink100mlLabel, drink200mlLabel, drink300mlLabel].forEach {
@@ -140,8 +143,6 @@ private extension WaterControlViewController {
         
         let drunkWaterInPercents = min(1, CGFloat(todayDrunkVolume).safeDivide(by: CGFloat(waterControl.neededVolume)))
         waterLevelView.waterLevel = drunkWaterInPercents
-        
-        waterControlCompletedTodayImageView.isHidden = drunkWaterInPercents < 1
     }
     
     func updateProgress() {
@@ -171,8 +172,8 @@ private extension WaterControlViewController {
     
     func setInitialState() {
         waterControlConfigurationButton.isHidden = true
+        waterControlReconfigurationButton.isHidden = true
         setDrinkWaterButtonsVisible(false)
-        waterControlCompletedTodayImageView.isHidden = true
     }
     
     func setupWaterControlConfigurationButton() {

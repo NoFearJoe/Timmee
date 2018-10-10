@@ -132,6 +132,8 @@
 		967C328C215181D700B9201A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C328B215181D700B9201A /* Settings.storyboard */; };
 		967C328E2157709900B9201A /* BaseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328D2157709900B9201A /* BaseChartCell.swift */; };
 		967C32912157716500B9201A /* HabitsChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C32902157716500B9201A /* HabitsChartCell.swift */; };
+		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
+		96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +282,8 @@
 		967C328B215181D700B9201A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		967C328D2157709900B9201A /* BaseChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChartCell.swift; sourceTree = "<group>"; };
 		967C32902157716500B9201A /* HabitsChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartCell.swift; sourceTree = "<group>"; };
+		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
+		96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedChartViewController.swift; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -547,6 +551,7 @@
 		0C3DA4DB21525EAA00CAE635 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				96CAD81A216D39A4005D707C /* Extended charts */,
 				967C328F2157714700B9201A /* Cells */,
 				0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */,
 				0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */,
@@ -756,6 +761,15 @@
 				0C9365192158F04F00B4EB48 /* WaterChartCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		96CAD81A216D39A4005D707C /* Extended charts */ = {
+			isa = PBXGroup;
+			children = (
+				96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */,
+				96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */,
+			);
+			path = "Extended charts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -996,6 +1010,7 @@
 				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
+				96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
@@ -1008,6 +1023,7 @@
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
+				96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,

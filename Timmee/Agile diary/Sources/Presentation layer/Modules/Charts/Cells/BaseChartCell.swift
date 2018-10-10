@@ -10,6 +10,8 @@ import UIKit
 
 class BaseChartCell: UICollectionViewCell {
     
+    var onShowFullProgress: (() -> Void)?
+    
     class var reuseIdentifier: String {
         return String(describing: self)
     }

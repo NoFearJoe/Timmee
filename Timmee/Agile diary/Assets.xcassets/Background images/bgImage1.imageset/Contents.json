@@ -1,7 +1,11 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "bgImage1~iPhone.pdf"
+    },
+    {
+      "idiom" : "ipad",
       "filename" : "bgImage1.pdf"
     }
   ],

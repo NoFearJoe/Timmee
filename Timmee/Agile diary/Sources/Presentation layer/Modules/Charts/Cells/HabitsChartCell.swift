@@ -24,6 +24,17 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
         didSet { setupChartView() }
     }
     
+    @IBOutlet private var fullProgressButton: UIButton! {
+        didSet {
+            fullProgressButton.setTitle("show_full_progress".localized, for: .normal)
+            fullProgressButton.tintColor = AppTheme.current.colors.mainElementColor
+        }
+    }
+    
+    @IBAction private func showFullProgress() {
+        onShowFullProgress?()
+    }
+    
     override func update() {
         guard let currentSprint = getCurrentSprint() else { return } // TODO: Handle
         let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
