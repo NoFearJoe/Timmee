@@ -163,39 +163,60 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="CIu-rc-FA7" id="hsH-T5-Cty"/>
-                        <segue destination="Zn7-Z2-pN3" kind="show" identifier="ShowFullProgress" id="XNy-46-0bZ"/>
+                        <segue destination="Zn7-Z2-pN3" kind="show" identifier="ShowExtendedHabitsProgress" id="lEU-EC-pqc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMl-m7-LyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="384.80000000000001" y="147.97601199400302"/>
         </scene>
-        <!--Весь прогресс-->
+        <!--Привычки-->
         <scene sceneID="eRI-FJ-EqS">
             <objects>
-                <viewController title="Весь прогресс" id="Zn7-Z2-pN3" customClass="ExtendedChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Привычки" id="Zn7-Z2-pN3" customClass="ExtendedHabitsChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOp-sM-R5k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0A-Pm-XcK" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="205.5" width="375" height="256"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="teK-Ie-3aW"/>
-                                </constraints>
-                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-fs-vZI">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="D0A-Pm-XcK" customClass="BarChartView" customModule="Charts">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="256" id="teK-Ie-3aW"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HabitProgressCell" rowHeight="52" id="Q0G-uH-fV2" customClass="HabitProgressCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="284" width="375" height="52"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q0G-uH-fV2" id="Ilv-Ib-eb3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Zn7-Z2-pN3" id="bOa-tU-Woa"/>
+                                    <outlet property="delegate" destination="Zn7-Z2-pN3" id="hxE-lM-ksC"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="D0A-Pm-XcK" firstAttribute="centerY" secondItem="nOp-sM-R5k" secondAttribute="centerY" id="Zxq-zP-R9u"/>
-                            <constraint firstItem="Gco-hr-DAm" firstAttribute="trailing" secondItem="D0A-Pm-XcK" secondAttribute="trailing" id="bhk-C3-cHJ"/>
-                            <constraint firstItem="D0A-Pm-XcK" firstAttribute="leading" secondItem="Gco-hr-DAm" secondAttribute="leading" id="skF-Xe-uY2"/>
+                            <constraint firstAttribute="bottom" secondItem="KOK-fs-vZI" secondAttribute="bottom" id="7xn-Hc-Yuf"/>
+                            <constraint firstItem="KOK-fs-vZI" firstAttribute="top" secondItem="Gco-hr-DAm" secondAttribute="top" id="A6Z-jS-hbe"/>
+                            <constraint firstItem="Gco-hr-DAm" firstAttribute="trailing" secondItem="KOK-fs-vZI" secondAttribute="trailing" id="IE8-yx-4NR"/>
+                            <constraint firstItem="KOK-fs-vZI" firstAttribute="leading" secondItem="Gco-hr-DAm" secondAttribute="leading" id="edG-mC-HMS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gco-hr-DAm"/>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="D0A-Pm-XcK" id="eDJ-rV-hkj"/>
+                        <outlet property="detailedHabitsTableView" destination="KOK-fs-vZI" id="p9M-ZK-Oen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHg-0G-8Fn" userLabel="First Responder" sceneMemberID="firstResponder"/>

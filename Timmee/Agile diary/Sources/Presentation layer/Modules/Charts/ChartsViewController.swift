@@ -55,17 +55,11 @@ final class ChartsViewController: BaseViewController {
         collectionView.reloadData()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowFullProgress" {
-            guard let chartType = sender as? ChartType else { return }
-            guard let viewController = segue.destination as? ExtendedChartViewController else { return }
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-    
     private func showFullProgress(chartType: ChartType) {
-        performSegue(withIdentifier: "ShowFullProgress", sender: chartType)
+        switch chartType {
+        case .habits: performSegue(withIdentifier: "ShowExtendedHabitsProgress", sender: nil)
+        case .water: performSegue(withIdentifier: "ShowExtendedWaterProgress", sender: nil)
+        }
     }
     
 }

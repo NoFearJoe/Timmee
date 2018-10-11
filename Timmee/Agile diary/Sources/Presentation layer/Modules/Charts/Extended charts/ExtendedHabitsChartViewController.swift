@@ -13,10 +13,33 @@ final class ExtendedHabitsChartViewController: ExtendedChartViewController {
     
     @IBOutlet private var detailedHabitsTableView: UITableView!
     
+    private var habits: [Habit: Int] = [:]
+    
     override func refresh() {
         super.refresh()
         refreshHabitsProgress()
         refreshHabitsDetailsTableView()
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        detailedHabitsTableView.backgroundColor = .clear
+    }
+    
+}
+
+extension ExtendedHabitsChartViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return habits.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HabitProgressCell", for: indexPath) as! HabitProgressCell
+        let habit = Array(habits.keys)[indexPath.row]
+        let progress = habits[habit] ?? 0
+        cell.configure(habit: habit)
+        return cell
     }
     
 }
@@ -52,11 +75,11 @@ private extension ExtendedHabitsChartViewController {
         dataSet.valueColors = [AppTheme.current.colors.mainElementColor]
         dataSet.drawValuesEnabled = false
         
-        let limitLine = ChartLimitLine(limit: Double(habits.count))
-        limitLine.lineColor = AppTheme.current.colors.inactiveElementColor
-        limitLine.lineDashLengths = [4, 4]
-        limitLine.lineWidth = 1
-        chartView.leftAxis.addLimitLine(limitLine)
+//        let limitLine = ChartLimitLine(limit: Double(habits.count))
+//        limitLine.lineColor = AppTheme.current.colors.inactiveElementColor
+//        limitLine.lineDashLengths = [4, 4]
+//        limitLine.lineWidth = 1
+//        chartView.leftAxis.addLimitLine(limitLine)
         
         chartView.xAxis.valueFormatter = DefaultAxisValueFormatter(block: { (i, _) -> String in
             xAxisTitles.item(at: Int(i)) ?? ""
@@ -69,7 +92,19 @@ private extension ExtendedHabitsChartViewController {
     }
     
     func refreshHabitsDetailsTableView() {
+        var progressForHabit: [Habit: Int] = [:]
         
+        detailedHabitsTableView.reloadData()
+    }
+    
+}
+
+final class HabitProgressCell: UITableViewCell {
+    
+    @IBOutlet private var titleLabel: UILabel!
+    
+    func configure(habit: Habit) {
+        titleLabel.text = habit.title
     }
     
 }
