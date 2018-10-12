@@ -178,7 +178,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-fs-vZI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-fs-vZI">
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="D0A-Pm-XcK" customClass="BarChartView" customModule="Charts">
@@ -189,14 +189,56 @@
                                         <constraint firstAttribute="height" constant="256" id="teK-Ie-3aW"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="vb9-vk-Z6X">
+                                    <rect key="frame" x="0.0" y="336" width="375" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HabitProgressCell" rowHeight="52" id="Q0G-uH-fV2" customClass="HabitProgressCell" customModule="Agile_diary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="284" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q0G-uH-fV2" id="Ilv-Ib-eb3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XD3-xZ-va7">
+                                                    <rect key="frame" x="15" y="15.5" width="289.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lzK-LT-Bg4">
+                                                    <rect key="frame" x="319.5" y="8" width="40.5" height="36"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 из 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm3-Hm-vcr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykb-7x-6fr">
+                                                            <rect key="frame" x="0.0" y="18" width="40.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XD3-xZ-va7" firstAttribute="leading" secondItem="Ilv-Ib-eb3" secondAttribute="leading" constant="15" id="350-l2-NY9"/>
+                                                <constraint firstItem="XD3-xZ-va7" firstAttribute="centerY" secondItem="Ilv-Ib-eb3" secondAttribute="centerY" id="SIb-hV-fql"/>
+                                                <constraint firstAttribute="trailing" secondItem="lzK-LT-Bg4" secondAttribute="trailing" constant="15" id="V20-Tb-qiu"/>
+                                                <constraint firstItem="lzK-LT-Bg4" firstAttribute="leading" secondItem="XD3-xZ-va7" secondAttribute="trailing" constant="15" id="ivv-kH-clg"/>
+                                                <constraint firstItem="lzK-LT-Bg4" firstAttribute="centerY" secondItem="Ilv-Ib-eb3" secondAttribute="centerY" id="mbH-gp-m1R"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="absoluteProgressLabel" destination="Lm3-Hm-vcr" id="RFH-xW-8xs"/>
+                                            <outlet property="relativeProgressLabel" destination="ykb-7x-6fr" id="BBj-KH-17j"/>
+                                            <outlet property="titleLabel" destination="XD3-xZ-va7" id="3Fb-XF-s8U"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
