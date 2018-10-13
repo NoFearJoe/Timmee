@@ -121,7 +121,7 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         case .right:
             var actions: [SwipeAction] = []
             if shouldShowEditAction?(indexPath) == true {
-                swipeEditAction.textColor = AppTheme.current.colors.activeElementColor
+                swipeEditAction.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
                 actions.append(swipeEditAction)
             }
             if shouldShowLinkAction?(indexPath) == true {
@@ -216,7 +216,7 @@ extension TodayTargetCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         case .right:
             var actions: [SwipeAction] = []
             if shouldShowEditAction?(indexPath) == true {
-                swipeEditAction.textColor = AppTheme.current.colors.activeElementColor
+                swipeEditAction.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
                 actions.append(swipeEditAction)
             }
             if shouldShowDoneAction?(indexPath) == true {

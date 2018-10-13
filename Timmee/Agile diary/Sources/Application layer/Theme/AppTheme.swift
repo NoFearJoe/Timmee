@@ -39,6 +39,7 @@ struct AppTheme {
         let mainElementColor: UIColor
         let wrongElementColor: UIColor
         let selectedElementColor: UIColor
+        let incompleteElementColor: UIColor
         let decorationElementColor: UIColor
         
         let foregroundColor: UIColor
@@ -81,6 +82,7 @@ struct AppTheme {
                                                mainElementColor: UIColor(rgba: "29C3FE"),
                                                wrongElementColor: UIColor(rgba: "FF3100"),
                                                selectedElementColor: UIColor(rgba: "12FFA3"),
+                                               incompleteElementColor: UIColor(rgba: "FEE200"),
                                                decorationElementColor: UIColor(rgba: "E9E9E9"),
                                                foregroundColor: UIColor(rgba: "FFFFFF"),
                                                middlegroundColor: UIColor(rgba: "F5F5F5"),
@@ -92,6 +94,7 @@ struct AppTheme {
                                               mainElementColor: UIColor(rgba: "29C3FE"),
                                               wrongElementColor: UIColor(rgba: "FF3100"),
                                               selectedElementColor: UIColor(rgba: "12FFA3"),
+                                              incompleteElementColor: UIColor(rgba: "FEE200"),
                                               decorationElementColor: UIColor(rgba: "666666"),
                                               foregroundColor: UIColor(rgba: "5B5B5B"),
                                               middlegroundColor: UIColor(rgba: "444444"),

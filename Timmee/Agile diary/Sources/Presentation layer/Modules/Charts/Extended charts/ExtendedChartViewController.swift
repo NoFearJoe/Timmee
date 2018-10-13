@@ -19,7 +19,7 @@ class ExtendedChartViewController: BaseViewController, SprintInteractorTrait, Ta
     
     override func prepare() {
         super.prepare()
-        setupChart()
+//        setupChart()
     }
     
 }

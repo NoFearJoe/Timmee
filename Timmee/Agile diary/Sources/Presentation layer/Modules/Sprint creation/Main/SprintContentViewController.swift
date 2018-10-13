@@ -76,6 +76,15 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAppearance()
+    }
+    
+    func setupAppearance() {
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+    }
+    
 }
 
 extension SprintContentViewController: UITableViewDataSource {

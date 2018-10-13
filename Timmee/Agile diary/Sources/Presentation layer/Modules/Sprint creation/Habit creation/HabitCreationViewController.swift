@@ -12,6 +12,7 @@ import UIComponents
 final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     @IBOutlet private var headerView: LargeHeaderView!
+    @IBOutlet private var contentScrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
     @IBOutlet private var titleField: GrowingTextView!
     @IBOutlet private var dueDaysTitleLabel: UILabel!
@@ -23,7 +24,15 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBOutlet private var linkField: UITextField!
     @IBOutlet private var linkHintButton: UIButton!
     
-    var hintPopover: HintPopoverView?
+    var hintPopover: HintPopoverView? {
+        didSet {
+            hintPopover?.willCloseBlock = {
+                self.linkHintButton.isSelected = false
+                self.linkHintButton.isUserInteractionEnabled = false
+            }
+            hintPopover?.didCloseBlock = { self.linkHintButton.isUserInteractionEnabled = true }
+        }
+    }
     
     private var notificationTimePicker: NotificationTimePickerInput!
     
@@ -168,6 +177,31 @@ extension HabitCreationViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         titleField.setContentOffset(.zero, animated: true)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            endEditing()
+            return false
+        }
+        return true
+    }
+    
+}
+
+extension HabitCreationViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endEditing()
+        return true
+    }
+    
+}
+
+extension HabitCreationViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view == contentScrollView || touch.view == contentView
     }
     
 }

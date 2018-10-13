@@ -69,7 +69,7 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
             xAxisTitles[Int(i)]
         })
         
-        chartView.leftAxis.axisMaximum = Double(habits.count + 1)
+        chartView.leftAxis.axisMaximum = Double(habits.count)
         
         chartView.data = LineChartData(dataSet: dataSet)
         chartView.notifyDataSetChanged()

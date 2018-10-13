@@ -17,7 +17,8 @@ final class SprintCreationHabitCell: SwipeTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.backgroundColor = UIColor(rgba: "f5f5f5")
+        backgroundColor = .clear
+        containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         containerView.layer.cornerRadius = 8
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         titleLabel.font = AppTheme.current.fonts.medium(20)

@@ -52,7 +52,7 @@ final class WaterChartCell: BaseChartCell {
         dataSet.valueColors = [AppTheme.current.colors.mainElementColor]
         dataSet.drawValuesEnabled = false
         
-        let limitLine = ChartLimitLine(limit: Double(waterControl.neededVolume / 1000))
+        let limitLine = ChartLimitLine(limit: Double(waterControl.neededVolume) / 1000)
         limitLine.lineColor = AppTheme.current.colors.inactiveElementColor
         limitLine.lineDashLengths = [4, 4]
         limitLine.lineWidth = 1

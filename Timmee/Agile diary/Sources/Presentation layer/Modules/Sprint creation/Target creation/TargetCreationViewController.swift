@@ -30,6 +30,7 @@ enum TargetAndHabitEditingMode {
 
 final class TargetCreationViewController: BaseViewController, TargetProvider, HintViewTrait {
     
+    @IBOutlet private var contentScrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var titleField: GrowingTextView!
@@ -44,8 +45,11 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
     
     var hintPopover: HintPopoverView? {
         didSet {
-            hintPopover?.willCloseBlock = { self.contentView.isUserInteractionEnabled = false }
-            hintPopover?.didCloseBlock = { self.contentView.isUserInteractionEnabled = true }
+            hintPopover?.willCloseBlock = {
+                self.stagesHintButton.isSelected = false
+                self.stagesHintButton.isUserInteractionEnabled = false
+            }
+            hintPopover?.didCloseBlock = { self.stagesHintButton.isUserInteractionEnabled = true }
         }
     }
     
@@ -248,6 +252,22 @@ extension TargetCreationViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         titleField.setContentOffset(.zero, animated: true)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            endEditing()
+            return false
+        }
+        return true
+    }
+    
+}
+
+extension TargetCreationViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view == contentScrollView || touch.view == contentView
     }
     
 }

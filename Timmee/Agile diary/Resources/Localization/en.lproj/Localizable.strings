@@ -121,6 +121,10 @@
 "n_months" = "%lu n";
 "n_years" = "%lu n";
 
+"remind_after_10" = "Remind after 10 minutes";
+"remind_after_30" = "Remind after 30 minutes";
+"remind_after_60" = "Remind after 1 hour";
+
 "sprint_start_date" = "Start of the sprint";
 "targets_section_placeholder_title" = "Add first goal";
 "targets_section_placeholder_subtitle" = "You need to add at least one goal, but you should not set too many goals. 3 goals - optimal amount";
@@ -181,6 +185,7 @@
 "+200ml" = "+ 200ml";
 "+300ml" = "+ 300ml";
 "show_full_progress" = "Show all";
+"Progress_till_today" = "Progress till today";
 
 "configure_water_control" = "Set up water control";
 "water_control_not_initialized" = "You have not yet set up water control in this sprint";

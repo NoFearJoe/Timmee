@@ -68,9 +68,20 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         
         if sprint.creationDate.compare(Date.now.startOfDay) == .orderedAscending {
             sprint.creationDate = Date.now.nextDay.startOfDay
-            showStartDate(sprint.creationDate)
             updateDoneButtonState()
         }
+        
+        showStartDate(sprint.creationDate)
+    }
+    
+    override func setupAppearance() {
+        super.setupAppearance()
+        
+        headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
+        headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
+        sectionSwitcher.setupAppearance()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

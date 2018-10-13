@@ -75,6 +75,7 @@ final class TodayContentViewController: UIViewController, TargetAndHabitInteract
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupPlaceholderAppearance()
         cacheObserver?.fetchInitialEntities()
     }
     
@@ -171,11 +172,14 @@ private extension TodayContentViewController {
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
+        placeholderContainer.isHidden = true
+    }
+    
+    func setupPlaceholderAppearance() {
         placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
         placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderContainer.isHidden = true
     }
     
     func showPlaceholder() {

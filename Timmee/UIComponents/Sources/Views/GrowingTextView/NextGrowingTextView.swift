@@ -156,6 +156,7 @@ open class GrowingTextView: UIScrollView {
     _textView.showsVerticalScrollIndicator = false
     _textView.font = UIFont.systemFont(ofSize: 16)
     _textView.backgroundColor = UIColor.clear
+    _textView.returnKeyType = .done
     addSubview(_textView)
     _minHeight = simulateHeight(1)
     maxNumberOfLines = 3

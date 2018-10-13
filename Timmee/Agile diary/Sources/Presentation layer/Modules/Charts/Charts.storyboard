@@ -107,7 +107,7 @@
                                                     <rect key="frame" x="8" y="40" width="329" height="208"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIw-4u-tS5">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIw-4u-tS5">
                                                     <rect key="frame" x="283" y="5.5" width="54" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="Show all">
@@ -180,15 +180,25 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="52" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-fs-vZI">
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="D0A-Pm-XcK" customClass="BarChartView" customModule="Charts">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="BQI-23-pnz">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-dR-8Im" customClass="HabitsChartView" customModule="Agile_diary" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="256" id="teK-Ie-3aW"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tgz-dR-8Im" secondAttribute="trailing" id="FGq-Gn-LPN"/>
+                                        <constraint firstItem="Tgz-dR-8Im" firstAttribute="leading" secondItem="BQI-23-pnz" secondAttribute="leading" id="Uha-n4-JwC"/>
+                                        <constraint firstItem="Tgz-dR-8Im" firstAttribute="centerX" secondItem="BQI-23-pnz" secondAttribute="centerX" placeholder="YES" id="bZl-I6-1Lr"/>
+                                        <constraint firstItem="Tgz-dR-8Im" firstAttribute="centerY" secondItem="BQI-23-pnz" secondAttribute="centerY" id="s0O-1t-HUV"/>
+                                        <constraint firstAttribute="bottom" secondItem="Tgz-dR-8Im" secondAttribute="bottom" id="t7z-av-Fuh"/>
+                                        <constraint firstItem="Tgz-dR-8Im" firstAttribute="top" secondItem="BQI-23-pnz" secondAttribute="top" id="v6J-lj-zns"/>
                                     </constraints>
-                                </view>
+                                </scrollView>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="vb9-vk-Z6X">
                                     <rect key="frame" x="0.0" y="336" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -257,7 +267,7 @@
                         <viewLayoutGuide key="safeArea" id="Gco-hr-DAm"/>
                     </view>
                     <connections>
-                        <outlet property="chartView" destination="D0A-Pm-XcK" id="eDJ-rV-hkj"/>
+                        <outlet property="chart" destination="Tgz-dR-8Im" id="uZn-q7-jfj"/>
                         <outlet property="detailedHabitsTableView" destination="KOK-fs-vZI" id="p9M-ZK-Oen"/>
                     </connections>
                 </viewController>

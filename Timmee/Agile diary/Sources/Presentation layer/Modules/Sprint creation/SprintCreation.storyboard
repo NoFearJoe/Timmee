@@ -418,6 +418,7 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="cbX-Nr-4PB" appends="YES" id="1ny-AG-fn2"/>
+                                    <outletCollection property="gestureRecognizers" destination="fbb-0E-Zax" appends="YES" id="7ov-Cd-3Gd"/>
                                 </connections>
                             </scrollView>
                         </subviews>
@@ -434,6 +435,7 @@
                         <viewLayoutGuide key="safeArea" id="tWY-8Q-HbN"/>
                     </view>
                     <connections>
+                        <outlet property="contentScrollView" destination="IXH-Gs-L7u" id="QDi-xE-tm4"/>
                         <outlet property="contentView" destination="MFM-C1-eXD" id="PUA-Rx-l0K"/>
                         <outlet property="headerView" destination="KIK-B9-dDC" id="3eG-02-cYc"/>
                         <outlet property="noteField" destination="rsc-6t-PBa" id="oKr-JQ-z0b"/>
@@ -453,6 +455,12 @@
                         <action selector="endEditing" destination="cgA-Id-diN" id="ORr-kL-qR0"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer id="fbb-0E-Zax">
+                    <connections>
+                        <action selector="endEditing" destination="cgA-Id-diN" id="7ew-13-to1"/>
+                        <outlet property="delegate" destination="cgA-Id-diN" id="6B9-ru-Iu6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-431.19999999999999" y="881.10944527736137"/>
         </scene>
@@ -574,7 +582,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34c-Lw-yHS" customClass="SelectableButton" customModule="UIComponents">
-                                                        <rect key="frame" x="46" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="44" y="0.0" width="36" height="36"/>
                                                         <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="34c-Lw-yHS" secondAttribute="height" id="CIz-3z-8uc"/>
@@ -591,7 +599,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-pm-Mgd" customClass="SelectableButton" customModule="UIComponents">
-                                                        <rect key="frame" x="92" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="88" y="0.0" width="36" height="36"/>
                                                         <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="KFT-pm-Mgd" secondAttribute="height" id="jIu-ih-Hs0"/>
@@ -608,7 +616,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35W-4Y-vVA" customClass="SelectableButton" customModule="UIComponents">
-                                                        <rect key="frame" x="138" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="132" y="0.0" width="36" height="36"/>
                                                         <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="35W-4Y-vVA" secondAttribute="height" id="SZE-wt-izg"/>
@@ -625,7 +633,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQH-5O-ql2" customClass="SelectableButton" customModule="UIComponents">
-                                                        <rect key="frame" x="184" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="176" y="0.0" width="36" height="36"/>
                                                         <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="iQH-5O-ql2" secondAttribute="height" id="vQN-GX-yjI"/>
@@ -642,7 +650,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-tF-H2A" customClass="SelectableButton" customModule="UIComponents">
-                                                        <rect key="frame" x="230" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="220" y="0.0" width="36" height="36"/>
                                                         <color key="backgroundColor" red="0.74509803919999995" green="0.34509803919999998" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="UJh-tF-H2A" secondAttribute="height" id="GAW-mk-UIq"/>
@@ -659,7 +667,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uo-mu-aG9" customClass="SelectableButton" customModule="UIComponents">
-                                                        <rect key="frame" x="276" y="0.0" width="36" height="36"/>
+                                                        <rect key="frame" x="264" y="0.0" width="36" height="36"/>
                                                         <color key="backgroundColor" red="0.74509803919999995" green="0.34509803919999998" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="6Uo-mu-aG9" secondAttribute="height" id="6TM-CJ-HPV"/>
@@ -678,28 +686,28 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="34c-Lw-yHS" firstAttribute="leading" secondItem="TkQ-MM-CdD" secondAttribute="trailing" constant="10" id="0QJ-m3-0BS"/>
+                                                    <constraint firstItem="34c-Lw-yHS" firstAttribute="leading" secondItem="TkQ-MM-CdD" secondAttribute="trailing" constant="8" id="0QJ-m3-0BS"/>
                                                     <constraint firstAttribute="bottom" secondItem="UJh-tF-H2A" secondAttribute="bottom" id="3ph-dt-ewq"/>
                                                     <constraint firstItem="34c-Lw-yHS" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="9Y4-H5-wWU"/>
-                                                    <constraint firstItem="UJh-tF-H2A" firstAttribute="leading" secondItem="iQH-5O-ql2" secondAttribute="trailing" constant="10" id="9Yq-30-bx3"/>
+                                                    <constraint firstItem="UJh-tF-H2A" firstAttribute="leading" secondItem="iQH-5O-ql2" secondAttribute="trailing" constant="8" id="9Yq-30-bx3"/>
                                                     <constraint firstAttribute="bottom" secondItem="6Uo-mu-aG9" secondAttribute="bottom" id="GD2-rt-Puu"/>
                                                     <constraint firstAttribute="height" constant="36" id="K16-iJ-Lis"/>
                                                     <constraint firstItem="TkQ-MM-CdD" firstAttribute="leading" secondItem="O4F-vk-wGd" secondAttribute="leading" id="Pld-tl-5yr"/>
                                                     <constraint firstAttribute="bottom" secondItem="TkQ-MM-CdD" secondAttribute="bottom" id="QUM-Ll-YiU"/>
                                                     <constraint firstAttribute="bottom" secondItem="34c-Lw-yHS" secondAttribute="bottom" id="UtR-xr-EHP"/>
                                                     <constraint firstItem="iQH-5O-ql2" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="bNc-uF-fuq"/>
-                                                    <constraint firstItem="KFT-pm-Mgd" firstAttribute="leading" secondItem="34c-Lw-yHS" secondAttribute="trailing" constant="10" id="fqd-tB-t4F"/>
+                                                    <constraint firstItem="KFT-pm-Mgd" firstAttribute="leading" secondItem="34c-Lw-yHS" secondAttribute="trailing" constant="8" id="fqd-tB-t4F"/>
                                                     <constraint firstAttribute="bottom" secondItem="35W-4Y-vVA" secondAttribute="bottom" id="g8W-Vd-rJE"/>
                                                     <constraint firstItem="35W-4Y-vVA" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="hUw-Dx-mb3"/>
                                                     <constraint firstItem="UJh-tF-H2A" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="hk3-1W-ZdV"/>
                                                     <constraint firstItem="KFT-pm-Mgd" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="hq4-6F-Ui6"/>
-                                                    <constraint firstItem="6Uo-mu-aG9" firstAttribute="leading" secondItem="UJh-tF-H2A" secondAttribute="trailing" constant="10" id="npx-Ur-EhT"/>
-                                                    <constraint firstItem="iQH-5O-ql2" firstAttribute="leading" secondItem="35W-4Y-vVA" secondAttribute="trailing" constant="10" id="oIa-AK-Wna"/>
+                                                    <constraint firstItem="6Uo-mu-aG9" firstAttribute="leading" secondItem="UJh-tF-H2A" secondAttribute="trailing" constant="8" id="npx-Ur-EhT"/>
+                                                    <constraint firstItem="iQH-5O-ql2" firstAttribute="leading" secondItem="35W-4Y-vVA" secondAttribute="trailing" constant="8" id="oIa-AK-Wna"/>
                                                     <constraint firstAttribute="bottom" secondItem="KFT-pm-Mgd" secondAttribute="bottom" id="q7U-gN-2xa"/>
                                                     <constraint firstAttribute="bottom" secondItem="iQH-5O-ql2" secondAttribute="bottom" id="qMI-gP-rWc"/>
                                                     <constraint firstItem="TkQ-MM-CdD" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="tQR-ft-BIs"/>
                                                     <constraint firstItem="6Uo-mu-aG9" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="tv2-R9-spj"/>
-                                                    <constraint firstItem="35W-4Y-vVA" firstAttribute="leading" secondItem="KFT-pm-Mgd" secondAttribute="trailing" constant="10" id="v63-Tm-v2C"/>
+                                                    <constraint firstItem="35W-4Y-vVA" firstAttribute="leading" secondItem="KFT-pm-Mgd" secondAttribute="trailing" constant="8" id="v63-Tm-v2C"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpb-QB-5gO">
@@ -757,6 +765,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="aS1-37-JFS" id="YQ7-Km-SHw"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3p-G7-aBU">
                                                 <rect key="frame" x="78.5" y="260" width="20" height="20"/>
@@ -804,11 +815,9 @@
                                             <constraint firstAttribute="trailing" secondItem="bDK-LX-8kL" secondAttribute="trailing" constant="15" id="yOn-W9-39N"/>
                                             <constraint firstAttribute="trailing" secondItem="dri-xP-0PQ" secondAttribute="trailing" constant="15" id="yzx-YQ-NXM"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="HYa-Mz-T9e" appends="YES" id="8rx-hP-snx"/>
-                                        </connections>
                                     </view>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="4Pt-0Q-2oz" firstAttribute="width" secondItem="YGb-hB-jir" secondAttribute="width" id="3Yf-RW-fnI"/>
                                     <constraint firstItem="4Pt-0Q-2oz" firstAttribute="leading" secondItem="YGb-hB-jir" secondAttribute="leading" id="ARi-8v-xOk"/>
@@ -816,6 +825,10 @@
                                     <constraint firstItem="4Pt-0Q-2oz" firstAttribute="top" secondItem="YGb-hB-jir" secondAttribute="top" id="Thi-nl-ZsZ"/>
                                     <constraint firstAttribute="trailing" secondItem="4Pt-0Q-2oz" secondAttribute="trailing" id="g3N-YH-ucc"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HYa-Mz-T9e" appends="YES" id="mUo-Y6-YJP"/>
+                                    <outletCollection property="gestureRecognizers" destination="DM0-dJ-Zul" appends="YES" id="aE1-8L-cYG"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -831,6 +844,7 @@
                         <viewLayoutGuide key="safeArea" id="ZnJ-sB-7Bl"/>
                     </view>
                     <connections>
+                        <outlet property="contentScrollView" destination="YGb-hB-jir" id="c10-Ez-CK6"/>
                         <outlet property="contentView" destination="4Pt-0Q-2oz" id="8MD-Fk-YV4"/>
                         <outlet property="dueDaysTitleLabel" destination="1lM-7I-P7A" id="xZu-Af-ydB"/>
                         <outlet property="headerView" destination="0zP-as-NhU" id="j8r-qn-opS"/>
@@ -856,6 +870,12 @@
                         <action selector="endEditing" destination="aS1-37-JFS" id="lna-OW-CiU"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer id="DM0-dJ-Zul">
+                    <connections>
+                        <action selector="endEditing" destination="aS1-37-JFS" id="qQw-ZF-42d"/>
+                        <outlet property="delegate" destination="aS1-37-JFS" id="L4D-ey-5Ku"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="376.80000000000001" y="881.10944527736137"/>
         </scene>
