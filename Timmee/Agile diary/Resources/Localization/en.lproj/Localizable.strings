@@ -214,6 +214,7 @@
 "drunk_water_100" = "Drank 100ml";
 "drunk_water_200" = "Drank 200ml";
 "drunk_water_300" = "Drank 300ml";
+"no_data" = "No data";
 
 "education_initial_title" = "What is an Agile diary?";
 "education_initial_text" = "Agile diary helps to achieve goals and develop habits. At the heart of everything - the sprints. These are time periods of 7 weeks, during which you need to develop habits and achieve goals.";

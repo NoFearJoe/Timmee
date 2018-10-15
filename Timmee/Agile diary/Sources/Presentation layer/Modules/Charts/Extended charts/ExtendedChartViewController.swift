@@ -74,7 +74,7 @@ private extension ExtendedChartViewController {
         chartView.drawGridBackgroundEnabled = false
         chartView.drawMarkers = false
         chartView.noDataFont = AppTheme.current.fonts.medium(14)
-        chartView.noDataText = "no_data".localized // TODO: Localize
+        chartView.noDataText = "no_data".localized
         chartView.noDataTextColor = AppTheme.current.colors.inactiveElementColor
         chartView.noDataTextAlignment = .center
         chartView.chartDescription = nil
