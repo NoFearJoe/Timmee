@@ -25,6 +25,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var addButton: UIButton!
+    @IBOutlet private var contentContainerView: UIView!
     
     private var contentViewController: SprintContentViewController!
     
@@ -77,6 +78,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     override func setupAppearance() {
         super.setupAppearance()
         
+        contentContainerView.backgroundColor = AppTheme.current.colors.middlegroundColor
         headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
         headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor

@@ -150,6 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="mkS-e4-0x0" id="EDn-TL-cpY"/>
+                        <outlet property="contentContainerView" destination="ejl-6k-3JG" id="xd0-Eg-Yw4"/>
                         <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
                         <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowTargetCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
