@@ -120,6 +120,7 @@
 		967C32912157716500B9201A /* HabitsChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C32902157716500B9201A /* HabitsChartCell.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* HabitsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* HabitsChartView.swift */; };
+		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
 		96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
@@ -272,6 +273,8 @@
 		967C32902157716500B9201A /* HabitsChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartCell.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* HabitsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartView.swift; sourceTree = "<group>"; };
+		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		96BE838B2175034500CDECAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
 		96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedChartViewController.swift; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,6 +435,7 @@
 			children = (
 				0C14D4C621217390004C0559 /* Localizable.strings */,
 				0C14D4C821217390004C0559 /* Localizable.stringsdict */,
+				96BE838A2175034400CDECAF /* InfoPlist.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -861,6 +865,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
+				96BE83882175034400CDECAF /* InfoPlist.strings in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
@@ -1122,6 +1127,15 @@
 				0CE883EC215139A400637BD9 /* Base */,
 			);
 			name = Info.plist;
+			sourceTree = "<group>";
+		};
+		96BE838A2175034400CDECAF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96BE83892175034400CDECAF /* en */,
+				96BE838B2175034500CDECAF /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

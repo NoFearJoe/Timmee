@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Agile diary
+
+  Created by Илья Харабет on 15/10/2018.
+  Copyright © 2018 Mesterra. All rights reserved.
+*/
+
+NSMicrophoneUsageDescription = "Provide access to a microphone to activate voice input";

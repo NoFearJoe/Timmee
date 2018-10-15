@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Agile diary
+
+  Created by Илья Харабет on 15/10/2018.
+  Copyright © 2018 Mesterra. All rights reserved.
+*/
+
+NSMicrophoneUsageDescription = "Предоставьте доступ к микрофону, чтобы активировать голосовой ввод текста";
