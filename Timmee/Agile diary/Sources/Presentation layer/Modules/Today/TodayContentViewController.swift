@@ -48,6 +48,7 @@ final class TodayContentViewController: UIViewController {
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     let habitsService = ServicesAssembly.shared.habitsService
+    let goalsService = ServicesAssembly.shared.goalsService
     let stagesService = ServicesAssembly.shared.subtasksService
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
@@ -77,11 +78,11 @@ final class TodayContentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupPlaceholderAppearance()
-        habitsCacheObserver?.fetchInitialEntities()
+        setupCurrentCacheObserver()
     }
     
     @objc private func onBecameActive() {
-        habitsCacheObserver?.fetchInitialEntities()
+        setupCurrentCacheObserver()
     }
     
 }
@@ -119,14 +120,14 @@ extension TodayContentViewController: UITableViewDataSource {
             return cell
         case .target:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTargetCell", for: indexPath) as! TodayTargetCell
-//            if let target = habitsCacheObserver?.item(at: indexPath) {
-//                cell.configure(target: target)
-//                cell.delegate = targetCellActionsProvider
-//                cell.onChangeCheckedState = { [unowned self] isChecked, stage in
-//                    stage.isDone = isChecked
-//                    self.stagesService.updateSubtask(stage, completion: nil)
-//                }
-//            }
+            if let goal = goalsCacheObserver?.item(at: indexPath) {
+                cell.configure(goal: goal)
+                cell.delegate = targetCellActionsProvider
+                cell.onChangeCheckedState = { [unowned self] isChecked, stage in
+                    stage.isDone = isChecked
+                    self.stagesService.updateSubtask(stage, completion: nil)
+                }
+            }
             return cell
         case .water: return UITableViewCell()
         }
@@ -153,6 +154,7 @@ private extension TodayContentViewController {
     }
     
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
+        goalsCacheObserver = nil
         habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsObserver(sprintID: sprintID, day: DayUnit(number: Date.now.weekday - 1))
         habitsCacheObserver?.setActions(
             onInitialFetch: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) },
@@ -165,8 +167,8 @@ private extension TodayContentViewController {
     }
     
     func setupGoalsCacheObserver(forSection section: SprintSection, sprintID: String) {
-//            predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
-//        goalsCacheObserver = ServicesAssembly.shared.habitsService.habitsObserver(sprintID: sprintID, day: DayUnit(number: Date.now.weekday - 1))
+        habitsCacheObserver = nil
+        goalsCacheObserver = ServicesAssembly.shared.goalsService.goalsObserver(sprintID: sprintID)
         goalsCacheObserver?.setActions(
             onInitialFetch: { [unowned self] in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) },
             onItemsCountChange: { count in self.state = count == 0 ? .empty : .content },
@@ -261,7 +263,7 @@ private extension TodayContentViewController {
         targetCellActionsProvider.onDone = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             goal.isDone = !goal.isDone
-//            self.saveTask(goal, listID: self.sprintID, completion: nil)
+            self.goalsService.updateGoal(goal, sprintID: self.sprintID, completion: { _ in })
         }
         targetCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }

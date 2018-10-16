@@ -46,7 +46,8 @@ class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintI
         
         self.sprint = sprint
         
-        habits = habitsService.fetchHabits(sprintID: sprint.id).filter { !$0.isDone(at: Date.now) }
+        let dayUnit = DayUnit(number: Date.now.weekday - 1)
+        habits = habitsService.fetchHabits(sprintID: sprint.id).filter { $0.dueDays.contains(dayUnit) && !$0.isDone(at: Date.now) }
         tableView.reloadData()
         
         messageLabel.isHidden = !habits.isEmpty

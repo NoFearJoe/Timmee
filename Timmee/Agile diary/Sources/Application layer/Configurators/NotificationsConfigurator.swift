@@ -24,7 +24,7 @@ import protocol UserNotifications.UNUserNotificationCenterDelegate
 // MARK: - Notification categories
 
 enum NotificationCategories: String {
-    case task
+    case habit
     case waterControl = "water_control"
 }
 
@@ -89,13 +89,13 @@ final class NotificationsConfigurator {
     }
     
     private static func makeLocalNotificationsCategories() -> Set<UNNotificationCategory> {
-        let taskCategory = UNNotificationCategory(identifier: NotificationCategories.task.rawValue,
-                                                  actions: [makeDoneAction(),
-                                                            makeRemindLaterAction(minutes: 10),
-                                                            makeRemindLaterAction(minutes: 30),
-                                                            makeRemindLaterAction(minutes: 60)],
-                                                  intentIdentifiers: [],
-                                                  options: [])
+        let habitCategory = UNNotificationCategory(identifier: NotificationCategories.habit.rawValue,
+                                                   actions: [makeDoneAction(),
+                                                             makeRemindLaterAction(minutes: 10),
+                                                             makeRemindLaterAction(minutes: 30),
+                                                             makeRemindLaterAction(minutes: 60)],
+                                                   intentIdentifiers: [],
+                                                   options: [])
         let waterControlCategory = UNNotificationCategory(identifier: NotificationCategories.waterControl.rawValue,
                                                           actions: [makeDrunkWaterAction(milliliters: 100),
                                                                     makeDrunkWaterAction(milliliters: 200),
@@ -103,7 +103,7 @@ final class NotificationsConfigurator {
                                                           intentIdentifiers: [],
                                                           options: [])
         
-        return Set([taskCategory, waterControlCategory])
+        return Set([habitCategory, waterControlCategory])
     }
     
     private static func makeDoneAction() -> UNNotificationAction {

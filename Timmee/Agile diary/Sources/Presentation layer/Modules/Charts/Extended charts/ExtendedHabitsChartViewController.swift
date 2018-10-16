@@ -110,6 +110,10 @@ private extension ExtendedHabitsChartViewController {
         
         var progressForHabit: [Habit: Progress] = [:]
         
+        habits.forEach {
+            progressForHabit[$0] = (0, 0, 0)
+        }
+        
         let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay

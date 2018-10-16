@@ -102,9 +102,9 @@ final class WaterControlConfigurationViewController: BaseViewController {
         let waterControl = makeWaterControlModel()
         waterControlService.createOrUpdateWaterControl(waterControl) { [weak self] in
             guard let `self` = self else { return }
-            TaskSchedulerService().scheduleWaterControl(waterControl,
-                                                        startDate: self.sprint.startDate,
-                                                        endDate: self.sprint.endDate)
+            WaterControlSchedulerService().scheduleWaterControl(waterControl,
+                                                                startDate: self.sprint.startDate,
+                                                                endDate: self.sprint.endDate)
             self.dismiss(animated: true, completion: nil)
         }
     }

@@ -38,7 +38,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     private let interactor = HabitCreationInteractor()
     let habitsService = ServicesAssembly.shared.habitsService
-    let schedulerService = TaskSchedulerService()
+    let schedulerService = HabitsSchedulerService()
     
     var habit: Habit!
     var sprintID: String!
@@ -117,7 +117,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 let scheduleHabitThanClose = {
-//                    self.schedulerService.scheduleTask(self.habit) TODO
+                    self.schedulerService.scheduleHabit(self.habit)
                     self.dismiss(animated: true, completion: nil)
                 }
                 NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in

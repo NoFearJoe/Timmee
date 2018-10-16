@@ -118,6 +118,8 @@
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* HabitsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* HabitsChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
+		96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
+		96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
 		96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
@@ -140,6 +142,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */,
 				0C14D493211C564F004C0559 /* Workset.framework in Embed Frameworks */,
 				0C14D491211C564F004C0559 /* UIComponents.framework in Embed Frameworks */,
 				0C14D48F211C564E004C0559 /* TasksKit.framework in Embed Frameworks */,
@@ -270,6 +273,7 @@
 		96A5A0E32171065C007511ED /* HabitsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96BE838B2175034500CDECAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		96BE83CB217644F400CDECAF /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
 		96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedChartViewController.swift; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */,
 				0C14D492211C564F004C0559 /* Workset.framework in Frameworks */,
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
@@ -341,6 +346,7 @@
 		0C14D487211C564A004C0559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96BE83CB217644F400CDECAF /* NotificationsKit.framework */,
 				0C14D488211C564A004C0559 /* TasksKit.framework */,
 				0C14D48A211C564A004C0559 /* UIComponents.framework */,
 				0C14D48C211C564A004C0559 /* Workset.framework */,
@@ -934,7 +940,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -947,7 +953,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

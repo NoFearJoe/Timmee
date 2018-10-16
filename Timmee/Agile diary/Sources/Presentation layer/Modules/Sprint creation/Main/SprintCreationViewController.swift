@@ -45,7 +45,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     let sprintsService = ServicesAssembly.shared.sprintsService
     let habitsService = ServicesAssembly.shared.habitsService
     let goalsService = ServicesAssembly.shared.goalsService
-    let schedulerService = TaskSchedulerService()
+    let schedulerService = HabitsSchedulerService()
     
     override func prepare() {
         super.prepare()
@@ -161,7 +161,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
                         }
                     }
                     let scheduleTasksAndSaveSprintThanClose = {
-//                        habits.forEach { self.schedulerService.scheduleTask($0) } TODO
+                        habits.forEach { self.schedulerService.scheduleHabit($0) }
                         saveSprintThanClose()
                     }
                     NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in

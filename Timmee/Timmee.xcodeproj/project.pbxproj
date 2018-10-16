@@ -1515,7 +1515,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
@@ -1526,7 +1526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96594E5A201918CF00998133 /* ShellScript */ = {

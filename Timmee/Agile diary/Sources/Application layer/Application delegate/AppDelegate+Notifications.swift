@@ -27,9 +27,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         
-        if notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
-            if let taskID = notification.request.content.userInfo["task_id"] as? String {
-                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
+        if notification.request.content.categoryIdentifier == NotificationCategories.habit.rawValue {
+            if let habitID = notification.request.content.userInfo["habit_id"] as? String {
+                updateNotificationDate(ofHabitWithID: habitID)
             }
             
             completionHandler([.alert, .sound])
@@ -48,16 +48,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         
-        if response.notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
-            guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
+        if response.notification.request.content.categoryIdentifier == NotificationCategories.habit.rawValue {
+            guard let habitID = response.notification.request.content.userInfo["habit_id"] as? String else {
                 completionHandler()
                 return
             }
             
-            handleTaskAction(withIdentifier: response.actionIdentifier,
-                             taskID: taskID,
-                             fireDate: response.notification.date,
-                             completion: completionHandler)
+            handleHabitAction(withIdentifier: response.actionIdentifier,
+                              habitID: habitID,
+                              fireDate: response.notification.date,
+                              completion: completionHandler)
         } else if response.notification.request.content.categoryIdentifier == NotificationCategories.waterControl.rawValue {
             handleWaterControlAction(withIdentifier: response.actionIdentifier,
                                      fireDate: response.notification.date,
@@ -69,19 +69,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 private extension AppDelegate {
     
-    func handleTaskAction(withIdentifier identifier: String, taskID: String, fireDate: Date?, completion: @escaping () -> Void) {
+    func handleHabitAction(withIdentifier identifier: String, habitID: String, fireDate: Date?, completion: @escaping () -> Void) {
         if let action = NotificationAction(rawValue: identifier) {
             switch action {
             case .done:
-                guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: taskID) else { completion(); return }
+                guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: habitID) else { completion(); return }
                 let doneDate = fireDate?.startOfDay ?? Date.now.startOfDay
-                guard !task.doneDates.contains(doneDate) else { completion(); return }
-                task.doneDates.append(doneDate)
-                ServicesAssembly.shared.tasksService.updateTask(task) { _ in
+                guard !habit.doneDates.contains(doneDate) else { completion(); return }
+                habit.doneDates.append(doneDate)
+                ServicesAssembly.shared.habitsService.updateHabit(habit) { _ in
                     completion()
                 }
             case .remindAfter(let minutes):
-                deferNotification(ofTaskWithID: taskID, by: minutes, fireDate: fireDate, completion: completion)
+                deferNotification(ofHabitWithID: habitID, by: minutes, fireDate: fireDate, completion: completion)
             default: completion()
             }
         } else {
@@ -111,15 +111,14 @@ private extension AppDelegate {
 
 private extension AppDelegate {
     
-    func updateDueDateAndNotificationDate(ofTaskWithID id: String) {
-        guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else { return }
-        task.dueDate = task.nextDueDate
-        task.notificationDate = task.nextNotificationDate
-        ServicesAssembly.shared.tasksService.updateTask(task, completion: { _ in })
+    func updateNotificationDate(ofHabitWithID id: String) {
+        guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: id) else { return }
+        habit.notificationDate = habit.nextNotificationDate
+        ServicesAssembly.shared.habitsService.updateHabit(habit, completion: { _ in })
     }
     
-    func deferNotification(ofTaskWithID id: String, by minutes: Int, fireDate: Date?, completion: @escaping () -> Void) {
-        guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else {
+    func deferNotification(ofHabitWithID id: String, by minutes: Int, fireDate: Date?, completion: @escaping () -> Void) {
+        guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: id) else {
             completion()
             return
         }
@@ -130,7 +129,7 @@ private extension AppDelegate {
         
         let nextFireDate = oldFireDate + minutes.asMinutes
         
-        TaskSchedulerService().scheduleDeferredTask(task, fireDate: nextFireDate)
+        HabitsSchedulerService().scheduleDeferredHabit(habit, fireDate: nextFireDate)
         
         completion()
     }
