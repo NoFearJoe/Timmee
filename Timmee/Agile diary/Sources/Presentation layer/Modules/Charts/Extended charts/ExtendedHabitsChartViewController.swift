@@ -81,7 +81,7 @@ private extension ExtendedHabitsChartViewController {
         guard let currentSprint = getCurrentSprint() else { return }
         let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
 
-        let daysFromSprintStart = currentSprint.creationDate.days(before: Date.now)
+        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         var entries: [HabitsChartEntry] = []
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
@@ -108,7 +108,7 @@ private extension ExtendedHabitsChartViewController {
         
         var progressForHabit: [Habit: Progress] = [:]
         
-        let daysFromSprintStart = currentSprint.creationDate.days(before: Date.now)
+        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
             let repeatDay = DayUnit(number: date.weekday - 1).string

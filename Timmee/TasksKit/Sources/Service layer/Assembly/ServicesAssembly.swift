@@ -20,11 +20,16 @@ public final class ServicesAssembly {
     
     public lazy var timeTemplatesService: TimeTemplatesProvider & TimeTemplatesManager = PrivateServicesAssembly.shared.timeTemplatesService
     
-    public lazy var waterControlService: WaterControlProvider & WaterControlManager = PrivateServicesAssembly.shared.waterControlService
-    
     public lazy var audioRecordService: AudioRecordServiceInput = AudioRecordService()
     
     public lazy var audioPlayerService: AudioPlayerServiceInput = AudioPlayerService()
+    
+    // MARK: Agilee services
+    
+    public lazy var sprintsService: SprintsProvider & SprintsManager & SprintsObserverProvider = PrivateServicesAssembly.shared.sprintsService
+    
+    public lazy var waterControlService: WaterControlProvider & WaterControlManager = PrivateServicesAssembly.shared.waterControlService
+
     
 }
 
@@ -79,6 +84,15 @@ final class PrivateServicesAssembly {
         TimeTemplateEntitiesBackgroundProvider &
         TimeTemplatesManager
         = TimeTemplatesService()
+    
+    // MARK: Agilee private services
+    
+    lazy var sprintsService:
+        SprintsProvider &
+        SprintsManager &
+        SprintsObserverProvider &
+        SprintEntitiesProvider
+        = SprintsService()
     
     lazy var waterControlService:
         WaterControlProvider &

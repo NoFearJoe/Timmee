@@ -96,6 +96,10 @@ private extension CoreDataStorage {
         return DatabaseConfiguration.shared.properties["database_name"] as! String
     }
     
+    var storeConfiguration: String? {
+        return DatabaseConfiguration.shared.properties["database_configuration"] as? String
+    }
+    
     var storeURL: URL {
         return FilesService.URLs.documents!.appendingPathComponent(storeName)
     }
@@ -119,7 +123,7 @@ private extension CoreDataStorage {
 //                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
 //                                            ])
         try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                            configurationName: nil,
+                                            configurationName: self.storeConfiguration,
                                             at: self.sharedStoreURL,
                                             options: [
                                                 NSMigratePersistentStoresAutomaticallyOption: true,

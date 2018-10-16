@@ -4,5 +4,7 @@
 <dict>
 	<key>database_name</key>
 	<string>agile_diary</string>
+	<key>database_configuration</key>
+	<string>Agilee</string>
 </dict>
 </plist>

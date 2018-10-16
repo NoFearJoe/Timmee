@@ -43,7 +43,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         }
     }
     
-    let sprintsService = ServicesAssembly.shared.listsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
     
     override func prepare() {
         super.prepare()
@@ -128,7 +128,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         let daysRemaining = Date.now.days(before: sprint.endDate)
         let subtitle = NSMutableAttributedString()
         subtitle.append(NSAttributedString(string: "Sprint".localized, attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
-        subtitle.append(NSAttributedString(string: " #\(sprint.sortPosition)", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
+        subtitle.append(NSAttributedString(string: " #\(sprint.number)", attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         
         let remainingDaysString = NSMutableAttributedString(string: ", " + "remains_n_days".localized(with: daysRemaining),
                                                             attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
@@ -162,8 +162,8 @@ private extension TodayViewController {
         } else if let nextSprint = getNextSprint() {
             createSprintButton.isHidden = true
             setSwitcherEnabled(false)
-            headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.creationDate.asNearestShortDateString.lowercased()
-            showNextSprintPlaceholder(sprintNumber: nextSprint.sortPosition, startDate: nextSprint.creationDate)
+            headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.startDate.asNearestShortDateString.lowercased()
+            showNextSprintPlaceholder(sprintNumber: nextSprint.number, startDate: nextSprint.startDate)
             setSectionContainersVisible(content: false, water: false)
         } else {
             createSprintButton.isHidden = false

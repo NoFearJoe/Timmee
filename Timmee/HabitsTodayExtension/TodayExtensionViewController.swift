@@ -18,7 +18,7 @@ class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintI
     private var sprint: Sprint?
     private var habits: [Task] = []
     
-    let sprintsService = ServicesAssembly.shared.listsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
     let tasksService = ServicesAssembly.shared.tasksService
     
     override func viewDidLoad() {

@@ -10,9 +10,11 @@ public extension SprintEntity {
     
     public func map(from entity: Sprint) {
         id = entity.id
+        number = Int32(entity.number)
         title = entity.title
         startDate = entity.startDate
         endDate = entity.endDate
+        isReady = entity.isReady
     }
     
 }

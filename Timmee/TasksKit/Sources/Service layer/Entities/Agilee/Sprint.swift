@@ -14,32 +14,42 @@ import class CoreData.NSFetchRequest
 
 public class Sprint {
     public var id: String
+    public var number: Int
     public var title: String
     public var startDate: Date
     public var endDate: Date
+    public var isReady: Bool
     
     public init(sprintEntity: SprintEntity) {
         id = sprintEntity.id!
-        title = sprintEntity.title!
+        number = Int(sprintEntity.number)
+        title = sprintEntity.title ?? ""
         startDate = sprintEntity.startDate! as Date
         endDate = sprintEntity.endDate! as Date
+        isReady = sprintEntity.isReady
     }
     
     public init(id: String,
+                number: Int,
                 title: String,
                 startDate: Date,
-                endDate: Date) {
+                endDate: Date,
+                isReady: Bool) {
         self.id = id
+        self.number = number
         self.title = title
         self.startDate = startDate
         self.endDate = endDate
+        self.isReady = isReady
     }
     
     public var copy: Sprint {
         return Sprint(id: id,
+                      number: number,
                       title: title,
                       startDate: startDate,
-                      endDate: endDate)
+                      endDate: endDate,
+                      isReady: isReady)
     }
     
 //    public var tasksFetchPredicate: NSPredicate? {

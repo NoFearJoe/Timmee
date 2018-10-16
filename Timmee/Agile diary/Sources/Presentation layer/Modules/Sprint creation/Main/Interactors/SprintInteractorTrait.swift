@@ -10,7 +10,7 @@ import Workset
 import TasksKit
 
 protocol SprintInteractorTrait: class {
-    var sprintsService: ListsManager & ListsObserverProvider & ListsProvider & SmartListsManager & SmartListsProvider { get }
+    var sprintsService: SprintsManager & SprintsObserverProvider & SprintsProvider { get }
     
     func getCurrentSprint() -> Sprint?
     func getNextSprint() -> Sprint?
@@ -22,42 +22,42 @@ protocol SprintInteractorTrait: class {
 extension SprintInteractorTrait {
     
     func getCurrentSprint() -> Sprint? {
-        let existingSprints = sprintsService.fetchLists()
+        let existingSprints = sprintsService.fetchSprints()
         return existingSprints.first(where: { sprint in
-            sprint.creationDate <= Date.now.startOfDay && sprint.endDate >= Date.now.endOfDay
+            sprint.startDate <= Date.now.startOfDay && sprint.endDate >= Date.now.endOfDay
         })
     }
     
     func getNextSprint() -> Sprint? {
-        let existingSprints = sprintsService.fetchLists()
+        let existingSprints = sprintsService.fetchSprints()
         return existingSprints.first(where: { sprint in
-            sprint.creationDate >= Date.now.endOfDay
+            sprint.startDate >= Date.now.endOfDay
         })
     }
     
     func getOrCreateSprint(completion: @escaping (Sprint) -> Void) {
-        let existingSprints = sprintsService.fetchLists()
-        if let temporarySprint = existingSprints.first(where: { $0.note == "temporary" }) {
+        let existingSprints = sprintsService.fetchSprints()
+        if let temporarySprint = existingSprints.first(where: { !$0.isReady }) {
             completion(temporarySprint)
         } else {
-            let latestSprint = existingSprints.max(by: { $0.sortPosition < $1.sortPosition })
-            let nextSprintNumber = (latestSprint?.sortPosition ?? 0) + 1
+            let latestSprint = existingSprints.max(by: { $0.number < $1.number })
+            let nextSprintNumber = (latestSprint?.number ?? 0) + 1
             let sprint = Sprint(number: nextSprintNumber)
-            sprintsService.createOrUpdateList(sprint, tasks: []) { _ in
+            sprintsService.createOrUpdateSprint(sprint) { _ in
                 completion(sprint)
             }
         }
     }
     
     func saveSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void) {
-        sprintsService.createOrUpdateList(sprint, tasks: []) { error in
-            completion(error == nil)
+        sprintsService.createOrUpdateSprint(sprint) { isSuccess in
+            completion(isSuccess)
         }
     }
     
     func removeSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void) {
-        sprintsService.removeList(sprint) { error in
-            completion(error == nil)
+        sprintsService.removeSprint(sprint) { isSuccess in
+            completion(isSuccess)
         }
     }
     

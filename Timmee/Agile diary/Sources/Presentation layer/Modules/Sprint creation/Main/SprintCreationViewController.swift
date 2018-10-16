@@ -33,16 +33,16 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     private var itemsCountBySection: [SprintSection: Int] = [:]
     
-    var sprint: List! {
+    var sprint: Sprint! {
         didSet {
             contentViewController.sprintID = sprint.id
-            headerView.titleLabel.text = "Sprint".localized + " #\(sprint.sortPosition)"
-            showStartDate(sprint.creationDate)
+            headerView.titleLabel.text = "Sprint".localized + " #\(sprint.number)"
+            showStartDate(sprint.startDate)
             updateDoneButtonState()
         }
     }
     
-    let sprintsService = ServicesAssembly.shared.listsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
     let tasksService = ServicesAssembly.shared.tasksService
     let schedulerService = TaskSchedulerService()
     
@@ -67,12 +67,13 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         
         guard let sprint = sprint else { return }
         
-        if sprint.creationDate.compare(Date.now.startOfDay) == .orderedAscending {
-            sprint.creationDate = Date.now.nextDay.startOfDay
+        if sprint.startDate.compare(Date.now.startOfDay) == .orderedAscending {
+            sprint.startDate = Date.now.startOfDay
+            sprint.endDate = Date.now.startOfDay + Constants.sprintDuration.asWeeks
             updateDoneButtonState()
         }
         
-        showStartDate(sprint.creationDate)
+        showStartDate(sprint.startDate)
     }
     
     override func setupAppearance() {
@@ -121,7 +122,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         let dueDatePicker = ViewControllersFactory.dueDatePicker
         dueDatePicker.output = self
         dueDatePicker.loadViewIfNeeded()
-        dueDatePicker.setDueDate(sprint.creationDate)
+        dueDatePicker.setDueDate(sprint.startDate)
         editorContainer.setViewController(dueDatePicker)
         present(editorContainer, animated: true, completion: nil)
     }
@@ -149,7 +150,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
                   actions: [.cancel, .ok("finish".localized)])
             { action in
                 guard case .ok = action else { return }
-                self.sprint.note = ""
+                self.sprint.isReady = true
                 self.updateNotificationInfoForAllTargetsAndHabits { [weak self] targetsAndHabits in
                     guard let `self` = self else { return }
                     let saveSprintThanClose = {
@@ -197,7 +198,8 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
 extension SprintCreationViewController: DueDatePickerOutput {
     
     func didChangeDueDate(to date: Date) {
-        sprint.creationDate = date
+        sprint.startDate = date
+        sprint.endDate = date + Constants.sprintDuration.asWeeks
         showStartDate(date)
     }
     
@@ -227,7 +229,7 @@ private extension SprintCreationViewController {
             guard $0.notificationDate != nil else { return }
             let notificationHour = $0.notificationDate?.hours ?? 0
             let notificationMinute = $0.notificationDate?.minutes ?? 0
-            $0.notificationDate = sprint.creationDate.startOfDay
+            $0.notificationDate = sprint.startDate.startOfDay
             $0.notificationDate => notificationHour.asHours
             $0.notificationDate => notificationMinute.asMinutes
             $0.repeatEndingDate = repeatEndingDate

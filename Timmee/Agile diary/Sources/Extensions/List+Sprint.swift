@@ -9,23 +9,15 @@
 import TasksKit
 import Workset
 
-typealias Sprint = List
-
 extension Sprint {
     
     convenience init(number: Int) {
         self.init(id: "sprint_\(number)",
-            title: "",
-            note: "temporary",
-            icon: .allTasks,
-            sortPosition: number,
-            tasksCount: 0,
-            isFavorite: false,
-            creationDate: Date.now.nextDay.startOfDay)
-    }
-    
-    var endDate: Date {
-        return creationDate + Constants.sprintDuration.asWeeks
+                  number: number,
+                  title: "",
+                  startDate: Date.now.startOfDay,
+                  endDate: Date.now.startOfDay + Constants.sprintDuration.asWeeks,
+                  isReady: false)
     }
     
 }

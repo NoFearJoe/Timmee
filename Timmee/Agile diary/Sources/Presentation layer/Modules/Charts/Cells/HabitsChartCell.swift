@@ -11,7 +11,7 @@ import Charts
 
 final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHabitsInteractorTrait {
     
-    let sprintsService = ServicesAssembly.shared.listsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
     let tasksService = ServicesAssembly.shared.tasksService
     
     @IBOutlet private var titleLabel: UILabel! {

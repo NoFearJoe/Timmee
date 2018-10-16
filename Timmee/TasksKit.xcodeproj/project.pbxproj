@@ -44,6 +44,7 @@
 		0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018292077B2BD00633EFF /* NotificationMask.swift */; };
 		0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182A2077B2BD00633EFF /* RepeatMask.swift */; };
 		0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0182B2077B2BD00633EFF /* ListIcon.swift */; };
+		0CE475542175AFBE005FD8CC /* SprintsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE475532175AFBE005FD8CC /* SprintsService.swift */; };
 		9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627A20A353D000B23EDF /* AudioPlayerService.swift */; };
 		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
 		96BE838E217511D700CDECAF /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838D217511D700CDECAF /* Goal.swift */; };
@@ -95,6 +96,7 @@
 		0CE018292077B2BD00633EFF /* NotificationMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMask.swift; sourceTree = "<group>"; };
 		0CE0182A2077B2BD00633EFF /* RepeatMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatMask.swift; sourceTree = "<group>"; };
 		0CE0182B2077B2BD00633EFF /* ListIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListIcon.swift; sourceTree = "<group>"; };
+		0CE475532175AFBE005FD8CC /* SprintsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsService.swift; sourceTree = "<group>"; };
 		45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9606627A20A353D000B23EDF /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		961656052095FDD9001A8387 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
@@ -238,12 +240,12 @@
 		0CE0180C2077B2BD00633EFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0CE475522175AF86005FD8CC /* Agilee */,
 				0CE0180E2077B2BD00633EFF /* ListsService.swift */,
 				0CE018122077B2BD00633EFF /* TasksService.swift */,
 				0CE018112077B2BD00633EFF /* SubtasksService.swift */,
 				0CE0180F2077B2BD00633EFF /* TagsService.swift */,
 				0CE018132077B2BD00633EFF /* TimeTemplatesService.swift */,
-				0C3DA5372154D8D200CAE635 /* WaterControlService.swift */,
 				0CE0180D2077B2BD00633EFF /* TaskSchedulerService.swift */,
 				0CE018102077B2BD00633EFF /* FilesService.swift */,
 				961656052095FDD9001A8387 /* AudioRecordService.swift */,
@@ -295,6 +297,15 @@
 				0CE0182B2077B2BD00633EFF /* ListIcon.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		0CE475522175AF86005FD8CC /* Agilee */ = {
+			isa = PBXGroup;
+			children = (
+				0C3DA5372154D8D200CAE635 /* WaterControlService.swift */,
+				0CE475532175AFBE005FD8CC /* SprintsService.swift */,
+			);
+			path = Agilee;
 			sourceTree = "<group>";
 		};
 		5281E0EBE43AED0B2AB155EC /* Pods */ = {
@@ -464,6 +475,7 @@
 				0CE018602077B2BD00633EFF /* TimeTemplate.swift in Sources */,
 				0CE018622077B2BD00633EFF /* SubtaskEntity+Mapping.swift in Sources */,
 				0CE0185D2077B2BD00633EFF /* SmartList.swift in Sources */,
+				0CE475542175AFBE005FD8CC /* SprintsService.swift in Sources */,
 				0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */,
 				96BE83972175190E00CDECAF /* HabitEntity+Mapping.swift in Sources */,
 				0CE0185B2077B2BD00633EFF /* Subtask.swift in Sources */,

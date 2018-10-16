@@ -13,7 +13,7 @@ class ExtendedChartViewController: BaseViewController, SprintInteractorTrait, Ta
     
     @IBOutlet private(set) var chartView: BarChartView!
     
-    let sprintsService = ServicesAssembly.shared.listsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
     let tasksService = ServicesAssembly.shared.tasksService
     private let waterControlService = ServicesAssembly.shared.waterControlService
     
@@ -34,7 +34,7 @@ private extension ExtendedChartViewController {
         
         var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []
-        let daysFromSprintStart = currentSprint.creationDate.days(before: Date.now)
+        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
             let drunkVolume = Double((waterControl.drunkVolume[date] ?? 0)) / 1000
