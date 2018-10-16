@@ -6,17 +6,7 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-final class HabitCreationInteractor: TargetAndHabitInteractorTrait {
-    
-    weak var targetProvider: TargetProvider!
-    
-    let tasksService = ServicesAssembly.shared.tasksService
-    
-    var sortedStages: [Subtask] {
-        return targetProvider.target.subtasks.sorted(by: { $0.sortPosition > $1.sortPosition })
-    }
-    
-}
+final class HabitCreationInteractor {}
 
 extension HabitCreationInteractor {
     

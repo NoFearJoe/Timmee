@@ -20,7 +20,7 @@ import UIComponents
            3. Сохраняем в БД
  */
 
-final class SprintCreationViewController: BaseViewController, SprintInteractorTrait, TargetsAndHabitsInteractorTrait, AlertInput {
+final class SprintCreationViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
@@ -43,7 +43,8 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     }
     
     let sprintsService = ServicesAssembly.shared.sprintsService
-    let tasksService = ServicesAssembly.shared.tasksService
+    let habitsService = ServicesAssembly.shared.habitsService
+    let goalsService = ServicesAssembly.shared.goalsService
     let schedulerService = TaskSchedulerService()
     
     override func prepare() {
@@ -93,12 +94,12 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
             contentViewController.delegate = self
-        } else if segue.identifier == "ShowTargetCreation" {
+        } else if segue.identifier == "ShowGoalCreation" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
-            controller.setTarget(sender as? Task, listID: sprint.id)
+            controller.setGoal(sender as? Goal, sprintID: sprint.id)
         } else if segue.identifier == "ShowHabitCreation" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
-            controller.setHabit(sender as? Task, listID: sprint.id)
+            controller.setHabit(sender as? Habit, sprintID: sprint.id)
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -138,7 +139,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @IBAction private func onAdd() {
         switch currentSection {
-        case .targets: performSegue(withIdentifier: "ShowTargetCreation", sender: nil)
+        case .targets: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
         case .habits: performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
         case .water: break
         }
@@ -151,7 +152,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             { action in
                 guard case .ok = action else { return }
                 self.sprint.isReady = true
-                self.updateNotificationInfoForAllTargetsAndHabits { [weak self] targetsAndHabits in
+                self.updateNotificationInfoForAllHabits { [weak self] habits in
                     guard let `self` = self else { return }
                     let saveSprintThanClose = {
                         self.saveSprint(self.sprint) { [weak self] success in
@@ -160,7 +161,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
                         }
                     }
                     let scheduleTasksAndSaveSprintThanClose = {
-                        targetsAndHabits.forEach { self.schedulerService.scheduleTask($0) }
+//                        habits.forEach { self.schedulerService.scheduleTask($0) } TODO
                         saveSprintThanClose()
                     }
                     NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
@@ -218,14 +219,14 @@ private extension SprintCreationViewController {
     
     func updateDoneButtonState() {
         let isHabitsEnough = itemsCountBySection[.habits].flatMap { $0 >= 3 } ?? false
-        let isTargetsEnough = itemsCountBySection[.targets].flatMap { $0 >= 1 } ?? false
-        headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isTargetsEnough
+        let isGoalsEnough = itemsCountBySection[.targets].flatMap { $0 >= 1 } ?? false
+        headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isGoalsEnough
     }
     
-    func updateNotificationInfoForAllTargetsAndHabits(completion: @escaping ([Task]) -> Void) {
-        let targetsAndHabits = getTasks(listID: sprint.id)
+    func updateNotificationInfoForAllHabits(completion: @escaping ([Habit]) -> Void) {
+        let habits = habitsService.fetchHabits(sprintID: sprint.id)
         let repeatEndingDate = sprint.endDate
-        targetsAndHabits.forEach {
+        habits.forEach {
             guard $0.notificationDate != nil else { return }
             let notificationHour = $0.notificationDate?.hours ?? 0
             let notificationMinute = $0.notificationDate?.minutes ?? 0
@@ -234,9 +235,9 @@ private extension SprintCreationViewController {
             $0.notificationDate => notificationMinute.asMinutes
             $0.repeatEndingDate = repeatEndingDate
         }
-        saveTasks(targetsAndHabits, completion: {
-            completion(targetsAndHabits)
-        })
+        habitsService.updateHabits(habits) { _ in
+            completion(habits)
+        }
     }
     
 }

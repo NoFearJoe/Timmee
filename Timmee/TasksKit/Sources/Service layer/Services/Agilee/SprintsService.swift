@@ -35,11 +35,7 @@ public protocol SprintsManager: class {
     func removeSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void)
 }
 
-public final class SprintsService {
-    
-    
-    
-}
+public final class SprintsService {}
 
 extension SprintsService: SprintsProvider {
     

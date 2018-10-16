@@ -1,35 +1,19 @@
 //
-//  Task+Target.swift
+//  Task+Goal.swift
 //  Agile diary
 //
 //  Created by i.kharabet on 16.08.2018.
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-typealias Target = Task
-
-extension Target {
+extension Goal {
     
-    convenience init(targetID: String) {
-        self.init(id: targetID,
-                  kind: "target",
+    convenience init(goalID: String) {
+        self.init(id: goalID,
                   title: "",
-                  isImportant: false,
-                  notification: .doNotNotify,
-                  notificationDate: nil,
                   note: "",
-                  link: "",
-                  repeating: .init(type: .never),
-                  repeatEndingDate: nil,
-                  dueDate: nil,
-                  location: nil,
-                  address: nil,
-                  shouldNotifyAtLocation: false,
-                  attachments: [],
                   isDone: false,
-                  inProgress: false,
-                  creationDate: Date.now,
-                  doneDates: [])
+                  creationDate: Date.now)
     }
     
 }

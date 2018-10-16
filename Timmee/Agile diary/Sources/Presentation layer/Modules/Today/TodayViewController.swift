@@ -101,11 +101,11 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             waterControlViewController.progressListener = self
         } else if segue.identifier == "ShowTargetEditor" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
-            controller.setTarget(sender as? Task, listID: sprint.id)
+            controller.setGoal(sender as? Goal, sprintID: sprint.id)
             controller.setEditingMode(.short)
         } else if segue.identifier == "ShowHabitEditor" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
-            controller.setHabit(sender as? Task, listID: sprint.id)
+            controller.setHabit(sender as? Habit, sprintID: sprint.id)
             controller.setEditingMode(.short)
         } else {
             super.prepare(for: segue, sender: sender)

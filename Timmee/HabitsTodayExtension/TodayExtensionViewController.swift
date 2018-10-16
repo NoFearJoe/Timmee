@@ -10,16 +10,16 @@ import UIKit
 import NotificationCenter
 import TasksKit
 
-class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintInteractorTrait, TargetAndHabitInteractorTrait {
+class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintInteractorTrait {
     
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var messageLabel: UILabel!
     
     private var sprint: Sprint?
-    private var habits: [Task] = []
+    private var habits: [Habit] = []
     
     let sprintsService = ServicesAssembly.shared.sprintsService
-    let tasksService = ServicesAssembly.shared.tasksService
+    let habitsService = ServicesAssembly.shared.habitsService
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintI
         
         self.sprint = sprint
         
-        habits = tasksService.fetchTasks(listID: sprint.id).filter { $0.kind == "habit" && !$0.isDone(at: Date.now) }
+        habits = habitsService.fetchHabits(sprintID: sprint.id).filter { !$0.isDone(at: Date.now) }
         tableView.reloadData()
         
         messageLabel.isHidden = !habits.isEmpty
@@ -71,7 +71,7 @@ extension TodayExtensionViewController: UITableViewDataSource, UITableViewDelega
             cell.onChangeCheckedState = { [unowned self] isChecked in
                 habit.setDone(isChecked, at: Date.now)
                 guard let sprint = self.sprint else { return }
-                self.saveTask(habit, listID: sprint.id, completion: { [weak self] _ in
+                self.habitsService.updateHabit(habit, sprintID: sprint.id, completion: { [weak self] _ in
                     self?.reloadHabits()
                 })
             }

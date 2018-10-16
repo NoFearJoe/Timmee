@@ -141,9 +141,9 @@
 
 "no_habits_for_today" = "Нет привычек на сегодня";
 
-"target_title_placeholder" = "Новая цель";
+"goal_title_placeholder" = "Новая цель";
 "note" = "Заметка";
-"target_note_placeholder" = "Введите текст заметки...";
+"goal_note_placeholder" = "Введите текст заметки...";
 "add_stage" = "Введите название этапа...";
 
 "habit_title_placeholder" = "Новая привычка";

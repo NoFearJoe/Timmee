@@ -16,6 +16,8 @@ final class ExtendedHabitsChartViewController: ExtendedChartViewController {
     @IBOutlet private var chart: HabitsChartView!
     @IBOutlet private var detailedHabitsTableView: UITableView!
     
+    private let habitsService = ServicesAssembly.shared.habitsService
+    
     private var habitsProgress: [Habit: Progress] = [:]
     
     override func prepare() {
@@ -79,14 +81,14 @@ private extension ExtendedHabitsChartViewController {
     
     func refreshHabitsProgress() {
         guard let currentSprint = getCurrentSprint() else { return }
-        let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
+        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
 
         let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         var entries: [HabitsChartEntry] = []
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
-            let repeatDay = DayUnit(number: date.weekday - 1).string
-            let allHabits = habits.filter { $0.repeating.string.contains(repeatDay) }
+            let repeatDay = DayUnit(number: date.weekday - 1)
+            let allHabits = habits.filter { $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
 
             let color: UIColor
@@ -104,15 +106,15 @@ private extension ExtendedHabitsChartViewController {
     
     func refreshHabitsDetailsTableView() {
         guard let currentSprint = getCurrentSprint() else { return }
-        let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
+        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
         
         var progressForHabit: [Habit: Progress] = [:]
         
         let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
-            let repeatDay = DayUnit(number: date.weekday - 1).string
-            let allHabits = habits.filter { $0.repeating.string.contains(repeatDay) }
+            let repeatDay = DayUnit(number: date.weekday - 1)
+            let allHabits = habits.filter { $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }
             
             allHabits.forEach {

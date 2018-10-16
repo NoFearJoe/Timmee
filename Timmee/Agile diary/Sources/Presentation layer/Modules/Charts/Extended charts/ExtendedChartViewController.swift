@@ -9,12 +9,11 @@
 import UIKit
 import Charts
 
-class ExtendedChartViewController: BaseViewController, SprintInteractorTrait, TargetsAndHabitsInteractorTrait {
+class ExtendedChartViewController: BaseViewController, SprintInteractorTrait {
     
     @IBOutlet private(set) var chartView: BarChartView!
     
     let sprintsService = ServicesAssembly.shared.sprintsService
-    let tasksService = ServicesAssembly.shared.tasksService
     private let waterControlService = ServicesAssembly.shared.waterControlService
     
     override func prepare() {

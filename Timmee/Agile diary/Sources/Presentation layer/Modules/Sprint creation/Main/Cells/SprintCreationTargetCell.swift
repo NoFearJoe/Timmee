@@ -31,12 +31,12 @@ final class SprintCreationTargetCell: SwipeTableViewCell {
         stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
     }
     
-    func configure(target: Target) {
-        titleLabel.text = target.title
-        stagesLabel.attributedText = makeStagesText(target.subtasks.sorted(by: { $0.sortPosition < $1.sortPosition }))
-        stagesTitleLabelHeightConstraint.constant = target.subtasks.isEmpty ? 0 : 20
-        stagesTitleLabelTopConstraint.constant = target.subtasks.isEmpty ? 0 : 4
-        stagesTitleLabelBottomConstraint.constant = target.subtasks.isEmpty ? 0 : 4
+    func configure(goal: Goal) {
+        titleLabel.text = goal.title
+        stagesLabel.attributedText = makeStagesText(goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition }))
+        stagesTitleLabelHeightConstraint.constant = goal.stages.isEmpty ? 0 : 20
+        stagesTitleLabelTopConstraint.constant = goal.stages.isEmpty ? 0 : 4
+        stagesTitleLabelBottomConstraint.constant = goal.stages.isEmpty ? 0 : 4
     }
     
     private func makeStagesText(_ stages: [Subtask]) -> NSAttributedString {

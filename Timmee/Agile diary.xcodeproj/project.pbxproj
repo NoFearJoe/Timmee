@@ -53,7 +53,6 @@
 		0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
 		0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
 		0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
-		0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
 		0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
 		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
@@ -92,7 +91,6 @@
 		0CE883DF2151073D00637BD9 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0CE883E12151079300637BD9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
 		0CE883E2215107CE00637BD9 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
-		0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */; };
 		0CE883E421510C7F00637BD9 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
 		0CE883E72151134700637BD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
 		0CE883E9215123FF00637BD9 /* TodayExtensionHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883E8215123FF00637BD9 /* TodayExtensionHabitCell.swift */; };
@@ -107,7 +105,6 @@
 		0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */; };
 		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
-		0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */; };
 		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
@@ -214,7 +211,6 @@
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		0C8D075F212BE5B5008122A6 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintInteractorTrait.swift; sourceTree = "<group>"; };
-		0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetAndHabitInteractorTrait.swift; sourceTree = "<group>"; };
 		0C9365192158F04F00B4EB48 /* WaterChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterChartCell.swift; sourceTree = "<group>"; };
 		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
@@ -258,7 +254,6 @@
 		0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTargetCell.swift; sourceTree = "<group>"; };
 		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
-		0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsAndHabitsInteractorTrait.swift; sourceTree = "<group>"; };
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -604,8 +599,6 @@
 			isa = PBXGroup;
 			children = (
 				0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */,
-				0C8D0796212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift */,
-				0CF7E55F214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -978,7 +971,6 @@
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
 				967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */,
-				0CF7E560214A5F890071DABD /* TargetsAndHabitsInteractorTrait.swift in Sources */,
 				96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */,
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
@@ -1004,7 +996,6 @@
 				96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
-				0C8D0797212ED1F3008122A6 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
@@ -1051,7 +1042,6 @@
 				0CE883E12151079300637BD9 /* Constants.swift in Sources */,
 				0CE883DB215105A400637BD9 /* SprintInteractorTrait.swift in Sources */,
 				0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */,
-				0CE883E3215107F100637BD9 /* TargetAndHabitInteractorTrait.swift in Sources */,
 				0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */,
 				0C3DA5232153731600CAE635 /* UserProperties.swift in Sources */,
 			);

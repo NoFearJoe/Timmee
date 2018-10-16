@@ -32,34 +32,34 @@ final class TodayTargetCell: SwipeTableViewCell {
         stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
     }
     
-    func configure(target: Target) {
+    func configure(goal: Goal) {
         setupAppearance()
-        containerView.alpha = target.isDone ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
-        titleLabel.text = target.title
-        addStageViews(target: target)
-        stagesTitleLabelHeightConstraint.constant = target.subtasks.isEmpty ? 0 : 20
-        stagesTitleLabelTopConstraint.constant = target.subtasks.isEmpty ? 0 : 4
-        stagesTitleLabelBottomConstraint.constant = target.subtasks.isEmpty ? 0 : 4
+        containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
+        titleLabel.text = goal.title
+        addStageViews(goal: goal)
+        stagesTitleLabelHeightConstraint.constant = goal.stages.isEmpty ? 0 : 20
+        stagesTitleLabelTopConstraint.constant = goal.stages.isEmpty ? 0 : 4
+        stagesTitleLabelBottomConstraint.constant = goal.stages.isEmpty ? 0 : 4
     }
     
-    private func addStageViews(target: Target) {
+    private func addStageViews(goal: Goal) {
         stagesContainer.subviews.forEach { $0.removeFromSuperview() }
         
-        let subtasks = target.subtasks.sorted(by: { $0.sortPosition < $1.sortPosition })
-        for (index, subtask) in subtasks.enumerated() {
+        let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition })
+        for (index, stage) in stages.enumerated() {
             let stageView = StageView.loadedFromNib()
-            stageView.title = subtask.title
-            stageView.isChecked = subtask.isDone
+            stageView.title = stage.title
+            stageView.isChecked = stage.isDone
             stageView.setupAppearance()
             stageView.onChangeCheckedState = { [unowned self] isChecked in
-                self.onChangeCheckedState?(isChecked, subtask)
+                self.onChangeCheckedState?(isChecked, stage)
             }
             stagesContainer.addSubview(stageView)
-            if subtasks.count == 1 {
+            if stages.count == 1 {
                 stageView.allEdges().toSuperview()
             } else if index == 0 {
                 [stageView.top(), stageView.leading(), stageView.trailing()].toSuperview()
-            } else if index >= subtasks.count - 1 {
+            } else if index >= stages.count - 1 {
                 [stageView.leading(), stageView.trailing(), stageView.bottom()].toSuperview()
                 let previousView = stagesContainer.subviews[index - 1]
                 stageView.topToBottom().to(previousView, addTo: stagesContainer)

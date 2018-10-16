@@ -13,7 +13,7 @@ protocol SprintContentViewControllerDelegate: class {
     func didChangeItemsCount(in section: SprintSection, to count: Int)
 }
 
-final class SprintContentViewController: UIViewController, TargetAndHabitInteractorTrait {
+final class SprintContentViewController: UIViewController {
     
     enum State {
         case empty
@@ -23,7 +23,7 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
     var section = SprintSection.habits {
         didSet {
             guard isViewLoaded else { return }
-            setupCacheObserver(forSection: section, sprintID: sprintID)
+            setupCurrentCacheObserver()
         }
     }
     var state = State.empty {
@@ -38,7 +38,7 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
     var sprintID: String = "" {
         didSet {
             guard isViewLoaded else { return }
-            setupCacheObserver(forSection: section, sprintID: sprintID)
+            setupCurrentCacheObserver()
         }
     }
     
@@ -50,10 +50,12 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
-    let tasksService = ServicesAssembly.shared.tasksService
+    let habitsService = ServicesAssembly.shared.habitsService
+    let goalsService = ServicesAssembly.shared.goalsService
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
-    private var cacheObserver: CacheObserver<Task>?
+    private var habitsCacheObserver: CacheObserver<Habit>?
+    private var goalsCacheObserver: CacheObserver<Goal>?
     
     private let targetCellActionsProvider = CellDeleteSwipeActionProvider()
     private let habitCellActionsProvider = CellDeleteSwipeActionProvider()
@@ -65,14 +67,14 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
         contentView.estimatedRowHeight = 56
         contentView.rowHeight = UITableView.automaticDimension
         setupPlaceholder()
-        setupCacheObserver(forSection: section, sprintID: sprintID)
+        setupCurrentCacheObserver()
         targetCellActionsProvider.onDelete = { [unowned self] indexPath in
-            guard let target = self.cacheObserver?.item(at: indexPath) else { return }
-            self.removeTask(target, completion: nil)
+            guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
+            self.goalsService.removeGoal(goal, completion: { _ in })
         }
         habitCellActionsProvider.onDelete = { [unowned self] indexPath in
-            guard let habit = self.cacheObserver?.item(at: indexPath) else { return }
-            self.removeTask(habit, completion: nil)
+            guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
+            self.habitsService.removeHabit(habit, completion: { _ in })
         }
     }
     
@@ -90,26 +92,34 @@ final class SprintContentViewController: UIViewController, TargetAndHabitInterac
 extension SprintContentViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cacheObserver?.numberOfSections() ?? 0
+        switch section {
+        case .habits: return habitsCacheObserver?.numberOfSections() ?? 0
+        case .targets: return goalsCacheObserver?.numberOfSections() ?? 0
+        case .water: return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cacheObserver?.numberOfItems(in: section) ?? 0
+        switch self.section {
+        case .habits: return habitsCacheObserver?.numberOfItems(in: section) ?? 0
+        case .targets: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
+        case .water: return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch section.itemsKind {
         case .habit:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SprintCreationHabitCell", for: indexPath) as! SprintCreationHabitCell
-            if let habit = cacheObserver?.item(at: indexPath) {
+            if let habit = habitsCacheObserver?.item(at: indexPath) {
                 cell.configure(habit: habit)
                 cell.delegate = habitCellActionsProvider
             }
             return cell
         case .target:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SprintCreationTargetCell", for: indexPath) as! SprintCreationTargetCell
-            if let target = cacheObserver?.item(at: indexPath) {
-                cell.configure(target: target)
+            if let goal = goalsCacheObserver?.item(at: indexPath) {
+                cell.configure(goal: goal)
                 cell.delegate = targetCellActionsProvider
             }
             return cell
@@ -124,11 +134,11 @@ extension SprintContentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch section.itemsKind {
         case .habit:
-            guard let habit = cacheObserver?.item(at: indexPath) else { return }
+            guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
             transitionHandler?.performSegue(withIdentifier: "ShowHabitCreation", sender: habit)
         case .target:
-            guard let target = cacheObserver?.item(at: indexPath) else { return }
-            transitionHandler?.performSegue(withIdentifier: "ShowTargetCreation", sender: target)
+            guard let goal = goalsCacheObserver?.item(at: indexPath) else { return }
+            transitionHandler?.performSegue(withIdentifier: "ShowGoalCreation", sender: goal)
         case .water: break
         }
     }
@@ -137,11 +147,17 @@ extension SprintContentViewController: UITableViewDelegate {
 
 private extension SprintContentViewController {
     
-    func setupCacheObserver(forSection section: SprintSection, sprintID: String) {
-        let predicate = NSPredicate(format: "list.id = %@ AND kind = %@", sprintID, section.itemsKind.id)
-        cacheObserver = ServicesAssembly.shared.tasksService.tasksObserver(predicate: predicate)
-        cacheObserver?.setMapping { Task(task: $0 as! TaskEntity) }
-        cacheObserver?.setActions(
+    func setupCurrentCacheObserver() {
+        switch section {
+        case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
+        case .targets: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
+        case .water: break
+        }
+    }
+    
+    func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
+        habitsCacheObserver = habitsService.habitsObserver(sprintID: sprintID, day: nil)
+        habitsCacheObserver?.setActions(
             onInitialFetch: nil,
             onItemsCountChange: { count in
                 self.state = count == 0 ? .empty : .content
@@ -150,8 +166,23 @@ private extension SprintContentViewController {
             onItemChange: nil,
             onBatchUpdatesStarted: nil,
             onBatchUpdatesCompleted: nil)
-        cacheObserver?.setSubscriber(cacheAdapter)
-        cacheObserver?.fetchInitialEntities()
+        habitsCacheObserver?.setSubscriber(cacheAdapter)
+        habitsCacheObserver?.fetchInitialEntities()
+    }
+    
+    func setupGoalsCacheObserver(forSection section: SprintSection, sprintID: String) {
+        goalsCacheObserver = goalsService.goalsObserver(sprintID: sprintID)
+        goalsCacheObserver?.setActions(
+            onInitialFetch: nil,
+            onItemsCountChange: { count in
+                self.state = count == 0 ? .empty : .content
+                self.delegate?.didChangeItemsCount(in: self.section, to: count)
+        },
+            onItemChange: nil,
+            onBatchUpdatesStarted: nil,
+            onBatchUpdatesCompleted: nil)
+        goalsCacheObserver?.setSubscriber(cacheAdapter)
+        goalsCacheObserver?.fetchInitialEntities()
     }
     
 }

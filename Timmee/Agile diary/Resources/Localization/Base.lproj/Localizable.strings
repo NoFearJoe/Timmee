@@ -141,9 +141,9 @@
 
 "no_habits_for_today" = "No habits today";
 
-"target_title_placeholder" = "New goal";
+"goal_title_placeholder" = "New goal";
 "note" = "Note";
-"target_note_placeholder" = "Enter note text...";
+"goal_note_placeholder" = "Enter note text...";
 "add_stage" = "Enter stage name...";
 
 "habit_title_placeholder" = "New habit";

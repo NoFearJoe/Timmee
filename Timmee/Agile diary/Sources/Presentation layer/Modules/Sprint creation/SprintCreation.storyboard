@@ -153,7 +153,7 @@
                         <outlet property="contentContainerView" destination="ejl-6k-3JG" id="xd0-Eg-Yw4"/>
                         <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
-                        <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowTargetCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
+                        <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowGoalCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
                         <segue destination="aS1-37-JFS" kind="presentation" identifier="ShowHabitCreation" modalTransitionStyle="coverVertical" id="moZ-UT-TDC"/>
                     </connections>
                 </viewController>
@@ -1065,7 +1065,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OJf-3e-PCf" firstAttribute="bottom" secondItem="YPV-0J-f30" secondAttribute="bottom" constant="80" id="A23-Ji-mSf"/>
-                            <constraint firstItem="OJf-3e-PCf" firstAttribute="bottom" secondItem="EeI-jU-tAj" secondAttribute="bottom" id="Il2-t4-O4y"/>
+                            <constraint firstAttribute="bottom" secondItem="EeI-jU-tAj" secondAttribute="bottom" id="Il2-t4-O4y"/>
                             <constraint firstItem="YPV-0J-f30" firstAttribute="top" secondItem="OJf-3e-PCf" secondAttribute="top" id="L1H-6t-i5j"/>
                             <constraint firstItem="OJf-3e-PCf" firstAttribute="trailing" secondItem="YPV-0J-f30" secondAttribute="trailing" id="Ssq-az-YUZ"/>
                             <constraint firstItem="EeI-jU-tAj" firstAttribute="leading" secondItem="OJf-3e-PCf" secondAttribute="leading" id="VNg-ZI-ztj"/>

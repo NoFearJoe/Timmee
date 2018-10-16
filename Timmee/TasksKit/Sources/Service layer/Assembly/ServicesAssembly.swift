@@ -28,6 +28,10 @@ public final class ServicesAssembly {
     
     public lazy var sprintsService: SprintsProvider & SprintsManager & SprintsObserverProvider = PrivateServicesAssembly.shared.sprintsService
     
+    public lazy var habitsService: HabitsProvider & HabitsManager & HabitsObserverProvider = PrivateServicesAssembly.shared.habitsService
+    
+    public lazy var goalsService: GoalsProvider & GoalsManager & GoalsObserverProvider = PrivateServicesAssembly.shared.goalsService
+    
     public lazy var waterControlService: WaterControlProvider & WaterControlManager = PrivateServicesAssembly.shared.waterControlService
 
     
@@ -93,6 +97,27 @@ final class PrivateServicesAssembly {
         SprintsObserverProvider &
         SprintEntitiesProvider
         = SprintsService()
+    
+    lazy var habitsService:
+        HabitsProvider &
+        HabitsManager &
+        HabitsObserverProvider &
+        HabitEntitiesProvider &
+        HabitEntitiesBackgroundProvider = HabitsService(sprintsProvider: sprintsService)
+    
+    lazy var goalsService:
+        GoalsProvider &
+        GoalsManager &
+        GoalsObserverProvider &
+        GoalEntitiesProvider &
+        GoalEntitiesBackgroundProvider = {
+            let service = GoalsService(sprintsProvider: sprintsService,
+                                       subtasksProvider: subtasksService)
+            
+            (subtasksService as! SubtasksService).goalsProvider = service
+            
+            return service
+        }()
     
     lazy var waterControlService:
         WaterControlProvider &

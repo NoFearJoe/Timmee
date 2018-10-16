@@ -37,18 +37,19 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     private var notificationTimePicker: NotificationTimePickerInput!
     
     private let interactor = HabitCreationInteractor()
+    let habitsService = ServicesAssembly.shared.habitsService
     let schedulerService = TaskSchedulerService()
     
-    var habit: Task!
-    var listID: String!
+    var habit: Habit!
+    var sprintID: String!
     
     var editingMode: TargetAndHabitEditingMode = .full
     
     private var lastSelectedNotificationTime: Date?
     
-    func setHabit(_ habit: Task?, listID: String) {
+    func setHabit(_ habit: Habit?, sprintID: String) {
         self.habit = habit?.copy ?? interactor.createHabit()
-        self.listID = listID
+        self.sprintID = sprintID
         self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date.now
     }
     
@@ -110,13 +111,13 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBAction private func onDone() {
         updateHabitTitle()
         updateHabitLink()
-        interactor.saveTask(habit, listID: listID, completion: { [weak self] success in
+        habitsService.updateHabit(habit, sprintID: sprintID, completion: { [weak self] success in
             guard let `self` = self, success else { return }
             if self.editingMode == .full {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 let scheduleHabitThanClose = {
-                    self.schedulerService.scheduleTask(self.habit)
+//                    self.schedulerService.scheduleTask(self.habit) TODO
                     self.dismiss(animated: true, completion: nil)
                 }
                 NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
@@ -365,16 +366,16 @@ private extension HabitCreationViewController {
     }
     
     func updateDayButtons() {
-        guard case .on(let units) = self.habit.repeating.type else { return }
+        let units = habit.dueDays
         dayButtons.forEach {
-            $0.isSelected = units.dayNumbers.contains($0.tag)
+            $0.isSelected = units.map { $0.number }.contains($0.tag)
             $0.isUserInteractionEnabled = editingMode == .full
             $0.alpha = editingMode == .full ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
         }
     }
     
     func updateHabitRepeatingDays() {
-        habit.repeating = RepeatMask(type: .on(WeekRepeatUnit(string: dayButtons.filter { $0.isSelected }.map { DayUnit(number: $0.tag).string }.joined(separator: ","))))
+        habit.dueDays = dayButtons.filter { $0.isSelected }.map { DayUnit(number: $0.tag) }
     }
     
 }

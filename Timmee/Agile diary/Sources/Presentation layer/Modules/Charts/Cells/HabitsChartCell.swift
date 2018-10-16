@@ -9,10 +9,10 @@
 import UIKit
 import Charts
 
-final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHabitsInteractorTrait {
+final class HabitsChartCell: BaseChartCell, SprintInteractorTrait {
     
     let sprintsService = ServicesAssembly.shared.sprintsService
-    let tasksService = ServicesAssembly.shared.tasksService
+    let habitsService = ServicesAssembly.shared.habitsService
     
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
@@ -37,14 +37,14 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait, TargetsAndHab
     
     override func update() {
         guard let currentSprint = getCurrentSprint() else { return }
-        let habits = getTasks(listID: currentSprint.id).filter { $0.kind == "habit" }
+        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
         
         var chartEntries: [ChartDataEntry] = []
         var xAxisTitles: [String] = []
         for i in stride(from: 6, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
-            let repeatDay = DayUnit(number: date.weekday - 1).string
-            let allHabits = habits.filter { $0.repeating.string.contains(repeatDay) }
+            let repeatDay = DayUnit(number: date.weekday - 1)
+            let allHabits = habits.filter { $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
             chartEntries.append(ChartDataEntry(x: Double(6 - i), y: Double(completedHabits)))
             xAxisTitles.append(date.asShortWeekday)

@@ -55,11 +55,13 @@ public class Goal {
     }
     
     public var copy: Goal {
-        return Goal(id: id,
-                    title: title,
-                    note: note,
-                    isDone: isDone,
-                    creationDate: creationDate)
+        let goal = Goal(id: id,
+                        title: title,
+                        note: note,
+                        isDone: isDone,
+                        creationDate: creationDate)
+        goal.stages = stages
+        return goal
     }
     
 }

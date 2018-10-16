@@ -28,7 +28,7 @@ enum TargetAndHabitEditingMode {
     case short
 }
 
-final class TargetCreationViewController: BaseViewController, TargetProvider, HintViewTrait {
+final class TargetCreationViewController: BaseViewController, GoalProvider, HintViewTrait {
     
     @IBOutlet private var contentScrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
@@ -54,17 +54,17 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
     }
     
     private let interactor = TargetCreationInteractor()
-    
+    private let goalsService = ServicesAssembly.shared.goalsService
     private let stageCellActionsProvider = CellDeleteSwipeActionProvider()
     
-    var target: Target!
-    var listID: String!
+    var goal: Goal!
+    var sprintID: String!
     
     var editingMode: TargetAndHabitEditingMode = .full
     
-    func setTarget(_ target: Task?, listID: String) {
-        self.target = target?.copy ?? interactor.createTarget()
-        self.listID = listID
+    func setGoal(_ goal: Goal?, sprintID: String) {
+        self.goal = goal?.copy ?? interactor.createGoal()
+        self.sprintID = sprintID
     }
     
     func setEditingMode(_ mode: TargetAndHabitEditingMode) {
@@ -75,7 +75,7 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
         super.prepare()
         
         interactor.output = self
-        interactor.targetProvider = self
+        interactor.goalProvider = self
         setupLabels()
         setupDoneButton()
         setupTitleField()
@@ -90,7 +90,9 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
     override func refresh() {
         super.refresh()
         
-        updateUI(target: target)
+        updateUI(goal: goal)
+        reloadStages()
+        
         if titleField.textView.text.isEmpty {
             titleField.becomeFirstResponder()
         }
@@ -113,7 +115,7 @@ final class TargetCreationViewController: BaseViewController, TargetProvider, Hi
     
     @IBAction private func onDone() {
         updateTargetTitle()
-        interactor.saveTask(target, listID: listID, completion: { [weak self] success in
+        goalsService.updateGoal(goal, sprintID: sprintID, completion: { [weak self] success in
             guard success else { return }
             self?.dismiss(animated: true, completion: nil)
         })
@@ -274,18 +276,18 @@ extension TargetCreationViewController: UIGestureRecognizerDelegate {
 
 private extension TargetCreationViewController {
  
-    func updateUI(target: Target) {
-        titleField.textView.text = target.title
-        noteField.textView.text = target.note
+    func updateUI(goal: Goal) {
+        titleField.textView.text = goal.title
+        noteField.textView.text = goal.note
         updateDoneButtonState()
     }
     
     func updateTargetTitle() {
-        target.title = getTargetTitle()
+        goal.title = getTargetTitle()
     }
     
     func updateTargetNote() {
-        target.note = getTargetNote()
+        goal.note = getTargetNote()
     }
     
     func setupLabels() {
@@ -300,7 +302,7 @@ private extension TargetCreationViewController {
     }
     
     func updateDoneButtonState() {
-        headerView.rightButton?.isEnabled = !target.title.isEmpty
+        headerView.rightButton?.isEnabled = !goal.title.isEmpty
     }
     
 }
@@ -333,7 +335,7 @@ private extension TargetCreationViewController {
         titleField.isUserInteractionEnabled = editingMode == .full
         titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         titleField.placeholderAttributedText
-            = NSAttributedString(string: "target_title_placeholder".localized,
+            = NSAttributedString(string: "goal_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),
                                               .foregroundColor: AppTheme.current.colors.inactiveElementColor])
         
@@ -342,12 +344,12 @@ private extension TargetCreationViewController {
     
     func setupTitleObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(targetTitleDidChange),
+                                               selector: #selector(goalTitleDidChange),
                                                name: UITextView.textDidChangeNotification,
                                                object: titleField.textView)
     }
     
-    @objc func targetTitleDidChange(notification: Notification) {
+    @objc func goalTitleDidChange(notification: Notification) {
         updateTargetTitle()
         updateDoneButtonState()
     }
@@ -370,7 +372,7 @@ private extension TargetCreationViewController {
         noteField.showsHorizontalScrollIndicator = false
         noteField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         noteField.placeholderAttributedText
-            = NSAttributedString(string: "target_note_placeholder".localized,
+            = NSAttributedString(string: "goal_note_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.medium(17),
                                               .foregroundColor: AppTheme.current.colors.inactiveElementColor])
         
@@ -379,12 +381,12 @@ private extension TargetCreationViewController {
     
     func setupNoteObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(targetNoteDidChange),
+                                               selector: #selector(goalNoteDidChange),
                                                name: UITextView.textDidChangeNotification,
                                                object: noteField.textView)
     }
     
-    @objc func targetNoteDidChange(notification: Notification) {
+    @objc func goalNoteDidChange(notification: Notification) {
         updateTargetNote()
     }
     

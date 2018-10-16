@@ -21,6 +21,8 @@ public protocol Storage: class {
     func write(_ operation: @escaping (_ context: NSManagedObjectContext,
                                        _ save: @escaping () -> Void) -> Void,
                completion: ((Bool) -> Void)?)
+    
+    func deleteStorage()
 }
 
 private final class CoreDataStorage: Storage {
@@ -85,6 +87,20 @@ private extension CoreDataStorage {
         } catch {
             context.rollback()
             completion?(false)
+        }
+    }
+    
+}
+
+// MARK: - Delete storage
+
+extension CoreDataStorage {
+    
+    func deleteStorage() {
+        do {
+            try coordinator.destroyPersistentStore(at: sharedStoreURL, ofType: NSSQLiteStoreType, options: nil)
+        } catch {
+            print(error)
         }
     }
     

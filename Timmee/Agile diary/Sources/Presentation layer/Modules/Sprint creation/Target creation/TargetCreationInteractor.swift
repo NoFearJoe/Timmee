@@ -6,8 +6,8 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-protocol TargetProvider: class {
-    var target: Task! { get }
+protocol GoalProvider: class {
+    var goal: Goal! { get }
 }
 
 protocol TargetCreationInteractorOutput: class {
@@ -21,24 +21,24 @@ protocol TargetCreationDataSource: class {
     func stage(at index: Int) -> Subtask?
 }
 
-final class TargetCreationInteractor: TargetAndHabitInteractorTrait {
+final class TargetCreationInteractor {
     
     weak var output: TargetCreationInteractorOutput?
-    weak var targetProvider: TargetProvider!
+    weak var goalProvider: GoalProvider!
     
-    let tasksService = ServicesAssembly.shared.tasksService
+    let goalsService = ServicesAssembly.shared.goalsService
     let stagesService = ServicesAssembly.shared.subtasksService
     
     var sortedStages: [Subtask] {
-        return targetProvider.target.subtasks.sorted(by: { $0.sortPosition < $1.sortPosition })
+        return goalProvider.goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition })
     }
     
 }
 
 extension TargetCreationInteractor {
     
-    func createTarget() -> Task {
-        return Task(targetID: RandomStringGenerator.randomString(length: 24))
+    func createGoal() -> Goal {
+        return Goal(goalID: RandomStringGenerator.randomString(length: 24))
     }
     
 }
@@ -48,9 +48,9 @@ extension TargetCreationInteractor {
     func addStage(with title: String) {
         let stage = createStage(sortPosition: nextStageSortPosition())
         stage.title = title
-        targetProvider.target.subtasks.append(stage)
+        goalProvider.goal.stages.append(stage)
         
-        addStage(stage, task: targetProvider.target) { [weak self] in
+        addStage(stage, goal: goalProvider.goal) { [weak self] in
             if let index = self?.sortedStages.index(where: { $0.id == stage.id }) {
                 self?.output?.stagesInserted(at: [index])
             }
@@ -70,8 +70,8 @@ extension TargetCreationInteractor {
         if let stage = sortedStages.item(at: index) {
             removeStage(stage, completion: { [weak self] in
                 guard let `self` = self else { return }
-                guard let deletionIndex = self.targetProvider.target.subtasks.index(where: { $0.id == stage.id }) else { return }
-                self.targetProvider.target.subtasks.remove(at: deletionIndex)
+                guard let deletionIndex = self.goalProvider.goal.stages.index(where: { $0.id == stage.id }) else { return }
+                self.goalProvider.goal.stages.remove(at: deletionIndex)
                 self.output?.stagesRemoved(at: [index])
             })
         }
@@ -125,8 +125,8 @@ fileprivate extension TargetCreationInteractor {
                        sortPosition: sortPosition)
     }
     
-    func addStage(_ stage: Subtask, task: Task, completion: (() -> Void)?) {
-        stagesService.addSubtask(stage, to: task, completion: completion)
+    func addStage(_ stage: Subtask, goal: Goal, completion: (() -> Void)?) {
+        stagesService.addStage(stage, to: goal, completion: completion)
     }
     
     func saveStage(_ stage: Subtask, completion: (() -> Void)?) {

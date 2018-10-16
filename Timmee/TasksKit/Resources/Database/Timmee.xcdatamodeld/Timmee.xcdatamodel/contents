@@ -63,7 +63,7 @@
         <attribute name="sortPosition" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="stages" inverseEntity="GoalEntity" syncable="YES"/>
-        <relationship name="task" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="subtasks" inverseEntity="TaskEntity" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="subtasks" inverseEntity="TaskEntity" syncable="YES"/>
         <fetchIndex name="byCreationDateIndex">
             <fetchIndexElement property="creationDate" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -133,6 +133,10 @@
     </entity>
     <configuration name="Agilee">
         <memberEntity name="WaterControlEntity"/>
+        <memberEntity name="GoalEntity"/>
+        <memberEntity name="HabitEntity"/>
+        <memberEntity name="SprintEntity"/>
+        <memberEntity name="SubtaskEntity"/>
     </configuration>
     <configuration name="Memori">
         <memberEntity name="ListEntity"/>
