@@ -34,7 +34,7 @@ final class TodayHabitCell: SwipeTableViewCell {
     func configure(habit: Habit) {
         setupAppearance()
         checkbox.isChecked = habit.isDone(at: Date.now)
-        containerView.alpha = habit.isDone(at: Date.now) ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
+        containerView.alpha = habit.isDone(at: Date.now) ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()

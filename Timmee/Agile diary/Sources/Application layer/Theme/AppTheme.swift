@@ -66,6 +66,7 @@ struct AppTheme {
         struct Alpha {
             let transparent: CGFloat = 0
             let disabled: CGFloat = 0.5
+            let inactive: CGFloat = 0.75
             let enabled: CGFloat = 1
         }
         

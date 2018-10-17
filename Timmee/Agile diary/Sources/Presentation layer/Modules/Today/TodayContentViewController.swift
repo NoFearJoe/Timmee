@@ -73,6 +73,7 @@ final class TodayContentViewController: UIViewController {
         setupTargetCellActionsProvider()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +84,11 @@ final class TodayContentViewController: UIViewController {
     
     @objc private func onBecameActive() {
         setupCurrentCacheObserver()
+    }
+    
+    @objc private func willResignActive() {
+        habitsCacheObserver = nil
+        goalsCacheObserver = nil
     }
     
 }

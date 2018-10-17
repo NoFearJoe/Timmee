@@ -34,7 +34,7 @@ final class TodayTargetCell: SwipeTableViewCell {
     
     func configure(goal: Goal) {
         setupAppearance()
-        containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
+        containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
         titleLabel.text = goal.title
         addStageViews(goal: goal)
         stagesTitleLabelHeightConstraint.constant = goal.stages.isEmpty ? 0 : 20
