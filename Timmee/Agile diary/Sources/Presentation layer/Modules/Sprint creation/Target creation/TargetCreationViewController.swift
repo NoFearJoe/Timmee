@@ -37,11 +37,13 @@ final class TargetCreationViewController: BaseViewController, GoalProvider, Hint
     @IBOutlet private var stagesTitleLabel: UILabel!
     @IBOutlet private var stagesHintButton: UIButton!
     @IBOutlet private var stageTextField: UITextField!
+    @IBOutlet private var addStageButton: UIButton!
     @IBOutlet private var stagesTableView: ReorderableTableView!
     @IBOutlet private var stagesTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var stagesTableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private var noteTitleLabel: UILabel!
     @IBOutlet private var noteField: GrowingTextView!
+    @IBOutlet private var cardViews: [CardView]!
     
     var hintPopover: HintPopoverView? {
         didSet {
@@ -56,6 +58,9 @@ final class TargetCreationViewController: BaseViewController, GoalProvider, Hint
     private let interactor = TargetCreationInteractor()
     private let goalsService = ServicesAssembly.shared.goalsService
     private let stageCellActionsProvider = CellDeleteSwipeActionProvider()
+    
+    private let keyboardManager = KeyboardManager()
+    private var contentScrollViewOffset: CGFloat = 0
     
     var goal: Goal!
     var sprintID: String!
@@ -81,7 +86,9 @@ final class TargetCreationViewController: BaseViewController, GoalProvider, Hint
         setupTitleField()
         setupNoteField()
         setupStageTextField()
+        setupAddStageButton()
         setupStagesTableView()
+        setupKeyboardManager()
         stageCellActionsProvider.onDelete = { [unowned self] indexPath in
             self.interactor.removeStage(at: indexPath.row)
         }
@@ -102,11 +109,33 @@ final class TargetCreationViewController: BaseViewController, GoalProvider, Hint
         super.setupAppearance()
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
         contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        cardViews.forEach { $0.setupAppearance() }
+        titleField.textView.textColor = AppTheme.current.colors.activeElementColor
+        titleField.textView.font = AppTheme.current.fonts.bold(28)
+        titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        noteField.textView.textColor = AppTheme.current.colors.activeElementColor
+        noteField.textView.font = AppTheme.current.fonts.medium(17)
+        noteField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        addStageButton.titleLabel?.font = AppTheme.current.fonts.medium(14)
+        stageTextField.font = AppTheme.current.fonts.medium(17)
+        stageTextField.textColor = AppTheme.current.colors.activeElementColor
+        stageTextField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        addStageButton.setTitleColor(.white, for: .normal)
+        addStageButton.setTitleColor(AppTheme.current.colors.middlegroundColor, for: .disabled)
+        addStageButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        addStageButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .disabled)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.updateHintPopover()
+    }
+    
+    @IBAction private func onAddStage() {
+        guard let title = stageTextField.text?.trimmed, !title.isEmpty else { return }
+        interactor.addStage(with: title)
+        stageTextField.text = nil
+        addStageButton.isEnabled = false
     }
     
     @IBAction private func onClose() {
@@ -269,7 +298,15 @@ extension TargetCreationViewController: UITextViewDelegate {
 extension TargetCreationViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return touch.view == contentScrollView || touch.view == contentView
+        return touch.view == contentScrollView || touch.view == contentView || touch.view is CardView
+    }
+    
+}
+
+extension TargetCreationViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        hideHintPopover()
     }
     
 }
@@ -328,12 +365,9 @@ private extension TargetCreationViewController {
     func setupTitleField() {
         titleField.textView.delegate = self
         titleField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -2, bottom: -1, right: 0)
-        titleField.textView.textColor = AppTheme.current.colors.activeElementColor
-        titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
         titleField.isUserInteractionEnabled = editingMode == .full
-        titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         titleField.placeholderAttributedText
             = NSAttributedString(string: "goal_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),
@@ -365,12 +399,9 @@ private extension TargetCreationViewController {
     func setupNoteField() {
         noteField.textView.delegate = self
         noteField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -4, bottom: -1, right: 0)
-        noteField.textView.textColor = AppTheme.current.colors.activeElementColor
-        noteField.textView.font = AppTheme.current.fonts.medium(17)
         noteField.maxNumberOfLines = 100
         noteField.showsVerticalScrollIndicator = false
         noteField.showsHorizontalScrollIndicator = false
-        noteField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         noteField.placeholderAttributedText
             = NSAttributedString(string: "goal_note_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.medium(17),
@@ -400,11 +431,49 @@ private extension TargetCreationViewController {
     
     func setupStageTextField() {
         stageTextField.delegate = self
-        stageTextField.font = AppTheme.current.fonts.medium(17)
-        stageTextField.textColor = AppTheme.current.colors.activeElementColor
-        stageTextField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         stageTextField.attributedPlaceholder = NSAttributedString(string: "add_stage".localized,
                                                                   attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onStageTextChange),
+                                               name: UITextField.textDidChangeNotification,
+                                               object: stageTextField)
+    }
+    
+    @objc private func onStageTextChange() {
+        addStageButton.isEnabled = stageTextField.text?.trimmed.isEmpty == false
+    }
+    
+    func setupAddStageButton() {
+        addStageButton.isEnabled = false
+        addStageButton.setTitle("add".localized, for: .normal)
+    }
+    
+}
+
+private extension TargetCreationViewController {
+    
+    func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            UIView.animate(withDuration: duration) {
+                let offset = self.calculateTargetScrollViewYOffset(keyboardFrame: frame)
+                self.contentScrollViewOffset = offset
+                self.contentScrollView.contentOffset.y += offset
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            UIView.animate(withDuration: duration) {
+                self.contentScrollView.contentOffset.y -= self.contentScrollViewOffset
+                self.contentScrollViewOffset = 0
+            }
+        }
+    }
+    
+    func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat {
+        guard let focusedView = contentView.currentFirstResponder() as? UIView else { return 0 }
+        let convertedFocusedViewFrame = view.convert(focusedView.frame, from: focusedView)
+        return max(0, convertedFocusedViewFrame.maxY - keyboardFrame.minY)
     }
     
 }
@@ -415,6 +484,7 @@ extension TargetCreationViewController: UITextFieldDelegate {
         guard let title = textField.text?.trimmed, !title.isEmpty else { return false }
         interactor.addStage(with: title)
         textField.text = nil
+        addStageButton.isEnabled = false
         return true
     }
     

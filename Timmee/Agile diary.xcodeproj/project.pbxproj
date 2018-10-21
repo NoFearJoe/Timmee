@@ -120,6 +120,7 @@
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
 		96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
 		96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83D5217C9C8D00CDECAF /* CardView.swift */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
 		96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
@@ -274,6 +275,7 @@
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96BE838B2175034500CDECAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96BE83CB217644F400CDECAF /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96BE83D5217C9C8D00CDECAF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
 		96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedChartViewController.swift; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,6 +521,7 @@
 				0C8D075F212BE5B5008122A6 /* Checkbox.swift */,
 				0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */,
 				96A5A0E32171065C007511ED /* HabitsChartView.swift */,
+				96BE83D5217C9C8D00CDECAF /* CardView.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -940,7 +943,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -953,7 +956,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1009,6 +1012,7 @@
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
+				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
 				0C3DA5302154CBCF00CAE635 /* WaterControlConfigurationViewController.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,

@@ -67,6 +67,24 @@ public final class HabitsSchedulerService: BaseSchedulerService {
         }
     }
     
+//    public func removeTodaysNotification(for habit: Habit) {
+//        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+//            let identifier = requests.first(where: { request in
+//                if let habitID = request.content.userInfo["habit_id"] as? String,
+//                   let trigger = request.trigger as? UNCalendarNotificationTrigger,
+//                   let nextTriggerDate = trigger.nextTriggerDate(),
+//                   nextTriggerDate.isWithinSameDay(of: Date()) {
+//                    return habitID == habit.id
+//                }
+//                return false
+//            })?.identifier
+//            
+//            guard let id = identifier else { return }
+//            
+//            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+//        }
+//    }
+    
     public func removeDeferredNotifications(for habit: Habit) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in

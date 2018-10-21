@@ -17,4 +17,18 @@ public extension UIView {
         layer.shadowRadius = radius
     }
     
+    public func currentFirstResponder() -> UIResponder? {
+        if self.isFirstResponder {
+            return self
+        }
+        
+        for view in self.subviews {
+            if let responder = view.currentFirstResponder() {
+                return responder
+            }
+        }
+        
+        return nil
+    }
+    
 }

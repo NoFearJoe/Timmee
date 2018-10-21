@@ -24,6 +24,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBOutlet private var linkField: UITextField!
     @IBOutlet private var linkHintButton: UIButton!
     
+    @IBOutlet private var notificationTimePickerContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var notificationTimePickerContainerTopConstraint: NSLayoutConstraint!
+    
     var hintPopover: HintPopoverView? {
         didSet {
             hintPopover?.willCloseBlock = {
@@ -39,6 +42,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     private let interactor = HabitCreationInteractor()
     let habitsService = ServicesAssembly.shared.habitsService
     let schedulerService = HabitsSchedulerService()
+    
+    private let keyboardManager = KeyboardManager()
+    private var contentScrollViewOffset: CGFloat = 0
     
     var habit: Habit!
     var sprintID: String!
@@ -62,10 +68,10 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         
         setupDoneButton()
         setupTitleField()
-        setupDayButtons()
         setupLinkField()
         setupLabels()
         setupNotificationCheckbox()
+        setupKeyboardManager()
     }
     
     override func refresh() {
@@ -82,6 +88,16 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         
         view.backgroundColor = AppTheme.current.colors.middlegroundColor
         contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        titleField.textView.textColor = AppTheme.current.colors.activeElementColor
+        titleField.textView.font = AppTheme.current.fonts.bold(28)
+        titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        linkField.textColor = AppTheme.current.colors.activeElementColor
+        linkField.font = AppTheme.current.fonts.medium(17)
+        linkField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        [dueDaysTitleLabel, notificationTimeTitleLabel, linkTitleLabel].forEach {
+            $0?.textColor = AppTheme.current.colors.inactiveElementColor
+        }
+        setupDayButtonsAppearance()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -202,7 +218,7 @@ extension HabitCreationViewController: UITextFieldDelegate {
 extension HabitCreationViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return touch.view == contentScrollView || touch.view == contentView
+        return touch.view == contentScrollView || touch.view == contentView || touch.view is CardView
     }
     
 }
@@ -216,12 +232,12 @@ private extension HabitCreationViewController {
         updateDayButtons()
         linkField.text = habit.link
         updateDoneButtonState()
+        setNotificationTimePickerVisible(habit.notificationDate != nil, animated: false)
     }
     
     func updateNotificationTime() {
         notificationTimePicker.setHours(habit.notificationDate?.hours ?? lastSelectedNotificationTime?.hours ?? 0)
         notificationTimePicker.setMinutes(habit.notificationDate?.minutes ?? lastSelectedNotificationTime?.minutes ?? 0)
-        notificationTimePickerContainer.alpha = habit.notificationDate == nil ? AppTheme.current.style.alpha.disabled : AppTheme.current.style.alpha.enabled
         notificationTimePickerContainer.isUserInteractionEnabled = habit.notificationDate != nil
     }
     
@@ -246,9 +262,6 @@ private extension HabitCreationViewController {
         dueDaysTitleLabel.text = "due_days".localized
         notificationTimeTitleLabel.text = "reminder".localized
         linkTitleLabel.text = "link".localized
-        [dueDaysTitleLabel, notificationTimeTitleLabel, linkTitleLabel].forEach {
-            $0?.textColor = AppTheme.current.colors.inactiveElementColor
-        }
     }
     
     func setupNotificationCheckbox() {
@@ -258,6 +271,26 @@ private extension HabitCreationViewController {
                 self.lastSelectedNotificationTime = self.habit.notificationDate
             }
             self.updateNotificationTime()
+            self.setNotificationTimePickerVisible(isChecked, animated: true)
+        }
+    }
+    
+    func setNotificationTimePickerVisible(_ isVisible: Bool, animated: Bool) {
+        notificationTimePickerContainerHeightConstraint.constant = isVisible ? 96 : 0
+        notificationTimePickerContainerTopConstraint.constant = isVisible ? 8 : 0
+        
+        if animated {
+            if isVisible {
+                self.notificationTimePickerContainer.isHidden = false
+            }
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            }) { _ in
+                guard !isVisible else { return }
+                self.notificationTimePickerContainer.isHidden = true
+            }
+        } else {
+            notificationTimePickerContainer.isHidden = !isVisible
         }
     }
     
@@ -268,12 +301,9 @@ private extension HabitCreationViewController {
     func setupTitleField() {
         titleField.textView.delegate = self
         titleField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -2, bottom: -1, right: 0)
-        titleField.textView.textColor = AppTheme.current.colors.activeElementColor
-        titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
         titleField.isUserInteractionEnabled = editingMode == .full
-        titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         titleField.placeholderAttributedText
             = NSAttributedString(string: "habit_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),
@@ -307,9 +337,6 @@ private extension HabitCreationViewController {
 private extension HabitCreationViewController {
     
     func setupLinkField() {
-        linkField.textColor = AppTheme.current.colors.activeElementColor
-        linkField.font = AppTheme.current.fonts.medium(17)
-        linkField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         linkField.attributedPlaceholder
             = NSAttributedString(string: "habit_link_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.medium(17),
@@ -354,7 +381,7 @@ private extension HabitCreationViewController {
 
 private extension HabitCreationViewController {
     
-    func setupDayButtons() {
+    func setupDayButtonsAppearance() {
         dayButtons.forEach {
             $0.selectedBackgroundColor = $0.tag < 5 ? AppTheme.current.colors.mainElementColor : AppTheme.current.colors.wrongElementColor
             $0.defaultBackgroundColor = AppTheme.current.colors.decorationElementColor
@@ -376,6 +403,33 @@ private extension HabitCreationViewController {
     
     func updateHabitRepeatingDays() {
         habit.dueDays = dayButtons.filter { $0.isSelected }.map { DayUnit(number: $0.tag) }
+    }
+    
+}
+
+private extension HabitCreationViewController {
+    
+    func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            UIView.animate(withDuration: duration) {
+                let offset = self.calculateTargetScrollViewYOffset(keyboardFrame: frame)
+                self.contentScrollViewOffset = offset
+                self.contentScrollView.contentOffset.y += offset
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            UIView.animate(withDuration: duration) {
+                self.contentScrollView.contentOffset.y -= self.contentScrollViewOffset
+                self.contentScrollViewOffset = 0
+            }
+        }
+    }
+    
+    func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat {
+        guard let focusedView = contentView.currentFirstResponder() as? UIView else { return 0 }
+        let convertedFocusedViewFrame = view.convert(focusedView.frame, from: focusedView)
+        return max(0, convertedFocusedViewFrame.maxY - keyboardFrame.minY)
     }
     
 }

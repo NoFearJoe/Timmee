@@ -104,6 +104,12 @@ public final class RoundedViewWithShadow: UIView {
         }
     }
     
+    @IBInspectable public var shadowOpacity: Float = 0.2 {
+        didSet {
+            layer.shadowOpacity = shadowOpacity
+        }
+    }
+    
     public override func awakeFromNib() {
         super.awakeFromNib()
         
