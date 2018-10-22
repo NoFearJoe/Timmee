@@ -94,7 +94,7 @@ extension SprintContentViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch section {
         case .habits: return habitsCacheObserver?.numberOfSections() ?? 0
-        case .targets: return goalsCacheObserver?.numberOfSections() ?? 0
+        case .goals: return goalsCacheObserver?.numberOfSections() ?? 0
         case .water: return 0
         }
     }
@@ -102,7 +102,7 @@ extension SprintContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.section {
         case .habits: return habitsCacheObserver?.numberOfItems(in: section) ?? 0
-        case .targets: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
+        case .goals: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
         case .water: return 0
         }
     }
@@ -116,7 +116,7 @@ extension SprintContentViewController: UITableViewDataSource {
                 cell.delegate = habitCellActionsProvider
             }
             return cell
-        case .target:
+        case .goal:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SprintCreationTargetCell", for: indexPath) as! SprintCreationTargetCell
             if let goal = goalsCacheObserver?.item(at: indexPath) {
                 cell.configure(goal: goal)
@@ -136,7 +136,7 @@ extension SprintContentViewController: UITableViewDelegate {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
             transitionHandler?.performSegue(withIdentifier: "ShowHabitCreation", sender: habit)
-        case .target:
+        case .goal:
             guard let goal = goalsCacheObserver?.item(at: indexPath) else { return }
             transitionHandler?.performSegue(withIdentifier: "ShowGoalCreation", sender: goal)
         case .water: break
@@ -150,7 +150,7 @@ private extension SprintContentViewController {
     func setupCurrentCacheObserver() {
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
-        case .targets: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
+        case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
         case .water: break
         }
     }
@@ -203,7 +203,7 @@ private extension SprintContentViewController {
         placeholderContainer.isHidden = false
         placeholderView.icon = nil
         switch section {
-        case .targets:
+        case .goals:
             placeholderView.title = "targets_section_placeholder_title".localized
             placeholderView.subtitle = "targets_section_placeholder_subtitle".localized
         case .habits:

@@ -11,7 +11,7 @@ enum EducationScreen {
     case initial
     
     // Экран с ответом на вопрос - что такое цели
-    case targets
+    case goals
     
     // Экран с ответом на вопрос - что такое привычки
     case habits
@@ -37,7 +37,7 @@ final class EducationState {
     
     lazy var screensToShow: [EducationScreen] = {
         if !isEducationShown {
-            return [.initial, .targets, .habits, .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation, .final]
+            return [.initial, .goals, .habits, .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation, .final]
         }
         return []
     }()

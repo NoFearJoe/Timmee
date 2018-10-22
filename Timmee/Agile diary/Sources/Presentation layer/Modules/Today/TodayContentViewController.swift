@@ -91,6 +91,11 @@ final class TodayContentViewController: UIViewController {
         goalsCacheObserver = nil
     }
     
+    private func openLink(_ link: String) {
+        guard !link.trimmed.isEmpty, let linkURL = URL(string: link.trimmed), UIApplication.shared.canOpenURL(linkURL) else { return }
+        UIApplication.shared.open(linkURL, options: [:], completionHandler: nil)
+    }
+    
 }
 
 extension TodayContentViewController: UITableViewDataSource {
@@ -98,7 +103,7 @@ extension TodayContentViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch section {
         case .habits: return habitsCacheObserver?.numberOfSections() ?? 0
-        case .targets: return goalsCacheObserver?.numberOfSections() ?? 0
+        case .goals: return goalsCacheObserver?.numberOfSections() ?? 0
         case .water: return 0
         }
     }
@@ -106,7 +111,7 @@ extension TodayContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.section {
         case .habits: return habitsCacheObserver?.numberOfItems(in: section) ?? 0
-        case .targets: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
+        case .goals: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
         case .water: return 0
         }
     }
@@ -124,7 +129,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 }
             }
             return cell
-        case .target:
+        case .goal:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTargetCell", for: indexPath) as! TodayTargetCell
             if let goal = goalsCacheObserver?.item(at: indexPath) {
                 cell.configure(goal: goal)
@@ -144,7 +149,12 @@ extension TodayContentViewController: UITableViewDataSource {
 extension TodayContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch section.itemsKind {
+        case .habit:
+            guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
+            openLink(habit.link)
+        case .goal, .water: return
+        }
     }
     
 }
@@ -154,7 +164,7 @@ private extension TodayContentViewController {
     func setupCurrentCacheObserver() {
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
-        case .targets: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
+        case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
         case .water: break
         }
     }
@@ -219,7 +229,7 @@ private extension TodayContentViewController {
         placeholderContainer.isHidden = false
         placeholderView.icon = nil
         switch section {
-        case .targets:
+        case .goals:
             placeholderView.title = "today_targets_section_placeholder_title".localized
             placeholderView.subtitle = nil
         case .habits:
@@ -248,8 +258,7 @@ private extension TodayContentViewController {
         }
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
-            guard let linkURL = URL(string: habit.link.trimmed), UIApplication.shared.canOpenURL(linkURL) else { return }
-            UIApplication.shared.open(linkURL, options: [:], completionHandler: nil)
+            self.openLink(habit.link)
         }
         habitCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }

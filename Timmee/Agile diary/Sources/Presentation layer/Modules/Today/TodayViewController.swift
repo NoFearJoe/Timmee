@@ -51,9 +51,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         headerView.titleLabel.text = "today".localized
         headerView.subtitleLabel.text = nil
         if ProVersionPurchase.shared.isPurchased() {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title, SprintSection.water.title]
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, SprintSection.water.title]
         } else {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         }
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
@@ -116,7 +116,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
         guard sprint != nil else { return }
         switch currentSection {
-        case .habits, .targets:
+        case .habits, .goals:
             setSectionContainersVisible(content: true, water: false)
             contentViewController.section = currentSection
         case .water:

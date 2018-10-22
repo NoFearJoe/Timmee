@@ -8,6 +8,12 @@
 
 struct Environment {
     
-    static let isDebug = true
+    static var isDebug: Bool {
+        #if DEBUG
+        return true
+        #else
+        return false
+        #endif
+    }
     
 }

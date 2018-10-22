@@ -85,7 +85,7 @@ fileprivate extension EducationViewController {
         switch screen {
         case .initial:
             viewController = ViewControllersFactory.initialEducationScreen
-        case .targets:
+        case .goals:
             viewController = ViewControllersFactory.targetsEducationScreen
         case .habits:
             viewController = ViewControllersFactory.habitsEducationScreen

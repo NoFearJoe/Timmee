@@ -8,12 +8,12 @@
 
 enum SprintSection: Int {
     case habits = 0
-    case targets
+    case goals
     case water
     
     var title: String {
         switch self {
-        case .targets: return "targets".localized
+        case .goals: return "goals".localized
         case .habits: return "habits".localized
         case .water: return "water".localized
         }
@@ -21,7 +21,7 @@ enum SprintSection: Int {
     
     var itemsKind: SprintItemKind {
         switch self {
-        case .targets: return .target
+        case .goals: return .goal
         case .habits: return .habit
         case .water: return .water
         }
@@ -29,13 +29,13 @@ enum SprintSection: Int {
 }
 
 enum SprintItemKind: String {
-    case target
+    case goal
     case habit
     case water
     
     var id: String {
         switch self {
-        case .target: return "target"
+        case .goal: return "goal"
         case .habit: return "habit"
         case .water: return "water"
         }
@@ -43,7 +43,7 @@ enum SprintItemKind: String {
     
     var section: SprintSection {
         switch self {
-        case .target: return .targets
+        case .goal: return .goals
         case .habit: return .habits
         case .water: return .water
         }

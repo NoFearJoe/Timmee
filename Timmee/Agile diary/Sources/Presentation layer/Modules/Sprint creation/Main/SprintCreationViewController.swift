@@ -53,7 +53,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         UserProperty.isInitialSprintCreated.setBool(false)
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
-        sectionSwitcher.items = [SprintSection.habits.title, SprintSection.targets.title]
+        sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         if sprint == nil {
@@ -139,7 +139,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @IBAction private func onAdd() {
         switch currentSection {
-        case .targets: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
+        case .goals: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
         case .habits: performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
         case .water: break
         }
@@ -219,7 +219,7 @@ private extension SprintCreationViewController {
     
     func updateDoneButtonState() {
         let isHabitsEnough = itemsCountBySection[.habits].flatMap { $0 >= 3 } ?? false
-        let isGoalsEnough = itemsCountBySection[.targets].flatMap { $0 >= 1 } ?? false
+        let isGoalsEnough = itemsCountBySection[.goals].flatMap { $0 >= 1 } ?? false
         headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isGoalsEnough
     }
     

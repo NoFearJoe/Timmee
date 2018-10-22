@@ -17,11 +17,11 @@ final class TargetsEducationScreen: UIViewController {
     @IBOutlet private var skipButton: UIButton!
     
     @IBAction func continueEducation() {
-        output.didAskToContinueEducation(screen: .targets)
+        output.didAskToContinueEducation(screen: .goals)
     }
     
     @IBAction func skipEducation() {
-        output.didAskToSkipEducation(screen: .targets)
+        output.didAskToSkipEducation(screen: .goals)
     }
     
     private var output: EducationScreenOutput!
