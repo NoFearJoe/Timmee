@@ -25,7 +25,7 @@ final class MostRarelyPerformedHabitChartCell: BaseChartCell, SprintInteractorTr
     
     @IBOutlet private var habitTitleLabel: UILabel! {
         didSet {
-            habitTitleLabel.font = AppTheme.current.fonts.medium(20)
+            habitTitleLabel.font = AppTheme.current.fonts.medium(18)
             habitTitleLabel.textColor = AppTheme.current.colors.activeElementColor
         }
     }
@@ -66,9 +66,13 @@ final class MostRarelyPerformedHabitChartCell: BaseChartCell, SprintInteractorTr
             }
         }
         
-        guard let mostRarelyPerformedHabit = progressForHabit.min(by: { $0.value.percent > $1.value.percent }) else { return } // TODO: Handle
-        habitTitleLabel.text = mostRarelyPerformedHabit.key.title
-        habitPerformingFrequencyLabel.text = "\(Int(mostRarelyPerformedHabit.value.percent * 100))%"
+        if let mostRarelyPerformedHabit = progressForHabit.min(by: { $0.value.percent > $1.value.percent }), mostRarelyPerformedHabit.value.percent < 1 {
+            habitTitleLabel.text = mostRarelyPerformedHabit.key.title
+            habitPerformingFrequencyLabel.text = "\(Int(mostRarelyPerformedHabit.value.percent * 100))%"
+        } else {
+            habitTitleLabel.text = "no".localized
+            habitPerformingFrequencyLabel.text = nil
+        }
     }
     
     override static func size(for collectionViewSize: CGSize) -> CGSize {
