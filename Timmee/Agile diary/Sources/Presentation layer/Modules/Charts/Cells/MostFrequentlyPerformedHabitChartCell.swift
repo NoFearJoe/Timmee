@@ -9,9 +9,12 @@
 import UIKit
 import TasksKit
 
-final class MostFrequentlyPerformedHabitChartCell: BaseChartCell {
+fileprivate typealias Progress = (done: Int, total: Int, percent: Double)
+
+final class MostFrequentlyPerformedHabitChartCell: BaseChartCell, SprintInteractorTrait {
     
-    private let habitsService = ServicesAssembly.shared.habitsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
+    let habitsService = ServicesAssembly.shared.habitsService
     
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
@@ -32,6 +35,44 @@ final class MostFrequentlyPerformedHabitChartCell: BaseChartCell {
             habitPerformingFrequencyLabel.font = AppTheme.current.fonts.bold(20)
             habitPerformingFrequencyLabel.textColor = AppTheme.current.colors.mainElementColor
         }
+    }
+    
+    override func update() {        
+        guard let currentSprint = getCurrentSprint() else { return }
+        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
+        
+        var progressForHabit: [Habit: Progress] = [:]
+        
+        habits.forEach {
+            progressForHabit[$0] = (0, 0, 0)
+        }
+        
+        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
+        for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
+            let date = (Date.now - i.asDays).startOfDay
+            let repeatDay = DayUnit(number: date.weekday - 1)
+            let allHabits = habits.filter { $0.dueDays.contains(repeatDay) }
+            let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }
+            
+            allHabits.forEach {
+                let progress = completedHabits.contains($0) ? 1 : 0
+                if progressForHabit[$0] == nil {
+                    progressForHabit[$0] = (progress, 1, Double(progress) / Double(1))
+                } else {
+                    let progress = progressForHabit[$0]!.done + progress
+                    let allHabits = progressForHabit[$0]!.total + 1
+                    progressForHabit[$0]! = (progress, allHabits, Double(progress) / Double(allHabits))
+                }
+            }
+        }
+        
+        guard let mostFrequentlyPerformedHabit = progressForHabit.max(by: { $0.value.percent < $1.value.percent }) else { return } // TODO: Handle
+        habitTitleLabel.text = mostFrequentlyPerformedHabit.key.title
+        habitPerformingFrequencyLabel.text = "\(Int(mostFrequentlyPerformedHabit.value.percent * 100))%"
+    }
+    
+    override static func size(for collectionViewSize: CGSize) -> CGSize {
+        return CGSize(width: collectionViewSize.width - 30, height: 72)
     }
     
 }

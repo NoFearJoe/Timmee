@@ -240,3 +240,6 @@
 "education_final_title" = "🚀";
 "education_final_text" = "It's time to create the first sprint!";
 "education_final_continue" = "Create";
+
+"most_frequently_performed_habit" = "Best habit";
+"most_rarely_performed_habit" = "Worst habit";

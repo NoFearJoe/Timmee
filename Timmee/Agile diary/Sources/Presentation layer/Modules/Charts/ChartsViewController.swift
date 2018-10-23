@@ -11,12 +11,14 @@ import UIKit
 enum ChartType {
     case habits
     case water
+    case mostFrequentlyPerformedHabit
+    case MostRarelyPerformedHabit
     
     static var all: [ChartType] {
         if ProVersionPurchase.shared.isPurchased() {
-            return [habits, water]
+            return [habits, mostFrequentlyPerformedHabit, MostRarelyPerformedHabit, water]
         } else {
-            return [habits]
+            return [habits, mostFrequentlyPerformedHabit, MostRarelyPerformedHabit]
         }
     }
     
@@ -24,6 +26,8 @@ enum ChartType {
         switch self {
         case .habits: return "habits".localized
         case .water: return "water".localized
+        case .mostFrequentlyPerformedHabit: return "f".localized
+        case .MostRarelyPerformedHabit: return "r".localized
         }
     }
     
@@ -31,6 +35,8 @@ enum ChartType {
         switch self {
         case .habits: return HabitsChartCell.self
         case .water: return WaterChartCell.self
+        case .mostFrequentlyPerformedHabit: return MostFrequentlyPerformedHabitChartCell.self
+        case .MostRarelyPerformedHabit: return MostRarelyPerformedHabitChartCell.self
         }
     }
 }
@@ -59,6 +65,7 @@ final class ChartsViewController: BaseViewController {
         switch chartType {
         case .habits: performSegue(withIdentifier: "ShowExtendedHabitsProgress", sender: nil)
         case .water: performSegue(withIdentifier: "ShowExtendedWaterProgress", sender: nil)
+        default: return
         }
     }
     

@@ -240,3 +240,6 @@
 "education_final_title" = "🚀";
 "education_final_text" = "Настало время создать первый спринт!";
 "education_final_continue" = "Создать";
+
+"most_frequently_performed_habit" = "Лучшая привычка";
+"most_rarely_performed_habit" = "Худшая привычка";
