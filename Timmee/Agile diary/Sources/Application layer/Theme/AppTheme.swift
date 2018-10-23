@@ -27,7 +27,7 @@ enum AppThemeType: Int {
     }
     
     static var current: AppThemeType {
-        return .dark//AppThemeType(rawValue: UserProperty.appTheme.int()) ?? .light
+        return AppThemeType(rawValue: UserProperty.appTheme.int()) ?? .light
     }
 }
 
@@ -103,11 +103,10 @@ struct AppTheme {
                                fonts: Fonts())
     
     static var current: AppTheme {
-        return .dark
-//        switch AppThemeType.current {
-//        case .light: return .light
-//        case .dark: return .dark
-//        }
+        switch AppThemeType.current {
+        case .light: return .light
+        case .dark: return .dark
+        }
     }
     
 }
