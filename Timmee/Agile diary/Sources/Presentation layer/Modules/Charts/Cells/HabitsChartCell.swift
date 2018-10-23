@@ -28,6 +28,7 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait {
         didSet {
             fullProgressButton.setTitle("show_full_progress".localized, for: .normal)
             fullProgressButton.tintColor = AppTheme.current.colors.mainElementColor
+            fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
         }
     }
     
@@ -36,6 +37,8 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait {
     }
     
     override func update() {
+        fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
+        
         guard let currentSprint = getCurrentSprint() else { return }
         let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
         
