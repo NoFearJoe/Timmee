@@ -408,6 +408,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0CB02FF42192D619006C5146 /* Collection */,
 				0C3DA4DB21525EAA00CAE635 /* Charts */,
 				967C328421517DF400B9201A /* Settings */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
@@ -614,6 +615,53 @@
 				0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */,
 			);
 			path = Interactors;
+			sourceTree = "<group>";
+		};
+		0CB02FF42192D619006C5146 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				0CB02FF72192D636006C5146 /* Main */,
+				0CB02FF52192D625006C5146 /* Shop */,
+				0CB02FF62192D62E006C5146 /* History */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		0CB02FF52192D625006C5146 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				0CB02FF82192D65C006C5146 /* Categories */,
+				0CB02FF92192D677006C5146 /* Category */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		0CB02FF62192D62E006C5146 /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		0CB02FF72192D636006C5146 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		0CB02FF82192D65C006C5146 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		0CB02FF92192D677006C5146 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		0CB2EDDC214F943400AA4FB8 /* Screens */ = {
