@@ -66,7 +66,7 @@ final class MostRarelyPerformedHabitChartCell: BaseChartCell, SprintInteractorTr
             }
         }
         
-        if let mostRarelyPerformedHabit = progressForHabit.min(by: { $0.value.percent > $1.value.percent }), mostRarelyPerformedHabit.value.percent < 1 {
+        if let mostRarelyPerformedHabit = progressForHabit.min(by: { $0.value.percent < $1.value.percent }), mostRarelyPerformedHabit.value.percent < 1 {
             habitTitleLabel.text = mostRarelyPerformedHabit.key.title
             habitPerformingFrequencyLabel.text = "\(Int(mostRarelyPerformedHabit.value.percent * 100))%"
         } else {
