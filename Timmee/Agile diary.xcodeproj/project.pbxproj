@@ -59,6 +59,8 @@
 		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
+		0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */; };
+		0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */; };
 		0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
 		0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
 		0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
@@ -222,6 +224,8 @@
 		0C9365192158F04F00B4EB48 /* WaterChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterChartCell.swift; sourceTree = "<group>"; };
 		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
+		0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionViewController.swift; sourceTree = "<group>"; };
+		0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitsCollection.storyboard; sourceTree = "<group>"; };
 		0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
 		0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsEducationScreen.swift; sourceTree = "<group>"; };
@@ -408,7 +412,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				0CB02FF42192D619006C5146 /* Collection */,
+				0CB02FF42192D619006C5146 /* HabitsCollection */,
 				0C3DA4DB21525EAA00CAE635 /* Charts */,
 				967C328421517DF400B9201A /* Settings */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
@@ -479,10 +483,10 @@
 		0C14D4E7212195DE004C0559 /* Sprint creation */ = {
 			isa = PBXGroup;
 			children = (
+				0C14D4ED21219669004C0559 /* SprintCreation.storyboard */,
 				0C14D4EA2121961E004C0559 /* Main */,
 				0C14D4E921219611004C0559 /* Habit creation */,
 				0C14D4E8212195FE004C0559 /* Target creation */,
-				0C14D4ED21219669004C0559 /* SprintCreation.storyboard */,
 			);
 			path = "Sprint creation";
 			sourceTree = "<group>";
@@ -617,14 +621,15 @@
 			path = Interactors;
 			sourceTree = "<group>";
 		};
-		0CB02FF42192D619006C5146 /* Collection */ = {
+		0CB02FF42192D619006C5146 /* HabitsCollection */ = {
 			isa = PBXGroup;
 			children = (
+				0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */,
 				0CB02FF72192D636006C5146 /* Main */,
 				0CB02FF52192D625006C5146 /* Shop */,
 				0CB02FF62192D62E006C5146 /* History */,
 			);
-			path = Collection;
+			path = HabitsCollection;
 			sourceTree = "<group>";
 		};
 		0CB02FF52192D625006C5146 /* Shop */ = {
@@ -646,6 +651,7 @@
 		0CB02FF72192D636006C5146 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -726,11 +732,11 @@
 		0CF7E51B214669520071DABD /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				0CF7E51E21466A830071DABD /* Today.storyboard */,
 				0C3DA52C2154CA0000CAE635 /* Water control */,
 				0CF7E5252146878C0071DABD /* Cells */,
 				0CF7E51C2146697C0071DABD /* TodayViewController.swift */,
 				0CF7E5222146833A0071DABD /* TodayContentViewController.swift */,
-				0CF7E51E21466A830071DABD /* Today.storyboard */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -935,6 +941,7 @@
 				0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */,
 				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
 				0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */,
+				0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */,
 				0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,6 +1058,7 @@
 				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
+				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,

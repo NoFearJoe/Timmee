@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--HabitsCollection-->
+        <scene sceneID="P5t-g5-Bx1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HabitsCollection" id="9xa-Oc-D6S" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V1T-T9-NfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="167" y="-590"/>
+        </scene>
         <!--Sprint Creation View Controller-->
         <scene sceneID="htE-dq-daH">
             <objects>
@@ -113,6 +121,56 @@
                                     <segue destination="6Y5-NV-rD5" kind="embed" identifier="SprintContent" id="F9o-xz-vjm"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-KT-HkE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zPz-ZE-RP7" appends="YES" id="xCC-XD-NtS"/>
+                                </connections>
+                            </view>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8T3-WM-hml">
+                                <rect key="frame" x="89.5" y="479" width="196" height="96"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqS-zu-hm3">
+                                        <rect key="frame" x="0.0" y="0.0" width="196" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Create habit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapToCreateHabitButton" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="nqd-Nd-yqc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZq-hU-mvs">
+                                        <rect key="frame" x="0.0" y="56" width="196" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Add from collection">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapToHabitsCollectionButton" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="cD1-N1-fmL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="196" id="8aB-Ph-si9"/>
+                                    <constraint firstAttribute="height" constant="96" id="o5L-Ix-Dd8"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="jQF-zM-MBd"/>
+                            </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkS-e4-0x0">
                                 <rect key="frame" x="155.5" y="595" width="64" height="64"/>
                                 <color key="backgroundColor" red="0.24313725490196078" green="0.792156862745098" blue="1" alpha="1" colorSpace="deviceRGB"/>
@@ -136,31 +194,47 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="8fA-KT-HkE" firstAttribute="trailing" secondItem="KP9-bl-viw" secondAttribute="trailing" id="6p1-yJ-yt0"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="top" secondItem="YMI-H3-bli" secondAttribute="bottom" id="Ao9-Vd-y4W"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="EDF-Rj-Um8"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="EfT-hm-liK"/>
+                            <constraint firstItem="8T3-WM-hml" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="QCT-js-1ax"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="YMI-H3-bli" secondAttribute="trailing" id="bsJ-dq-r0r"/>
                             <constraint firstAttribute="bottom" secondItem="ejl-6k-3JG" secondAttribute="bottom" id="d0V-Ey-XQ7"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="ejl-6k-3JG" secondAttribute="trailing" id="mNc-r0-Hmb"/>
                             <constraint firstItem="mkS-e4-0x0" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="nfj-FR-K0l"/>
+                            <constraint firstItem="mkS-e4-0x0" firstAttribute="top" secondItem="8T3-WM-hml" secondAttribute="bottom" constant="20" id="pk4-40-IQ9"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="psl-oM-hMK"/>
+                            <constraint firstAttribute="bottom" secondItem="8fA-KT-HkE" secondAttribute="bottom" id="qDs-qr-0r8"/>
+                            <constraint firstItem="8fA-KT-HkE" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="t0a-ow-Ei5"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="bottom" secondItem="mkS-e4-0x0" secondAttribute="bottom" constant="8" id="wVA-Nk-rCW"/>
+                            <constraint firstItem="8fA-KT-HkE" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="y7n-6Y-nme"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KP9-bl-viw"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="mkS-e4-0x0" id="EDn-TL-cpY"/>
+                        <outlet property="addHabitMenu" destination="8T3-WM-hml" id="vQu-ja-jlg"/>
                         <outlet property="contentContainerView" destination="ejl-6k-3JG" id="xd0-Eg-Yw4"/>
+                        <outlet property="createHabitMenuButton" destination="pqS-zu-hm3" id="GQC-Ca-2Na"/>
+                        <outlet property="dimmedBackgroundView" destination="8fA-KT-HkE" id="LYN-3j-YBS"/>
+                        <outlet property="habitsCollectionMenuButton" destination="YZq-hU-mvs" id="177-Y4-3l3"/>
                         <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
                         <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowGoalCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
                         <segue destination="aS1-37-JFS" kind="presentation" identifier="ShowHabitCreation" modalTransitionStyle="coverVertical" id="moZ-UT-TDC"/>
+                        <segue destination="9xa-Oc-D6S" kind="presentation" identifier="ShowHabitsCollection" id="aoD-vj-ZUK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70z-Zb-68B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="tAh-fI-SQL">
                     <connections>
                         <action selector="onTapToSprintStartDate" destination="cGf-Ss-mFQ" id="lkJ-gt-tdk"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="zPz-ZE-RP7">
+                    <connections>
+                        <action selector="toggleAddHabitMenu" destination="cGf-Ss-mFQ" id="8sj-Ix-bfj"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -333,7 +407,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6d9-8W-a8S" customClass="GrowingTextView" customModule="UIComponents">
-                                                                            <rect key="frame" x="30" y="0.0" width="692" height="28"/>
+                                                                            <rect key="frame" x="30" y="0.0" width="299" height="28"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="28" placeholder="YES" id="Q5j-t0-y0w"/>
@@ -952,19 +1026,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYs-sp-3rF">
-                                                    <rect key="frame" x="15" y="6" width="738" height="56"/>
+                                                    <rect key="frame" x="15" y="6" width="345" height="56"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLs-oe-qfW">
-                                                            <rect key="frame" x="8" y="6" width="722" height="44.5"/>
+                                                            <rect key="frame" x="8" y="6" width="329" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAJ-d0-y5g">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="722" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="25"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vby-6u-dUY">
-                                                                    <rect key="frame" x="0.0" y="25" width="722" height="19.5"/>
+                                                                    <rect key="frame" x="0.0" y="25" width="329" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1018,19 +1092,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRR-2y-Nx4">
-                                                    <rect key="frame" x="15" y="6" width="738" height="90"/>
+                                                    <rect key="frame" x="15" y="6" width="345" height="90"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6Z-8n-Bfz">
-                                                            <rect key="frame" x="8" y="9" width="722" height="72.5"/>
+                                                            <rect key="frame" x="8" y="9" width="329" height="72.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цель" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-u4-h9U">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="722" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="25"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Этапы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Krn-RG-hQc">
-                                                                    <rect key="frame" x="0.0" y="29" width="722" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="29" width="329" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="17X-MV-3me"/>
                                                                     </constraints>
@@ -1039,7 +1113,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zu2-x4-9pR">
-                                                                    <rect key="frame" x="0.0" y="53" width="722" height="19.5"/>
+                                                                    <rect key="frame" x="0.0" y="53" width="329" height="19.5"/>
                                                                     <attributedString key="attributedText">
                                                                         <fragment content="#1 Сделать что-то">
                                                                             <attributes>

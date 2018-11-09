@@ -24,8 +24,13 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
-    @IBOutlet private var addButton: UIButton!
     @IBOutlet private var contentContainerView: UIView!
+    
+    @IBOutlet private var addButton: UIButton!
+    @IBOutlet private var addHabitMenu: UIStackView!
+    @IBOutlet private var createHabitMenuButton: UIButton!
+    @IBOutlet private var habitsCollectionMenuButton: UIButton!
+    @IBOutlet private var dimmedBackgroundView: UIView!
     
     private var contentViewController: SprintContentViewController!
     
@@ -56,6 +61,12 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
+        
+        createHabitMenuButton.setTitle("create_habit".localized, for: .normal)
+        habitsCollectionMenuButton.setTitle("choose_habits_from_collection".localized, for: .normal)
+        
+        hideAddHabitMenu()
+        
         if sprint == nil {
             getOrCreateSprint { [weak self] sprint in
                 self?.sprint = sprint
@@ -86,6 +97,20 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         sectionSwitcher.setupAppearance()
+        
+        addButton.adjustsImageWhenHighlighted = false
+        addButton.tintColor = .white
+        addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
+        addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
+        createHabitMenuButton.tintColor = .white
+        createHabitMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        createHabitMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
+        createHabitMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
+        habitsCollectionMenuButton.tintColor = .white
+        habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
+        habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -140,9 +165,27 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     @IBAction private func onAdd() {
         switch currentSection {
         case .goals: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
-        case .habits: performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
+        case .habits: toggleAddHabitMenu()
         case .water: break
         }
+    }
+    
+    @IBAction private func toggleAddHabitMenu() {
+        if addHabitMenu.isHidden {
+            showAddHabitMenu(animated: true)
+        } else {
+            hideAddHabitMenu(animated: true)
+        }
+    }
+    
+    @IBAction private func onTapToCreateHabitButton() {
+        hideAddHabitMenu(animated: true)
+        performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
+    }
+    
+    @IBAction private func onTapToHabitsCollectionButton() {
+        hideAddHabitMenu(animated: true)
+        performSegue(withIdentifier: "ShowHabitsCollection", sender: nil)
     }
     
     @IBAction private func onDone() {
@@ -238,6 +281,45 @@ private extension SprintCreationViewController {
         habitsService.updateHabits(habits) { _ in
             completion(habits)
         }
+    }
+    
+    func showAddHabitMenu(animated: Bool = false) {
+        addHabitMenu.transform = makeaddHabitMenuInitialTransform()
+        
+        addHabitMenu.isHidden = false
+        dimmedBackgroundView.alpha = 0
+        dimmedBackgroundView.isHidden = false
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
+            self.addHabitMenu.alpha = 1
+            self.dimmedBackgroundView.alpha = 1
+            self.addHabitMenu.transform = .identity
+            self.addButton.isSelected = true
+            self.addButton.transform = self.makeAddListButtonRotationTransform()
+        }
+    }
+    
+    func hideAddHabitMenu(animated: Bool = false) {
+        UIView.animate(withDuration: animated ? 0.2 : 0,
+                       animations: {
+                        self.addHabitMenu.alpha = 0
+                        self.dimmedBackgroundView.alpha = 0
+                        self.addHabitMenu.transform = self.makeaddHabitMenuInitialTransform()
+                        self.addButton.isSelected = false
+                        self.addButton.transform = .identity
+        }) { _ in
+            self.addHabitMenu.isHidden = true
+            self.dimmedBackgroundView.isHidden = true
+        }
+    }
+    
+    func makeaddHabitMenuInitialTransform() -> CGAffineTransform {
+        let translation = CGAffineTransform(translationX: 0, y: 64)
+        let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        return scale.concatenating(translation)
+    }
+    
+    func makeAddListButtonRotationTransform() -> CGAffineTransform {
+        return CGAffineTransform(rotationAngle: 45 * .pi / 180)
     }
     
 }

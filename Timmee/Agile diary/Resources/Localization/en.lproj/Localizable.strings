@@ -244,3 +244,6 @@
 
 "most_frequently_performed_habit" = "Best habit";
 "most_rarely_performed_habit" = "Worst habit";
+
+"create_habit" = "Создать привычку";
+"choose_habits_from_collection" = "Выбрать из коллекции";
