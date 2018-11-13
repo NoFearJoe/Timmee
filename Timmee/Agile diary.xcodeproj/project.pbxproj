@@ -61,6 +61,8 @@
 		0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
 		0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */; };
 		0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */; };
+		0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */; };
+		0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */; };
 		0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
 		0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
 		0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
@@ -226,6 +228,8 @@
 		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
 		0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionViewController.swift; sourceTree = "<group>"; };
 		0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitsCollection.storyboard; sourceTree = "<group>"; };
+		0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryViewController.swift; sourceTree = "<group>"; };
+		0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoriesViewController.swift; sourceTree = "<group>"; };
 		0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
 		0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsEducationScreen.swift; sourceTree = "<group>"; };
@@ -644,6 +648,7 @@
 		0CB02FF62192D62E006C5146 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 		0CB02FF82192D65C006C5146 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1055,6 +1061,7 @@
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
 				96A5A0E42171065C007511ED /* HabitsChartView.swift in Sources */,
 				0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */,
+				0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */,
 				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
@@ -1068,6 +1075,7 @@
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
+				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
 				0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */,

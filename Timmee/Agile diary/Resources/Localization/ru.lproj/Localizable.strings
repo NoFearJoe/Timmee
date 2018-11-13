@@ -247,3 +247,7 @@
 
 "create_habit" = "Создать привычку";
 "choose_habits_from_collection" = "Выбрать из коллекции";
+
+"Collection" = "Коллекция";
+"habits_collection_shop_section_title" = "Магазин";
+"habits_collection_history_section_title" = "История";

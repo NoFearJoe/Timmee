@@ -125,6 +125,9 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         } else if segue.identifier == "ShowHabitCreation" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
             controller.setHabit(sender as? Habit, sprintID: sprint.id)
+        } else if segue.identifier == "ShowHabitsCollection" {
+            guard let controller = segue.destination as? HabitsCollectionViewController else { return }
+            controller.sprintID = sprint.id
         } else {
             super.prepare(for: segue, sender: sender)
         }

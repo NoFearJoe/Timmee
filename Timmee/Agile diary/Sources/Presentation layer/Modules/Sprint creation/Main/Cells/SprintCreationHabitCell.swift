@@ -9,7 +9,7 @@
 import UIKit
 import SwipeCellKit
 
-final class SprintCreationHabitCell: SwipeTableViewCell {
+class SprintCreationHabitCell: SwipeTableViewCell {
     
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var titleLabel: UILabel!

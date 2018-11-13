@@ -27,6 +27,7 @@ public protocol HabitsManager: class {
 
 public protocol HabitsObserverProvider: class {
     func habitsObserver(sprintID: String, day: DayUnit?) -> CacheObserver<Habit>
+    func habitsBySprintObserver() -> CacheObserver<Habit>
 }
 
 public protocol HabitEntitiesProvider: class {
@@ -172,6 +173,23 @@ extension HabitsService: HabitsObserverProvider {
         let context = Database.localStorage.readContext
         let habitsObserver = CacheObserver<Habit>(request: request,
                                                   section: nil,
+                                                  cacheName: nil,
+                                                  context: context)
+        
+        habitsObserver.setMapping { entity in
+            let entity = entity as! HabitEntity
+            return Habit(habit: entity)
+        }
+        
+        return habitsObserver
+    }
+    
+    public func habitsBySprintObserver() -> CacheObserver<Habit> {
+        let request = HabitsService.allHabitsFetchRequest().batchSize(10).nsFetchRequestWithResult
+        let context = Database.localStorage.readContext
+        
+        let habitsObserver = CacheObserver<Habit>(request: request,
+                                                  section: "sprint.number",
                                                   cacheName: nil,
                                                   context: context)
         
