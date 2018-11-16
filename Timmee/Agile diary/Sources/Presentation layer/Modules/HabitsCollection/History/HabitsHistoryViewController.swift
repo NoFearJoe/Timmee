@@ -18,8 +18,10 @@ final class HabitsHistoryViewController: BaseViewController {
     let placeholderView = PlaceholderView.loadedFromNib()
     
     private let habitsService = ServicesAssembly.shared.habitsService
-    private lazy var cacheObserver = habitsService.habitsBySprintObserver()
+    private lazy var cacheObserver = habitsService.habitsBySprintObserver(excludingSprintWithID: sprintID)
     private lazy var cacheSubscriber = TableViewCacheAdapter(tableView: tableView)
+    
+    private var pickedHabbitIDs: [(original: String, new: String)] = []
     
     override func prepare() {
         super.prepare()
@@ -54,7 +56,8 @@ extension HabitsHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HabitsHistoryCell", for: indexPath) as! HabitsHistoryCell
         let habit = cacheObserver.item(at: indexPath)
-        cell.configure(habit: habit)
+        let isPicked = pickedHabbitIDs.contains(where: { $0.original == habit.id })
+        cell.configure(habit: habit, isPicked: isPicked)
         return cell
     }
     
@@ -64,12 +67,23 @@ extension HabitsHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let habit = cacheObserver.item(at: indexPath)
-        // TODO: Проверить, что привычка не добавлена в спринт
-        let newHabit = habit.copy
-        newHabit.id = RandomStringGenerator.randomString(length: 24)
-        habitsService.addHabit(newHabit, sprintID: sprintID, completion: { success in
-            print("\(success)")
-        })
+        if let pickedHabitID = pickedHabbitIDs.first(where: { $0.original == habit.id })?.new {
+            let pickedHabit = habit.copy
+            pickedHabit.id = pickedHabitID
+            habitsService.removeHabit(pickedHabit) { [weak self] success in
+                guard let self = self, success else { return }
+                self.pickedHabbitIDs.removeAll(where: { $0.original == habit.id })
+                self.tableView.reloadData()
+            }
+        } else {
+            let newHabit = habit.copy
+            newHabit.id = RandomStringGenerator.randomString(length: 24)
+            habitsService.addHabit(newHabit, sprintID: sprintID) { [weak self] success in
+                guard let self = self, success else { return }
+                self.pickedHabbitIDs.append((original: habit.id, new: newHabit.id))
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -103,6 +117,9 @@ private extension HabitsHistoryViewController {
     }
     
     func setupPlaceholder() {
+        placeholderView.icon = UIImage(imageLiteralResourceName: "history")
+        placeholderView.title = "there_is_no_habits_in_history".localized
+        placeholderView.subtitle = "complete_one_more_sprint_to_see_history".localized
         placeholderView.setup(into: placeholderContainer)
         placeholderContainer.isHidden = true
     }
@@ -123,7 +140,12 @@ private extension HabitsHistoryViewController {
 
 final class HabitsHistoryCell: SprintCreationHabitCell {
     
-    @IBOutlet private var checkButton: UIButton!
+    @IBOutlet private var checkbox: Checkbox!
+    
+    func configure(habit: Habit, isPicked: Bool) {
+        configure(habit: habit)
+        checkbox.isChecked = isPicked
+    }
     
 }
 

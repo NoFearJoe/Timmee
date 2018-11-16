@@ -245,9 +245,12 @@
 "most_frequently_performed_habit" = "Best habit";
 "most_rarely_performed_habit" = "Worst habit";
 
-"create_habit" = "Создать привычку";
-"choose_habits_from_collection" = "Выбрать из коллекции";
+"create_habit" = "Create habit";
+"choose_habits_from_collection" = "Choose from collection";
 
 "Collection" = "Collection";
 "habits_collection_shop_section_title" = "Shop";
 "habits_collection_history_section_title" = "History";
+
+"there_is_no_habits_in_history" = "There is no habits in history";
+"complete_one_more_sprint_to_see_history" = "Finish at least one sprint so habits appear in history";

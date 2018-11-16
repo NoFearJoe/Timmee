@@ -21,7 +21,7 @@ final class HabitsCollectionViewController: BaseViewController {
     private var shopViewController: ShopCategoriesViewController!
     private var historyViewController: HabitsHistoryViewController!
     
-    private var currentSection: Section = .shop
+    private var currentSection: Section = .history
     
     override func prepare() {
         super.prepare()
@@ -29,11 +29,11 @@ final class HabitsCollectionViewController: BaseViewController {
         headerView.titleLabel.text = "Collection".localized
         
         sectionSwitcher.items = [Section.shop.title, Section.history.title]
-        sectionSwitcher.selectedItemIndex = 0
+        sectionSwitcher.selectedItemIndex = 1
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         
-        shopContainerView.isHidden = false
-        historyContainerView.isHidden = true
+        shopContainerView.isHidden = true
+        historyContainerView.isHidden = false
     }
     
     override func setupAppearance() {

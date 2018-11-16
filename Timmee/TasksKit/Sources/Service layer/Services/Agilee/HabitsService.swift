@@ -27,7 +27,7 @@ public protocol HabitsManager: class {
 
 public protocol HabitsObserverProvider: class {
     func habitsObserver(sprintID: String, day: DayUnit?) -> CacheObserver<Habit>
-    func habitsBySprintObserver() -> CacheObserver<Habit>
+    func habitsBySprintObserver(excludingSprintWithID sprintID: String) -> CacheObserver<Habit>
 }
 
 public protocol HabitEntitiesProvider: class {
@@ -184,8 +184,9 @@ extension HabitsService: HabitsObserverProvider {
         return habitsObserver
     }
     
-    public func habitsBySprintObserver() -> CacheObserver<Habit> {
-        let request = HabitsService.allHabitsFetchRequest().batchSize(10).nsFetchRequestWithResult
+    public func habitsBySprintObserver(excludingSprintWithID sprintID: String) -> CacheObserver<Habit> {
+        let predicate = NSPredicate(format: "sprint.id != %@", sprintID)
+        let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
         let context = Database.localStorage.readContext
         
         let habitsObserver = CacheObserver<Habit>(request: request,

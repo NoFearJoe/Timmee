@@ -235,7 +235,7 @@
 "education_notifications_setup_continue" = "Включить уведомления";
 "education_notifications_setup_skip" = "Не стоит";
 "education_pin_setup_title" = "Не хотите делиться секретами?";
-"education_pin_setup_text" = "Установите короткий пароль и спате спокойно";
+"education_pin_setup_text" = "Установите короткий пароль и спите спокойно";
 "education_pin_setup_continue" = "Установить пароль";
 "education_pin_setup_skip" = "Мне это не нужно";
 "education_final_title" = "🚀";
@@ -251,3 +251,6 @@
 "Collection" = "Коллекция";
 "habits_collection_shop_section_title" = "Магазин";
 "habits_collection_history_section_title" = "История";
+
+"there_is_no_habits_in_history" = "В истории нет привычек";
+"complete_one_more_sprint_to_see_history" = "Закончите хотя бы один спринт, чтобы привычки появились в истории";
