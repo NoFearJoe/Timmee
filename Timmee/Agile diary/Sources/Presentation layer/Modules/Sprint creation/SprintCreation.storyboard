@@ -26,6 +26,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-KT-HkE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zPz-ZE-RP7" appends="YES" id="xCC-XD-NtS"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMI-H3-bli" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="168.5"/>
                                 <subviews>
@@ -90,11 +98,11 @@
                                             <constraint firstAttribute="trailing" secondItem="jBR-oG-gpS" secondAttribute="trailing" constant="15" id="NMw-6S-0xF"/>
                                             <constraint firstItem="huO-qj-L0b" firstAttribute="top" secondItem="ltR-h9-pQz" secondAttribute="top" constant="8" id="OfA-7H-ffL"/>
                                             <constraint firstItem="huO-qj-L0b" firstAttribute="leading" secondItem="ltR-h9-pQz" secondAttribute="leading" constant="15" id="R4Q-LI-vD8"/>
+                                            <constraint firstAttribute="trailing" secondItem="AsR-YY-jI1" secondAttribute="trailing" constant="15" id="Ype-uB-BP2"/>
                                             <constraint firstItem="jBR-oG-gpS" firstAttribute="top" secondItem="huO-qj-L0b" secondAttribute="bottom" constant="8" id="aUh-vU-W0j"/>
                                             <constraint firstItem="AsR-YY-jI1" firstAttribute="top" secondItem="jBR-oG-gpS" secondAttribute="bottom" id="aoB-6W-C6D"/>
                                             <constraint firstAttribute="trailing" secondItem="bpp-6h-tC7" secondAttribute="trailing" constant="15" id="hG9-gH-8OQ"/>
                                             <constraint firstAttribute="bottom" secondItem="UHj-6h-dgu" secondAttribute="bottom" constant="8" id="kG0-fH-XKC"/>
-                                            <constraint firstAttribute="trailing" secondItem="AsR-YY-jI1" secondAttribute="trailing" constant="15" id="kR8-9A-QUh"/>
                                             <constraint firstItem="bpp-6h-tC7" firstAttribute="top" secondItem="ltR-h9-pQz" secondAttribute="top" constant="8" id="wnd-mv-1db"/>
                                             <constraint firstItem="jBR-oG-gpS" firstAttribute="leading" secondItem="ltR-h9-pQz" secondAttribute="leading" constant="15" id="zAD-i6-xos"/>
                                         </constraints>
@@ -121,14 +129,6 @@
                                     <segue destination="6Y5-NV-rD5" kind="embed" identifier="SprintContent" id="F9o-xz-vjm"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-KT-HkE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="zPz-ZE-RP7" appends="YES" id="xCC-XD-NtS"/>
-                                </connections>
-                            </view>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8T3-WM-hml">
                                 <rect key="frame" x="89.5" y="479" width="196" height="96"/>
                                 <subviews>
@@ -191,14 +191,51 @@
                                     <action selector="onAdd" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="Yhs-Bd-adt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKg-7z-Hwm">
+                                <rect key="frame" x="247.5" y="607" width="40" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="ECL-Vw-zsb"/>
+                                    <constraint firstAttribute="width" secondItem="iKg-7z-Hwm" secondAttribute="height" id="ol3-G0-7ec"/>
+                                </constraints>
+                                <state key="normal" image="alarm"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapToNotificationsButton" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="jFs-kP-Nt7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HH-1q-kKd">
+                                <rect key="frame" x="87.5" y="607" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="9ks-eZ-eir"/>
+                                    <constraint firstAttribute="width" secondItem="7HH-1q-kKd" secondAttribute="height" id="le6-9h-1Sm"/>
+                                </constraints>
+                                <state key="normal" image="clockFilled"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapToSprintStartDate" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="P1d-OU-i5P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8fA-KT-HkE" firstAttribute="trailing" secondItem="KP9-bl-viw" secondAttribute="trailing" id="6p1-yJ-yt0"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="top" secondItem="YMI-H3-bli" secondAttribute="bottom" id="Ao9-Vd-y4W"/>
+                            <constraint firstItem="iKg-7z-Hwm" firstAttribute="centerY" secondItem="mkS-e4-0x0" secondAttribute="centerY" id="B8S-vm-YVW"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="EDF-Rj-Um8"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="EfT-hm-liK"/>
                             <constraint firstItem="8T3-WM-hml" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="QCT-js-1ax"/>
+                            <constraint firstItem="7HH-1q-kKd" firstAttribute="width" secondItem="7HH-1q-kKd" secondAttribute="height" id="Ybn-hQ-A24"/>
+                            <constraint firstItem="mkS-e4-0x0" firstAttribute="centerY" secondItem="7HH-1q-kKd" secondAttribute="centerY" id="axE-Bd-uj7"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="YMI-H3-bli" secondAttribute="trailing" id="bsJ-dq-r0r"/>
                             <constraint firstAttribute="bottom" secondItem="ejl-6k-3JG" secondAttribute="bottom" id="d0V-Ey-XQ7"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="ejl-6k-3JG" secondAttribute="trailing" id="mNc-r0-Hmb"/>
@@ -209,6 +246,8 @@
                             <constraint firstItem="8fA-KT-HkE" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="t0a-ow-Ei5"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="bottom" secondItem="mkS-e4-0x0" secondAttribute="bottom" constant="8" id="wVA-Nk-rCW"/>
                             <constraint firstItem="8fA-KT-HkE" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="y7n-6Y-nme"/>
+                            <constraint firstItem="mkS-e4-0x0" firstAttribute="leading" secondItem="7HH-1q-kKd" secondAttribute="trailing" constant="28" id="yuH-Ll-TKD"/>
+                            <constraint firstItem="iKg-7z-Hwm" firstAttribute="leading" secondItem="mkS-e4-0x0" secondAttribute="trailing" constant="28" id="zIL-9w-SXy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KP9-bl-viw"/>
                     </view>
@@ -220,7 +259,9 @@
                         <outlet property="dimmedBackgroundView" destination="8fA-KT-HkE" id="LYN-3j-YBS"/>
                         <outlet property="habitsCollectionMenuButton" destination="YZq-hU-mvs" id="177-Y4-3l3"/>
                         <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
+                        <outlet property="notificationsButton" destination="iKg-7z-Hwm" id="yr8-Si-0yE"/>
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
+                        <outlet property="startDateButton" destination="7HH-1q-kKd" id="sM8-Vm-g31"/>
                         <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowGoalCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
                         <segue destination="aS1-37-JFS" kind="presentation" identifier="ShowHabitCreation" modalTransitionStyle="coverVertical" id="moZ-UT-TDC"/>
                         <segue destination="9xa-Oc-D6S" kind="presentation" identifier="ShowHabitsCollection" id="aoD-vj-ZUK"/>
@@ -1702,7 +1743,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alarm" width="20" height="20"/>
         <image name="checkmark" width="20" height="20"/>
+        <image name="clockFilled" width="20" height="20"/>
         <image name="cross" width="20" height="20"/>
         <image name="hintActive" width="20" height="20"/>
         <image name="hintInactive" width="20" height="20"/>

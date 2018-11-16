@@ -24,7 +24,11 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var sectionSwitcher: Switcher!
+    
     @IBOutlet private var contentContainerView: UIView!
+    
+    @IBOutlet private var startDateButton: UIButton!
+    @IBOutlet private var notificationsButton: UIButton!
     
     @IBOutlet private var addButton: UIButton!
     @IBOutlet private var addHabitMenu: UIStackView!
@@ -98,8 +102,8 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         sectionSwitcher.setupAppearance()
         
-        addButton.adjustsImageWhenHighlighted = false
         addButton.tintColor = .white
+        addButton.adjustsImageWhenHighlighted = false
         addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
         addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
         addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
@@ -111,6 +115,17 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
         habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
         habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
+        
+        startDateButton.tintColor = .white
+        startDateButton.adjustsImageWhenHighlighted = false
+        startDateButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.selectedElementColor), for: .normal)
+        startDateButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
+        startDateButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
+        notificationsButton.tintColor = .white
+        notificationsButton.adjustsImageWhenHighlighted = false
+        notificationsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.incompleteElementColor), for: .normal)
+        notificationsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
+        notificationsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -154,6 +169,10 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         dueDatePicker.setDueDate(sprint.startDate)
         editorContainer.setViewController(dueDatePicker)
         present(editorContainer, animated: true, completion: nil)
+    }
+    
+    @IBAction private func onTapToNotificationsButton() {
+        performSegue(withIdentifier: "ShowSprintNotificationsSettings", sender: nil)
     }
     
     @IBAction private func onClose() {

@@ -94,7 +94,7 @@ struct AppTheme {
                                               activeElementColor: UIColor(rgba: "FFFFFF"),
                                               mainElementColor: UIColor(rgba: "29C3FE"),
                                               wrongElementColor: UIColor(rgba: "FF3100"),
-                                              selectedElementColor: UIColor(rgba: "12FFA3"),
+                                              selectedElementColor: UIColor(rgba: "0AED95"),
                                               incompleteElementColor: UIColor(rgba: "FEE200"),
                                               decorationElementColor: UIColor(rgba: "666666"),
                                               foregroundColor: UIColor(rgba: "5B5B5B"),
