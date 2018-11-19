@@ -59,6 +59,7 @@
 		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
+		0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
 		0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */; };
 		0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */; };
 		0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */; };
@@ -226,6 +227,7 @@
 		0C9365192158F04F00B4EB48 /* WaterChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterChartCell.swift; sourceTree = "<group>"; };
 		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
+		0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintNotificationTimePicker.swift; sourceTree = "<group>"; };
 		0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionViewController.swift; sourceTree = "<group>"; };
 		0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitsCollection.storyboard; sourceTree = "<group>"; };
 		0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryViewController.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 		0C14D4EA2121961E004C0559 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C97552621A2A6C60031CA2E /* SprintNotificationTimePicker */,
 				0C5C46952140FDF900390F85 /* DueDatePicker */,
 				0C8D0793212ECC63008122A6 /* Interactors */,
 				0CDF8D802125B75A001A2F70 /* Cells */,
@@ -623,6 +626,14 @@
 				0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */,
 			);
 			path = Interactors;
+			sourceTree = "<group>";
+		};
+		0C97552621A2A6C60031CA2E /* SprintNotificationTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */,
+			);
+			path = SprintNotificationTimePicker;
 			sourceTree = "<group>";
 		};
 		0CB02FF42192D619006C5146 /* HabitsCollection */ = {
@@ -1072,6 +1083,7 @@
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
 				96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */,
+				0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,

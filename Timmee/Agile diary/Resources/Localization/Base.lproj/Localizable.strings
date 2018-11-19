@@ -254,3 +254,10 @@
 
 "there_is_no_habits_in_history" = "There is no habits in history";
 "complete_one_more_sprint_to_see_history" = "Finish at least one sprint so habits appear in history";
+
+"sprint_notification_days_title" = "Notification days";
+"sprint_notification_time_title" = "Notification time";
+
+"notifications_are_disabled" = "Notifications disabled";
+
+"sprint_notification_message" = "It's time to make records in the diary";

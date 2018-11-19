@@ -17,7 +17,8 @@ extension Sprint {
                   title: "",
                   startDate: Date.now.startOfDay,
                   endDate: Date.now.startOfDay + Constants.sprintDuration.asWeeks,
-                  isReady: false)
+                  isReady: false,
+                  notifications: Notifications())
     }
     
 }

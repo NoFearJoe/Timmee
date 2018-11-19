@@ -19,6 +19,7 @@ public class Sprint {
     public var startDate: Date
     public var endDate: Date
     public var isReady: Bool
+    public var notifications: Notifications
     
     public init(sprintEntity: SprintEntity) {
         id = sprintEntity.id!
@@ -27,6 +28,7 @@ public class Sprint {
         startDate = sprintEntity.startDate! as Date
         endDate = sprintEntity.endDate! as Date
         isReady = sprintEntity.isReady
+        notifications = Notifications(sprint: sprintEntity)
     }
     
     public init(id: String,
@@ -34,13 +36,15 @@ public class Sprint {
                 title: String,
                 startDate: Date,
                 endDate: Date,
-                isReady: Bool) {
+                isReady: Bool,
+                notifications: Notifications) {
         self.id = id
         self.number = number
         self.title = title
         self.startDate = startDate
         self.endDate = endDate
         self.isReady = isReady
+        self.notifications = notifications
     }
     
     public var copy: Sprint {
@@ -49,21 +53,11 @@ public class Sprint {
                       title: title,
                       startDate: startDate,
                       endDate: endDate,
-                      isReady: isReady)
+                      isReady: isReady,
+                      notifications: notifications)
     }
-    
-//    public var tasksFetchPredicate: NSPredicate? {
-//        return NSPredicate(format: "sprint.id == %@", self.id)
-//    }
-}
 
-//public extension Sprint {
-//    public final var tasksFetchRequest: NSFetchRequest<TaskEntity> {
-//        let fetchRequest = NSFetchRequest<TaskEntity>(entityName: "Task")
-//        fetchRequest.predicate = tasksFetchPredicate
-//        return fetchRequest
-//    }
-//}
+}
 
 extension Sprint: Equatable {
     public static func ==(lhs: Sprint, rhs: Sprint) -> Bool {
@@ -74,5 +68,30 @@ extension Sprint: Equatable {
 extension Sprint: Hashable {
     public var hashValue: Int {
         return id.hashValue
+    }
+}
+
+extension Sprint {
+    public struct Notifications {
+        public var isEnabled: Bool
+        public var days: [DayUnit]?
+        public var time: (Int, Int)?
+        
+        public init() {
+            isEnabled = false
+            days = nil
+            time = nil
+        }
+        
+        init(sprint: SprintEntity) {
+            isEnabled = sprint.notificationsEnabled
+            days = sprint.notificationsDays?.split(separator: ",").map { DayUnit(string: String($0)) }
+            if let notificationTime = sprint.notificationsTime?.split(separator: ":"), notificationTime.count == 2,
+               let hours = Int(notificationTime[0]), let minutes = Int(notificationTime[1]) {
+                time = (hours, minutes)
+            } else {
+                time = nil
+            }
+        }
     }
 }

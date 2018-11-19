@@ -27,6 +27,10 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "DueDatePicker") as! DueDatePicker
     }
     
+    static var sprintNotificationTimePicker: SprintNotificationTimePicker {
+        return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "SprintNotificationTimePicker") as! SprintNotificationTimePicker
+    }
+    
     static var today: TodayViewController {
         return UIStoryboard(name: "Today", bundle: nil).instantiateInitialViewController() as! TodayViewController
     }

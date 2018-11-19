@@ -254,3 +254,10 @@
 
 "there_is_no_habits_in_history" = "В истории нет привычек";
 "complete_one_more_sprint_to_see_history" = "Закончите хотя бы один спринт, чтобы привычки появились в истории";
+
+"sprint_notification_days_title" = "Дни напоминания";
+"sprint_notification_time_title" = "Время напоминания";
+
+"notifications_are_disabled" = "Напоминания отключены";
+
+"sprint_notification_message" = "Время сделать записи в ежедневнике";

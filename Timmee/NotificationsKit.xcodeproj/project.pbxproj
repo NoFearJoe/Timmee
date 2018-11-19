@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C97552A21A2D5B70031CA2E /* SprintSchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552921A2D5B70031CA2E /* SprintSchedulerService.swift */; };
 		96BE83A92176435900CDECAF /* NotificationsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 96BE83A72176435900CDECAF /* NotificationsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96BE83BF2176442700CDECAF /* TaskSchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83BE2176442700CDECAF /* TaskSchedulerService.swift */; };
 		96BE83C22176447400CDECAF /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83C12176447400CDECAF /* Workset.framework */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C97552921A2D5B70031CA2E /* SprintSchedulerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintSchedulerService.swift; sourceTree = "<group>"; };
 		96BE83A42176435900CDECAF /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BE83A72176435900CDECAF /* NotificationsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsKit.h; sourceTree = "<group>"; };
 		96BE83A82176435900CDECAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				96BE83BE2176442700CDECAF /* TaskSchedulerService.swift */,
 				96BE83CF21764C6D00CDECAF /* HabitsSchedulerService.swift */,
 				96BE83D121764C9E00CDECAF /* WaterControlSchedulerService.swift */,
+				0C97552921A2D5B70031CA2E /* SprintSchedulerService.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				96BE83D021764C6D00CDECAF /* HabitsSchedulerService.swift in Sources */,
 				96BE83D221764C9E00CDECAF /* WaterControlSchedulerService.swift in Sources */,
 				96BE83CE217645A000CDECAF /* BaseSchedulerService.swift in Sources */,
+				0C97552A21A2D5B70031CA2E /* SprintSchedulerService.swift in Sources */,
 				96BE83BF2176442700CDECAF /* TaskSchedulerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
