@@ -30,7 +30,7 @@ public final class SprintSchedulerService: BaseSchedulerService {
             guard (days.map { $0.number }).contains(dayNumber) else { return }
             
             scheduleLocalNotification(withID: sprint.id,
-                                      title: "sprint".localized + " #\(sprint.number)",
+                                      title: "Sprint".localized + " #\(sprint.number)",
                                       message: "sprint_notification_message".localized,
                                       at: fireDate,
                                       repeatUnit: .weekOfYear,
