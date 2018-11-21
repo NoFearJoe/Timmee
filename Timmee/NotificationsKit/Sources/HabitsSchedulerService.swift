@@ -21,9 +21,7 @@ public final class HabitsSchedulerService: BaseSchedulerService {
             let fireDate = notificationDate + day.asDays
             
             guard !(fireDate <= Date()) else { return }
-            
-            let dayNumber = fireDate.weekday - 1
-            guard (habit.dueDays.map { $0.number }).contains(dayNumber) else { return }
+            guard (habit.dueDays.map { $0.weekday }).contains(fireDate.weekday) else { return }
             
             let userInfo = HabitsSchedulerService.makeUserInfo(habitID: habit.id, isDeferred: false, endDate: habit.repeatEndingDate)
             scheduleLocalNotification(withID: habit.id,

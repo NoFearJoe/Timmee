@@ -240,6 +240,18 @@ public enum DayUnit: String {
         }
     }
     
+    public init(weekday: Int) {
+        switch weekday {
+        case DayUnit.monday.weekday: self = .monday
+        case DayUnit.tuesday.weekday: self = .tuesday
+        case DayUnit.wednesday.weekday: self = .wednesday
+        case DayUnit.thusday.weekday: self = .thusday
+        case DayUnit.friday.weekday: self = .friday
+        case DayUnit.saturday.weekday: self = .saturday
+        default: self = .sunday
+        }
+    }
+    
     public var string: String {
         switch self {
         case .monday: return "mon"

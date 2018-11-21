@@ -46,7 +46,7 @@ class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintI
         
         self.sprint = sprint
         
-        let dayUnit = DayUnit(number: Date.now.weekday - 1)
+        let dayUnit = DayUnit(weekday: Date.now.weekday)
         habits = habitsService.fetchHabits(sprintID: sprint.id).filter { $0.dueDays.contains(dayUnit) && !$0.isDone(at: Date.now) }
         tableView.reloadData()
         

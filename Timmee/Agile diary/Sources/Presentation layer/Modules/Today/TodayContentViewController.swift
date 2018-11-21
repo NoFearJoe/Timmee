@@ -171,7 +171,7 @@ private extension TodayContentViewController {
     
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
         goalsCacheObserver = nil
-        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsObserver(sprintID: sprintID, day: DayUnit(number: Date.now.weekday - 1))
+        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsObserver(sprintID: sprintID, day: DayUnit(weekday: Date.now.weekday))
         habitsCacheObserver?.setActions(
             onInitialFetch: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) },
             onItemsCountChange: { count in self.state = count == 0 ? .empty : .content },

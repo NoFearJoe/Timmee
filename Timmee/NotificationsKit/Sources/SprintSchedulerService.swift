@@ -25,7 +25,6 @@ public final class SprintSchedulerService: BaseSchedulerService {
             let fireDate = notificationStartDate + day.asDays
             
             guard !(fireDate <= Date()) else { return }
-            
             guard (days.map { $0.weekday }).contains(fireDate.weekday) else { return }
             
             scheduleLocalNotification(withID: sprint.id,

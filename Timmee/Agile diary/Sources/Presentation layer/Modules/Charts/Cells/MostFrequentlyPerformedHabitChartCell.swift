@@ -50,7 +50,7 @@ final class MostFrequentlyPerformedHabitChartCell: BaseChartCell, SprintInteract
         let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
-            let repeatDay = DayUnit(number: date.weekday - 1)
+            let repeatDay = DayUnit(weekday: date.weekday)
             let allHabits = habits.filter { $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }
             
