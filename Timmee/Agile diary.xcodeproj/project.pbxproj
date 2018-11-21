@@ -79,6 +79,110 @@
 		0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */; };
 		0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */; };
 		0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */; };
+		0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
+		0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
+		0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E3212183A9004C0559 /* AppDelegate.swift */; };
+		0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */; };
+		0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */; };
+		0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
+		0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */; };
+		0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */; };
+		0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5052122B067004C0559 /* UIFont+Avenir.swift */; };
+		0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */; };
+		0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
+		0CB6737A21A52C3900178EB1 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
+		0CB6737B21A52C3900178EB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328921517F3C00B9201A /* SettingsViewController.swift */; };
+		0CB6737C21A52C3900178EB1 /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
+		0CB6737D21A52C3900178EB1 /* SwipeCellActionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */; };
+		0CB6737E21A52C3900178EB1 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
+		0CB6737F21A52C3900178EB1 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */; };
+		0CB6738021A52C3900178EB1 /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
+		0CB6738121A52C3900178EB1 /* NotificationsSetupSuggestionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */; };
+		0CB6738221A52C3900178EB1 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
+		0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
+		0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
+		0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
+		0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDED214F971700AA4FB8 /* BiometricsActivationController.swift */; };
+		0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4A7212160B5004C0559 /* EducationViewController.swift */; };
+		0CB6738821A52C3900178EB1 /* HabitsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* HabitsChartView.swift */; };
+		0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
+		0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */; };
+		0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
+		0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEE214F971700AA4FB8 /* NumberPadCells.swift */; };
+		0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
+		0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */; };
+		0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5222146833A0071DABD /* TodayContentViewController.swift */; };
+		0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */; };
+		0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
+		0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
+		0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
+		0CB6739421A52C3900178EB1 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
+		0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
+		0CB6739621A52C3900178EB1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
+		0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
+		0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
+		0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */; };
+		0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C32902157716500B9201A /* HabitsChartCell.swift */; };
+		0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
+		0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */; };
+		0CB6739D21A52C3900178EB1 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E51C2146697C0071DABD /* TodayViewController.swift */; };
+		0CB6739E21A52C3900178EB1 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
+		0CB6739F21A52C3900178EB1 /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
+		0CB673A021A52C3900178EB1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83D5217C9C8D00CDECAF /* CardView.swift */; };
+		0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */; };
+		0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
+		0CB673A321A52C3900178EB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
+		0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
+		0CB673A521A52C3900178EB1 /* TodayTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */; };
+		0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */; };
+		0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
+		0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
+		0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
+		0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */; };
+		0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */; };
+		0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
+		0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */; };
+		0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328D2157709900B9201A /* BaseChartCell.swift */; };
+		0CB673AF21A52C3900178EB1 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
+		0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
+		0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
+		0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */; };
+		0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */; };
+		0CB673B421A52C3900178EB1 /* SprintContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5022122AA31004C0559 /* SprintContentViewController.swift */; };
+		0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */; };
+		0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
+		0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */; };
+		0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
+		0CB673B921A52C3900178EB1 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
+		0CB673BA21A52C3900178EB1 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
+		0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
+		0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
+		0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
+		0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
+		0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; };
+		0CB673C121A52C3900178EB1 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
+		0CB673C321A52C3900178EB1 /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E51E21466A830071DABD /* Today.storyboard */; };
+		0CB673C421A52C3900178EB1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
+		0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
+		0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4ED21219669004C0559 /* SprintCreation.storyboard */; };
+		0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C328B215181D700B9201A /* Settings.storyboard */; };
+		0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
+		0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */; };
+		0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
+		0CB673CB21A52C3900178EB1 /* WaterControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */; };
+		0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
+		0CB673CD21A52C3900178EB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D479211C55D9004C0559 /* Main.storyboard */; };
+		0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
+		0CB673CF21A52C3900178EB1 /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
+		0CB673D021A52C3900178EB1 /* Education.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4A921216129004C0559 /* Education.storyboard */; };
+		0CB673D121A52C3900178EB1 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */; };
+		0CB673D221A52C3900178EB1 /* HabitsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */; };
+		0CB673D321A52C3900178EB1 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
+		0CB673D521A52C3900178EB1 /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0CB673D621A52C3900178EB1 /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -154,6 +258,20 @@
 				0C14D493211C564F004C0559 /* Workset.framework in Embed Frameworks */,
 				0C14D491211C564F004C0559 /* UIComponents.framework in Embed Frameworks */,
 				0C14D48F211C564E004C0559 /* TasksKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CB673D421A52C3900178EB1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0CB673D521A52C3900178EB1 /* NotificationsKit.framework in Embed Frameworks */,
+				0CB673D621A52C3900178EB1 /* Workset.framework in Embed Frameworks */,
+				0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */,
+				0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +365,8 @@
 		0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCreationViewController.swift; sourceTree = "<group>"; };
 		0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
+		0CB673DF21A52C3900178EB1 /* Agile diary debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CB673E021A52C3900178EB1 /* Agile diary copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Agile diary copy-Info.plist"; path = "/Users/i.kharabet/Documents/GitHub/Timmee/Timmee/Agile diary copy-Info.plist"; sourceTree = "<absolute>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -310,6 +430,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CB673BC21A52C3900178EB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */,
+				0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */,
+				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
+				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
+				0CB673C121A52C3900178EB1 /* Pods_Agile_diary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0CE883C42150F6EB00637BD9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +464,7 @@
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
 				422F11A515C6CEDFA0FD93B5 /* Pods */,
+				0CB673E021A52C3900178EB1 /* Agile diary copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -340,6 +473,7 @@
 			children = (
 				0C14D472211C55D9004C0559 /* Agile diary.app */,
 				0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */,
+				0CB673DF21A52C3900178EB1 /* Agile diary debug.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -872,6 +1006,26 @@
 			productReference = 0C14D472211C55D9004C0559 /* Agile diary.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0CB6736921A52C3900178EB1 /* Agile diary debug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CB673DC21A52C3900178EB1 /* Build configuration list for PBXNativeTarget "Agile diary debug" */;
+			buildPhases = (
+				0CB6736C21A52C3900178EB1 /* [CP] Check Pods Manifest.lock */,
+				0CB6736D21A52C3900178EB1 /* Sources */,
+				0CB673BC21A52C3900178EB1 /* Frameworks */,
+				0CB673C221A52C3900178EB1 /* Resources */,
+				0CB673D421A52C3900178EB1 /* Embed Frameworks */,
+				0CB673D921A52C3900178EB1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Agile diary debug";
+			productName = "Agile diary";
+			productReference = 0CB673DF21A52C3900178EB1 /* Agile diary debug.app */;
+			productType = "com.apple.product-type.application";
+		};
 		0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CE883D62150F6EC00637BD9 /* Build configuration list for PBXNativeTarget "HabitsTodayExtension" */;
@@ -933,6 +1087,7 @@
 			projectRoot = "";
 			targets = (
 				0C14D471211C55D9004C0559 /* Agile diary */,
+				0CB6736921A52C3900178EB1 /* Agile diary debug */,
 				0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */,
 			);
 		};
@@ -963,6 +1118,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CB673C221A52C3900178EB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CB673C321A52C3900178EB1 /* Today.storyboard in Resources */,
+				0CB673C421A52C3900178EB1 /* InfoPlist.strings in Resources */,
+				0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */,
+				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
+				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
+				0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */,
+				0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */,
+				0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */,
+				0CB673CB21A52C3900178EB1 /* WaterControl.storyboard in Resources */,
+				0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */,
+				0CB673CD21A52C3900178EB1 /* Main.storyboard in Resources */,
+				0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */,
+				0CB673CF21A52C3900178EB1 /* StageView.xib in Resources */,
+				0CB673D021A52C3900178EB1 /* Education.storyboard in Resources */,
+				0CB673D121A52C3900178EB1 /* Charts.storyboard in Resources */,
+				0CB673D221A52C3900178EB1 /* HabitsCollection.storyboard in Resources */,
+				0CB673D321A52C3900178EB1 /* Localizable.stringsdict in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0CE883C52150F6EB00637BD9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -979,6 +1158,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0CB6736C21A52C3900178EB1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agile diary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0CB673D921A52C3900178EB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		33067EAF591D6099918EE91B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1122,6 +1341,91 @@
 				0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */,
 				0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0CB6736D21A52C3900178EB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */,
+				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
+				0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */,
+				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
+				0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */,
+				0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */,
+				0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */,
+				0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */,
+				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
+				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
+				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
+				0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */,
+				0CB6737A21A52C3900178EB1 /* NumberPicker.swift in Sources */,
+				0CB6737B21A52C3900178EB1 /* SettingsViewController.swift in Sources */,
+				0CB6737C21A52C3900178EB1 /* NotificationsConfigurator.swift in Sources */,
+				0CB6737D21A52C3900178EB1 /* SwipeCellActionsProviders.swift in Sources */,
+				0CB6737E21A52C3900178EB1 /* Task+Habit.swift in Sources */,
+				0CB6737F21A52C3900178EB1 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
+				0CB6738021A52C3900178EB1 /* TodayHabitCell.swift in Sources */,
+				0CB6738121A52C3900178EB1 /* NotificationsSetupSuggestionScreen.swift in Sources */,
+				0CB6738221A52C3900178EB1 /* Checkbox.swift in Sources */,
+				0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */,
+				0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */,
+				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
+				0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */,
+				0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */,
+				0CB6738821A52C3900178EB1 /* HabitsChartView.swift in Sources */,
+				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
+				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
+				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
+				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
+				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
+				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
+				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
+				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
+				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
+				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
+				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,
+				0CB6739421A52C3900178EB1 /* ExtendedChartViewController.swift in Sources */,
+				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
+				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
+				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
+				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
+				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
+				0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */,
+				0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */,
+				0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */,
+				0CB6739D21A52C3900178EB1 /* TodayViewController.swift in Sources */,
+				0CB6739E21A52C3900178EB1 /* CalendarView.swift in Sources */,
+				0CB6739F21A52C3900178EB1 /* AppDelegate+Notifications.swift in Sources */,
+				0CB673A021A52C3900178EB1 /* CardView.swift in Sources */,
+				0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */,
+				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
+				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
+				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
+				0CB673A521A52C3900178EB1 /* TodayTargetCell.swift in Sources */,
+				0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */,
+				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
+				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,
+				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
+				0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */,
+				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
+				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
+				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
+				0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */,
+				0CB673AF21A52C3900178EB1 /* TargetCreationViewController.swift in Sources */,
+				0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */,
+				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,
+				0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */,
+				0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
+				0CB673B421A52C3900178EB1 /* SprintContentViewController.swift in Sources */,
+				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
+				0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */,
+				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
+				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
+				0CB673B921A52C3900178EB1 /* TargetsEducationScreen.swift in Sources */,
+				0CB673BA21A52C3900178EB1 /* WaterLevelView.swift in Sources */,
+				0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1397,6 +1701,60 @@
 			};
 			name = Release;
 		};
+		0CB673DD21A52C3900178EB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DDCEEE426051D751ACE7EB5 /* Pods-Agile diary.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = "Agile diary copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET";
+				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0CB673DE21A52C3900178EB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E256C1325C11FF95CF72180 /* Pods-Agile diary.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = "Agile diary copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;
+				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		0CE883D42150F6EC00637BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */;
@@ -1470,6 +1828,15 @@
 			buildConfigurations = (
 				0C14D485211C55DA004C0559 /* Debug */,
 				0C14D486211C55DA004C0559 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CB673DC21A52C3900178EB1 /* Build configuration list for PBXNativeTarget "Agile diary debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CB673DD21A52C3900178EB1 /* Debug */,
+				0CB673DE21A52C3900178EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -264,6 +264,14 @@ public enum DayUnit: String {
         }
     }
     
+    public var weekday: Int {
+        let weekday = ((number + 1) + (2 - Calendar.current.firstWeekday)) % 7
+        if weekday <= 0 {
+            return 7
+        }
+        return weekday
+    }
+    
     public var localized: String {
         switch self {
         case .monday: return "monday".localized

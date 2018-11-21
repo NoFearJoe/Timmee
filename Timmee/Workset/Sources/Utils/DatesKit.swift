@@ -25,8 +25,7 @@ public extension Date {
     }
     
     public var weekday: Int {
-        return Foundation.Calendar.current.component(.weekday, from: self)
-//        return Foundation.Calendar.current.ordinality(of: .weekday, in: .weekOfYear, for: self) ?? 1
+        return Foundation.Calendar.current.ordinality(of: .weekday, in: .weekOfYear, for: self) ?? 1
     }
     
     public var dayOfMonth: Int {
