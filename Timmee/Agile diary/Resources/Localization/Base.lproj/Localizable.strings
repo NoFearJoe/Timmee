@@ -261,3 +261,5 @@
 "notifications_are_disabled" = "Notifications disabled";
 
 "sprint_notification_message" = "It's time to make records in the diary";
+
+"sprint_notifications" = "Reminder";

@@ -321,11 +321,12 @@ private extension SprintCreationViewController {
             resultStirng.append(NSAttributedString(string: ", " + "reminder".localized.lowercased() + " ",
                                                    attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor]))
             let repeating = RepeatMask(type: .on(.custom(Set(days))))
-            resultStirng.append(NSAttributedString(string: repeating.localized,
+            resultStirng.append(NSAttributedString(string: repeating.localized.lowercased(),
                                                    attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
             resultStirng.append(NSAttributedString(string: " " + "at".localized + " ",
                                                    attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor]))
-            resultStirng.append(NSAttributedString(string: "\(time.0):\(time.1)",
+            let minutesString = time.1 < 10 ? "0\(time.1)" : "\(time.1)"
+            resultStirng.append(NSAttributedString(string: "\(time.0):" + minutesString,
                                                    attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         } else {
             resultStirng.append(NSAttributedString(string: ", " + "notifications_are_disabled".localized.lowercased(),

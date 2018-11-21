@@ -366,7 +366,6 @@
 		0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
 		0CB673DF21A52C3900178EB1 /* Agile diary debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CB673E021A52C3900178EB1 /* Agile diary copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Agile diary copy-Info.plist"; path = "/Users/i.kharabet/Documents/GitHub/Timmee/Timmee/Agile diary copy-Info.plist"; sourceTree = "<absolute>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -464,7 +463,6 @@
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
 				422F11A515C6CEDFA0FD93B5 /* Pods */,
-				0CB673E021A52C3900178EB1 /* Agile diary copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

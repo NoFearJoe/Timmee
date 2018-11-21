@@ -43,6 +43,16 @@ final class SprintNotificationTimePicker: UIViewController {
         updateSprintNotificationsDays()
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.title = "sprint_notifications".localized
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.title = "sprint_notifications".localized
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         enableNotificationLabel.text = "reminder".localized
@@ -125,6 +135,7 @@ extension SprintNotificationTimePicker: EditorInput {
 private extension SprintNotificationTimePicker {
     
     func updateUIForNotificationsEnabledState(_ isEnabled: Bool) {
+        enableNotificationCheckbox.isChecked = isEnabled
         notificationTimePickerContainer.isUserInteractionEnabled = isEnabled
         notificationTimePickerContainer.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
         notificationsDaysButtons.forEach {
