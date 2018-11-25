@@ -69,12 +69,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 private extension AppDelegate {
     
-    func handleHabitAction(withIdentifier identifier: String, habitID: String, fireDate: Date?, completion: @escaping () -> Void) {
-        if let action = NotificationAction(rawValue: identifier) {
+    func handleHabitAction(withIdentifier identifier: String, habitID: String, fireDate: Date, completion: @escaping () -> Void) {
+        if let action = NotificationAction(rawValue: identifier), fireDate.isWithinSameDay(of: .now) {
             switch action {
             case .done:
                 guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: habitID) else { completion(); return }
-                let doneDate = fireDate?.startOfDay ?? Date.now.startOfDay
+                let doneDate = fireDate.startOfDay
                 guard !habit.doneDates.contains(doneDate) else { completion(); return }
                 habit.doneDates.append(doneDate)
                 ServicesAssembly.shared.habitsService.updateHabit(habit) { _ in
@@ -90,7 +90,7 @@ private extension AppDelegate {
     }
     
     func handleWaterControlAction(withIdentifier identifier: String, fireDate: Date, completion: @escaping () -> Void) {
-        if let action = NotificationAction(rawValue: identifier) {
+        if let action = NotificationAction(rawValue: identifier), fireDate.isWithinSameDay(of: .now) {
             switch action {
             case let .drunkWater(milliliters):
                 guard let waterControl = ServicesAssembly.shared.waterControlService.fetchWaterControl() else { completion(); return }
