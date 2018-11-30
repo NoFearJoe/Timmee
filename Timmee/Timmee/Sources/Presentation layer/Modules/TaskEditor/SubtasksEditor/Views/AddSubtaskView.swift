@@ -20,7 +20,7 @@ final class AddSubtaskView: UIView {
             titleField.delegate = self
             titleField.textColor = AppTheme.current.tintColor
             titleField.attributedPlaceholder = NSAttributedString(string: "add_subtask".localized,
-                                                                  attributes: [NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: AppTheme.current.secondaryTintColor])
         }
     }
     

@@ -7,9 +7,6 @@
 //
 
 import struct Foundation.Date
-import class UIKit.UIApplication
-import class UIKit.UILocalNotification
-import class UIKit.UIUserNotificationSettings
 import class UserNotifications.UNNotification
 import class UserNotifications.UNNotificationResponse
 import class UserNotifications.UNUserNotificationCenter
@@ -17,74 +14,6 @@ import struct UserNotifications.UNNotificationPresentationOptions
 import protocol UserNotifications.UNUserNotificationCenterDelegate
 import var UserNotifications.UNNotificationDefaultActionIdentifier
 
-extension AppDelegate {
-    
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        if notification.category == NotificationCategories.task.rawValue {
-            if let taskID = notification.userInfo?["task_id"] as? String {
-                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
-            }
-            
-            if let endDate = notification.userInfo?["end_date"] as? Date {
-                if endDate <= Date() {
-                    application.cancelLocalNotification(notification)
-                }
-            }
-        }
-    }
-
-    func application(_ application: UIApplication,
-                     handleActionWithIdentifier identifier: String?,
-                     for notification: UILocalNotification,
-                     withResponseInfo responseInfo: [AnyHashable : Any],
-                     completionHandler: @escaping () -> Void) {
-        guard let identifier = identifier else {
-            completionHandler()
-            return
-        }
-        
-        if notification.category == NotificationCategories.task.rawValue {
-            guard let taskID = notification.userInfo?["task_id"] as? String else {
-                completionHandler()
-                return
-            }
-            
-            handleTaskAction(withIdentifier: identifier,
-                             taskID: taskID,
-                             fireDate: notification.fireDate,
-                             completion: completionHandler)
-        } else {
-            completionHandler()
-        }
-    }
-
-    func application(_ application: UIApplication,
-                     handleActionWithIdentifier identifier: String?,
-                     for notification: UILocalNotification,
-                     completionHandler: @escaping () -> Void) {
-        guard let identifier = identifier else {
-            completionHandler()
-            return
-        }
-        
-        if notification.category == NotificationCategories.task.rawValue {
-            guard let taskID = notification.userInfo?["task_id"] as? String else {
-                completionHandler()
-                return
-            }
-            
-            handleTaskAction(withIdentifier: identifier,
-                             taskID: taskID,
-                             fireDate: notification.fireDate,
-                             completion: completionHandler)
-        } else {
-            completionHandler()
-        }
-    }
-
-}
-
-@available(iOS 10.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,

@@ -12,13 +12,13 @@ import struct UIKit.NSAttributedStringKey
 public extension String {
     
     public var asPlaceholder: NSAttributedString {
-        let attributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.backgroundTintColor.withAlphaComponent(0.5)]
+        let attributes = [NSAttributedString.Key.foregroundColor: AppTheme.current.backgroundTintColor.withAlphaComponent(0.5)]
         return NSAttributedString(string: self,
                                   attributes: attributes)
     }
     
     public var asForegroundPlaceholder: NSAttributedString {
-        let attributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor]
+        let attributes = [NSAttributedString.Key.foregroundColor: AppTheme.current.secondaryTintColor]
         return NSAttributedString(string: self,
                                   attributes: attributes)
     }

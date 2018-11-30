@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C0816C7208F2E32008F2645 /* TransitionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0816C6208F2E32008F2645 /* TransitionHandlers.swift */; };
 		0C0816C9208F3ACD008F2645 /* Lists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C0816C8208F3ACD008F2645 /* Lists.storyboard */; };
 		0C0816CB208F4039008F2645 /* MainViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0816CA208F4039008F2645 /* MainViewController+State.swift */; };
 		0C14D43B211C1EF9004C0559 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D43A211C1EF9004C0559 /* UIComponents.framework */; };
-		0C14D43F211C1F1C004C0559 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D43A211C1EF9004C0559 /* UIComponents.framework */; };
 		0C14D440211C1F1C004C0559 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D43A211C1EF9004C0559 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C14D446211C1F71004C0559 /* TaskAttachmentsParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D442211C1F70004C0559 /* TaskAttachmentsParameterView.swift */; };
 		0C14D447211C1F71004C0559 /* TaskTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D443211C1F71004C0559 /* TaskTagsView.swift */; };
@@ -30,6 +28,8 @@
 		0C14D462211C23C3004C0559 /* PlaceholderView+appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D461211C23C3004C0559 /* PlaceholderView+appearance.swift */; };
 		0C14D4DF21218266004C0559 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DE21218266004C0559 /* UserProperties.swift */; };
 		0C1E25E21FC2F0430060E673 /* TaskDueTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */; };
+		0C3B801121AD1212003F5394 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3B801021AD1212003F5394 /* NotificationsKit.framework */; };
+		0C3B801321AD1286003F5394 /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3B801021AD1212003F5394 /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */; };
 		0C5D847D1FF61C8C0019BEB2 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */; };
 		0C5DBF4C20F8A71A00D3228E /* TableListRepresentationBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */; };
@@ -56,7 +56,6 @@
 		0C8738D11FB9747700EA1571 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738A91FB971D800EA1571 /* NumberPicker.swift */; };
 		0C8738D21FB9747700EA1571 /* TaskDueDateTimeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AA1FB971D800EA1571 /* TaskDueDateTimeEditor.swift */; };
 		0C8738D31FB9747700EA1571 /* TaskLocationEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AC1FB971D800EA1571 /* TaskLocationEditor.swift */; };
-		0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */; };
 		0C8738D51FB9747700EA1571 /* TaskParameterEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738AF1FB971D800EA1571 /* TaskParameterEditorContainer.swift */; };
 		0C8738D61FB9747700EA1571 /* TaskReminderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738B11FB971D800EA1571 /* TaskReminderEditor.swift */; };
 		0C8738D71FB9747700EA1571 /* TaskIntervalRepeatingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738B31FB971D800EA1571 /* TaskIntervalRepeatingPicker.swift */; };
@@ -112,7 +111,6 @@
 		960D03522035ED9D00321BC3 /* ListEditorTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */; };
 		96115F2A1F6B0C780050D7A3 /* StoryboardsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F291F6B0C780050D7A3 /* StoryboardsFactory.swift */; };
 		96115F2C1F6B0D700050D7A3 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */; };
-		96115F2E1F6D3D6D0050D7A3 /* PresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F2D1F6D3D6D0050D7A3 /* PresentTransition.swift */; };
 		96115F531F6EEE650050D7A3 /* TaskParameterEditors.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */; };
 		9615F429203033B500D9625C /* ListIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F428203033B500D9625C /* ListIconsView.swift */; };
 		963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */; };
@@ -189,6 +187,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0C3B801321AD1286003F5394 /* NotificationsKit.framework in Embed Frameworks */,
 				9606627D20A3575D00B23EDF /* TasksKit.framework in Embed Frameworks */,
 				0C14D440211C1F1C004C0559 /* UIComponents.framework in Embed Frameworks */,
 				0C9B243F207E377F009EF6DE /* Workset.framework in Embed Frameworks */,
@@ -199,7 +198,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0C0816C6208F2E32008F2645 /* TransitionHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionHandlers.swift; sourceTree = "<group>"; };
 		0C0816C8208F3ACD008F2645 /* Lists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Lists.storyboard; sourceTree = "<group>"; };
 		0C0816CA208F4039008F2645 /* MainViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+State.swift"; sourceTree = "<group>"; };
 		0C14D43A211C1EF9004C0559 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +218,8 @@
 		0C14D461211C23C3004C0559 /* PlaceholderView+appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaceholderView+appearance.swift"; sourceTree = "<group>"; };
 		0C14D4DE21218266004C0559 /* UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
 		0C1E25E11FC2F0430060E673 /* TaskDueTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueTimePicker.swift; sourceTree = "<group>"; };
+		0C3B801021AD1212003F5394 /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C3B801421AD1CD4003F5394 /* Timmee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timmee.entitlements; sourceTree = "<group>"; };
 		0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationBaseCell.swift; sourceTree = "<group>"; };
@@ -238,7 +238,6 @@
 		0C8738A91FB971D800EA1571 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		0C8738AA1FB971D800EA1571 /* TaskDueDateTimeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDueDateTimeEditor.swift; sourceTree = "<group>"; };
 		0C8738AC1FB971D800EA1571 /* TaskLocationEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskLocationEditor.swift; sourceTree = "<group>"; };
-		0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeBackgroundModalTransition.swift; sourceTree = "<group>"; };
 		0C8738AF1FB971D800EA1571 /* TaskParameterEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskParameterEditorContainer.swift; sourceTree = "<group>"; };
 		0C8738B11FB971D800EA1571 /* TaskReminderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskReminderEditor.swift; sourceTree = "<group>"; };
 		0C8738B31FB971D800EA1571 /* TaskIntervalRepeatingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntervalRepeatingPicker.swift; sourceTree = "<group>"; };
@@ -303,7 +302,6 @@
 		960D03512035ED9D00321BC3 /* ListEditorTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEditorTextFieldController.swift; sourceTree = "<group>"; };
 		96115F291F6B0C780050D7A3 /* StoryboardsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsFactory.swift; sourceTree = "<group>"; };
 		96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
-		96115F2D1F6D3D6D0050D7A3 /* PresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTransition.swift; sourceTree = "<group>"; };
 		96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskParameterEditors.storyboard; sourceTree = "<group>"; };
 		9615F428203033B500D9625C /* ListIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconsView.swift; sourceTree = "<group>"; };
 		963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationInput.swift; sourceTree = "<group>"; };
@@ -376,11 +374,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3B801121AD1212003F5394 /* NotificationsKit.framework in Frameworks */,
 				0C14D43B211C1EF9004C0559 /* UIComponents.framework in Frameworks */,
 				0C9B243E207E377F009EF6DE /* Workset.framework in Frameworks */,
 				9606627C20A3575D00B23EDF /* TasksKit.framework in Frameworks */,
 				38176EB50AB3D8C8B188E64F /* Pods_Timmee.framework in Frameworks */,
-				0C14D43F211C1F1C004C0559 /* UIComponents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +540,6 @@
 			isa = PBXGroup;
 			children = (
 				0C8738AF1FB971D800EA1571 /* TaskParameterEditorContainer.swift */,
-				0C8738AE1FB971D800EA1571 /* FadeBackgroundModalTransition.swift */,
 			);
 			path = TaskParameterEditorContainer;
 			sourceTree = "<group>";
@@ -667,7 +664,6 @@
 			isa = PBXGroup;
 			children = (
 				0C9B2414207B4440009EF6DE /* OperatorDefinitions.swift */,
-				0C0816C6208F2E32008F2645 /* TransitionHandlers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1191,7 +1187,6 @@
 			children = (
 				9615F4272030338500D9625C /* Submodules */,
 				96BE0A2F1F63C3A50041FBEA /* ListEditorView.swift */,
-				96115F2D1F6D3D6D0050D7A3 /* PresentTransition.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1219,6 +1214,7 @@
 		96E543391F49EBB20081C6F0 /* Timmee */ = {
 			isa = PBXGroup;
 			children = (
+				0C3B801421AD1CD4003F5394 /* Timmee.entitlements */,
 				96E5436A1F49ED890081C6F0 /* Sources */,
 				96E5435D1F49ED890081C6F0 /* Resources */,
 				0C9B2412207B440E009EF6DE /* BridgingHeader.h */,
@@ -1368,6 +1364,7 @@
 		A0CA419F3C43D8434E707942 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C3B801021AD1212003F5394 /* NotificationsKit.framework */,
 				0C14D43A211C1EF9004C0559 /* UIComponents.framework */,
 				0C9B243A207E3759009EF6DE /* TasksKit.framework */,
 				0C9B2438207E3724009EF6DE /* Workset.framework */,
@@ -1434,7 +1431,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Mesterra;
 				TargetAttributes = {
 					96E543361F49EBB20081C6F0 = {
@@ -1442,6 +1439,11 @@
 						DevelopmentTeam = 485UNLA592;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					96E5434D1F49EBB20081C6F0 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1600,7 +1602,6 @@
 				0CC7C8582008C7F1006758C1 /* InitialScreenPresenter.swift in Sources */,
 				96594E4E200A6FC200998133 /* FeaturesEducationScreen.swift in Sources */,
 				0C5DBF4C20F8A71A00D3228E /* TableListRepresentationBaseCell.swift in Sources */,
-				0C8738D41FB9747700EA1571 /* FadeBackgroundModalTransition.swift in Sources */,
 				0CA9EE7B202AEA2E00C24003 /* SmartListsPickerState.swift in Sources */,
 				0C9B240E2077BA48009EF6DE /* String+Placeholder.swift in Sources */,
 				0C9B244D207F4719009EF6DE /* TableListRepresentationAdapter.swift in Sources */,
@@ -1627,7 +1628,6 @@
 				0C14D458211C20DC004C0559 /* GroupEditingActionsView.swift in Sources */,
 				0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */,
 				0CC5923F20AB1C3C00211653 /* ProVersionPurchase.swift in Sources */,
-				96115F2E1F6D3D6D0050D7A3 /* PresentTransition.swift in Sources */,
 				9674D911208E76950085F279 /* EditingModeController.swift in Sources */,
 				963D6A411F59ECBD0063E295 /* ListRepresentation.swift in Sources */,
 				0C14D446211C1F71004C0559 /* TaskAttachmentsParameterView.swift in Sources */,
@@ -1654,7 +1654,6 @@
 				0C8738D51FB9747700EA1571 /* TaskParameterEditorContainer.swift in Sources */,
 				0C74D81B1FEAA31300CDA0BE /* PhotoPreviewViewController.swift in Sources */,
 				0C9B24792080BD84009EF6DE /* MainRouter.swift in Sources */,
-				0C0816C7208F2E32008F2645 /* TransitionHandlers.swift in Sources */,
 				965798D61F91340100F65019 /* PinAuthenticationViewController.swift in Sources */,
 				0CA9EE76202AD97200C24003 /* SmartListPickerView.swift in Sources */,
 				0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */,
@@ -1866,10 +1865,11 @@
 			baseConfigurationReference = 9411A2F120085851CC822876 /* Pods-Timmee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Timmee/Timmee.entitlements;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = "$(SRCROOT)/Timmee/Resources/Plists/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1885,9 +1885,10 @@
 			baseConfigurationReference = 31B7E1C2C5BD3C6C7846E986 /* Pods-Timmee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Timmee/Timmee.entitlements;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = "$(SRCROOT)/Timmee/Resources/Plists/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";

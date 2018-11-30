@@ -141,7 +141,7 @@
         <memberEntity name="SprintEntity"/>
         <memberEntity name="SubtaskEntity"/>
     </configuration>
-    <configuration name="Memori">
+    <configuration name="Scope">
         <memberEntity name="ListEntity"/>
         <memberEntity name="SmartListEntity"/>
         <memberEntity name="SubtaskEntity"/>

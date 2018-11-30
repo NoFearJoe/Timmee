@@ -217,10 +217,10 @@ private extension TaskParameterEditorContainer {
     func setupEditor(for type: TaskParameterEditorType) {
         guard let viewController = output?.editorViewController(forType: type) else { return }
         
-        addChildViewController(viewController)
+        addChild(viewController)
         editorContainer.addSubview(viewController.view)
         viewController.view.allEdges().toSuperview()
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         if let editorInput = viewController as? TaskParameterEditorInput {
             editorInput.container = self
@@ -241,7 +241,7 @@ private extension TaskParameterEditorContainer {
     }
     
     func pushViewController(_ viewController: UIViewController, completion: @escaping (UIViewController) -> Void) {
-        addChildViewController(viewController)
+        addChild(viewController)
         
         let offset = editorContainer.bounds.width
         if let editorInput = viewController as? TaskParameterEditorInput {
@@ -268,7 +268,7 @@ private extension TaskParameterEditorContainer {
                             self.view.layoutIfNeeded()
             }, completion: { _ in
                 fromView.removeFromSuperview()
-                viewController.didMove(toParentViewController: self)
+                viewController.didMove(toParent: self)
                 self.viewControllers.append(viewController)
             })
         }
@@ -300,7 +300,7 @@ private extension TaskParameterEditorContainer {
         }, completion: { _ in
             toView.view.allEdges().toSuperview()
             fromView.view.removeFromSuperview()
-            fromView.removeFromParentViewController()
+            fromView.removeFromParent()
             self.viewControllers.remove(object: fromView)
         })
     }

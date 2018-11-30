@@ -46,7 +46,7 @@ final class SubtasksEditor: UIViewController {
         }
         
         tableView.estimatedRowHeight = 36
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.longPressReorderDelegate = self
         
         subtaskCellActionsProvider.onDelete = { [weak self] indexPath in

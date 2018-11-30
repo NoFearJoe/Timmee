@@ -158,7 +158,7 @@ extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1, !ProVersionPurchase.shared.isPurchased(), indexPath.row == 1, areProVersionFeaturesShown {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         return 52
     }
@@ -342,7 +342,7 @@ fileprivate extension SettingsViewController {
         let rateAction = {
             if let url = URL(string: "itms-apps://itunes.apple.com/app/id1330119990") {
                 if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }
             UserProperty.isAppRated.setBool(true)
@@ -435,9 +435,9 @@ fileprivate extension SettingsViewController {
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.barTintColor = AppTheme.current.backgroundColor
         navigationController?.navigationBar.tintColor = AppTheme.current.backgroundTintColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.backgroundTintColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppTheme.current.backgroundTintColor]
         if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.backgroundTintColor]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: AppTheme.current.backgroundTintColor]
         }
         
         view.backgroundColor = AppTheme.current.middlegroundColor

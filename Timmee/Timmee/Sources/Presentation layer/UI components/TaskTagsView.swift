@@ -105,7 +105,7 @@ extension TaskTagsView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let tag = sortedTags.item(at: indexPath.row) {
             let width = (tag.title as NSString).size(withAttributes: [
-                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
             ]).width
             return CGSize(width: width + 10, height: 24)
         }

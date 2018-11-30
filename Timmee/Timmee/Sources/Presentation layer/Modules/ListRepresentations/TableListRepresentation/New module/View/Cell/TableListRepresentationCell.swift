@@ -138,14 +138,14 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
         fadeIn.fromValue = AppTheme.current.foregroundColor.cgColor
         fadeIn.toValue = AppTheme.current.yellowColor.withAlphaComponent(0.5).cgColor
         fadeIn.duration = 0.1
-        fadeIn.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        fadeIn.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         
         let fadeOut = CABasicAnimation(keyPath: "backgroundColor")
         fadeOut.fromValue = AppTheme.current.yellowColor.withAlphaComponent(0.5).cgColor
         fadeOut.toValue = AppTheme.current.foregroundColor.cgColor
         fadeOut.duration = 3
         fadeOut.beginTime = CACurrentMediaTime() + 0.1
-        fadeOut.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        fadeOut.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         
         let layerForAnimation = CALayer()
         layerForAnimation.name = "layerForAnimation"

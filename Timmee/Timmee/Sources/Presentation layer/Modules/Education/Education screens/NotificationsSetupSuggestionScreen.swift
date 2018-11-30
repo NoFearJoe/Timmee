@@ -17,8 +17,9 @@ final class NotificationsSetupSuggestionScreen: UIViewController {
     @IBOutlet private var skipButton: UIButton!
     
     @IBAction func continueEducation() {
-        output.didAskToContinueEducation(screen: .notificationsSetupSuggestion)
-        NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
+        NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { _ in
+            self.output.didAskToContinueEducation(screen: .notificationsSetupSuggestion)
+        }
     }
     
     @IBAction func skipEducation() {

@@ -21,7 +21,9 @@ public final class FilesService {
                                                          appropriateFor: nil,
                                                          create: true)
         
-        static let shared = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.agilediary")
+        static func shared(group: String) -> URL? {
+            return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: group)
+        }
     }
     
     public init() {}

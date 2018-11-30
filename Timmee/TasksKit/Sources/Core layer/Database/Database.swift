@@ -98,7 +98,11 @@ extension CoreDataStorage {
     
     func deleteStorage() {
         do {
-            try coordinator.destroyPersistentStore(at: sharedStoreURL, ofType: NSSQLiteStoreType, options: nil)
+            if let group = self.sharedGroup, let sharedStoreURL = self.sharedStoreURL(group: group) {
+                try coordinator.destroyPersistentStore(at: sharedStoreURL, ofType: NSSQLiteStoreType, options: nil)
+            } else {
+                try coordinator.destroyPersistentStore(at: self.storeURL, ofType: NSSQLiteStoreType, options: nil)
+            }
         } catch {
             print(error)
         }
@@ -116,12 +120,16 @@ private extension CoreDataStorage {
         return DatabaseConfiguration.shared.properties["database_configuration"] as? String
     }
     
+    var sharedGroup: String? {
+        return DatabaseConfiguration.shared.properties["database_shared_group"] as? String
+    }
+    
     var storeURL: URL {
         return FilesService.URLs.documents!.appendingPathComponent(storeName)
     }
     
-    var sharedStoreURL: URL {
-        return FilesService.URLs.shared!.appendingPathComponent(storeName)
+    func sharedStoreURL(group: String) -> URL? {
+        return FilesService.URLs.shared(group: group)?.appendingPathComponent(storeName)
     }
     
     var model: NSManagedObjectModel {
@@ -130,22 +138,27 @@ private extension CoreDataStorage {
     
     var coordinator: NSPersistentStoreCoordinator {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-//        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-//                                            configurationName: nil,
-//                                            at: self.storeURL,
-//                                            options: [
-//                                                NSMigratePersistentStoresAutomaticallyOption: true,
-//                                                NSInferMappingModelAutomaticallyOption: true,
-//                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
-//                                            ])
-        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                            configurationName: self.storeConfiguration,
-                                            at: self.sharedStoreURL,
-                                            options: [
-                                                NSMigratePersistentStoresAutomaticallyOption: true,
-                                                NSInferMappingModelAutomaticallyOption: true,
-                                                NSSQLitePragmasOption: ["journal_mode": "DELETE"]
-            ])
+        if let group = self.sharedGroup, let sharedStoreURL = self.sharedStoreURL(group: group) {
+            if let oldPersistentStore = coordinator.persistentStore(for: self.storeURL) {
+                _ = try? coordinator.migratePersistentStore(oldPersistentStore,
+                                                            to: sharedStoreURL,
+                                                            options: nil,
+                                                            withType: NSSQLiteStoreType)
+            }
+            _ = try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                                    configurationName: self.storeConfiguration,
+                                                    at: sharedStoreURL,
+                                                    options: [NSMigratePersistentStoresAutomaticallyOption: true,
+                                                              NSInferMappingModelAutomaticallyOption: true,
+                                                              NSSQLitePragmasOption: ["journal_mode": "DELETE"]])
+        } else {
+            _ = try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                                    configurationName: self.storeConfiguration,
+                                                    at: self.storeURL,
+                                                    options: [NSMigratePersistentStoresAutomaticallyOption: true,
+                                                              NSInferMappingModelAutomaticallyOption: true,
+                                                              NSSQLitePragmasOption: ["journal_mode": "DELETE"]])
+        }
         return coordinator
     }
     

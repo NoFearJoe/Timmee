@@ -168,8 +168,8 @@ extension TaskPhotoAttachmentsPicker: UIImagePickerControllerDelegate, UINavigat
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let photo = info[.originalImage] as? UIImage {
             DispatchQueue.global().async {
                 UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil)
             }

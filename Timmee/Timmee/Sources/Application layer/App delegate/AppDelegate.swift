@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    private func application(_ application: UIApplication,
+                             didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         
         Trackers.registerAppLaunchTracker()
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppearanceConfigurator.setupAppearance()
         
-        NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
+        NotificationsConfigurator.updateNotificationCategoriesIfPossible()
         
         if let window = self.window {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)

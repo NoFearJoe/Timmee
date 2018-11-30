@@ -123,10 +123,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             guard let `self` = self else { return }
             DispatchQueue.main.async {
                 self.attachmentsToRemove.forEach { FilesService().removeFileFromDocuments(withName: $0) }
-                NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared)
-                self.interactor.scheduleTask(self.task)
-                if self.isNewTask {
-                    self.output?.taskCreated()
+                NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
+                    if isAuthorized { self.interactor.scheduleTask(self.task) }
+                    if self.isNewTask { self.output?.taskCreated() }
                 }
             }
         }, fail: nil)

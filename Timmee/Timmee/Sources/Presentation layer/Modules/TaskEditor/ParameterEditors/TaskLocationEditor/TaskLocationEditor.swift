@@ -50,7 +50,7 @@ extension TaskLocationEditor: TaskLocationEditorInput {
 
     func setLocation(_ location: CLLocation) {
         if !isLocationSet {
-            let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000)
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
             mapView.setRegion(region, animated: true)
         } else {
             var region = mapView.region

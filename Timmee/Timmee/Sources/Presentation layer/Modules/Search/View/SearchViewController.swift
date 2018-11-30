@@ -119,7 +119,7 @@ final class SearchViewController: UIViewController {
         searchTextField.tintColor = AppTheme.current.specialColor
         searchTextField.textColor = AppTheme.current.backgroundTintColor
         
-        let attributes = [NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryBackgroundTintColor]
+        let attributes = [NSAttributedString.Key.foregroundColor: AppTheme.current.secondaryBackgroundTintColor]
         searchTextField.attributedPlaceholder = NSAttributedString(string: "search".localized,
                                                                    attributes: attributes)
         
@@ -273,7 +273,7 @@ private extension SearchViewController {
     func subscribeToSearchStringChanges() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(searchStringChanged),
-                                               name: .UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: searchTextField)
     }
     

@@ -79,8 +79,8 @@ final class TaskEditorView: UIViewController {
         taskTitleField.showsVerticalScrollIndicator = false
         taskTitleField.placeholderAttributedText
             = NSAttributedString(string: "input_task_title".localized,
-                                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24),
-                                              NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
+                                 attributes: [.font: UIFont.systemFont(ofSize: 24),
+                                              .foregroundColor: AppTheme.current.secondaryTintColor])
         
         taskNoteField.textView.delegate = self
         taskNoteField.textView.textContainerInset = .zero
@@ -89,9 +89,8 @@ final class TaskEditorView: UIViewController {
         taskNoteField.showsVerticalScrollIndicator = false
         taskNoteField.placeholderAttributedText
             = NSAttributedString(string: "task_note".localized,
-                                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16,
-                                                                                     weight: UIFont.Weight.light),
-                                              NSAttributedStringKey.foregroundColor: AppTheme.current.secondaryTintColor])
+                                 attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .light),
+                                              .foregroundColor: AppTheme.current.secondaryTintColor])
         
         taskAudioNoteView.didClear = { [unowned self] in
             self.audioNoteOutput.audioNoteCleared()
@@ -574,14 +573,14 @@ fileprivate extension TaskEditorView {
     func setupTitleObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(taskTitleDidChange),
-                                               name: .UITextViewTextDidChange,
+                                               name: UITextView.textDidChangeNotification,
                                                object: taskTitleField.textView)
     }
     
     func setupNoteObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(taskNoteDidChange),
-                                               name: .UITextViewTextDidChange,
+                                               name: UITextView.textDidChangeNotification,
                                                object: taskNoteField.textView)
     }
     

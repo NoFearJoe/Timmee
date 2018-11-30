@@ -135,7 +135,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
         
         actionButtonsContainer = UIView(frame: .zero)
         contentView.addSubview(actionButtonsContainer!)
-        contentView.sendSubview(toBack: actionButtonsContainer!)
+        contentView.sendSubviewToBack(actionButtonsContainer!)
         actionButtonsContainer!.top().toSuperview()
         actionButtonsContainer!.bottom().toSuperview()
         actionButtonsContainer!.leadingToTrailing().toSuperview()
@@ -274,7 +274,7 @@ extension SwipableCollectionViewCell: UIGestureRecognizerDelegate {
         }
         if gestureRecognizer is UITapGestureRecognizer {
             return currentSwipeOffset > 0
-                && (panGestureRecognizer.state == UIGestureRecognizerState.possible || panGestureRecognizer.state == UIGestureRecognizerState.failed)
+                && (panGestureRecognizer.state == .possible || panGestureRecognizer.state == .failed)
         }
         return false
     }

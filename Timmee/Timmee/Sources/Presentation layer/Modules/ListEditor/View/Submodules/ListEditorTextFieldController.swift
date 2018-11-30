@@ -100,7 +100,7 @@ private extension ListEditorTextFieldController {
     func setupTextObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(textDidChange),
-                                               name: .UITextViewTextDidChange,
+                                               name: UITextView.textDidChangeNotification,
                                                object: nil)
     }
     

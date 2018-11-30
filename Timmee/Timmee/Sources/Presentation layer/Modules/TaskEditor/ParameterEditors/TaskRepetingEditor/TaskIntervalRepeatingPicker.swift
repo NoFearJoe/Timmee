@@ -177,7 +177,7 @@ final class TaskIntervalRepeatingPickerNumberCell: UICollectionViewCell {
         }
     }
     
-    var state: UIControlState = .normal {
+    var state: UIControl.State = .normal {
         didSet {
             numberLabel.state = state
         }

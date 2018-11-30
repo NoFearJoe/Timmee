@@ -55,42 +55,37 @@ enum NotificationAction {
 
 final class NotificationsConfigurator {
     
-    static func registerForLocalNotifications(application: UIApplication) {
-        if #available(iOS 10.0, *) {
+    static func getNotificationsPermissionStatus(completion: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                DispatchQueue.main.async {
+                    completion(settings.authorizationStatus == .authorized)
+                }
+            }
+        }
+    }
+    
+    static func registerForLocalNotifications(application: UIApplication, completion: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
             UNUserNotificationCenter.current().delegate = application.delegate as? UNUserNotificationCenterDelegate
             UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { _,_  in }
-        } else {
-            let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound],
-                                                      categories: makeLocalNotificationsCategories())
-            application.registerUserNotificationSettings(settings)
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { isAuthorized, _ in
+                DispatchQueue.main.async {
+                    completion(isAuthorized)
+                }
+            }
         }
     }
     
-    static func updateNotificationCategoriesIfPossible(application: UIApplication) {
-        guard let settings = application.currentUserNotificationSettings, !settings.types.isEmpty else { return }
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())
-        } else {
-            let settings = UIUserNotificationSettings(types: settings.types,
-                                                      categories: makeLocalNotificationsCategories())
-            application.registerUserNotificationSettings(settings)
+    static func updateNotificationCategoriesIfPossible() {
+        DispatchQueue.main.async {
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                guard settings.authorizationStatus == .authorized else { return }
+                UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())
+            }
         }
     }
     
-    private static func makeLocalNotificationsCategories() -> Set<UIUserNotificationCategory> {
-        let taskCategory = UIMutableUserNotificationCategory()
-        taskCategory.identifier = NotificationCategories.task.rawValue
-        taskCategory.setActions([makeDoneAction(),
-                                 makeRemindLaterAction(minutes: 10),
-                                 makeRemindLaterAction(minutes: 30),
-                                 makeRemindLaterAction(minutes: 60)],
-                                for: .default)
-        
-        return Set(arrayLiteral: taskCategory)
-    }
-    
-    @available(iOS 10.0, *)
     private static func makeLocalNotificationsCategories() -> Set<UNNotificationCategory> {
         let taskCategory = UNNotificationCategory(identifier: NotificationCategories.task.rawValue,
                                                   actions: [makeDoneAction(),
@@ -103,38 +98,12 @@ final class NotificationsConfigurator {
         return Set(arrayLiteral: taskCategory)
     }
     
-    private static func makeDoneAction() -> UIUserNotificationAction {
-        let doneAction = UIMutableUserNotificationAction()
-        doneAction.identifier = NotificationAction.done.rawValue
-        doneAction.title = "complete".localized
-        doneAction.activationMode = .background
-        doneAction.behavior = .default
-        doneAction.isAuthenticationRequired = false
-        doneAction.isDestructive = false
-        
-        return doneAction
-    }
-    
-    @available(iOS 10.0, *)
     private static func makeDoneAction() -> UNNotificationAction {
         return UNNotificationAction(identifier: NotificationAction.done.rawValue,
                                     title: "complete".localized,
                                     options: [])
     }
     
-    private static func makeRemindLaterAction(minutes: Int) -> UIUserNotificationAction {
-        let remindLaterAction = UIMutableUserNotificationAction()
-        remindLaterAction.identifier = NotificationAction.remindAfter(minutes).rawValue
-        remindLaterAction.title = NotificationAction.remindAfter(minutes).rawValue.localized
-        remindLaterAction.activationMode = .background
-        remindLaterAction.behavior = .default
-        remindLaterAction.isAuthenticationRequired = false
-        remindLaterAction.isDestructive = false
-        
-        return remindLaterAction
-    }
-    
-    @available(iOS 10.0, *)
     private static func makeRemindLaterAction(minutes: Int) -> UNNotificationAction {
         return UNNotificationAction(identifier: NotificationAction.remindAfter(minutes).rawValue,
                                     title: NotificationAction.remindAfter(minutes).rawValue.localized,

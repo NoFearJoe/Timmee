@@ -109,7 +109,7 @@ private extension TaskCreationPanelViewController {
     func subscribeToTaskTitleChange() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(taskTitleDidChanged),
-                                               name: .UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: taskTitleTextField)
     }
     

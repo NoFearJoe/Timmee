@@ -41,7 +41,7 @@ private extension ListRepresentationManager {
         case .table:
             let view = ViewControllersFactory.tableListRepresentation
             
-            containerViewController.addChildViewController(view)
+            containerViewController.addChild(view)
             
             newPresentation = TableListRepresentationAssembly.assembly(with: view,
                                                                        output: listRepresentationOutput)
@@ -55,7 +55,7 @@ private extension ListRepresentationManager {
 
         guard let currentRepresentation = currentListRepresentationInput else {
             listsContainerView.addSubview(toView)
-            newPresentation.viewController.didMove(toParentViewController: containerViewController)
+            newPresentation.viewController.didMove(toParent: containerViewController)
             self.layoutRepresentationView(toView)
             currentListRepresentationInput = newPresentation
             return
@@ -72,7 +72,7 @@ private extension ListRepresentationManager {
         let completion = { (finished: Bool) in
             if finished {
                 self.currentListRepresentationInput = newPresentation
-                newPresentation.viewController.didMove(toParentViewController: self.containerViewController)
+                newPresentation.viewController.didMove(toParent: self.containerViewController)
             }
         }
         
@@ -84,7 +84,7 @@ private extension ListRepresentationManager {
                               completion: completion)
         } else {
             transition()
-            newPresentation.viewController.didMove(toParentViewController: containerViewController)
+            newPresentation.viewController.didMove(toParent: containerViewController)
             currentListRepresentationInput = newPresentation
         }
     }

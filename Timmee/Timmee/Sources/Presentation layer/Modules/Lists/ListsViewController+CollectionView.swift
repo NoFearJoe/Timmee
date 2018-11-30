@@ -56,7 +56,7 @@ extension ListsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ListsSectionView", for: indexPath) as! ListsSectionView
             
             let section = ListsCollectionViewSection(rawValue: indexPath.section)

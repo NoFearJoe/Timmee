@@ -46,7 +46,7 @@ final class PhotoPreviewCollectionLayout: UICollectionViewFlowLayout {
         guard let collectionView = collectionView else { return }
         
         let inset = collectionView.bounds.size.width / 2 - self.itemSize.width / 2
-        collectionView.contentInset = UIEdgeInsetsMake(0, inset, 0, inset)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         collectionView.contentOffset = CGPoint(x: -inset, y: 0)
     }
     
@@ -75,7 +75,7 @@ final class PhotoPreviewCollectionLayout: UICollectionViewFlowLayout {
                 continue
             }
             
-            if fabs(attributes.center.x - proposedContentOffsetCenterX) < fabs(candidateAttributes!.center.x - proposedContentOffsetCenterX) {
+            if abs(attributes.center.x - proposedContentOffsetCenterX) < abs(candidateAttributes!.center.x - proposedContentOffsetCenterX) {
                 candidateAttributes = attributes
             }
         }

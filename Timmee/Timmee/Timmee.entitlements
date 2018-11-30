@@ -2,11 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>database_shared_group</key>
-	<string>group.Scope</string>
-	<key>database_configuration</key>
-	<string>Scope</string>
-	<key>database_name</key>
-	<string>Timmee</string>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.Scope</string>
+	</array>
 </dict>
 </plist>

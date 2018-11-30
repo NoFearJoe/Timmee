@@ -245,7 +245,7 @@ fileprivate extension TaskTimeTemplateEditor {
     func addTitleObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(titleChanged),
-                                               name: NSNotification.Name.UITextFieldTextDidChange,
+                                               name: UITextField.textDidChangeNotification,
                                                object: titleTextField)
     }
     
