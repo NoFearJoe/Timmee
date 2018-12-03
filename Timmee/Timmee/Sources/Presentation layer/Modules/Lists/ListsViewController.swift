@@ -86,6 +86,7 @@ final class ListsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        collectionViewContainer.shadowRadius = 10
         collectionViewContainer.showShadow = true
         collectionViewContainer.backgroundColor = AppTheme.current.middlegroundColor
         

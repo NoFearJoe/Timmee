@@ -85,7 +85,7 @@ final class TaskEditorView: UIViewController {
         taskNoteField.textView.delegate = self
         taskNoteField.textView.textContainerInset = .zero
         taskNoteField.textView.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light)
-        taskNoteField.maxNumberOfLines = 5
+        taskNoteField.maxNumberOfLines = 20
         taskNoteField.showsVerticalScrollIndicator = false
         taskNoteField.placeholderAttributedText
             = NSAttributedString(string: "task_note".localized,

@@ -79,6 +79,10 @@ final class ListCollectionViewCell: SwipableCollectionViewCell {
         super.awakeFromNib()
         
         backgroundColor = AppTheme.current.foregroundColor
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = .zero
     }
     
 }
