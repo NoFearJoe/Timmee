@@ -39,7 +39,7 @@ final class InitialScreenPresenter {
         window.makeKeyAndVisible()
     }
     
-    private static func showSprintCreation() {
+    static func showSprintCreation() {
         guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
         let sprintCreationViewController = ViewControllersFactory.sprintCreation
         sprintCreationViewController.loadViewIfNeeded()
@@ -48,7 +48,7 @@ final class InitialScreenPresenter {
         }, completion: nil)
     }
     
-    private static func showToday() {
+    static func showToday() {
         guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
         let todayViewController = ViewControllersFactory.today
         todayViewController.loadViewIfNeeded()

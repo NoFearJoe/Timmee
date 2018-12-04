@@ -24,7 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        ServicesAssembly.shared.waterControlService.removeWaterControl(completion: nil)
         
         if let window = window {
+            #if MOCKS
+            EnMocksConfigurator.prepareMocks {
+                UserProperty.isInitialSprintCreated.setBool(true)
+                InitialScreenPresenter.showToday()
+            }
+            #else
             InitialScreenPresenter.presentInitialScreen(inWindow: window)
+            #endif
         }
         
         return true

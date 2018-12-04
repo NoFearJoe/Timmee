@@ -85,21 +85,20 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
 
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var doneButton: UIButton!
-    @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var editorContainer: UIView!
-    @IBOutlet fileprivate var editorContainerUnderlyingView: RoundedViewWithShadow!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var editorContainer: UIView!
     
-    @IBOutlet fileprivate var editorContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var editorContainerHeightConstraint: NSLayoutConstraint!
     
     weak var output: TaskParameterEditorContainerOutput?
     
-    fileprivate var type: TaskParameterEditorType!
+    private var type: TaskParameterEditorType!
     
-    fileprivate var viewControllers: [UIViewController] = []
+    private var viewControllers: [UIViewController] = []
     
     let transitionHandler = FadePresentationTransitionHandler()
     
-    @IBAction fileprivate func closeButtonPressed() {
+    @IBAction private func closeButtonPressed() {
         if viewControllers.count <= 1 {
             output?.taskParameterEditingCancelled(type: type)
             dismiss(animated: true, completion: nil)
@@ -108,7 +107,7 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
         }
     }
     
-    @IBAction fileprivate func doneButtonPressed() {
+    @IBAction private func doneButtonPressed() {
         if let currentParameterEditor = viewControllers.last as? TaskParameterEditorInput {
             currentParameterEditor.completeEditing(completion: { [unowned self] shouldDismiss in
                 if shouldDismiss {
@@ -120,7 +119,7 @@ final class TaskParameterEditorContainer: UIViewController, TaskParameterEditorO
         }
     }
     
-    @IBAction fileprivate func backgroundViewPressed() {
+    @IBAction private func backgroundViewPressed() {
         completeEditing()
     }
     

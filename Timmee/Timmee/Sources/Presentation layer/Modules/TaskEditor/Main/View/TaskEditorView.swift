@@ -124,7 +124,7 @@ final class TaskEditorView: UIViewController {
             self.showTaskParameterEditor(with: .reminder)
         }
         reminderView.didChangeFilledState = { [unowned self] isFilled in
-            self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
+//            self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
             self.repeatEndingDateView.isHidden = !(isFilled && self.repeatView.isFilled)
         }
         

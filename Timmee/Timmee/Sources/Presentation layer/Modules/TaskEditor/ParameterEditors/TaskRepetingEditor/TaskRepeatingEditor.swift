@@ -10,6 +10,7 @@ import UIKit
 
 protocol TaskRepeatingEditorInput: class {
     func setRepeatMask(_ repeatMask: RepeatMask)
+    func setRepeatMasksVisible(_ isVisible: Bool)
 }
 
 protocol TaskRepeatingEditorOutput: class {
@@ -27,7 +28,7 @@ final class TaskRepeatingEditor: UITableViewController {
     weak var transitionOutput: TaskRepeatingEditorTransitionOutput?
     weak var container: TaskParameterEditorOutput?
     
-    fileprivate var selectedMask: RepeatMask? {
+    private var selectedMask: RepeatMask? {
         didSet {
             guard let mask = selectedMask else { return }
             if let index = repeatingTemplates.index(of: mask.type), mask.value <= 1 {
@@ -51,7 +52,9 @@ final class TaskRepeatingEditor: UITableViewController {
         }
     }
     
-    fileprivate var customRepeatingMask: RepeatMask?
+    private var customRepeatingMask: RepeatMask?
+    
+    private var isRepeatMasksVisible: Bool = true
     
     let repeatingTemplates: [RepeatType] = [
         RepeatType.never,
@@ -84,6 +87,10 @@ extension TaskRepeatingEditor: TaskRepeatingEditorInput {
     func setRepeatMask(_ repeatMask: RepeatMask) {
         self.selectedMask = repeatMask
     }
+    
+    func setRepeatMasksVisible(_ isVisible: Bool) {
+        self.isRepeatMasksVisible = isVisible
+    }
 
 }
 
@@ -95,7 +102,7 @@ extension TaskRepeatingEditor {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return repeatingTemplates.count
+            return isRepeatMasksVisible ? repeatingTemplates.count : 1
         }
         return customRepeatingCases.count
     }
@@ -173,7 +180,8 @@ extension TaskRepeatingEditor: TaskWeeklyRepeatingPickerOutput {
 extension TaskRepeatingEditor: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return CGFloat(repeatingTemplates.count + customRepeatingCases.count) * TaskRepeatingEditor.rowHeight
+        let repeatMasksCount = isRepeatMasksVisible ? repeatingTemplates.count : 1
+        return CGFloat(repeatMasksCount + customRepeatingCases.count) * TaskRepeatingEditor.rowHeight
     }
     
 }

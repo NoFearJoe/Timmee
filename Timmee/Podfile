@@ -24,6 +24,18 @@ target 'Agile diary' do
   pod 'Crashlytics'
 end
 
+target 'Agile diary debug' do
+    workspace 'Agile diary.xcworkspace'
+    project 'Agile diary.xcodeproj'
+    
+    pod 'SwipeCellKit'
+    pod 'Foto'
+    pod 'Charts'
+    
+    pod 'Fabric'
+    pod 'Crashlytics'
+end
+
 target 'HabitsTodayExtension' do
     workspace 'Agile diary.xcworkspace'
     project 'Agile diary.xcodeproj'

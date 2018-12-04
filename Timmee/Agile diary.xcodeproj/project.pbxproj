@@ -216,10 +216,13 @@
 		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
 		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
+		72FBD1015AFBE50D122CB628 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
-		85986AFFD64E5AF7DD24D1CC /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
+		94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
+		963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
+		964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */; };
 		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
 		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
 		967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328921517F3C00B9201A /* SettingsViewController.swift */; };
@@ -392,11 +395,16 @@
 		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3742AF8C22939ABE55A00407 /* Pods-Agile diary debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.debug.xcconfig"; sourceTree = "<group>"; };
 		45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		4D57D6A23D0AB2DD851BFADF /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
+		6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
 		8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
+		963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
 		967C328221517DC500B9201A /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
 		967C328721517E4100B9201A /* SettingsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCells.swift; sourceTree = "<group>"; };
 		967C328921517F3C00B9201A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -426,7 +434,7 @@
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
 				8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */,
-				85986AFFD64E5AF7DD24D1CC /* Pods_Agile_diary.framework in Frameworks */,
+				72FBD1015AFBE50D122CB628 /* Pods_Agile_diary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,10 +442,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */,
 				0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */,
 				0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */,
 				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
 				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
+				94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +504,7 @@
 		0C14D487211C564A004C0559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */,
 				96BE83CB217644F400CDECAF /* NotificationsKit.framework */,
 				0C14D488211C564A004C0559 /* TasksKit.framework */,
 				0C14D48A211C564A004C0559 /* UIComponents.framework */,
@@ -501,6 +512,7 @@
 				9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */,
 				0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */,
 				F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */,
+				115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -595,6 +607,7 @@
 			children = (
 				0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */,
 				96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */,
+				964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -926,6 +939,8 @@
 				9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */,
 				8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */,
 				4D57D6A23D0AB2DD851BFADF /* Pods-Agile diary.release.xcconfig */,
+				3742AF8C22939ABE55A00407 /* Pods-Agile diary debug.debug.xcconfig */,
+				6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1008,10 +1023,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CB673DC21A52C3900178EB1 /* Build configuration list for PBXNativeTarget "Agile diary debug" */;
 			buildPhases = (
+				EC0FA1D9DB3B7900D0D6CF94 /* [CP] Check Pods Manifest.lock */,
 				0CB6736D21A52C3900178EB1 /* Sources */,
 				0CB673BC21A52C3900178EB1 /* Frameworks */,
 				0CB673C221A52C3900178EB1 /* Resources */,
 				0CB673D421A52C3900178EB1 /* Embed Frameworks */,
+				8CBD4E8B567C49F55234352F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1190,6 +1207,54 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8CBD4E8B567C49F55234352F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC0FA1D9DB3B7900D0D6CF94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agile diary debug-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F8F04FD59F4FE3586B4DBF27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1330,6 +1395,7 @@
 				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
 				0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */,
 				0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */,
+				964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */,
 				0CB6738821A52C3900178EB1 /* HabitsChartView.swift in Sources */,
 				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
 				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
@@ -1659,6 +1725,7 @@
 		};
 		0CB673DD21A52C3900178EB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3742AF8C22939ABE55A00407 /* Pods-Agile diary debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -1676,7 +1743,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET MOCKS";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1685,6 +1752,7 @@
 		};
 		0CB673DE21A52C3900178EB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -1702,7 +1770,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "MAIN_TARGET MOCKS";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

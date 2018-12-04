@@ -242,6 +242,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         
         showFormattedDueDateTime(task.dueDate)
         updateNotification()
+        updateRepeating()
         if task.dueDate != nil {
             view.setRepeat(task.repeating)
         }
@@ -254,6 +255,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         
         view.setDueDateTime(nil, isOverdue: false)
         updateNotification()
+        updateRepeating()
     }
     
     func notificationCleared() {
@@ -343,6 +345,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput) {
         input.setRepeatMask(task.repeating)
+        
+        let shouldHideRepeatMasks = task.dueDate == nil && task.timeTemplate == nil && task.notificationDate == nil
+        input.setRepeatMasksVisible(!shouldHideRepeatMasks)
     }
     
     func willPresentRepeatEndingDateEditor(_ input: TaskDueDateTimeEditorInput) {
@@ -414,6 +419,16 @@ private extension TaskEditorPresenter {
             task.notificationDate = nil
         }
         showNotification()
+    }
+    
+    func updateRepeating() {
+        if task.dueDate == nil, task.timeTemplate == nil, task.notificationDate == nil {
+            switch task.repeating.type {
+            case .never, .every: task.repeating = .init(type: .never)
+            case .on: return
+            }
+        }
+        view.setRepeat(task.repeating)
     }
     
     func decodeLocation(_ location: CLLocation?, completion: @escaping (String?) -> Void) {
