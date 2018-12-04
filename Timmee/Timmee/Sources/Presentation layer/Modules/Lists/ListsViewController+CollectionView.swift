@@ -104,7 +104,7 @@ extension ListsViewController: UICollectionViewDelegateFlowLayout {
             if indexPath.item == itemsCount - 1 && indexPath.item % 2 == 0 {
                 width = collectionView.frame.width - 16
             } else {
-                width = (collectionView.frame.width - 16) * 0.5
+                width = (collectionView.frame.width - 24) * 0.5
             }
             
             return CGSize(width: width, height: 44)
@@ -127,7 +127,7 @@ extension ListsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 4
     }
     
 }
