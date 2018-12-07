@@ -182,6 +182,8 @@
 		0CB673D621A52C3900178EB1 /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
+		0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -369,6 +371,7 @@
 		0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
 		0CB673DF21A52C3900178EB1 /* Agile diary debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -562,10 +565,11 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0CC4BB5F21BA8DE90066C213 /* Authorization */,
+				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0CB02FF42192D619006C5146 /* HabitsCollection */,
 				0C3DA4DB21525EAA00CAE635 /* Charts */,
 				967C328421517DF400B9201A /* Settings */,
-				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0CF7E51B214669520071DABD /* Today */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
 				0C14D4A62121608E004C0559 /* Education */,
@@ -858,6 +862,14 @@
 				0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		0CC4BB5F21BA8DE90066C213 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		0CDF8D802125B75A001A2F70 /* Cells */ = {
@@ -1344,6 +1356,7 @@
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
+				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */,
@@ -1437,6 +1450,7 @@
 				0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */,
 				0CB673AF21A52C3900178EB1 /* TargetCreationViewController.swift in Sources */,
 				0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */,
+				0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,
 				0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */,
 				0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
