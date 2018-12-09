@@ -11,6 +11,10 @@ import Authorization
 
 final class AuthorizationViewController: BaseViewController {
     
+    // MARK: - Dependencies
+    
+    private let authorizationService = AuthorizationService()
+    
     // MARK: - Outlets
     
     @IBOutlet private var headerView: LargeHeaderView!
@@ -28,7 +32,16 @@ final class AuthorizationViewController: BaseViewController {
     // MARK: - Actions
     
     @IBAction private func onTapToFacebookAuthorizationButton() {
-        
+        // TODO: Loading
+        authorizationService.performFacebookLogin(from: self) { [weak self] success in
+            if success {
+                self?.authorizationService.authorize(via: .facebook) { [weak self] success in
+                    // TODO
+                }
+            } else {
+                // TODO
+            }
+        }
     }
     
     @IBAction private func onTapToGoogleAuthorizationButton() {
@@ -36,7 +49,12 @@ final class AuthorizationViewController: BaseViewController {
     }
     
     @IBAction private func onTapToAuthorizationButton() {
-        
+        guard let email = emailTextField.text?.trimmed, !email.isEmpty else { return }
+        guard let password = passwordTextField.text?.trimmed, !password.isEmpty else { return }
+        // TODO: Loading
+        authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success in
+            // TODO
+        }
     }
     
     @IBAction private func onTapToCloseButton() {

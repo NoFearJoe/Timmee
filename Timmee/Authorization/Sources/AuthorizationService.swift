@@ -16,6 +16,8 @@ public enum AuthorizationType {
 
 public final class AuthorizationService {
     
+    public init() {}
+    
     public func authorize(via type: AuthorizationType, completion: @escaping (Bool) -> Void) {
         switch type {
         case let .emailAndPassword(email, password):
