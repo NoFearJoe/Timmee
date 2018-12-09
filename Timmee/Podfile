@@ -37,10 +37,20 @@ target 'Agile diary debug' do
 end
 
 target 'HabitsTodayExtension' do
+    inherit! :search_paths
+    
     workspace 'Agile diary.xcworkspace'
     project 'Agile diary.xcodeproj'
     
     pod 'SwipeCellKit'
+end
+
+target 'Authorization' do    
+    project 'Authorization.xcodeproj'
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'FBSDKLoginKit'
 end
 
 target 'UIComponents' do

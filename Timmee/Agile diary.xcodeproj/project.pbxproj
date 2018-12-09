@@ -226,6 +226,9 @@
 		963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
+		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
+		963FD80F21BD2DD7000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
+		963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */; };
 		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
 		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
@@ -264,6 +267,7 @@
 				96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */,
 				0C14D493211C564F004C0559 /* Workset.framework in Embed Frameworks */,
 				0C14D491211C564F004C0559 /* UIComponents.framework in Embed Frameworks */,
+				963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */,
 				0C14D48F211C564E004C0559 /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -410,6 +414,7 @@
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
+		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
 		967C328221517DC500B9201A /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
 		967C328721517E4100B9201A /* SettingsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCells.swift; sourceTree = "<group>"; };
@@ -435,9 +440,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */,
 				96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */,
 				0C14D492211C564F004C0559 /* Workset.framework in Frameworks */,
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
+				963FD80F21BD2DD7000817D4 /* Authorization.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
 				8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */,
 				72FBD1015AFBE50D122CB628 /* Pods_Agile_diary.framework in Frameworks */,
@@ -510,6 +517,7 @@
 		0C14D487211C564A004C0559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				963FD80D21BD2D9E000817D4 /* Authorization.framework */,
 				963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */,
 				96BE83CB217644F400CDECAF /* NotificationsKit.framework */,
 				0C14D488211C564A004C0559 /* TasksKit.framework */,
@@ -1709,6 +1717,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1737,6 +1746,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1764,6 +1774,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET MOCKS";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1791,6 +1802,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "MAIN_TARGET MOCKS";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

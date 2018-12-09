@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Authorization
 
 final class AuthorizationViewController: BaseViewController {
     
