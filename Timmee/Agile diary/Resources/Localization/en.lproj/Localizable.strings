@@ -263,3 +263,10 @@
 "sprint_notification_message" = "It's time to make records in the diary";
 
 "sprint_notifications" = "Reminder";
+
+"authorization" = "Авторизация";
+"authorize" = "Войти";
+"e-mail" = "E-mail";
+"password" = "Пароль";
+"e-mail_placeholder" = "email@email.com";
+"password_placeholder" = "Password";
