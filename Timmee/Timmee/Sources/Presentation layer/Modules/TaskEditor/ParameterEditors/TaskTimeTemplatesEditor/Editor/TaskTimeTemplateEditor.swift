@@ -218,7 +218,7 @@ extension TaskTimeTemplateEditor: TaskReminderEditorOutput {
         case let .mask(notificationMask):
             timeTemplate.notification = notificationMask
             updateNotification()
-        case .date: break
+        case .date, .time: break // TODO: Поддерживать time???
         }
     }
     

@@ -25,117 +25,86 @@ public final class TaskSchedulerService: BaseSchedulerService {
         
         let notification = task.timeTemplate?.notification ?? task.notification
         
-        if var notificationDate = task.notificationDate {
-            switch task.repeating.type {
-            case .never:
+        switch task.repeating.type {
+        case .never:
+            let fireDate: Date
+            
+            if let notificationDate = task.notificationDate {
                 if notificationDate <= Date() {
-                    if let nextDueDate = task.nextDueDate {
-                        notificationDate = nextDueDate
-                    } else {
-                        return
-                    }
+                    guard let nextDueDate = task.nextDueDate else { return }
+                    fireDate = nextDueDate
+                } else {
+                    fireDate = notificationDate
                 }
-                
-                let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                scheduleLocalNotification(withID: task.id,
-                                          title: task.title,
-                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
-                                          at: notificationDate,
-                                          repeatUnit: nil,
-                                          userInfo: userInfo)
-            case .every(let unit):
+            } else if let notificationTime = task.notificationTime, let dueDate = task.dueDate {
+                guard let notificationDate = TaskSchedulerService.makeNotificationDate(dueDate: dueDate,
+                                                                                       notificationTime: notificationTime,
+                                                                                       task: task) else { return }
+                fireDate = notificationDate
+            } else if let dueDate = task.dueDate, notification != .doNotNotify {
+                let notificationDate = dueDate - notification.minutes.asMinutes
                 if notificationDate <= Date() {
-                    if let nextDueDate = task.nextDueDate {
-                        notificationDate = nextDueDate
-                    } else {
-                        return
-                    }
+                    guard let nextDueDate = task.nextDueDate else { return }
+                    fireDate = nextDueDate - notification.minutes.asMinutes
+                } else {
+                    fireDate = notificationDate
                 }
+            } else {
+                return
+            }
+            
+            let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
+            scheduleLocalNotification(withID: task.id,
+                                      title: task.title,
+                                      message: TaskSchedulerService.makeNotificationMessage(for: task),
+                                      at: fireDate,
+                                      repeatUnit: nil,
+                                      userInfo: userInfo)
+        case .every(let unit):
+            let fireDate: Date
+            
+            // Напоминание для регулярной задачи можно сделать только если установлено время напоминания
+            
+            if let notificationTime = task.notificationTime, let dueDate = task.dueDate {
+                guard let notificationDate = TaskSchedulerService.makeNotificationDate(dueDate: dueDate,
+                                                                                       notificationTime: notificationTime,
+                                                                                       task: task) else { return }
+                fireDate = notificationDate
+            } else {
+                return
+            }
+            
+            let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
+            scheduleLocalNotification(withID: task.id,
+                                      title: task.title,
+                                      message: TaskSchedulerService.makeNotificationMessage(for: task),
+                                      at: fireDate,
+                                      repeatUnit: unit.calendarUnit,
+                                      userInfo: userInfo)
+        case .on(let unit):
+            (0..<7).forEach { day in
+                guard let notificationTime = task.notificationTime, let dueDate = task.dueDate else { return }
                 
-                let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                scheduleLocalNotification(withID: task.id,
-                                          title: task.title,
-                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
-                                          at: notificationDate,
-                                          repeatUnit: unit.calendarUnit,
-                                          userInfo: userInfo)
-            case .on(let unit):
-                (0..<7).forEach { day in
-                    let fireDate = notificationDate + day.asDays
-                    
-                    guard !(fireDate <= Date()) else { return }
-                    
-                    let dayNumber = fireDate.weekday - 1
-                    if unit.dayNumbers.contains(dayNumber) {
-                        let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                        scheduleLocalNotification(withID: task.id,
-                                                  title: task.title,
-                                                  message: TaskSchedulerService.makeNotificationMessage(for: task),
-                                                  at: fireDate,
-                                                  repeatUnit: .weekOfYear,
-                                                  userInfo: userInfo)
-                    }
+                var fireDate = dueDate + day.asDays
+                fireDate => notificationTime.0.asHours
+                fireDate => notificationTime.1.asMinutes
+                
+                if fireDate <= Date() { return }
+                
+                let dayNumber = DayUnit(weekday: fireDate.weekday).number
+                if unit.dayNumbers.contains(dayNumber) {
+                    let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
+                    scheduleLocalNotification(withID: task.id,
+                                              title: task.title,
+                                              message: TaskSchedulerService.makeNotificationMessage(for: task),
+                                              at: fireDate,
+                                              repeatUnit: .weekOfYear,
+                                              userInfo: userInfo)
                 }
             }
-        } else if let dueDate = task.dueDate, notification != .doNotNotify {
-            switch task.repeating.type {
-            case .never:
-                var fireDate = dueDate - notification.minutes.asMinutes
-                
-                if fireDate <= Date() {
-                    if let nextDueDate = task.nextDueDate {
-                        fireDate = nextDueDate - notification.minutes.asMinutes
-                    } else {
-                        return
-                    }
-                }
-                
-                let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                scheduleLocalNotification(withID: task.id,
-                                          title: task.title,
-                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
-                                          at: fireDate,
-                                          repeatUnit: nil,
-                                          userInfo: userInfo)
-            case .every(let unit):
-                var fireDate = dueDate - notification.minutes.asMinutes
-                
-                if fireDate <= Date() {
-                    if let nextDueDate = task.nextDueDate {
-                        fireDate = nextDueDate - notification.minutes.asMinutes
-                    } else {
-                        return
-                    }
-                }
-                
-                let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                scheduleLocalNotification(withID: task.id,
-                                          title: task.title,
-                                          message: TaskSchedulerService.makeNotificationMessage(for: task),
-                                          at: fireDate,
-                                          repeatUnit: unit.calendarUnit,
-                                          userInfo: userInfo)
-            case .on(let unit):
-                (0..<7).forEach { day in
-                    let fireDate = dueDate + day.asDays - notification.minutes.asMinutes
-                    
-                    if fireDate <= Date() {
-                        return
-                    }
-                    
-                    let dayNumber = fireDate.weekday - 1
-                    if unit.dayNumbers.contains(dayNumber) {
-                        let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                        scheduleLocalNotification(withID: task.id,
-                                                  title: task.title,
-                                                  message: TaskSchedulerService.makeNotificationMessage(for: task),
-                                                  at: fireDate,
-                                                  repeatUnit: .weekOfYear,
-                                                  userInfo: userInfo)
-                    }
-                }
-            }
-        } else if task.shouldNotifyAtLocation {
+        }
+
+//        } else if task.shouldNotifyAtLocation {
 //            let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
 //            scheduleLocalNotification(withID: task.id,
 //                                      title: task.title,
@@ -143,7 +112,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
 //                                      at: nil,
 //                                      repeatUnit: nil,
 //                                      userInfo: userInfo)
-        }
+//        }
     }
     
     /**
@@ -200,7 +169,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
 private extension TaskSchedulerService {
     
     static func makeNotificationMessage(for task: Task) -> String {
-        if let dueDate = task.dueDate {
+        if let dueDate = task.dueDate, task.repeatKind == .single {
             return dueDate.asNearestDateString
         }
         return task.note
@@ -212,6 +181,17 @@ private extension TaskSchedulerService {
             userInfo["end_date"] = endDate
         }
         return userInfo
+    }
+    
+    static func makeNotificationDate(dueDate: Date, notificationTime: (Int, Int), task: Task) -> Date? {
+        var notificationDate = dueDate
+        notificationDate => notificationTime.0.asHours
+        notificationDate => notificationTime.1.asMinutes
+        if notificationDate <= Date() {
+            return task.getNextRepeatDate(of: notificationDate)
+        } else {
+            return notificationDate
+        }
     }
     
 }

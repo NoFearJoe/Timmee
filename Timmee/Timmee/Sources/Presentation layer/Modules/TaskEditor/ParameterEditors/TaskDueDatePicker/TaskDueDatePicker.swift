@@ -78,7 +78,7 @@ extension TaskDueDatePicker: TaskParameterEditorInput {
     
 }
 
-fileprivate extension TaskDueDatePicker {
+private extension TaskDueDatePicker {
     
     func updateClearButton() {
         container?.closeButton.isHidden = !canClear

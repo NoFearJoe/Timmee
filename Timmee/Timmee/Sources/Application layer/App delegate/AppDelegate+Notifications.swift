@@ -20,9 +20,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if notification.request.content.categoryIdentifier == NotificationCategories.task.rawValue {
-            if let taskID = notification.request.content.userInfo["task_id"] as? String {
-                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
-            }
+//            if let taskID = notification.request.content.userInfo["task_id"] as? String {
+//                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
+//            }
             
             if let endDate = notification.request.content.userInfo["end_date"] as? Date {
                 if endDate <= Date() {
@@ -83,6 +83,7 @@ private extension AppDelegate {
     
     func updateDueDateAndNotificationDate(ofTaskWithID id: String) {
         guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else { return }
+        guard task.repeatKind == .regular || task.repeating.type != .never else { return }
         task.dueDate = task.nextDueDate
         task.notificationDate = task.nextNotificationDate
         ServicesAssembly.shared.tasksService.updateTask(task, completion: { _ in })

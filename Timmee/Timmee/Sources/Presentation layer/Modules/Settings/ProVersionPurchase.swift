@@ -64,7 +64,11 @@ final class ProVersionPurchase: NSObject {
     
     
     func isPurchased() -> Bool {
+        #if DEBUG
+        return true
+        #else
         return UserDefaults.standard.bool(forKey: id)
+        #endif
     }
     
     

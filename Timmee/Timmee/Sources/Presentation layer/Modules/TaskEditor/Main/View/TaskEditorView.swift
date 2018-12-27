@@ -13,37 +13,38 @@ import class Foto.Photo
 
 final class TaskEditorView: UIViewController {
 
-    @IBOutlet fileprivate var contentContainerView: BarView!
-    @IBOutlet fileprivate var contentScrollView: UIScrollView!
-    @IBOutlet fileprivate var contentView: UIView!
+    @IBOutlet private var contentContainerView: BarView!
+    @IBOutlet private var contentScrollView: UIScrollView!
+    @IBOutlet private var contentView: UIView!
     
-    @IBOutlet fileprivate var taskTitleField: GrowingTextView!
-    @IBOutlet fileprivate var taskNoteField: GrowingTextView!
+    @IBOutlet private var taskTitleField: GrowingTextView!
+    @IBOutlet private var taskNoteField: GrowingTextView!
     
     @IBOutlet private var taskAudioNoteView: TaskComplexParameterView!
     
-    @IBOutlet fileprivate var closeButton: UIButton!
-    @IBOutlet fileprivate var doneButton: UIButton!
+    @IBOutlet private var closeButton: UIButton!
+    @IBOutlet private var doneButton: UIButton!
     
-    @IBOutlet fileprivate var timeTemplateView: TaskComplexParameterView!
-    @IBOutlet fileprivate var dueDateTimeView: TaskParameterView!
-    @IBOutlet fileprivate var reminderView: TaskParameterView!
-    @IBOutlet fileprivate var repeatView: TaskParameterView!
-    @IBOutlet fileprivate var repeatEndingDateView: TaskParameterView!
+    @IBOutlet private var repeatKindPicker: TaskRepeatKindPicker!
+    @IBOutlet private var timeTemplateView: TaskComplexParameterView!
+    @IBOutlet private var dueDateTimeView: TaskParameterView!
+    @IBOutlet private var reminderView: TaskParameterView!
+    @IBOutlet private var repeatView: TaskParameterView!
+    @IBOutlet private var repeatEndingDateView: TaskParameterView!
     
 //    @IBOutlet fileprivate var locationView: TaskParameterView!
 //    @IBOutlet fileprivate var locationReminderView: TaskCheckableParameterView!
     
-    @IBOutlet fileprivate var taskTagsView: TaskTagsView!
+    @IBOutlet private var taskTagsView: TaskTagsView!
     
-    @IBOutlet fileprivate var taskAttachmentsView: TaskAttachmentsParameterView!
+    @IBOutlet private var taskAttachmentsView: TaskAttachmentsParameterView!
     
-    @IBOutlet fileprivate var taskImportancyPicker: TaskImportancyPicker!
+    @IBOutlet private var taskImportancyPicker: TaskImportancyPicker!
     
-    @IBOutlet fileprivate var subtasksContainer: UIView!
-    @IBOutlet fileprivate var subtasksViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var subtasksContainer: UIView!
+    @IBOutlet private var subtasksViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet fileprivate var separators: [UIView]!
+    @IBOutlet private var separators: [UIView]!
     
     var output: (TaskEditorViewOutput & SubtasksEditorTaskProvider)!
     var audioNoteOutput: TaskEditorViewAudioNoteOutput!
@@ -99,6 +100,11 @@ final class TaskEditorView: UIViewController {
             self.audioNoteOutput.audioNoteTouched()
         }
         
+        repeatKindPicker.originalHeight = 48
+        repeatKindPicker.onSelectRepeatKind = { [unowned self] kind in
+            self.output.repeatKindChanged(to: kind)
+        }
+        
         timeTemplateView.didClear = { [unowned self] in
             self.output.timeTemplateCleared()
         }
@@ -110,10 +116,15 @@ final class TaskEditorView: UIViewController {
             self.output.dueDateTimeCleared()
         }
         dueDateTimeView.didTouchedUp = { [unowned self] in
-            if self.timeTemplateView.isFilled {
+            switch self.repeatKindPicker.selectedRepeatKind {
+            case .single:
+                if self.timeTemplateView.isFilled {
+                    self.showTaskParameterEditor(with: .dueDate)
+                } else {
+                    self.showTaskParameterEditor(with: .dueDateTime)
+                }
+            case .regular:
                 self.showTaskParameterEditor(with: .dueDate)
-            } else {
-                self.showTaskParameterEditor(with: .dueDateTime)
             }
         }
         
@@ -123,14 +134,8 @@ final class TaskEditorView: UIViewController {
         reminderView.didTouchedUp = { [unowned self] in
             self.showTaskParameterEditor(with: .reminder)
         }
-        reminderView.didChangeFilledState = { [unowned self] isFilled in
-//            self.repeatView.isHidden = !isFilled && !self.timeTemplateView.isFilled
-            self.repeatEndingDateView.isHidden = !(isFilled && self.repeatView.isFilled)
-        }
         
-        repeatView.didChangeFilledState = { [unowned self] isFilled in
-            self.repeatEndingDateView.isHidden = !(isFilled && self.reminderView.isFilled)
-        }
+        repeatView.canClear = false
         repeatView.didClear = { [unowned self] in
             self.output.repeatCleared()
         }
@@ -267,6 +272,33 @@ extension TaskEditorView: TaskEditorViewInput {
         taskNoteField.textView.text = note
     }
     
+    func setRepeatKind(_ kind: Task.RepeatKind) {
+        repeatKindPicker.selectedRepeatKind = kind
+        
+        switch kind {
+        case .single:
+            timeTemplateView.isHidden = false
+            dueDateTimeView.isHidden = false
+            reminderView.isHidden = false
+            repeatView.isHidden = true
+            repeatEndingDateView.isHidden = true
+            dueDateTimeView.canClear = true
+            dueDateTimeView.text = "due_date".localized
+        case .regular:
+            timeTemplateView.isHidden = true
+            dueDateTimeView.isHidden = false
+            reminderView.isHidden = false
+            repeatView.isHidden = false
+            repeatEndingDateView.isHidden = false
+            dueDateTimeView.canClear = false
+            dueDateTimeView.text = "start_date".localized
+        }
+    }
+    
+    func setRepeatKindAvailable(_ isAvailable: Bool) {
+        repeatKindPicker.isHidden = !isAvailable
+    }
+    
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
         timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
@@ -300,18 +332,15 @@ extension TaskEditorView: TaskEditorViewInput {
         case let .date(notificationDate):
             reminderView.text = notificationDate.asNearestDateString
             reminderView.isFilled = true
+        case let .time(hours, minutes):
+            let minutesString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
+            reminderView.text = "\(hours):\(minutesString)" // TODO
+            reminderView.isFilled = true
         }
     }
     
     func setRepeat(_ repeat: RepeatMask) {
-        if `repeat`.type.isNever {
-            repeatView.text = `repeat`.localized.capitalizedFirst
-        } else if case .on(let unit) = `repeat`.type, !unit.isEveryday {
-            repeatView.text = "repeat".localized.capitalizedFirst + " " + "at".localized + " " + `repeat`.localized.lowercased()
-        } else {
-            repeatView.text = "repeat".localized.capitalizedFirst + " " + `repeat`.localized.lowercased()
-        }
-        
+        repeatView.text = `repeat`.fullLocalizedString
         repeatView.isFilled = !`repeat`.type.isNever
     }
     
@@ -609,7 +638,8 @@ fileprivate extension TaskEditorView {
                                      /*locationView, locationReminderView,*/
                                      taskImportancyPicker, timeTemplateView,
                                      subtasksContainer, taskTagsView,
-                                     taskAttachmentsView, taskAudioNoteView]
+                                     taskAttachmentsView, taskAudioNoteView,
+                                     repeatKindPicker]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 
                 view.isUserInteractionEnabled = isEnabled

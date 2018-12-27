@@ -29,13 +29,6 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
         }
     }
     
-    var dueDate: Date? {
-        didSet {
-            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
-            updateDueDateView(with: dueDate?.asNearestDateString, isOverdue: isOverdue)
-        }
-    }
-    
     var subtasksInfo: (done: Int, total: Int)? {
         didSet {
             if let subtasksInfo = subtasksInfo, let oldValue = oldValue {
@@ -113,7 +106,15 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
         inProgress = task.inProgress
         
         timeTemplate = task.timeTemplate?.title
-        dueDate = task.dueDate
+        
+        switch task.repeatKind {
+        case .single:
+            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (task.dueDate != nil && !(task.dueDate! >= Date()))
+            updateDueDateView(with: task.dueDate?.asNearestDateString, isOverdue: isOverdue)
+        case .regular:
+            updateDueDateView(with: task.repeating.fullLocalizedString, isOverdue: false)
+        }
+        
         subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         
         isImportant = task.isImportant

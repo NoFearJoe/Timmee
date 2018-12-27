@@ -16,6 +16,8 @@ protocol TaskEditorViewInput: class {
     
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
+    func setRepeatKind(_ kind: Task.RepeatKind)
+    func setRepeatKindAvailable(_ isAvailable: Bool)
     func setAudioNoteState(_ state: AudioNoteState)
     func setTimeTemplate(_ timeTemplate: TimeTemplate?)
     func setDueDateTime(_ dueDate: String?, isOverdue: Bool)
@@ -39,7 +41,7 @@ protocol TaskEditorAudioNoteViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewNotificationOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
+protocol TaskEditorViewOutput: TaskEditorViewRepeatKindOutput, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewNotificationOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -64,6 +66,10 @@ protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewD
 protocol TaskEditorViewAudioNoteOutput: class {
     func audioNoteTouched()
     func audioNoteCleared()
+}
+
+protocol TaskEditorViewRepeatKindOutput: class {
+    func repeatKindChanged(to repeatKind: Task.RepeatKind)
 }
 
 protocol TaskEditorViewTimeTemplateOutput: class {

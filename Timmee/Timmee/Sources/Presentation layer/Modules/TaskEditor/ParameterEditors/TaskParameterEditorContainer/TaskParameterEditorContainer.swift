@@ -200,6 +200,15 @@ extension TaskParameterEditorContainer: TaskReminderEditorTransitionOutput {
         }
     }
     
+    func didAskToShowNotificationTimePicker(completion: @escaping (TaskDueTimePicker) -> Void) {
+        let controller = ViewControllersFactory.taskDueTimePicker
+        controller.title = "notification_time".localized
+        pushViewController(controller) { viewController in
+            guard let dueTimePicker = viewController as? TaskDueTimePicker else { return }
+            completion(dueTimePicker)
+        }
+    }
+    
 }
 
 private extension TaskParameterEditorContainer {

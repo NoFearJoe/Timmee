@@ -16,11 +16,12 @@ import class CoreLocation.CLLocation
 public class Task {
 
     public var id: String
-    public var kind: String
+    public var repeatKind: RepeatKind
     public var title: String
     public var isImportant: Bool
     public var notification: NotificationMask
     public var notificationDate: Date?
+    public var notificationTime: (Int, Int)?
     public var note: String
     public var link: String
     public var repeating: RepeatMask
@@ -43,11 +44,16 @@ public class Task {
     
     public init(task: TaskEntity) {
         id = task.id!
-        kind = task.kind ?? ""
+        repeatKind = RepeatKind(rawValue: Int(task.repeatKind)) ?? .single
         title = task.title ?? ""
         isImportant = task.isImportant
         notification = NotificationMask(mask: task.notificationMask)
         notificationDate = task.notificationDate
+        if let notificationTimeUnits = task.notificationTime?.split(separator: ":").compactMap({ Int($0) }), notificationTimeUnits.count == 2 {
+            notificationTime = (notificationTimeUnits[0], notificationTimeUnits[1])
+        } else {
+            notificationTime = nil
+        }
         note = task.note ?? ""
         link = task.link ?? ""
         repeating = RepeatMask(string: task.repeatMask ?? "")
@@ -76,11 +82,12 @@ public class Task {
     }
     
     public init(id: String,
-                kind: String,
+                repeatKind: RepeatKind,
                 title: String,
                 isImportant: Bool,
                 notification: NotificationMask,
                 notificationDate: Date?,
+                notificationTime: (Int, Int)?,
                 note: String,
                 link: String,
                 repeating: RepeatMask,
@@ -95,11 +102,12 @@ public class Task {
                 creationDate: Date,
                 doneDates: [Date]) {
         self.id = id
-        self.kind = kind
+        self.repeatKind = repeatKind
         self.title = title
         self.isImportant = isImportant
         self.notification = notification
         self.notificationDate = notificationDate
+        self.notificationTime = notificationTime
         self.note = note
         self.link = link
         self.repeating = repeating
@@ -118,11 +126,12 @@ public class Task {
    public convenience init(id: String,
                            title: String) {
         self.init(id: id,
-                  kind: "",
+                  repeatKind: .single,
                   title: title,
                   isImportant: false,
                   notification: .doNotNotify,
                   notificationDate: nil,
+                  notificationTime: nil,
                   note: "",
                   link: "",
                   repeating: .init(string: ""),
@@ -140,11 +149,12 @@ public class Task {
     
     public var copy: Task {
         let task = Task(id: id,
-                        kind: kind,
+                        repeatKind: repeatKind,
                         title: title,
                         isImportant: isImportant,
                         notification: notification,
                         notificationDate: notificationDate,
+                        notificationTime: notificationTime,
                         note: note,
                         link: link,
                         repeating: repeating,
@@ -175,7 +185,7 @@ public class Task {
         return getNextRepeatDate(of: notificationDate)
     }
     
-    private func getNextRepeatDate(of date: Date?) -> Date? {
+    public func getNextRepeatDate(of date: Date?) -> Date? {
         guard var date = date else { return nil }
         
         let now = Date()
@@ -191,7 +201,7 @@ public class Task {
                 }
             case .on(let unit):
                 let dayNumbers = unit.dayNumbers.sorted()
-                let currentDayNumber = date.weekday - 1
+                let currentDayNumber = DayUnit(weekday: date.weekday).number
                 let currentDayNumberIndex = dayNumbers.index(of: currentDayNumber) ?? 0
                 let nextDayNumberIndex = currentDayNumberIndex + 1 >= dayNumbers.count ? 0 : currentDayNumberIndex + 1
                 let nextDayNumber = dayNumbers.item(at: nextDayNumberIndex) ?? dayNumbers.item(at: 0) ?? 0
@@ -219,6 +229,14 @@ public class Task {
         isDone ? doneDates.append(date) : doneDates.remove(object: date)
     }
 
+}
+
+public extension Task {
+    
+    public enum RepeatKind: Int {
+        case single, regular
+    }
+    
 }
 
 extension Task: Hashable {

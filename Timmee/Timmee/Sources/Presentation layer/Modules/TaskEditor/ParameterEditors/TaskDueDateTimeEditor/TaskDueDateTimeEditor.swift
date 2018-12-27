@@ -9,6 +9,7 @@
 import UIKit
 
 protocol TaskDueDateTimeEditorInput: class {
+    var canClear: Bool { get set }
     func setDueDate(_ dueDate: Date?)
     func setMinimumDate(_ date: Date?)
 }
@@ -18,6 +19,10 @@ protocol TaskDueDateTimeEditorOutput: class {
 }
 
 final class TaskDueDateTimeEditor: UIViewController {
+    
+    var canClear: Bool = true {
+        didSet { updateClearButton() }
+    }
     
     weak var output: TaskDueDateTimeEditorOutput?
     weak var container: TaskParameterEditorOutput?
@@ -41,6 +46,11 @@ final class TaskDueDateTimeEditor: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dueDatePicker.setBackgroundColor(AppTheme.current.panelColor)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateClearButton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,5 +125,9 @@ private extension TaskDueDateTimeEditor {
         selectedDueDate => hours.asHours
         selectedDueDate => minutes.asMinutes
     }
-
+    
+    func updateClearButton() {
+        container?.closeButton.isHidden = !canClear
+    }
+    
 }

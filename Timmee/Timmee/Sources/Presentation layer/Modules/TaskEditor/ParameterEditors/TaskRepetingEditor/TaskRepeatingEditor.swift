@@ -9,6 +9,7 @@
 import UIKit
 
 protocol TaskRepeatingEditorInput: class {
+    var canClear: Bool { get set }
     func setRepeatMask(_ repeatMask: RepeatMask)
     func setRepeatMasksVisible(_ isVisible: Bool)
 }
@@ -23,6 +24,10 @@ protocol TaskRepeatingEditorTransitionOutput: class {
 }
 
 final class TaskRepeatingEditor: UITableViewController {
+    
+    var canClear: Bool = true {
+        didSet { updateClearButton() }
+    }
     
     weak var output: TaskRepeatingEditorOutput?
     weak var transitionOutput: TaskRepeatingEditorTransitionOutput?
@@ -57,7 +62,7 @@ final class TaskRepeatingEditor: UITableViewController {
     private var isRepeatMasksVisible: Bool = true
     
     let repeatingTemplates: [RepeatType] = [
-        RepeatType.never,
+//        RepeatType.never,
         RepeatType.every(.day),
         RepeatType.every(.week),
         RepeatType.every(.month),
@@ -78,6 +83,11 @@ final class TaskRepeatingEditor: UITableViewController {
         super.viewWillAppear(animated)
         tableView.backgroundColor = .clear
         tableView.separatorColor = AppTheme.current.panelColor
+        updateClearButton()
+    }
+    
+    private func updateClearButton() {
+        container?.closeButton.isHidden = !canClear
     }
 
 }
@@ -102,7 +112,7 @@ extension TaskRepeatingEditor {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return isRepeatMasksVisible ? repeatingTemplates.count : 1
+            return isRepeatMasksVisible ? repeatingTemplates.count : 0
         }
         return customRepeatingCases.count
     }
@@ -180,7 +190,7 @@ extension TaskRepeatingEditor: TaskWeeklyRepeatingPickerOutput {
 extension TaskRepeatingEditor: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        let repeatMasksCount = isRepeatMasksVisible ? repeatingTemplates.count : 1
+        let repeatMasksCount = isRepeatMasksVisible ? repeatingTemplates.count : 0
         return CGFloat(repeatMasksCount + customRepeatingCases.count) * TaskRepeatingEditor.rowHeight
     }
     

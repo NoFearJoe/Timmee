@@ -75,7 +75,9 @@
 "playing_audio_note_placeholder" = "Playing voice note";
 "touch_to_stop" = "Touch to stop";
 "choose_notification_date" = "Choose date";
+"choose_notification_time" = "Choose time";
 "notification_date" = "Notification date";
+"notification_time" = "Notification time";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
@@ -254,3 +256,7 @@
 "education_final_title" = "🎉";
 "education_final_text" = "Lets create your first task!";
 "education_final_continue" = "Start";
+
+"task_kind" = "Task kind";
+"single_task_kind" = "Single";
+"regular_task_kind" = "Regular";

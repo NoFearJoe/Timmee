@@ -93,7 +93,7 @@ public class Habit {
         let dayNumbers = dueDays.map { $0.number }.sorted()
 
         while date <= now {
-            let currentDayNumber = date.weekday - 1
+            let currentDayNumber = DayUnit(weekday: date.weekday).number
             let currentDayNumberIndex = dayNumbers.index(of: currentDayNumber) ?? 0
             let nextDayNumberIndex = currentDayNumberIndex + 1 >= dayNumbers.count ? 0 : currentDayNumberIndex + 1
             let nextDayNumber = dayNumbers.item(at: nextDayNumberIndex) ?? dayNumbers.item(at: 0) ?? 0

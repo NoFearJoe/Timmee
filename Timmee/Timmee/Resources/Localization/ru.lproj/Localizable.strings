@@ -75,7 +75,9 @@
 "playing_audio_note_placeholder" = "Проигрывание";
 "touch_to_stop" = "Коснитесь, чтобы остановить";
 "choose_notification_date" = "Выбрать дату";
+"choose_notification_time" = "Выбрать время";
 "notification_date" = "Дата уведомления";
+"notification_time" = "Время уведомления";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";
@@ -254,3 +256,7 @@
 "education_final_title" = "🎉";
 "education_final_text" = "Настало время для великих дел!";
 "education_final_continue" = "Вперед!";
+
+"task_kind" = "Тип задачи";
+"single_task_kind" = "Одиночная";
+"regular_task_kind" = "Регулярная";

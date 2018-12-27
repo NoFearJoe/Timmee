@@ -362,4 +362,14 @@ public struct RepeatMask {
             return unit.localized
         }
     }
+    
+    public var fullLocalizedString: String {
+        if type.isNever {
+            return localized.capitalizedFirst
+        } else if case .on(let unit) = type, !unit.isEveryday {
+            return "repeat".localized.capitalizedFirst + " " + "at".localized + " " + localized.lowercased()
+        } else {
+            return "repeat".localized.capitalizedFirst + " " + localized.lowercased()
+        }
+    }
 }

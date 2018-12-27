@@ -16,11 +16,12 @@ public extension TaskEntity {
 
     public func map(from entity: Task) {
         id = entity.id
-        kind = entity.kind
+        repeatKind = Int16(entity.repeatKind.rawValue)
         title = entity.title
         isImportant = entity.isImportant
         notificationMask = entity.notification.rawValue
         notificationDate = entity.notificationDate
+        notificationTime = entity.notificationTime.flatMap { "\($0.0):\($0.1)" }
         note = entity.note
         link = entity.link
         repeatMask = entity.repeating.string

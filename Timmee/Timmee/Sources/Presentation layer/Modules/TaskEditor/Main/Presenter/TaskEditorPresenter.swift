@@ -64,6 +64,9 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setTaskTitle(self.task.title)
         view.setTaskNote(self.task.note)
         
+        view.setRepeatKind(self.task.repeatKind)
+        view.setRepeatKindAvailable(self.isNewTask)
+        
         view.setTimeTemplate(self.task.timeTemplate)
         
         showFormattedDueDateTime(self.task.dueDate)
@@ -142,6 +145,23 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.note = taskNote
     }
     
+    func repeatKindChanged(to repeatKind: Task.RepeatKind) {
+        task.repeatKind = repeatKind
+        view.setRepeatKind(repeatKind)
+        repeatEndingDateCleared()
+        repeatCleared()
+        notificationCleared()
+        dueDateTimeCleared()
+        timeTemplateCleared()
+        if repeatKind == .regular {
+            task.dueDate = Date()
+            task.dueDate => TimeRounder.roundMinutes(task.dueDate?.minutes ?? 0).asMinutes
+            showFormattedDueDateTime(task.dueDate)
+            task.repeating = RepeatMask(type: .every(.day))
+            view.setRepeat(task.repeating)
+        }
+    }
+    
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
         task.timeTemplate = timeTemplate
         
@@ -153,14 +173,14 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         
         showFormattedDueDateTime(task.dueDate)
 
-        if timeTemplate == nil {
+        if let timeTemplate = timeTemplate {
+            view.setNotification(TaskReminderSelectedNotification.mask(timeTemplate.notification))
+            view.setRepeat(task.repeating)
+        } else {
             showNotification()
             if task.dueDate != nil {
                 view.setRepeat(task.repeating)
             }
-        } else {
-            view.setNotification(.mask(.doNotNotify))
-            view.setRepeat(task.repeating)
         }
         
         view.setTimeTemplate(timeTemplate)
@@ -180,9 +200,15 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         case let .mask(notificationMask):
             task.notification = notificationMask
             task.notificationDate = nil
+            task.notificationTime = nil
         case let .date(notificationDate):
-            task.notificationDate = notificationDate
             task.notification = .doNotNotify
+            task.notificationDate = notificationDate
+            task.notificationTime = nil
+        case let .time(hours, minutes):
+            task.notification = .doNotNotify
+            task.notificationDate = nil
+            task.notificationTime = (hours, minutes)
         }
         view.setNotification(notification)
     }
@@ -261,6 +287,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func notificationCleared() {
         task.notification = .doNotNotify
         task.notificationDate = nil
+        task.notificationTime = nil
         view.setNotification(.mask(.doNotNotify))
     }
     
@@ -329,24 +356,41 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput) {
+        input.canClear = task.repeatKind == .single
         input.setDueDate(task.dueDate)
     }
     
     func willPresentReminderEditor(_ input: TaskReminderEditorInput) {
-        if let notificationDate = task.notificationDate {
+        if let notificationTime = task.notificationTime {
+            input.setNotification(.time(notificationTime.0, notificationTime.1))
+        } else if let notificationDate = task.notificationDate {
             input.setNotification(.date(notificationDate))
         } else {
             input.setNotification(.mask(task.notification))
         }
         
-        let shouldHideNotificationMasks = task.dueDate == nil && task.timeTemplate == nil
-        input.setNotificationMasksVisible(!shouldHideNotificationMasks)
+        switch task.repeatKind {
+        case .single:
+            let shouldHideNotificationMasks = task.dueDate == nil && task.timeTemplate == nil
+            input.setNotificationMasksVisible(!shouldHideNotificationMasks)
+            input.setNotificationDatePickerVisible(true)
+            input.setNotificationTimePickerVisible(false)
+        case .regular:
+            input.setNotificationMasksVisible(false)
+            input.setNotificationDatePickerVisible(false)
+            input.setNotificationTimePickerVisible(true)
+        }
     }
     
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput) {
+        input.canClear = task.repeatKind == .single
         input.setRepeatMask(task.repeating)
         
-        let shouldHideRepeatMasks = task.dueDate == nil && task.timeTemplate == nil && task.notificationDate == nil
+        let shouldHideRepeatMasks: Bool
+        switch task.repeatKind {
+        case .single: shouldHideRepeatMasks = true
+        case .regular: shouldHideRepeatMasks = task.dueDate == nil && task.notificationDate == nil && task.notificationTime == nil
+        }
         input.setRepeatMasksVisible(!shouldHideRepeatMasks)
     }
     
@@ -388,7 +432,8 @@ private extension TaskEditorPresenter {
 
     func showFormattedDueDateTime(_ dueDate: Date?) {
         let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
-        view.setDueDateTime(dueDate?.asNearestDateString, isOverdue: isOverdue)
+        let dateString = task.repeatKind == .single ? dueDate?.asNearestDateString : dueDate?.asNearestShortDateString
+        view.setDueDateTime(dateString, isOverdue: isOverdue)
     }
     
     func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {
@@ -405,7 +450,9 @@ private extension TaskEditorPresenter {
     }
     
     func showNotification() {
-        if let notificationDate = task.notificationDate {
+        if let notificationTime = task.notificationTime {
+            view.setNotification(.time(notificationTime.0, notificationTime.1))
+        } else if let notificationDate = task.notificationDate {
             view.setNotification(.date(notificationDate))
         } else {
             view.setNotification(.mask(task.notification))
@@ -417,12 +464,13 @@ private extension TaskEditorPresenter {
         if task.dueDate == nil, task.timeTemplate == nil {
             task.notification = .doNotNotify
             task.notificationDate = nil
+            task.notificationTime = nil
         }
         showNotification()
     }
     
     func updateRepeating() {
-        if task.dueDate == nil, task.timeTemplate == nil, task.notificationDate == nil {
+        if task.dueDate == nil, task.timeTemplate == nil, task.notificationDate == nil, task.notificationTime == nil {
             switch task.repeating.type {
             case .never, .every: task.repeating = .init(type: .never)
             case .on: return
