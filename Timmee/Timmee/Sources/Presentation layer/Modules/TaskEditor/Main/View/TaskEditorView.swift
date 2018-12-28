@@ -32,6 +32,8 @@ final class TaskEditorView: UIViewController {
     @IBOutlet private var repeatView: TaskParameterView!
     @IBOutlet private var repeatEndingDateView: TaskParameterView!
     
+    @IBOutlet private var regularitySettingsContainer: UIView!
+    
 //    @IBOutlet fileprivate var locationView: TaskParameterView!
 //    @IBOutlet fileprivate var locationReminderView: TaskCheckableParameterView!
     
@@ -246,6 +248,9 @@ final class TaskEditorView: UIViewController {
             subtasksEditor.taskProvider = output
             subtasksEditor.contentScrollView = contentScrollView
             subtasksEditor.containerViewHeightConstraint = subtasksViewHeightConstraint
+        } else if segue.identifier == "RegularitySettings", let regularitySettingsInput = segue.destination as? RegularitySettingsInput {
+            regularitySettingsInput.viewOutput = self
+            self.output.didPrepareRegularitySettingsModule(regularitySettingsInput)
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -299,6 +304,7 @@ extension TaskEditorView: TaskEditorViewInput {
         repeatKindPicker.isHidden = !isAvailable
     }
     
+    // REMOVE
     func setTimeTemplate(_ timeTemplate: TimeTemplate?) {
         timeTemplateView.text = timeTemplate?.title ?? "time_template_placeholder".localized
         
@@ -317,6 +323,7 @@ extension TaskEditorView: TaskEditorViewInput {
         timeTemplateView.isFilled = timeTemplate != nil
     }
     
+    // REMOVE
     func setDueDateTime(_ dueDate: String?, isOverdue: Bool) {
         dueDateTimeView.text = dueDate ?? "due_date".localized
         dueDateTimeView.filledTitleColor = isOverdue ? AppTheme.current.redColor : AppTheme.current.tintColor
@@ -324,6 +331,7 @@ extension TaskEditorView: TaskEditorViewInput {
         dueDateTimeView.isFilled = dueDate != nil
     }
     
+    // REMOVE
     func setNotification(_ notification: TaskReminderSelectedNotification) {
         switch notification {
         case let .mask(notificationMask):
@@ -339,11 +347,13 @@ extension TaskEditorView: TaskEditorViewInput {
         }
     }
     
+    // REMOVE
     func setRepeat(_ repeat: RepeatMask) {
         repeatView.text = `repeat`.fullLocalizedString
         repeatView.isFilled = !`repeat`.type.isNever
     }
     
+    // REMOVE
     func setRepeatEndingDate(_ repeatEndingDate: String?) {
         repeatEndingDateView.text = repeatEndingDate ?? "repeat_ending_date".localized
         
@@ -471,7 +481,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output.willPresentRepeatingEditor(viewController)
             return viewController
         case .repeatEndingDate:
-            let viewController = ViewControllersFactory.taskDueDateTimeEditor
+            let viewController = ViewControllersFactory.taskDueDatePicker
             viewController.loadViewIfNeeded()
             viewController.output = repeatEndingDateEditorHandler
             output.willPresentRepeatEndingDateEditor(viewController)
@@ -523,12 +533,34 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
 
 }
 
-final class TaskDueDateTimeEditorHandler: TaskDueDateTimeEditorOutput {
+extension TaskEditorView: RegularitySettingsViewOutput {
+    
+    func regularitySettings(_ viewController: RegularitySettingsViewController,
+                            didSelectParameter parameter: RegularitySettingsViewController.Parameter) {
+        switch parameter {
+        case .timeTemplate: showTaskParameterEditor(with: .timeTemplates)
+        case .dueDateTime: showTaskParameterEditor(with: .dueDateTime)
+        case .dueDate: showTaskParameterEditor(with: .dueDate)
+        case .dueTime: showTaskParameterEditor(with: .dueTime)
+        case .startDate: showTaskParameterEditor(with: .dueDate)
+        case .endDate: showTaskParameterEditor(with: .repeatEndingDate)
+        case .notification: showTaskParameterEditor(with: .reminder)
+        case .repeating: showTaskParameterEditor(with: .repeating)
+        }
+    }
+    
+}
 
+final class TaskDueDateTimeEditorHandler: TaskDueDateTimeEditorOutput, TaskDueDatePickerOutput {
+    
     var onDateChange: ((Date) -> Void)?
     
     func didSelectDueDate(_ dueDate: Date) {
         onDateChange?(dueDate)
+    }
+    
+    func didChangeDueDate(to date: Date) {
+        onDateChange?(date)
     }
 
 }
@@ -639,7 +671,7 @@ fileprivate extension TaskEditorView {
                                      taskImportancyPicker, timeTemplateView,
                                      subtasksContainer, taskTagsView,
                                      taskAttachmentsView, taskAudioNoteView,
-                                     repeatKindPicker]
+                                     repeatKindPicker, regularitySettingsContainer]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 
                 view.isUserInteractionEnabled = isEnabled
@@ -650,7 +682,7 @@ fileprivate extension TaskEditorView {
     
 }
 
-fileprivate extension TaskEditorView {
+private extension TaskEditorView {
     
     func showLocationEditor() {
         showTaskParameterEditor(with: .location)

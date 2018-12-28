@@ -41,7 +41,7 @@ protocol TaskEditorAudioNoteViewInput: class {
 
 // MARK: - TaskEditorView outputs
 
-protocol TaskEditorViewOutput: TaskEditorViewRepeatKindOutput, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewNotificationOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput {
+protocol TaskEditorViewOutput: TaskEditorViewRepeatKindOutput, TaskEditorViewTimeTemplateOutput, TaskEditorViewDueDateTimeOutput, TaskEditorViewNotificationOutput, TaskEditorViewRepeatingOutput, TaskEditorViewRepeatEndingOutput, TaskEditorViewLocationOutput, TaskEditorViewTagsOutput, TaskEditorViewAttachmentsOutput, TaskEditorSubmodulesOutput {
     func viewDidAppear()
     func doneButtonPressed()
     func closeButtonPressed()
@@ -55,7 +55,7 @@ protocol TaskEditorViewOutput: TaskEditorViewRepeatKindOutput, TaskEditorViewTim
     func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput)
     func willPresentReminderEditor(_ input: TaskReminderEditorInput)
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput)
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateTimeEditorInput)
+    func willPresentRepeatEndingDateEditor(_ input: TaskDueDatePickerInput)
     func willPresentLocationEditor(_ input: TaskLocationEditorInput)
     func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)
@@ -112,4 +112,8 @@ protocol TaskEditorViewAttachmentsOutput: class {
     func attachmentsCleared()
     func attachmentSelected(_ attachment: String)
     func attachmentRemoved(_ attachment: String)
+}
+
+protocol TaskEditorSubmodulesOutput: AnyObject {
+    func didPrepareRegularitySettingsModule(_ moduleInput: RegularitySettingsInput)
 }

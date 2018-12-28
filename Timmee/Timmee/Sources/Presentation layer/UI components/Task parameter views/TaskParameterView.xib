@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXd-rq-Fos" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="z5f-oJ-KD5">
+                    <rect key="frame" x="0.0" y="10" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="BZs-pV-RUV"/>
+                        <constraint firstAttribute="width" secondItem="z5f-oJ-KD5" secondAttribute="height" multiplier="1:1" id="fum-E7-fUr"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название параметра" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwA-RA-gdP">
+                    <rect key="frame" x="35" y="10" width="308" height="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YD-iZ-SeV">
+                    <rect key="frame" x="351" y="4" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="U4s-Q7-cRb"/>
+                        <constraint firstAttribute="width" secondItem="9YD-iZ-SeV" secondAttribute="height" multiplier="1:1" id="c1N-B0-eJm"/>
+                    </constraints>
+                    <state key="normal" image="cross_small"/>
+                    <connections>
+                        <action selector="onClear" destination="nXd-rq-Fos" eventType="touchUpInside" id="h0q-ip-OcX"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="z5f-oJ-KD5" firstAttribute="leading" secondItem="nXd-rq-Fos" secondAttribute="leading" id="5Of-Ky-8aL"/>
+                <constraint firstItem="NwA-RA-gdP" firstAttribute="leading" secondItem="z5f-oJ-KD5" secondAttribute="trailing" constant="15" id="S5X-x4-7wl"/>
+                <constraint firstAttribute="trailing" secondItem="9YD-iZ-SeV" secondAttribute="trailing" constant="-8" id="UoU-qT-DfU"/>
+                <constraint firstItem="NwA-RA-gdP" firstAttribute="centerY" secondItem="nXd-rq-Fos" secondAttribute="centerY" id="a2k-1g-g1O"/>
+                <constraint firstItem="9YD-iZ-SeV" firstAttribute="leading" secondItem="NwA-RA-gdP" secondAttribute="trailing" constant="8" id="dyA-Bt-FVD"/>
+                <constraint firstItem="9YD-iZ-SeV" firstAttribute="centerY" secondItem="nXd-rq-Fos" secondAttribute="centerY" id="n8r-eS-QhM"/>
+                <constraint firstItem="z5f-oJ-KD5" firstAttribute="centerY" secondItem="nXd-rq-Fos" secondAttribute="centerY" id="rfG-X0-Odc"/>
+                <constraint firstAttribute="height" constant="40" id="vMC-DY-a9f"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="hgn-WX-eyG"/>
+            <connections>
+                <outlet property="clearButton" destination="9YD-iZ-SeV" id="AeX-oL-JH2"/>
+                <outlet property="heightConstraint" destination="vMC-DY-a9f" id="BKe-e3-TuJ"/>
+                <outlet property="iconView" destination="z5f-oJ-KD5" id="SqB-au-Khm"/>
+                <outlet property="titleView" destination="NwA-RA-gdP" id="jv6-Oi-TLY"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="clock" width="20" height="20"/>
+        <image name="cross_small" width="13" height="13"/>
+    </resources>
+</document>

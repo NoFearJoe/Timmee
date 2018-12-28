@@ -15,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="TaskEditorView" automaticallyAdjustsScrollViewInsets="NO" id="k03-vf-k1c" customClass="TaskEditorView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bmA-qM-dQc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aa8-hN-Z8j">
@@ -47,13 +47,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2G4-B0-pZA" customClass="BarView" customModule="UIComponents">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="g3p-60-8Fd">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pek-DW-aOB">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="725"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJA-YM-A5a" customClass="TaskImportancyPicker" customModule="Timmee" customModuleProvider="target">
                                                         <rect key="frame" x="328" y="10" width="36" height="36"/>
@@ -734,6 +734,15 @@
                                                             <segue destination="J5T-B3-DLw" kind="embed" identifier="SubtasksEditor" id="c1K-0g-tUN"/>
                                                         </connections>
                                                     </containerView>
+                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxm-vI-SDm">
+                                                        <rect key="frame" x="0.0" y="589" width="375" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="128" placeholder="YES" id="lie-gb-KhS"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <segue destination="toO-Ec-iVO" kind="embed" identifier="RegularitySettings" id="HL0-9z-BO8"/>
+                                                        </connections>
+                                                    </containerView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -763,10 +772,11 @@
                                                     <constraint firstAttribute="trailing" secondItem="YxF-cS-tYv" secondAttribute="trailing" constant="15" id="Q8D-yK-tf9"/>
                                                     <constraint firstItem="Smq-J6-mg5" firstAttribute="top" secondItem="uXO-yv-4Sf" secondAttribute="bottom" constant="8" id="Rte-ia-JcO"/>
                                                     <constraint firstItem="uXO-yv-4Sf" firstAttribute="top" secondItem="pWQ-aH-oZ4" secondAttribute="bottom" constant="8" id="S6R-QZ-lgS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="bDW-gE-l8g" secondAttribute="bottom" constant="8" id="V40-kd-UPF"/>
+                                                    <constraint firstItem="cxm-vI-SDm" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" id="VBQ-Tf-YjZ"/>
                                                     <constraint firstItem="yJA-YM-A5a" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="10" id="W4u-Mj-5O6"/>
                                                     <constraint firstItem="pWQ-aH-oZ4" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Wjl-8z-fYH"/>
                                                     <constraint firstItem="1bb-Qs-hde" firstAttribute="top" secondItem="ynR-Ip-39w" secondAttribute="bottom" constant="8" id="YAk-Bw-uMV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cxm-vI-SDm" secondAttribute="trailing" id="YMp-Ev-9gt"/>
                                                     <constraint firstItem="78Y-WW-ifn" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Zbw-zw-TTB"/>
                                                     <constraint firstItem="76p-hB-vY6" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="Zgi-AE-uqC"/>
                                                     <constraint firstAttribute="trailing" secondItem="P8B-lw-7Lt" secondAttribute="trailing" constant="15" id="aSX-cR-CZO"/>
@@ -783,8 +793,10 @@
                                                     <constraint firstItem="Vk6-A2-JlL" firstAttribute="top" secondItem="kXl-Q1-mbM" secondAttribute="bottom" id="kYz-ik-5MC"/>
                                                     <constraint firstItem="ynR-Ip-39w" firstAttribute="top" secondItem="att-iW-ArN" secondAttribute="bottom" constant="8" id="mXU-JJ-uJD"/>
                                                     <constraint firstItem="YxF-cS-tYv" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="oF2-Mh-Bb0"/>
+                                                    <constraint firstItem="cxm-vI-SDm" firstAttribute="top" secondItem="bDW-gE-l8g" secondAttribute="bottom" constant="8" id="oKg-Qd-6CX"/>
                                                     <constraint firstItem="Vk6-A2-JlL" firstAttribute="leading" secondItem="pek-DW-aOB" secondAttribute="leading" constant="15" id="pDV-5t-fgI"/>
                                                     <constraint firstItem="kXl-Q1-mbM" firstAttribute="top" secondItem="Smq-J6-mg5" secondAttribute="bottom" id="pFL-QN-43l"/>
+                                                    <constraint firstAttribute="bottom" secondItem="cxm-vI-SDm" secondAttribute="bottom" constant="8" id="ps6-b0-dK6"/>
                                                     <constraint firstItem="Tdv-8n-clW" firstAttribute="top" secondItem="pek-DW-aOB" secondAttribute="top" constant="10" id="pzM-ck-WiL"/>
                                                     <constraint firstAttribute="trailing" secondItem="bDW-gE-l8g" secondAttribute="trailing" id="qVJ-8X-mVX"/>
                                                     <constraint firstItem="iXS-L9-9eo" firstAttribute="top" secondItem="BvB-oo-DZe" secondAttribute="bottom" id="s4S-Nv-S2T"/>
@@ -832,6 +844,8 @@
                         <viewLayoutGuide key="safeArea" id="1h0-qd-qgV"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="closeButton" destination="9LH-30-Pcv" id="T9J-6p-fjS"/>
                         <outlet property="contentContainerView" destination="2G4-B0-pZA" id="T2U-Pn-X2A"/>
@@ -839,6 +853,7 @@
                         <outlet property="contentView" destination="pek-DW-aOB" id="bBs-CX-qvd"/>
                         <outlet property="doneButton" destination="Aa8-hN-Z8j" id="cB0-sS-BQs"/>
                         <outlet property="dueDateTimeView" destination="Vk6-A2-JlL" id="Ub7-cW-YWz"/>
+                        <outlet property="regularitySettingsContainer" destination="cxm-vI-SDm" id="EbO-uq-Ijv"/>
                         <outlet property="reminderView" destination="BvB-oo-DZe" id="Dc1-45-bPL"/>
                         <outlet property="repeatEndingDateView" destination="iXS-L9-9eo" id="7GJ-RM-BeH"/>
                         <outlet property="repeatKindPicker" destination="Smq-J6-mg5" id="GhQ-2K-Nlh"/>
@@ -862,7 +877,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLC-vn-kb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288.80000000000001" y="61.619190404797607"/>
+            <point key="canvasLocation" x="288.80000000000001" y="61.169415292353825"/>
+        </scene>
+        <!--Regularity Settings View Controller-->
+        <scene sceneID="0WB-UX-7BY">
+            <objects>
+                <viewController id="toO-Ec-iVO" customClass="RegularitySettingsViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pVA-pl-Tce">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5fx-9m-YXw">
+                                <rect key="frame" x="15" y="0.0" width="345" height="200"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5fx-9m-YXw" firstAttribute="leading" secondItem="ZwR-G2-jEq" secondAttribute="leading" constant="15" id="A9K-2t-Ac0"/>
+                            <constraint firstAttribute="bottom" secondItem="5fx-9m-YXw" secondAttribute="bottom" priority="500" id="EPR-gA-0v9"/>
+                            <constraint firstItem="ZwR-G2-jEq" firstAttribute="trailing" secondItem="5fx-9m-YXw" secondAttribute="trailing" constant="15" id="Jux-hx-EZq"/>
+                            <constraint firstItem="5fx-9m-YXw" firstAttribute="top" secondItem="pVA-pl-Tce" secondAttribute="top" id="ySr-Fo-0Dc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZwR-G2-jEq"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="200"/>
+                    <connections>
+                        <outlet property="parameterModulesContainerView" destination="5fx-9m-YXw" id="qya-h9-xe5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sgg-g0-2A7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="36"/>
         </scene>
         <!--Subtasks Editor-->
         <scene sceneID="ZXa-S5-VPe">

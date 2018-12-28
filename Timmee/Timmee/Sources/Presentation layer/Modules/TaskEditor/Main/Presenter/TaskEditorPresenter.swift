@@ -39,6 +39,8 @@ final class TaskEditorPresenter {
     
     weak var audioNotePresenter: TaskEditorAudioNotePresenterInput!
     
+    private var regularitySettings: RegularitySettingsInput?
+    
     var task: Task!
     private var listID: String?
     
@@ -94,6 +96,8 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setAttachments(self.task.attachments)
         
         audioNotePresenter.updateAudioNoteField()
+        
+        regularitySettings?.updateParameters(task: self.task)
     }
     
     func setTaskTitle(_ title: String) {
@@ -184,6 +188,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         }
         
         view.setTimeTemplate(timeTemplate)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func dueDateTimeChanged(to dueDate: Date?) {
@@ -193,6 +198,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.dueDate => time.minutes.asMinutes
         }
         showFormattedDueDateTime(task.dueDate)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func notificationChanged(to notification: TaskReminderSelectedNotification) {
@@ -211,16 +217,19 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.notificationTime = (hours, minutes)
         }
         view.setNotification(notification)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func repeatChanged(to repeat: RepeatMask) {
         task.repeating = `repeat`
         view.setRepeat(`repeat`)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func repeatEndingDateChanged(to repeatEndingDate: Date?) {
         task.repeatEndingDate = repeatEndingDate
         showFormattedRepeatEndingDate(repeatEndingDate)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func locationChanged(to location: CLLocation?) {
@@ -274,6 +283,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         }
         
         view.setTimeTemplate(nil)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func dueDateTimeCleared() {
@@ -282,6 +292,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         view.setDueDateTime(nil, isOverdue: false)
         updateNotification()
         updateRepeating()
+        regularitySettings?.updateParameters(task: task)
     }
     
     func notificationCleared() {
@@ -289,16 +300,19 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.notificationDate = nil
         task.notificationTime = nil
         view.setNotification(.mask(.doNotNotify))
+        regularitySettings?.updateParameters(task: task)
     }
     
     func repeatCleared() {
         task.repeating = .init(string: "")
         view.setRepeat(.init(string: ""))
+        regularitySettings?.updateParameters(task: task)
     }
     
     func repeatEndingDateCleared() {
         task.repeatEndingDate = nil
         showFormattedRepeatEndingDate(nil)
+        regularitySettings?.updateParameters(task: task)
     }
     
     func locationCleared() {
@@ -394,9 +408,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         input.setRepeatMasksVisible(!shouldHideRepeatMasks)
     }
     
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDateTimeEditorInput) {
-        let minimumDate = task.dueDate + 1.asDays
-        input.setMinimumDate(minimumDate)
+    func willPresentRepeatEndingDateEditor(_ input: TaskDueDatePickerInput) {
+        let defaultDate = Date()
+        let minimumDate = (task.dueDate ?? defaultDate) + 1.asDays
+        input.minimumAvailableDate = minimumDate
         input.setDueDate(task.repeatEndingDate ?? minimumDate)
     }
     
@@ -423,19 +438,52 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func willPresentAttachmentsPicker(_ input: TaskPhotoAttachmentsPickerInput) {
         input.setSelectedPhotos(task.attachments)
     }
+    
+    func didPrepareRegularitySettingsModule(_ moduleInput: RegularitySettingsInput) {
+        regularitySettings = moduleInput
+        regularitySettings?.output = self
+    }
 
+}
+
+extension TaskEditorPresenter: RegularitySettingsOutput {
+    
+    func regularitySettings(_ module: RegularitySettingsInput, didClearParameter parameter: RegularitySettingsViewController.Parameter) {
+        switch parameter {
+        case .timeTemplate:
+            task.timeTemplate = nil
+            updateNotification()
+            updateRepeating()
+        case .dueDateTime, .dueDate, .dueTime, .startDate:
+            task.dueDate = nil
+            updateNotification()
+            updateRepeating()
+        case .endDate:
+            task.repeatEndingDate = nil
+        case .notification:
+            task.notification = .doNotNotify
+            task.notificationDate = nil
+            task.notificationTime = nil
+        case .repeating:
+            task.repeating = .init(string: "")
+        }
+        regularitySettings?.updateParameters(task: task)
+    }
+    
 }
 
 extension TaskEditorPresenter: SubtasksEditorTaskProvider, TaskEditorInteractorOutput, TaskEditorAudioNotePresenterOutput {}
 
 private extension TaskEditorPresenter {
 
+    // REMOVE
     func showFormattedDueDateTime(_ dueDate: Date?) {
         let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
         let dateString = task.repeatKind == .single ? dueDate?.asNearestDateString : dueDate?.asNearestShortDateString
         view.setDueDateTime(dateString, isOverdue: isOverdue)
     }
     
+    // REMOVE
     func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {
         view.setRepeatEndingDate(repeatEndingDate?.asNearestDateString)
     }
@@ -449,6 +497,7 @@ private extension TaskEditorPresenter {
         }
     }
     
+    // REMOVE
     func showNotification() {
         if let notificationTime = task.notificationTime {
             view.setNotification(.time(notificationTime.0, notificationTime.1))

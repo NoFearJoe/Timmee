@@ -10,9 +10,9 @@ import UIKit
 
 class TaskParameterView: HiddingParameterView {
 
-    @IBOutlet fileprivate var iconView: UIImageView!
-    @IBOutlet fileprivate var titleView: UILabel!
-    @IBOutlet fileprivate var clearButton: UIButton! {
+    @IBOutlet private var iconView: UIImageView!
+    @IBOutlet private var titleView: UILabel!
+    @IBOutlet private var clearButton: UIButton! {
         didSet {
             clearButton.tintColor = AppTheme.current.thirdlyTintColor
         }
@@ -40,11 +40,11 @@ class TaskParameterView: HiddingParameterView {
         }
     }
     
-    fileprivate let filledIconColor = AppTheme.current.blueColor
+    private let filledIconColor = AppTheme.current.blueColor
     var filledTitleColor = AppTheme.current.tintColor
     
-    fileprivate let notFilledIconColor = AppTheme.current.thirdlyTintColor
-    fileprivate let notFilledTitleColor = AppTheme.current.secondaryTintColor
+    private let notFilledIconColor = AppTheme.current.thirdlyTintColor
+    private let notFilledTitleColor = AppTheme.current.secondaryTintColor
     
     func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) { 
@@ -65,6 +65,19 @@ class TaskParameterView: HiddingParameterView {
         addTapGestureRecognizer(to: self)
     }
     
+    func setup(withParameter parameter: RegularitySettingsViewController.Parameter) {
+        switch parameter {
+        case .timeTemplate: iconView.image = UIImage(named: "time_template")
+        case .dueDateTime: iconView.image = UIImage(named: "clock")
+        case .dueDate: iconView.image = UIImage(named: "clock")
+        case .dueTime: iconView.image = UIImage(named: "clock")
+        case .startDate: iconView.image = UIImage(named: "clock") // TODO
+        case .endDate: iconView.image = UIImage(named: "finish")
+        case .notification: iconView.image = UIImage(named: "alarm")
+        case .repeating: iconView.image = UIImage(named: "repeat")
+        }
+    }
+    
     func updateTitleColor() {
         titleView?.textColor = isFilled ? self.filledTitleColor : self.notFilledTitleColor
     }
@@ -75,11 +88,11 @@ class TaskParameterView: HiddingParameterView {
         view.addGestureRecognizer(recognizer)
     }
     
-    @objc fileprivate func onTap() {
+    @objc private func onTap() {
         didTouchedUp?()
     }
     
-    @IBAction fileprivate func onClear() {
+    @IBAction private func onClear() {
         didClear?()
     }
 
