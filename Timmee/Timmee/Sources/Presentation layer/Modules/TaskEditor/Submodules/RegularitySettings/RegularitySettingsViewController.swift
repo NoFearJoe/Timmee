@@ -81,7 +81,12 @@ private extension RegularitySettingsViewController {
     }
     
     private func onTapToParameterView(parameter: Parameter) {
-        viewOutput?.regularitySettings(self, didSelectParameter: parameter)
+        // Если установлен временной шаблон, то даем выбрать только дату без времени
+        if parameter == .dueDateTime, let timeTemplateView = parameterViews[.timeTemplate] as? TaskParameterView, timeTemplateView.isFilled {
+            viewOutput?.regularitySettings(self, didSelectParameter: .dueDate)
+        } else {
+            viewOutput?.regularitySettings(self, didSelectParameter: parameter)
+        }
     }
     
 }

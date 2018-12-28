@@ -68,16 +68,7 @@ extension TaskEditorPresenter: TaskEditorInput {
         
         view.setRepeatKind(self.task.repeatKind)
         view.setRepeatKindAvailable(self.isNewTask)
-        
-        view.setTimeTemplate(self.task.timeTemplate)
-        
-        showFormattedDueDateTime(self.task.dueDate)
-        
-        showNotification()
-        view.setRepeat(self.task.repeating)
-        
-        showFormattedRepeatEndingDate(self.task.repeatEndingDate)
-        
+                
         if self.task.location != nil && self.task.address == nil {
             decodeLocation(self.task.location) { address in
                 self.task.address = address
@@ -107,7 +98,7 @@ extension TaskEditorPresenter: TaskEditorInput {
     
     func setDueDate(_ dueDate: Date) {
         task.dueDate = dueDate
-        showFormattedDueDateTime(dueDate)
+        regularitySettings?.updateParameters(task: task)
     }
 
 }
@@ -160,10 +151,9 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         if repeatKind == .regular {
             task.dueDate = Date()
             task.dueDate => TimeRounder.roundMinutes(task.dueDate?.minutes ?? 0).asMinutes
-            showFormattedDueDateTime(task.dueDate)
             task.repeating = RepeatMask(type: .every(.day))
-            view.setRepeat(task.repeating)
         }
+        regularitySettings?.updateParameters(task: task)
     }
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
@@ -175,19 +165,15 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.dueDate => time.minutes.asMinutes
         }
         
-        showFormattedDueDateTime(task.dueDate)
-
         if let timeTemplate = timeTemplate {
-            view.setNotification(TaskReminderSelectedNotification.mask(timeTemplate.notification))
-            view.setRepeat(task.repeating)
+//            view.setNotification(TaskReminderSelectedNotification.mask(timeTemplate.notification))
+//            view.setRepeat(task.repeating)
         } else {
-            showNotification()
             if task.dueDate != nil {
-                view.setRepeat(task.repeating)
+//                view.setRepeat(task.repeating)
             }
         }
         
-        view.setTimeTemplate(timeTemplate)
         regularitySettings?.updateParameters(task: task)
     }
     
@@ -197,7 +183,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.dueDate => time.hours.asHours
             task.dueDate => time.minutes.asMinutes
         }
-        showFormattedDueDateTime(task.dueDate)
         regularitySettings?.updateParameters(task: task)
     }
     
@@ -216,19 +201,16 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.notificationDate = nil
             task.notificationTime = (hours, minutes)
         }
-        view.setNotification(notification)
         regularitySettings?.updateParameters(task: task)
     }
     
     func repeatChanged(to repeat: RepeatMask) {
         task.repeating = `repeat`
-        view.setRepeat(`repeat`)
         regularitySettings?.updateParameters(task: task)
     }
     
     func repeatEndingDateChanged(to repeatEndingDate: Date?) {
         task.repeatEndingDate = repeatEndingDate
-        showFormattedRepeatEndingDate(repeatEndingDate)
         regularitySettings?.updateParameters(task: task)
     }
     
@@ -275,23 +257,15 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func timeTemplateCleared() {
         task.timeTemplate = nil
         
-        showFormattedDueDateTime(task.dueDate)
-        updateNotification()
-        updateRepeating()
-        if task.dueDate != nil {
-            view.setRepeat(task.repeating)
-        }
+        resetNotificationIfNeeded()
         
-        view.setTimeTemplate(nil)
         regularitySettings?.updateParameters(task: task)
     }
     
     func dueDateTimeCleared() {
         task.dueDate = nil
         
-        view.setDueDateTime(nil, isOverdue: false)
-        updateNotification()
-        updateRepeating()
+        resetNotificationIfNeeded()
         regularitySettings?.updateParameters(task: task)
     }
     
@@ -299,19 +273,16 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         task.notification = .doNotNotify
         task.notificationDate = nil
         task.notificationTime = nil
-        view.setNotification(.mask(.doNotNotify))
         regularitySettings?.updateParameters(task: task)
     }
     
     func repeatCleared() {
         task.repeating = .init(string: "")
-        view.setRepeat(.init(string: ""))
         regularitySettings?.updateParameters(task: task)
     }
     
     func repeatEndingDateCleared() {
         task.repeatEndingDate = nil
-        showFormattedRepeatEndingDate(nil)
         regularitySettings?.updateParameters(task: task)
     }
     
@@ -452,12 +423,10 @@ extension TaskEditorPresenter: RegularitySettingsOutput {
         switch parameter {
         case .timeTemplate:
             task.timeTemplate = nil
-            updateNotification()
-            updateRepeating()
+            resetNotificationIfNeeded()
         case .dueDateTime, .dueDate, .dueTime, .startDate:
             task.dueDate = nil
-            updateNotification()
-            updateRepeating()
+            resetNotificationIfNeeded()
         case .endDate:
             task.repeatEndingDate = nil
         case .notification:
@@ -475,19 +444,6 @@ extension TaskEditorPresenter: RegularitySettingsOutput {
 extension TaskEditorPresenter: SubtasksEditorTaskProvider, TaskEditorInteractorOutput, TaskEditorAudioNotePresenterOutput {}
 
 private extension TaskEditorPresenter {
-
-    // REMOVE
-    func showFormattedDueDateTime(_ dueDate: Date?) {
-        let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDate != nil && !(dueDate! >= Date()))
-        let dateString = task.repeatKind == .single ? dueDate?.asNearestDateString : dueDate?.asNearestShortDateString
-        view.setDueDateTime(dateString, isOverdue: isOverdue)
-    }
-    
-    // REMOVE
-    func showFormattedRepeatEndingDate(_ repeatEndingDate: Date?) {
-        view.setRepeatEndingDate(repeatEndingDate?.asNearestDateString)
-    }
-    
     
     func showLocation() {
         if let address = self.task.address {
@@ -497,35 +453,13 @@ private extension TaskEditorPresenter {
         }
     }
     
-    // REMOVE
-    func showNotification() {
-        if let notificationTime = task.notificationTime {
-            view.setNotification(.time(notificationTime.0, notificationTime.1))
-        } else if let notificationDate = task.notificationDate {
-            view.setNotification(.date(notificationDate))
-        } else {
-            view.setNotification(.mask(task.notification))
-        }
-    }
-    
-    func updateNotification() {
+    func resetNotificationIfNeeded() {
         // Если дата выполнения и временной шаблон не установлены, надо убрать уведомление
         if task.dueDate == nil, task.timeTemplate == nil {
             task.notification = .doNotNotify
             task.notificationDate = nil
             task.notificationTime = nil
         }
-        showNotification()
-    }
-    
-    func updateRepeating() {
-        if task.dueDate == nil, task.timeTemplate == nil, task.notificationDate == nil, task.notificationTime == nil {
-            switch task.repeating.type {
-            case .never, .every: task.repeating = .init(type: .never)
-            case .on: return
-            }
-        }
-        view.setRepeat(task.repeating)
     }
     
     func decodeLocation(_ location: CLLocation?, completion: @escaping (String?) -> Void) {
