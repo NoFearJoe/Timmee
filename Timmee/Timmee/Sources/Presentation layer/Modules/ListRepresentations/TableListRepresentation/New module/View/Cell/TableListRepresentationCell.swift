@@ -210,7 +210,22 @@ final class TableListRepersentationCellContainerView: UIView {
     }
     
     var shouldDrawProgressIndicator: Bool = false {
-        didSet { setNeedsDisplay() }
+        didSet {
+            shouldDrawProgressIndicator ? addProgressIndicatorLayer() : removeProgressIndicatorLayer()
+        }
+    }
+    
+    private func addProgressIndicatorLayer() {
+        let progressIndicatorRect = CGRect(origin: .zero, size: CGSize(width: 3, height: frame.height)).insetBy(dx: 0, dy: 2)
+        let layer = CALayer()
+        layer.name = "progress_indicator"
+        layer.frame = progressIndicatorRect
+        layer.backgroundColor = AppTheme.current.blueColor.cgColor
+        self.layer.insertSublayer(layer, at: 1)
+    }
+    
+    private func removeProgressIndicatorLayer() {
+        layer.sublayers?.first(where: { $0.name == "progress_indicator" })?.removeFromSuperlayer()
     }
     
     override func draw(_ rect: CGRect) {
@@ -226,11 +241,11 @@ final class TableListRepersentationCellContainerView: UIView {
         path.fill()
         path.addClip()
         
-        if shouldDrawProgressIndicator {
-            let progressIndicatorRect = CGRect(origin: .zero, size: CGSize(width: 3, height: frame.height)).insetBy(dx: 0, dy: 2)
-            context.setFillColor(AppTheme.current.blueColor.cgColor)
-            context.fill(progressIndicatorRect)
-        }
+//        if shouldDrawProgressIndicator {
+//            let progressIndicatorRect = CGRect(origin: .zero, size: CGSize(width: 3, height: frame.height)).insetBy(dx: 0, dy: 2)
+//            context.setFillColor(AppTheme.current.blueColor.cgColor)
+//            context.fill(progressIndicatorRect)
+//        }
     }
     
 }

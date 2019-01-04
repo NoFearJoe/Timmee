@@ -310,14 +310,14 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
         case .dueDateTime: output?.dueDateTimeCleared()
         case .reminder: output?.notificationCleared()
         case .repeating: output?.repeatCleared()
-        case .repeatEndingDate: output?.repeatEndingDateCleared()
+        case .repeatEndingDate, .endDate: output?.repeatEndingDateCleared()
         case .location:
             setTopButtonsVisible(true)
             output?.locationCleared()
         case .tags: output?.tagsCleared()
         case .timeTemplates: output?.timeTemplateCleared()
         case .audioNote: audioNoteOutput?.audioNoteCleared()
-        case .dueDate: return
+        case .dueDate, .startDate: return
         case .dueTime: return
         case .attachments: return//output?.attachmentsCleared()
         }
@@ -337,7 +337,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.output = dueDateEditorHandler
             output.willPresentDueDateTimeEditor(viewController)
             return viewController
-        case .dueDate:
+        case .dueDate, .startDate:
             let viewController = ViewControllersFactory.taskDueDatePicker
             viewController.loadViewIfNeeded()
             viewController.output = self
@@ -356,7 +356,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.transitionOutput = taskParameterEditorContainer
             output.willPresentRepeatingEditor(viewController)
             return viewController
-        case .repeatEndingDate:
+        case .repeatEndingDate, .endDate:
             let viewController = ViewControllersFactory.taskDueDatePicker
             viewController.loadViewIfNeeded()
             viewController.output = repeatEndingDateEditorHandler
@@ -418,8 +418,8 @@ extension TaskEditorView: RegularitySettingsViewOutput {
         case .dueDateTime: showTaskParameterEditor(with: .dueDateTime)
         case .dueDate: showTaskParameterEditor(with: .dueDate)
         case .dueTime: showTaskParameterEditor(with: .dueTime)
-        case .startDate: showTaskParameterEditor(with: .dueDate)
-        case .endDate: showTaskParameterEditor(with: .repeatEndingDate)
+        case .startDate: showTaskParameterEditor(with: .startDate)
+        case .endDate: showTaskParameterEditor(with: .endDate)
         case .notification: showTaskParameterEditor(with: .reminder)
         case .repeating: showTaskParameterEditor(with: .repeating)
         }

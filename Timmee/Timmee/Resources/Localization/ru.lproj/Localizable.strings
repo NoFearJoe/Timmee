@@ -51,6 +51,8 @@
 "due_date" = "Дата выполнения";
 "due_time" = "Время выполнения";
 "finish" = "Выполнить"; // сегодня в 21:00
+"start_date" = "Дата начала";
+"end_date" = "Дата окончания";
 "repeat_ending_date" = "Окончание повторения";
 "tags_picker" = "Тэги";
 "input_tag" = "Введите тэг...";
@@ -78,6 +80,8 @@
 "choose_notification_time" = "Выбрать время";
 "notification_date" = "Дата уведомления";
 "notification_time" = "Время уведомления";
+"starts" = "Начало";
+"ends" = "Конец";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";

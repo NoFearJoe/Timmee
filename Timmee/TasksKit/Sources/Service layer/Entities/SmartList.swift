@@ -91,25 +91,22 @@ public enum SmartListType {
     public var fetchPredicate: NSPredicate? {
         let now = Date()
         switch self {
-        case .all: return nil
-        case .today:
-            return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
-                               now.startOfDay.nsDate,
-                               now.endOfDay.nsDate)
-        case .tomorrow:
-            return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
-                               (now.startOfDay + 1.asDays).nsDate,
-                               (now.endOfDay + 1.asDays).nsDate)
-        case .week:
-            return NSPredicate(format: "dueDate >= %@ && dueDate <= %@",
-                               now.startOfDay.nsDate,
-                               (now.endOfDay + 1.asWeeks).nsDate)
+        case .all, .today, .tomorrow, .week: return nil
         case .inProgress:
             return NSPredicate(format: "inProgress == true && isDone == false")
         case .overdue:
-            return NSPredicate(format: "dueDate < %@", now.nsDate)
+            return NSPredicate(format: "repeatKind == \(Task.RepeatKind.single.rawValue) && dueDate < %@", now.nsDate)
         case .important:
             return NSPredicate(format: "isImportant == true")
+        }
+    }
+    
+    public var filter: ((Task) -> Bool)? {
+        switch self {
+        case .today: return { $0.shouldBeDoneToday }
+        case .tomorrow: return { $0.shouldBeDoneTomorrow }
+        case .week: return { $0.shouldBeDoneAtThisWeek }
+        default: return nil
         }
     }
 }

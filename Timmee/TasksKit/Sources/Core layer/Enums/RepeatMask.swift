@@ -309,7 +309,7 @@ public enum DayUnit: String {
     }
 }
 
-public struct RepeatMask {
+public struct RepeatMask: Equatable {
     public let type: RepeatType
     public let value: Int
     
@@ -371,5 +371,9 @@ public struct RepeatMask {
         } else {
             return "repeat".localized.capitalizedFirst + " " + localized.lowercased()
         }
+    }
+    
+    public static func == (lhs: RepeatMask, rhs: RepeatMask) -> Bool {
+        return lhs.string == rhs.string
     }
 }

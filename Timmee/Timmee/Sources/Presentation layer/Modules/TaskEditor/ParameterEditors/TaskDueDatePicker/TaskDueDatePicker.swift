@@ -45,7 +45,8 @@ final class TaskDueDatePicker: UIViewController {
         calendarView.calendar = (calendar, calendar.monthDataSource())
         calendarView.didSelectItemAtIndex = { [unowned self] index in
             let date = self.calendar.date(by: index)
-            self.setDueDate(date)
+            self.calendarView.selectedDateIndex = self.calendar.index(of: date)
+            self.calendarView.calendarView.reloadData()
             self.output?.didChangeDueDate(to: date)
         }
     }
@@ -62,6 +63,7 @@ extension TaskDueDatePicker: TaskDueDatePickerInput {
     func setDueDate(_ date: Date) {
         calendarView.selectedDateIndex = calendar.index(of: date)
         calendarView.calendarView.reloadData()
+        output?.didChangeDueDate(to: date)
     }
     
     func setBackgroundColor(_ color: UIColor) {

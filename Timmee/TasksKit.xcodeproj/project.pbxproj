@@ -48,6 +48,7 @@
 		0CE4755D2175DA1E005FD8CC /* GoalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE4755C2175DA1E005FD8CC /* GoalsService.swift */; };
 		9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627A20A353D000B23EDF /* AudioPlayerService.swift */; };
 		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
+		9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9686322021D91637004B13D1 /* LiveCacheFetcher.swift */; };
 		96BE838E217511D700CDECAF /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838D217511D700CDECAF /* Goal.swift */; };
 		96BE8390217511E500CDECAF /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838F217511E500CDECAF /* Habit.swift */; };
 		96BE8392217511F400CDECAF /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8391217511F400CDECAF /* Sprint.swift */; };
@@ -102,6 +103,7 @@
 		45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9606627A20A353D000B23EDF /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		961656052095FDD9001A8387 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
+		9686322021D91637004B13D1 /* LiveCacheFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCacheFetcher.swift; sourceTree = "<group>"; };
 		96BE838D217511D700CDECAF /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		96BE838F217511E500CDECAF /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		96BE8391217511F400CDECAF /* Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				0CE018222077B2BD00633EFF /* CacheObserver.swift */,
 				0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */,
 				0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */,
+				9686322021D91637004B13D1 /* LiveCacheFetcher.swift */,
 			);
 			path = CacheObserver;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				0CE0186A2077B2BD00633EFF /* ListSorting.swift in Sources */,
 				0C9B242F207E244B009EF6DE /* TableViewCacheAdapter.swift in Sources */,
 				0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */,
+				9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */,
 				0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */,
 				0CE018602077B2BD00633EFF /* TimeTemplate.swift in Sources */,
 				0CE018622077B2BD00633EFF /* SubtaskEntity+Mapping.swift in Sources */,

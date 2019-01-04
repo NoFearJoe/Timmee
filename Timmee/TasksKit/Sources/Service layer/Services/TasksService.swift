@@ -45,6 +45,7 @@ public protocol TaskEntitiesBackgroundProvider: class {
 public protocol TasksObserverProvider: class {
     func tasksObserver(listID: String) -> CacheObserver<Task>
     func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task>
+    func tasksScope(listID: String) -> Scope<TaskEntity, Task>
 }
 
 public protocol TaskEntitiesCountProvider: class {
@@ -278,6 +279,30 @@ extension TasksService: TasksObserverProvider {
         return tasksObserver
     }
     
+    public func tasksScope(listID: String) -> Scope<TaskEntity, Task> {
+        var request: FetchRequest<TaskEntity> = TaskEntity.request()
+            .sorted(keyPath: \.isDone, ascending: true)
+            .sorted(keyPath: \.isImportant, ascending: false)
+            .sorted(keyPath: \.inProgress, ascending: false)
+            .sorted(keyPath: \.creationDate, ascending: false)
+            .batchSize(10)
+        
+        var filter: ((Task) -> Bool)?
+        if SmartListType.isSmartListID(listID) {
+            let smartListType = SmartListType(id: listID)
+            request = request.filtered(predicate: smartListType.fetchPredicate)
+            filter = smartListType.filter
+        } else {
+            request = request.filtered(key: "list.id", value: listID)
+        }
+        
+        return Scope<TaskEntity, Task>(context: Database.localStorage.readContext,
+                                       baseRequest: request.nsFetchRequest,
+                                       grouping: { $0.isDone ? "1" : "0" },
+                                       mapping: { Task(task:$0) },
+                                       filter: filter)
+    }
+    
 }
 
 // MARK: - Fetch
@@ -299,8 +324,10 @@ extension TasksService: TasksProvider {
     }
     
     public func fetchTasks(smartListID: String) -> [Task] {
-        let entities = TasksService.tasksFetchRequest(smartListID: smartListID).execute()
-        return entities.map({ Task(task: $0) })
+        if let filter = SmartListType(id: smartListID).filter {
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter(filter)
+        }
+        return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map({ Task(task: $0) })
     }
     
     public func fetchTasks(listID: String, isDone: Bool) -> [Task] {
@@ -309,8 +336,10 @@ extension TasksService: TasksProvider {
     }
     
     public func fetchTasks(smartListID: String, isDone: Bool) -> [Task] {
-        let entities = TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute()
-        return entities.map({ Task(task: $0) })
+        if let filter = SmartListType(id: smartListID).filter {
+            return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute().map(Task.init(task:)).filter(filter)
+        }
+        return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute().map(Task.init(task:))
     }
     
     public func searchTasks(by string: String) -> [Task] {
@@ -371,6 +400,9 @@ extension TasksService: TaskEntitiesCountProvider {
     }
     
     public func tasksCount(smartListID: String) -> Int {
+        if let filter = SmartListType(id: smartListID).filter {
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter(filter).count
+        }
         return TasksService.tasksFetchRequest(smartListID: smartListID).count()
     }
     
@@ -379,6 +411,9 @@ extension TasksService: TaskEntitiesCountProvider {
     }
     
     public func tasksCount(smartListID: String, isDone: Bool) -> Int {
+        if let filter = SmartListType(id: smartListID).filter {
+            return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute().map(Task.init(task:)).filter(filter).count
+        }
         return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).count()
     }
     

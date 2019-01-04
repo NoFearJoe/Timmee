@@ -13,7 +13,17 @@ import class Foundation.NSOrderedSet
 import class Foundation.NSKeyedUnarchiver
 import class CoreLocation.CLLocation
 
-public class Task {
+public protocol Copyable {
+    associatedtype T
+    var copy: T { get }
+}
+
+public protocol CustomEquatable {
+    associatedtype T
+    func isEqual(to item: T) -> Bool
+}
+
+public class Task: Copyable {
 
     public var id: String
     public var repeatKind: RepeatKind
@@ -239,14 +249,164 @@ public extension Task {
     
 }
 
+extension Task: CustomEquatable {
+    
+    public func isEqual(to item: Task) -> Bool {
+        return id == item.id
+    }
+    
+}
+
 extension Task: Hashable {
     
     public static func ==(lhs: Task, rhs: Task) -> Bool {
         return lhs.id == rhs.id
+            && lhs.dueDate == rhs.dueDate
+            && lhs.note == rhs.note
+            && lhs.address == rhs.address
+            && lhs.attachments == rhs.attachments
+            && lhs.notification == rhs.notification
+            && lhs.notificationDate == rhs.notificationDate
+            && lhs.notificationTime?.0 == rhs.notificationTime?.0 && lhs.notificationTime?.1 == rhs.notificationTime?.1
+            && lhs.repeatEndingDate == rhs.repeatEndingDate
+            && lhs.repeating == rhs.repeating
+            && lhs.repeatKind == rhs.repeatKind
+            && lhs.title == rhs.title
+            && lhs.subtasks == rhs.subtasks
+            && lhs.tags == rhs.tags
+            && lhs.timeTemplate == rhs.timeTemplate
+            && lhs.isDone == rhs.isDone
+            && lhs.inProgress == rhs.inProgress
+            && lhs.isImportant == rhs.isImportant
     }
     
     public var hashValue: Int {
         return id.hashValue
+    }
+    
+}
+
+extension Task {
+    
+    public var shouldBeDoneToday: Bool {
+        return shouldBeDone(at: Date())
+    }
+    
+    public var shouldBeDoneTomorrow: Bool {
+        return shouldBeDone(at: Date().nextDay)
+    }
+    
+    // TODO: Учитывать isDone
+    public var shouldBeDoneAtThisWeek: Bool {
+        let startOfWeek = Date().startOfDay
+        let endOfWeek = (Date() + 6.asDays).endOfDay
+        switch repeatKind {
+        case .single:
+            guard let dueDate = dueDate else { return false }
+            return dueDate >= startOfWeek && dueDate <= endOfWeek
+        case .regular:
+            guard let startDate = dueDate?.startOfDay else { return false }
+            switch repeating.type {
+            case .never:
+                return false
+            case let .every(unit):
+                switch unit {
+                case .day, .week:
+                    if let endDate = repeatEndingDate {
+                        return startDate <= endOfWeek && endDate >= startOfWeek
+                    } else {
+                        return startDate <= endOfWeek
+                    }
+                case .month:
+                    let dayOfMonth = startDate.dayOfMonth
+                    let containsDay: Bool
+                    if startOfWeek.month == endOfWeek.month {
+                        containsDay = dayOfMonth >= startOfWeek.dayOfMonth && dayOfMonth <= endOfWeek.dayOfMonth
+                    } else {
+                        containsDay = dayOfMonth >= startOfWeek.dayOfMonth || dayOfMonth <= endOfWeek.dayOfMonth
+                    }
+                    if let endDate = repeatEndingDate {
+                        return startDate <= endOfWeek && endDate >= startOfWeek && containsDay
+                    } else {
+                        return startDate <= endOfWeek && containsDay
+                    }
+                case .year:
+                    let month = startDate.month
+                    let dayOfMonth = startDate.dayOfMonth
+                    let containsDay: Bool
+                    if startOfWeek.month == endOfWeek.month {
+                        containsDay = dayOfMonth >= startOfWeek.dayOfMonth && dayOfMonth <= endOfWeek.dayOfMonth
+                    } else {
+                        containsDay = dayOfMonth >= startOfWeek.dayOfMonth || dayOfMonth <= endOfWeek.dayOfMonth
+                    }
+                    let containsMonth = month >= startOfWeek.month && month <= endOfWeek.month
+                    if let endDate = repeatEndingDate {
+                        return startDate <= endOfWeek && endDate >= startOfWeek && containsMonth && containsDay
+                    } else {
+                        return startDate <= endOfWeek && containsMonth && containsDay
+                    }
+                }
+            case .on:
+                if let endDate = repeatEndingDate {
+                    return startDate <= endOfWeek && endDate >= startOfWeek
+                } else {
+                    return startDate <= endOfWeek
+                }
+            }
+        }
+    }
+    
+    // TODO: Учитывать isDone
+    private func shouldBeDone(at date: Date) -> Bool {
+        switch repeatKind {
+        case .single:
+            guard let dueDate = dueDate else { return false }
+            return dueDate >= date.startOfDay && dueDate <= date.endOfDay
+        case .regular:
+            guard let startDate = dueDate?.startOfDay else { return false }
+            switch repeating.type {
+            case .never:
+                return false
+            case let .every(unit):
+                switch unit {
+                case .day:
+                    if let endDate = repeatEndingDate {
+                        return startDate <= date.startOfDay && endDate >= date.endOfDay
+                    } else {
+                        return startDate <= date.startOfDay
+                    }
+                case .week:
+                    let isWeekdaysEqual = startDate.weekday == date.weekday
+                    if let endDate = repeatEndingDate {
+                        return startDate <= date.startOfDay && endDate >= date.endOfDay && isWeekdaysEqual
+                    } else {
+                        return startDate <= date.startOfDay && isWeekdaysEqual
+                    }
+                case .month:
+                    let isDaysEqual = startDate.dayOfMonth == date.dayOfMonth
+                    if let endDate = repeatEndingDate {
+                        return startDate <= date.startOfDay && endDate >= date.endOfDay && isDaysEqual
+                    } else {
+                        return startDate <= date.startOfDay && isDaysEqual
+                    }
+                case .year:
+                    let isDaysEqual = startDate.dayOfMonth == date.dayOfMonth
+                    let isMonthsEqual = startDate.month == date.month
+                    if let endDate = repeatEndingDate {
+                        return startDate <= date.startOfDay && endDate >= date.endOfDay && isMonthsEqual && isDaysEqual
+                    } else {
+                        return startDate <= date.startOfDay && isMonthsEqual && isDaysEqual
+                    }
+                }
+            case let .on(units):
+                let day = DayUnit(weekday: date.weekday)
+                if let endDate = repeatEndingDate {
+                    return startDate <= date.startOfDay && endDate >= date.endOfDay && units.dayNumbers.contains(day.number)
+                } else {
+                    return startDate <= date.startOfDay && units.dayNumbers.contains(day.number)
+                }
+            }
+        }
     }
     
 }

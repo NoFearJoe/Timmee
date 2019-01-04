@@ -7,6 +7,7 @@ target 'Timmee' do
     
   pod 'SwipeCellKit'
   pod 'Foto'
+  pod 'Dwifft'
   
   pod 'Fabric'
   pod 'Crashlytics'
@@ -58,7 +59,9 @@ target 'UIComponents' do
 end
 
 target 'TasksKit' do
-  project 'TasksKit.xcodeproj'  
+  project 'TasksKit.xcodeproj'
+  
+  pod 'Dwifft'
 end
 
 target 'Workset' do

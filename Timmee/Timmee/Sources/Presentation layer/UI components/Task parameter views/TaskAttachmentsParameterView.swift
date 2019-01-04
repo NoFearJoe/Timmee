@@ -24,8 +24,8 @@ final class TaskAttachmentsParameterView: TaskParameterView {
     
     fileprivate var attachments: [String] = []
     
-    override func setFilled(_ isFilled: Bool) {
-        super.setFilled(isFilled)
+    override func setFilled(_ isFilled: Bool, animated: Bool) {
+        super.setFilled(isFilled, animated: animated)
         attachmentsCollectionView.isHidden = !isFilled
         guard !isHidden else { return }
         heightConstraint.constant = isFilled ? 128 : originalHeight

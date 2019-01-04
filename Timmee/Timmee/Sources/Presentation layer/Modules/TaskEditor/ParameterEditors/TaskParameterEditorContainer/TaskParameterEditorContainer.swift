@@ -12,6 +12,8 @@ enum TaskParameterEditorType {
     case dueDateTime
     case dueDate
     case dueTime
+    case startDate
+    case endDate
     case reminder
     case repeating
     case repeatEndingDate
@@ -26,6 +28,8 @@ enum TaskParameterEditorType {
         case .dueDateTime: return "due_date".localized
         case .dueDate: return "due_date".localized
         case .dueTime: return "due_time".localized
+        case .startDate: return "start_date".localized
+        case .endDate: return "end_date".localized
         case .reminder: return "reminder".localized
         case .repeating: return "repeat".localized
         case .repeatEndingDate: return "repeat_ending_date".localized

@@ -51,16 +51,21 @@ final class TableListRepresentationInteractor {
     private let tasksService = ServicesAssembly.shared.tasksService
     private let taskSchedulerService = TaskSchedulerService()
     
-    private var tasksObserver: CacheObserver<Task>!
+//    private var tasksObserver: CacheObserver<Task>!
     private var lastListID: String?
+    
+    private var scope: Scope<TaskEntity, Task>!
+    
+    private var fetchedTasks: [Task] = []
     
 }
 
 extension TableListRepresentationInteractor: TableListRepresentationInteractorInput {
     
     func subscribeToTasks(in list: List?) {
-        if let listID = list?.id, tasksObserver == nil || lastListID != listID {
-            setupTasksObserver(listID: listID)
+        if let listID = list?.id, scope == nil || lastListID != listID {
+//            setupTasksObserver(listID: listID)
+            setupScope(listID: listID)
         } else {
             output.didNotSubscribeToTasks()
         }
@@ -185,28 +190,28 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
 extension TableListRepresentationInteractor: TableListRepresentationDataSource {
     
     func sectionsCount() -> Int {
-        return tasksObserver?.numberOfSections() ?? 0
+        return scope?.numberOfSections() ?? 0
     }
     
     func itemsCount(in section: Int) -> Int {
-        return tasksObserver?.numberOfItems(in: section) ?? 0
+        return scope?.numberOfItems(in: section) ?? 0
     }
     
     func item(at index: Int, in section: Int) -> Task? {
         let indexPath = IndexPath(row: index, section: section)
-        return tasksObserver?.item(at: indexPath)
+        return scope?.item(at: indexPath)
     }
     
     func sectionInfo(forSectionAt index: Int) -> (name: String, numberOfItems: Int)? {
-        return tasksObserver?.sectionInfo(at: index)
+        return scope?.sectionInfo(at: index)
     }
     
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)? {
-        return tasksObserver?.sectionInfo(with: name)
+        return scope?.sectionInfo(with: name)
     }
     
     func totalObjectsCount() -> Int {
-        return tasksObserver?.totalObjectsCount() ?? 0
+        return scope?.totalObjectsCount() ?? 0
     }
     
 }
@@ -214,24 +219,37 @@ extension TableListRepresentationInteractor: TableListRepresentationDataSource {
 private extension TableListRepresentationInteractor {
     
     func setupTasksObserver(listID: String) {
-        tasksObserver = tasksService.tasksObserver(listID: listID)
-        
-        tasksObserver.setActions(
-            onInitialFetch: { [weak self] in
-                self?.output.initialTasksFetched()
-            },
-            onItemsCountChange: { [weak self] count in
-                self?.output.tasksCountChanged(count: count)
-            },
-            onItemChange: { [weak self] change in
-                self?.output.taskChanged(change: change)
-            },
-            onBatchUpdatesStarted: nil,
-            onBatchUpdatesCompleted: nil)
-        
-        output.prepareCacheObserver(tasksObserver)
-        
-        tasksObserver.fetchInitialEntities()
+//        tasksObserver = tasksService.tasksObserver(listID: listID)
+//
+//        tasksObserver.setActions(
+//            onInitialFetch: { [weak self] in
+//                self?.output.initialTasksFetched()
+//            },
+//            onItemsCountChange: { [weak self] count in
+//                self?.output.tasksCountChanged(count: count)
+//            },
+//            onItemChange: { [weak self] change in
+//                self?.output.taskChanged(change: change)
+//            },
+//            onBatchUpdatesStarted: nil,
+//            onBatchUpdatesCompleted: nil)
+//
+//        output.prepareCacheObserver(tasksObserver)
+//
+//        tasksObserver.fetchInitialEntities()
+    }
+    
+    func setupScope(listID: String) {
+        scope = tasksService.tasksScope(listID: listID)
+        scope.setDelegate(ScopeDelegate<Task>(onInitialFetch: { [weak self] _ in
+            self?.output.initialTasksFetched()
+        }, onEntitiesCountChange: { [weak self] count in
+            self?.output.tasksCountChanged(count: count)
+        }, onChanges: { [weak self] changes in
+            changes.forEach { self?.output.taskChanged(change: $0) }
+        }))
+        output.prepareCacheObserver(scope)
+        scope.fetch()
     }
     
 }

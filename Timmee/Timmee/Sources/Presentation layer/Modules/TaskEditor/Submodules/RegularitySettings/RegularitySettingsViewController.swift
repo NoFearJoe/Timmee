@@ -175,13 +175,26 @@ private extension RegularitySettingsViewController {
     func updateStartDateView(task: Task) {
         guard let startDateView = parameterViews[.startDate] as? TaskParameterView else { return }
         
-        let startDate = task.dueDate
-        
-        startDateView.text = startDate?.asNearestShortDateString ?? "start_date".localized
+        if let startDate = task.dueDate {
+            startDateView.text = "starts".localized + " " + startDate.asNearestShortDateString.lowercased()
+        } else {
+            startDateView.text = "start_date".localized
+        }
         startDateView.filledTitleColor = AppTheme.current.tintColor
         startDateView.updateTitleColor()
-        startDateView.isFilled = startDate != nil
+        startDateView.isFilled = task.dueDate != nil
         startDateView.canClear = false
+    }
+    
+    func updateEndDateView(task: Task) {
+        guard let repeatEndingDateView = parameterViews[.endDate] as? TaskParameterView else { return }
+        
+        if let endDate = task.repeatEndingDate {
+            repeatEndingDateView.text = "ends".localized + " " + endDate.asNearestShortDateString.lowercased()
+        } else {
+            repeatEndingDateView.text = "end_date".localized
+        }
+        repeatEndingDateView.isFilled = task.repeatEndingDate != nil
     }
     
     func updateNotificationView(task: Task) {
@@ -218,15 +231,6 @@ private extension RegularitySettingsViewController {
         repeatView.text = `repeat`.fullLocalizedString
         repeatView.isFilled = !`repeat`.type.isNever
         repeatView.canClear = false
-    }
-    
-    func updateEndDateView(task: Task) {
-        guard let repeatEndingDateView = parameterViews[.endDate] as? TaskParameterView else { return }
-        
-        let endDate = task.repeatEndingDate
-        
-        repeatEndingDateView.text = endDate?.asNearestShortDateString ?? "repeat_ending_date".localized
-        repeatEndingDateView.isFilled = endDate != nil
     }
     
 }

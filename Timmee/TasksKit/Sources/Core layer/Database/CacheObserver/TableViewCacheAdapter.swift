@@ -48,7 +48,7 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
             case let .deletion(indexPath):
                 tableView.deleteRows(at: [indexPath], with: .fade)
             case let .update(indexPath):
-                tableView.reloadRows(at: [indexPath], with: .fade)
+                tableView.reloadRows(at: [indexPath], with: .none)
             case let .move(fromIndexPath, toIndexPath):
                 if tableView.numberOfSections - 1 < toIndexPath.section {
                     tableView.deleteRows(at: [fromIndexPath], with: .fade)

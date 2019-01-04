@@ -165,14 +165,14 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             task.dueDate => time.minutes.asMinutes
         }
         
-        if let timeTemplate = timeTemplate {
+//        if let timeTemplate = timeTemplate {
 //            view.setNotification(TaskReminderSelectedNotification.mask(timeTemplate.notification))
 //            view.setRepeat(task.repeating)
-        } else {
-            if task.dueDate != nil {
+//        } else {
+//            if task.dueDate != nil {
 //                view.setRepeat(task.repeating)
-            }
-        }
+//            }
+//        }
         
         regularitySettings?.updateParameters(task: task)
     }
@@ -182,6 +182,10 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         if let time = task.timeTemplate?.time {
             task.dueDate => time.hours.asHours
             task.dueDate => time.minutes.asMinutes
+        }
+        if let dueDate = dueDate, let endDate = task.repeatEndingDate, dueDate >= endDate {
+            let newEndDate = dueDate + 1.asDays
+            task.repeatEndingDate = newEndDate
         }
         regularitySettings?.updateParameters(task: task)
     }

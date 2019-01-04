@@ -10,6 +10,7 @@ PODS:
   - Charts/Core (3.2.0)
   - Crashlytics (3.10.8):
     - Fabric (~> 1.7.12)
+  - Dwifft (0.9)
   - Fabric (1.7.12)
   - FBSDKCoreKit (4.39.0):
     - Bolts (~> 1.9)
@@ -80,6 +81,7 @@ PODS:
 DEPENDENCIES:
   - Charts
   - Crashlytics
+  - Dwifft
   - Fabric
   - FBSDKLoginKit
   - Firebase/Auth
@@ -92,6 +94,7 @@ SPEC REPOS:
     - Bolts
     - Charts
     - Crashlytics
+    - Dwifft
     - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -112,6 +115,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
+  Dwifft: 42912068ed2a8146077d1a1404df18625bd086e1
   Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
   FBSDKCoreKit: 1e3981faefab8c88edfaa9eecd94aab02d99a9bc
   FBSDKLoginKit: 30ba5039a2c53d65a75103889bc2deebdacd5a1f
@@ -128,6 +132,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwipeCellKit: d8f2617538ce3021cb0a11d1b93856a06a2f2e20
 
-PODFILE CHECKSUM: f93c99eda912ba8671b2ec69809c250b028f002e
+PODFILE CHECKSUM: d876eb8fb4cb2e84b7db6db547d0398637c8b6d7
 
 COCOAPODS: 1.6.0.beta.1

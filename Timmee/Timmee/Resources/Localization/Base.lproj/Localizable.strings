@@ -51,6 +51,8 @@
 "due_date" = "Due date";
 "due_time" = "Due time";
 "finish" = "Finish"; // сегодня в 21:00
+"start_date" = "Start date";
+"end_date" = "End date";
 "repeat_ending_date" = "Repeat ending date";
 "tags_picker" = "Tags";
 "input_tag" = "Input tag...";
@@ -78,6 +80,8 @@
 "choose_notification_time" = "Choose time";
 "notification_date" = "Notification date";
 "notification_time" = "Notification time";
+"starts" = "Starts";
+"ends" = "Ends";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";

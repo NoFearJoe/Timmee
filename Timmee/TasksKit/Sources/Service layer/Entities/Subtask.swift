@@ -49,3 +49,12 @@ public final class Subtask {
     }
 
 }
+
+extension Subtask: Equatable {
+    public static func == (lhs: Subtask, rhs: Subtask) -> Bool {
+        return lhs.id == rhs.id
+            && lhs.title == rhs.title
+            && lhs.isDone == rhs.isDone
+            && lhs.sortPosition == rhs.sortPosition
+    }
+}

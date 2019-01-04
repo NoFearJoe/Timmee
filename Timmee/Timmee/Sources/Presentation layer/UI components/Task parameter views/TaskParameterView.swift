@@ -24,7 +24,7 @@ class TaskParameterView: HiddingParameterView {
     
     var isFilled: Bool = false {
         didSet {
-            setFilled(isFilled)
+            setFilled(isFilled, animated: false)
             didChangeFilledState?(isFilled)
         }
     }
@@ -46,12 +46,18 @@ class TaskParameterView: HiddingParameterView {
     private let notFilledIconColor = AppTheme.current.thirdlyTintColor
     private let notFilledTitleColor = AppTheme.current.secondaryTintColor
     
-    func setFilled(_ isFilled: Bool) {
-        UIView.animate(withDuration: 0.2) { 
+    func setFilled(_ isFilled: Bool, animated: Bool) {
+        let action = {
             self.iconView.tintColor = isFilled ? self.filledIconColor : self.notFilledIconColor
             self.updateTitleColor()
             
             self.clearButton.isHidden = !(self.canClear && isFilled)
+        }
+        
+        if animated {
+            UIView.animate(withDuration: 0.2, animations: action)
+        } else {
+            action()
         }
     }
     
@@ -112,11 +118,17 @@ final class TaskComplexParameterView: TaskParameterView {
         set { subtitleLabel.text = newValue }
     }
     
-    override func setFilled(_ isFilled: Bool) {
-        super.setFilled(isFilled)
+    override func setFilled(_ isFilled: Bool, animated: Bool) {
+        super.setFilled(isFilled, animated: animated)
         
-        UIView.animate(withDuration: 0.2) {
+        let action = {
             self.subtitleLabel.textColor = isFilled ? self.filledSubtitleColor : self.notFilledSubtitleColor
+        }
+        
+        if animated {
+            UIView.animate(withDuration: 0.2, animations: action)
+        } else {
+            action()
         }
     }
     

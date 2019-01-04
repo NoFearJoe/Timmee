@@ -26,6 +26,22 @@ public enum CoreDataChange {
     case deletion(IndexPath)
     case update(IndexPath)
     case move(IndexPath, IndexPath)
+    
+    var indexPath: IndexPath? {
+        switch self {
+        case let .insertion(indexPath), let .deletion(indexPath), let .update(indexPath): return indexPath
+        default: return nil
+        }
+    }
+    
+    var moveIndexPaths: (IndexPath, IndexPath)? {
+        guard case .move(let from, let to) = self else { return nil }
+        return (from, to)
+    }
+    
+    func isEqualByIndexPath(with indexPath: IndexPath) -> Bool {
+        return self.indexPath == indexPath || moveIndexPaths?.0 == indexPath || moveIndexPaths?.1 == indexPath
+    }
 }
 
 public protocol CacheSubscriber: class {

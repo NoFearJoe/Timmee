@@ -331,6 +331,14 @@ public extension Date {
         return self.isWithinSameDay(of: date) && self.hours == date.hours
     }
     
+    public func isGreater(than date: Date) -> Bool {
+        return self > date
+    }
+    
+    public func isLower(than date: Date) -> Bool {
+        return self < date
+    }
+    
 }
 
 // MARK: - Date intervals
