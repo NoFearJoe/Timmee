@@ -15,13 +15,11 @@ import class CoreData.NSSortDescriptor
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
 
-protocol TableListRepresentationInteractorInput: class {
+protocol TableListRepresentationInteractorInput: TaskCompletionInteractorTrait {
     func subscribeToTasks(in list: List?)
     
     func deleteTask(_ task: Task)
     func deleteTasks(_ tasks: [Task])
-    func completeTask(_ task: Task)
-    func completeTasks(_ tasks: [Task])
     func toggleTaskProgressState(_ task: Task)
     func toggleTasksProgressState(_ tasks: [Task])
     func toggleImportancy(of task: Task)
@@ -48,10 +46,9 @@ final class TableListRepresentationInteractor {
     
     weak var output: TableListRepresentationInteractorOutput!
     
-    private let tasksService = ServicesAssembly.shared.tasksService
-    private let taskSchedulerService = TaskSchedulerService()
+    let tasksService = ServicesAssembly.shared.tasksService
+    let taskSchedulerService: TaskSchedulerService = TaskSchedulerService()
     
-//    private var tasksObserver: CacheObserver<Task>!
     private var lastListID: String?
     
     private var scope: Scope<TaskEntity, Task>!
@@ -64,7 +61,6 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
     
     func subscribeToTasks(in list: List?) {
         if let listID = list?.id, scope == nil || lastListID != listID {
-//            setupTasksObserver(listID: listID)
             setupScope(listID: listID)
         } else {
             output.didNotSubscribeToTasks()
@@ -101,54 +97,6 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         tasksService.removeTasks(tasks) { [weak self] error in
             self?.output.operationCompleted()
-        }
-    }
-    
-    func completeTask(_ task: Task) {
-        task.isDone = !task.isDone
-        if task.isDone {
-            task.inProgress = false
-        }
-        
-        tasksService.updateTask(task) { [weak self] error in
-            guard let `self` = self else { return }
-            
-            if task.isDone {
-                self.taskSchedulerService.removeNotifications(for: task)
-            } else {
-                NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
-                    guard isAuthorized else { return }
-                    self.taskSchedulerService.scheduleTask(task)
-                }
-            }
-            
-            self.output.operationCompleted()
-        }
-    }
-    
-    func completeTasks(_ tasks: [Task]) {
-        let willDone = tasks.contains(where: { !$0.isDone })
-        tasks.forEach {
-            $0.isDone = willDone
-            if $0.isDone {
-                $0.inProgress = false
-            }
-        }
-        
-        tasksService.updateTasks(tasks) { [weak self] error in
-            guard let `self` = self else { return }
-            
-            tasks.forEach { task in
-                if task.isDone {
-                    self.taskSchedulerService.removeNotifications(for: task)
-                } else {
-                    NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
-                        guard isAuthorized else{ return }
-                        self.taskSchedulerService.scheduleTask(task)
-                    }
-                }
-            }
-            self.output.groupEditingOperationCompleted()
         }
     }
     
@@ -217,27 +165,6 @@ extension TableListRepresentationInteractor: TableListRepresentationDataSource {
 }
 
 private extension TableListRepresentationInteractor {
-    
-    func setupTasksObserver(listID: String) {
-//        tasksObserver = tasksService.tasksObserver(listID: listID)
-//
-//        tasksObserver.setActions(
-//            onInitialFetch: { [weak self] in
-//                self?.output.initialTasksFetched()
-//            },
-//            onItemsCountChange: { [weak self] count in
-//                self?.output.tasksCountChanged(count: count)
-//            },
-//            onItemChange: { [weak self] change in
-//                self?.output.taskChanged(change: change)
-//            },
-//            onBatchUpdatesStarted: nil,
-//            onBatchUpdatesCompleted: nil)
-//
-//        output.prepareCacheObserver(tasksObserver)
-//
-//        tasksObserver.fetchInitialEntities()
-    }
     
     func setupScope(listID: String) {
         scope = tasksService.tasksScope(listID: listID)

@@ -157,7 +157,7 @@ extension MainViewController: TaskCreationPanelOutput {
     func didPressAddTaskButton() {
         if let title = taskCreationPanel.enteredTaskTitle {
             addShortTask(with: title,
-                        dueDate: dueDateForCurrentSmartList(),
+                        dueDate: state.currentList.defaultDueDate,
                         inProgress: progressStateForInProgressSmartList(),
                         isImportant: taskCreationPanel.isImportancySelected,
                         listID: state.currentList.id)
@@ -327,17 +327,6 @@ private extension MainViewController {
 }
 
 private extension MainViewController {
-    
-    func dueDateForCurrentSmartList() -> Date? {
-        if let smartList = state.currentList as? SmartList {
-            switch smartList.smartListType {
-            case .today: return (Date().startOfHour + 1.asHours)
-            case .tomorrow: return (Date().nextDay.startOfHour + 1.asHours)
-            default: return nil
-            }
-        }
-        return nil
-    }
     
     func progressStateForInProgressSmartList() -> Bool {
         if let smartList = state.currentList as? SmartList, smartList.smartListType == .inProgress {

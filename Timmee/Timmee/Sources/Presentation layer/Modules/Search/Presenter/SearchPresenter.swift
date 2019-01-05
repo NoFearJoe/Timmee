@@ -33,7 +33,9 @@ extension SearchPresenter: SearchViewOutput {
     
     func didPressComplete(task: Task) {
         view.setInteractionsEnabled(false)
-        interactor.completeTask(task)
+        interactor.completeTask(task, doneDate: Date()) { [weak self] in
+            self?.operationCompleted()
+        }
     }
     
     func didPressStart(task: Task) {

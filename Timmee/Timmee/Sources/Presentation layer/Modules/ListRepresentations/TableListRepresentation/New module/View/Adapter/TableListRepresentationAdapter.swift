@@ -43,6 +43,8 @@ protocol TableListRepresentationAdapterOutput: class {
     func didUncheckTask(_ task: Task)
     func taskIsChecked(_ task: Task) -> Bool
     
+    func taskIsDone(_ task: Task) -> Bool
+    
     func didPressDeleteCompletedTasks()
 }
 
@@ -99,7 +101,7 @@ extension TableListRepresentationAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
             let listRepresentationCell: TableListRepresentationBaseCell
-            if task.isDone {
+            if output.taskIsDone(task) {
                 listRepresentationCell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationBaseCell",
                                                      for: indexPath) as! TableListRepresentationBaseCell
             } else {
@@ -157,10 +159,10 @@ extension TableListRepresentationAdapter: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let item = dataSource.item(at: indexPath.row, in: indexPath.section) {
-            if item.isDone {
+        if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
+            if output.taskIsDone(task) {
                 return 40
-            } else if item.tags.count > 0 {
+            } else if task.tags.count > 0 {
                 return 62
             }
             return 56
@@ -231,13 +233,13 @@ private extension TableListRepresentationAdapter {
         }
         provider.isDone = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                return task.isDone
+                return self.output.taskIsDone(task)
             }
             return false
         }
         provider.progressActionForRow = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
-                if task.isDone { return .none }
+                if self.output.taskIsDone(task) { return .none }
                 else { return task.inProgress ? .stop : .start }
             }
             return .none

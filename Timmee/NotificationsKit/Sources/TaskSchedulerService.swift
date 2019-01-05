@@ -19,7 +19,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
     public func scheduleTask(_ task: Task) {
         removeNotifications(for: task)
 
-        guard !task.isDone else { return }
+        guard !task.isDone(at: nil) else { return }
         
 //        let location = task.shouldNotifyAtLocation ? task.location : nil
         
@@ -121,7 +121,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
     public func scheduleDeferredTask(_ task: Task, fireDate: Date) {
         removeDeferredNotifications(for: task)
         
-        guard !task.isDone else { return }
+        guard !task.isDone(at: nil) else { return }
         
 //        let location = task.shouldNotifyAtLocation ? task.location : nil
         

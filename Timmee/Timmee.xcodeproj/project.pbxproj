@@ -117,6 +117,7 @@
 		96115F2A1F6B0C780050D7A3 /* StoryboardsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F291F6B0C780050D7A3 /* StoryboardsFactory.swift */; };
 		96115F2C1F6B0D700050D7A3 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */; };
 		96115F531F6EEE650050D7A3 /* TaskParameterEditors.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */; };
+		9615A48421E1197A008923C3 /* TaskCompletionInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */; };
 		9615F429203033B500D9625C /* ListIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F428203033B500D9625C /* ListIconsView.swift */; };
 		963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */; };
 		963D6A3F1F59EC7E0063E295 /* ListRepresentationManagerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A3E1F59EC7E0063E295 /* ListRepresentationManagerInput.swift */; };
@@ -313,6 +314,7 @@
 		96115F291F6B0C780050D7A3 /* StoryboardsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsFactory.swift; sourceTree = "<group>"; };
 		96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
 		96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskParameterEditors.storyboard; sourceTree = "<group>"; };
+		9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletionInteractorTrait.swift; sourceTree = "<group>"; };
 		9615F428203033B500D9625C /* ListIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconsView.swift; sourceTree = "<group>"; };
 		963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationInput.swift; sourceTree = "<group>"; };
 		963D6A3E1F59EC7E0063E295 /* ListRepresentationManagerInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationManagerInput.swift; sourceTree = "<group>"; };
@@ -916,6 +918,22 @@
 			path = ViewControllerFactories;
 			sourceTree = "<group>";
 		};
+		9615A47F21E11934008923C3 /* Traits */ = {
+			isa = PBXGroup;
+			children = (
+				9615A48221E11958008923C3 /* Interactor */,
+			);
+			path = Traits;
+			sourceTree = "<group>";
+		};
+		9615A48221E11958008923C3 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
 		9615F4272030338500D9625C /* Submodules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1382,6 +1400,7 @@
 		96E543741F49ED890081C6F0 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				9615A47F21E11934008923C3 /* Traits */,
 				0C14D441211C1F2A004C0559 /* UI components */,
 				96115F261F6B0C660050D7A3 /* Factories */,
 				96E543761F49ED890081C6F0 /* Modules */,
@@ -1748,6 +1767,7 @@
 				0C8738CE1FB9746200EA1571 /* TaskEditorRouter.swift in Sources */,
 				0C14D4DF21218266004C0559 /* UserProperties.swift in Sources */,
 				0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */,
+				9615A48421E1197A008923C3 /* TaskCompletionInteractorTrait.swift in Sources */,
 				0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */,
 				0C74D8221FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift in Sources */,
 				0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */,

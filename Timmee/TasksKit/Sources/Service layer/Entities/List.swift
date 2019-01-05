@@ -65,6 +65,10 @@ public class List {
     public var tasksFetchPredicate: NSPredicate? {
         return NSPredicate(format: "list.id == %@", self.id)
     }
+    
+    public var defaultDueDate: Date? {
+        return nil
+    }
 }
 
 public extension List {

@@ -40,10 +40,10 @@ public class Task: Copyable {
     public var location: CLLocation?
     public var address: String?
     public var shouldNotifyAtLocation: Bool
-    public var isDone: Bool
+    private(set) var isDone: Bool
     public var inProgress: Bool
     public let creationDate: Date
-    public var doneDates: [Date]
+    private(set) var doneDates: [Date]
     
     public var tags: [Tag] = []
     public var subtasks: [Subtask] = []
@@ -229,14 +229,24 @@ public class Task: Copyable {
         return date
     }
     
-    public func isDone(at date: Date) -> Bool {
-        let date = date.startOfDay
-        return doneDates.contains(where: { date.isWithinSameDay(of: $0) })
+    public func isDone(at date: Date?) -> Bool {
+        switch repeatKind {
+        case .single:
+            return isDone
+        case .regular:
+            guard let date = date?.startOfDay else { return false }
+            return doneDates.contains(where: { date.isWithinSameDay(of: $0) })
+        }
     }
     
-    public func setDone(_ isDone: Bool, at date: Date) {
-        let date = date.startOfDay
-        isDone ? doneDates.append(date) : doneDates.remove(object: date)
+    public func setDone(_ isDone: Bool, at date: Date?) {
+        switch repeatKind {
+        case .single:
+            return self.isDone = isDone
+        case .regular:
+            guard let date = date?.startOfDay else { return }
+            isDone ? doneDates.append(date) : doneDates.remove(object: date)
+        }
     }
 
 }
@@ -275,6 +285,7 @@ extension Task: Hashable {
             && lhs.subtasks == rhs.subtasks
             && lhs.tags == rhs.tags
             && lhs.timeTemplate == rhs.timeTemplate
+            && lhs.doneDates == rhs.doneDates
             && lhs.isDone == rhs.isDone
             && lhs.inProgress == rhs.inProgress
             && lhs.isImportant == rhs.isImportant

@@ -13,11 +13,10 @@ import class CoreData.NSFetchRequest
 import protocol CoreData.NSFetchRequestResult
 import class CoreData.NSManagedObjectContext
 
-protocol SearchInteractorInput: class {
+protocol SearchInteractorInput: TaskCompletionInteractorTrait {
     func search(_ string: String)
     
     func deleteTask(_ task: Task)
-    func completeTask(_ task: Task)
     func toggleTaskProgressState(_ task: Task)
     func toggleImportancy(of task: Task)
 }
@@ -39,7 +38,9 @@ final class SearchInteractor {
     
     weak var output: SearchInteractorOutput!
     
-    private let tasksService = ServicesAssembly.shared.tasksService
+    let tasksService = ServicesAssembly.shared.tasksService
+    let taskSchedulerService = TaskSchedulerService()
+    
     private var tasksObserver: CacheObserver<Task>!
     
 }
@@ -55,17 +56,6 @@ extension SearchInteractor: SearchInteractorInput {
         tasksService.removeTask(task, completion: { [weak self] error in
             self?.output.operationCompleted()
         })
-    }
-    
-    func completeTask(_ task: Task) {
-        task.isDone = !task.isDone
-        if task.isDone {
-            task.inProgress = false
-        }
-        
-        tasksService.updateTask(task) { [weak self] error in
-            self?.output.operationCompleted()
-        }
     }
     
     func toggleTaskProgressState(_ task: Task) {

@@ -44,7 +44,9 @@ extension TableListRepresentationPresenter: ListRepresentationInput {
         case .delete:
             interactor.deleteTasks(tasks)
         case .complete:
-            interactor.completeTasks(tasks)
+            interactor.completeTasks(tasks, doneDate: state.list?.defaultDueDate) { [weak self] in
+                self?.groupEditingOperationCompleted()
+            }
         case let .move(list):
             interactor.moveTasks(tasks, toList: list) { [weak self] in
                 self?.view.setInteractionsEnabled(true)
@@ -134,7 +136,9 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     
     func didPressComplete(task: Task) {
         view.setInteractionsEnabled(false)
-        interactor.completeTask(task)
+        interactor.completeTask(task, doneDate: state.list?.defaultDueDate) { [weak self] in
+            self?.operationCompleted()
+        }
     }
     
     func didPressStart(task: Task) {
@@ -155,7 +159,7 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     func didCheckTask(_ task: Task) {
         state.checkedTasks.append(task)
         editingOutput?.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
-        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
+        if state.checkedTasks.contains(where: { !$0.isDone(at: state.list?.defaultDueDate) }) || state.checkedTasks.isEmpty {
             editingOutput?.setCompletionGroupEditingAction(.complete)
         } else {
             editingOutput?.setCompletionGroupEditingAction(.recover)
@@ -165,7 +169,7 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     func didUncheckTask(_ task: Task) {
         state.checkedTasks.remove(object: task)
         editingOutput?.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
-        if state.checkedTasks.contains(where: { !$0.isDone }) || state.checkedTasks.isEmpty {
+        if state.checkedTasks.contains(where: { !$0.isDone(at: state.list?.defaultDueDate) }) || state.checkedTasks.isEmpty {
             editingOutput?.setCompletionGroupEditingAction(.complete)
         } else {
             editingOutput?.setCompletionGroupEditingAction(.recover)
@@ -174,6 +178,11 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     
     func taskIsChecked(_ task: Task) -> Bool {
         return state.checkedTasks.contains(task)
+    }
+    
+    func taskIsDone(_ task: Task) -> Bool {
+        let doneDate = state.list?.defaultDueDate ?? Date()
+        return task.isDone(at: doneDate)
     }
     
     func didPressDeleteCompletedTasks() {

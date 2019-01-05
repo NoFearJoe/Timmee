@@ -288,17 +288,19 @@ extension TasksService: TasksObserverProvider {
             .batchSize(10)
         
         var filter: ((Task) -> Bool)?
+        var doneDate: Date = Date()
         if SmartListType.isSmartListID(listID) {
             let smartListType = SmartListType(id: listID)
             request = request.filtered(predicate: smartListType.fetchPredicate)
             filter = smartListType.filter
+            doneDate = SmartList(type: smartListType).defaultDueDate ?? Date()
         } else {
             request = request.filtered(key: "list.id", value: listID)
         }
         
         return Scope<TaskEntity, Task>(context: Database.localStorage.readContext,
                                        baseRequest: request.nsFetchRequest,
-                                       grouping: { $0.isDone ? "1" : "0" },
+                                       grouping: { $0.isDone || $0.isDone(at: doneDate) ? "1" : "0" },
                                        mapping: { Task(task:$0) },
                                        filter: filter)
     }

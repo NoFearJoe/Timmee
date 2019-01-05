@@ -175,7 +175,7 @@ extension TasksImportView: UITableViewDataSource {
         if let task = dataSource.task(at: indexPath) {
             cell.title = task.title
             cell.isChecked = dataSource.isTaskChecked(at: indexPath)
-            cell.isDone = task.isDone
+            cell.isDone = task.isDone(at: nil)
         }
         
         return cell
@@ -191,7 +191,7 @@ extension TasksImportView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let task = dataSource.task(at: indexPath) {
-            return task.isDone ? 32 : 52
+            return task.isDone(at: nil) ? 32 : 52
         }
         return 0
     }

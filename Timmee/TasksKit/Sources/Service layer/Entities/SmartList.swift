@@ -164,5 +164,13 @@ public final class SmartList: List {
     public override var tasksFetchPredicate: NSPredicate? {
         return smartListType.fetchPredicate
     }
+    
+    override public var defaultDueDate: Date? {
+        switch smartListType {
+        case .today: return (Date().startOfHour + 1.asHours)
+        case .tomorrow: return (Date().nextDay.startOfHour + 1.asHours)
+        default: return nil
+        }
+    }
 
 }

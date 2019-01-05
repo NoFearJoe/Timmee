@@ -95,13 +95,13 @@ final class SearchViewController: UIViewController {
         }
         swipeTableActionsProvider.isDone = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath) {
-                return task.isDone
+                return task.isDone(at: nil)
             }
             return false
         }
         swipeTableActionsProvider.progressActionForRow = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath) {
-                if task.isDone { return .none }
+                if task.isDone(at: nil) { return .none }
                 else { return task.inProgress ? .stop : .start }
             }
             return .none
@@ -181,7 +181,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let task = dataSource.item(at: indexPath) {
             let listRepresentationCell: TableListRepresentationBaseCell
-            if task.isDone {
+            if task.isDone(at: nil) {
                 listRepresentationCell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationBaseCell",
                                                                        for: indexPath) as! TableListRepresentationBaseCell
             } else {
@@ -223,7 +223,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let item = dataSource.item(at: indexPath) {
-            if item.isDone {
+            if item.isDone(at: nil) {
                 return 40
             } else if item.tags.count > 0 {
                 return 62
