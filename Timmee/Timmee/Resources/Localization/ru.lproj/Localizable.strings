@@ -264,3 +264,5 @@
 "task_kind" = "Тип задачи";
 "single_task_kind" = "Одиночная";
 "regular_task_kind" = "Регулярная";
+"create_single_task" = "Создать обычную задачу";
+"create_regular_task" = "Создать регулярную задачу";

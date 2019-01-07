@@ -41,6 +41,7 @@
 		9606627F20A359FF00B23EDF /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627E20A359FF00B23EDF /* Sound.swift */; };
 		9606628120A6FE0200B23EDF /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606628020A6FE0100B23EDF /* Tracker.swift */; };
 		960E1CC32093B10700225193 /* UICollectionView+syncBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */; };
+		9615A48A21E38BB6008923C3 /* String+NilIfEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48921E38BB6008923C3 /* String+NilIfEmpty.swift */; };
 		BAA0543A5E4A7F9E7D0B4168 /* Pods_Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF8720556CF553C57C8FDB1 /* Pods_Workset.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		9606627E20A359FF00B23EDF /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		9606628020A6FE0100B23EDF /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+syncBatchUpdates.swift"; sourceTree = "<group>"; };
+		9615A48921E38BB6008923C3 /* String+NilIfEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NilIfEmpty.swift"; sourceTree = "<group>"; };
 		A4BC4520B1B7B07A3D482269 /* Pods-Workset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workset.release.xcconfig"; path = "Pods/Target Support Files/Pods-Workset/Pods-Workset.release.xcconfig"; sourceTree = "<group>"; };
 		F2B66F9223C5A92774D9AB72 /* Pods-Workset.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workset.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Workset/Pods-Workset.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +170,7 @@
 				0C9B23D92077B757009EF6DE /* String+capitalizeFirst.swift */,
 				0C9B23DA2077B757009EF6DE /* String+Localized.swift */,
 				0C9B23DC2077B757009EF6DE /* String+Encryption.swift */,
+				9615A48921E38BB6008923C3 /* String+NilIfEmpty.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				0C9B23E52077B757009EF6DE /* KeyboardManager.swift in Sources */,
 				0C9B23FD2077B757009EF6DE /* Sequence+Dictionarised.swift in Sources */,
 				0C9B23E42077B757009EF6DE /* Date.swift in Sources */,
+				9615A48A21E38BB6008923C3 /* String+NilIfEmpty.swift in Sources */,
 				0C9B23E72077B757009EF6DE /* DatesKit.swift in Sources */,
 				0C9B23ED2077B757009EF6DE /* UIDevice+biometrics.swift in Sources */,
 				0C9B23F72077B757009EF6DE /* String+capitalizeFirst.swift in Sources */,

@@ -21,6 +21,7 @@ protocol TaskEditorInput: class {
     
     func setListID(_ listID: String?)
     func setTask(_ task: Task?)
+    func setTaskKind(_ taskKind: Task.RepeatKind)
     func setTaskTitle(_ title: String)
     func setDueDate(_ dueDate: Date)
 }
@@ -67,7 +68,6 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setTaskNote(self.task.note)
         
         view.setRepeatKind(self.task.repeatKind)
-        view.setRepeatKindAvailable(self.isNewTask)
                 
         if self.task.location != nil && self.task.address == nil {
             decodeLocation(self.task.location) { address in
@@ -89,6 +89,17 @@ extension TaskEditorPresenter: TaskEditorInput {
         audioNotePresenter.updateAudioNoteField()
         
         regularitySettings?.updateParameters(task: self.task)
+    }
+    
+    func setTaskKind(_ taskKind: Task.RepeatKind) {
+        task.repeatKind = taskKind
+        view.setRepeatKind(taskKind)
+        if isNewTask && taskKind == .regular {
+            task.dueDate = Date()
+            task.dueDate => TimeRounder.roundMinutes(task.dueDate?.minutes ?? 0).asMinutes
+            task.repeating = RepeatMask(type: .every(.day))
+        }
+        regularitySettings?.updateParameters(task: task)
     }
     
     func setTaskTitle(_ title: String) {
@@ -138,22 +149,6 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func taskNoteChanged(to taskNote: String) {
         task.note = taskNote
-    }
-    
-    func repeatKindChanged(to repeatKind: Task.RepeatKind) {
-        task.repeatKind = repeatKind
-        view.setRepeatKind(repeatKind)
-        repeatEndingDateCleared()
-        repeatCleared()
-        notificationCleared()
-        dueDateTimeCleared()
-        timeTemplateCleared()
-        if repeatKind == .regular {
-            task.dueDate = Date()
-            task.dueDate => TimeRounder.roundMinutes(task.dueDate?.minutes ?? 0).asMinutes
-            task.repeating = RepeatMask(type: .every(.day))
-        }
-        regularitySettings?.updateParameters(task: task)
     }
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {

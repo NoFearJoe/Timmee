@@ -222,10 +222,10 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let item = dataSource.item(at: indexPath) {
-            if item.isDone(at: nil) {
+        if let task = dataSource.item(at: indexPath) {
+            if task.isDone(at: nil) {
                 return 40
-            } else if item.tags.count > 0 {
+            } else if task.tags.count > 0 {
                 return 62
             }
             return 56

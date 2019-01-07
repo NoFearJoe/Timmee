@@ -262,5 +262,7 @@
 "education_final_continue" = "Start";
 
 "task_kind" = "Task kind";
-"single_task_kind" = "Single";
+"single_task_kind" = "Common";
 "regular_task_kind" = "Regular";
+"create_single_task" = "Create common task";
+"create_regular_task" = "Create regular task";

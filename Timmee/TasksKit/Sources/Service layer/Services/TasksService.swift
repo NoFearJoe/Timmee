@@ -300,7 +300,7 @@ extension TasksService: TasksObserverProvider {
         
         return Scope<TaskEntity, Task>(context: Database.localStorage.readContext,
                                        baseRequest: request.nsFetchRequest,
-                                       grouping: { $0.isDone || $0.isDone(at: doneDate) ? "1" : "0" },
+                                       grouping: { $0.isDone(at: doneDate) ? "1" : "0" },
                                        mapping: { Task(task:$0) },
                                        filter: filter)
     }

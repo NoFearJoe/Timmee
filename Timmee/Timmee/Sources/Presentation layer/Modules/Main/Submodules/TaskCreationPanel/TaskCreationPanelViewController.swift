@@ -9,6 +9,8 @@
 import UIKit
 
 protocol TaskCreationPanelInput: class {
+    var dimmedBackgroundView: UIView? { get set }
+    
     var enteredTaskTitle: String? { get }
     var isImportancySelected: Bool { get }
     
@@ -19,7 +21,7 @@ protocol TaskCreationPanelInput: class {
 
 protocol TaskCreationPanelOutput: class {
     func didPressAddTaskButton()
-    func didPressCreateTaskButton()
+    func didPressCreateTaskButton(taskKind: Task.RepeatKind)
 }
 
 final class TaskCreationPanelViewController: UIViewController {
@@ -28,7 +30,25 @@ final class TaskCreationPanelViewController: UIViewController {
     
     @IBOutlet private var importancyPicker: TaskImportancyPicker!
     @IBOutlet private var taskTitleTextField: UITextField!
-    @IBOutlet private var rightBarButton: UIButton!
+    @IBOutlet private var rightBarButton: FloatingButton!
+    
+    weak var containerView: UIView!
+    weak var taskCreationMenuAnchorView: UIView!
+    weak var dimmedBackgroundView: UIView? {
+        didSet {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapToDimmedBackgroundView))
+            dimmedBackgroundView?.addGestureRecognizer(tapGestureRecognizer)
+        }
+    }
+    
+    private lazy var taskKindMenu = {
+        FloatingMenu(items: [
+            FloatingMenu.Item(title: "create_single_task".localized,
+                              action: { [unowned self] in self.handleTaskCreationMenuSelection(taskKind: .single) }),
+            FloatingMenu.Item(title: "create_regular_task".localized,
+                              action: { [unowned self] in self.handleTaskCreationMenuSelection(taskKind: .regular) })
+        ])
+    }()
     
     // newTaskTitleTextField.isFirstResponder
     var enteredTaskTitle: String? {
@@ -46,6 +66,9 @@ final class TaskCreationPanelViewController: UIViewController {
         super.viewDidLoad()
         
         subscribeToTaskTitleChange()
+        
+        taskKindMenu.add(to: containerView)
+        taskKindMenu.pin(to: taskCreationMenuAnchorView, offset: 12)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,8 +77,6 @@ final class TaskCreationPanelViewController: UIViewController {
         taskTitleTextField.textColor = AppTheme.current.backgroundTintColor
         taskTitleTextField.tintColor = AppTheme.current.backgroundTintColor.withAlphaComponent(0.75)
         taskTitleTextField.attributedPlaceholder = "new_task".localized.asPlaceholder
-        
-        rightBarButton.tintColor = AppTheme.current.blueColor
     }
     
 }
@@ -113,11 +134,45 @@ private extension TaskCreationPanelViewController {
                                                object: taskTitleTextField)
     }
     
+    func handleTaskCreationMenuSelection(taskKind: Task.RepeatKind) {
+        setTaskKindMenuVisible(false)
+        output.didPressCreateTaskButton(taskKind: taskKind)
+    }
+    
     func updateRightBarButton() {
         if taskTitleTextField.isFirstResponder, enteredTaskTitle != nil {
             rightBarButton.setImage(UIImage(named: "checkmark"), for: .normal)
         } else {
             rightBarButton.setImage(UIImage(named: "plus"), for: .normal)
+        }
+    }
+    
+    func setTaskKindMenuVisible(_ isVisible: Bool) {
+        if isVisible {
+            taskTitleTextField.isUserInteractionEnabled = false
+            importancyPicker.isUserInteractionEnabled = false
+            dimmedBackgroundView?.alpha = 0
+            dimmedBackgroundView?.isHidden = false
+            taskKindMenu.show(animated: true,
+                              animations: {
+                                  self.rightBarButton.setState(.active)
+                                  self.taskTitleTextField.alpha = 0.65
+                                  self.importancyPicker.alpha = 0.65
+                                  self.dimmedBackgroundView?.alpha = 1
+                              })
+        } else {
+            taskKindMenu.hide(animated: true,
+                              animations: {
+                                  self.rightBarButton.setState(.default)
+                                  self.taskTitleTextField.alpha = 1
+                                  self.importancyPicker.alpha = 1
+                                  self.dimmedBackgroundView?.alpha = 0
+                              },
+                              completion: {
+                                  self.taskTitleTextField.isUserInteractionEnabled = true
+                                  self.importancyPicker.isUserInteractionEnabled = true
+                                  self.dimmedBackgroundView?.isHidden = true
+                              })
         }
     }
     
@@ -135,8 +190,12 @@ private extension TaskCreationPanelViewController {
             
             clearTaskTitleInput()
         } else {
-            output.didPressCreateTaskButton()
+            setTaskKindMenuVisible(!taskKindMenu.isShown)
         }
+    }
+    
+    @objc private func onTapToDimmedBackgroundView() {
+        setTaskKindMenuVisible(false)
     }
     
 }

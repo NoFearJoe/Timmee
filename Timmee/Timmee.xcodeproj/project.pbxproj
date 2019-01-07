@@ -118,6 +118,8 @@
 		96115F2C1F6B0D700050D7A3 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */; };
 		96115F531F6EEE650050D7A3 /* TaskParameterEditors.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */; };
 		9615A48421E1197A008923C3 /* TaskCompletionInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */; };
+		9615A48621E1FCFC008923C3 /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48521E1FCFC008923C3 /* FloatingMenu.swift */; };
+		9615A48821E343CF008923C3 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48721E343CF008923C3 /* FloatingButton.swift */; };
 		9615F429203033B500D9625C /* ListIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F428203033B500D9625C /* ListIconsView.swift */; };
 		963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */; };
 		963D6A3F1F59EC7E0063E295 /* ListRepresentationManagerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A3E1F59EC7E0063E295 /* ListRepresentationManagerInput.swift */; };
@@ -315,6 +317,8 @@
 		96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
 		96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskParameterEditors.storyboard; sourceTree = "<group>"; };
 		9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletionInteractorTrait.swift; sourceTree = "<group>"; };
+		9615A48521E1FCFC008923C3 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
+		9615A48721E343CF008923C3 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		9615F428203033B500D9625C /* ListIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconsView.swift; sourceTree = "<group>"; };
 		963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationInput.swift; sourceTree = "<group>"; };
 		963D6A3E1F59EC7E0063E295 /* ListRepresentationManagerInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationManagerInput.swift; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 				0C14D44C211C1FAF004C0559 /* TaskImportancyPicker.swift */,
 				0C14D443211C1F71004C0559 /* TaskTagsView.swift */,
 				0CCBBCF521D0BA5200EE5831 /* BorderedSelectableButton.swift */,
+				9615A48521E1FCFC008923C3 /* FloatingMenu.swift */,
+				9615A48721E343CF008923C3 /* FloatingButton.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -1645,6 +1651,7 @@
 				0C8738D81FB9747700EA1571 /* TaskRepeatingEditor.swift in Sources */,
 				0C9EF5551FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift in Sources */,
 				0C8738CA1FB9745C00EA1571 /* TaskEditorView.swift in Sources */,
+				9615A48621E1FCFC008923C3 /* FloatingMenu.swift in Sources */,
 				965798D71F91340100F65019 /* PinCreationViewController.swift in Sources */,
 				96BE0A341F65B8760041FBEA /* ListEditorInteractor.swift in Sources */,
 				0C8738DD1FB9769A00EA1571 /* AddSubtaskView.swift in Sources */,
@@ -1761,6 +1768,7 @@
 				0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */,
 				0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */,
 				96CF79321FB23C8700AD0594 /* SearchAssembly.swift in Sources */,
+				9615A48821E343CF008923C3 /* FloatingButton.swift in Sources */,
 				0C9B2415207B4440009EF6DE /* OperatorDefinitions.swift in Sources */,
 				0C8738D61FB9747700EA1571 /* TaskReminderEditor.swift in Sources */,
 				96594E4C200A6F9000998133 /* InitialEducationScreen.swift in Sources */,

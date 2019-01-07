@@ -18,6 +18,8 @@ final class MainViewController: UIViewController {
     @IBOutlet private var taskCreationPanelContainer: UIView!
     @IBOutlet private var groupEditingPanelContainer: UIView!
     
+    @IBOutlet private var dimmedBackgroundView: UIView!
+    
     @IBOutlet private var bottomContainerConstraint: NSLayoutConstraint!
     
     private var menuPanel: MenuPanelInput!
@@ -88,6 +90,9 @@ final class MainViewController: UIViewController {
         } else if segue.identifier == "EmbedTaskCreationPanel" {
             guard let taskCreationPanel = segue.destination as? TaskCreationPanelViewController else { return }
             taskCreationPanel.output = self
+            taskCreationPanel.containerView = view
+            taskCreationPanel.taskCreationMenuAnchorView = bottomContainer
+            taskCreationPanel.dimmedBackgroundView = dimmedBackgroundView
             self.taskCreationPanel = taskCreationPanel
         } else if segue.identifier == "EmbedGroupEditingPanel" {
             guard let groupEditingPanel = segue.destination as? GroupEditingPanelViewController else { return }
@@ -164,15 +169,17 @@ extension MainViewController: TaskCreationPanelOutput {
         }
     }
     
-    func didPressCreateTaskButton() {
-        if let title = taskCreationPanel.enteredTaskTitle, !title.isEmpty {
+    func didPressCreateTaskButton(taskKind: Task.RepeatKind) {
+        if let title = taskCreationPanel.enteredTaskTitle.nilIfEmpty {
             router.showTaskEditor(with: title,
                                   list: state.currentList,
+                                  taskKind: taskKind,
                                   isImportant: taskCreationPanel.isImportancySelected,
                                   output: self)
         } else {
             router.showTaskEditor(with: nil,
                                   list: state.currentList,
+                                  taskKind: taskKind,
                                   isImportant: taskCreationPanel.isImportancySelected,
                                   output: self)
         }
@@ -249,6 +256,7 @@ extension MainViewController: ListRepresentationOutput {
     func didPressEdit(for task: Task) {
         router.showTaskEditor(with: task,
                               list: state.currentList,
+                              taskKind: task.repeatKind,
                               isImportant: taskCreationPanel.isImportancySelected,
                               output: self)
     }

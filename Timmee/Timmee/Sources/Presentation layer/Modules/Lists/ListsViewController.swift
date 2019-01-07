@@ -29,7 +29,7 @@ final class ListsViewController: UIViewController {
     @IBOutlet private var collectionViewContainer: BarView!
     @IBOutlet private var collectionView: UICollectionView!
     
-    @IBOutlet private var addListButton: UIButton!
+    @IBOutlet private var addListButton: FloatingButton!
     @IBOutlet private var addListMenu: UIStackView!
     @IBOutlet private var addListMenuButton: UIButton!
     @IBOutlet private var addSmartListMenuButton: UIButton!
@@ -99,12 +99,6 @@ final class ListsViewController: UIViewController {
             button.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor.withAlphaComponent(0.9)), for: .highlighted)
             button.tintColor = AppTheme.current.backgroundTintColor
         }
-        
-        addListButton.adjustsImageWhenHighlighted = false
-        addListButton.tintColor = AppTheme.current.backgroundTintColor
-        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: .highlighted)
-        addListButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.thirdlyTintColor), for: .selected)
         
         addListMenuButton.setTitle("list".localized, for: .normal)
         addSmartListMenuButton.setTitle("smart_list".localized, for: .normal)
@@ -309,8 +303,7 @@ private extension ListsViewController {
             self.addListMenu.alpha = 1
             self.dimmedBackgroundView.alpha = 1
             self.addListMenu.transform = .identity
-            self.addListButton.isSelected = true
-            self.addListButton.transform = self.makeAddListButtonRotationTransform()
+            self.addListButton.setState(.active)
         }
     }
     
@@ -320,8 +313,7 @@ private extension ListsViewController {
             self.addListMenu.alpha = 0
             self.dimmedBackgroundView.alpha = 0
             self.addListMenu.transform = self.makeAddListMenuInitialTransform()
-            self.addListButton.isSelected = false
-            self.addListButton.transform = .identity
+            self.addListButton.setState(.default)
         }) { _ in
             self.addListMenu.isHidden = true
             self.dimmedBackgroundView.isHidden = true
@@ -368,10 +360,6 @@ private extension ListsViewController {
         let translation = CGAffineTransform(translationX: 0, y: 64)
         let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
         return scale.concatenating(translation)
-    }
-    
-    func makeAddListButtonRotationTransform() -> CGAffineTransform {
-        return CGAffineTransform(rotationAngle: 45 * .pi / 180)
     }
     
 }

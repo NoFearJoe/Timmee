@@ -25,8 +25,6 @@ final class TaskEditorView: UIViewController {
     @IBOutlet private var closeButton: UIButton!
     @IBOutlet private var doneButton: UIButton!
     
-    @IBOutlet private var repeatKindPicker: TaskRepeatKindPicker!
-    
     @IBOutlet private var regularitySettingsContainer: UIView!
     
 //    @IBOutlet fileprivate var locationView: TaskParameterView!
@@ -95,11 +93,6 @@ final class TaskEditorView: UIViewController {
         }
         taskAudioNoteView.didTouchedUp = { [unowned self] in
             self.audioNoteOutput.audioNoteTouched()
-        }
-        
-        repeatKindPicker.originalHeight = 48
-        repeatKindPicker.onSelectRepeatKind = { [unowned self] kind in
-            self.output.repeatKindChanged(to: kind)
         }
         
 //        locationView.didChangeFilledState = { [unowned self] isFilled in
@@ -228,12 +221,7 @@ extension TaskEditorView: TaskEditorViewInput {
     }
     
     func setRepeatKind(_ kind: Task.RepeatKind) {
-        repeatKindPicker.selectedRepeatKind = kind
         // TODO
-    }
-    
-    func setRepeatKindAvailable(_ isAvailable: Bool) {
-        repeatKindPicker.isHidden = !isAvailable
     }
     
     func setLocation(_ location: String?) {
@@ -545,7 +533,7 @@ fileprivate extension TaskEditorView {
                                      /*locationView, locationReminderView,*/
                                      subtasksContainer, taskTagsView,
                                      taskAttachmentsView, taskAudioNoteView,
-                                     repeatKindPicker, regularitySettingsContainer]
+                                     regularitySettingsContainer]
         viewsToHide.forEach { view in
             UIView.animate(withDuration: 0.2, animations: { 
                 view.isUserInteractionEnabled = isEnabled

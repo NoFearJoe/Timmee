@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4LK-oA-w5i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4LK-oA-w5i">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +45,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="wn2-6q-cM5">
-                                                            <rect key="frame" x="40" y="15" width="243" height="19.5"/>
+                                                            <rect key="frame" x="40" y="15.5" width="243" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.27058823529999998" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -134,10 +133,10 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxK-rG-k01">
-                                                            <rect key="frame" x="121.5" y="15.5" width="115" height="19.5"/>
+                                                            <rect key="frame" x="122" y="15.5" width="115" height="19.5"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DlE-hp-dLT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="-0.5" width="20" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="Elv-Dx-ijT"/>
                                                                         <constraint firstAttribute="width" secondItem="DlE-hp-dLT" secondAttribute="height" multiplier="1:1" id="wre-Fv-cxz"/>
@@ -260,8 +259,8 @@
                                     <constraint firstAttribute="height" constant="80" id="qHd-Me-T7v"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buH-lL-e3R">
-                                <rect key="frame" x="155" y="583" width="64" height="64"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buH-lL-e3R" customClass="FloatingButton" customModule="Timmee" customModuleProvider="target">
+                                <rect key="frame" x="155.5" y="583" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="buH-lL-e3R" secondAttribute="height" multiplier="1:1" id="7EJ-mT-iUg"/>
                                     <constraint firstAttribute="width" constant="64" id="TZo-NL-8Bu"/>
