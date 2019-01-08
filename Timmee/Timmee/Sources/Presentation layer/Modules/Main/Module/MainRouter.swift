@@ -9,8 +9,8 @@
 import UIKit
 
 protocol MainRouterInput: class {
-    func showTaskEditor(with task: Task?, list: List?, taskKind: Task.RepeatKind, isImportant: Bool, output: TaskEditorOutput?)
-    func showTaskEditor(with taskTitle: String, list: List?, taskKind: Task.RepeatKind, isImportant: Bool, output: TaskEditorOutput?)
+    func showTaskEditor(with task: Task?, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?)
+    func showTaskEditor(with taskTitle: String, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?)
 }
 
 final class MainRouter {
@@ -21,17 +21,17 @@ final class MainRouter {
 
 extension MainRouter: MainRouterInput {
     
-    func showTaskEditor(with task: Task?, list: List?, taskKind: Task.RepeatKind, isImportant: Bool, output: TaskEditorOutput?) {
+    func showTaskEditor(with task: Task?, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?) {
         showTaskEditor(list: list, isImportant: isImportant, output: output) { taskEditorInput in
             taskEditorInput.setTask(task)
-            taskEditorInput.setTaskKind(task?.repeatKind ?? taskKind)
+            taskEditorInput.setTaskKind(task?.kind ?? taskKind)
             if let smartList = list as? SmartList, smartList.smartListType == .today, task?.dueDate == nil {
                 taskEditorInput.setDueDate(Date().startOfHour + 1.asHours)
             }
         }
     }
     
-    func showTaskEditor(with taskTitle: String, list: List?, taskKind: Task.RepeatKind, isImportant: Bool, output: TaskEditorOutput?) {
+    func showTaskEditor(with taskTitle: String, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?) {
         showTaskEditor(list: list, isImportant: isImportant, output: output) { taskEditorInput in
             taskEditorInput.setTask(nil)
             taskEditorInput.setTaskKind(taskKind)

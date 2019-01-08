@@ -90,9 +90,10 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
         
         let tasks: [Task]
         if SmartListType.isSmartListID(listID) {
-            tasks = tasksService.fetchTasks(smartListID: listID, isDone: true)
+            let smartList = SmartList(type: SmartListType(id: listID))
+            tasks = tasksService.fetchTasks(smartListID: listID, predicate: .completed(date: smartList.defaultDueDate ?? Date()))
         } else {
-            tasks = tasksService.fetchTasks(listID: listID, isDone: true)
+            tasks = tasksService.fetchTasks(listID: listID, predicate: .completed(date: Date()))
         }
         
         tasksService.removeTasks(tasks) { [weak self] error in

@@ -107,7 +107,7 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
         
         timeTemplate = task.timeTemplate?.title
         
-        switch task.repeatKind {
+        switch task.kind {
         case .single:
             let isOverdue = UserProperty.highlightOverdueTasks.bool() && (task.dueDate != nil && !(task.dueDate! >= Date()))
             updateDueDateView(with: task.dueDate?.asNearestDateString, isOverdue: isOverdue)

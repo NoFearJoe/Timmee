@@ -21,7 +21,7 @@ protocol TaskEditorInput: class {
     
     func setListID(_ listID: String?)
     func setTask(_ task: Task?)
-    func setTaskKind(_ taskKind: Task.RepeatKind)
+    func setTaskKind(_ taskKind: Task.Kind)
     func setTaskTitle(_ title: String)
     func setDueDate(_ dueDate: Date)
 }
@@ -67,7 +67,7 @@ extension TaskEditorPresenter: TaskEditorInput {
         view.setTaskTitle(self.task.title)
         view.setTaskNote(self.task.note)
         
-        view.setRepeatKind(self.task.repeatKind)
+        view.setRepeatKind(self.task.kind)
                 
         if self.task.location != nil && self.task.address == nil {
             decodeLocation(self.task.location) { address in
@@ -91,8 +91,8 @@ extension TaskEditorPresenter: TaskEditorInput {
         regularitySettings?.updateParameters(task: self.task)
     }
     
-    func setTaskKind(_ taskKind: Task.RepeatKind) {
-        task.repeatKind = taskKind
+    func setTaskKind(_ taskKind: Task.Kind) {
+        task.kind = taskKind
         view.setRepeatKind(taskKind)
         if isNewTask && taskKind == .regular {
             task.dueDate = Date()
@@ -340,7 +340,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput) {
-        input.canClear = task.repeatKind == .single
+        input.canClear = task.kind == .single
         input.setDueDate(task.dueDate)
     }
     
@@ -353,7 +353,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
             input.setNotification(.mask(task.notification))
         }
         
-        switch task.repeatKind {
+        switch task.kind {
         case .single:
             let shouldHideNotificationMasks = task.dueDate == nil && task.timeTemplate == nil
             input.setNotificationMasksVisible(!shouldHideNotificationMasks)
@@ -367,11 +367,11 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput) {
-        input.canClear = task.repeatKind == .single
+        input.canClear = task.kind == .single
         input.setRepeatMask(task.repeating)
         
         let shouldHideRepeatMasks: Bool
-        switch task.repeatKind {
+        switch task.kind {
         case .single: shouldHideRepeatMasks = true
         case .regular: shouldHideRepeatMasks = task.dueDate == nil && task.notificationDate == nil && task.notificationTime == nil
         }

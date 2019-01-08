@@ -137,16 +137,16 @@ extension ListsInteractor {
 
     func tasksCount(in list: List) -> Int {
         if let smartList = list as? SmartList {
-            return tasksService.tasksCount(smartListID: smartList.id)
+            return tasksService.tasksCount(smartListID: smartList.id, predicate: .none)
         }
-        return tasksService.tasksCount(listID: list.id)
+        return tasksService.tasksCount(listID: list.id, predicate: .none)
     }
     
     func activeTasksCount(in list: List) -> Int {
         if let smartList = list as? SmartList {
-            return tasksService.tasksCount(smartListID: smartList.id, isDone: false)
+            return tasksService.tasksCount(smartListID: smartList.id, predicate: .notCompleted(date: smartList.defaultDueDate ?? Date()))
         }
-        return tasksService.tasksCount(listID: list.id, isDone: false)
+        return tasksService.tasksCount(listID: list.id, predicate: .notCompleted(date: Date()))
     }
 
 }

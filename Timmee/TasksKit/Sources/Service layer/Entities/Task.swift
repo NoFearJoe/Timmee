@@ -26,7 +26,7 @@ public protocol CustomEquatable {
 public class Task: Copyable {
 
     public var id: String
-    public var repeatKind: RepeatKind
+    public var kind: Kind
     public var title: String
     public var isImportant: Bool
     public var notification: NotificationMask
@@ -54,7 +54,7 @@ public class Task: Copyable {
     
     public init(task: TaskEntity) {
         id = task.id!
-        repeatKind = RepeatKind(rawValue: Int(task.repeatKind)) ?? .single
+        kind = Kind(rawValue: Int(task.kind)) ?? .single
         title = task.title ?? ""
         isImportant = task.isImportant
         notification = NotificationMask(mask: task.notificationMask)
@@ -92,7 +92,7 @@ public class Task: Copyable {
     }
     
     public init(id: String,
-                repeatKind: RepeatKind,
+                kind: Kind,
                 title: String,
                 isImportant: Bool,
                 notification: NotificationMask,
@@ -112,7 +112,7 @@ public class Task: Copyable {
                 creationDate: Date,
                 doneDates: [Date]) {
         self.id = id
-        self.repeatKind = repeatKind
+        self.kind = kind
         self.title = title
         self.isImportant = isImportant
         self.notification = notification
@@ -136,7 +136,7 @@ public class Task: Copyable {
    public convenience init(id: String,
                            title: String) {
         self.init(id: id,
-                  repeatKind: .single,
+                  kind: .single,
                   title: title,
                   isImportant: false,
                   notification: .doNotNotify,
@@ -159,7 +159,7 @@ public class Task: Copyable {
     
     public var copy: Task {
         let task = Task(id: id,
-                        repeatKind: repeatKind,
+                        kind: kind,
                         title: title,
                         isImportant: isImportant,
                         notification: notification,
@@ -230,7 +230,7 @@ public class Task: Copyable {
     }
     
     public func isDone(at date: Date?) -> Bool {
-        switch repeatKind {
+        switch kind {
         case .single:
             return isDone
         case .regular:
@@ -240,7 +240,7 @@ public class Task: Copyable {
     }
     
     public func setDone(_ isDone: Bool, at date: Date?) {
-        switch repeatKind {
+        switch kind {
         case .single:
             return self.isDone = isDone
         case .regular:
@@ -253,7 +253,8 @@ public class Task: Copyable {
 
 public extension Task {
     
-    public enum RepeatKind: Int {
+    /// Тип задачи - обычная, регулярная...
+    public enum Kind: Int {
         case single, regular
     }
     
@@ -280,7 +281,7 @@ extension Task: Hashable {
             && lhs.notificationTime?.0 == rhs.notificationTime?.0 && lhs.notificationTime?.1 == rhs.notificationTime?.1
             && lhs.repeatEndingDate == rhs.repeatEndingDate
             && lhs.repeating == rhs.repeating
-            && lhs.repeatKind == rhs.repeatKind
+            && lhs.kind == rhs.kind
             && lhs.title == rhs.title
             && lhs.subtasks == rhs.subtasks
             && lhs.tags == rhs.tags
@@ -311,7 +312,7 @@ extension Task {
     public var shouldBeDoneAtThisWeek: Bool {
         let startOfWeek = Date().startOfDay
         let endOfWeek = (Date() + 6.asDays).endOfDay
-        switch repeatKind {
+        switch kind {
         case .single:
             guard let dueDate = dueDate else { return false }
             return dueDate >= startOfWeek && dueDate <= endOfWeek
@@ -369,7 +370,7 @@ extension Task {
     
     // TODO: Учитывать isDone
     private func shouldBeDone(at date: Date) -> Bool {
-        switch repeatKind {
+        switch kind {
         case .single:
             guard let dueDate = dueDate else { return false }
             return dueDate >= date.startOfDay && dueDate <= date.endOfDay

@@ -220,7 +220,7 @@ extension TaskEditorView: TaskEditorViewInput {
         taskNoteField.textView.text = note
     }
     
-    func setRepeatKind(_ kind: Task.RepeatKind) {
+    func setRepeatKind(_ kind: Task.Kind) {
         // TODO
     }
     

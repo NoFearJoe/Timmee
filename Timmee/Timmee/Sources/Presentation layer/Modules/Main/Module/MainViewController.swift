@@ -169,7 +169,7 @@ extension MainViewController: TaskCreationPanelOutput {
         }
     }
     
-    func didPressCreateTaskButton(taskKind: Task.RepeatKind) {
+    func didPressCreateTaskButton(taskKind: Task.Kind) {
         if let title = taskCreationPanel.enteredTaskTitle.nilIfEmpty {
             router.showTaskEditor(with: title,
                                   list: state.currentList,
@@ -256,7 +256,7 @@ extension MainViewController: ListRepresentationOutput {
     func didPressEdit(for task: Task) {
         router.showTaskEditor(with: task,
                               list: state.currentList,
-                              taskKind: task.repeatKind,
+                              taskKind: task.kind,
                               isImportant: taskCreationPanel.isImportancySelected,
                               output: self)
     }

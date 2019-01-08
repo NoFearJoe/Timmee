@@ -21,7 +21,7 @@ protocol TaskCreationPanelInput: class {
 
 protocol TaskCreationPanelOutput: class {
     func didPressAddTaskButton()
-    func didPressCreateTaskButton(taskKind: Task.RepeatKind)
+    func didPressCreateTaskButton(taskKind: Task.Kind)
 }
 
 final class TaskCreationPanelViewController: UIViewController {
@@ -134,7 +134,7 @@ private extension TaskCreationPanelViewController {
                                                object: taskTitleTextField)
     }
     
-    func handleTaskCreationMenuSelection(taskKind: Task.RepeatKind) {
+    func handleTaskCreationMenuSelection(taskKind: Task.Kind) {
         setTaskKindMenuVisible(false)
         output.didPressCreateTaskButton(taskKind: taskKind)
     }

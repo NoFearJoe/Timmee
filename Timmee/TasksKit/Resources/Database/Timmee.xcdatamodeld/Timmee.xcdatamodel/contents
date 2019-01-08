@@ -90,6 +90,7 @@
         <attribute name="inProgress" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isImportant" attributeType="Boolean" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="kind" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
@@ -97,7 +98,6 @@
         <attribute name="notificationMask" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="repeatKind" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="repeatMask" attributeType="String" defaultValueString="noRepeat" syncable="YES"/>
         <attribute name="shouldNotifyAtLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -151,15 +151,15 @@
         <memberEntity name="TimeTemplateEntity"/>
     </configuration>
     <elements>
-        <element name="GoalEntity" positionX="-36" positionY="153" width="128" height="150"/>
-        <element name="HabitEntity" positionX="-45" positionY="144" width="128" height="195"/>
-        <element name="ListEntity" positionX="-63" positionY="-18" width="128" height="165"/>
-        <element name="SmartListEntity" positionX="-54" positionY="135" width="128" height="75"/>
-        <element name="SprintEntity" positionX="-54" positionY="135" width="128" height="210"/>
-        <element name="SubtaskEntity" positionX="-54" positionY="117" width="128" height="150"/>
-        <element name="TagEntity" positionX="-45" positionY="108" width="128" height="105"/>
-        <element name="TaskEntity" positionX="-54" positionY="18" width="128" height="405"/>
-        <element name="TimeTemplateEntity" positionX="-54" positionY="135" width="128" height="135"/>
-        <element name="WaterControlEntity" positionX="-54" positionY="135" width="128" height="150"/>
+        <element name="GoalEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="HabitEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ListEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SmartListEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SprintEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SubtaskEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TagEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TaskEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TimeTemplateEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WaterControlEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

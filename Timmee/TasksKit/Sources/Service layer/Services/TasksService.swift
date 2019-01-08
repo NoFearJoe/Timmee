@@ -20,13 +20,17 @@ import class CoreData.NSManagedObject
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
 
+public enum TasksFetchPredicate {
+    case none
+    case completed(date: Date)
+    case notCompleted(date: Date)
+}
+
 public protocol TasksProvider: class {
     func createTask() -> TaskEntity?
     func fetchTask(id: String) -> Task?
-    func fetchTasks(listID: String) -> [Task]
-    func fetchTasks(smartListID: String) -> [Task]
-    func fetchTasks(listID: String, isDone: Bool) -> [Task]
-    func fetchTasks(smartListID: String, isDone: Bool) -> [Task]
+    func fetchTasks(listID: String, predicate: TasksFetchPredicate) -> [Task]
+    func fetchTasks(smartListID: String, predicate: TasksFetchPredicate) -> [Task]
     func searchTasks(by string: String) -> [Task]
     func retrieveList(of task: Task) -> List?
 }
@@ -50,10 +54,8 @@ public protocol TasksObserverProvider: class {
 
 public protocol TaskEntitiesCountProvider: class {
     func tasksCount() -> Int
-    func tasksCount(listID: String) -> Int
-    func tasksCount(smartListID: String) -> Int
-    func tasksCount(listID: String, isDone: Bool) -> Int
-    func tasksCount(smartListID: String, isDone: Bool) -> Int
+    func tasksCount(listID: String, predicate: TasksFetchPredicate) -> Int
+    func tasksCount(smartListID: String, predicate: TasksFetchPredicate) -> Int
 }
 
 public protocol TasksManager: class {
@@ -64,7 +66,7 @@ public protocol TasksManager: class {
     func updateTasks(_ tasks: [Task], listID: String?, completion: @escaping (TasksService.Error?) -> Void)
     func removeTask(_ task: Task, completion: @escaping (TasksService.Error?) -> Void)
     func removeTasks(_ tasks: [Task], completion: @escaping (TasksService.Error?) -> Void)
-    func doneTask(withID id: String, completion: @escaping () -> Void)
+    func completeTask(withID id: String, doneDate: Date, completion: @escaping () -> Void)
     func updateTasksDueDates(completion: @escaping () -> Void)
     func updateTasksNotificationDates()
 }
@@ -190,18 +192,16 @@ extension TasksService: TasksManager {
         }
     }
     
-    public func doneTask(withID id: String, completion: @escaping () -> Void) {
-        Database.localStorage.write({ (context, save) in
-            guard let task = self.fetchTaskEntityInBackground(id: id) else {
-                DispatchQueue.main.async { completion() }
-                return
-            }
-            
-            task.isDone = true
-            
-            save()
-        }) { _ in
-            DispatchQueue.main.async { completion() }
+    public func completeTask(withID id: String, doneDate: Date, completion: @escaping () -> Void) {
+        guard let task = self.fetchTask(id: id) else {
+            completion()
+            return
+        }
+        
+        task.setDone(true, at: doneDate)
+        
+        updateTask(task) { _ in
+            completion()
         }
     }
     
@@ -237,7 +237,6 @@ extension TasksService: TasksObserverProvider {
     
     public func tasksObserver(listID: String) -> CacheObserver<Task> {
         var request: FetchRequest<TaskEntity> = TaskEntity.request()
-            .sorted(keyPath: \.isDone, ascending: true)
             .sorted(keyPath: \.isImportant, ascending: false)
             .sorted(keyPath: \.inProgress, ascending: false)
             .sorted(keyPath: \.creationDate, ascending: false)
@@ -320,28 +319,32 @@ extension TasksService: TasksProvider {
         return Task(task: entity)
     }
     
-    public func fetchTasks(listID: String) -> [Task] {
-        let entities = TasksService.tasksFetchRequest(listID: listID).execute()
-        return entities.map({ Task(task: $0) })
-    }
-    
-    public func fetchTasks(smartListID: String) -> [Task] {
-        if let filter = SmartListType(id: smartListID).filter {
-            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter(filter)
+    public func fetchTasks(listID: String, predicate: TasksFetchPredicate) -> [Task] {
+        switch predicate {
+        case .none: return TasksService.tasksFetchRequest(listID: listID).execute().map({ Task(task: $0) })
+        case let .completed(date): return TasksService.tasksFetchRequest(listID: listID).execute().map({ Task(task: $0) }).filter({ $0.isDone(at: date) })
+        case let .notCompleted(date): return TasksService.tasksFetchRequest(listID: listID).execute().map({ Task(task: $0) }).filter({ !$0.isDone(at: date) })
         }
-        return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map({ Task(task: $0) })
     }
     
-    public func fetchTasks(listID: String, isDone: Bool) -> [Task] {
-        let entities = TasksService.tasksFetchRequest(listID: listID, isDone: isDone).execute()
-        return entities.map({ Task(task: $0) })
-    }
-    
-    public func fetchTasks(smartListID: String, isDone: Bool) -> [Task] {
-        if let filter = SmartListType(id: smartListID).filter {
-            return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute().map(Task.init(task:)).filter(filter)
+    public func fetchTasks(smartListID: String, predicate: TasksFetchPredicate) -> [Task] {
+        switch predicate {
+        case .none:
+            if let filter = SmartListType(id: smartListID).filter {
+                return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter(filter)
+            }
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:))
+        case let .completed(date):
+            if let filter = SmartListType(id: smartListID).filter {
+                return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ filter($0) && $0.isDone(at: date) })
+            }
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ $0.isDone(at: date) })
+        case let .notCompleted(date):
+            if let filter = SmartListType(id: smartListID).filter {
+                return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ filter($0) && !$0.isDone(at: date) })
+            }
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ !$0.isDone(at: date) })
         }
-        return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute().map(Task.init(task:))
     }
     
     public func searchTasks(by string: String) -> [Task] {
@@ -397,26 +400,32 @@ extension TasksService: TaskEntitiesCountProvider {
         return TasksService.allTasksFetchRequest().count()
     }
     
-    public func tasksCount(listID: String) -> Int {
-        return TasksService.tasksFetchRequest(listID: listID).count()
-    }
-    
-    public func tasksCount(smartListID: String) -> Int {
-        if let filter = SmartListType(id: smartListID).filter {
-            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter(filter).count
+    public func tasksCount(listID: String, predicate: TasksFetchPredicate) -> Int {
+        switch predicate {
+        case .none: return TasksService.tasksFetchRequest(listID: listID).count()
+        case let .completed(date): return TasksService.tasksFetchRequest(listID: listID).execute().map(Task.init(task:)).filter({ $0.isDone(at: date) }).count
+        case let .notCompleted(date): return TasksService.tasksFetchRequest(listID: listID).execute().map(Task.init(task:)).filter({ $0.isDone(at: date) }).count
         }
-        return TasksService.tasksFetchRequest(smartListID: smartListID).count()
     }
     
-    public func tasksCount(listID: String, isDone: Bool) -> Int {
-        return TasksService.tasksFetchRequest(listID: listID, isDone: isDone).count()
-    }
-    
-    public func tasksCount(smartListID: String, isDone: Bool) -> Int {
-        if let filter = SmartListType(id: smartListID).filter {
-            return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).execute().map(Task.init(task:)).filter(filter).count
+    public func tasksCount(smartListID: String, predicate: TasksFetchPredicate) -> Int {
+        switch predicate {
+        case .none:
+            if let filter = SmartListType(id: smartListID).filter {
+                return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter(filter).count
+            }
+            return TasksService.tasksFetchRequest(smartListID: smartListID).count()
+        case let .completed(date):
+            if let filter = SmartListType(id: smartListID).filter {
+                return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ filter($0) && $0.isDone(at: date) }).count
+            }
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ $0.isDone(at: date) }).count
+        case let .notCompleted(date):
+            if let filter = SmartListType(id: smartListID).filter {
+                return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ filter($0) && !$0.isDone(at: date) }).count
+            }
+            return TasksService.tasksFetchRequest(smartListID: smartListID).execute().map(Task.init(task:)).filter({ !$0.isDone(at: date) }).count
         }
-        return TasksService.tasksFetchRequest(smartListID: smartListID, isDone: isDone).count()
     }
     
 }
@@ -426,34 +435,15 @@ extension TasksService: TaskEntitiesCountProvider {
 private extension TasksService {
     
     static func tasksFetchRequest(listID: String) -> FetchRequest<TaskEntity> {
-        return TaskEntity.request().filtered(key: "list.id", value: listID).sorted(keyPath: \.isDone, ascending: true)
+        return TaskEntity.request().filtered(key: "list.id", value: listID)
     }
     
     static func tasksFetchRequest(smartListID: String) -> FetchRequest<TaskEntity> {
         let smartList = SmartList(type: SmartListType(id: smartListID))
-        var request: FetchRequest<TaskEntity> = TaskEntity.request().sorted(keyPath: \.isDone, ascending: true)
+        var request: FetchRequest<TaskEntity> = TaskEntity.request()
         
         if let predicate = smartList.tasksFetchPredicate {
             request = request.filtered(predicate: predicate)
-        }
-        
-        return request
-    }
-    
-    static func tasksFetchRequest(listID: String, isDone: Bool) -> FetchRequest<TaskEntity> {
-        let predicate = NSPredicate(format: "list.id == %@ && isDone == %@", listID, NSNumber(value: isDone))
-        return TaskEntity.request().filtered(predicate: predicate).sorted(keyPath: \.isDone, ascending: true)
-    }
-    
-    static func tasksFetchRequest(smartListID: String, isDone: Bool) -> FetchRequest<TaskEntity> {
-        let smartList = SmartList(type: SmartListType(id: smartListID))
-        var request: FetchRequest<TaskEntity> = TaskEntity.request().sorted(keyPath: \.isDone, ascending: true)
-        
-        if let predicate = smartList.tasksFetchPredicate {
-            let donePredicate = NSPredicate(format: "isDone == %@", NSNumber(value: isDone))
-            request = request.filtered(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, donePredicate]))
-        } else {
-            request = request.filtered(predicate: NSPredicate(format: "isDone == %@", NSNumber(value: isDone)))
         }
         
         return request
@@ -470,7 +460,6 @@ private extension TasksService {
     static func allTasksFetchRequest() -> FetchRequest<TaskEntity> {
         return TaskEntity.request()
             .sorted(keyPath: \.list?.title, ascending: true)
-            .sorted(keyPath: \.isDone, ascending: true)
             .sorted(keyPath: \.isImportant, ascending: false)
             .sorted(keyPath: \.inProgress, ascending: false)
             .sorted(keyPath: \.creationDate, ascending: false)

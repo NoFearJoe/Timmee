@@ -16,7 +16,7 @@ protocol TaskEditorViewInput: class {
     
     func setTaskTitle(_ title: String)
     func setTaskNote(_ note: String)
-    func setRepeatKind(_ kind: Task.RepeatKind)
+    func setRepeatKind(_ kind: Task.Kind)
     func setAudioNoteState(_ state: AudioNoteState)
     func setLocation(_ location: String?)
     func setLocationReminderIsSelected(_ isSelected: Bool)

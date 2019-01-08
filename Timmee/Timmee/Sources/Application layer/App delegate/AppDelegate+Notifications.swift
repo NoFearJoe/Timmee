@@ -66,9 +66,7 @@ private extension AppDelegate {
         if let action = NotificationAction(rawValue: identifier) {
             switch action {
             case .done:
-                ServicesAssembly.shared.tasksService.doneTask(withID: taskID, completion: {
-                    completion()
-                })
+                ServicesAssembly.shared.tasksService.completeTask(withID: taskID, doneDate: fireDate ?? Date(), completion: completion)
             case .remindAfter(let minutes):
                 deferNotification(ofTaskWithID: taskID, by: minutes, fireDate: fireDate, completion: completion)
             }
@@ -83,7 +81,7 @@ private extension AppDelegate {
     
     func updateDueDateAndNotificationDate(ofTaskWithID id: String) {
         guard let task = ServicesAssembly.shared.tasksService.fetchTask(id: id) else { return }
-        guard task.repeatKind == .regular || task.repeating.type != .never else { return }
+        guard task.kind == .regular || task.repeating.type != .never else { return }
         task.dueDate = task.nextDueDate
         task.notificationDate = task.nextNotificationDate
         ServicesAssembly.shared.tasksService.updateTask(task, completion: { _ in })

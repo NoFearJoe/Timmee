@@ -169,7 +169,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
 private extension TaskSchedulerService {
     
     static func makeNotificationMessage(for task: Task) -> String {
-        if let dueDate = task.dueDate, task.repeatKind == .single {
+        if let dueDate = task.dueDate, task.kind == .single {
             return dueDate.asNearestDateString
         }
         return task.note

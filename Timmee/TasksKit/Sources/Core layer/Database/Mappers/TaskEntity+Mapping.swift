@@ -16,7 +16,7 @@ public extension TaskEntity {
 
     public func map(from entity: Task) {
         id = entity.id
-        repeatKind = Int16(entity.repeatKind.rawValue)
+        kind = Int16(entity.kind.rawValue)
         title = entity.title
         isImportant = entity.isImportant
         notificationMask = entity.notification.rawValue

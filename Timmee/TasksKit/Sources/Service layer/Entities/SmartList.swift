@@ -95,7 +95,7 @@ public enum SmartListType {
         case .inProgress:
             return NSPredicate(format: "inProgress == true && isDone == false")
         case .overdue:
-            return NSPredicate(format: "repeatKind == \(Task.RepeatKind.single.rawValue) && dueDate < %@", now.nsDate)
+            return NSPredicate(format: "kind == \(Task.Kind.single.rawValue) && dueDate < %@", now.nsDate)
         case .important:
             return NSPredicate(format: "isImportant == true")
         }

@@ -110,7 +110,7 @@ private extension RegularitySettingsViewController {
     }
     
     func makeParameters(forTask task: Task) -> [Parameter] {
-        switch task.repeatKind {
+        switch task.kind {
         case .single: return [.timeTemplate, .dueDateTime, .notification]
         case .regular: return [.repeating, .notification, .startDate, .endDate]
         }
