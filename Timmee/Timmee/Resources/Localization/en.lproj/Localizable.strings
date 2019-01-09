@@ -268,3 +268,4 @@
 "regular_task_kind" = "Regular";
 "create_single_task" = "Create common task";
 "create_regular_task" = "Create regular task";
+"regular_task_finished" = "Finished";

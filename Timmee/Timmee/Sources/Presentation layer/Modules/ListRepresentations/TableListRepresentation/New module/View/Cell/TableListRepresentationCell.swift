@@ -179,13 +179,17 @@ private extension TableListRepresentationCell {
             let subtitleСolor = isOverdue ? AppTheme.current.redColor : AppTheme.current.secondaryTintColor
             return NSAttributedString(string: subtitle, attributes: [.foregroundColor: subtitleСolor])
         case .regular:
+            if let endDate = task.repeatEndingDate, endDate.startOfDay.isLower(than: Date().startOfDay) {
+                return NSAttributedString(string: "regular_task_finished".localized, attributes: [.foregroundColor: AppTheme.current.redColor])
+            }
+            
             let repeatingString = task.repeating.fullLocalizedString
             var startDateString = ""
             if let startDate = task.dueDate, startDate.startOfDay.isGreater(than: Date().startOfDay) {
                 startDateString = "from_date".localized.lowercased() + " " + startDate.asNearestShortDateString.lowercased()
             }
             var endDateString = ""
-            if let endDate = task.repeatEndingDate {
+            if let endDate = task.repeatEndingDate, endDate.startOfDay.isGreater(than: Date().startOfDay) {
                 endDateString = "to_date".localized.lowercased() + " " + endDate.asNearestShortDateString.lowercased()
             }
             let subtitle = [repeatingString, startDateString, endDateString].filter({ !$0.isEmpty }).joined(separator: " ")

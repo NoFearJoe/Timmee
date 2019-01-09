@@ -268,3 +268,4 @@
 "regular_task_kind" = "Регулярная";
 "create_single_task" = "Создать обычную задачу";
 "create_regular_task" = "Создать регулярную задачу";
+"regular_task_finished" = "Окончена";
