@@ -12,13 +12,13 @@ import SwipeCellKit
 final class TableListRepresentationCell: TableListRepresentationBaseCell {
     
     @IBOutlet private var timeTemplateLabel: UILabel!
-    @IBOutlet private var dueDateLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var subtasksLabel: UILabel!
     @IBOutlet private var importancyPicker: TaskImportancyPicker!
     
     @IBOutlet private var tagsView: UIScrollView!
     
-    @IBOutlet private var dueDateLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private var subtitleLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private var subtasksLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private var tagsViewHeightConstraint: NSLayoutConstraint!
     
@@ -107,13 +107,7 @@ final class TableListRepresentationCell: TableListRepresentationBaseCell {
         
         timeTemplate = task.timeTemplate?.title
         
-        switch task.kind {
-        case .single:
-            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (task.dueDate != nil && !(task.dueDate! >= Date()))
-            updateDueDateView(with: task.dueDate?.asNearestDateString, isOverdue: isOverdue)
-        case .regular:
-            updateDueDateView(with: task.repeating.fullLocalizedString, isOverdue: false)
-        }
+        updateSubtitleLabel(with: makeSubtitleString(task: task))
         
         subtasksInfo = (task.subtasks.filter { $0.isDone }.count, task.subtasks.count)
         
@@ -171,18 +165,38 @@ private extension TableListRepresentationCell {
     func updateTimeTemplateView(with timeTemplate: String?) {
         timeTemplateLabel.text = timeTemplate
         if let timeTemplate = timeTemplate, !timeTemplate.isEmpty {
-            dueDateLabelLeadingConstraint.constant = 10
+            subtitleLabelLeadingConstraint.constant = 10
         } else {
-            dueDateLabelLeadingConstraint.constant = 0
+            subtitleLabelLeadingConstraint.constant = 0
         }
     }
     
-    func updateDueDateView(with dueDate: String?, isOverdue: Bool = false) {
-        dueDateLabel.text = dueDate
+    func makeSubtitleString(task: Task) -> NSAttributedString? {
+        switch task.kind {
+        case .single:
+            guard let subtitle = task.dueDate?.asNearestDateString else { return nil }
+            let isOverdue = UserProperty.highlightOverdueTasks.bool() && (task.dueDate != nil && !(task.dueDate! >= Date()))
+            let subtitleСolor = isOverdue ? AppTheme.current.redColor : AppTheme.current.secondaryTintColor
+            return NSAttributedString(string: subtitle, attributes: [.foregroundColor: subtitleСolor])
+        case .regular:
+            let repeatingString = task.repeating.fullLocalizedString
+            var startDateString = ""
+            if let startDate = task.dueDate, startDate.startOfDay.isGreater(than: Date().startOfDay) {
+                startDateString = "from_date".localized.lowercased() + " " + startDate.asNearestShortDateString.lowercased()
+            }
+            var endDateString = ""
+            if let endDate = task.repeatEndingDate {
+                endDateString = "to_date".localized.lowercased() + " " + endDate.asNearestShortDateString.lowercased()
+            }
+            let subtitle = [repeatingString, startDateString, endDateString].filter({ !$0.isEmpty }).joined(separator: " ")
+            return NSAttributedString(string: subtitle, attributes: [.foregroundColor: AppTheme.current.secondaryTintColor])
+        }
+    }
+    
+    func updateSubtitleLabel(with subtitle: NSAttributedString?) {
+        subtitleLabel.attributedText = subtitle
         
-        dueDateLabel.textColor = isOverdue ? AppTheme.current.redColor : AppTheme.current.secondaryTintColor
-        
-        if let dueDate = dueDate, !dueDate.isEmpty {
+        if let subtitle = subtitle, !subtitle.string.isEmpty {
             subtasksLabelLeadingConstraint.constant = 10
         } else {
             subtasksLabelLeadingConstraint.constant = 0
@@ -240,12 +254,6 @@ final class TableListRepersentationCellContainerView: UIView {
                                 cornerRadius: AppTheme.current.cornerRadius)
         path.fill()
         path.addClip()
-        
-//        if shouldDrawProgressIndicator {
-//            let progressIndicatorRect = CGRect(origin: .zero, size: CGSize(width: 3, height: frame.height)).insetBy(dx: 0, dy: 2)
-//            context.setFillColor(AppTheme.current.blueColor.cgColor)
-//            context.fill(progressIndicatorRect)
-//        }
     }
     
 }

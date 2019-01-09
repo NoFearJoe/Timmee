@@ -82,6 +82,8 @@
 "notification_time" = "Время уведомления";
 "starts" = "Начало";
 "ends" = "Конец";
+"from_date" = "С";
+"to_date" = "До";
 
 "repeat" = "Повтор";
 "everyday" = "Ежедневно";

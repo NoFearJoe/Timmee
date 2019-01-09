@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,12 +26,12 @@
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-IP-lgj" customClass="TableListRepersentationCellContainerView" customModule="Timmee" customModuleProvider="target">
-                        <rect key="frame" x="8" y="0.0" width="359" height="58"/>
+                        <rect key="frame" x="8" y="0.0" width="359" height="57.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1r-bI-UmP">
-                                <rect key="frame" x="8" y="9.5" width="321" height="40"/>
+                                <rect key="frame" x="8" y="8.5" width="321" height="40.5"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0Q-h9-vnE">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0Q-h9-vnE">
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="6"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -46,7 +45,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="xlA-T7-43b">
-                                        <rect key="frame" x="0.0" y="25.5" width="321" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="25.5" width="321" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Перед работой но до того как я лягу спать" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX5-DM-bQy">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
@@ -55,13 +54,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Сегодня, 20:31" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYk-DL-teM">
-                                                <rect key="frame" x="145" y="0.0" width="88" height="14.5"/>
+                                                <rect key="frame" x="145" y="0.0" width="88" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="0/2 подзадач" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9g-Q9-BJn">
-                                                <rect key="frame" x="243" y="0.0" width="78" height="14.5"/>
+                                                <rect key="frame" x="243" y="0.0" width="78" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -151,11 +150,11 @@
                 <outlet property="containerView" destination="eLU-IP-lgj" id="DZR-Lj-L2w"/>
                 <outlet property="containerViewLeadingConstraint" destination="gks-ro-8PW" id="j2i-2S-xOP"/>
                 <outlet property="containerViewTrailingConstraint" destination="TUj-Bj-MYW" id="cGS-5G-GM2"/>
-                <outlet property="dueDateLabel" destination="ZYk-DL-teM" id="xXe-XH-tcH"/>
-                <outlet property="dueDateLabelLeadingConstraint" destination="pco-lK-Sq6" id="Mdc-vT-lox"/>
                 <outlet property="importancyPicker" destination="FTV-YC-uAI" id="zzK-Tn-0bo"/>
                 <outlet property="subtasksLabel" destination="v9g-Q9-BJn" id="eYG-Ce-39f"/>
                 <outlet property="subtasksLabelLeadingConstraint" destination="JDe-cT-Gfv" id="VgG-ax-Fjg"/>
+                <outlet property="subtitleLabel" destination="ZYk-DL-teM" id="r7L-Vl-8YA"/>
+                <outlet property="subtitleLabelLeadingConstraint" destination="pco-lK-Sq6" id="hzJ-JY-I5O"/>
                 <outlet property="tagsView" destination="j0Q-h9-vnE" id="zdF-ja-Wpe"/>
                 <outlet property="tagsViewHeightConstraint" destination="ie8-OC-F0Q" id="u2K-th-b1E"/>
                 <outlet property="timeTemplateLabel" destination="VX5-DM-bQy" id="aad-3e-NbW"/>

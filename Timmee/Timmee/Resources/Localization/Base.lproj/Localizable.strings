@@ -82,6 +82,8 @@
 "notification_time" = "Notification time";
 "starts" = "Starts";
 "ends" = "Ends";
+"from_date" = "From";
+"to_date" = "To";
 
 "repeat" = "Repeat";
 "everyday" = "Everyday";
