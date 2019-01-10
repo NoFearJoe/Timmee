@@ -62,6 +62,7 @@
 		0C3DA5332154D73700CAE635 /* WaterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControl.swift; sourceTree = "<group>"; };
 		0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Mapping.swift"; sourceTree = "<group>"; };
 		0C3DA5372154D8D200CAE635 /* WaterControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlService.swift; sourceTree = "<group>"; };
+		0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee2.xcdatamodel; sourceTree = "<group>"; };
 		0C9B23BD2077B688009EF6DE /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C9B24072077B9EE009EF6DE /* NSManagedObjectContext+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Create.swift"; sourceTree = "<group>"; };
 		0C9B24082077B9EE009EF6DE /* NSManagedObject+entityName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+entityName.swift"; sourceTree = "<group>"; };
@@ -711,9 +712,10 @@
 		0CE018032077B24200633EFF /* Timmee.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */,
 				0CE018042077B24200633EFF /* Timmee.xcdatamodel */,
 			);
-			currentVersion = 0CE018042077B24200633EFF /* Timmee.xcdatamodel */;
+			currentVersion = 0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */;
 			path = Timmee.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

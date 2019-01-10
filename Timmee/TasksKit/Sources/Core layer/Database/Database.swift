@@ -140,10 +140,15 @@ private extension CoreDataStorage {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
         if let group = self.sharedGroup, let sharedStoreURL = self.sharedStoreURL(group: group) {
             if let oldPersistentStore = coordinator.persistentStore(for: self.storeURL) {
-                _ = try? coordinator.migratePersistentStore(oldPersistentStore,
+                do {
+                _ = try coordinator.migratePersistentStore(oldPersistentStore,
                                                             to: sharedStoreURL,
                                                             options: nil,
                                                             withType: NSSQLiteStoreType)
+                } catch {
+                    print("ERRORRR")
+                    print(error)
+                }
             }
             _ = try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
                                                     configurationName: self.storeConfiguration,
