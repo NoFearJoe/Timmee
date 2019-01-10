@@ -153,6 +153,7 @@ extension MainViewController: MenuPanelOutput {
     
     func didPressGroupEditingButton() {
         editingModeController.toggleEditingMode()
+        representationManager.currentListRepresentationInput.prepareToGroupEditing()
     }
     
 }

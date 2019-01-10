@@ -248,6 +248,11 @@ public class Task: Copyable {
             isDone ? doneDates.append(date) : doneDates.remove(object: date)
         }
     }
+    
+    public func isFinished(at date: Date?) -> Bool {
+        guard kind == .regular else { return false }
+        return repeatEndingDate?.isLower(than: date ?? Date()) == true
+    }
 
 }
 

@@ -68,6 +68,8 @@
 		0C8738DD1FB9769A00EA1571 /* AddSubtaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738DC1FB9769A00EA1571 /* AddSubtaskView.swift */; };
 		0C8738DF1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738DE1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift */; };
 		0C8738E11FBADDCD00EA1571 /* TaskEditorViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8738E01FBADDCC00EA1571 /* TaskEditorViewProtocols.swift */; };
+		0C9999C921E7139A00DD2040 /* TableListRepresentationCellForFinishedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9999C821E7139A00DD2040 /* TableListRepresentationCellForFinishedTask.swift */; };
+		0C9999CB21E7142300DD2040 /* TableListRepresentationCellForFinishedTask.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9999CA21E7142300DD2040 /* TableListRepresentationCellForFinishedTask.xib */; };
 		0C9B240E2077BA48009EF6DE /* String+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B240D2077BA48009EF6DE /* String+Placeholder.swift */; };
 		0C9B2415207B4440009EF6DE /* OperatorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2414207B4440009EF6DE /* OperatorDefinitions.swift */; };
 		0C9B2428207CD4E3009EF6DE /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C9B2427207CD4E3009EF6DE /* TasksKitConfiguration.plist */; };
@@ -265,6 +267,8 @@
 		0C8738DC1FB9769A00EA1571 /* AddSubtaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubtaskView.swift; sourceTree = "<group>"; };
 		0C8738DE1FB97C9D00EA1571 /* SubtasksEditorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtasksEditorInteractor.swift; sourceTree = "<group>"; };
 		0C8738E01FBADDCC00EA1571 /* TaskEditorViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorViewProtocols.swift; sourceTree = "<group>"; };
+		0C9999C821E7139A00DD2040 /* TableListRepresentationCellForFinishedTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationCellForFinishedTask.swift; sourceTree = "<group>"; };
+		0C9999CA21E7142300DD2040 /* TableListRepresentationCellForFinishedTask.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationCellForFinishedTask.xib; sourceTree = "<group>"; };
 		0C9B240D2077BA48009EF6DE /* String+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Placeholder.swift"; sourceTree = "<group>"; };
 		0C9B2412207B440E009EF6DE /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		0C9B2414207B4440009EF6DE /* OperatorDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorDefinitions.swift; sourceTree = "<group>"; };
@@ -758,6 +762,8 @@
 				96CF79331FB2DFBB00AD0594 /* TableListRepresentationCell.xib */,
 				0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */,
 				0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */,
+				0C9999C821E7139A00DD2040 /* TableListRepresentationCellForFinishedTask.swift */,
+				0C9999CA21E7142300DD2040 /* TableListRepresentationCellForFinishedTask.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1554,6 +1560,7 @@
 				96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */,
 				0C1F923821D5FCB400D3B9D6 /* TaskComplexParameterView.xib in Resources */,
 				0C9B2428207CD4E3009EF6DE /* TasksKitConfiguration.plist in Resources */,
+				0C9999CB21E7142300DD2040 /* TableListRepresentationCellForFinishedTask.xib in Resources */,
 				0C74D81F1FEAA65200CDA0BE /* PhotoPreview.storyboard in Resources */,
 				96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */,
 				963D6A551F5AEDB50063E295 /* ListRepresentations.storyboard in Resources */,
@@ -1711,6 +1718,7 @@
 				0C8738CF1FB9747700EA1571 /* CalendarDayCell.swift in Sources */,
 				0C14D44D211C1FAF004C0559 /* TableListRepresentationCompletedSectionHeaderView.swift in Sources */,
 				0CA9EE9A202C5FB100C24003 /* SmartListPickerCell.swift in Sources */,
+				0C9999C921E7139A00DD2040 /* TableListRepresentationCellForFinishedTask.swift in Sources */,
 				0C14D449211C1F71004C0559 /* TaskParameterView.swift in Sources */,
 				963D6A711F5EF9250063E295 /* AppThemeConfigurator.swift in Sources */,
 				96B0B9BA1FB82CC10009BA3B /* NotificationsConfigurator.swift in Sources */,

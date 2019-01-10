@@ -44,6 +44,7 @@ protocol TableListRepresentationAdapterOutput: class {
     func taskIsChecked(_ task: Task) -> Bool
     
     func taskIsDone(_ task: Task) -> Bool
+    func taskIsFinished(_ task: Task) -> Bool
     
     func didPressDeleteCompletedTasks()
 }
@@ -101,7 +102,10 @@ extension TableListRepresentationAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
             let listRepresentationCell: TableListRepresentationBaseCell
-            if output.taskIsDone(task) {
+            if output.taskIsFinished(task) {
+                listRepresentationCell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationCellForFinishedTask",
+                                                                       for: indexPath) as! TableListRepresentationCellForFinishedTask
+            } else if output.taskIsDone(task) {
                 listRepresentationCell = tableView.dequeueReusableCell(withIdentifier: "TableListRepresentationBaseCell",
                                                      for: indexPath) as! TableListRepresentationBaseCell
             } else {
@@ -160,7 +164,9 @@ extension TableListRepresentationAdapter: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let task = dataSource.item(at: indexPath.row, in: indexPath.section) {
-            if output.taskIsDone(task) {
+            if output.taskIsFinished(task) {
+                return 52
+            } else if output.taskIsDone(task) {
                 return 40
             } else if task.tags.count > 0 {
                 return 62
@@ -176,7 +182,7 @@ extension TableListRepresentationAdapter: UITableViewDelegate {
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableListRepresentationCompletedSectionHeaderView") as! TableListRepresentationCompletedSectionHeaderView
             
             view.title = "completed_tasks".localized
-            view.showDeleteButton = editingMode == .default
+            view.showDeleteButton = false//editingMode == .default
             view.onDelete = { [unowned self] in
                 self.output.didPressDeleteCompletedTasks()
             }
@@ -234,6 +240,12 @@ private extension TableListRepresentationAdapter {
         provider.isDone = { [unowned self] indexPath in
             if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
                 return self.output.taskIsDone(task)
+            }
+            return false
+        }
+        provider.isFinished = { [unowned self] indexPath in
+            if let task = self.dataSource.item(at: indexPath.row, in: indexPath.section) {
+                return self.output.taskIsFinished(task)
             }
             return false
         }

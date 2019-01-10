@@ -115,6 +115,8 @@ private extension TableListRepresentationView {
                            forCellReuseIdentifier: "TableListRepresentationBaseCell")
         tableView.register(UINib(nibName: "TableListRepresentationCell", bundle: nil),
                            forCellReuseIdentifier: "TableListRepresentationCell")
+        tableView.register(UINib(nibName: "TableListRepresentationCellForFinishedTask", bundle: nil),
+                           forCellReuseIdentifier: "TableListRepresentationCellForFinishedTask")
         tableView.register(UINib(nibName: "TableListRepresentationCompletedSectionHeaderView", bundle: nil),
                            forHeaderFooterViewReuseIdentifier: "TableListRepresentationCompletedSectionHeaderView")
         

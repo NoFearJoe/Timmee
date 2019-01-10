@@ -221,7 +221,13 @@ extension TaskEditorView: TaskEditorViewInput {
     }
     
     func setRepeatKind(_ kind: Task.Kind) {
-        // TODO
+        switch kind {
+        case .single:
+            subtasksContainer.isHidden = false
+        case .regular:
+            subtasksContainer.isHidden = true
+            subtasksViewHeightConstraint.constant = 0
+        }
     }
     
     func setLocation(_ location: String?) {

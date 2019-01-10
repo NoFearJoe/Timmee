@@ -11,8 +11,9 @@ import SwipeCellKit
 
 final class SwipeTaskActionsProvider: SwipeTableActionsProvider {
 
-    var onDone: ((IndexPath) -> Void)?
-    var isDone: ((IndexPath) -> Bool)?
+    var onDone: ((IndexPath) -> Void)!
+    var isDone: ((IndexPath) -> Bool)!
+    var isFinished: ((IndexPath) -> Bool)!
     
     override static var backgroundColor: UIColor {
         return .clear
@@ -23,7 +24,7 @@ final class SwipeTaskActionsProvider: SwipeTableActionsProvider {
                                      title: "",
                                      handler:
         { [weak self] (action, indexPath) in
-            self?.onDone?(indexPath)
+            self?.onDone(indexPath)
             action.fulfill(with: .delete)
         })
         doneAction.textColor = AppTheme.current.greenColor
@@ -35,10 +36,11 @@ final class SwipeTaskActionsProvider: SwipeTableActionsProvider {
     }()
     
     override func configureLeftSwipeAction(at indexPath: IndexPath) {
-        doneAction.image = isDone?(indexPath) == true ? #imageLiteral(resourceName: "repeat") : #imageLiteral(resourceName: "checkmark")
+        doneAction.image = isDone(indexPath) == true ? #imageLiteral(resourceName: "repeat") : #imageLiteral(resourceName: "checkmark")
     }
     
-    override var leftSwipeActions: [SwipeAction] {
+    override func leftSwipeActions(for indexPath: IndexPath) -> [SwipeAction] {
+        guard !isFinished(indexPath) else { return [] }
         return [doneAction]
     }
     

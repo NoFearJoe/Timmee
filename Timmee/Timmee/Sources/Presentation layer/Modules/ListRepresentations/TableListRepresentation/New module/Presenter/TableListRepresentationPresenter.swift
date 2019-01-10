@@ -36,6 +36,10 @@ extension TableListRepresentationPresenter: ListRepresentationInput {
         interactor.subscribeToTasks(in: list)
     }
     
+    func prepareToGroupEditing() {
+        state.checkedTasks = []
+    }
+    
     func performGroupEditingAction(_ action: TargetGroupEditingAction, completion: (([Task]) -> Void)?) {
         view.setInteractionsEnabled(false)
         
@@ -159,7 +163,8 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     func didCheckTask(_ task: Task) {
         state.checkedTasks.append(task)
         editingOutput?.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
-        if state.checkedTasks.contains(where: { !$0.isDone(at: state.list?.defaultDueDate) }) || state.checkedTasks.isEmpty {
+        let doneDate = state.list?.defaultDueDate
+        if state.checkedTasks.contains(where: { !$0.isDone(at: doneDate) && !$0.isFinished(at: doneDate) }) || state.checkedTasks.isEmpty {
             editingOutput?.setCompletionGroupEditingAction(.complete)
         } else {
             editingOutput?.setCompletionGroupEditingAction(.recover)
@@ -169,7 +174,8 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     func didUncheckTask(_ task: Task) {
         state.checkedTasks.remove(object: task)
         editingOutput?.setGroupEditingActionsEnabled(!state.checkedTasks.isEmpty)
-        if state.checkedTasks.contains(where: { !$0.isDone(at: state.list?.defaultDueDate) }) || state.checkedTasks.isEmpty {
+        let doneDate = state.list?.defaultDueDate
+        if state.checkedTasks.contains(where: { !$0.isDone(at: doneDate) && !$0.isFinished(at: doneDate) }) || state.checkedTasks.isEmpty {
             editingOutput?.setCompletionGroupEditingAction(.complete)
         } else {
             editingOutput?.setCompletionGroupEditingAction(.recover)
@@ -183,6 +189,11 @@ extension TableListRepresentationPresenter: TableListRepresentationAdapterOutput
     func taskIsDone(_ task: Task) -> Bool {
         let doneDate = state.list?.defaultDueDate ?? Date()
         return task.isDone(at: doneDate)
+    }
+    
+    func taskIsFinished(_ task: Task) -> Bool {
+        let doneDate = state.list?.defaultDueDate ?? Date()
+        return task.isFinished(at: doneDate)
     }
     
     func didPressDeleteCompletedTasks() {

@@ -89,6 +89,10 @@ class SwipeTableActionsProvider {
         return stopAction
     }()
     
+    func leftSwipeActions(for indexPath: IndexPath) -> [SwipeAction] {
+        return leftSwipeActions
+    }
+    
     func rightSwipeActions(for indexPath: IndexPath) -> [SwipeAction] {
         guard let progressAction = progressActionForRow?(indexPath), progressAction != .none
             else { return [swipeDeleteAction] }
@@ -124,7 +128,7 @@ extension SwipeTableActionsProvider: SwipeTableViewCellDelegate {
         switch orientation {
         case .left:
             configureLeftSwipeAction(at: indexPath)
-            return leftSwipeActions
+            return leftSwipeActions(for: indexPath)
         case .right:
             return rightSwipeActions(for: indexPath)
         }

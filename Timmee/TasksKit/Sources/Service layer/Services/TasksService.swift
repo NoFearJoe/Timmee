@@ -280,7 +280,6 @@ extension TasksService: TasksObserverProvider {
     
     public func tasksScope(listID: String) -> Scope<TaskEntity, Task> {
         var request: FetchRequest<TaskEntity> = TaskEntity.request()
-            .sorted(keyPath: \.isDone, ascending: true)
             .sorted(keyPath: \.isImportant, ascending: false)
             .sorted(keyPath: \.inProgress, ascending: false)
             .sorted(keyPath: \.creationDate, ascending: false)
@@ -299,7 +298,7 @@ extension TasksService: TasksObserverProvider {
         
         return Scope<TaskEntity, Task>(context: Database.localStorage.readContext,
                                        baseRequest: request.nsFetchRequest,
-                                       grouping: { $0.isDone(at: doneDate) ? "1" : "0" },
+                                       grouping: { $0.isDone(at: doneDate) || $0.isFinished(at: doneDate) ? "1" : "0" },
                                        mapping: { Task(task:$0) },
                                        filter: filter)
     }
