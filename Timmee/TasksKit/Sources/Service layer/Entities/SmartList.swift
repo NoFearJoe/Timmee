@@ -169,6 +169,7 @@ public final class SmartList: List {
         switch smartListType {
         case .today: return (Date().startOfHour + 1.asHours)
         case .tomorrow: return (Date().nextDay.startOfHour + 1.asHours)
+        case .week: return (Date().startOfHour + 6.asDays)
         default: return nil
         }
     }
