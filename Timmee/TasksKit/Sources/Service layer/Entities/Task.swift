@@ -52,43 +52,43 @@ public class Task: Copyable {
     
     public var attachments: [String]
     
-    public init(task: TaskEntity) {
-        id = task.id!
-        kind = Kind(rawValue: Int(task.kind)) ?? .single
-        title = task.title ?? ""
-        isImportant = task.isImportant
-        notification = NotificationMask(mask: task.notificationMask)
-        notificationDate = task.notificationDate
-        if let notificationTimeUnits = task.notificationTime?.split(separator: ":").compactMap({ Int($0) }), notificationTimeUnits.count == 2 {
+    public init(entity: TaskEntity) {
+        id = entity.id!
+        kind = entity.kind.flatMap(Kind.init(rawValue:)) ?? .single
+        title = entity.title ?? ""
+        isImportant = entity.isImportant
+        notification = NotificationMask(mask: entity.notificationMask)
+        notificationDate = entity.notificationDate
+        if let notificationTimeUnits = entity.notificationTime?.split(separator: ":").compactMap({ Int($0) }), notificationTimeUnits.count == 2 {
             notificationTime = (notificationTimeUnits[0], notificationTimeUnits[1])
         } else {
             notificationTime = nil
         }
-        note = task.note ?? ""
-        link = task.link ?? ""
-        repeating = RepeatMask(string: task.repeatMask ?? "")
-        dueDate = task.dueDate as Date?
-        repeatEndingDate = task.repeatEndingDate as Date?
+        note = entity.note ?? ""
+        link = entity.link ?? ""
+        repeating = RepeatMask(string: entity.repeatMask ?? "")
+        dueDate = entity.dueDate as Date?
+        repeatEndingDate = entity.repeatEndingDate as Date?
         
-        if let data = task.location as Data? {
+        if let data = entity.location as Data? {
             location = NSKeyedUnarchiver.unarchiveObject(with: data) as? CLLocation
         }
-        address = task.address
+        address = entity.address
         
-        shouldNotifyAtLocation = task.shouldNotifyAtLocation
-        isDone = task.isDone
-        inProgress = task.inProgress
-        creationDate = task.creationDate! as Date
+        shouldNotifyAtLocation = entity.shouldNotifyAtLocation
+        isDone = entity.isDone
+        inProgress = entity.inProgress
+        creationDate = entity.creationDate! as Date
         
-        tags = (Array(task.tags as? Set<TagEntity> ?? Set())).map { Tag(entity: $0) }
-        subtasks = (Array(task.subtasks as? Set<SubtaskEntity> ?? Set())).map { Subtask(entity: $0) }
+        tags = (Array(entity.tags as? Set<TagEntity> ?? Set())).map { Tag(entity: $0) }
+        subtasks = (Array(entity.subtasks as? Set<SubtaskEntity> ?? Set())).map { Subtask(entity: $0) }
         
-        if let template = task.timeTemplate {
+        if let template = entity.timeTemplate {
             timeTemplate = TimeTemplate(entity: template)
         }
         
-        attachments = task.attachments as? [String] ?? []
-        doneDates = task.doneDates as? [Date] ?? []
+        attachments = entity.attachments as? [String] ?? []
+        doneDates = entity.doneDates as? [Date] ?? []
     }
     
     public init(id: String,
@@ -259,7 +259,7 @@ public class Task: Copyable {
 public extension Task {
     
     /// Тип задачи - обычная, регулярная...
-    public enum Kind: Int {
+    public enum Kind: String {
         case single, regular
     }
     
@@ -275,7 +275,7 @@ extension Task: CustomEquatable {
 
 extension Task: Hashable {
     
-    public static func ==(lhs: Task, rhs: Task) -> Bool {
+    public static func == (lhs: Task, rhs: Task) -> Bool {
         return lhs.id == rhs.id
             && lhs.dueDate == rhs.dueDate
             && lhs.note == rhs.note
