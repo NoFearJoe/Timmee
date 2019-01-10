@@ -6,4 +6,5 @@
   Copyright © 2018 Mesterra. All rights reserved.
 */
 
+NSFaceIDUsageDescription = "Provide access to the FaceID to activate biometrics authentication";
 NSMicrophoneUsageDescription = "Provide access to a microphone to activate voice input";
