@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 import UserNotifications
 
 @UIApplicationMain
@@ -19,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Crashlytics.self])
+        
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
 //        ServicesAssembly.shared.waterControlService.removeWaterControl(completion: nil)
@@ -33,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)
             #endif
         }
+        
+        ProVersionPurchase.shared.loadStore()
         
         return true
     }

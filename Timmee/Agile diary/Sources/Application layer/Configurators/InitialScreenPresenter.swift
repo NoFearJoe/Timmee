@@ -35,7 +35,7 @@ final class InitialScreenPresenter {
             initialViewController = ViewControllersFactory.today
         }
         
-        window.rootViewController = ViewControllersFactory.authorization
+        window.rootViewController = initialViewController
         window.makeKeyAndVisible()
     }
     

@@ -50,11 +50,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         
         headerView.titleLabel.text = "today".localized
         headerView.subtitleLabel.text = nil
-        if ProVersionPurchase.shared.isPurchased() {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, SprintSection.water.title]
-        } else {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
-        }
+        setupSections()
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         progressBar.setProgress(0)
@@ -68,9 +64,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     override func refresh() {
         super.refresh()
         
-        if ProVersionPurchase.shared.isPurchased() {
-            backgroundImageView.image = BackgroundImage.current.image
-        }
+        setupSections()
+        setupBackgroundImage()
+        
         loadSprint()
     }
     
@@ -181,6 +177,26 @@ extension TodayViewController: TodayViewSectionProgressListener {
     func didChangeProgress(for section: SprintSection, to progress: CGFloat) {
         guard section == currentSection else { return }
         progressBar.setProgress(progress, animated: true)
+    }
+    
+}
+
+private extension TodayViewController {
+    
+    func setupSections() {
+        if ProVersionPurchase.shared.isPurchased() {
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, SprintSection.water.title]
+        } else {
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
+        }
+    }
+    
+    func setupBackgroundImage() {
+        if ProVersionPurchase.shared.isPurchased() {
+            backgroundImageView.image = BackgroundImage.current.image
+        } else {
+            backgroundImageView.image = nil
+        }
     }
     
 }

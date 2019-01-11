@@ -100,10 +100,10 @@
         <attribute name="repeatMask" attributeType="String" defaultValueString="noRepeat" syncable="YES"/>
         <attribute name="shouldNotifyAtLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
-        <relationship name="list" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ListEntity" inverseName="tasks" inverseEntity="ListEntity" syncable="YES"/>
-        <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SubtaskEntity" inverseName="task" inverseEntity="SubtaskEntity" syncable="YES"/>
-        <relationship name="tags" toMany="YES" deletionRule="No Action" destinationEntity="TagEntity" inverseName="tasks" inverseEntity="TagEntity" syncable="YES"/>
-        <relationship name="timeTemplate" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="TimeTemplateEntity" inverseName="tasks" inverseEntity="TimeTemplateEntity" syncable="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity" inverseName="tasks" inverseEntity="ListEntity" syncable="YES"/>
+        <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubtaskEntity" inverseName="task" inverseEntity="SubtaskEntity" syncable="YES"/>
+        <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="TagEntity" inverseName="tasks" inverseEntity="TagEntity" syncable="YES"/>
+        <relationship name="timeTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeTemplateEntity" inverseName="tasks" inverseEntity="TimeTemplateEntity" syncable="YES"/>
     </entity>
     <entity name="TimeTemplateEntity" representedClassName="TimeTemplateEntity" syncable="YES" codeGenerationType="class">
         <attribute name="hours" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -144,8 +144,8 @@
         <element name="SprintEntity" positionX="0" positionY="0" width="128" height="210"/>
         <element name="SubtaskEntity" positionX="0" positionY="0" width="128" height="150"/>
         <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="TaskEntity" positionX="9" positionY="153" width="128" height="390"/>
         <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="135"/>
         <element name="WaterControlEntity" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="TaskEntity" positionX="9" positionY="153" width="128" height="390"/>
     </elements>
 </model>

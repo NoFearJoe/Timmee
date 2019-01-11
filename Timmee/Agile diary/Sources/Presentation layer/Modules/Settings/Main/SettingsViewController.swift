@@ -270,9 +270,14 @@ fileprivate extension SettingsViewController {
         
         let restoreProVersionAction = { [unowned self] in
             self.setLoadingVisible(true)
-            ProVersionPurchase.shared.restore { success in
+            ProVersionPurchase.shared.restore { [weak self] success in
+                guard let self = self else { return }
+                
                 self.setLoadingVisible(false)
-                self.showErrorAlert(title: "error".localized, message: "restore_error_try_again".localized)
+                self.reloadSettings()
+                if !success {
+                    self.showErrorAlert(title: "error".localized, message: "restore_error_try_again".localized)
+                }
             }
         }
         let restoreProVersionItem = SettingsItem(title: "restore_pro_version".localized,

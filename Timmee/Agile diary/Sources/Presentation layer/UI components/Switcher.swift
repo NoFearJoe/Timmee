@@ -20,9 +20,7 @@ class Switcher: UIControl {
     
     var selectedItemIndex: Int = 0 {
         didSet {
-            itemViews.item(at: oldValue)?.isSelected = false
-            itemViews.item(at: selectedItemIndex)?.isSelected = true
-            sendActions(for: .touchUpInside)
+            selectItemView(at: selectedItemIndex, oldIndex: oldValue)
         }
     }
     
@@ -41,6 +39,7 @@ class Switcher: UIControl {
         }
         
         layoutItemViews()
+        self.selectItemView(at: selectedItemIndex, oldIndex: selectedItemIndex)
     }
     
     override func layoutSubviews() {
@@ -53,6 +52,12 @@ class Switcher: UIControl {
         for (index, view) in itemViews.enumerated() {
             view.frame = CGRect(x: CGFloat(index) * width, y: 0, width: width, height: bounds.height)
         }
+    }
+    
+    private func selectItemView(at index: Int, oldIndex: Int = 0) {
+        itemViews.item(at: oldIndex)?.isSelected = false
+        itemViews.item(at: selectedItemIndex)?.isSelected = true
+        sendActions(for: .touchUpInside)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
