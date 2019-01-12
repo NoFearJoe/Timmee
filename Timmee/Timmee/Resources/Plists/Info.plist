@@ -44,6 +44,8 @@
 	<string>Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo library</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>FaceID</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

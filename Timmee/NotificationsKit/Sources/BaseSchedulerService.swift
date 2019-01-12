@@ -14,6 +14,17 @@ public class BaseSchedulerService {
     
     public init() {}
     
+    final func scheduleLocalNotification(withID id: String,
+                                         title: String,
+                                         message: String,
+                                         at date: Date,
+                                         repeatUnit: NSCalendar.Unit?,
+                                         category: String = "task",
+                                         userInfo: [String: Any]) {
+        let request = makeLocalNotification(withID: id, title: title, message: message, at: date, repeatUnit: repeatUnit, category: category, userInfo: userInfo)
+        UNUserNotificationCenter.current().add(request)
+    }
+    
     private func makeLocalNotification(withID id: String,
                                        title: String,
                                        message: String,
@@ -27,43 +38,23 @@ public class BaseSchedulerService {
         content.body = message
         content.userInfo = userInfo
         content.sound = UNNotificationSound.default
-        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents(in: .current, from: date.startOfMinute), repeats: false)
+        content.badge = 1
+        
+        let triggerDateComponents = makeTriggerDateComponents(from: date.startOfMinute, repeatUnit: repeatUnit)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: repeatUnit != nil)
         return UNNotificationRequest(identifier: id, content: content, trigger: trigger)
     }
     
-    final func scheduleLocalNotification(withID id: String,
-                                         title: String,
-                                         message: String,
-                                         at date: Date,
-                                         repeatUnit: NSCalendar.Unit?,
-                                         category: String = "task",
-                                         userInfo: [String: Any]) {
-//        let request = makeLocalNotification(withID: id, title: title, message: message, at: date, repeatUnit: repeatUnit, category: category, userInfo: userInfo)
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        let notification = UILocalNotification()
-        notification.fireDate = date.startOfMinute
-        notification.timeZone = TimeZone.current
-        notification.alertTitle = title
-        notification.alertBody = message
-        notification.repeatCalendar = NSCalendar.current
-        notification.soundName = UILocalNotificationDefaultSoundName
-        notification.category = category
-
-        if let unit = repeatUnit {
-            notification.repeatInterval = unit
+    private func makeTriggerDateComponents(from date: Date, repeatUnit: NSCalendar.Unit?) -> DateComponents {
+        switch repeatUnit {
+        case .minute?: return Calendar.current.dateComponents([.second], from: date)
+        case .hour?: return Calendar.current.dateComponents([.minute, .second], from: date)
+        case .day?: return Calendar.current.dateComponents([.hour, .minute, .second], from: date)
+        case .weekOfYear?: return Calendar.current.dateComponents([.weekday, .hour, .minute, .second], from: date)
+        case .month?: return Calendar.current.dateComponents([.day, .hour, .minute, .second], from: date)
+        case .year?: return Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: date)
+        default: return Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: date)
         }
-
-        notification.userInfo = userInfo
-
-//        if let location = location {
-//            notification.region = CLCircularRegion(center: location.coordinate,
-//                                                   radius: 100,
-//                                                   identifier: location.description)
-//            notification.region?.notifyOnEntry = true
-//            notification.regionTriggersOnce = false
-//        }
-        
-        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
 }

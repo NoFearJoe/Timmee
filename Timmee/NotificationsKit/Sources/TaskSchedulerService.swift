@@ -17,11 +17,24 @@ import class CoreLocation.CLCircularRegion
 public final class TaskSchedulerService: BaseSchedulerService {
     
     public func scheduleTask(_ task: Task) {
-        removeNotifications(for: task)
-
-        guard !task.isDone(at: nil) else { return }
+        removeNotifications(for: task) {
+            self.scheduleNewTask(task)
+        }
+    }
+    
+    /**
+     Создает уведомление для задачи, которую пользователь перенес на другое время
+     */
+    public func scheduleDeferredTask(_ task: Task, fireDate: Date) {
+        removeDeferredNotifications(for: task) {
+            self.scheduleNewDeferredTask(task, fireDate: fireDate)
+        }
+    }
+    
+    private func scheduleNewTask(_ task: Task) {
+        guard !task.isDone(at: nil) && !task.isFinished(at: Date()) else { return }
         
-//        let location = task.shouldNotifyAtLocation ? task.location : nil
+        //        let location = task.shouldNotifyAtLocation ? task.location : nil
         
         let notification = task.timeTemplate?.notification ?? task.notification
         
@@ -103,27 +116,22 @@ public final class TaskSchedulerService: BaseSchedulerService {
                 }
             }
         }
-
-//        } else if task.shouldNotifyAtLocation {
-//            let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-//            scheduleLocalNotification(withID: task.id,
-//                                      title: task.title,
-//                                      message: TaskSchedulerService.makeNotificationMessage(for: task),
-//                                      at: nil,
-//                                      repeatUnit: nil,
-//                                      userInfo: userInfo)
-//        }
+        
+        //        } else if task.shouldNotifyAtLocation {
+        //            let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
+        //            scheduleLocalNotification(withID: task.id,
+        //                                      title: task.title,
+        //                                      message: TaskSchedulerService.makeNotificationMessage(for: task),
+        //                                      at: nil,
+        //                                      repeatUnit: nil,
+        //                                      userInfo: userInfo)
+        //        }
     }
     
-    /**
-     Создает уведомление для задачи, которую пользователь перенес на другое время
-     */
-    public func scheduleDeferredTask(_ task: Task, fireDate: Date) {
-        removeDeferredNotifications(for: task)
+    public func scheduleNewDeferredTask(_ task: Task, fireDate: Date) {
+        guard !task.isDone(at: nil) && !task.isFinished(at: Date()) else { return }
         
-        guard !task.isDone(at: nil) else { return }
-        
-//        let location = task.shouldNotifyAtLocation ? task.location : nil
+        //        let location = task.shouldNotifyAtLocation ? task.location : nil
         
         let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: true, endDate: task.repeatEndingDate)
         scheduleLocalNotification(withID: task.id,
@@ -134,7 +142,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
                                   userInfo: userInfo)
     }
     
-    public func removeNotifications(for task: Task) {
+    public func removeNotifications(for task: Task, completion: (() -> Void)? = nil) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
                     if let taskID = request.content.userInfo["task_id"] as? String {
@@ -146,10 +154,12 @@ public final class TaskSchedulerService: BaseSchedulerService {
                 }
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            
+            DispatchQueue.main.async { completion?() }
         }
     }
     
-    public func removeDeferredNotifications(for task: Task) {
+    public func removeDeferredNotifications(for task: Task, completion: (() -> Void)? = nil) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
                     if let taskID = request.content.userInfo["task_id"] as? String, let isDeferred = request.content.userInfo["isDeferred"] as? Bool {
@@ -161,6 +171,8 @@ public final class TaskSchedulerService: BaseSchedulerService {
                 }
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            
+            DispatchQueue.main.async { completion?() }
         }
     }
 
@@ -187,11 +199,7 @@ private extension TaskSchedulerService {
         var notificationDate = dueDate
         notificationDate => notificationTime.0.asHours
         notificationDate => notificationTime.1.asMinutes
-        if notificationDate <= Date() {
-            return task.getNextRepeatDate(of: notificationDate)
-        } else {
-            return notificationDate
-        }
+        return task.getNextRepeatDate(of: notificationDate)
     }
     
 }

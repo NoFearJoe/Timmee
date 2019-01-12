@@ -14,9 +14,8 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    private func application(_ application: UIApplication,
-                             didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         
         Trackers.registerAppLaunchTracker()
@@ -32,6 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        NotificationsConfigurator.removeAppIconBadge()
     }
 
 }

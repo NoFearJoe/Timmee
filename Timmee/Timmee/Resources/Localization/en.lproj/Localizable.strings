@@ -153,7 +153,7 @@
 "pro_version" = "Get PRO version";
 "restore_pro_version" = "Restore PRO version";
 "restore_error_try_again" = "Unable to restore the purchase, try again or email mesterra.co@gmail.com";
-"pro_version_features_title" = "";
+"pro_version_features_title" = "By purchasing the PRO version, you open access to additional features, as well as help the development of the application.\nAdditional features:";
 "pro_version_feature_1" = "Tags";
 "pro_version_feature_2" = "Time templates";
 "pro_version_feature_3" = "Voice notes";

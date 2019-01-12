@@ -24,6 +24,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 //                updateDueDateAndNotificationDate(ofTaskWithID: taskID)
 //            }
             
+            NotificationsConfigurator.removeAppIconBadge()
+            
             if let endDate = notification.request.content.userInfo["end_date"] as? Date {
                 if endDate <= Date() {
                     center.removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])

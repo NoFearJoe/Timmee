@@ -86,6 +86,11 @@ final class NotificationsConfigurator {
         }
     }
     
+    static func removeAppIconBadge() {
+        UIApplication.shared.applicationIconBadgeNumber = -1
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
     private static func makeLocalNotificationsCategories() -> Set<UNNotificationCategory> {
         let taskCategory = UNNotificationCategory(identifier: NotificationCategories.task.rawValue,
                                                   actions: [makeDoneAction(),

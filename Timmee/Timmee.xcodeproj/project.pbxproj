@@ -121,6 +121,7 @@
 		9615A48421E1197A008923C3 /* TaskCompletionInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */; };
 		9615A48621E1FCFC008923C3 /* FloatingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48521E1FCFC008923C3 /* FloatingMenu.swift */; };
 		9615A48821E343CF008923C3 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48721E343CF008923C3 /* FloatingButton.swift */; };
+		9615A48D21E9C9F3008923C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9615A48F21E9C9F3008923C3 /* InfoPlist.strings */; };
 		9615F429203033B500D9625C /* ListIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F428203033B500D9625C /* ListIconsView.swift */; };
 		963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */; };
 		963D6A3F1F59EC7E0063E295 /* ListRepresentationManagerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D6A3E1F59EC7E0063E295 /* ListRepresentationManagerInput.swift */; };
@@ -321,6 +322,8 @@
 		9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletionInteractorTrait.swift; sourceTree = "<group>"; };
 		9615A48521E1FCFC008923C3 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
 		9615A48721E343CF008923C3 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		9615A48E21E9C9F3008923C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9615A49021E9C9F7008923C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9615F428203033B500D9625C /* ListIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconsView.swift; sourceTree = "<group>"; };
 		963D6A301F59EBBB0063E295 /* ListRepresentationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationInput.swift; sourceTree = "<group>"; };
 		963D6A3E1F59EC7E0063E295 /* ListRepresentationManagerInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepresentationManagerInput.swift; sourceTree = "<group>"; };
@@ -1322,6 +1325,7 @@
 			children = (
 				963D6A6A1F5EF3390063E295 /* Localizable.strings */,
 				96477A521F80F371005C3520 /* Localizable.stringsdict */,
+				9615A48F21E9C9F3008923C3 /* InfoPlist.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1555,6 +1559,7 @@
 				96594E52200B6A2600998133 /* Education.storyboard in Resources */,
 				0C0816C9208F3ACD008F2645 /* Lists.storyboard in Resources */,
 				963D6A7C1F606A120063E295 /* Main.storyboard in Resources */,
+				9615A48D21E9C9F3008923C3 /* InfoPlist.strings in Resources */,
 				0C1F923621D5FC3600D3B9D6 /* TaskParameterView.xib in Resources */,
 				965798CC1F9133D800F65019 /* Pin.storyboard in Resources */,
 				96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */,
@@ -1801,6 +1806,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9615A48F21E9C9F3008923C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9615A48E21E9C9F3008923C3 /* ru */,
+				9615A49021E9C9F7008923C3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		963D6A6A1F5EF3390063E295 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
