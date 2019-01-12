@@ -101,7 +101,7 @@ extension CoreDataStorage {
             if let group = self.sharedGroup, let sharedStoreURL = self.sharedStoreURL(group: group) {
                 try coordinator.destroyPersistentStore(at: sharedStoreURL, ofType: NSSQLiteStoreType, options: nil)
             } else {
-                try coordinator.destroyPersistentStore(at: self.storeURL, ofType: NSSQLiteStoreType, options: nil)
+                try coordinator.destroyPersistentStore(at: self.storeURL(name: storeName), ofType: NSSQLiteStoreType, options: nil)
             }
         } catch {
             print(error)
@@ -124,8 +124,8 @@ private extension CoreDataStorage {
         return DatabaseConfiguration.shared.properties["database_shared_group"] as? String
     }
     
-    var storeURL: URL {
-        return FilesService.URLs.documents!.appendingPathComponent(storeName)
+    func storeURL(name: String) -> URL {
+        return FilesService.URLs.documents!.appendingPathComponent(name)
     }
     
     func sharedStoreURL(group: String) -> URL? {
@@ -138,33 +138,39 @@ private extension CoreDataStorage {
     
     var coordinator: NSPersistentStoreCoordinator {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-        if let group = self.sharedGroup, let sharedStoreURL = self.sharedStoreURL(group: group) {
-            if let oldPersistentStore = coordinator.persistentStore(for: self.storeURL) {
-                do {
-                _ = try coordinator.migratePersistentStore(oldPersistentStore,
-                                                            to: sharedStoreURL,
-                                                            options: nil,
-                                                            withType: NSSQLiteStoreType)
-                } catch {
-                    print("ERRORRR")
-                    print(error)
-                }
-            }
-            _ = try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                                    configurationName: self.storeConfiguration,
-                                                    at: sharedStoreURL,
-                                                    options: [NSMigratePersistentStoresAutomaticallyOption: true,
-                                                              NSInferMappingModelAutomaticallyOption: true,
-                                                              NSSQLitePragmasOption: ["journal_mode": "DELETE"]])
+        if let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) {
+            migrateOldPersistentStore(to: sharedStoreURL, coordinator: coordinator)
+            addPersistentStore(at: sharedStoreURL, configuration: storeConfiguration, coordinator: coordinator)
         } else {
-            _ = try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                                    configurationName: self.storeConfiguration,
-                                                    at: self.storeURL,
-                                                    options: [NSMigratePersistentStoresAutomaticallyOption: true,
-                                                              NSInferMappingModelAutomaticallyOption: true,
-                                                              NSSQLitePragmasOption: ["journal_mode": "DELETE"]])
+            addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator)
         }
         return coordinator
+    }
+    
+    @discardableResult
+    private func addPersistentStore(at url: URL, configuration: String?, coordinator: NSPersistentStoreCoordinator) -> NSPersistentStore? {
+        return try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                                   configurationName: configuration,
+                                                   at: url,
+                                                   options: makePersistentStoreOptions())
+    }
+    
+    private func migrateOldPersistentStore(to url: URL, coordinator: NSPersistentStoreCoordinator) {
+        guard FileManager.default.fileExists(atPath: storeURL(name: storeName).path) else { return }
+        if let oldPersistentStore = addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator) {
+            let migratedPersistentStore = try? coordinator.migratePersistentStore(oldPersistentStore,
+                                                                                  to: url,
+                                                                                  options: makePersistentStoreOptions(),
+                                                                                  withType: NSSQLiteStoreType)
+            migratedPersistentStore.map { try? coordinator.remove($0) }
+            try? FileManager.default.removeItem(at: storeURL(name: storeName))
+        }
+    }
+    
+    private func makePersistentStoreOptions() -> [String: Any] {
+        return [NSMigratePersistentStoresAutomaticallyOption: true,
+                NSInferMappingModelAutomaticallyOption: true,
+                NSSQLitePragmasOption: ["journal_mode": "DELETE"]]
     }
     
 }
