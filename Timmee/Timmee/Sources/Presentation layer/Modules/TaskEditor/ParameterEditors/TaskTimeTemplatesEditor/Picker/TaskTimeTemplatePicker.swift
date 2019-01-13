@@ -224,9 +224,9 @@ fileprivate extension TaskTimeTemplatePicker {
     
     var defaultTimeTemplates: [TimeTemplate] {
         return [
-            TimeTemplate(id: "_ttMorning", title: "template_at_morning".localized, time: (9, 0), notification: .justInTime),
-            TimeTemplate(id: "_ttLaunch", title: "template_at_launch".localized, time: (14, 0), notification: .justInTime),
-            TimeTemplate(id: "_ttAfternoon", title: "template_at_afternoon".localized, time: (20, 0), notification: .justInTime)
+            TimeTemplate(id: "_ttMorning", title: "template_at_morning".localized, time: (9, 0), notification: .justInTime, notificationTime: nil),
+            TimeTemplate(id: "_ttLaunch", title: "template_at_launch".localized, time: (14, 0), notification: .justInTime, notificationTime: nil),
+            TimeTemplate(id: "_ttAfternoon", title: "template_at_afternoon".localized, time: (20, 0), notification: .justInTime, notificationTime: nil)
         ]
     }
     
@@ -288,16 +288,7 @@ final class TimeTemplateTableCell: SwipeTableViewCell {
         setupAppearance()
         
         titleLabel.text = timeTemplate.title
-        
-        if let time = timeTemplate.time {
-            let minutes: String
-            if time.minutes < 10 {
-                minutes = "\(time.minutes)0"
-            } else {
-                minutes = "\(time.minutes)"
-            }
-            subtitleLabel.text = "\(time.hours):\(minutes), " + timeTemplate.notification.title
-        }
+        subtitleLabel.text = timeTemplate.makeDueTimeAndNotificationString()
     }
     
     func setupAppearance() {

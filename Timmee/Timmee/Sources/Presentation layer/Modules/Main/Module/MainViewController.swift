@@ -53,7 +53,6 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppLaunchTracker()
-        subscribeToApplicationEvents()
         setupKeyboardManager()
         setupEditingModeController()
         
@@ -68,18 +67,6 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = AppTheme.current.backgroundColor
-        
-        // TODO: Reload data
-//        tasksService.updateTasksDueDates { [weak self] in
-//            self?.tasksService.updateTasksNotificationDates()
-//        }
-    }
-    
-    @objc private func didBecomeActive() {
-        // TODO: Reload data
-//        tasksService.updateTasksDueDates { [weak self] in
-//            self?.tasksService.updateTasksNotificationDates()
-//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -300,13 +287,6 @@ private extension MainViewController {
                 self.view.layoutIfNeeded()
             }
         }
-    }
-    
-    func subscribeToApplicationEvents() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didBecomeActive),
-                                               name: UIApplication.didBecomeActiveNotification,
-                                               object: nil)
     }
     
     func showLists(animated: Bool) {

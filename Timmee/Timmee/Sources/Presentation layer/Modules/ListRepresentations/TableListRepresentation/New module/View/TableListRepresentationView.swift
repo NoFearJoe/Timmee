@@ -23,11 +23,16 @@ final class TableListRepresentationView: UIViewController, AlertInput {
         super.viewDidLoad()
         setupTableView()
         setupPlaceholder()
+        subscribeToApplicationEvents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = AppTheme.current.middlegroundColor
+        output.viewWillAppear()
+    }
+    
+    @objc private func didBecomeActive() {
         output.viewWillAppear()
     }
     
@@ -129,6 +134,13 @@ private extension TableListRepresentationView {
         placeholder.title = "no_tasks".localized
         placeholder.subtitle = "no_tasks_hint".localized
         placeholder.isHidden = true
+    }
+    
+    func subscribeToApplicationEvents() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
     }
     
 }

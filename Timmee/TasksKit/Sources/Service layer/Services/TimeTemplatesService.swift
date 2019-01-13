@@ -78,7 +78,8 @@ extension TimeTemplatesService: TimeTemplatesProvider {
         return TimeTemplate(id: RandomStringGenerator.randomString(length: 12),
                             title: "",
                             time: (date.hours, date.minutes),
-                            notification: .justInTime)
+                            notification: .justInTime,
+                            notificationTime: nil)
     }
     
     public func fetchTimeTemplates() -> [TimeTemplate] {

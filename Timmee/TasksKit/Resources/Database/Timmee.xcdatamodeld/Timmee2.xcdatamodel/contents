@@ -119,10 +119,11 @@
         </fetchIndex>
     </entity>
     <entity name="TimeTemplateEntity" representedClassName="TimeTemplateEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="hours" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hours" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="minutes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="notification" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minutes" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notification" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notificationTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="timeTemplate" inverseEntity="TaskEntity" syncable="YES"/>
     </entity>
@@ -159,7 +160,7 @@
         <element name="SubtaskEntity" positionX="0" positionY="0" width="128" height="150"/>
         <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
         <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>
-        <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="150"/>
         <element name="WaterControlEntity" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>

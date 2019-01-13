@@ -13,9 +13,10 @@ public extension TimeTemplateEntity {
     public func map(from timeTemplate: TimeTemplate) {
         id = timeTemplate.id
         title = timeTemplate.title
-        hours = Int16(timeTemplate.time?.hours ?? 0)
-        minutes = Int16(timeTemplate.time?.minutes ?? 0)
-        notification = timeTemplate.notification.rawValue
+        hours = timeTemplate.time.flatMap { NSNumber(value: $0.hours) }
+        minutes = timeTemplate.time.flatMap { NSNumber(value: $0.minutes) }
+        notification = timeTemplate.notification.flatMap { NSNumber(value: $0.rawValue) }
+        notificationTime = timeTemplate.notificationTime.flatMap { "\($0.0):\($0.1)" }
     }
     
 }

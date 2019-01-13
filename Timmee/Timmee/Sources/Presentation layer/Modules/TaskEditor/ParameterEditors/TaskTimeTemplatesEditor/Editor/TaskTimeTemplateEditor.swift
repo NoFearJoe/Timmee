@@ -22,6 +22,8 @@ final class TaskTimeTemplateEditor: UIViewController {
     @IBOutlet private var dueTimeView: TaskParameterView!
     @IBOutlet private var notificationView: TaskParameterView!
     
+    private weak var taskParameterEditorContainer: TaskParameterEditorContainer?
+    
     private let timeTemplateService = ServicesAssembly.shared.timeTemplatesService
     
     private var timeTemplate: TimeTemplate!
@@ -112,6 +114,7 @@ fileprivate extension TaskTimeTemplateEditor {
         dueTimeView.didClear = { [unowned self] in
             self.timeTemplate.time = nil
             self.updateDueTime()
+            self.updateNotification()
         }
         dueTimeView.didTouchedUp = { [unowned self] in
             self.showTaskParameterEditor(with: .dueTime)
@@ -146,8 +149,18 @@ fileprivate extension TaskTimeTemplateEditor {
     }
     
     func updateNotification() {
-        notificationView.text = timeTemplate.notification.title
-        notificationView.isFilled = timeTemplate.notification != .doNotNotify
+        if timeTemplate.time == nil, timeTemplate.notification != nil {
+            timeTemplate.notification = timeTemplate.time == nil ? .doNotNotify : nil
+        }
+        if let notificationTime = timeTemplate.notificationTime {
+            let minutes = notificationTime.1
+            let minutesString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
+            notificationView.text = "\(notificationTime.0):\(minutesString)"
+        } else {
+            let notification = timeTemplate.notification ?? .doNotNotify
+            notificationView.text = notification.title
+        }
+        notificationView.isFilled = timeTemplate.notification != .doNotNotify || timeTemplate.notificationTime != nil
         updateDoneButton()
     }
     
@@ -160,6 +173,7 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
         case .dueTime:
             timeTemplate.time = nil
             updateDueTime()
+            updateNotification()
         case .reminder:
             timeTemplate.notification = .doNotNotify
             updateNotification()
@@ -184,8 +198,15 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
         case .reminder:
             let viewController = ViewControllersFactory.taskReminderEditor
             viewController.output = self
-            viewController.setNotification(.mask(timeTemplate.notification))
+            viewController.transitionOutput = taskParameterEditorContainer
+            if let notificationTime = timeTemplate.notificationTime {
+                viewController.setNotification(.time(notificationTime.0, notificationTime.1))
+            } else {
+                viewController.setNotification(.mask(timeTemplate.notification ?? .doNotNotify))
+            }
+            viewController.setNotificationMasksVisible(timeTemplate.time != nil)
             viewController.setNotificationDatePickerVisible(false)
+            viewController.setNotificationTimePickerVisible(true)
             return viewController
         default: return UIViewController()
         }
@@ -217,8 +238,13 @@ extension TaskTimeTemplateEditor: TaskReminderEditorOutput {
         switch notification {
         case let .mask(notificationMask):
             timeTemplate.notification = notificationMask
+            timeTemplate.notificationTime = nil
             updateNotification()
-        case .date, .time: break // TODO: Поддерживать time???
+        case let .time(hours, minutes):
+            timeTemplate.notification = nil
+            timeTemplate.notificationTime = (hours, minutes)
+            updateNotification()
+        case .date: break
         }
     }
     
@@ -229,6 +255,8 @@ fileprivate extension TaskTimeTemplateEditor {
     func showTaskParameterEditor(with type: TaskParameterEditorType) {
         let taskParameterEditorContainer = ViewControllersFactory.taskParameterEditorContainer
         taskParameterEditorContainer.loadViewIfNeeded()
+        
+        self.taskParameterEditorContainer = taskParameterEditorContainer
         
         taskParameterEditorContainer.output = self
         taskParameterEditorContainer.setType(type)
@@ -263,8 +291,8 @@ fileprivate extension TaskTimeTemplateEditor {
     }
     
     func isTimeTemplateValid(_ timeTemplate: TimeTemplate) -> Bool {
-        return timeTemplate.time != nil
-            && timeTemplate.notification != .doNotNotify
+        return ((timeTemplate.time != nil && timeTemplate.notification != .doNotNotify)
+            || timeTemplate.notificationTime != nil)
             && !timeTemplate.title.trimmed.isEmpty
     }
     

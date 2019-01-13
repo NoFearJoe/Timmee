@@ -82,7 +82,7 @@ private extension RegularitySettingsViewController {
     
     private func onTapToParameterView(parameter: Parameter) {
         // Если установлен временной шаблон, то даем выбрать только дату без времени
-        if parameter == .dueDateTime, let timeTemplateView = parameterViews[.timeTemplate] as? TaskParameterView, timeTemplateView.isFilled {
+        if parameter == .dueDateTime, let timeTemplateView = getTaskParameterView(key: .timeTemplate), timeTemplateView.isFilled {
             viewOutput?.regularitySettings(self, didSelectParameter: .dueDate)
         } else {
             viewOutput?.regularitySettings(self, didSelectParameter: parameter)
@@ -145,23 +145,22 @@ private extension RegularitySettingsViewController {
         
         timeTemplateView.text = task.timeTemplate?.title ?? "time_template_placeholder".localized
         
-        if let timeTemplate = task.timeTemplate, let time = timeTemplate.time {
-            let minutes: String
-            if time.minutes < 10 {
-                minutes = "\(time.minutes)0"
-            } else {
-                minutes = "\(time.minutes)"
-            }
-            timeTemplateView.subtitle = "\(time.hours):\(minutes), " + timeTemplate.notification.title
+        if let timeTemplate = task.timeTemplate {
+            timeTemplateView.subtitle = timeTemplate.makeDueTimeAndNotificationString()
         } else {
             timeTemplateView.subtitle = nil
         }
         
         timeTemplateView.isFilled = task.timeTemplate != nil
+        
+        let disableDueDateTimeClear = task.timeTemplate != nil && task.timeTemplate!.time != nil
+        getTaskParameterView(key: .dueDateTime)?.canClear = !disableDueDateTimeClear
+        let disableNotificationClear = task.timeTemplate != nil && ((task.timeTemplate!.notification != nil && task.timeTemplate!.notification! != .doNotNotify) || (task.timeTemplate!.notificationTime != nil))
+        getTaskParameterView(key: .notification)?.canClear = !disableNotificationClear
     }
     
     func updateDueDateTimeView(task: Task) {
-        guard let dueDateTimeView = parameterViews[.dueDateTime] as? TaskParameterView else { return }
+        guard let dueDateTimeView = getTaskParameterView(key: .dueDateTime) else { return }
         
         let dueDateTime = task.dueDate
         let isOverdue = UserProperty.highlightOverdueTasks.bool() && (dueDateTime != nil && !(dueDateTime! >= Date()))
@@ -173,7 +172,7 @@ private extension RegularitySettingsViewController {
     }
     
     func updateStartDateView(task: Task) {
-        guard let startDateView = parameterViews[.startDate] as? TaskParameterView else { return }
+        guard let startDateView = getTaskParameterView(key: .startDate) else { return }
         
         if let startDate = task.dueDate {
             startDateView.text = "starts".localized + " " + startDate.asNearestShortDateString.lowercased()
@@ -187,7 +186,7 @@ private extension RegularitySettingsViewController {
     }
     
     func updateEndDateView(task: Task) {
-        guard let repeatEndingDateView = parameterViews[.endDate] as? TaskParameterView else { return }
+        guard let repeatEndingDateView = getTaskParameterView(key: .endDate) else { return }
         
         if let endDate = task.repeatEndingDate {
             repeatEndingDateView.text = "ends".localized + " " + endDate.asNearestShortDateString.lowercased()
@@ -198,7 +197,7 @@ private extension RegularitySettingsViewController {
     }
     
     func updateNotificationView(task: Task) {
-        guard let reminderView = parameterViews[.notification] as? TaskParameterView else { return }
+        guard let reminderView = getTaskParameterView(key: .notification) else { return }
         
         let notification: TaskReminderSelectedNotification
         if let notificationTime = task.notificationTime {
@@ -218,19 +217,27 @@ private extension RegularitySettingsViewController {
             reminderView.isFilled = true
         case let .time(hours, minutes):
             let minutesString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
-            reminderView.text = "\(hours):\(minutesString)" // TODO
+            reminderView.text = "\(hours):\(minutesString)"
             reminderView.isFilled = true
         }
     }
     
     func updateRepeatView(task: Task) {
-        guard let repeatView = parameterViews[.repeating] as? TaskParameterView else { return }
+        guard let repeatView = getTaskParameterView(key: .repeating) else { return }
         
         let `repeat` = task.repeating
         
         repeatView.text = `repeat`.fullLocalizedString
         repeatView.isFilled = !`repeat`.type.isNever
         repeatView.canClear = false
+    }
+    
+}
+
+private extension RegularitySettingsViewController {
+    
+    func getTaskParameterView(key: Parameter) -> TaskParameterView? {
+        return parameterViews[key] as? TaskParameterView
     }
     
 }

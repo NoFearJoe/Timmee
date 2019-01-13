@@ -154,20 +154,16 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
         task.timeTemplate = timeTemplate
         
-        task.dueDate = task.dueDate ?? Date()
         if let time = timeTemplate?.time {
+            task.dueDate = task.dueDate ?? Date()
             task.dueDate => time.hours.asHours
             task.dueDate => time.minutes.asMinutes
+        } else {
+            task.dueDate = nil
         }
         
-//        if let timeTemplate = timeTemplate {
-//            view.setNotification(TaskReminderSelectedNotification.mask(timeTemplate.notification))
-//            view.setRepeat(task.repeating)
-//        } else {
-//            if task.dueDate != nil {
-//                view.setRepeat(task.repeating)
-//            }
-//        }
+        task.notificationTime = timeTemplate?.notificationTime
+        task.notification = timeTemplate?.notification ?? .doNotNotify
         
         regularitySettings?.updateParameters(task: task)
     }
@@ -255,6 +251,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     
     func timeTemplateCleared() {
         task.timeTemplate = nil
+        task.dueDate = nil
         
         resetNotificationIfNeeded()
         
@@ -422,6 +419,7 @@ extension TaskEditorPresenter: RegularitySettingsOutput {
         switch parameter {
         case .timeTemplate:
             task.timeTemplate = nil
+            task.dueDate = nil
             resetNotificationIfNeeded()
         case .dueDateTime, .dueDate, .dueTime, .startDate:
             task.dueDate = nil
