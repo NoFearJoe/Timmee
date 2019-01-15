@@ -13,16 +13,18 @@ final class AuthorizationViewController: BaseViewController {
     
     // MARK: - Dependencies
     
-//    private let authorizationService = AuthorizationService()
+    private let authorizationService = AuthorizationService()
+    
+    private var emailAndPasswordFieldsValidator: EmailAndPasswordFieldsValidator!
     
     // MARK: - Outlets
     
     @IBOutlet private var headerView: LargeHeaderView!
     
     @IBOutlet private var emailTitleLabel: UILabel!
-    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var emailTextField: FocusableTextField!
     @IBOutlet private var passwordTitleLabel: UILabel!
-    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var passwordTextField: FocusableTextField!
     
     @IBOutlet private var facebookAuthorizationButton: UIButton!
     @IBOutlet private var googleAuthorizationButton: UIButton!
@@ -32,16 +34,16 @@ final class AuthorizationViewController: BaseViewController {
     // MARK: - Actions
     
     @IBAction private func onTapToFacebookAuthorizationButton() {
-//        // TODO: Loading
-//        authorizationService.performFacebookLogin(from: self) { [weak self] success in
-//            if success {
-//                self?.authorizationService.authorize(via: .facebook) { [weak self] success in
-//                    // TODO
-//                }
-//            } else {
-//                // TODO
-//            }
-//        }
+        // TODO: Loading
+        authorizationService.performFacebookLogin(from: self) { [weak self] success in
+            if success {
+                self?.authorizationService.authorize(via: .facebook) { [weak self] success in
+                    // TODO
+                }
+            } else {
+                // TODO
+            }
+        }
     }
     
     @IBAction private func onTapToGoogleAuthorizationButton() {
@@ -52,9 +54,9 @@ final class AuthorizationViewController: BaseViewController {
         guard let email = emailTextField.text?.trimmed, !email.isEmpty else { return }
         guard let password = passwordTextField.text?.trimmed, !password.isEmpty else { return }
         // TODO: Loading
-//        authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success in
-            // TODO
-//        }
+        authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success in
+            print(success)
+        }
     }
     
     @IBAction private func onTapToCloseButton() {
@@ -74,15 +76,26 @@ final class AuthorizationViewController: BaseViewController {
         emailTitleLabel.text = "e-mail".localized
         passwordTitleLabel.text = "password".localized
         authorizationButton.setTitle("authorize".localized, for: .normal)
+        
+        authorizationButton.isEnabled = false
+        
+        emailAndPasswordFieldsValidator = EmailAndPasswordFieldsValidator(emailTextField: emailTextField,
+                                                                          passwordTextField: passwordTextField,
+                                                                          onValid: { [unowned self] isValid in
+                                                                              self.authorizationButton.isEnabled = isValid
+                                                                          })
     }
     
     override func refresh() {
         super.refresh()
+        if !emailTextField.isFirstResponder {
+            emailTextField.becomeFirstResponder()
+        }
     }
     
     override func setupAppearance() {
         super.setupAppearance()
-        emailTitleLabel.font = AppTheme.current.fonts.medium(18)
+        emailTitleLabel.font = AppTheme.current.fonts.regular(16)
         emailTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         emailTextField.font = AppTheme.current.fonts.bold(18)
         emailTextField.textColor = AppTheme.current.colors.activeElementColor
@@ -90,7 +103,7 @@ final class AuthorizationViewController: BaseViewController {
         emailTextField.backgroundColor = AppTheme.current.colors.foregroundColor
         emailTextField.layer.borderColor = UIColor.clear.cgColor
         emailTextField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
-        passwordTitleLabel.font = AppTheme.current.fonts.medium(18)
+        passwordTitleLabel.font = AppTheme.current.fonts.regular(16)
         passwordTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         passwordTextField.font = AppTheme.current.fonts.bold(18)
         passwordTextField.textColor = AppTheme.current.colors.activeElementColor

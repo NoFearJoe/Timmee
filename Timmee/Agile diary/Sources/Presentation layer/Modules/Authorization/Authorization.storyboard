@@ -102,7 +102,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHq-HJ-woE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHq-HJ-woE" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
                                 <rect key="frame" x="20" y="166.5" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -110,7 +110,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -124,39 +124,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnD-dS-FfN">
-                                <rect key="frame" x="130.5" y="316" width="114" height="48"/>
+                                <rect key="frame" x="165.5" y="316" width="44" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-Dl-ngy">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-Dl-ngy">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Avb-Dl-ngy" secondAttribute="height" id="Jed-IY-b64"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="facebook"/>
                                         <connections>
                                             <action selector="onTapToFacebookAuthorizationButton" destination="OMj-gy-h0m" eventType="touchUpInside" id="u6L-9V-SkR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFW-Tj-P7J">
-                                        <rect key="frame" x="68" y="0.0" width="46" height="48"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="onTapToGoogleAuthorizationButton" destination="OMj-gy-h0m" eventType="touchUpInside" id="qYg-8c-vSf"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="7Ng-93-UZ8"/>
+                                    <constraint firstAttribute="height" constant="44" id="7Ng-93-UZ8"/>
                                     <constraint firstAttribute="bottom" secondItem="Avb-Dl-ngy" secondAttribute="bottom" id="82S-kf-f4s"/>
-                                    <constraint firstAttribute="bottom" secondItem="OFW-Tj-P7J" secondAttribute="bottom" id="Iap-Wd-3ue"/>
-                                    <constraint firstItem="OFW-Tj-P7J" firstAttribute="top" secondItem="bnD-dS-FfN" secondAttribute="top" id="NDT-bJ-Jgr"/>
-                                    <constraint firstAttribute="trailing" secondItem="OFW-Tj-P7J" secondAttribute="trailing" id="Qah-35-vVk"/>
-                                    <constraint firstItem="OFW-Tj-P7J" firstAttribute="leading" secondItem="Avb-Dl-ngy" secondAttribute="trailing" constant="20" id="Zsk-0N-U8C"/>
                                     <constraint firstItem="Avb-Dl-ngy" firstAttribute="leading" secondItem="bnD-dS-FfN" secondAttribute="leading" id="aUv-OE-iQe"/>
+                                    <constraint firstAttribute="trailing" secondItem="Avb-Dl-ngy" secondAttribute="trailing" id="b5C-JU-LMT"/>
                                     <constraint firstItem="Avb-Dl-ngy" firstAttribute="top" secondItem="bnD-dS-FfN" secondAttribute="top" id="j6g-Yi-iCH"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3Q-PE-mpj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3Q-PE-mpj" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
                                 <rect key="frame" x="20" y="256" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -164,7 +154,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -207,7 +197,6 @@
                         <outlet property="emailTextField" destination="NHq-HJ-woE" id="7Ib-JQ-E8i"/>
                         <outlet property="emailTitleLabel" destination="fUT-io-gg2" id="FwW-kc-hBi"/>
                         <outlet property="facebookAuthorizationButton" destination="Avb-Dl-ngy" id="zgu-Gh-9rd"/>
-                        <outlet property="googleAuthorizationButton" destination="OFW-Tj-P7J" id="M7l-eB-ZbH"/>
                         <outlet property="headerView" destination="5Ft-zQ-TtM" id="h6a-qp-P9m"/>
                         <outlet property="passwordTextField" destination="T3Q-PE-mpj" id="ZGS-sv-DxR"/>
                         <outlet property="passwordTitleLabel" destination="NK2-sR-hkb" id="QZ9-SG-WoB"/>
@@ -226,5 +215,6 @@
     </scenes>
     <resources>
         <image name="cross" width="20" height="20"/>
+        <image name="facebook" width="44" height="45"/>
     </resources>
 </document>

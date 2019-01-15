@@ -22,6 +22,10 @@ target 'Agile diary' do
   pod 'Charts'
   pod 'Dwifft'
   
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'FBSDKLoginKit'
+  
   pod 'Fabric'
   pod 'Crashlytics'
 end
@@ -33,6 +37,10 @@ target 'Agile diary debug' do
     pod 'SwipeCellKit'
     pod 'Foto'
     pod 'Charts'
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'FBSDKLoginKit'
     
     pod 'Fabric'
     pod 'Crashlytics'
@@ -49,6 +57,10 @@ end
 
 target 'Authorization' do    
     project 'Authorization.xcodeproj'
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'FBSDKLoginKit'
 end
 
 target 'UIComponents' do

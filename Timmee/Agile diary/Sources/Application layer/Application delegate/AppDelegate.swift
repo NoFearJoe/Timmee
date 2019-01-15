@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import UserNotifications
+import Authorization
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,9 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         
+        AuthorizationService.initializeAuthorization()
+        
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
-//        ServicesAssembly.shared.waterControlService.removeWaterControl(completion: nil)
         
         if let window = window {
             #if MOCKS
