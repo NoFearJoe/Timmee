@@ -41,6 +41,10 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "Authorization", bundle: nil).instantiateInitialViewController() as! AuthorizationViewController
     }
     
+    static var recoverPassword: AuthorizationViewController {
+        return UIStoryboard(name: "Authorization", bundle: nil).instantiateViewController(withIdentifier: "RecoverPassword") as! AuthorizationViewController
+    }
+    
     static var pinCreation: PinCreationViewController {
         return UIStoryboard(name: "Authentication", bundle: nil).instantiateViewController(withIdentifier: "PinCreation") as! PinCreationViewController
     }

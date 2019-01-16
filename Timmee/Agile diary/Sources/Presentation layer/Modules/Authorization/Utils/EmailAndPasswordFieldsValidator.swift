@@ -8,6 +8,29 @@
 
 import UIKit
 
+class EmailFieldValidator: NSObject {
+    private let onValid: (Bool) -> Void
+    
+    private unowned let emailTextField: UITextField
+    
+    init(emailTextField: UITextField, onValid: @escaping (Bool) -> Void) {
+        self.onValid = onValid
+        self.emailTextField = emailTextField
+        
+        super.init()
+        
+        emailTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+    }
+    
+    @objc private func validateFields() {
+        let email = emailTextField.text?.trimmed ?? ""
+        
+        let emailIsValid = EmailValidator.validate(email: email).isValid
+        
+        onValid(emailIsValid)
+    }
+}
+
 final class EmailAndPasswordFieldsValidator: NSObject {
     
     private let onValid: (Bool) -> Void

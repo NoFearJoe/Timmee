@@ -11,7 +11,7 @@ import Workset
 
 public final class LoadingView: UIView {
     
-    fileprivate var activityIndicator: UIActivityIndicatorView!
+    private(set) public var activityIndicator: UIActivityIndicatorView!
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

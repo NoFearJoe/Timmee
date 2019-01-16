@@ -9,7 +9,7 @@
 import UIKit
 import Authorization
 
-final class AuthorizationViewController: BaseViewController {
+final class AuthorizationViewController: BaseViewController, AlertInput {
     
     // MARK: - Dependencies
     
@@ -29,19 +29,31 @@ final class AuthorizationViewController: BaseViewController {
     @IBOutlet private var facebookAuthorizationButton: UIButton!
     @IBOutlet private var googleAuthorizationButton: UIButton!
     
-    @IBOutlet private var authorizationButton: ContinueEducationButton!
+    @IBOutlet private var recoverPasswordButton: UIButton!
+    @IBOutlet private var authorizationButton: ContinueEducationButton! // TODO: Клавиатура не поднимает кнопку
+    
+    @IBOutlet private var loadingView: LoadingView!
     
     // MARK: - Actions
     
     @IBAction private func onTapToFacebookAuthorizationButton() {
-        // TODO: Loading
+        loadingView.isHidden = false
         authorizationService.performFacebookLogin(from: self) { [weak self] success in
             if success {
-                self?.authorizationService.authorize(via: .facebook) { [weak self] success in
-                    // TODO
+                self?.authorizationService.authorize(via: .facebook) { [weak self] success, error in
+                    self?.loadingView.isHidden = true
+                    // TODO: Show authorization status than close screen?
+                    if let error = error {
+                        self?.showAuthorizationError(error)
+                    } else if !success {
+                        self?.showCommonAuthorizationError()
+                    }
+                    guard success else { return }
+                    self?.dismiss(animated: true, completion: nil)
                 }
             } else {
-                // TODO
+                self?.loadingView.isHidden = true
+                self?.showCommonAuthorizationError()
             }
         }
     }
@@ -53,14 +65,27 @@ final class AuthorizationViewController: BaseViewController {
     @IBAction private func onTapToAuthorizationButton() {
         guard let email = emailTextField.text?.trimmed, !email.isEmpty else { return }
         guard let password = passwordTextField.text?.trimmed, !password.isEmpty else { return }
-        // TODO: Loading
-        authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success in
-            print(success)
+        
+        loadingView.isHidden = false
+        authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success, error in
+            self?.loadingView.isHidden = true
+            // TODO: Show authorization status than close screen?
+            if let error = error {
+                self?.showAuthorizationError(error)
+            } else if !success {
+                self?.showCommonAuthorizationError()
+            }
+            guard success else { return }
+            self?.dismiss(animated: true, completion: nil)
         }
     }
     
-    @IBAction private func onTapToCloseButton() {
+    @IBAction private func onTapToRecoverPasswordButton() {
         
+    }
+    
+    @IBAction private func onTapToCloseButton() {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func onTapToBackgroundView() {
@@ -75,6 +100,7 @@ final class AuthorizationViewController: BaseViewController {
         headerView.titleLabel.text = "authorization".localized
         emailTitleLabel.text = "e-mail".localized
         passwordTitleLabel.text = "password".localized
+        recoverPasswordButton.setTitle("recover_password".localized, for: .normal)
         authorizationButton.setTitle("authorize".localized, for: .normal)
         
         authorizationButton.isEnabled = false
@@ -111,8 +137,38 @@ final class AuthorizationViewController: BaseViewController {
         passwordTextField.backgroundColor = AppTheme.current.colors.foregroundColor
         passwordTextField.layer.borderColor = UIColor.clear.cgColor
         passwordTextField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        recoverPasswordButton.setTitleColor(AppTheme.current.colors.activeElementColor, for: .normal)
+        recoverPasswordButton.titleLabel?.font = AppTheme.current.fonts.regular(13)
         authorizationButton.setTitleColor(.white, for: .normal)
         authorizationButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        loadingView.backgroundColor = AppTheme.current.colors.backgroundColor
+    }
+    
+    private func showAuthorizationError(_ error: AuthorizationError) {
+        switch error {
+        case .wrongPassword:
+            showAlert(title: "wrong_password_alert_title".localized,
+                      message: "wrong_password_alert_message".localized,
+                      actions: [.ok("Ok")],
+                      completion: nil)
+        case .invalidEmail:
+            showAlert(title: "invalid_email_alert_title".localized,
+                      message: "invalid_email_alert_message".localized,
+                      actions: [.ok("Ok")],
+                      completion: nil)
+        case let .invalidPassword(errorMessage):
+            showAlert(title: "invalid_password_alert_title".localized,
+                      message: errorMessage,
+                      actions: [.ok("Ok")],
+                      completion: nil)
+        }
+    }
+    
+    private func showCommonAuthorizationError() {
+        showAlert(title: "common_authorization_error_title".localized,
+                  message: "common_authorization_error_message".localized,
+                  actions: [.ok("Ok")],
+                  completion: nil)
     }
     
 }

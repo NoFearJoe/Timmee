@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import UserNotifications
 import Authorization
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,13 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         AuthorizationService.initializeAuthorization()
+        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
         
         if let window = window {
             #if MOCKS
-            EnMocksConfigurator.prepareMocks {
+            RuMocksConfigurator.prepareMocks {
                 UserProperty.isInitialSprintCreated.setBool(true)
                 InitialScreenPresenter.showToday()
             }
@@ -43,6 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ProVersionPurchase.shared.loadStore()
         
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let canOpenWithFacebook = FBSDKApplicationDelegate.sharedInstance()?.application(app, open: url, options: options) ?? false
+        return canOpenWithFacebook
     }
 
 }

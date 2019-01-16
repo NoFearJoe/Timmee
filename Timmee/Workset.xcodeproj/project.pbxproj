@@ -37,6 +37,7 @@
 		0C9B23FF2077B757009EF6DE /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23E22077B757009EF6DE /* Array+RemoveObject.swift */; };
 		0C9B24002077B757009EF6DE /* Array+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23E32077B757009EF6DE /* Array+Item.swift */; };
 		0C9B24042077B996009EF6DE /* NearestDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24022077B996009EF6DE /* NearestDate.swift */; };
+		0CC405EE21EF03510069C6C5 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405ED21EF03510069C6C5 /* Keychain.swift */; };
 		0CE018BE2077B52B00633EFF /* Workset.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CE018BC2077B52B00633EFF /* Workset.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9606627F20A359FF00B23EDF /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627E20A359FF00B23EDF /* Sound.swift */; };
 		9606628120A6FE0200B23EDF /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606628020A6FE0100B23EDF /* Tracker.swift */; };
@@ -76,6 +77,7 @@
 		0C9B23E22077B757009EF6DE /* Array+RemoveObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		0C9B23E32077B757009EF6DE /* Array+Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Item.swift"; sourceTree = "<group>"; };
 		0C9B24022077B996009EF6DE /* NearestDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestDate.swift; sourceTree = "<group>"; };
+		0CC405ED21EF03510069C6C5 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		0CE018B92077B52B00633EFF /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE018BC2077B52B00633EFF /* Workset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Workset.h; sourceTree = "<group>"; };
 		0CE018BD2077B52B00633EFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				9606627E20A359FF00B23EDF /* Sound.swift */,
 				9606628020A6FE0100B23EDF /* Tracker.swift */,
 				0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */,
+				0CC405ED21EF03510069C6C5 /* Keychain.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				0C9B23FC2077B757009EF6DE /* Sequence+Categorised.swift in Sources */,
 				0C9B23FF2077B757009EF6DE /* Array+RemoveObject.swift in Sources */,
 				0C9B23FA2077B757009EF6DE /* String+Encryption.swift in Sources */,
+				0CC405EE21EF03510069C6C5 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

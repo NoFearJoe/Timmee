@@ -188,6 +188,14 @@
 		0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */; };
 		0CC405E921EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */; };
 		0CC405EA21EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */; };
+		0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E421EE031E0069C6C5 /* PasswordValidator.swift */; };
+		0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E221EE027D0069C6C5 /* EmailValidator.swift */; };
+		0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */; };
+		0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */; };
+		0CC405F921EF28B90069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
+		0CC405FA21EF28B90069C6C5 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */; };
+		0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */; };
 		0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
@@ -288,6 +296,7 @@
 				0CB673D521A52C3900178EB1 /* NotificationsKit.framework in Embed Frameworks */,
 				0CB673D621A52C3900178EB1 /* Workset.framework in Embed Frameworks */,
 				0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */,
+				0CC405FA21EF28B90069C6C5 /* Authorization.framework in Embed Frameworks */,
 				0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -388,6 +397,7 @@
 		0CC405E421EE031E0069C6C5 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordFieldsValidator.swift; sourceTree = "<group>"; };
 		0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
@@ -468,6 +478,7 @@
 			files = (
 				963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */,
 				0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */,
+				0CC405F921EF28B90069C6C5 /* Authorization.framework in Frameworks */,
 				0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */,
 				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
 				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
@@ -901,9 +912,10 @@
 		0CC4BB5F21BA8DE90066C213 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
+				963FD7E421BD11F9000817D4 /* Authorization.storyboard */,
 				0CC405E121EE026D0069C6C5 /* Utils */,
 				0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */,
-				963FD7E421BD11F9000817D4 /* Authorization.storyboard */,
+				0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -996,10 +1008,10 @@
 		967C328421517DF400B9201A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				967C328B215181D700B9201A /* Settings.storyboard */,
 				0C3DA5292153C0AD00CAE635 /* Backgrund image picker */,
 				967C328621517E0700B9201A /* Pro version purchase */,
 				967C328521517DFE00B9201A /* Main */,
-				967C328B215181D700B9201A /* Settings.storyboard */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1399,6 +1411,7 @@
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
 				0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
+				0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
 				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
@@ -1479,6 +1492,7 @@
 				0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */,
 				0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */,
 				0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */,
+				0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */,
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
@@ -1501,9 +1515,11 @@
 				0CB6738821A52C3900178EB1 /* HabitsChartView.swift in Sources */,
 				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
 				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
+				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
+				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
@@ -1532,6 +1548,7 @@
 				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
 				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
+				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
 				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
@@ -1545,6 +1562,7 @@
 				0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0CB673B421A52C3900178EB1 /* SprintContentViewController.swift in Sources */,
 				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
+				0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */,
 				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CC405EC21EF01A30069C6C5 /* AuthorizationStatusStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405EB21EF01A30069C6C5 /* AuthorizationStatusStorage.swift */; };
 		963FD81421BD3484000817D4 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963FD81321BD3484000817D4 /* AuthorizationService.swift */; };
 		963FD81521BD35AC000817D4 /* Authorization.h in Headers */ = {isa = PBXBuildFile; fileRef = 963FD7F421BD2CCA000817D4 /* Authorization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA06376E4E03A83EB0AE7E66 /* Pods_Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0251155F8A6C499F66B0EDCD /* Pods_Authorization.framework */; };
@@ -14,6 +15,7 @@
 
 /* Begin PBXFileReference section */
 		0251155F8A6C499F66B0EDCD /* Pods_Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CC405EB21EF01A30069C6C5 /* AuthorizationStatusStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationStatusStorage.swift; sourceTree = "<group>"; };
 		1A7A22A1F2AAA6FDD5A4F8F3 /* Pods-Authorization.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Authorization.debug.xcconfig"; path = "Target Support Files/Pods-Authorization/Pods-Authorization.debug.xcconfig"; sourceTree = "<group>"; };
 		963FD7F121BD2CCA000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		963FD7F421BD2CCA000817D4 /* Authorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Authorization.h; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				963FD81321BD3484000817D4 /* AuthorizationService.swift */,
+				0CC405EB21EF01A30069C6C5 /* AuthorizationStatusStorage.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CC405EC21EF01A30069C6C5 /* AuthorizationStatusStorage.swift in Sources */,
 				963FD81421BD3484000817D4 /* AuthorizationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

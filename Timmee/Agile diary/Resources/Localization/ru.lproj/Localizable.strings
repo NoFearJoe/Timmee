@@ -270,3 +270,21 @@
 "password" = "Пароль";
 "e-mail_placeholder" = "email@email.com";
 "password_placeholder" = "Password";
+"recover_password" = "Восстановить пароль";
+
+"synchronization_section" = "Синхронизация";
+"synchronization_enabled" = "Синхронизация включена";
+"enable_synchronization" = "Включить синхронизацию";
+"log_out" = "Выйти";
+"log_out_alert_title" = "Выход";
+"log_out_alert_message" = "После выхода перестанет работать синхронизация. Хотите продолжить?";
+"wrong_password_alert_title" = "Неверный пароль";
+"wrong_password_alert_message" = "Введите пароль заново или восстановите пароль";
+"invalid_email_alert_title" = "Неверный e-mail";
+"invalid_email_alert_message" = "Введен неверный e-mail";
+"invalid_password_alert_title" = "Пароль слишком простой";
+"common_authorization_error_title" = "Ошибка авторизации";
+"common_authorization_error_message" = "Проверьте интернет-соединение или повторите попытку позже";
+
+"recover_password_error_alert_title" = "Ошибка";
+"recover_password_error_alert_message" = "Введеный e-mail не зарегистрирован или отсутствует интернет-соединение";

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="69q-SW-hYa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="69q-SW-hYa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -461,6 +461,7 @@
                         <outlet property="loadingView" destination="5vO-Yd-lgs" id="o82-p1-Rqk"/>
                         <outlet property="tableView" destination="oh4-jT-h53" id="b43-9h-33G"/>
                         <segue destination="bQW-7f-0SV" kind="show" identifier="ShowBackgroundImagePicker" id="AuS-V5-JXC"/>
+                        <segue destination="X2a-D3-Fz5" kind="presentation" identifier="ShowAuthorization" modalTransitionStyle="coverVertical" id="FXT-IE-YqO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nau-A3-mzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -548,9 +549,17 @@
             </objects>
             <point key="canvasLocation" x="1213.5999999999999" y="152.47376311844079"/>
         </scene>
+        <!--Authorization-->
+        <scene sceneID="woV-bn-1Qd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Authorization" id="X2a-D3-Fz5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZkE-VC-0VA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="229" y="570"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="bgImage0" width="984" height="984"/>
+        <image name="bgImage0" width="750" height="1000"/>
         <image name="cross" width="20" height="20"/>
         <image name="cross_small" width="13" height="13"/>
     </resources>

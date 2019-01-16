@@ -8,12 +8,14 @@
 
 import UIKit
 import UIComponents
+import Authorization
 import enum MessageUI.MFMailComposeResult
 import class MessageUI.MFMailComposeViewController
 import protocol MessageUI.MFMailComposeViewControllerDelegate
 
 enum SettingsSection {
     case general
+    case synchronization
     case proVersion
     case security
     case about
@@ -21,6 +23,7 @@ enum SettingsSection {
     var title: String {
         switch self {
         case .general: return "general_section".localized
+        case .synchronization: return "synchronization_section".localized
         case .proVersion: return "pro_version_section".localized
         case .security: return "security_section".localized
         case .about: return "about_section".localized
@@ -80,6 +83,8 @@ final class SettingsViewController: BaseViewController {
     
     var settingsItems: [(SettingsSection, [SettingsItem])] = []
     
+    private let authorizationService = AuthorizationService()
+    
     private var areProVersionFeaturesShown = false
     
     @IBAction func close() {
@@ -106,6 +111,7 @@ final class SettingsViewController: BaseViewController {
         super.setupAppearance()
         
         tableView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        loadingView.backgroundColor = AppTheme.current.colors.backgroundColor
     }
     
     private func reloadSettings() {
@@ -182,6 +188,8 @@ fileprivate extension SettingsViewController {
         
         if !ProVersionPurchase.shared.isPurchased() {
             settings.insert((.proVersion, makeProVersionSectionItems()), at: 1)
+        } else {
+            settings.insert((.synchronization, makeSynchronizationSectionItems()), at: 1)
         }
         
         return settings
@@ -189,6 +197,8 @@ fileprivate extension SettingsViewController {
     
     func makeGeneralSectionItems() -> [SettingsItem] {
         var generalSectionItems: [SettingsItem] = []
+        
+        // MARK: Theme
         
         let currentTheme = AppThemeType.current
         let themeAction = { [unowned self] in
@@ -208,6 +218,8 @@ fileprivate extension SettingsViewController {
         generalSectionItems.append(themeItem)
         
         if ProVersionPurchase.shared.isPurchased() {
+            // MARK: Background image
+            
             let backgroundImageAction = { [unowned self] in
                 self.performSegue(withIdentifier: "ShowBackgroundImagePicker", sender: nil)
             }
@@ -228,6 +240,63 @@ fileprivate extension SettingsViewController {
         
         return generalSectionItems
     }
+    
+    // MARK: - Synchronization section
+    
+    func makeSynchronizationSectionItems() -> [SettingsItem] {
+        var synchronizationSectionItems: [SettingsItem] = []
+        
+        // MARK: Authorization
+        
+        if authorizationService.isAuthorized {
+            let title = authorizationService.authorizedUser?.nameOrEmail ?? "-".localized // TODO
+            let authorizedUserItem = SettingsItem(title: title,
+                                                  subtitle: "synchronization_enabled".localized,
+                                                  icon: UIImage(),
+                                                  isOn: false,
+                                                  isDetailed: false,
+                                                  isSelectable: false,
+                                                  style: .titleWithSubtitle,
+                                                  action: nil)
+            synchronizationSectionItems.append(authorizedUserItem)
+            
+            let unauthorizationAction = { [unowned self] in
+                self.showConfirmationAlert(title: "log_out_alert_title".localized,
+                                           message: "log_out_alert_message".localized,
+                                           onConfirm: {
+                                               self.authorizationService.unauthorize { [weak self] in
+                                                   self?.reloadSettings()
+                                               }
+                                           })
+            }
+            let unauthorizationItem = SettingsItem(title: "log_out".localized,
+                                                   subtitle: nil,
+                                                   icon: UIImage(),
+                                                   isOn: false,
+                                                   isDetailed: false,
+                                                   isSelectable: true,
+                                                   style: .title,
+                                                   action: unauthorizationAction)
+            synchronizationSectionItems.append(unauthorizationItem)
+        } else {
+            let authorizationAction = { [unowned self] in
+                self.performSegue(withIdentifier: "ShowAuthorization", sender: nil)
+            }
+            let authorizationItem = SettingsItem(title: "enable_synchronization".localized,
+                                                 subtitle: nil,
+                                                 icon: UIImage(),
+                                                 isOn: false,
+                                                 isDetailed: false,
+                                                 isSelectable: true,
+                                                 style: .title,
+                                                 action: authorizationAction)
+            synchronizationSectionItems.append(authorizationItem)
+        }
+        
+        return synchronizationSectionItems
+    }
+    
+    // MARK: - PRO version section
     
     func makeProVersionSectionItems() -> [SettingsItem] {
         var proVersionSectionItems: [SettingsItem] = []
