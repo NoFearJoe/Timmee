@@ -54,35 +54,29 @@ class PasswordFieldValidator: NSObject {
     }
 }
 
-// TODO: Использовать отдельные валидаторы
 final class EmailAndPasswordFieldsValidator: NSObject {
     
     private let onValid: (Bool) -> Void
     
-    private unowned let emailTextField: UITextField
-    private unowned let passwordTextField: UITextField
+    private var emailFieldValidator: EmailFieldValidator!
+    private var passwordFieldValidator: PasswordFieldValidator!
+    
+    private var emailIsValid = false
+    private var passwordIsValid = false
     
     init(emailTextField: UITextField, passwordTextField: UITextField, onValid: @escaping (Bool) -> Void) {
         self.onValid = onValid
-        self.emailTextField = emailTextField
-        self.passwordTextField = passwordTextField
         
         super.init()
         
-        emailTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
-    }
-    
-    @objc private func validateFields() {
-        let email = emailTextField.text?.trimmed ?? ""
-        let password = passwordTextField.text?.trimmed ?? ""
-        
-        let emailIsValid = EmailValidator.validate(email: email).isValid
-        let passwordIsValid = PasswordValidator.validate(password: password).isValid
-        
-        let isFieldsValid = emailIsValid && passwordIsValid
-        
-        onValid(isFieldsValid)
+        self.emailFieldValidator = EmailFieldValidator(emailTextField: emailTextField, onValid: { [unowned self] isValid in
+            self.emailIsValid = isValid
+            self.onValid(self.emailIsValid && self.passwordIsValid)
+        })
+        self.passwordFieldValidator = PasswordFieldValidator(passwordTextField: passwordTextField, onValid: { [unowned self] isValid in
+            self.passwordIsValid = isValid
+            self.onValid(self.emailIsValid && self.passwordIsValid)
+        })
     }
     
 }

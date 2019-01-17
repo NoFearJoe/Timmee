@@ -45,14 +45,13 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
             if success {
                 self?.authorizationService.authorize(via: .facebook) { [weak self] success, error in
                     self?.loadingView.isHidden = true
-                    // TODO: Show authorization status than close screen?
                     if let error = error {
                         self?.showAuthorizationError(error)
                     } else if !success {
                         self?.showCommonAuthorizationError()
+                    } else {
+                        self?.dismiss(animated: true, completion: nil)
                     }
-                    guard success else { return }
-                    self?.dismiss(animated: true, completion: nil)
                 }
             } else {
                 self?.loadingView.isHidden = true
@@ -72,14 +71,13 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
         loadingView.isHidden = false
         authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success, error in
             self?.loadingView.isHidden = true
-            // TODO: Show authorization status than close screen?
             if let error = error {
                 self?.showAuthorizationError(error)
             } else if !success {
                 self?.showCommonAuthorizationError()
+            } else {
+                self?.dismiss(animated: true, completion: nil)
             }
-            guard success else { return }
-            self?.dismiss(animated: true, completion: nil)
         }
     }
     

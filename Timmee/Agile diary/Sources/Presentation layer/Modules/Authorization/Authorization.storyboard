@@ -106,7 +106,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHq-HJ-woE" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="157" width="335" height="40"/>
+                                <rect key="frame" x="20" y="153" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Gdd-4x-PtM"/>
@@ -121,7 +121,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK2-sR-hkb">
-                                <rect key="frame" x="20" y="213" width="335" height="20"/>
+                                <rect key="frame" x="20" y="209" width="335" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="TQn-Ct-ZX2"/>
                                 </constraints>
@@ -130,7 +130,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnD-dS-FfN">
-                                <rect key="frame" x="165.5" y="297" width="44" height="44"/>
+                                <rect key="frame" x="165.5" y="289" width="44" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-Dl-ngy">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -153,7 +153,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3Q-PE-mpj" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="241" width="335" height="40"/>
+                                <rect key="frame" x="20" y="233" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="27t-fm-Vg0"/>
@@ -213,10 +213,10 @@
                             <constraint firstItem="NK2-sR-hkb" firstAttribute="top" secondItem="NHq-HJ-woE" secondAttribute="bottom" constant="16" id="mh0-0v-E70"/>
                             <constraint firstItem="NK2-sR-hkb" firstAttribute="leading" secondItem="kJc-Rg-ZS7" secondAttribute="leading" constant="20" id="my6-eW-gTr"/>
                             <constraint firstItem="fUT-io-gg2" firstAttribute="leading" secondItem="kJc-Rg-ZS7" secondAttribute="leading" constant="20" id="o2q-7m-RXv"/>
-                            <constraint firstItem="NHq-HJ-woE" firstAttribute="top" secondItem="fUT-io-gg2" secondAttribute="bottom" constant="8" id="qci-Gz-noB"/>
+                            <constraint firstItem="NHq-HJ-woE" firstAttribute="top" secondItem="fUT-io-gg2" secondAttribute="bottom" constant="4" id="qci-Gz-noB"/>
                             <constraint firstItem="kJc-Rg-ZS7" firstAttribute="trailing" secondItem="T3Q-PE-mpj" secondAttribute="trailing" constant="20" id="uyb-bE-7C4"/>
                             <constraint firstItem="bnD-dS-FfN" firstAttribute="centerX" secondItem="Elq-79-ONk" secondAttribute="centerX" id="z8o-U2-1Wv"/>
-                            <constraint firstItem="T3Q-PE-mpj" firstAttribute="top" secondItem="NK2-sR-hkb" secondAttribute="bottom" constant="8" id="zhE-Xg-fKX"/>
+                            <constraint firstItem="T3Q-PE-mpj" firstAttribute="top" secondItem="NK2-sR-hkb" secondAttribute="bottom" constant="4" id="zhE-Xg-fKX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kJc-Rg-ZS7"/>
                         <connections>
@@ -355,7 +355,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fF2-Af-h8A" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="158.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="154.5" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="aFX-72-7zL"/>
@@ -377,7 +377,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="На данный e-mail будет отправлено письмо с дальнейшими инструкциями по восстановлению пароля" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryJ-3V-CIR">
-                                <rect key="frame" x="20" y="206.5" width="335" height="47"/>
+                                <rect key="frame" x="20" y="202.5" width="335" height="47"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -391,7 +391,7 @@
                             <constraint firstItem="ryJ-3V-CIR" firstAttribute="top" secondItem="fF2-Af-h8A" secondAttribute="bottom" constant="8" id="7qp-6Y-Lnn"/>
                             <constraint firstItem="aEn-sK-ffB" firstAttribute="leading" secondItem="KQu-pA-Vbf" secondAttribute="leading" constant="20" id="Cmv-Un-uTs"/>
                             <constraint firstItem="qRk-tE-ppp" firstAttribute="trailing" secondItem="fF2-Af-h8A" secondAttribute="trailing" constant="20" id="IcB-kI-ewp"/>
-                            <constraint firstItem="fF2-Af-h8A" firstAttribute="top" secondItem="aEn-sK-ffB" secondAttribute="bottom" constant="8" id="L3B-DH-bNt"/>
+                            <constraint firstItem="fF2-Af-h8A" firstAttribute="top" secondItem="aEn-sK-ffB" secondAttribute="bottom" constant="4" id="L3B-DH-bNt"/>
                             <constraint firstItem="qRk-tE-ppp" firstAttribute="trailing" secondItem="ryJ-3V-CIR" secondAttribute="trailing" constant="20" id="Pf3-sz-IK9"/>
                             <constraint firstItem="qRk-tE-ppp" firstAttribute="trailing" secondItem="jZj-yb-p1L" secondAttribute="trailing" id="We1-4w-crU"/>
                             <constraint firstItem="w0d-tC-LKM" firstAttribute="width" secondItem="w0d-tC-LKM" secondAttribute="height" multiplier="1:1" id="e5s-hB-bTM"/>
@@ -526,14 +526,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите код проверки, отправленный на указанный e-mail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VjO-8P-L6u">
-                                <rect key="frame" x="20" y="206.5" width="335" height="31.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oB7-aj-ovP" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="158.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="154.5" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="xfc-vh-JGr"/>
@@ -555,13 +549,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuE-xk-M07">
-                                <rect key="frame" x="20" y="250" width="335" height="21.5"/>
+                                <rect key="frame" x="20" y="210.5" width="335" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMT-LT-Rvq" customClass="FocusableTextField" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="20" y="279.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="236" width="335" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="DOT-vF-i7p"/>
@@ -585,9 +579,9 @@
                             <constraint firstItem="hvF-0F-LPB" firstAttribute="trailing" secondItem="oB7-aj-ovP" secondAttribute="trailing" constant="20" id="7Sd-Ec-wUS"/>
                             <constraint firstItem="59j-S4-zFc" firstAttribute="leading" secondItem="y34-3i-bcK" secondAttribute="leading" constant="20" id="AT7-pz-7Ld"/>
                             <constraint firstItem="QuE-xk-M07" firstAttribute="leading" secondItem="hvF-0F-LPB" secondAttribute="leading" constant="20" id="Bfl-Ip-rWS"/>
-                            <constraint firstItem="oB7-aj-ovP" firstAttribute="top" secondItem="59j-S4-zFc" secondAttribute="bottom" constant="8" id="E7r-Jg-ZtX"/>
-                            <constraint firstItem="VjO-8P-L6u" firstAttribute="top" secondItem="oB7-aj-ovP" secondAttribute="bottom" constant="8" id="GE8-4N-9B9"/>
-                            <constraint firstItem="hMT-LT-Rvq" firstAttribute="top" secondItem="QuE-xk-M07" secondAttribute="bottom" constant="8" id="IMi-oy-lnb"/>
+                            <constraint firstItem="oB7-aj-ovP" firstAttribute="top" secondItem="59j-S4-zFc" secondAttribute="bottom" constant="4" id="E7r-Jg-ZtX"/>
+                            <constraint firstItem="QuE-xk-M07" firstAttribute="top" secondItem="oB7-aj-ovP" secondAttribute="bottom" constant="16" id="FcY-qT-5P7"/>
+                            <constraint firstItem="hMT-LT-Rvq" firstAttribute="top" secondItem="QuE-xk-M07" secondAttribute="bottom" constant="4" id="IMi-oy-lnb"/>
                             <constraint firstAttribute="trailing" secondItem="HwZ-OC-YbK" secondAttribute="trailing" constant="20" id="QEo-Lr-0ih"/>
                             <constraint firstItem="hvF-0F-LPB" firstAttribute="trailing" secondItem="QuE-xk-M07" secondAttribute="trailing" constant="20" id="U9e-ah-gbT"/>
                             <constraint firstItem="hvF-0F-LPB" firstAttribute="trailing" secondItem="mAc-wA-YEx" secondAttribute="trailing" id="V5c-Hj-lxe"/>
@@ -596,11 +590,9 @@
                             <constraint firstItem="59j-S4-zFc" firstAttribute="top" secondItem="mAc-wA-YEx" secondAttribute="bottom" constant="16" id="cgD-6a-dMx"/>
                             <constraint firstItem="gtF-Ne-d2r" firstAttribute="centerX" secondItem="y34-3i-bcK" secondAttribute="centerX" id="eEa-yL-pAp"/>
                             <constraint firstItem="gtF-Ne-d2r" firstAttribute="width" secondItem="gtF-Ne-d2r" secondAttribute="height" multiplier="1:1" id="eZh-pP-XTg"/>
+                            <constraint firstItem="HwZ-OC-YbK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hMT-LT-Rvq" secondAttribute="bottom" constant="8" id="gXX-Xl-lmf"/>
                             <constraint firstItem="mAc-wA-YEx" firstAttribute="leading" secondItem="y34-3i-bcK" secondAttribute="leading" id="jJu-pk-b5j"/>
-                            <constraint firstItem="QuE-xk-M07" firstAttribute="top" secondItem="VjO-8P-L6u" secondAttribute="bottom" constant="12" id="owk-RF-zkS"/>
                             <constraint firstItem="hMT-LT-Rvq" firstAttribute="trailing" secondItem="QuE-xk-M07" secondAttribute="trailing" id="pRP-Dv-L4q"/>
-                            <constraint firstItem="hvF-0F-LPB" firstAttribute="trailing" secondItem="VjO-8P-L6u" secondAttribute="trailing" constant="20" id="qCQ-bU-ma2"/>
-                            <constraint firstItem="VjO-8P-L6u" firstAttribute="leading" secondItem="hvF-0F-LPB" secondAttribute="leading" constant="20" id="sFI-bo-RRT"/>
                             <constraint firstItem="hvF-0F-LPB" firstAttribute="trailing" secondItem="59j-S4-zFc" secondAttribute="trailing" constant="20" id="sY6-cm-bH1"/>
                             <constraint firstItem="HwZ-OC-YbK" firstAttribute="leading" secondItem="hvF-0F-LPB" secondAttribute="leading" constant="20" id="vgB-Le-jpc"/>
                         </constraints>
@@ -616,7 +608,7 @@
                         <outlet property="passwordTextField" destination="hMT-LT-Rvq" id="aPT-fD-eqo"/>
                         <outlet property="passwordTitleLabel" destination="QuE-xk-M07" id="ngJ-Uc-fev"/>
                         <outlet property="recoverButton" destination="HwZ-OC-YbK" id="Nj3-z8-nz3"/>
-                        <outlet property="verificationCodeSubtitleLabel" destination="VjO-8P-L6u" id="Qom-aO-I7m"/>
+                        <outlet property="recoverButtonBottomConstraint" destination="cZZ-52-q4p" id="XHG-3t-Zqo"/>
                         <outlet property="verificationCodeTextField" destination="oB7-aj-ovP" id="CQv-AV-iLj"/>
                         <outlet property="verificationCodeTitleLabel" destination="59j-S4-zFc" id="LCX-hX-IDL"/>
                     </connections>

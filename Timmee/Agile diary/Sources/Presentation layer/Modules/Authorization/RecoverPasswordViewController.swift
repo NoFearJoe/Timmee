@@ -55,6 +55,8 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
     override func prepare() {
         super.prepare()
         
+        headerView.titleLabel.text = "recover_password_title".localized
+        emailTitleLabel.text = "e-mail".localized
         emailSubtitleLabel.text = "recover_password_email_hint".localized
         recoverButton.setTitle("recover_password".localized, for: .normal)
         

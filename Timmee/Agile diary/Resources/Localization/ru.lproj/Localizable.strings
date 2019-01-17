@@ -273,6 +273,9 @@
 "recover_password" = "Восстановить пароль";
 "recover_password_email_hint" = "На данный e-mail будет отправлено письмо с дальнейшими инструкциями по восстановлению пароля";
 "user" = "Пользователь";
+"verification_code" = "Код проверки";
+"recover_password_title" = "Восстановление пароля";
+"new_password_title" = "Смена пароля";
 
 "synchronization_section" = "Синхронизация";
 "synchronization_enabled" = "Синхронизация включена";

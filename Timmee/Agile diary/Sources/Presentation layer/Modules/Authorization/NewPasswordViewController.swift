@@ -15,17 +15,19 @@ final class NewPasswordViewController: BaseViewController, AlertInput {
     
     private var passwordFieldValidator: PasswordFieldValidator!
     
+    private let keyboardManager = KeyboardManager()
+    
     @IBOutlet private var headerView: LargeHeaderView!
     
     @IBOutlet private var verificationCodeTitleLabel: UILabel!
     @IBOutlet private var verificationCodeTextField: FocusableTextField!
-    @IBOutlet private var verificationCodeSubtitleLabel: UILabel!
     
     @IBOutlet private var passwordTitleLabel: UILabel!
     @IBOutlet private var passwordTextField: FocusableTextField!
     
     @IBOutlet private var closeButton: UIButton!
-    @IBOutlet private var recoverButton: ContinueEducationButton! // TODO: Клавиатура не поднимает кнопку
+    @IBOutlet private var recoverButton: ContinueEducationButton!
+    @IBOutlet private var recoverButtonBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet private var loadingView: LoadingView!
     
@@ -57,6 +59,11 @@ final class NewPasswordViewController: BaseViewController, AlertInput {
     override func prepare() {
         super.prepare()
         
+        setupKeyboardManager()
+        
+        headerView.titleLabel.text = "new_password_title".localized
+        verificationCodeTitleLabel.text = "verification_code".localized
+        passwordTitleLabel.text = "password".localized
         recoverButton.setTitle("recover_password".localized, for: .normal)
         
         recoverButton.isEnabled = false
@@ -80,8 +87,6 @@ final class NewPasswordViewController: BaseViewController, AlertInput {
         verificationCodeTextField.backgroundColor = AppTheme.current.colors.foregroundColor
         verificationCodeTextField.layer.borderColor = UIColor.clear.cgColor
         verificationCodeTextField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
-        verificationCodeSubtitleLabel.font = AppTheme.current.fonts.regular(13)
-        verificationCodeSubtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         passwordTitleLabel.font = AppTheme.current.fonts.regular(16)
         passwordTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         passwordTextField.font = AppTheme.current.fonts.bold(18)
@@ -100,6 +105,24 @@ final class NewPasswordViewController: BaseViewController, AlertInput {
                   message: "new_password_error_alert_message".localized,
                   actions: [.ok("Ok")],
                   completion: nil)
+    }
+    
+    private func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.recoverButtonBottomConstraint.constant = frame.height + 20
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.recoverButtonBottomConstraint.constant = 20
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
 }
