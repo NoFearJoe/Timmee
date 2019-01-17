@@ -271,6 +271,8 @@
 "e-mail_placeholder" = "email@email.com";
 "password_placeholder" = "Password";
 "recover_password" = "Восстановить пароль";
+"recover_password_email_hint" = "На данный e-mail будет отправлено письмо с дальнейшими инструкциями по восстановлению пароля";
+"user" = "Пользователь";
 
 "synchronization_section" = "Синхронизация";
 "synchronization_enabled" = "Синхронизация включена";
@@ -288,3 +290,5 @@
 
 "recover_password_error_alert_title" = "Ошибка";
 "recover_password_error_alert_message" = "Введеный e-mail не зарегистрирован или отсутствует интернет-соединение";
+"new_password_error_alert_title" = "Ошибка";
+"new_password_error_alert_message" = "Введен неправильный код проверки или отсутствует интернет-соединение";

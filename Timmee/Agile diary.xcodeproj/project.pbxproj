@@ -196,6 +196,8 @@
 		0CC405FA21EF28B90069C6C5 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */; };
 		0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */; };
+		0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */; };
+		0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */; };
 		0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
@@ -398,6 +400,7 @@
 		0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordFieldsValidator.swift; sourceTree = "<group>"; };
 		0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
+		0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
@@ -916,6 +919,7 @@
 				0CC405E121EE026D0069C6C5 /* Utils */,
 				0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */,
 				0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */,
+				0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -1431,6 +1435,7 @@
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
+				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CC405E521EE031E0069C6C5 /* PasswordValidator.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
@@ -1496,6 +1501,7 @@
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
+				0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
 				0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */,
 				0CB6737A21A52C3900178EB1 /* NumberPicker.swift in Sources */,
 				0CB6737B21A52C3900178EB1 /* SettingsViewController.swift in Sources */,

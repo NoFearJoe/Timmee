@@ -249,10 +249,10 @@ fileprivate extension SettingsViewController {
         // MARK: Authorization
         
         if authorizationService.isAuthorized {
-            let title = authorizationService.authorizedUser?.nameOrEmail ?? "-".localized // TODO
+            let title = authorizationService.authorizedUser?.nameOrEmail ?? "user".localized
             let authorizedUserItem = SettingsItem(title: title,
                                                   subtitle: "synchronization_enabled".localized,
-                                                  icon: UIImage(),
+                                                  icon: UIImage(imageLiteralResourceName: "avatar"),
                                                   isOn: false,
                                                   isDetailed: false,
                                                   isSelectable: false,
@@ -271,7 +271,7 @@ fileprivate extension SettingsViewController {
             }
             let unauthorizationItem = SettingsItem(title: "log_out".localized,
                                                    subtitle: nil,
-                                                   icon: UIImage(),
+                                                   icon: UIImage(imageLiteralResourceName: "exit"),
                                                    isOn: false,
                                                    isDetailed: false,
                                                    isSelectable: true,
@@ -284,7 +284,7 @@ fileprivate extension SettingsViewController {
             }
             let authorizationItem = SettingsItem(title: "enable_synchronization".localized,
                                                  subtitle: nil,
-                                                 icon: UIImage(),
+                                                 icon: UIImage(imageLiteralResourceName: "sync"),
                                                  isOn: false,
                                                  isDetailed: false,
                                                  isSelectable: true,

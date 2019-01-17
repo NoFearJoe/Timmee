@@ -17,6 +17,8 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
     
     private var emailAndPasswordFieldsValidator: EmailAndPasswordFieldsValidator!
     
+    private let keyboardManager = KeyboardManager()
+    
     // MARK: - Outlets
     
     @IBOutlet private var headerView: LargeHeaderView!
@@ -30,7 +32,8 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
     @IBOutlet private var googleAuthorizationButton: UIButton!
     
     @IBOutlet private var recoverPasswordButton: UIButton!
-    @IBOutlet private var authorizationButton: ContinueEducationButton! // TODO: Клавиатура не поднимает кнопку
+    @IBOutlet private var authorizationButton: ContinueEducationButton! // TODO: Не видно кнопку на 5s при поднятой клавиатуре
+    @IBOutlet private var authorizationButtonBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet private var loadingView: LoadingView!
     
@@ -96,6 +99,8 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
     
     override func prepare() {
         super.prepare()
+        
+        setupKeyboardManager()
         
         headerView.titleLabel.text = "authorization".localized
         emailTitleLabel.text = "e-mail".localized
@@ -169,6 +174,24 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
                   message: "common_authorization_error_message".localized,
                   actions: [.ok("Ok")],
                   completion: nil)
+    }
+    
+    private func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.authorizationButtonBottomConstraint.constant = frame.height + 20
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.authorizationButtonBottomConstraint.constant = 20
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
 }

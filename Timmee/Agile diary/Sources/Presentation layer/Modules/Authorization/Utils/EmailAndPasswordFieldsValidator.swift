@@ -19,10 +19,10 @@ class EmailFieldValidator: NSObject {
         
         super.init()
         
-        emailTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(validateField), for: .editingChanged)
     }
     
-    @objc private func validateFields() {
+    @objc private func validateField() {
         let email = emailTextField.text?.trimmed ?? ""
         
         let emailIsValid = EmailValidator.validate(email: email).isValid
@@ -31,6 +31,30 @@ class EmailFieldValidator: NSObject {
     }
 }
 
+class PasswordFieldValidator: NSObject {
+    private let onValid: (Bool) -> Void
+    
+    private unowned let passwordTextField: UITextField
+    
+    init(passwordTextField: UITextField, onValid: @escaping (Bool) -> Void) {
+        self.onValid = onValid
+        self.passwordTextField = passwordTextField
+        
+        super.init()
+        
+        passwordTextField.addTarget(self, action: #selector(validateField), for: .editingChanged)
+    }
+    
+    @objc private func validateField() {
+        let password = passwordTextField.text?.trimmed ?? ""
+        
+        let passwordIsValid = PasswordValidator.validate(password: password).isValid
+        
+        onValid(passwordIsValid)
+    }
+}
+
+// TODO: Использовать отдельные валидаторы
 final class EmailAndPasswordFieldsValidator: NSObject {
     
     private let onValid: (Bool) -> Void

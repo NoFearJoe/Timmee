@@ -15,6 +15,8 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
     
     private var emailFieldValidator: EmailFieldValidator!
     
+    private let keyboardManager = KeyboardManager()
+    
     @IBOutlet private var headerView: LargeHeaderView!
     
     @IBOutlet private var emailTitleLabel: UILabel!
@@ -22,7 +24,8 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
     @IBOutlet private var emailSubtitleLabel: UILabel!
     
     @IBOutlet private var closeButton: UIButton!
-    @IBOutlet private var recoverButton: ContinueEducationButton! // TODO: Клавиатура не поднимает кнопку
+    @IBOutlet private var recoverButton: ContinueEducationButton!
+    @IBOutlet private var recoverButtonBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet private var loadingView: LoadingView!
     
@@ -36,7 +39,9 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
         authorizationService.initiatePasswordRecover(email: email) { [weak self] success in
             self?.loadingView.isHidden = true
             if success {
-                
+                self?.showSuccessfullRecoverPasswordAlert {
+                    self?.dismiss(animated: true, completion: nil)
+                }
             } else {
                 self?.showRecoverPasswordErrorAlert()
             }
@@ -50,6 +55,7 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
     override func prepare() {
         super.prepare()
         
+        emailSubtitleLabel.text = "recover_password_email_hint".localized
         recoverButton.setTitle("recover_password".localized, for: .normal)
         
         recoverButton.isEnabled = false
@@ -57,6 +63,8 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
         emailFieldValidator = EmailFieldValidator(emailTextField: emailTextField, onValid: { [unowned self] isValid in
             self.recoverButton.isEnabled = isValid
         })
+        
+        setupKeyboardManager()
         
         if !emailTextField.isFirstResponder {
             emailTextField.becomeFirstResponder()
@@ -80,11 +88,36 @@ final class RecoverPasswordViewController: BaseViewController, AlertInput {
         loadingView.backgroundColor = AppTheme.current.colors.backgroundColor
     }
     
+    private func showSuccessfullRecoverPasswordAlert(completion: @escaping () -> Void) {
+        showAlert(title: "successfull_recover_password_alert_title".localized,
+                  message: "successfull_recover_password_alert_message".localized,
+                  actions: [.ok("Ok")],
+                  completion: { _ in completion() })
+    }
+    
     private func showRecoverPasswordErrorAlert() {
         showAlert(title: "recover_password_error_alert_title".localized,
                   message: "recover_password_error_alert_message".localized,
                   actions: [.ok("Ok")],
                   completion: nil)
+    }
+    
+    private func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.recoverButtonBottomConstraint.constant = frame.height + 20
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.recoverButtonBottomConstraint.constant = 20
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
 }
