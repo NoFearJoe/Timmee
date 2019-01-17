@@ -16,6 +16,7 @@ extension Habit {
                   title: "",
                   note: "",
                   link: "",
+                  value: nil,
                   notificationDate: nil,
                   repeatEndingDate: nil,
                   dueDays: DayUnit.all,

@@ -243,7 +243,6 @@
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
-		963FD80F21BD2DD7000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
 		963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */; };
 		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
@@ -468,7 +467,6 @@
 				96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */,
 				0C14D492211C564F004C0559 /* Workset.framework in Frameworks */,
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
-				963FD80F21BD2DD7000817D4 /* Authorization.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
 				8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */,
 				72FBD1015AFBE50D122CB628 /* Pods_Agile_diary.framework in Frameworks */,
@@ -1129,7 +1127,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Mesterra;
 				TargetAttributes = {
 					0C14D471211C55D9004C0559 = {

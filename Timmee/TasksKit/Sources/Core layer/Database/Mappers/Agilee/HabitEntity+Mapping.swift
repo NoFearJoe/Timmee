@@ -15,6 +15,7 @@ public extension HabitEntity {
         title = entity.title
         note = entity.note
         link = entity.link
+        value = entity.value?.asString
         notificationDate = entity.notificationDate
         repeatEndingDate = entity.repeatEndingDate
         dueDays = entity.dueDays.map { $0.string }.joined(separator: ",")

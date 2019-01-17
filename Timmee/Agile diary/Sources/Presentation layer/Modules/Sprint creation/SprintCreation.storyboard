@@ -694,7 +694,7 @@
                                 <rect key="frame" x="0.0" y="112" width="375" height="555"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-0Q-2oz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-A8-IFy" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="15" width="345" height="74"/>
@@ -871,8 +871,53 @@
                                                     <constraint firstAttribute="trailing" secondItem="O4F-vk-wGd" secondAttribute="trailing" constant="8" id="vOf-xZ-C5f"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0p-24-Lxq" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="104" width="345" height="154"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJN-yS-zcH">
+                                                        <rect key="frame" x="8" y="8" width="89.5" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="18" id="bL4-6Z-lfQ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="deviceRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="1 раз" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqG-TH-3s6">
+                                                        <rect key="frame" x="105.5" y="8" width="231.5" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="18" id="2Ad-rZ-Exy"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfY-IL-y1l">
+                                                        <rect key="frame" x="0.0" y="26" width="345" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="128" id="bFa-fv-Zo0"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="aS1-37-JFS" id="E0e-v4-pvt"/>
+                                                            <outlet property="delegate" destination="aS1-37-JFS" id="GPV-YI-FDt"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="FJN-yS-zcH" firstAttribute="leading" secondItem="X0p-24-Lxq" secondAttribute="leading" constant="8" id="CNs-fG-2y1"/>
+                                                    <constraint firstItem="QqG-TH-3s6" firstAttribute="leading" secondItem="FJN-yS-zcH" secondAttribute="trailing" constant="8" id="JMi-C5-2zX"/>
+                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="top" secondItem="FJN-yS-zcH" secondAttribute="bottom" id="My9-ur-lEO"/>
+                                                    <constraint firstItem="WnT-PR-7Xx" firstAttribute="trailing" secondItem="QqG-TH-3s6" secondAttribute="trailing" constant="8" id="NeU-Xe-Etm"/>
+                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="bottom" secondItem="WnT-PR-7Xx" secondAttribute="bottom" id="cfa-QM-a2w"/>
+                                                    <constraint firstItem="QqG-TH-3s6" firstAttribute="top" secondItem="WnT-PR-7Xx" secondAttribute="top" constant="8" id="gU5-FJ-7VB"/>
+                                                    <constraint firstItem="FJN-yS-zcH" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="top" constant="8" id="sFU-Lg-BUS"/>
+                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="leading" secondItem="WnT-PR-7Xx" secondAttribute="leading" id="vPo-2Q-fF1"/>
+                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="trailing" secondItem="WnT-PR-7Xx" secondAttribute="trailing" id="yRv-NB-gA0"/>
+                                                </constraints>
+                                                <viewLayoutGuide key="safeArea" id="WnT-PR-7Xx"/>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-cu-MoF" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="104" width="345" height="138"/>
+                                                <rect key="frame" x="15" y="273" width="345" height="138"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbN-vX-SrP">
                                                         <rect key="frame" x="8" y="8" width="105.5" height="18"/>
@@ -914,7 +959,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-LA-xlj" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="257" width="345" height="65"/>
+                                                <rect key="frame" x="15" y="426" width="345" height="65"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ссылка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-lt-1Kb">
                                                         <rect key="frame" x="8" y="8" width="55.5" height="18"/>
@@ -966,14 +1011,17 @@
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Vz7-A8-IFy" secondAttribute="trailing" constant="15" id="0nU-SZ-JzF"/>
-                                            <constraint firstItem="1Ww-cu-MoF" firstAttribute="top" secondItem="Vz7-A8-IFy" secondAttribute="bottom" constant="15" id="DgO-rL-wG2"/>
+                                            <constraint firstItem="X0p-24-Lxq" firstAttribute="top" secondItem="Vz7-A8-IFy" secondAttribute="bottom" constant="15" id="GHx-TJ-mEC"/>
                                             <constraint firstAttribute="bottom" secondItem="p4G-LA-xlj" secondAttribute="bottom" constant="15" id="Ib7-LY-vkq"/>
                                             <constraint firstItem="p4G-LA-xlj" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="OMN-yD-JRN"/>
                                             <constraint firstAttribute="trailing" secondItem="1Ww-cu-MoF" secondAttribute="trailing" constant="15" id="bip-oD-kdN"/>
                                             <constraint firstItem="Vz7-A8-IFy" firstAttribute="top" secondItem="4Pt-0Q-2oz" secondAttribute="top" constant="15" id="cfO-74-aoB"/>
                                             <constraint firstItem="Vz7-A8-IFy" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="fhn-3R-FPn"/>
                                             <constraint firstItem="p4G-LA-xlj" firstAttribute="top" secondItem="1Ww-cu-MoF" secondAttribute="bottom" constant="15" id="gGB-N6-gq9"/>
+                                            <constraint firstAttribute="trailing" secondItem="X0p-24-Lxq" secondAttribute="trailing" constant="15" id="lzd-EV-SGS"/>
                                             <constraint firstItem="1Ww-cu-MoF" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="sOf-wP-Hwy"/>
+                                            <constraint firstItem="X0p-24-Lxq" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="tSm-pm-UZP"/>
+                                            <constraint firstItem="1Ww-cu-MoF" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="bottom" constant="15" id="tof-WD-8HP"/>
                                             <constraint firstAttribute="trailing" secondItem="p4G-LA-xlj" secondAttribute="trailing" constant="15" id="ycf-zg-cDn"/>
                                         </constraints>
                                     </view>
@@ -1018,6 +1066,9 @@
                         <outlet property="notificationTimePickerContainerTopConstraint" destination="9Jr-i6-E4p" id="c7k-UK-Jki"/>
                         <outlet property="notificationTimeTitleLabel" destination="NbN-vX-SrP" id="nDs-TW-b7r"/>
                         <outlet property="titleField" destination="Or0-jc-799" id="7An-cm-5Mq"/>
+                        <outlet property="valueLabel" destination="QqG-TH-3s6" id="6MY-Vm-yX6"/>
+                        <outlet property="valuePicker" destination="LfY-IL-y1l" id="f47-5P-9xC"/>
+                        <outlet property="valueTitleLabel" destination="FJN-yS-zcH" id="u4T-wI-dOG"/>
                         <outletCollection property="dayButtons" destination="34c-Lw-yHS" collectionClass="NSMutableArray" id="Wbd-06-RMi"/>
                         <outletCollection property="dayButtons" destination="iQH-5O-ql2" collectionClass="NSMutableArray" id="Rz3-Rc-lcy"/>
                         <outletCollection property="dayButtons" destination="UJh-tF-H2A" collectionClass="NSMutableArray" id="ju8-NA-aoj"/>
@@ -2018,6 +2069,6 @@
         <image name="trash" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9sp-Mw-Hzj"/>
+        <segue reference="u3C-xu-46P"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,14 +12,23 @@ import UIComponents
 final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     @IBOutlet private var headerView: LargeHeaderView!
+    
     @IBOutlet private var contentScrollView: UIScrollView!
     @IBOutlet private var contentView: UIView!
+    
     @IBOutlet private var titleField: GrowingTextView!
+    
     @IBOutlet private var dueDaysTitleLabel: UILabel!
     @IBOutlet private var dayButtons: [SelectableButton]!
+    
+    @IBOutlet private var valueTitleLabel: UILabel!
+    @IBOutlet private var valueLabel: UILabel!
+    @IBOutlet private var valuePicker: UIPickerView!
+    
     @IBOutlet private var notificationTimeCheckbox: Checkbox!
     @IBOutlet private var notificationTimeTitleLabel: UILabel!
     @IBOutlet private var notificationTimePickerContainer: UIView!
+    
     @IBOutlet private var linkTitleLabel: UILabel!
     @IBOutlet private var linkField: UITextField!
     @IBOutlet private var linkHintButton: UIButton!
@@ -91,10 +100,11 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         titleField.textView.textColor = AppTheme.current.colors.activeElementColor
         titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        valueLabel.textColor = AppTheme.current.colors.activeElementColor
         linkField.textColor = AppTheme.current.colors.activeElementColor
         linkField.font = AppTheme.current.fonts.medium(17)
         linkField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
-        [dueDaysTitleLabel, notificationTimeTitleLabel, linkTitleLabel].forEach {
+        [dueDaysTitleLabel, valueTitleLabel, notificationTimeTitleLabel, linkTitleLabel].forEach {
             $0?.textColor = AppTheme.current.colors.inactiveElementColor
         }
         setupDayButtonsAppearance()
@@ -176,6 +186,39 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
 }
 
+extension HabitCreationViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0: return 1000
+        case 1: return Habit.Value.Unit.allCases.count
+        default: return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0: return "\(row + 1)"
+        case 1: return Habit.Value.Unit.allCases.item(at: row)?.rawValue // TODO: Localize
+        default: return nil
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        updateHabitValue()
+        updateValueLabel()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 26
+    }
+    
+}
+
 extension HabitCreationViewController: NotificationTimePickerOutput {
     
     func didChangeHours(to hours: Int) {
@@ -228,11 +271,16 @@ private extension HabitCreationViewController {
     func updateUI(habit: Habit) {
         titleField.textView.text = habit.title
         notificationTimeCheckbox.isChecked = habit.notificationDate != nil
+        updateValueLabel()
         updateNotificationTime()
         updateDayButtons()
         linkField.text = habit.link
         updateDoneButtonState()
         setNotificationTimePickerVisible(habit.notificationDate != nil, animated: false)
+    }
+    
+    func updateValueLabel() {
+        valueLabel.text = habit.value?.localized
     }
     
     func updateNotificationTime() {
@@ -260,6 +308,7 @@ private extension HabitCreationViewController {
     
     func setupLabels() {
         dueDaysTitleLabel.text = "due_days".localized
+        valueTitleLabel.text = "value_title".localized
         notificationTimeTitleLabel.text = "reminder".localized
         linkTitleLabel.text = "link".localized
     }
@@ -403,6 +452,16 @@ private extension HabitCreationViewController {
     
     func updateHabitRepeatingDays() {
         habit.dueDays = dayButtons.filter { $0.isSelected }.map { DayUnit(number: $0.tag) }
+    }
+    
+}
+
+private extension HabitCreationViewController {
+    
+    func updateHabitValue() {
+        let amount = valuePicker.selectedRow(inComponent: 0) + 1
+        let units = Habit.Value.Unit.allCases.item(at: valuePicker.selectedRow(inComponent: 1)) ?? .times
+        habit.value = Habit.Value(amount: amount, units: units)
     }
     
 }

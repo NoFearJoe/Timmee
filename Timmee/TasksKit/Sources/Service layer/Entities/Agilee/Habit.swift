@@ -19,6 +19,7 @@ public class Habit {
     public var title: String
     public var note: String
     public var link: String
+    public var value: Value?
     public var notificationDate: Date?
     public var repeatEndingDate: Date?
     public var dueDays: [DayUnit]
@@ -30,6 +31,7 @@ public class Habit {
         title = habit.title ?? ""
         note = habit.note ?? ""
         link = habit.link ?? ""
+        value = habit.value.flatMap(Value.init(string:))
         notificationDate = habit.notificationDate
         repeatEndingDate = habit.repeatEndingDate as Date?
         dueDays = habit.dueDays?.split(separator: ",").map { DayUnit(string: String($0)) } ?? []
@@ -41,6 +43,7 @@ public class Habit {
                 title: String,
                 note: String,
                 link: String,
+                value: Value?,
                 notificationDate: Date?,
                 repeatEndingDate: Date?,
                 dueDays: [DayUnit],
@@ -50,6 +53,7 @@ public class Habit {
         self.title = title
         self.note = note
         self.link = link
+        self.value = value
         self.notificationDate = notificationDate
         self.repeatEndingDate = repeatEndingDate
         self.dueDays = dueDays
@@ -63,6 +67,7 @@ public class Habit {
                   title: title,
                   note: "",
                   link: "",
+                  value: nil,
                   notificationDate: nil,
                   repeatEndingDate: nil,
                   dueDays: [],
@@ -75,6 +80,7 @@ public class Habit {
                      title: title,
                      note: note,
                      link: link,
+                     value: value,
                      notificationDate: notificationDate,
                      repeatEndingDate: repeatEndingDate,
                      dueDays: dueDays,
@@ -113,6 +119,48 @@ public class Habit {
     public func setDone(_ isDone: Bool, at date: Date) {
         let date = date.startOfDay
         isDone ? doneDates.append(date) : doneDates.remove(object: date)
+    }
+    
+}
+
+extension Habit {
+    
+    public struct Value {
+        let amount: Int
+        let units: Unit
+        
+        public init(amount: Int, units: Unit) {
+            self.amount = amount
+            self.units = units
+        }
+    }
+    
+}
+
+extension Habit.Value {
+    
+    public enum Unit: String, CaseIterable {
+        case times, hours, minutes, kilograms, kilometers, liters
+        
+        public var localized: String {
+            return "\(rawValue)".localized
+        }
+    }
+    
+    init?(string: String) {
+        let valueComponents = string.split(separator: "|")
+        guard !string.isEmpty, !valueComponents.isEmpty, valueComponents.count >= 2 else { return nil }
+        guard let amount = Int(valueComponents[0]) else { return nil }
+        guard let units = Unit(rawValue: String(valueComponents[1])) else { return nil }
+        self.init(amount: amount, units: units)
+    }
+    
+    var asString: String {
+        return "\(amount)|\(units.rawValue)"
+    }
+    
+    public var localized: String {
+        return "\(amount) " + units.localized
     }
     
 }
