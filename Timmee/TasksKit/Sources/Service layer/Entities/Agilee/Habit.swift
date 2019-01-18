@@ -126,8 +126,8 @@ public class Habit {
 extension Habit {
     
     public struct Value {
-        let amount: Int
-        let units: Unit
+        public let amount: Int
+        public let units: Unit
         
         public init(amount: Int, units: Unit) {
             self.amount = amount
@@ -160,7 +160,7 @@ extension Habit.Value {
     }
     
     public var localized: String {
-        return "\(amount) " + units.localized
+        return "\(amount)" + units.localized
     }
     
 }

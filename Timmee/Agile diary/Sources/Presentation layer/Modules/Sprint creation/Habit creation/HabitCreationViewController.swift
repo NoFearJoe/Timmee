@@ -21,7 +21,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBOutlet private var dueDaysTitleLabel: UILabel!
     @IBOutlet private var dayButtons: [SelectableButton]!
     
+    @IBOutlet private var valuePickerContainer: UIView!
     @IBOutlet private var valueTitleLabel: UILabel!
+    @IBOutlet private var valueCheckbox: Checkbox!
     @IBOutlet private var valueLabel: UILabel!
     @IBOutlet private var valuePicker: UIPickerView!
     
@@ -32,6 +34,8 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBOutlet private var linkTitleLabel: UILabel!
     @IBOutlet private var linkField: UITextField!
     @IBOutlet private var linkHintButton: UIButton!
+    
+    @IBOutlet private var valueContainerHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private var notificationTimePickerContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var notificationTimePickerContainerTopConstraint: NSLayoutConstraint!
@@ -60,11 +64,13 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     var editingMode: TargetAndHabitEditingMode = .full
     
+    private var lastSelectedValue: Habit.Value?
     private var lastSelectedNotificationTime: Date?
     
     func setHabit(_ habit: Habit?, sprintID: String) {
         self.habit = habit?.copy ?? interactor.createHabit()
         self.sprintID = sprintID
+        self.lastSelectedValue = self.habit.value
         self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date.now
     }
     
@@ -79,6 +85,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         setupTitleField()
         setupLinkField()
         setupLabels()
+        setupValueCheckbox()
         setupNotificationCheckbox()
         setupKeyboardManager()
     }
@@ -203,7 +210,7 @@ extension HabitCreationViewController: UIPickerViewDataSource, UIPickerViewDeleg
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0: return "\(row + 1)"
-        case 1: return Habit.Value.Unit.allCases.item(at: row)?.rawValue // TODO: Localize
+        case 1: return Habit.Value.Unit.allCases.item(at: row)?.localized
         default: return nil
         }
     }
@@ -271,16 +278,23 @@ private extension HabitCreationViewController {
     func updateUI(habit: Habit) {
         titleField.textView.text = habit.title
         notificationTimeCheckbox.isChecked = habit.notificationDate != nil
+        valueCheckbox.isChecked = habit.value != nil
         updateValueLabel()
         updateNotificationTime()
         updateDayButtons()
         linkField.text = habit.link
         updateDoneButtonState()
         setNotificationTimePickerVisible(habit.notificationDate != nil, animated: false)
+        setValuePickerVisible(habit.value != nil, animated: false)
     }
     
     func updateValueLabel() {
         valueLabel.text = habit.value?.localized
+        
+        if let value = habit.value {
+            valuePicker.selectRow(value.amount - 1, inComponent: 0, animated: false)
+            valuePicker.selectRow(Habit.Value.Unit.allCases.index(of: value.units) ?? 0, inComponent: 1, animated: false)
+        }
     }
     
     func updateNotificationTime() {
@@ -324,6 +338,17 @@ private extension HabitCreationViewController {
         }
     }
     
+    func setupValueCheckbox() {
+        valueCheckbox.didChangeCkeckedState = { [unowned self] isChecked in
+            self.habit.value = isChecked ? self.lastSelectedValue ?? Habit.Value(amount: 1, units: .times) : nil
+            if self.habit.value != nil {
+                self.lastSelectedValue = self.habit.value
+            }
+            self.updateValueLabel()
+            self.setValuePickerVisible(isChecked, animated: true)
+        }
+    }
+    
     func setNotificationTimePickerVisible(_ isVisible: Bool, animated: Bool) {
         notificationTimePickerContainerHeightConstraint.constant = isVisible ? 96 : 0
         notificationTimePickerContainerTopConstraint.constant = isVisible ? 8 : 0
@@ -340,6 +365,24 @@ private extension HabitCreationViewController {
             }
         } else {
             notificationTimePickerContainer.isHidden = !isVisible
+        }
+    }
+    
+    func setValuePickerVisible(_ isVisible: Bool, animated: Bool) {
+        valueContainerHeightConstraint.constant = isVisible ? 162 : 34
+        
+        if animated {
+            if isVisible {
+                self.valuePickerContainer.isHidden = false
+            }
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            }) { _ in
+                guard !isVisible else { return }
+                self.valuePickerContainer.isHidden = true
+            }
+        } else {
+            valuePickerContainer.isHidden = !isVisible
         }
     }
     
@@ -462,6 +505,7 @@ private extension HabitCreationViewController {
         let amount = valuePicker.selectedRow(inComponent: 0) + 1
         let units = Habit.Value.Unit.allCases.item(at: valuePicker.selectedRow(inComponent: 1)) ?? .times
         habit.value = Habit.Value(amount: amount, units: units)
+        lastSelectedValue = habit.value
     }
     
 }

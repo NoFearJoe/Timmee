@@ -694,7 +694,7 @@
                                 <rect key="frame" x="0.0" y="112" width="375" height="555"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-0Q-2oz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-A8-IFy" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="15" width="345" height="74"/>
@@ -871,8 +871,8 @@
                                                     <constraint firstAttribute="trailing" secondItem="O4F-vk-wGd" secondAttribute="trailing" constant="8" id="vOf-xZ-C5f"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0p-24-Lxq" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="104" width="345" height="154"/>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0p-24-Lxq" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="104" width="345" height="162"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJN-yS-zcH">
                                                         <rect key="frame" x="8" y="8" width="89.5" height="18"/>
@@ -884,40 +884,60 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="1 раз" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqG-TH-3s6">
-                                                        <rect key="frame" x="105.5" y="8" width="231.5" height="18"/>
+                                                        <rect key="frame" x="129.5" y="8" width="207.5" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="2Ad-rZ-Exy"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfY-IL-y1l">
-                                                        <rect key="frame" x="0.0" y="26" width="345" height="128"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ji6-8r-FmJ">
+                                                        <rect key="frame" x="0.0" y="34" width="345" height="128"/>
+                                                        <subviews>
+                                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfY-IL-y1l">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="128"/>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="aS1-37-JFS" id="E0e-v4-pvt"/>
+                                                                    <outlet property="delegate" destination="aS1-37-JFS" id="GPV-YI-FDt"/>
+                                                                </connections>
+                                                            </pickerView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="128" id="bFa-fv-Zo0"/>
+                                                            <constraint firstAttribute="height" constant="128" id="2W4-yP-cBR"/>
+                                                            <constraint firstAttribute="bottom" secondItem="LfY-IL-y1l" secondAttribute="bottom" id="R2U-X9-hVe"/>
+                                                            <constraint firstItem="LfY-IL-y1l" firstAttribute="leading" secondItem="ji6-8r-FmJ" secondAttribute="leading" id="kQl-1E-7Hk"/>
+                                                            <constraint firstAttribute="trailing" secondItem="LfY-IL-y1l" secondAttribute="trailing" id="qtY-C0-vP3"/>
+                                                            <constraint firstItem="LfY-IL-y1l" firstAttribute="top" secondItem="ji6-8r-FmJ" secondAttribute="top" id="vsS-6g-St8"/>
                                                         </constraints>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="aS1-37-JFS" id="E0e-v4-pvt"/>
-                                                            <outlet property="delegate" destination="aS1-37-JFS" id="GPV-YI-FDt"/>
-                                                        </connections>
-                                                    </pickerView>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9q-Ab-5CS" customClass="Checkbox" customModule="Agile_diary" customModuleProvider="target">
+                                                        <rect key="frame" x="101.5" y="5" width="24" height="24"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="O9q-Ab-5CS" secondAttribute="height" multiplier="1:1" id="6WD-2E-zMZ"/>
+                                                            <constraint firstAttribute="width" constant="24" id="bRB-UU-uib"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="FJN-yS-zcH" firstAttribute="leading" secondItem="X0p-24-Lxq" secondAttribute="leading" constant="8" id="CNs-fG-2y1"/>
-                                                    <constraint firstItem="QqG-TH-3s6" firstAttribute="leading" secondItem="FJN-yS-zcH" secondAttribute="trailing" constant="8" id="JMi-C5-2zX"/>
-                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="top" secondItem="FJN-yS-zcH" secondAttribute="bottom" id="My9-ur-lEO"/>
+                                                    <constraint firstItem="WnT-PR-7Xx" firstAttribute="trailing" secondItem="ji6-8r-FmJ" secondAttribute="trailing" id="FK5-Gw-HN0"/>
+                                                    <constraint firstItem="ji6-8r-FmJ" firstAttribute="leading" secondItem="WnT-PR-7Xx" secondAttribute="leading" id="Hor-ch-gmw"/>
                                                     <constraint firstItem="WnT-PR-7Xx" firstAttribute="trailing" secondItem="QqG-TH-3s6" secondAttribute="trailing" constant="8" id="NeU-Xe-Etm"/>
-                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="bottom" secondItem="WnT-PR-7Xx" secondAttribute="bottom" id="cfa-QM-a2w"/>
+                                                    <constraint firstAttribute="height" constant="162" id="ZrO-7U-fYQ"/>
+                                                    <constraint firstItem="ji6-8r-FmJ" firstAttribute="top" secondItem="FJN-yS-zcH" secondAttribute="bottom" constant="8" id="b97-GQ-XCs"/>
                                                     <constraint firstItem="QqG-TH-3s6" firstAttribute="top" secondItem="WnT-PR-7Xx" secondAttribute="top" constant="8" id="gU5-FJ-7VB"/>
+                                                    <constraint firstItem="O9q-Ab-5CS" firstAttribute="centerY" secondItem="FJN-yS-zcH" secondAttribute="centerY" id="iRM-NA-v00"/>
+                                                    <constraint firstItem="O9q-Ab-5CS" firstAttribute="leading" secondItem="FJN-yS-zcH" secondAttribute="trailing" constant="4" id="ksx-P8-EyK"/>
                                                     <constraint firstItem="FJN-yS-zcH" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="top" constant="8" id="sFU-Lg-BUS"/>
-                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="leading" secondItem="WnT-PR-7Xx" secondAttribute="leading" id="vPo-2Q-fF1"/>
-                                                    <constraint firstItem="LfY-IL-y1l" firstAttribute="trailing" secondItem="WnT-PR-7Xx" secondAttribute="trailing" id="yRv-NB-gA0"/>
+                                                    <constraint firstItem="QqG-TH-3s6" firstAttribute="leading" secondItem="O9q-Ab-5CS" secondAttribute="trailing" constant="4" id="zoI-4a-r9g"/>
                                                 </constraints>
                                                 <viewLayoutGuide key="safeArea" id="WnT-PR-7Xx"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-cu-MoF" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="273" width="345" height="138"/>
+                                                <rect key="frame" x="15" y="281" width="345" height="138"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbN-vX-SrP">
                                                         <rect key="frame" x="8" y="8" width="105.5" height="18"/>
@@ -959,7 +979,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-LA-xlj" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="426" width="345" height="65"/>
+                                                <rect key="frame" x="15" y="434" width="345" height="65"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ссылка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-lt-1Kb">
                                                         <rect key="frame" x="8" y="8" width="55.5" height="18"/>
@@ -1066,8 +1086,11 @@
                         <outlet property="notificationTimePickerContainerTopConstraint" destination="9Jr-i6-E4p" id="c7k-UK-Jki"/>
                         <outlet property="notificationTimeTitleLabel" destination="NbN-vX-SrP" id="nDs-TW-b7r"/>
                         <outlet property="titleField" destination="Or0-jc-799" id="7An-cm-5Mq"/>
+                        <outlet property="valueCheckbox" destination="O9q-Ab-5CS" id="uan-VW-8TC"/>
+                        <outlet property="valueContainerHeightConstraint" destination="ZrO-7U-fYQ" id="wHs-zh-ILI"/>
                         <outlet property="valueLabel" destination="QqG-TH-3s6" id="6MY-Vm-yX6"/>
                         <outlet property="valuePicker" destination="LfY-IL-y1l" id="f47-5P-9xC"/>
+                        <outlet property="valuePickerContainer" destination="ji6-8r-FmJ" id="1aW-0J-HzN"/>
                         <outlet property="valueTitleLabel" destination="FJN-yS-zcH" id="u4T-wI-dOG"/>
                         <outletCollection property="dayButtons" destination="34c-Lw-yHS" collectionClass="NSMutableArray" id="Wbd-06-RMi"/>
                         <outletCollection property="dayButtons" destination="iQH-5O-ql2" collectionClass="NSMutableArray" id="Rz3-Rc-lcy"/>

@@ -38,6 +38,10 @@ final class TodayHabitCell: SwipeTableViewCell {
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()
+        if let value = habit.value {
+            attributedSubtitle.append(NSAttributedString(string: value.localized + " ",
+                                                         attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
+        }
         if let notificationDate = habit.notificationDate {
             attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString,
                                                          attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))

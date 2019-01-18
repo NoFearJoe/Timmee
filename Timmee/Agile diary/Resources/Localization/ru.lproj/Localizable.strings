@@ -297,3 +297,10 @@
 "new_password_error_alert_message" = "Введен неправильный код проверки или отсутствует интернет-соединение";
 
 "value_title" = "Количество";
+
+"times" = "раз";
+"hours" = "ч";
+"minutes" = "мин";
+"kilograms" = "кг";
+"kilometers" = "км";
+"liters" = "л";
