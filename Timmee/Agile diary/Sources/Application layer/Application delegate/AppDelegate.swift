@@ -11,6 +11,8 @@ import Fabric
 import Crashlytics
 import UserNotifications
 import Authorization
+import Synchronization
+import Firebase
 import FBSDKCoreKit
 
 @UIApplicationMain
@@ -26,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         AuthorizationService.initializeAuthorization()
+        SynchronizationService.initializeSynchronization()
         FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         UNUserNotificationCenter.current().delegate = self

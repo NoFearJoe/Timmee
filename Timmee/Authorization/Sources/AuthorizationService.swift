@@ -10,6 +10,7 @@ import Firebase
 import FBSDKLoginKit
 
 public struct User {
+    public let id: String
     public let email: String?
     public let name: String?
     
@@ -62,7 +63,7 @@ public final class AuthorizationService {
     
     public var authorizedUser: User? {
         guard let currentUser = Firebase.Auth.auth().currentUser else { return nil }
-        return User(email: currentUser.email, name: currentUser.displayName)
+        return User(id: currentUser.uid, email: currentUser.email, name: currentUser.displayName)
     }
     
     // MARK: - Авторизация

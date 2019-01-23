@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CC4066221F1DF440069C6C5 /* Synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC4066021F1DF440069C6C5 /* Synchronization.h */; };
+		0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */; };
+		0C90017D21F8688B00D6C15F /* SynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90017C21F8688B00D6C15F /* SynchronizationService.swift */; };
+		0C90018121F88FC300D6C15F /* DictionaryCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018021F88FC300D6C15F /* DictionaryCodable.swift */; };
+		0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */; };
+		0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */; };
+		0C90018721F892A900D6C15F /* SubtaskEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */; };
+		0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */; };
+		0CC4066221F1DF440069C6C5 /* Synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC4066021F1DF440069C6C5 /* Synchronization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066421F1DF7D0069C6C5 /* Authorization.framework */; };
 		0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */; };
 		0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066821F1DF7D0069C6C5 /* Workset.framework */; };
@@ -15,6 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Codable.swift"; sourceTree = "<group>"; };
+		0C90017C21F8688B00D6C15F /* SynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationService.swift; sourceTree = "<group>"; };
+		0C90018021F88FC300D6C15F /* DictionaryCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCodable.swift; sourceTree = "<group>"; };
+		0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Codable.swift"; sourceTree = "<group>"; };
+		0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Codable.swift"; sourceTree = "<group>"; };
+		0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubtaskEntity+Codable.swift"; sourceTree = "<group>"; };
+		0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Codable.swift"; sourceTree = "<group>"; };
 		0CC4064B21F1DEDE0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4065E21F1DF440069C6C5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CC4066021F1DF440069C6C5 /* Synchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synchronization.h; sourceTree = "<group>"; };
@@ -41,6 +55,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C90017121F856A900D6C15F /* Entity mappers */ = {
+			isa = PBXGroup;
+			children = (
+				0C90017221F856C200D6C15F /* Agile diary */,
+				0C90018021F88FC300D6C15F /* DictionaryCodable.swift */,
+			);
+			path = "Entity mappers";
+			sourceTree = "<group>";
+		};
+		0C90017221F856C200D6C15F /* Agile diary */ = {
+			isa = PBXGroup;
+			children = (
+				0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */,
+				0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */,
+				0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */,
+				0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */,
+				0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */,
+			);
+			path = "Agile diary";
+			sourceTree = "<group>";
+		};
+		0C90017B21F8687700D6C15F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0C90017C21F8688B00D6C15F /* SynchronizationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		0CC4064121F1DEDD0069C6C5 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +115,8 @@
 		0CC4065C21F1DF430069C6C5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0C90017B21F8687700D6C15F /* Service */,
+				0C90017121F856A900D6C15F /* Entity mappers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -109,7 +154,6 @@
 				ECE19B21111D77AF80CC7187 /* Pods-Synchronization.debug.xcconfig */,
 				CC197D8BA57226F8BA656239 /* Pods-Synchronization.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -158,6 +202,7 @@
 				TargetAttributes = {
 					0CC4064A21F1DEDE0069C6C5 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -240,6 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */,
+				0C90018121F88FC300D6C15F /* DictionaryCodable.swift in Sources */,
+				0C90017D21F8688B00D6C15F /* SynchronizationService.swift in Sources */,
+				0C90018721F892A900D6C15F /* SubtaskEntity+Codable.swift in Sources */,
+				0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */,
+				0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */,
+				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECE19B21111D77AF80CC7187 /* Pods-Synchronization.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -390,6 +443,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.Synchronization;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -399,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC197D8BA57226F8BA656239 /* Pods-Synchronization.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

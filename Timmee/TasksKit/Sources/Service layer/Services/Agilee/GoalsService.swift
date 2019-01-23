@@ -35,6 +35,7 @@ public protocol GoalEntitiesProvider: class {
 
 public protocol GoalEntitiesBackgroundProvider: class {
     func fetchGoalEntityInBackground(id: String) -> GoalEntity?
+    func fetchGoalEntitiesInBackground(sprintID: String) -> [GoalEntity]
 }
 
 public final class GoalsService {
@@ -187,6 +188,10 @@ extension GoalsService: GoalEntitiesBackgroundProvider {
     
     public func fetchGoalEntityInBackground(id: String) -> GoalEntity? {
         return GoalsService.goalFetchRequest(id: id).executeInBackground().first
+    }
+    
+    public func fetchGoalEntitiesInBackground(sprintID: String) -> [GoalEntity] {
+        return GoalsService.goalsFetchRequest(sprintID: sprintID).executeInBackground()
     }
     
 }

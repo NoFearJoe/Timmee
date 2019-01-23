@@ -8,6 +8,7 @@
 
 import UIKit
 import Authorization
+import Synchronization
 
 final class AuthorizationViewController: BaseViewController, AlertInput {
     
@@ -76,6 +77,9 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
             } else if !success {
                 self?.showCommonAuthorizationError()
             } else {
+                SynchronizationService.shared.sync { isSuccess in
+                    print("::: sync \(isSuccess)")
+                }
                 self?.dismiss(animated: true, completion: nil)
             }
         }

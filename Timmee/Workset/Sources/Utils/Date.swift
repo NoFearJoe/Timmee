@@ -14,6 +14,8 @@ public extension Date {
     /// Формат даты, используемый в приложении
     public static let dateFormat = "dd-MM-yyyy"
     
+    public static let dateTimeFormat = "dd.MM.yyyy HH:mm"
+    
     public var asMonth: String {
         return asString(format: "MMMM", localized: true)
     }
@@ -35,7 +37,7 @@ public extension Date {
     }
     
     public var asDateTimeString: String {
-        return asString(format: "dd.MM.yyyy HH:mm")
+        return asString(format: Date.dateTimeFormat)
     }
     
     public var asTimeString: String {
@@ -60,6 +62,23 @@ public extension Date {
         } else {
             return nearestDate.title
         }
+    }
+    
+}
+
+public extension Date {
+    
+    public init?(string: String, format: String, localized: Bool = false) {
+        let formatter = DateFormatter()
+        if localized {
+            formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: format, options: 0, locale: Locale.current)
+        } else {
+            formatter.dateFormat = format
+        }
+        
+        guard let date = formatter.date(from: string) else { return nil }
+        
+        self = date
     }
     
 }

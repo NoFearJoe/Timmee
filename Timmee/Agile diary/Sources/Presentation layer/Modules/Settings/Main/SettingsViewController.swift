@@ -9,6 +9,7 @@
 import UIKit
 import UIComponents
 import Authorization
+import Synchronization
 import enum MessageUI.MFMailComposeResult
 import class MessageUI.MFMailComposeViewController
 import protocol MessageUI.MFMailComposeViewControllerDelegate

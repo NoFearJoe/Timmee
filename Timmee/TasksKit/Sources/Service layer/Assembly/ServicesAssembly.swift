@@ -37,6 +37,20 @@ public final class ServicesAssembly {
     
 }
 
+public final class EntityServicesAssembly {
+    
+    public static let shared = EntityServicesAssembly()
+    
+    public lazy var sprintsService: SprintEntitiesProvider = PrivateServicesAssembly.shared.sprintsService
+    
+    public lazy var habitsService: HabitEntitiesBackgroundProvider = PrivateServicesAssembly.shared.habitsService
+    
+    public lazy var goalsService: GoalEntitiesBackgroundProvider = PrivateServicesAssembly.shared.goalsService
+    
+    public lazy var waterControlService: WaterControlEntityBackgroundProvider = PrivateServicesAssembly.shared.waterControlService
+    
+}
+
 final class PrivateServicesAssembly {
     
     static let shared = PrivateServicesAssembly()

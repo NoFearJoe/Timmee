@@ -35,6 +35,7 @@ public protocol HabitEntitiesProvider: class {
 }
 
 public protocol HabitEntitiesBackgroundProvider: class {
+    func fetchHabitEntitiesInBackground(sprintID: String) -> [HabitEntity]
     func fetchHabitEntityInBackground(id: String) -> HabitEntity?
     func fetchHabitEntitiesToUpdateNotificationDateInBackground() -> [HabitEntity]
 }
@@ -213,6 +214,10 @@ extension HabitsService: HabitEntitiesProvider {
 }
 
 extension HabitsService: HabitEntitiesBackgroundProvider {
+    
+    public func fetchHabitEntitiesInBackground(sprintID: String) -> [HabitEntity] {
+        return HabitsService.habitsFetchRequest(sprintID: sprintID).executeInBackground()
+    }
     
     public func fetchHabitEntityInBackground(id: String) -> HabitEntity? {
         return HabitsService.habitFetchRequest(id: id).executeInBackground().first

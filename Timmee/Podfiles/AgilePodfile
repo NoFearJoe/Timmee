@@ -12,6 +12,7 @@ target 'Agile diary' do
   
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
   pod 'FBSDKLoginKit'
   
   pod 'Fabric'
@@ -28,6 +29,7 @@ target 'Agile diary debug' do
     
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
+    pod 'Firebase/Firestore'
     pod 'FBSDKLoginKit'
     
     pod 'Fabric'

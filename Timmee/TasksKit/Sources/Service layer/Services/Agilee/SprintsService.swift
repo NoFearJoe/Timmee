@@ -21,7 +21,7 @@ public protocol SprintsProvider: class {
 public protocol SprintEntitiesProvider: class {
     func createSprintEntity() -> SprintEntity?
     func fetchSprintEntities() -> [SprintEntity]
-    func fetchSprintEntities(context: NSManagedObjectContext) -> [SprintEntity]
+    func fetchSprintEntitiesInBackground() -> [SprintEntity]
     func fetchSprintEntity(id: String) -> SprintEntity?
     func fetchSprintEntity(id: String, context: NSManagedObjectContext) -> SprintEntity?
 }
@@ -102,8 +102,8 @@ extension SprintsService: SprintEntitiesProvider {
         return SprintsService.sprintsFetchRequest().execute()
     }
     
-    public func fetchSprintEntities(context: NSManagedObjectContext) -> [SprintEntity] {
-        return SprintsService.sprintsFetchRequest().execute(context: context)
+    public func fetchSprintEntitiesInBackground() -> [SprintEntity] {
+        return SprintsService.sprintsFetchRequest().executeInBackground()
     }
     
     public func fetchSprintEntity(id: String) -> SprintEntity? {
