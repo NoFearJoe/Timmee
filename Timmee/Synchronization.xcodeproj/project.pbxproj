@@ -14,6 +14,7 @@
 		0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */; };
 		0C90018721F892A900D6C15F /* SubtaskEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */; };
 		0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */; };
+		0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */; };
 		0CC4066221F1DF440069C6C5 /* Synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC4066021F1DF440069C6C5 /* Synchronization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066421F1DF7D0069C6C5 /* Authorization.framework */; };
 		0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */; };
@@ -29,6 +30,7 @@
 		0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubtaskEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Codable.swift"; sourceTree = "<group>"; };
+		0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicallySynchronizationRunner.swift; sourceTree = "<group>"; };
 		0CC4064B21F1DEDE0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4065E21F1DF440069C6C5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CC4066021F1DF440069C6C5 /* Synchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synchronization.h; sourceTree = "<group>"; };
@@ -58,8 +60,8 @@
 		0C90017121F856A900D6C15F /* Entity mappers */ = {
 			isa = PBXGroup;
 			children = (
-				0C90017221F856C200D6C15F /* Agile diary */,
 				0C90018021F88FC300D6C15F /* DictionaryCodable.swift */,
+				0C90017221F856C200D6C15F /* Agile diary */,
 			);
 			path = "Entity mappers";
 			sourceTree = "<group>";
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				0C90017C21F8688B00D6C15F /* SynchronizationService.swift */,
+				0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */,
 				0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */,
 				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,
+				0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,3 +21,5 @@ public extension WaterControlEntity {
     }
     
 }
+
+extension WaterControlEntity: ModifiableEntity, SyncableEntity {}

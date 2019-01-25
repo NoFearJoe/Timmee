@@ -7,6 +7,7 @@
 //
 
 import TasksKit
+import Firebase
 
 extension WaterControlEntity: DictionaryEncodable {
     
@@ -14,7 +15,9 @@ extension WaterControlEntity: DictionaryEncodable {
         let requiredFields = [
             "neededVolume": neededVolume,
             "notificationsEnabled": notificationsEnabled,
-            "lastConfiguredSprintID": lastConfiguredSprintID as Any
+            "lastConfiguredSprintID": lastConfiguredSprintID as Any,
+            "modificationDate": modificationDate,
+            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -41,8 +44,10 @@ extension WaterControlEntity: DictionaryDecodable {
         neededVolume = dictionary["neededVolume"] as? Int32 ?? 0
         notificationsEnabled = dictionary["notificationsEnabled"] as? Bool ?? false
         lastConfiguredSprintID = dictionary["lastConfiguredSprintID"] as? String
-        notificationsStartTime = dictionary["notificationsStartTime"] as? Date
-        notificationsEndTime = dictionary["notificationsEndTime"] as? Date
+        notificationsStartTime = (dictionary["notificationsStartTime"] as? Timestamp)?.dateValue()
+        notificationsEndTime = (dictionary["notificationsEndTime"] as? Timestamp)?.dateValue()
+        modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
+        modificationAuthor = dictionary["modificationAuthor"] as? String
         
         let drunkVolumesDictionary = dictionary["drunkVolumes"] as? [String: Any]
         var drunkVolumes: [Date: Int] = [:]

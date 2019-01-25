@@ -21,6 +21,9 @@ public protocol Storage: class {
     func write(_ operation: @escaping (_ context: NSManagedObjectContext,
                                        _ save: @escaping () -> Void) -> Void,
                completion: ((Bool) -> Void)?)
+    func synchronize(_ operation: @escaping (_ context: NSManagedObjectContext,
+                                             _ save: @escaping () -> Void) -> Void,
+                     completion: ((Bool) -> Void)?)
     
     func deleteStorage()
 }
@@ -46,6 +49,12 @@ private final class CoreDataStorage: Storage {
         return context
     }()
     
+    lazy var synchronizationContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.parent = self.readContext
+        return context
+    }()
+    
 }
 
 // MARK: - Operations
@@ -60,6 +69,14 @@ extension CoreDataStorage {
         }
     }
     
+    func synchronize(_ operation: @escaping (NSManagedObjectContext, @escaping () -> Void) -> Void, completion: ((Bool) -> Void)?) {
+        synchronizationContext.perform {
+            operation(self.synchronizationContext, {
+                self.sync(completion: completion)
+            })
+        }
+    }
+    
 }
 
 // MARK: - Save
@@ -70,10 +87,34 @@ private extension CoreDataStorage {
         save(context: writeContext, completion: completion)
     }
     
+    private func sync(completion: ((Bool) -> Void)?) {
+        save(context: synchronizationContext, completion: completion)
+    }
+    
     private func save(context: NSManagedObjectContext, completion: ((Bool) -> Void)?) {
         guard context.hasChanges else {
             completion?(true)
             return
+        }
+        
+        // Обновление modificationDate
+        if context === writeContext {
+            let updateModificationDate = { (entity: NSManagedObject) -> Void in
+                guard let modifiableEntity = entity as? ModifiableEntity else { return }
+                modifiableEntity.updateModificationDate()
+                modifiableEntity.updateModificationAuthor()
+            }
+//            context.insertedObjects.forEach(updateModificationDate)
+            context.registeredObjects.forEach(updateModificationDate)
+//            context.updatedObjects.forEach(updateModificationDate)
+        }
+        
+        if context === synchronizationContext {
+            let setSynced = { (entity: NSManagedObject) -> Void in
+                guard let syncableEntity = entity as? SyncableEntity else { return }
+                syncableEntity.isSynced = true
+            }
+            context.registeredObjects.forEach(setSynced)
         }
         
         do {

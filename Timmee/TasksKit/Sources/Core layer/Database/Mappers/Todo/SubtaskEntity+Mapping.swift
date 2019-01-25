@@ -19,3 +19,5 @@ public extension SubtaskEntity {
     }
 
 }
+
+extension SubtaskEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}

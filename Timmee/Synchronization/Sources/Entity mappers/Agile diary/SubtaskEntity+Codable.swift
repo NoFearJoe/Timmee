@@ -7,6 +7,7 @@
 //
 
 import TasksKit
+import Firebase
 
 extension SubtaskEntity: DictionaryEncodable {
     
@@ -16,7 +17,9 @@ extension SubtaskEntity: DictionaryEncodable {
             "creationDate": creationDate as Any,
             "isDone": isDone,
             "sortPosition": sortPosition,
-            "title": title as Any
+            "title": title as Any,
+            "modificationDate": modificationDate,
+            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
         ]
         
         let optionalFields: [String: Any] = [:]
@@ -30,10 +33,12 @@ extension SubtaskEntity: DictionaryDecodable {
     
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
-        creationDate = dictionary["creationDate"] as? Date
+        creationDate = (dictionary["creationDate"] as? Timestamp)?.dateValue()
         isDone = dictionary["isDone"] as? Bool ?? false
         sortPosition = dictionary["sortPosition"] as? Int32 ?? 0
         title = dictionary["title"] as? String
+        modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
+        modificationAuthor = dictionary["modificationAuthor"] as? String
     }
     
 }

@@ -15,6 +15,7 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
     // MARK: - Dependencies
     
     private let authorizationService = AuthorizationService()
+    private let synchronizationService = AgileeSynchronizationService.shared
     
     private var emailAndPasswordFieldsValidator: EmailAndPasswordFieldsValidator!
     
@@ -45,13 +46,21 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
         authorizationService.performFacebookLogin(from: self) { [weak self] success in
             if success {
                 self?.authorizationService.authorize(via: .facebook) { [weak self] success, error in
-                    self?.loadingView.isHidden = true
                     if let error = error {
                         self?.showAuthorizationError(error)
+                        self?.loadingView.isHidden = true
                     } else if !success {
                         self?.showCommonAuthorizationError()
+                        self?.loadingView.isHidden = true
                     } else {
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.loadingView.titleLabel.text = "Synchronization".localized
+                        self?.synchronizationService.sync { [weak self] isSuccess in
+                            print("::: sync \(isSuccess)")
+                            DispatchQueue.main.async {
+                                self?.loadingView.isHidden = true
+                                self?.dismiss(animated: true, completion: nil)
+                            }
+                        }
                     }
                 }
             } else {
@@ -70,17 +79,23 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
         guard let password = passwordTextField.text?.trimmed, !password.isEmpty else { return }
         
         loadingView.isHidden = false
+        loadingView.titleLabel.text = "Authorization".localized
         authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success, error in
-            self?.loadingView.isHidden = true
             if let error = error {
                 self?.showAuthorizationError(error)
+                self?.loadingView.isHidden = true
             } else if !success {
                 self?.showCommonAuthorizationError()
+                self?.loadingView.isHidden = true
             } else {
-                SynchronizationService.shared.sync { isSuccess in
+                self?.loadingView.titleLabel.text = "Synchronization".localized
+                self?.synchronizationService.sync { [weak self] isSuccess in
                     print("::: sync \(isSuccess)")
+                    DispatchQueue.main.async {
+                        self?.loadingView.isHidden = true
+                        self?.dismiss(animated: true, completion: nil)
+                    }
                 }
-                self?.dismiss(animated: true, completion: nil)
             }
         }
     }

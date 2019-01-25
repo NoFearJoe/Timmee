@@ -31,6 +31,7 @@
 		0C5C469F214103C100390F85 /* TransitionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469E214103C000390F85 /* TransitionHandlers.swift */; };
 		0C5C46A12141040200390F85 /* PresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46A02141040100390F85 /* PresentTransition.swift */; };
 		0C8D0738212A8F93008122A6 /* FadeBackgroundModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */; };
+		0C9001A021FB18CB00D6C15F /* SynchronizationProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */; };
 		0C9364F32155320000B4EB48 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364F22155320000B4EB48 /* UIViewController+Extensions.swift */; };
 		0C9364F52155333100B4EB48 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364F42155333100B4EB48 /* UIView+Extensions.swift */; };
 		0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */; };
@@ -65,6 +66,7 @@
 		0C5C469E214103C000390F85 /* TransitionHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionHandlers.swift; sourceTree = "<group>"; };
 		0C5C46A02141040100390F85 /* PresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentTransition.swift; sourceTree = "<group>"; };
 		0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeBackgroundModalTransition.swift; sourceTree = "<group>"; };
+		0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationProgressView.swift; sourceTree = "<group>"; };
 		0C9364F22155320000B4EB48 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0C9364F42155333100B4EB48 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */,
 				0C5C4687213E9A5D00390F85 /* HintPopoverView.swift */,
 				0CF7E52A2146AAC50071DABD /* ProgressBar.swift */,
+				0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				0C9364F32155320000B4EB48 /* UIViewController+Extensions.swift in Sources */,
 				0C5C46A12141040200390F85 /* PresentTransition.swift in Sources */,
 				0C5C469F214103C100390F85 /* TransitionHandlers.swift in Sources */,
+				0C9001A021FB18CB00D6C15F /* SynchronizationProgressView.swift in Sources */,
 				0C14D411211C1B65004C0559 /* PinCodeView.swift in Sources */,
 				0C14D42A211C1B65004C0559 /* LoadingView.swift in Sources */,
 				0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */,

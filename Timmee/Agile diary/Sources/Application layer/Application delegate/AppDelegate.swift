@@ -23,12 +23,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var window: UIWindow?
+    
+    lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
+    
+    lazy var synchronizationStatusBar: SynchronizationStatusBar = {
+        let statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
+        statusBar.statusBarFrame = { UIApplication.shared.statusBarFrame }
+        statusBar.icon = UIImage(named: "sync")
+        statusBar.tintColor = .white//AppTheme.current.colors.activeElementColor
+        statusBar.backgroundColor = AppTheme.current.colors.mainElementColor
+        return statusBar
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         
         AuthorizationService.initializeAuthorization()
-        SynchronizationService.initializeSynchronization()
+        AgileeSynchronizationService.initializeSynchronization()
         FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         UNUserNotificationCenter.current().delegate = self
@@ -47,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ProVersionPurchase.shared.loadStore()
         
+        synchronizationRunner.delegate = self
+        synchronizationRunner.run(interval: 10)
+        
         return true
     }
     
@@ -55,5 +69,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return canOpenWithFacebook
     }
 
+}
+
+extension AppDelegate: PeriodicallySynchronizationRunnerDelegate {
+    
+    func willStartSynchronization() {
+        synchronizationStatusBar.show()
+    }
+    
+    func didFinishSynchronization() {
+        synchronizationStatusBar.hide()
+    }
+    
 }
 

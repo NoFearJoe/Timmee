@@ -7,6 +7,7 @@
 //
 
 import TasksKit
+import Firebase
 
 extension GoalEntity: DictionaryEncodable {
     
@@ -15,7 +16,9 @@ extension GoalEntity: DictionaryEncodable {
             "id": id as Any,
             "creationDate": creationDate as Any,
             "isDone": isDone,
-            "title": title as Any
+            "title": title as Any,
+            "modificationDate": modificationDate,
+            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -31,10 +34,12 @@ extension GoalEntity: DictionaryDecodable {
     
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
-        creationDate = dictionary["creationDate"] as? Date
+        creationDate = (dictionary["creationDate"] as? Timestamp)?.dateValue()
         isDone = dictionary["isDone"] as? Bool ?? false
         title = dictionary["title"] as? String
         note = dictionary["note"] as? String
+        modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
+        modificationAuthor = dictionary["modificationAuthor"] as? String
     }
     
 }

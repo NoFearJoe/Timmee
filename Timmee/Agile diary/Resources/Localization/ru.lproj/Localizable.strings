@@ -290,6 +290,7 @@
 "invalid_password_alert_title" = "Пароль слишком простой";
 "common_authorization_error_title" = "Ошибка авторизации";
 "common_authorization_error_message" = "Проверьте интернет-соединение или повторите попытку позже";
+"synchronization" = "Синхронизация";
 
 "recover_password_error_alert_title" = "Ошибка";
 "recover_password_error_alert_message" = "Введеный e-mail не зарегистрирован или отсутствует интернет-соединение";

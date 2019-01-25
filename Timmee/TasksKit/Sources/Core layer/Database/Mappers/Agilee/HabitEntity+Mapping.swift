@@ -24,3 +24,5 @@ public extension HabitEntity {
     }
     
 }
+
+extension HabitEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}

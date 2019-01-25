@@ -167,11 +167,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="766-zQ-6Pi" customClass="LoadingView" customModule="UIComponents">
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="766-zQ-6Pi" customClass="LoadingView" customModule="UIComponents">
                                 <rect key="frame" x="155.5" y="301.5" width="64" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="2xx-RO-o9t"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="2xx-RO-o9t"/>
+                                    <constraint firstAttribute="height" constant="64" id="JsR-7O-Wu3"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTf-tT-LWc">
@@ -199,7 +200,6 @@
                             <constraint firstItem="T3Q-PE-mpj" firstAttribute="leading" secondItem="kJc-Rg-ZS7" secondAttribute="leading" constant="20" id="FMa-x4-l5Z"/>
                             <constraint firstItem="kJc-Rg-ZS7" firstAttribute="trailing" secondItem="NHq-HJ-woE" secondAttribute="trailing" constant="20" id="G5D-EH-aqW"/>
                             <constraint firstItem="NHq-HJ-woE" firstAttribute="leading" secondItem="kJc-Rg-ZS7" secondAttribute="leading" constant="20" id="H3w-MN-Ilk"/>
-                            <constraint firstItem="766-zQ-6Pi" firstAttribute="width" secondItem="766-zQ-6Pi" secondAttribute="height" multiplier="1:1" id="MBz-bS-O5d"/>
                             <constraint firstItem="kJc-Rg-ZS7" firstAttribute="bottom" secondItem="Jex-3A-U4K" secondAttribute="bottom" priority="750" constant="20" id="Ot4-dw-cfq"/>
                             <constraint firstItem="bnD-dS-FfN" firstAttribute="top" secondItem="T3Q-PE-mpj" secondAttribute="bottom" constant="16" id="Pmu-CI-JYs"/>
                             <constraint firstItem="766-zQ-6Pi" firstAttribute="centerX" secondItem="Elq-79-ONk" secondAttribute="centerX" id="U2h-qD-CRL"/>

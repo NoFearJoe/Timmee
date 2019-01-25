@@ -8,6 +8,7 @@
 
 import UIKit
 import UIComponents
+import Synchronization
 
 final class WaterControlViewController: UIViewController {
     
@@ -35,6 +36,8 @@ final class WaterControlViewController: UIViewController {
     
     private lazy var waterControlLoader = WaterControlLoader(provider: waterControlService)
     
+    private var synchronizationDidFinishObservation: Any!
+    
     var sprint: Sprint?
     
     private var waterControl: WaterControl? {
@@ -59,6 +62,13 @@ final class WaterControlViewController: UIViewController {
         drink100mlLabel.text = "+100ml".localized
         drink200mlLabel.text = "+200ml".localized
         drink300mlLabel.text = "+300ml".localized
+        
+        let notificationName = NSNotification.Name(rawValue: PeriodicallySynchronizationRunner.didFinishSynchronizationNotificationName)
+        synchronizationDidFinishObservation = NotificationCenter.default.addObserver(forName: notificationName,
+                                                                                     object: nil,
+                                                                                     queue: .main) { [weak self] _ in
+            self?.reloadWaterControl()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,35 +77,7 @@ final class WaterControlViewController: UIViewController {
         
         waterLevelView.animationHasStoped = false
         
-        updateProgress()
-        
-        guard let sprint = sprint else { return }
-        
-        waterControlLoader.loadWaterControl(sprintID: sprint.id) { state in
-            switch state {
-            case .notConfigured:
-                showPlaceholder()
-                waterControlConfigurationButton.isHidden = false
-                waterControlReconfigurationButton.isHidden = true
-                setDrinkWaterButtonsVisible(false)
-                drunkVolumeLabel.isHidden = true
-            case let .configured(waterControl):
-                hidePlaceholder()
-                self.waterControl = waterControl
-                waterControlConfigurationButton.isHidden = true
-                waterControlReconfigurationButton.isHidden = true
-                setDrinkWaterButtonsVisible(true)
-                drunkVolumeLabel.isHidden = false
-            case let .outdated(waterControl):
-                hidePlaceholder()
-                self.waterControl = waterControl
-                waterControlConfigurationButton.isHidden = true
-                waterControlReconfigurationButton.isHidden = false
-                setDrinkWaterButtonsVisible(true)
-                drunkVolumeLabel.isHidden = false
-            }
-            updateProgress()
-        }
+        reloadWaterControl()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -127,6 +109,38 @@ final class WaterControlViewController: UIViewController {
 }
 
 private extension WaterControlViewController {
+    
+    func reloadWaterControl() {
+        updateProgress()
+        
+        guard let sprint = sprint else { return }
+        
+        waterControlLoader.loadWaterControl(sprintID: sprint.id) { state in
+            switch state {
+            case .notConfigured:
+                showPlaceholder()
+                waterControlConfigurationButton.isHidden = false
+                waterControlReconfigurationButton.isHidden = true
+                setDrinkWaterButtonsVisible(false)
+                drunkVolumeLabel.isHidden = true
+            case let .configured(waterControl):
+                hidePlaceholder()
+                self.waterControl = waterControl
+                waterControlConfigurationButton.isHidden = true
+                waterControlReconfigurationButton.isHidden = true
+                setDrinkWaterButtonsVisible(true)
+                drunkVolumeLabel.isHidden = false
+            case let .outdated(waterControl):
+                hidePlaceholder()
+                self.waterControl = waterControl
+                waterControlConfigurationButton.isHidden = true
+                waterControlReconfigurationButton.isHidden = false
+                setDrinkWaterButtonsVisible(true)
+                drunkVolumeLabel.isHidden = false
+            }
+            updateProgress()
+        }
+    }
     
     func updateWaterControlUI() {
         guard let waterControl = waterControl else { return }

@@ -69,9 +69,9 @@ public extension Constraint {
 public extension Array where Element == Constraint {
     
     @discardableResult
-    public func to(_ view: UIView) -> [NSLayoutConstraint] {
+    public func to(_ view: UIView, addTo containerView: UIView? = nil) -> [NSLayoutConstraint] {
         return self.map { constraint in
-            return constraint.to(view)
+            return constraint.to(view, addTo: containerView)
         }
     }
     

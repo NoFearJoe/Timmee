@@ -17,3 +17,5 @@ public extension GoalEntity {
     }
     
 }
+
+extension GoalEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}

@@ -4,6 +4,9 @@
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SprintEntity" inverseName="goals" inverseEntity="SprintEntity" syncable="YES"/>
@@ -14,7 +17,10 @@
         <attribute name="doneDates" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
         <attribute name="dueDays" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -51,6 +57,9 @@
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isReady" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationsDays" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notificationsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationsTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,6 +73,9 @@
         <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sortPosition" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="stages" inverseEntity="GoalEntity" syncable="YES"/>
@@ -130,7 +142,10 @@
     </entity>
     <entity name="WaterControlEntity" representedClassName="WaterControlEntity" syncable="YES" codeGenerationType="class">
         <attribute name="drunkVolumes" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastConfiguredSprintID" attributeType="String" syncable="YES"/>
+        <attribute name="modificationAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="neededVolume" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationsEndTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -153,15 +168,15 @@
         <memberEntity name="TimeTemplateEntity"/>
     </configuration>
     <elements>
-        <element name="GoalEntity" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="HabitEntity" positionX="0" positionY="0" width="128" height="210"/>
+        <element name="GoalEntity" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="HabitEntity" positionX="0" positionY="0" width="128" height="255"/>
         <element name="ListEntity" positionX="0" positionY="0" width="128" height="165"/>
         <element name="SmartListEntity" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="SprintEntity" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="SubtaskEntity" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="SprintEntity" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="SubtaskEntity" positionX="0" positionY="0" width="128" height="195"/>
         <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
         <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>
         <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="WaterControlEntity" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="WaterControlEntity" positionX="0" positionY="0" width="128" height="195"/>
     </elements>
 </model>

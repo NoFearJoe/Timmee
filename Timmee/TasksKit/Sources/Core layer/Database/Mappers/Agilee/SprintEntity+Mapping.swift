@@ -21,3 +21,5 @@ public extension SprintEntity {
     }
     
 }
+
+extension SprintEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}

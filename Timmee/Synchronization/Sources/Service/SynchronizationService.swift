@@ -6,14 +6,19 @@
 //  Copyright © 2019 Mesterra. All rights reserved.
 //
 
+import CoreData
 import TasksKit
 import Authorization
 import FirebaseCore
 import FirebaseFirestore
 
-public final class SynchronizationService {
+public protocol SynchronizationService: AnyObject {
+    func sync(completion: ((Bool) -> Void)?)
+}
+
+public final class AgileeSynchronizationService: SynchronizationService {
     
-    public static let shared = SynchronizationService()
+    public static let shared = AgileeSynchronizationService()
     
     public static func initializeSynchronization() {
         FirebaseApp.configure()
@@ -30,17 +35,229 @@ public final class SynchronizationService {
     private let goalsService = EntityServicesAssembly.shared.goalsService
     private let waterControlService = EntityServicesAssembly.shared.waterControlService
     
+    private var isSynchronizationInProgress = false
+    
     private init() {}
     
+    // TODO: Сделать регистрацию уведомлений после синхронизации
     public func sync(completion: ((Bool) -> Void)?) {
+        guard !isSynchronizationInProgress else { return }
+        isSynchronizationInProgress = true
+        pull { [weak self] success in
+            guard let self = self, success else { completion?(false); return }
+            self.push(completion: { success in
+                self.isSynchronizationInProgress = false
+                completion?(success)
+            })
+        }
+    }
+    
+}
+
+private extension AgileeSynchronizationService {
+    
+    func pull(completion: @escaping (Bool) -> Void) {
         guard let user = authorizationService.authorizedUser else {
-            completion?(false)
+            completion(false)
+            return
+        }
+        
+        let userDocument = Firestore.firestore().collection("user").document("\(user.id)")
+        
+        let dispatchGroup = DispatchGroup()
+        
+        var synchronizationActions: [(NSManagedObjectContext) -> Void] = []
+        
+        dispatchGroup.enter()
+        userDocument.getDocument { snapshot, error in
+            if error != nil {
+                completion(false)
+            } else {
+                let sprintsCollection = userDocument.collection("sprints")
+                dispatchGroup.enter()
+                sprintsCollection.getDocuments(completion: { sprintSnapshot, error in
+                    // Sprints save
+                    if sprintSnapshot?.documentChanges.isEmpty == false {
+                        synchronizationActions.append({ context in
+                            self.syncCollection(context: context,
+                                                data: sprintSnapshot?.documents.map { $0.data() } ?? [],
+                                                entityType: SprintEntity.self,
+                                                parentEntityID: nil)
+                        })
+                    }
+                    dispatchGroup.leave()
+                    
+                    sprintSnapshot?.documents.forEach { sprintSnapshot in
+                        guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
+                        let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
+                        dispatchGroup.enter()
+                        habitsCollection.getDocuments(completion: { habitsSnapshot, error in
+                            // Habits save
+                            if habitsSnapshot?.documentChanges.isEmpty == false {
+                                synchronizationActions.append({ context in
+                                    self.syncCollection(context: context,
+                                                        data: habitsSnapshot?.documents.map { $0.data() } ?? [],
+                                                        entityType: HabitEntity.self,
+                                                        parentEntityID: sprintID)
+                                })
+                            }
+                            dispatchGroup.leave()
+                        })
+                        
+                        let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
+                        dispatchGroup.enter()
+                        goalsCollection.getDocuments(completion: { goalsSnapshot, error in
+                            // Goals save
+                            if goalsSnapshot?.documentChanges.isEmpty == false {
+                                synchronizationActions.append({ context in
+                                    self.syncCollection(context: context,
+                                                        data: goalsSnapshot?.documents.map { $0.data() } ?? [],
+                                                        entityType: GoalEntity.self,
+                                                        parentEntityID: sprintID)
+                                })
+                            }
+                            dispatchGroup.leave()
+                            
+                            goalsSnapshot?.documents.forEach { goalSnapshot in
+                                guard let goalID = goalSnapshot.data()["id"] as? String else { return }
+                                let stagesCollection = goalsCollection.document(goalID).collection("stages")
+                                dispatchGroup.enter()
+                                stagesCollection.getDocuments(completion: { stagesSnapshot, error in
+                                    // Stages save
+                                    if stagesSnapshot?.documentChanges.isEmpty == false {
+                                        synchronizationActions.append({ context in
+                                            self.syncCollection(context: context,
+                                                                data: stagesSnapshot?.documents.map { $0.data() } ?? [],
+                                                                entityType: SubtaskEntity.self,
+                                                                parentEntityID: goalID)
+                                        })
+                                    }
+                                    dispatchGroup.leave()
+                                })
+                            }
+                        })
+                    }
+                })
+                
+                let waterControlDocument = userDocument.collection("water_control").document("water_control")
+                dispatchGroup.enter()
+                waterControlDocument.getDocument(completion: { [weak self] snapshot, error in
+                    guard let self = self else { return }
+                    synchronizationActions.append({ context in
+                        self.syncCollection(context: context,
+                                            data: snapshot?.data().flatMap({ [$0] }) ?? [],
+                                            entityType: WaterControlEntity.self,
+                                            parentEntityID: nil)
+                    })
+                    dispatchGroup.leave()
+                })
+                
+                dispatchGroup.leave()
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                guard !synchronizationActions.isEmpty else {
+                    completion(true)
+                    return
+                }
+                
+                Database.localStorage.synchronize({ context, save in
+                    synchronizationActions.forEach { action in
+                        action(context)
+                    }
+                    save()
+                }, completion: { success in
+                    completion(success)
+                })
+            }
+        }
+    }
+    
+    func syncCollection<T: NSManagedObject & ModifiableEntity>(context: NSManagedObjectContext,
+                                                               data: [[String: Any]],
+                                                               entityType: T.Type,
+                                                               parentEntityID: String?) {
+        let cachedEntities = (T.request() as FetchRequest<T>).execute(context: context)
+        if T.self is IdentifiableEntity.Type {
+            let cachedEntitiesIDs = cachedEntities.compactMap { ($0 as? IdentifiableEntity)?.id }
+            let remoteEntitiesIDs = data.map { $0["id"] as? String }
+            
+            let removedEntitiesIDs = Array(Set(cachedEntitiesIDs).subtracting(remoteEntitiesIDs))
+            let insertedEntitiesIDs = Array(Set(remoteEntitiesIDs).subtracting(cachedEntitiesIDs))
+            let updatedEntitiesIDs = Array(Set(cachedEntitiesIDs).intersection(remoteEntitiesIDs))
+            
+            removedEntitiesIDs.forEach { id in
+                guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
+                // Если сущность синхронизирована, значит ее удалили, иначе - добавили
+                guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
+                context.delete(cachedEntity)
+            }
+            insertedEntitiesIDs.forEach { id in
+                guard let entityData = data.first(where: { ($0["id"] as? String) == id }) else { return }
+                let modificationAuthor = entityData["modificationAuthor"] as? String
+                // Если получена сущность, созданная данным устройством, а в кэше ее нет, значит она была удалена
+                guard modificationAuthor != T.currentAuthor else { return }
+                let entity = try? context.create() as T
+                (entity as? DictionaryDecodable)?.decode(entityData)
+                addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
+            }
+            updatedEntitiesIDs.forEach { id in
+                guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
+                guard let remoteEntityData = data.first(where: { ($0["id"] as? String) == id }) else { return }
+                
+                let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
+                if cachedEntity.modificationDate < remoteModificationDate {
+                    (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
+                }
+            }
+        } else {
+            if let cachedEntity = cachedEntities.first {
+                if let remoteEntityData = data.first {
+                    // Modified
+                    let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
+                    if cachedEntity.modificationDate < remoteModificationDate {
+                        (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
+                    }
+                } else {
+                    // Removed
+                    guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
+                    context.delete(cachedEntity)
+                }
+            } else if let firstEntityData = data.first {
+                // Inserted
+                let modificationAuthor = firstEntityData["modificationAuthor"] as? String
+                guard modificationAuthor != T.currentAuthor else { return }
+                let entity = try? context.create() as T
+                (entity as? DictionaryDecodable)?.decode(firstEntityData)
+                addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
+            }
+        }
+    }
+    
+    func addRelationToParent(entity: NSManagedObject?, parentEntityID: String?, context: NSManagedObjectContext) {
+        guard let entity = entity, let parentEntityID = parentEntityID else { return }
+        switch entity {
+        case let subtask as SubtaskEntity:
+            subtask.goal = GoalEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
+        case let goal as GoalEntity:
+            goal.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
+        case let habit as HabitEntity:
+            habit.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
+        default: return
+        }
+    }
+    
+    func push(completion: @escaping (Bool) -> Void) {
+        guard let user = authorizationService.authorizedUser else {
+            completion(false)
             return
         }
         
         let batch = Firestore.firestore().batch()
         
         let userDocument = Firestore.firestore().collection("user").document("\(user.id)")
+        
+        batch.deleteDocument(userDocument)
         
         let sprints = sprintsService.fetchSprintEntitiesInBackground()
         
@@ -77,12 +294,12 @@ public final class SynchronizationService {
         
         if let waterControl = waterControlService.fetchWaterControlEntityInBakground() {
             let waterControlDocument = userDocument.collection("water_control").document("water_control")
-        
+            
             batch.setData(waterControl.encode(), forDocument: waterControlDocument)
         }
         
         batch.commit { error in
-            completion?(error == nil)
+            completion(error == nil)
         }
     }
     
