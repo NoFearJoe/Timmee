@@ -13,18 +13,34 @@ import UserNotifications
 public final class HabitsSchedulerService: BaseSchedulerService {
     
     public func scheduleHabit(_ habit: Habit) {
-        removeNotifications(for: habit)
+        removeNotifications(for: habit) {
+            self.scheduleNewHabit(habit)
+        }
+    }
+    
+    private func scheduleNewHabit(_ habit: Habit) {
+        guard var notificationDate = habit.notificationDate else { return }
         
-        guard let notificationDate = habit.notificationDate else { return }
+        let now = Date()
+        if notificationDate.isLower(than: now) {
+            let oldDate = notificationDate
+            notificationDate = now.startOfMinute
+            notificationDate => oldDate.hours.asHours
+            notificationDate => oldDate.minutes.asMinutes
+        }
+        
+        if let endDate = habit.repeatEndingDate, notificationDate <= endDate {
+            return
+        }
         
         (0..<7).forEach { day in
             let fireDate = notificationDate + day.asDays
             
-            guard !(fireDate <= Date()) else { return }
+            guard fireDate >= Date() else { return }
             guard (habit.dueDays.map { $0.weekday }).contains(fireDate.weekday) else { return }
             
             let userInfo = HabitsSchedulerService.makeUserInfo(habitID: habit.id, isDeferred: false, endDate: habit.repeatEndingDate)
-            scheduleLocalNotification(withID: habit.id,
+            scheduleLocalNotification(withID: habit.id + "\(fireDate.weekday)",
                                       title: habit.title,
                                       message: HabitsSchedulerService.makeNotificationMessage(for: habit),
                                       at: fireDate,
@@ -38,10 +54,14 @@ public final class HabitsSchedulerService: BaseSchedulerService {
      Создает уведомление для задачи, которую пользователь перенес на другое время
      */
     public func scheduleDeferredHabit(_ habit: Habit, fireDate: Date) {
-        removeDeferredNotifications(for: habit)
-                
+        removeDeferredNotifications(for: habit) {
+            self.scheduleNewDeferredHabit(habit, fireDate: fireDate)
+        }
+    }
+    
+    private func scheduleNewDeferredHabit(_ habit: Habit, fireDate: Date) {
         let userInfo = HabitsSchedulerService.makeUserInfo(habitID: habit.id, isDeferred: true, endDate: habit.repeatEndingDate)
-        scheduleLocalNotification(withID: habit.id,
+        scheduleLocalNotification(withID: habit.id + "\(fireDate.weekday)",
                                   title: habit.title,
                                   message: HabitsSchedulerService.makeNotificationMessage(for: habit),
                                   at: fireDate,
@@ -50,7 +70,7 @@ public final class HabitsSchedulerService: BaseSchedulerService {
                                   userInfo: userInfo)
     }
     
-    public func removeNotifications(for habit: Habit) {
+    public func removeNotifications(for habit: Habit, completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
                     if let habitID = request.content.userInfo["habit_id"] as? String {
@@ -62,6 +82,8 @@ public final class HabitsSchedulerService: BaseSchedulerService {
                 }
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            
+            completion()
         }
     }
     
@@ -83,7 +105,7 @@ public final class HabitsSchedulerService: BaseSchedulerService {
 //        }
 //    }
     
-    public func removeDeferredNotifications(for habit: Habit) {
+    public func removeDeferredNotifications(for habit: Habit, completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
                     if let habitID = request.content.userInfo["habit_id"] as? String, let isDeferred = request.content.userInfo["isDeferred"] as? Bool {
@@ -95,6 +117,8 @@ public final class HabitsSchedulerService: BaseSchedulerService {
                 }
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            
+            completion()
         }
     }
     
@@ -103,10 +127,13 @@ public final class HabitsSchedulerService: BaseSchedulerService {
 private extension HabitsSchedulerService {
     
     static func makeNotificationMessage(for habit: Habit) -> String {
-        if let notificationDate = habit.notificationDate {
-            return notificationDate.asNearestDateString
+        if let value = habit.value {
+            return value.localized
+        } else if !habit.link.isEmpty {
+            return habit.link
+        } else {
+            return habit.note
         }
-        return habit.note
     }
     
     static func makeUserInfo(habitID: String, isDeferred: Bool, endDate: Date?) -> [String: Any] {

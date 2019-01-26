@@ -20,8 +20,7 @@ extension SprintEntity: DictionaryEncodable {
             "number": number,
             "startDate": startDate as Any,
             "title": title as Any,
-            "modificationDate": modificationDate,
-            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
+            "modificationDate": modificationDate
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -38,16 +37,19 @@ extension SprintEntity: DictionaryDecodable {
 
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
-        endDate = (dictionary["endDate"] as? Timestamp)?.dateValue()
         isReady = dictionary["isReady"] as? Bool ?? false
         notificationsEnabled = dictionary["notificationsEnabled"] as? Bool ?? false
         number = dictionary["number"] as? Int32 ?? 0
-        startDate = (dictionary["startDate"] as? Timestamp)?.dateValue()
+        if startDate == nil {
+            startDate = (dictionary["startDate"] as? Timestamp)?.dateValue()
+        }
+        if endDate == nil {
+            endDate = (dictionary["endDate"] as? Timestamp)?.dateValue()
+        }
         title = dictionary["title"] as? String
         notificationsDays = dictionary["notificationsDays"] as? String
         notificationsTime = dictionary["notificationsTime"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
-        modificationAuthor = dictionary["modificationAuthor"] as? String
     }
     
 }

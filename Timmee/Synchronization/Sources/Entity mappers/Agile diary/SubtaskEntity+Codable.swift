@@ -18,8 +18,7 @@ extension SubtaskEntity: DictionaryEncodable {
             "isDone": isDone,
             "sortPosition": sortPosition,
             "title": title as Any,
-            "modificationDate": modificationDate,
-            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
+            "modificationDate": modificationDate
         ]
         
         let optionalFields: [String: Any] = [:]
@@ -38,7 +37,6 @@ extension SubtaskEntity: DictionaryDecodable {
         sortPosition = dictionary["sortPosition"] as? Int32 ?? 0
         title = dictionary["title"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
-        modificationAuthor = dictionary["modificationAuthor"] as? String
     }
     
 }

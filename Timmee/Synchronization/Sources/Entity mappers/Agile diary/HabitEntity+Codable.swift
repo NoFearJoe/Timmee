@@ -17,8 +17,7 @@ extension HabitEntity: DictionaryEncodable {
             "title": title as Any,
             "creationDate": creationDate as Any,
             "dueDays": dueDays as Any,
-            "modificationDate": modificationDate,
-            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
+            "modificationDate": modificationDate
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -51,7 +50,6 @@ extension HabitEntity: DictionaryDecodable {
         repeatEndingDate = (dictionary["repeatEndingDate"] as? Timestamp)?.dateValue()
         value = dictionary["value"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
-        modificationAuthor = dictionary["modificationAuthor"] as? String
     }
     
 }

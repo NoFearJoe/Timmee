@@ -8,11 +8,13 @@
 
 import CoreData
 import TasksKit
+import NotificationsKit
 import Authorization
 import FirebaseCore
 import FirebaseFirestore
 
 public protocol SynchronizationService: AnyObject {
+    var synchronizationEnabled: Bool { get }
     func sync(completion: ((Bool) -> Void)?)
 }
 
@@ -39,7 +41,10 @@ public final class AgileeSynchronizationService: SynchronizationService {
     
     private init() {}
     
-    // TODO: Сделать регистрацию уведомлений после синхронизации
+    public var synchronizationEnabled: Bool {
+        return authorizationService.authorizedUser != nil
+    }
+    
     public func sync(completion: ((Bool) -> Void)?) {
         guard !isSynchronizationInProgress else { return }
         isSynchronizationInProgress = true
@@ -68,79 +73,73 @@ private extension AgileeSynchronizationService {
         
         var synchronizationActions: [(NSManagedObjectContext) -> Void] = []
         
-        dispatchGroup.enter()
+        dispatchGroup.enter() // Enter user document
         userDocument.getDocument { snapshot, error in
             if error != nil {
                 completion(false)
             } else {
                 let sprintsCollection = userDocument.collection("sprints")
-                dispatchGroup.enter()
+                dispatchGroup.enter() // Enter sprint document
                 sprintsCollection.getDocuments(completion: { sprintSnapshot, error in
                     // Sprints save
-                    if sprintSnapshot?.documentChanges.isEmpty == false {
-                        synchronizationActions.append({ context in
-                            self.syncCollection(context: context,
-                                                data: sprintSnapshot?.documents.map { $0.data() } ?? [],
-                                                entityType: SprintEntity.self,
-                                                parentEntityID: nil)
-                        })
-                    }
-                    dispatchGroup.leave()
+                    synchronizationActions.append({ context in
+                        self.syncCollection(context: context,
+                                            data: sprintSnapshot?.documents.map { $0.data() } ?? [],
+                                            entityType: SprintEntity.self,
+                                            parentEntityID: nil)
+                    })
                     
                     sprintSnapshot?.documents.forEach { sprintSnapshot in
                         guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
                         let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
-                        dispatchGroup.enter()
+                        dispatchGroup.enter() // Enter habits document
                         habitsCollection.getDocuments(completion: { habitsSnapshot, error in
                             // Habits save
-                            if habitsSnapshot?.documentChanges.isEmpty == false {
-                                synchronizationActions.append({ context in
-                                    self.syncCollection(context: context,
-                                                        data: habitsSnapshot?.documents.map { $0.data() } ?? [],
-                                                        entityType: HabitEntity.self,
-                                                        parentEntityID: sprintID)
-                                })
-                            }
-                            dispatchGroup.leave()
+                            synchronizationActions.append({ context in
+                                self.syncCollection(context: context,
+                                                    data: habitsSnapshot?.documents.map { $0.data() } ?? [],
+                                                    entityType: HabitEntity.self,
+                                                    parentEntityID: sprintID)
+                            })
+                            dispatchGroup.leave() // Leave habits document
                         })
                         
                         let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
-                        dispatchGroup.enter()
+                        dispatchGroup.enter() // Enter goals document
                         goalsCollection.getDocuments(completion: { goalsSnapshot, error in
                             // Goals save
-                            if goalsSnapshot?.documentChanges.isEmpty == false {
-                                synchronizationActions.append({ context in
-                                    self.syncCollection(context: context,
-                                                        data: goalsSnapshot?.documents.map { $0.data() } ?? [],
-                                                        entityType: GoalEntity.self,
-                                                        parentEntityID: sprintID)
-                                })
-                            }
-                            dispatchGroup.leave()
+                            synchronizationActions.append({ context in
+                                self.syncCollection(context: context,
+                                                    data: goalsSnapshot?.documents.map { $0.data() } ?? [],
+                                                    entityType: GoalEntity.self,
+                                                    parentEntityID: sprintID)
+                            })
                             
                             goalsSnapshot?.documents.forEach { goalSnapshot in
                                 guard let goalID = goalSnapshot.data()["id"] as? String else { return }
                                 let stagesCollection = goalsCollection.document(goalID).collection("stages")
-                                dispatchGroup.enter()
+                                dispatchGroup.enter() // Enter stages document
                                 stagesCollection.getDocuments(completion: { stagesSnapshot, error in
                                     // Stages save
-                                    if stagesSnapshot?.documentChanges.isEmpty == false {
-                                        synchronizationActions.append({ context in
-                                            self.syncCollection(context: context,
-                                                                data: stagesSnapshot?.documents.map { $0.data() } ?? [],
-                                                                entityType: SubtaskEntity.self,
-                                                                parentEntityID: goalID)
-                                        })
-                                    }
-                                    dispatchGroup.leave()
+                                    synchronizationActions.append({ context in
+                                        self.syncCollection(context: context,
+                                                            data: stagesSnapshot?.documents.map { $0.data() } ?? [],
+                                                            entityType: SubtaskEntity.self,
+                                                            parentEntityID: goalID)
+                                    })
+                                    dispatchGroup.leave() // Leave stages document
                                 })
                             }
+                            
+                            dispatchGroup.leave() // Leave goals document
                         })
                     }
+                    
+                    dispatchGroup.leave() // Leave sprint document
                 })
                 
                 let waterControlDocument = userDocument.collection("water_control").document("water_control")
-                dispatchGroup.enter()
+                dispatchGroup.enter() // Enter water control document
                 waterControlDocument.getDocument(completion: { [weak self] snapshot, error in
                     guard let self = self else { return }
                     synchronizationActions.append({ context in
@@ -149,10 +148,10 @@ private extension AgileeSynchronizationService {
                                             entityType: WaterControlEntity.self,
                                             parentEntityID: nil)
                     })
-                    dispatchGroup.leave()
+                    dispatchGroup.leave() // Leave water control document
                 })
                 
-                dispatchGroup.leave()
+                dispatchGroup.leave() // Leave user document
             }
             
             dispatchGroup.notify(queue: .main) {
@@ -178,6 +177,7 @@ private extension AgileeSynchronizationService {
                                                                entityType: T.Type,
                                                                parentEntityID: String?) {
         let cachedEntities = (T.request() as FetchRequest<T>).execute(context: context)
+        let locallyDeletedEntities = (LocallyDeletedEntity.request() as FetchRequest<LocallyDeletedEntity>).execute(context: context)
         if T.self is IdentifiableEntity.Type {
             let cachedEntitiesIDs = cachedEntities.compactMap { ($0 as? IdentifiableEntity)?.id }
             let remoteEntitiesIDs = data.map { $0["id"] as? String }
@@ -189,17 +189,26 @@ private extension AgileeSynchronizationService {
             removedEntitiesIDs.forEach { id in
                 guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
                 // Если сущность синхронизирована, значит ее удалили, иначе - добавили
+                if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
+                    context.delete(deletedEntity)
+                }
                 guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
                 context.delete(cachedEntity)
+                
+                removeNotificationsForRemovedEntity(entity: cachedEntity)
             }
             insertedEntitiesIDs.forEach { id in
                 guard let entityData = data.first(where: { ($0["id"] as? String) == id }) else { return }
-                let modificationAuthor = entityData["modificationAuthor"] as? String
-                // Если получена сущность, созданная данным устройством, а в кэше ее нет, значит она была удалена
-                guard modificationAuthor != T.currentAuthor else { return }
+                // Если существует сущность, помоченная как удаленная, то удаляем ее, а новую не добавляем
+                if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
+                    context.delete(deletedEntity)
+                    return
+                }
                 let entity = try? context.create() as T
                 (entity as? DictionaryDecodable)?.decode(entityData)
                 addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
+                
+                scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
             }
             updatedEntitiesIDs.forEach { id in
                 guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
@@ -208,6 +217,7 @@ private extension AgileeSynchronizationService {
                 let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
                 if cachedEntity.modificationDate < remoteModificationDate {
                     (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
+                    scheduleNotificationsForInsertedOrUpdatedEntity(entity: cachedEntity)
                 }
             }
         } else {
@@ -217,19 +227,27 @@ private extension AgileeSynchronizationService {
                     let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
                     if cachedEntity.modificationDate < remoteModificationDate {
                         (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
+                        scheduleNotificationsForInsertedOrUpdatedEntity(entity: cachedEntity)
                     }
                 } else {
                     // Removed
+                    if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName }) {
+                        context.delete(deletedEntity)
+                    }
                     guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
                     context.delete(cachedEntity)
+                    removeNotificationsForRemovedEntity(entity: cachedEntity)
                 }
             } else if let firstEntityData = data.first {
                 // Inserted
-                let modificationAuthor = firstEntityData["modificationAuthor"] as? String
-                guard modificationAuthor != T.currentAuthor else { return }
+                if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName }) {
+                    context.delete(deletedEntity)
+                    return
+                }
                 let entity = try? context.create() as T
                 (entity as? DictionaryDecodable)?.decode(firstEntityData)
                 addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
+                scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
             }
         }
     }
@@ -244,6 +262,40 @@ private extension AgileeSynchronizationService {
         case let habit as HabitEntity:
             habit.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
         default: return
+        }
+    }
+    
+    func scheduleNotificationsForInsertedOrUpdatedEntity<T: NSManagedObject>(entity: T?) {
+        if let habitEntity = entity as? HabitEntity {
+            let habit = Habit(habit: habitEntity)
+            HabitsSchedulerService().scheduleHabit(habit)
+        } else if let sprintEntity = entity as? SprintEntity {
+            let sprint = Sprint(sprintEntity: sprintEntity)
+            SprintSchedulerService().scheduleSprint(sprint)
+        } else if let waterControlEntity = entity as? WaterControlEntity {
+            let waterControl = WaterControl(entity: waterControlEntity)
+            let existingSprints = ServicesAssembly.shared.sprintsService.fetchSprints()
+            let currentSprint = existingSprints.first(where: { sprint in
+                sprint.startDate <= Date().startOfDay && sprint.endDate >= Date().endOfDay
+            })
+            if let currentSprint = currentSprint {
+                WaterControlSchedulerService().scheduleWaterControl(waterControl,
+                                                                    startDate: currentSprint.startDate,
+                                                                    endDate: currentSprint.endDate)
+            }
+        }
+    }
+    
+    func removeNotificationsForRemovedEntity<T: NSManagedObject>(entity: T?) {
+        if let habitEntity = entity as? HabitEntity {
+            let habit = Habit(habit: habitEntity)
+            HabitsSchedulerService().removeNotifications(for: habit) {}
+            HabitsSchedulerService().removeDeferredNotifications(for: habit) {}
+        } else if let sprintEntity = entity as? SprintEntity {
+            let sprint = Sprint(sprintEntity: sprintEntity)
+            SprintSchedulerService().removeSprintNotifications(sprint: sprint) {}
+        } else if entity is WaterControlEntity {
+            WaterControlSchedulerService().removeWaterControlNotifications() {}
         }
     }
     

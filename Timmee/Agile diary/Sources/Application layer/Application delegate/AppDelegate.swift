@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
         statusBar.statusBarFrame = { UIApplication.shared.statusBarFrame }
         statusBar.icon = UIImage(named: "sync")
-        statusBar.tintColor = .white//AppTheme.current.colors.activeElementColor
+        statusBar.tintColor = .white
         statusBar.backgroundColor = AppTheme.current.colors.mainElementColor
         return statusBar
     }()
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ProVersionPurchase.shared.loadStore()
         
         synchronizationRunner.delegate = self
-        synchronizationRunner.run(interval: 10)
+        synchronizationRunner.run(interval: 30)
         
         return true
     }

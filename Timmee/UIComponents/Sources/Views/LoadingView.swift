@@ -28,7 +28,7 @@ public final class LoadingView: UIView {
         activityIndicator = UIActivityIndicatorView(style: .white)
         titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         titleLabel.textAlignment = .center
         
         backgroundColor = UIColor(rgba: "272727")
@@ -41,7 +41,7 @@ public final class LoadingView: UIView {
         contentStackView.distribution = .equalSpacing
         contentStackView.spacing = 8
         addSubview(contentStackView)
-        [contentStackView.leading(4), contentStackView.trailing(4), contentStackView.centerY()].toSuperview()
+        [contentStackView.leading(8), contentStackView.trailing(8), contentStackView.centerY()].toSuperview()
     }
     
     public override func layoutSubviews() {

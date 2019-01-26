@@ -13,8 +13,12 @@ import UserNotifications
 public final class WaterControlSchedulerService: BaseSchedulerService {
     
     public func scheduleWaterControl(_ waterControl: WaterControl, startDate: Date, endDate: Date) {
-        removeWaterControlNotifications()
-        
+        removeWaterControlNotifications {
+            self.scheduleNewWaterControl(waterControl, startDate: startDate, endDate: endDate)
+        }
+    }
+    
+    private func scheduleNewWaterControl(_ waterControl: WaterControl, startDate: Date, endDate: Date) {
         guard waterControl.notificationsEnabled else { return }
         
         let endHours = waterControl.notificationsEndTime.hours
@@ -33,18 +37,17 @@ public final class WaterControlSchedulerService: BaseSchedulerService {
         }
     }
     
-    public func removeWaterControlNotifications() {
+    public func removeWaterControlNotifications(completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
-                if let taskID = request.content.userInfo["task_id"] as? String {
-                    return taskID == "water_control"
-                }
-                return false
+                    return request.identifier == "water_control"
                 }.map { request in
                     request.identifier
-            }
+                }
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            
+            completion()
         }
     }
     

@@ -13,8 +13,12 @@ import UserNotifications
 public final class SprintSchedulerService: BaseSchedulerService {
     
     public func scheduleSprint(_ sprint: Sprint) {
-        removeSprintNotifications(sprint: sprint)
-        
+        removeSprintNotifications(sprint: sprint) {
+            self.scheduleNewSprint(sprint)
+        }
+    }
+    
+    private func scheduleNewSprint(_ sprint: Sprint) {
         guard sprint.notifications.isEnabled, let days = sprint.notifications.days else { return }
         
         var notificationStartDate = sprint.startDate
@@ -29,16 +33,16 @@ public final class SprintSchedulerService: BaseSchedulerService {
             
             scheduleLocalNotification(withID: sprint.id,
                                       title: "Sprint".localized + " #\(sprint.number)",
-                                      message: "sprint_notification_message".localized,
-                                      at: fireDate,
-                                      repeatUnit: .weekOfYear,
-                                      category: "sprint",
-                                      userInfo: ["sprint_id": sprint.id,
-                                                 "end_date": sprint.endDate])
+                message: "sprint_notification_message".localized,
+                at: fireDate,
+                repeatUnit: .weekOfYear,
+                category: "sprint",
+                userInfo: ["sprint_id": sprint.id,
+                           "end_date": sprint.endDate])
         }
     }
     
-    public func removeSprintNotifications(sprint: Sprint) {
+    public func removeSprintNotifications(sprint: Sprint, completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
                 if let sprintID = request.content.userInfo["sprint_id"] as? String {
@@ -50,6 +54,8 @@ public final class SprintSchedulerService: BaseSchedulerService {
             }
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+            
+            completion()
         }
     }
     

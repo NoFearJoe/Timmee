@@ -97,16 +97,23 @@ private extension CoreDataStorage {
             return
         }
         
-        // Обновление modificationDate
+        // Обновление modificationDate и создание локально удаленных объектов
         if context === writeContext {
             let updateModificationDate = { (entity: NSManagedObject) -> Void in
                 guard let modifiableEntity = entity as? ModifiableEntity else { return }
                 modifiableEntity.updateModificationDate()
-                modifiableEntity.updateModificationAuthor()
             }
-//            context.insertedObjects.forEach(updateModificationDate)
-            context.registeredObjects.forEach(updateModificationDate)
-//            context.updatedObjects.forEach(updateModificationDate)
+            context.insertedObjects.forEach(updateModificationDate)
+            context.updatedObjects.forEach(updateModificationDate)
+            
+            let createLocallyRemovedEntity = { (entity: NSManagedObject) -> Void in
+                let entityName = type(of: entity).entityName
+                let entityID = (entity as? IdentifiableEntity)?.id
+                let locallyDeletedEntity = try? context.create() as LocallyDeletedEntity
+                locallyDeletedEntity?.entityType = entityName
+                locallyDeletedEntity?.entityID = entityID
+            }
+            context.deletedObjects.forEach(createLocallyRemovedEntity)
         }
         
         if context === synchronizationContext {

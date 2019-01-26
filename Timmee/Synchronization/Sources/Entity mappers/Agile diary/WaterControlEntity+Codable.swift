@@ -16,8 +16,7 @@ extension WaterControlEntity: DictionaryEncodable {
             "neededVolume": neededVolume,
             "notificationsEnabled": notificationsEnabled,
             "lastConfiguredSprintID": lastConfiguredSprintID as Any,
-            "modificationDate": modificationDate,
-            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
+            "modificationDate": modificationDate
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -47,7 +46,6 @@ extension WaterControlEntity: DictionaryDecodable {
         notificationsStartTime = (dictionary["notificationsStartTime"] as? Timestamp)?.dateValue()
         notificationsEndTime = (dictionary["notificationsEndTime"] as? Timestamp)?.dateValue()
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
-        modificationAuthor = dictionary["modificationAuthor"] as? String
         
         let drunkVolumesDictionary = dictionary["drunkVolumes"] as? [String: Any]
         var drunkVolumes: [Date: Int] = [:]

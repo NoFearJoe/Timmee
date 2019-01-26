@@ -8,6 +8,7 @@
 
 import UIKit
 import UIComponents
+import Synchronization
 
 protocol TodayViewSectionProgressListener: class {
     func didChangeProgress(for section: SprintSection, to progress: CGFloat)
@@ -34,6 +35,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     private var cacheObserver: CacheObserver<Task>?
     
+    private var synchronizationDidFinishObservation: Any?
+    
     var sprint: Sprint! {
         didSet {
             hidePlaceholder()
@@ -50,6 +53,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         
         headerView.titleLabel.text = "today".localized
         headerView.subtitleLabel.text = nil
+        headerView.subtitleLabel.isHidden = true
         setupSections()
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
@@ -59,6 +63,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         createSprintButton.isHidden = true
         
         setupPlaceholder()
+        
+        subscribeToSynchronizationCompletion()
     }
     
     override func refresh() {
@@ -133,6 +139,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         }
         subtitle.append(remainingDaysString)
         headerView.subtitleLabel.attributedText = subtitle
+        headerView.subtitleLabel.isHidden = false
     }
     
     private func setSwitcherEnabled(_ isEnabled: Bool) {
@@ -159,12 +166,14 @@ private extension TodayViewController {
             createSprintButton.isHidden = true
             setSwitcherEnabled(false)
             headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.startDate.asNearestShortDateString.lowercased()
+            headerView.subtitleLabel.isHidden = false
             showNextSprintPlaceholder(sprintNumber: nextSprint.number, startDate: nextSprint.startDate)
             setSectionContainersVisible(content: false, water: false)
         } else {
             createSprintButton.isHidden = false
             setSwitcherEnabled(false)
             headerView.subtitleLabel.text = nil
+            headerView.subtitleLabel.isHidden = true
             showCreateSprintPlaceholder()
             setSectionContainersVisible(content: false, water: false)
         }
@@ -244,6 +253,19 @@ private extension TodayViewController {
     
     func hidePlaceholder() {
         placeholderContainer.isHidden = true
+    }
+    
+}
+
+private extension TodayViewController {
+    
+    func subscribeToSynchronizationCompletion() {
+        let notificationName = NSNotification.Name(rawValue: PeriodicallySynchronizationRunner.didFinishSynchronizationNotificationName)
+        synchronizationDidFinishObservation = NotificationCenter.default.addObserver(forName: notificationName,
+                                                                                     object: nil,
+                                                                                     queue: .main) { [weak self] _ in
+                                                                                        self?.loadSprint()
+        }
     }
     
 }

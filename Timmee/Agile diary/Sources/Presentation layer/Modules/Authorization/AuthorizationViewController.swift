@@ -53,7 +53,7 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
                         self?.showCommonAuthorizationError()
                         self?.loadingView.isHidden = true
                     } else {
-                        self?.loadingView.titleLabel.text = "Synchronization".localized
+                        self?.loadingView.titleLabel.text = "synchronization".localized
                         self?.synchronizationService.sync { [weak self] isSuccess in
                             print("::: sync \(isSuccess)")
                             DispatchQueue.main.async {
@@ -79,7 +79,7 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
         guard let password = passwordTextField.text?.trimmed, !password.isEmpty else { return }
         
         loadingView.isHidden = false
-        loadingView.titleLabel.text = "Authorization".localized
+        loadingView.titleLabel.text = "authorization".localized
         authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success, error in
             if let error = error {
                 self?.showAuthorizationError(error)
@@ -88,7 +88,7 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
                 self?.showCommonAuthorizationError()
                 self?.loadingView.isHidden = true
             } else {
-                self?.loadingView.titleLabel.text = "Synchronization".localized
+                self?.loadingView.titleLabel.text = "synchronization".localized
                 self?.synchronizationService.sync { [weak self] isSuccess in
                     print("::: sync \(isSuccess)")
                     DispatchQueue.main.async {

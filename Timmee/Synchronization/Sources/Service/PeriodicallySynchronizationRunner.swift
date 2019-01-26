@@ -23,6 +23,8 @@ public final class PeriodicallySynchronizationRunner {
     private let synchronizationService: SynchronizationService
     private var timer: Timer?
     
+    private var isInitialSynchronizationFired = false
+    
     public init(synchronizationService: SynchronizationService) {
         self.synchronizationService = synchronizationService
     }
@@ -31,6 +33,10 @@ public final class PeriodicallySynchronizationRunner {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false, block: { [weak self] timer in
             guard let self = self else { return }
+            guard self.synchronizationService.synchronizationEnabled else {
+                self.run(interval: interval)
+                return
+            }
             self.notifySynchronizationWillStart()
             self.synchronizationService.sync(completion: { [weak self] success in
                 guard let self = self else { return }
@@ -38,6 +44,11 @@ public final class PeriodicallySynchronizationRunner {
                 self.run(interval: interval)
             })
         })
+        
+        if !isInitialSynchronizationFired {
+            isInitialSynchronizationFired = true
+            timer?.fire()
+        }
     }
     
     public func stop() {

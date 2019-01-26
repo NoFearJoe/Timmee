@@ -107,7 +107,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
                 let dayNumber = DayUnit(weekday: fireDate.weekday).number
                 if unit.dayNumbers.contains(dayNumber) {
                     let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: false, endDate: task.repeatEndingDate)
-                    scheduleLocalNotification(withID: task.id,
+                    scheduleLocalNotification(withID: task.id + "\(fireDate.weekday)",
                                               title: task.title,
                                               message: TaskSchedulerService.makeNotificationMessage(for: task),
                                               at: fireDate,
@@ -134,7 +134,7 @@ public final class TaskSchedulerService: BaseSchedulerService {
         //        let location = task.shouldNotifyAtLocation ? task.location : nil
         
         let userInfo = TaskSchedulerService.makeUserInfo(taskID: task.id, isDeferred: true, endDate: task.repeatEndingDate)
-        scheduleLocalNotification(withID: task.id,
+        scheduleLocalNotification(withID: task.id + "\(fireDate.weekday)",
                                   title: task.title,
                                   message: TaskSchedulerService.makeNotificationMessage(for: task),
                                   at: fireDate,

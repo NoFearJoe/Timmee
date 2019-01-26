@@ -15,6 +15,7 @@
 		0C90018721F892A900D6C15F /* SubtaskEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */; };
 		0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */; };
 		0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */; };
+		0C9001B121FC220300D6C15F /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9001B021FC220300D6C15F /* NotificationsKit.framework */; };
 		0CC4066221F1DF440069C6C5 /* Synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC4066021F1DF440069C6C5 /* Synchronization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066421F1DF7D0069C6C5 /* Authorization.framework */; };
 		0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */; };
@@ -31,6 +32,7 @@
 		0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubtaskEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicallySynchronizationRunner.swift; sourceTree = "<group>"; };
+		0C9001B021FC220300D6C15F /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4064B21F1DEDE0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4065E21F1DF440069C6C5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CC4066021F1DF440069C6C5 /* Synchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synchronization.h; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9001B121FC220300D6C15F /* NotificationsKit.framework in Frameworks */,
 				0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */,
 				0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */,
 				0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		0CC4066321F1DF7D0069C6C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C9001B021FC220300D6C15F /* NotificationsKit.framework */,
 				0CC4066421F1DF7D0069C6C5 /* Authorization.framework */,
 				0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */,
 				0CC4066821F1DF7D0069C6C5 /* Workset.framework */,

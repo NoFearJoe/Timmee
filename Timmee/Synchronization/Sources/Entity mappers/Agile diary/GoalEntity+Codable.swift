@@ -17,8 +17,7 @@ extension GoalEntity: DictionaryEncodable {
             "creationDate": creationDate as Any,
             "isDone": isDone,
             "title": title as Any,
-            "modificationDate": modificationDate,
-            "modificationAuthor": (modificationAuthor ?? SprintEntity.currentAuthor) as Any
+            "modificationDate": modificationDate
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -39,7 +38,6 @@ extension GoalEntity: DictionaryDecodable {
         title = dictionary["title"] as? String
         note = dictionary["note"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
-        modificationAuthor = dictionary["modificationAuthor"] as? String
     }
     
 }
