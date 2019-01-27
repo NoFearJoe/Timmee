@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AuthorizationService.initializeAuthorization()
         AgileeSynchronizationService.initializeSynchronization()
+        AgileeSynchronizationService.shared.checkSynchronizationConditions = {
+            ProVersionPurchase.shared.isPurchased()
+        }
         FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         UNUserNotificationCenter.current().delegate = self
@@ -49,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             #if MOCKS
             RuMocksConfigurator.prepareMocks {
                 UserProperty.isInitialSprintCreated.setBool(true)
-                InitialScreenPresenter.showToday()
+                InitialScreenPresenter().showToday()
             }
             #else
-            InitialScreenPresenter.presentInitialScreen(inWindow: window)
+            InitialScreenPresenter().presentInitialScreen(inWindow: window)
             #endif
         }
         

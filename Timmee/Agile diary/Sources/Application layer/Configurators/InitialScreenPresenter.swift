@@ -6,9 +6,11 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-final class InitialScreenPresenter {
+final class InitialScreenPresenter: SprintInteractorTrait {
     
-    static func presentInitialScreen(inWindow window: UIWindow) {
+    let sprintsService = ServicesAssembly.shared.sprintsService
+    
+    func presentInitialScreen(inWindow window: UIWindow) {
         // Сначала надо показать обучение, если оно не было показано
         // Потом пароль, если установлен
         // Потом создание первого спринта, если он не был создан
@@ -22,14 +24,14 @@ final class InitialScreenPresenter {
             let pinAuthenticationViewController = ViewControllersFactory.pinAuthentication
             pinAuthenticationViewController.onComplete = {
                 if !UserProperty.isInitialSprintCreated.bool() {
-                    showSprintCreation()
+                    self.showSprintCreation()
                 } else {
-                    showToday()
+                    self.showToday()
                 }
             }
 
             initialViewController = pinAuthenticationViewController
-        } else if !UserProperty.isInitialSprintCreated.bool() {
+        } else if !UserProperty.isInitialSprintCreated.bool(), getCurrentSprint() == nil, getNextSprint() == nil {
             initialViewController = ViewControllersFactory.sprintCreation
         } else {
             initialViewController = ViewControllersFactory.today
@@ -39,7 +41,7 @@ final class InitialScreenPresenter {
         window.makeKeyAndVisible()
     }
     
-    static func showSprintCreation() {
+    func showSprintCreation() {
         guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
         let sprintCreationViewController = ViewControllersFactory.sprintCreation
         sprintCreationViewController.loadViewIfNeeded()
@@ -48,7 +50,7 @@ final class InitialScreenPresenter {
         }, completion: nil)
     }
     
-    static func showToday() {
+    func showToday() {
         guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
         let todayViewController = ViewControllersFactory.today
         todayViewController.loadViewIfNeeded()

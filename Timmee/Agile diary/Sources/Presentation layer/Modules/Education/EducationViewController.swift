@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Synchronization
 
 protocol EducationScreenInput: class {
     func setupOutput(_ output: EducationScreenOutput)
@@ -17,9 +18,15 @@ protocol EducationScreenOutput: class {
     func didAskToSkipEducation(screen: EducationScreen)
 }
 
-final class EducationViewController: UINavigationController {
+final class EducationViewController: UINavigationController, SprintInteractorTrait, AlertInput {
+    
+    let sprintsService = ServicesAssembly.shared.sprintsService
     
     private let educationState = EducationState()
+    
+    private var synchronizationDidFinishObservation: Any?
+    private var isSynchronized = false
+    private var shouldShowAppropriateScreenAfterSynchronization = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppThemeType.current == .dark ? .lightContent : .default
@@ -27,6 +34,8 @@ final class EducationViewController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        subscribeToSynchronizationCompletion()
         
         if let initialScreen = educationState.screensToShow.first {
             setViewControllers([viewController(forScreen: initialScreen)], animated: false)
@@ -39,11 +48,40 @@ final class EducationViewController: UINavigationController {
         UserProperty.isEducationShown.setBool(true)
     }
     
+    private var shouldShowSprintCreationAfterEducation: Bool {
+        return !UserProperty.isInitialSprintCreated.bool() && getCurrentSprint() == nil && getNextSprint() == nil
+    }
+    
+    private func showAppropriateScreenAfterEducation() {
+        if AgileeSynchronizationService.shared.synchronizationEnabled && !isSynchronized {
+            shouldShowAppropriateScreenAfterSynchronization = true
+            showAlert(title: "attention".localized,
+                      message: "wait_until_sync_is_complete".localized,
+                      actions: [.ok("Ok")],
+                      completion: nil)
+            return
+        }
+        if shouldShowSprintCreationAfterEducation {
+            showSprintCreation()
+        } else {
+            showToday()
+        }
+    }
+    
     private func showSprintCreation() {
         let sprintCreationViewController = ViewControllersFactory.sprintCreation
         sprintCreationViewController.loadViewIfNeeded()
         UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: {
             AppDelegate.shared.window?.rootViewController = sprintCreationViewController
+        }, completion: nil)
+    }
+    
+    private func showToday() {
+        guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
+        let todayViewController = ViewControllersFactory.today
+        todayViewController.loadViewIfNeeded()
+        UIView.transition(with: rootView, duration: 0.25, options: .transitionCrossDissolve, animations: {
+            AppDelegate.shared.window?.rootViewController = todayViewController
         }, completion: nil)
     }
     
@@ -53,13 +91,18 @@ extension EducationViewController: EducationScreenOutput {
     
     func didAskToContinueEducation(screen: EducationScreen) {
         if let screenIndex = educationState.screensToShow.index(of: screen) {
+            let isLastScreen = screenIndex + 1 >= educationState.screensToShow.count - 1
             if let nextScreen = educationState.screensToShow.item(at: screenIndex + 1) {
-                pushViewController(viewController(forScreen: nextScreen), animated: true)
+                if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
+                    pushViewController(viewController(forScreen: nextScreen), animated: true)
+                } else {
+                    showAppropriateScreenAfterEducation()
+                }
             } else {
-                showSprintCreation()
+                showAppropriateScreenAfterEducation()
             }
         } else {
-            showSprintCreation()
+            showAppropriateScreenAfterEducation()
         }
     }
     
@@ -72,7 +115,7 @@ extension EducationViewController: EducationScreenOutput {
         case .pinCodeSetupSuggestion:
             didAskToContinueEducation(screen: .pinCodeCreation)
         default:
-            showSprintCreation()
+            showAppropriateScreenAfterEducation()
         }
     }
     
@@ -110,6 +153,22 @@ fileprivate extension EducationViewController {
         }
         
         return viewController
+    }
+    
+}
+
+private extension EducationViewController {
+    
+    func subscribeToSynchronizationCompletion() {
+        let notificationName = NSNotification.Name(rawValue: PeriodicallySynchronizationRunner.didFinishSynchronizationNotificationName)
+        synchronizationDidFinishObservation = NotificationCenter.default.addObserver(forName: notificationName,
+                                                                                     object: nil,
+                                                                                     queue: .main) { [weak self] _ in
+                                                                                        guard let self = self else { return }
+                                                                                        self.isSynchronized = true
+                                                                                        guard self.shouldShowAppropriateScreenAfterSynchronization else { return }
+                                                                                        self.showAppropriateScreenAfterEducation()
+        }
     }
     
 }

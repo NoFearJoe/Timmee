@@ -41,11 +41,14 @@ public final class AgileeSynchronizationService: SynchronizationService {
     
     private init() {}
     
+    public var checkSynchronizationConditions: (() -> Bool)?
+    
     public var synchronizationEnabled: Bool {
-        return authorizationService.authorizedUser != nil
+        return authorizationService.authorizedUser != nil && (checkSynchronizationConditions == nil || checkSynchronizationConditions?() == true)
     }
     
     public func sync(completion: ((Bool) -> Void)?) {
+        guard synchronizationEnabled else { completion?(false); return }
         guard !isSynchronizationInProgress else { return }
         isSynchronizationInProgress = true
         pull { [weak self] success in

@@ -305,3 +305,5 @@
 "kilograms" = "кг";
 "kilometers" = "км";
 "liters" = "л";
+
+"wait_until_sync_is_complete" = "Дождитесь окончания синхронизации";

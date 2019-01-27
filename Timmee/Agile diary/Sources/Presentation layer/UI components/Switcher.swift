@@ -48,9 +48,11 @@ class Switcher: UIControl {
     }
     
     private func layoutItemViews() {
-        let width = bounds.width / CGFloat(itemViews.count)
-        for (index, view) in itemViews.enumerated() {
-            view.frame = CGRect(x: CGFloat(index) * width, y: 0, width: width, height: bounds.height)
+        UIView.performWithoutAnimation {
+            let width = bounds.width / CGFloat(itemViews.count)
+            for (index, view) in itemViews.enumerated() {
+                view.frame = CGRect(x: CGFloat(index) * width, y: 0, width: width, height: bounds.height)
+            }
         }
     }
     
