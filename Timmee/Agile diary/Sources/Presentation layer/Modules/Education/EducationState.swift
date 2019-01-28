@@ -25,6 +25,9 @@ enum EducationScreen {
     // Экран создания пин кода
     case pinCodeCreation
     
+    // Экран покупки и восстановления PRO версии
+    case proVersion
+    
     // Последний экран обучения
     case final
 }
@@ -37,7 +40,9 @@ final class EducationState {
     
     lazy var screensToShow: [EducationScreen] = {
         if !isEducationShown {
-            return [.initial, .goals, .habits, .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation, .final]
+            return [.initial, .goals, .habits,
+                    .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation,
+                    .proVersion, .final]
         }
         return []
     }()

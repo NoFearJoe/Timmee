@@ -93,9 +93,13 @@ extension EducationViewController: EducationScreenOutput {
         if let screenIndex = educationState.screensToShow.index(of: screen) {
             let isLastScreen = screenIndex + 1 >= educationState.screensToShow.count - 1
             if let nextScreen = educationState.screensToShow.item(at: screenIndex + 1) {
-                if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
+                if nextScreen == .proVersion, ProVersionPurchase.shared.isPurchased() {
+                    // Если PRO версия куплена, то соответствующий экран не показывается
+                    didAskToContinueEducation(screen: .proVersion)
+                } else if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
                     pushViewController(viewController(forScreen: nextScreen), animated: true)
                 } else {
+                    // Если находимся на последнем экране и после него не надо показать экран создания спринта
                     showAppropriateScreenAfterEducation()
                 }
             } else {
@@ -114,6 +118,8 @@ extension EducationViewController: EducationScreenOutput {
             didAskToContinueEducation(screen: .notificationsSetupSuggestion)
         case .pinCodeSetupSuggestion:
             didAskToContinueEducation(screen: .pinCodeCreation)
+        case .proVersion:
+            didAskToContinueEducation(screen: .proVersion)
         default:
             showAppropriateScreenAfterEducation()
         }
@@ -144,6 +150,8 @@ fileprivate extension EducationViewController {
             }
             
             viewController = pinCreationViewController
+        case .proVersion:
+            viewController = ViewControllersFactory.proVersionEducationScreen
         case .final:
             viewController = ViewControllersFactory.finalEducationScreen
         }

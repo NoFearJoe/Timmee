@@ -10,9 +10,15 @@ import UIKit
 import Authorization
 import Synchronization
 
+protocol AuthorizationViewControllerDelegate: AnyObject {
+    func authorizationController(_ viewController: AuthorizationViewController, didCompleteAuthorization successfully: Bool)
+}
+
 final class AuthorizationViewController: BaseViewController, AlertInput {
     
     // MARK: - Dependencies
+    
+    weak var delegate: AuthorizationViewControllerDelegate?
     
     private let authorizationService = AuthorizationService()
     private let synchronizationService = AgileeSynchronizationService.shared
@@ -53,12 +59,14 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
                         self?.showCommonAuthorizationError()
                         self?.loadingView.isHidden = true
                     } else {
-                        self?.loadingView.titleLabel.text = "synchronization".localized
+                        self?.loadingView.message = "synchronization".localized
                         self?.synchronizationService.sync { [weak self] isSuccess in
-                            print("::: sync \(isSuccess)")
+                            guard let self = self else { return }
                             DispatchQueue.main.async {
-                                self?.loadingView.isHidden = true
-                                self?.dismiss(animated: true, completion: nil)
+                                self.loadingView.isHidden = true
+                                self.dismiss(animated: true, completion: {
+                                    self.delegate?.authorizationController(self, didCompleteAuthorization: isSuccess)
+                                })
                             }
                         }
                     }
@@ -79,7 +87,7 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
         guard let password = passwordTextField.text?.trimmed, !password.isEmpty else { return }
         
         loadingView.isHidden = false
-        loadingView.titleLabel.text = "authorization".localized
+        loadingView.message = "authorization".localized
         authorizationService.authorize(via: .emailAndPassword(email: email, password: password)) { [weak self] success, error in
             if let error = error {
                 self?.showAuthorizationError(error)
@@ -88,12 +96,14 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
                 self?.showCommonAuthorizationError()
                 self?.loadingView.isHidden = true
             } else {
-                self?.loadingView.titleLabel.text = "synchronization".localized
+                self?.loadingView.message = "synchronization".localized
                 self?.synchronizationService.sync { [weak self] isSuccess in
-                    print("::: sync \(isSuccess)")
+                    guard let self = self else { return }
                     DispatchQueue.main.async {
-                        self?.loadingView.isHidden = true
-                        self?.dismiss(animated: true, completion: nil)
+                        self.loadingView.isHidden = true
+                        self.dismiss(animated: true, completion: {
+                            self.delegate?.authorizationController(self, didCompleteAuthorization: isSuccess)
+                        })
                     }
                 }
             }
@@ -105,7 +115,9 @@ final class AuthorizationViewController: BaseViewController, AlertInput {
     }
     
     @IBAction private func onTapToCloseButton() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            self.delegate?.authorizationController(self, didCompleteAuthorization: false)
+        })
     }
     
     @IBAction private func onTapToBackgroundView() {

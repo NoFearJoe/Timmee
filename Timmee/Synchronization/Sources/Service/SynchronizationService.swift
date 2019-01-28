@@ -49,7 +49,7 @@ public final class AgileeSynchronizationService: SynchronizationService {
     
     public func sync(completion: ((Bool) -> Void)?) {
         guard synchronizationEnabled else { completion?(false); return }
-        guard !isSynchronizationInProgress else { return }
+        guard !isSynchronizationInProgress else { completion?(false); return }
         isSynchronizationInProgress = true
         pull { [weak self] success in
             guard let self = self, success else { completion?(false); return }

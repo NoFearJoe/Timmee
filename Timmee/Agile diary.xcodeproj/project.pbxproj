@@ -49,6 +49,8 @@
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
 		0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
+		0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
+		0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
 		0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
 		0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
@@ -366,6 +368,7 @@
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C5C469C2141014000390F85 /* EditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContainer.swift; sourceTree = "<group>"; };
+		0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionEducationScreen.swift; sourceTree = "<group>"; };
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		0C8D075F212BE5B5008122A6 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -887,6 +890,7 @@
 				0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */,
 				0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */,
 				0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */,
+				0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */,
 				0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */,
 			);
 			path = Screens;
@@ -1514,6 +1518,7 @@
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
+				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
@@ -1569,6 +1574,7 @@
 				0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */,
 				0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */,
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
+				0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
 				0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,

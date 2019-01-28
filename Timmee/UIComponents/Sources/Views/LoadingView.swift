@@ -11,6 +11,13 @@ import Workset
 
 public final class LoadingView: UIView {
     
+    public var message: String? {
+        didSet {
+            titleLabel.text = message
+            titleLabel.isHidden = message.nilIfEmpty == nil
+        }
+    }
+    
     private(set) public var activityIndicator: UIActivityIndicatorView!
     private(set) public var titleLabel: UILabel!
     
@@ -30,6 +37,7 @@ public final class LoadingView: UIView {
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         titleLabel.textAlignment = .center
+        titleLabel.isHidden = true
         
         backgroundColor = UIColor(rgba: "272727")
         clipsToBounds = true
@@ -42,11 +50,6 @@ public final class LoadingView: UIView {
         contentStackView.spacing = 8
         addSubview(contentStackView)
         [contentStackView.leading(8), contentStackView.trailing(8), contentStackView.centerY()].toSuperview()
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-//        activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
     
     public override var isHidden: Bool {

@@ -147,7 +147,11 @@ extension ProVersionPurchase: SKPaymentTransactionObserver {
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        restoreCompletion?(true)
+        queue.transactions.forEach { transaction in
+            guard transaction.transactionState == .restored else { return }
+            restoreTransaction(transaction: transaction)
+        }
+        restoreCompletion?(!queue.transactions.isEmpty)
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
