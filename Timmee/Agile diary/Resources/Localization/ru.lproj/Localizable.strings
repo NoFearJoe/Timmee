@@ -298,7 +298,7 @@
 "synchronization" = "Синхронизация";
 
 "recover_password_error_alert_title" = "Ошибка";
-"recover_password_error_alert_message" = "Введеный e-mail не зарегистрирован или отсутствует интернет-соединение";
+"recover_password_error_alert_message" = "Введенный e-mail не зарегистрирован или отсутствует интернет-соединение";
 "new_password_error_alert_title" = "Ошибка";
 "new_password_error_alert_message" = "Введен неправильный код проверки или отсутствует интернет-соединение";
 

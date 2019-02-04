@@ -238,6 +238,11 @@
 "education_pin_setup_text" = "You can put a short password and sleep peacefully";
 "education_pin_setup_continue" = "Put a password";
 "education_pin_setup_skip" = "Skip";
+"education_pro_version_title" = "Do you have a PRO version?";
+"education_pro_version_text" = "If you have already purchased the PRO version, you can restore it to immediately access additional functions and synchronize your data";
+"education_pro_version_buy" = "Buy";
+"education_pro_version_restore" = "Restore";
+"education_pro_version_skip" = "Skip";
 "education_final_title" = "🚀";
 "education_final_text" = "It's time to create the first sprint!";
 "education_final_continue" = "Create";
@@ -264,9 +269,48 @@
 
 "sprint_notifications" = "Reminder";
 
-"authorization" = "Авторизация";
-"authorize" = "Войти";
+"authorization" = "Authorization";
+"authorize" = "Log in";
 "e-mail" = "E-mail";
-"password" = "Пароль";
+"password" = "Password";
 "e-mail_placeholder" = "email@email.com";
 "password_placeholder" = "Password";
+"recover_password" = "Restore password";
+"recover_password_email_hint" = "A letter will be sent to this e-mail with further instructions on how to recover your password.";
+"user" = "User";
+"verification_code" = "Verification code";
+"recover_password_title" = "Password recovery";
+"new_password_title" = "Change password";
+
+"synchronization_section" = "Synchronization";
+"synchronization_enabled" = "Synchronization enabled";
+"enable_synchronization" = "Enabled synchronization";
+"log_out" = "Log out";
+"log_out_alert_title" = "Log out";
+"log_out_alert_message" = "After exit, synchronization will stop working. Do you want to continue?";
+"wrong_password_alert_title" = "Wrong password";
+"wrong_password_alert_message" = "Re-enter password or restore password";
+"invalid_email_alert_title" = "Wrong e-mail";
+"invalid_email_alert_message" = "Invalid e-mail entered";
+"invalid_password_alert_title" = "Password is too simple";
+"common_authorization_error_title" = "Authorization error";
+"common_authorization_error_message" = "Check your internet connection or try again later";
+"synchronization" = "Synchronization";
+
+"recover_password_error_alert_title" = "Error";
+"recover_password_error_alert_message" = "The entered e-mail is not registered or no internet connection";
+"new_password_error_alert_title" = "Error";
+"new_password_error_alert_message" = "Entered the wrong verification code or no internet connection";
+
+"value_title" = "Amount";
+
+"times" = "times";
+"hours" = "h";
+"minutes" = "min";
+"kilograms" = "kg";
+"kilometers" = "km";
+"liters" = "l";
+
+"wait_until_sync_is_complete" = "Wait until the end of synchronization";
+
+"purchase_pro_version_error_try_again" = "Could not buy PRO version. Try again";
