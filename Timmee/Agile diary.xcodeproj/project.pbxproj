@@ -35,6 +35,8 @@
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
+		0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
 		0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */; };
 		0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
 		0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */; };
@@ -354,6 +356,7 @@
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
+		0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationConfigurator.swift; sourceTree = "<group>"; };
 		0C3DA4BB21513BB000CAE635 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4BD21513BB200CAE635 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
@@ -655,6 +658,7 @@
 				0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */,
 				96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */,
 				964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */,
+				0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -1528,6 +1532,7 @@
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
 				0C3DA5302154CBCF00CAE635 /* WaterControlConfigurationViewController.swift in Sources */,
+				0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */,
@@ -1615,6 +1620,7 @@
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
 				0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */,
+				0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */,
 				0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */,
 				0CB6739D21A52C3900178EB1 /* TodayViewController.swift in Sources */,

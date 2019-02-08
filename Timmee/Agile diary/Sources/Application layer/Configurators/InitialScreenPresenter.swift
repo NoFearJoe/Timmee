@@ -10,7 +10,23 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     
     let sprintsService = ServicesAssembly.shared.sprintsService
     
-    func presentInitialScreen(inWindow window: UIWindow) {
+    func presentInitialScreen(in window: UIWindow?) {
+        guard let window = window else { return }
+        #if MOCKS
+        RuMocksConfigurator.prepareMocks { [weak self] in
+            UserProperty.isInitialSprintCreated.setBool(true)
+            self?.presentMockInitialScreen(in: window)
+        }
+        #else
+        presentRealInitialScreen(in: window)
+        #endif
+    }
+    
+    private func presentMockInitialScreen(in window: UIWindow) {
+        showToday()
+    }
+    
+    private func presentRealInitialScreen(in window: UIWindow) {
         // Сначала надо показать обучение, если оно не было показано
         // Потом пароль, если установлен
         // Потом создание первого спринта, если он не был создан
@@ -41,7 +57,7 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         window.makeKeyAndVisible()
     }
     
-    func showSprintCreation() {
+    private func showSprintCreation() {
         guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
         let sprintCreationViewController = ViewControllersFactory.sprintCreation
         sprintCreationViewController.loadViewIfNeeded()
@@ -50,7 +66,7 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         }, completion: nil)
     }
     
-    func showToday() {
+    private func showToday() {
         guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
         let todayViewController = ViewControllersFactory.today
         todayViewController.loadViewIfNeeded()

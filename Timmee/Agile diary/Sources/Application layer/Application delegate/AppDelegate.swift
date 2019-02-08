@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
+    private lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
     
-    lazy var synchronizationStatusBar: SynchronizationStatusBar = {
+    private lazy var synchronizationStatusBar: SynchronizationStatusBar = {
         let statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
         statusBar.statusBarFrame = { UIApplication.shared.statusBarFrame }
         statusBar.icon = UIImage(named: "sync")
@@ -36,33 +36,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
+
         Fabric.with([Crashlytics.self])
         
-        AuthorizationService.initializeAuthorization()
-        AgileeSynchronizationService.initializeSynchronization()
-        AgileeSynchronizationService.shared.checkSynchronizationConditions = {
-            ProVersionPurchase.shared.isPurchased()
-        }
-        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
+        SynchronizationConfigurator.configure()
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
         
-        if let window = window {
-            #if MOCKS
-            RuMocksConfigurator.prepareMocks {
-                UserProperty.isInitialSprintCreated.setBool(true)
-                InitialScreenPresenter().showToday()
-            }
-            #else
-            InitialScreenPresenter().presentInitialScreen(inWindow: window)
-            #endif
-        }
-        
         ProVersionPurchase.shared.loadStore()
         
+        InitialScreenPresenter().presentInitialScreen(in: window)
+        
         synchronizationRunner.delegate = self
-        synchronizationRunner.run(interval: 30)
+        synchronizationRunner.run(interval: 10)
         
         return true
     }
