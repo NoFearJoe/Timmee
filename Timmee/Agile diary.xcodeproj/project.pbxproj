@@ -37,6 +37,14 @@
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
 		0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
 		0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
+		0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */; };
+		0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */; };
+		0C2B9D1A220DA9CC0038F11D /* Sprints.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */; };
+		0C2B9D1B220DA9CC0038F11D /* Sprints.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */; };
+		0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D1D220DAD250038F11D /* SprintCell.swift */; };
+		0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D1D220DAD250038F11D /* SprintCell.swift */; };
+		0C2B9D21220DAD420038F11D /* SprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D20220DAD420038F11D /* SprintCell.xib */; };
+		0C2B9D22220DAD420038F11D /* SprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D20220DAD420038F11D /* SprintCell.xib */; };
 		0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */; };
 		0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
 		0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */; };
@@ -357,6 +365,10 @@
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
 		0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationConfigurator.swift; sourceTree = "<group>"; };
+		0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsViewController.swift; sourceTree = "<group>"; };
+		0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sprints.storyboard; sourceTree = "<group>"; };
+		0C2B9D1D220DAD250038F11D /* SprintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCell.swift; sourceTree = "<group>"; };
+		0C2B9D20220DAD420038F11D /* SprintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintCell.xib; sourceTree = "<group>"; };
 		0C3DA4BB21513BB000CAE635 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4BD21513BB200CAE635 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
@@ -617,6 +629,7 @@
 				0C3DA4DB21525EAA00CAE635 /* Charts */,
 				967C328421517DF400B9201A /* Settings */,
 				0CF7E51B214669520071DABD /* Today */,
+				0C2B9D15220DA9900038F11D /* Sprints */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
 				0C14D4A62121608E004C0559 /* Education */,
 			);
@@ -761,13 +774,32 @@
 			path = Plists;
 			sourceTree = "<group>";
 		};
+		0C2B9D15220DA9900038F11D /* Sprints */ = {
+			isa = PBXGroup;
+			children = (
+				0C2B9D1C220DAD100038F11D /* Cells */,
+				0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */,
+				0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */,
+			);
+			path = Sprints;
+			sourceTree = "<group>";
+		};
+		0C2B9D1C220DAD100038F11D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0C2B9D20220DAD420038F11D /* SprintCell.xib */,
+				0C2B9D1D220DAD250038F11D /* SprintCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0C3DA4DB21525EAA00CAE635 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */,
 				96CAD81A216D39A4005D707C /* Extended charts */,
 				967C328F2157714700B9201A /* Cells */,
 				0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */,
-				0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -1209,6 +1241,8 @@
 				0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */,
 				0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */,
 				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
+				0C2B9D21220DAD420038F11D /* SprintCell.xib in Resources */,
+				0C2B9D1A220DA9CC0038F11D /* Sprints.storyboard in Resources */,
 				0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */,
 				0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */,
 				0C14D4CF21217390004C0559 /* Localizable.stringsdict in Resources */,
@@ -1235,6 +1269,8 @@
 				0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */,
 				0CB673CF21A52C3900178EB1 /* StageView.xib in Resources */,
 				0CB673D021A52C3900178EB1 /* Education.storyboard in Resources */,
+				0C2B9D22220DAD420038F11D /* SprintCell.xib in Resources */,
+				0C2B9D1B220DA9CC0038F11D /* Sprints.storyboard in Resources */,
 				0CB673D121A52C3900178EB1 /* Charts.storyboard in Resources */,
 				0CB673D221A52C3900178EB1 /* HabitsCollection.storyboard in Resources */,
 				0CB673D321A52C3900178EB1 /* Localizable.stringsdict in Resources */,
@@ -1502,6 +1538,7 @@
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
 				96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */,
+				0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
@@ -1562,6 +1599,7 @@
 				0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */,
 				0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
+				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */,
 				0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
@@ -1584,6 +1622,7 @@
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
 				0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
+				0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
 				0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
 				0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */,
@@ -1610,6 +1649,7 @@
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
+				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,

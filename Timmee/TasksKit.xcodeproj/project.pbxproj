@@ -135,6 +135,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C2B9D14220D96B40038F11D /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				0CE0180E2077B2BD00633EFF /* ListsService.swift */,
+				0CE018122077B2BD00633EFF /* TasksService.swift */,
+				0CE018112077B2BD00633EFF /* SubtasksService.swift */,
+				0CE0180F2077B2BD00633EFF /* TagsService.swift */,
+				0CE018132077B2BD00633EFF /* TimeTemplatesService.swift */,
+				0CE018102077B2BD00633EFF /* FilesService.swift */,
+				961656052095FDD9001A8387 /* AudioRecordService.swift */,
+				9606627A20A353D000B23EDF /* AudioPlayerService.swift */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
 		0C90018A21F98F7D00D6C15F /* Todo */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,15 +279,8 @@
 		0CE0180C2077B2BD00633EFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0CE475522175AF86005FD8CC /* Agilee */,
-				0CE0180E2077B2BD00633EFF /* ListsService.swift */,
-				0CE018122077B2BD00633EFF /* TasksService.swift */,
-				0CE018112077B2BD00633EFF /* SubtasksService.swift */,
-				0CE0180F2077B2BD00633EFF /* TagsService.swift */,
-				0CE018132077B2BD00633EFF /* TimeTemplatesService.swift */,
-				0CE018102077B2BD00633EFF /* FilesService.swift */,
-				961656052095FDD9001A8387 /* AudioRecordService.swift */,
-				9606627A20A353D000B23EDF /* AudioPlayerService.swift */,
+				0C2B9D14220D96B40038F11D /* Todo */,
+				0CE475522175AF86005FD8CC /* Agile diary */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,7 +330,7 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		0CE475522175AF86005FD8CC /* Agilee */ = {
+		0CE475522175AF86005FD8CC /* Agile diary */ = {
 			isa = PBXGroup;
 			children = (
 				0CE475532175AFBE005FD8CC /* SprintsService.swift */,
@@ -330,7 +338,7 @@
 				0CE4755C2175DA1E005FD8CC /* GoalsService.swift */,
 				0C3DA5372154D8D200CAE635 /* WaterControlService.swift */,
 			);
-			path = Agilee;
+			path = "Agile diary";
 			sourceTree = "<group>";
 		};
 		5281E0EBE43AED0B2AB155EC /* Pods */ = {

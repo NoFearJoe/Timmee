@@ -95,3 +95,29 @@ extension Sprint {
         }
     }
 }
+
+extension Sprint {
+    public enum Tense {
+        case past
+        case current
+        case future
+        
+        public var localized: String {
+            switch self {
+            case .past: return "past_sprint".localized
+            case .current: return "current_sprint".localized
+            case .future: return "future_sprint".localized
+            }
+        }
+    }
+    
+    public var tense: Tense {
+        if Date().startOfDay < startDate {
+            return .future
+        } else if Date().startOfDay > endDate {
+            return .past
+        } else {
+            return .current
+        }
+    }
+}

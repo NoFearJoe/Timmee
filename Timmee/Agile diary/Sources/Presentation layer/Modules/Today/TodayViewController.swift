@@ -17,6 +17,8 @@ protocol TodayViewSectionProgressListener: class {
 final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
+    @IBOutlet private var chartsButton: UIButton!
+    @IBOutlet private var sprintsButton: UIButton!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
@@ -83,7 +85,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
         headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
-        headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
+        chartsButton?.tintColor = AppTheme.current.colors.mainElementColor
+        sprintsButton?.tintColor = AppTheme.current.colors.mainElementColor
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
         headerView.backgroundColor = AppTheme.current.colors.foregroundColor
         sectionSwitcher.setupAppearance()

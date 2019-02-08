@@ -76,13 +76,27 @@
                                                 </constraints>
                                                 <state key="normal" image="chart"/>
                                                 <connections>
-                                                    <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="vDn-wA-otH"/>
+                                                    <segue destination="0dA-DY-rZL" kind="presentation" modalTransitionStyle="coverVertical" id="pxB-Ht-i35"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogh-lU-sPL">
+                                                <rect key="frame" x="289" y="8" width="28" height="28"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="2h7-qy-rkw"/>
+                                                    <constraint firstAttribute="width" constant="28" id="jyj-i0-jhB"/>
+                                                </constraints>
+                                                <state key="normal" image="charts"/>
+                                                <connections>
+                                                    <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="UBz-uK-QFO"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Jpe-6U-L3n" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="7pt-5D-lJD"/>
+                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="centerY" secondItem="Ogh-lU-sPL" secondAttribute="centerY" id="7rt-tK-05l"/>
+                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="leading" secondItem="Ogh-lU-sPL" secondAttribute="trailing" constant="15" id="BWC-BA-ECj"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="top" secondItem="Jpe-6U-L3n" secondAttribute="bottom" constant="8" id="FRi-ly-r6K"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="GKQ-CW-JC5"/>
                                             <constraint firstItem="Jpe-6U-L3n" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="GXE-mr-Pli"/>
@@ -113,7 +127,6 @@
                                 <viewLayoutGuide key="safeArea" id="Loe-lt-MwF"/>
                                 <connections>
                                     <outlet property="leftButton" destination="Jpe-6U-L3n" id="ghB-I8-SKk"/>
-                                    <outlet property="rightButton" destination="fjR-Bh-1q4" id="ro4-KR-i2g"/>
                                     <outlet property="subtitleLabel" destination="aBf-PW-p5z" id="xA7-NM-mYX"/>
                                     <outlet property="titleLabel" destination="ePM-y5-lDE" id="CMa-7J-MyV"/>
                                 </connections>
@@ -177,12 +190,14 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="kq5-QA-Okj" id="bpo-P0-sYV"/>
+                        <outlet property="chartsButton" destination="Ogh-lU-sPL" id="ZdK-FO-mIb"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
                         <outlet property="createSprintButton" destination="Wcp-ev-KnK" id="daE-Gb-K8C"/>
                         <outlet property="headerView" destination="Rfn-qH-ddK" id="zts-nc-UUT"/>
                         <outlet property="placeholderContainer" destination="MG5-iM-CHH" id="N37-uL-dWc"/>
                         <outlet property="progressBar" destination="n2E-og-p5R" id="qiV-v9-HZL"/>
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
+                        <outlet property="sprintsButton" destination="fjR-Bh-1q4" id="gPh-hk-ARw"/>
                         <outlet property="waterControlViewContainer" destination="nTA-3z-kRg" id="PDv-Dg-fQy"/>
                         <segue destination="m5L-p8-Gva" kind="presentation" identifier="ShowHabitEditor" modalTransitionStyle="coverVertical" id="c90-3s-KUG"/>
                         <segue destination="3ji-X3-ILJ" kind="presentation" identifier="ShowTargetEditor" modalTransitionStyle="coverVertical" id="xpM-BJ-OZs"/>
@@ -198,7 +213,7 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="nsd-BC-zjE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEe-vE-BcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="207" y="615"/>
+            <point key="canvasLocation" x="193" y="648"/>
         </scene>
         <!--Charts-->
         <scene sceneID="fdY-yB-8SB">
@@ -206,7 +221,15 @@
                 <viewControllerPlaceholder storyboardName="Charts" id="slG-Si-CNb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFD-u6-Pif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="394" y="569"/>
+            <point key="canvasLocation" x="351" y="628"/>
+        </scene>
+        <!--Sprints-->
+        <scene sceneID="clW-OS-76c">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Sprints" id="0dA-DY-rZL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BTo-eJ-kaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="502" y="608"/>
         </scene>
         <!--HabitCreationViewController-->
         <scene sceneID="yk7-MD-D6w">
@@ -214,7 +237,7 @@
                 <viewControllerPlaceholder storyboardName="SprintCreation" referencedIdentifier="HabitCreationViewController" id="m5L-p8-Gva" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wFO-qL-jew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-512" y="569"/>
+            <point key="canvasLocation" x="-691" y="628"/>
         </scene>
         <!--SprintCreation-->
         <scene sceneID="1wb-V5-OWQ">
@@ -230,7 +253,7 @@
                 <viewControllerPlaceholder storyboardName="SprintCreation" referencedIdentifier="TargetCreationViewController" id="3ji-X3-ILJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrT-c7-zcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-285" y="615"/>
+            <point key="canvasLocation" x="-323" y="648"/>
         </scene>
         <!--WaterControl-->
         <scene sceneID="qbj-bi-7qr">
@@ -458,6 +481,7 @@
     </scenes>
     <resources>
         <image name="chart" width="28" height="28"/>
+        <image name="charts" width="20" height="20"/>
         <image name="settings" width="20" height="20"/>
     </resources>
 </document>
