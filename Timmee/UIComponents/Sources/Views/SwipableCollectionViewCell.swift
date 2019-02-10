@@ -8,19 +8,25 @@
 
 import UIKit
 
-struct SwipeCollectionAction {
-    let icon: UIImage
-    let tintColor: UIColor
-    let action: (IndexPath) -> Void
+public struct SwipeCollectionAction {
+    public let icon: UIImage
+    public let tintColor: UIColor
+    public let action: (IndexPath) -> Void
+    
+    public init(icon: UIImage, tintColor: UIColor, action: @escaping (IndexPath) -> Void) {
+        self.icon = icon
+        self.tintColor = tintColor
+        self.action = action
+    }
 }
 
-protocol SwipableCollectionViewCellActionsProvider: class {
+public protocol SwipableCollectionViewCellActionsProvider: class {
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction]
 }
 
-class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
+open class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
     
-    weak var actionsProvider: SwipableCollectionViewCellActionsProvider?
+    public weak var actionsProvider: SwipableCollectionViewCellActionsProvider?
     
     private var actionButtonsContainer: UIView?
     private var actionButtons: [UIButton] = []
@@ -35,7 +41,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
         return recognizer
     }()
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         addTapGestureRecognizer()
         addPanGestureRecognizer()
@@ -43,7 +49,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
         isExclusiveTouch = true
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addTapGestureRecognizer()
         addPanGestureRecognizer()
@@ -51,7 +57,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
         isExclusiveTouch = true
     }
     
-    override func prepareForReuse() {
+    override open func prepareForReuse() {
         super.prepareForReuse()
         currentSwipeOffset = 0
         
@@ -145,7 +151,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
             actionButtonsContainer!.addSubview(button)
             button.top().toSuperview()
             button.bottom().toSuperview()
-            button.width(frame.height * 1.5)
+            button.width(64)//(frame.height * 1.5)
             if index == 0 {
                 button.leading().toSuperview()
             } else {
@@ -188,7 +194,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
         action.action(indexPath)
     }
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let actionsViewBounds = actionButtonsContainer?.bounds ?? .zero
         let fullFrame = CGRect(x: bounds.width, y: 0, width: actionsViewBounds.width, height: actionsViewBounds.height)
         
@@ -217,7 +223,7 @@ class SwipableCollectionViewCell: BaseRoundedCollectionViewCell {
 // MARK: - Show/Hide
 extension SwipableCollectionViewCell {
     
-    func show(animated: Bool) {
+    public func show(animated: Bool) {
         collectionView?.isUserInteractionEnabled = false
         UIView.animate(withDuration: animated ? 0.1 : 0, animations: {
             guard let container = self.actionButtonsContainer else { return }
@@ -230,7 +236,7 @@ extension SwipableCollectionViewCell {
         }
     }
     
-    func hide(animated: Bool = false) {
+    public func hide(animated: Bool = false) {
         panGestureRecognizer.isEnabled = false
         panGestureRecognizer.isEnabled = true
         collectionView?.isUserInteractionEnabled = false
@@ -266,7 +272,7 @@ extension SwipableCollectionViewCell {
 
 extension SwipableCollectionViewCell: UIGestureRecognizerDelegate {
     
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panRecognizer.translation(in: self)
             return containsActions
@@ -279,7 +285,7 @@ extension SwipableCollectionViewCell: UIGestureRecognizerDelegate {
         return false
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return !(gestureRecognizer is UIPanGestureRecognizer) && !(gestureRecognizer is UIPanGestureRecognizer && otherGestureRecognizer is UITapGestureRecognizer)
     }
     
@@ -305,7 +311,7 @@ private extension UICollectionView {
 
 extension UICollectionView {
     
-    func hideSwipedCell() {
+    public func hideSwipedCell() {
         swipedCell?.hide()
     }
     

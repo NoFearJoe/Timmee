@@ -60,4 +60,22 @@
 			one = "%lu day left";
 		};
 	};
+	"n_habits" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "%lu habits";
+			one = "%lu habit";
+		};
+	};
+	"n_goals" = {
+		"NSStringLocalizedFormatKey" = "%#@n@";
+		n = {
+			"NSStringFormatValueTypeKey" = lu;
+			"NSStringFormatSpecTypeKey" = "NSStringPluralRuleType";
+			other = "%lu goals";
+			one = "%lu goal";
+		};
+	};
 }

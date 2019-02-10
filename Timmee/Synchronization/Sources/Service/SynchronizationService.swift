@@ -28,6 +28,7 @@ public final class AgileeSynchronizationService: SynchronizationService {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
+        settings.isPersistenceEnabled = false
         db.settings = settings
     }
     
@@ -51,9 +52,9 @@ public final class AgileeSynchronizationService: SynchronizationService {
         guard synchronizationEnabled else { completion?(false); return }
         guard !isSynchronizationInProgress else { completion?(false); return }
         isSynchronizationInProgress = true
-        pull { [weak self] success in
+        pull { [weak self] success, deletedEntities in
             guard let self = self, success else { completion?(false); return }
-            self.push(completion: { success in
+            self.push(deletedEntities: deletedEntities, completion: { success in
                 self.isSynchronizationInProgress = false
                 completion?(success)
             })
@@ -64,9 +65,9 @@ public final class AgileeSynchronizationService: SynchronizationService {
 
 private extension AgileeSynchronizationService {
     
-    func pull(completion: @escaping (Bool) -> Void) {
+    func pull(completion: @escaping (Bool, DeletedEntities) -> Void) {
         guard let user = authorizationService.authorizedUser else {
-            completion(false)
+            completion(false, DeletedEntities())
             return
         }
         
@@ -76,20 +77,22 @@ private extension AgileeSynchronizationService {
         
         var synchronizationActions: [(NSManagedObjectContext) -> Void] = []
         
+        var deletedEntities = DeletedEntities()
+        
         dispatchGroup.enter() // Enter user document
         userDocument.getDocument { snapshot, error in
             if error != nil {
-                completion(false)
+                completion(false, deletedEntities)
             } else {
                 let sprintsCollection = userDocument.collection("sprints")
                 dispatchGroup.enter() // Enter sprint document
                 sprintsCollection.getDocuments(completion: { sprintSnapshot, error in
                     // Sprints save
                     synchronizationActions.append({ context in
-                        self.syncCollection(context: context,
-                                            data: sprintSnapshot?.documents.map { $0.data() } ?? [],
-                                            entityType: SprintEntity.self,
-                                            parentEntityID: nil)
+                        deletedEntities.sprints = self.syncCollection(context: context,
+                                                                      data: sprintSnapshot?.documents.map { $0.data() } ?? [],
+                                                                      entityType: SprintEntity.self,
+                                                                      parentEntityID: nil)
                     })
                     
                     sprintSnapshot?.documents.forEach { sprintSnapshot in
@@ -99,10 +102,11 @@ private extension AgileeSynchronizationService {
                         habitsCollection.getDocuments(completion: { habitsSnapshot, error in
                             // Habits save
                             synchronizationActions.append({ context in
-                                self.syncCollection(context: context,
-                                                    data: habitsSnapshot?.documents.map { $0.data() } ?? [],
-                                                    entityType: HabitEntity.self,
-                                                    parentEntityID: sprintID)
+                                let deletedHabitIDs = self.syncCollection(context: context,
+                                                                          data: habitsSnapshot?.documents.map { $0.data() } ?? [],
+                                                                          entityType: HabitEntity.self,
+                                                                          parentEntityID: sprintID)
+                                deletedEntities.habits.append((sprintID, deletedHabitIDs))
                             })
                             dispatchGroup.leave() // Leave habits document
                         })
@@ -112,10 +116,11 @@ private extension AgileeSynchronizationService {
                         goalsCollection.getDocuments(completion: { goalsSnapshot, error in
                             // Goals save
                             synchronizationActions.append({ context in
-                                self.syncCollection(context: context,
-                                                    data: goalsSnapshot?.documents.map { $0.data() } ?? [],
-                                                    entityType: GoalEntity.self,
-                                                    parentEntityID: sprintID)
+                                let deletedGoalIDs = self.syncCollection(context: context,
+                                                                         data: goalsSnapshot?.documents.map { $0.data() } ?? [],
+                                                                         entityType: GoalEntity.self,
+                                                                         parentEntityID: sprintID)
+                                deletedEntities.goals.append((sprintID, deletedGoalIDs))
                             })
                             
                             goalsSnapshot?.documents.forEach { goalSnapshot in
@@ -125,10 +130,11 @@ private extension AgileeSynchronizationService {
                                 stagesCollection.getDocuments(completion: { stagesSnapshot, error in
                                     // Stages save
                                     synchronizationActions.append({ context in
-                                        self.syncCollection(context: context,
-                                                            data: stagesSnapshot?.documents.map { $0.data() } ?? [],
-                                                            entityType: SubtaskEntity.self,
-                                                            parentEntityID: goalID)
+                                        let deletedStageIDs = self.syncCollection(context: context,
+                                                                                  data: stagesSnapshot?.documents.map { $0.data() } ?? [],
+                                                                                  entityType: SubtaskEntity.self,
+                                                                                  parentEntityID: goalID)
+                                        deletedEntities.stages.append((sprintID, goalID, deletedStageIDs))
                                     })
                                     dispatchGroup.leave() // Leave stages document
                                 })
@@ -159,7 +165,7 @@ private extension AgileeSynchronizationService {
             
             dispatchGroup.notify(queue: .main) {
                 guard !synchronizationActions.isEmpty else {
-                    completion(true)
+                    completion(true, deletedEntities)
                     return
                 }
                 
@@ -169,18 +175,20 @@ private extension AgileeSynchronizationService {
                     }
                     save()
                 }, completion: { success in
-                    completion(success)
+                    completion(success, deletedEntities)
                 })
             }
         }
     }
     
+    @discardableResult
     func syncCollection<T: NSManagedObject & ModifiableEntity>(context: NSManagedObjectContext,
                                                                data: [[String: Any]],
                                                                entityType: T.Type,
-                                                               parentEntityID: String?) {
+                                                               parentEntityID: String?) -> [String] {
         let cachedEntities = (T.request() as FetchRequest<T>).execute(context: context)
         let locallyDeletedEntities = (LocallyDeletedEntity.request() as FetchRequest<LocallyDeletedEntity>).execute(context: context)
+        var deletedEntityIDs: [String] = []
         if T.self is IdentifiableEntity.Type {
             let cachedEntitiesIDs = cachedEntities.compactMap { ($0 as? IdentifiableEntity)?.id }
             let remoteEntitiesIDs = data.map { $0["id"] as? String }
@@ -197,6 +205,7 @@ private extension AgileeSynchronizationService {
                 }
                 guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
                 context.delete(cachedEntity)
+                id.map { deletedEntityIDs.append($0) }
                 
                 removeNotificationsForRemovedEntity(entity: cachedEntity)
             }
@@ -205,6 +214,7 @@ private extension AgileeSynchronizationService {
                 // Если существует сущность, помоченная как удаленная, то удаляем ее, а новую не добавляем
                 if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
                     context.delete(deletedEntity)
+                    id.map { deletedEntityIDs.append($0) }
                     return
                 }
                 let entity = try? context.create() as T
@@ -237,7 +247,7 @@ private extension AgileeSynchronizationService {
                     if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName }) {
                         context.delete(deletedEntity)
                     }
-                    guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
+                    guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return deletedEntityIDs }
                     context.delete(cachedEntity)
                     removeNotificationsForRemovedEntity(entity: cachedEntity)
                 }
@@ -245,7 +255,7 @@ private extension AgileeSynchronizationService {
                 // Inserted
                 if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName }) {
                     context.delete(deletedEntity)
-                    return
+                    return deletedEntityIDs
                 }
                 let entity = try? context.create() as T
                 (entity as? DictionaryDecodable)?.decode(firstEntityData)
@@ -253,6 +263,8 @@ private extension AgileeSynchronizationService {
                 scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
             }
         }
+        
+        return deletedEntityIDs
     }
     
     func addRelationToParent(entity: NSManagedObject?, parentEntityID: String?, context: NSManagedObjectContext) {
@@ -302,19 +314,17 @@ private extension AgileeSynchronizationService {
         }
     }
     
-    func push(completion: @escaping (Bool) -> Void) {
+    func push(deletedEntities: DeletedEntities, completion: @escaping (Bool) -> Void) {
         guard let user = authorizationService.authorizedUser else {
             completion(false)
             return
         }
         
-        let batch = Firestore.firestore().batch()
-        
         let userDocument = Firestore.firestore().collection("user").document("\(user.id)")
-        
-        batch.deleteDocument(userDocument)
-        
-        let sprints = sprintsService.fetchSprintEntitiesInBackground()
+            
+        let batch = Firestore.firestore().batch()
+
+        let sprints = self.sprintsService.fetchSprintEntitiesInBackground()
         
         sprints.forEach { sprint in
             guard let sprintID = sprint.id else { return }
@@ -324,14 +334,14 @@ private extension AgileeSynchronizationService {
             batch.setData(sprint.encode(), forDocument: sprintDocument)
             
             let habitsCollection = sprintDocument.collection("habits")
-            let habits = habitsService.fetchHabitEntitiesInBackground(sprintID: sprintID)
+            let habits = self.habitsService.fetchHabitEntitiesInBackground(sprintID: sprintID)
             habits.forEach { habit in
                 guard let habitID = habit.id else { return }
                 batch.setData(habit.encode(), forDocument: habitsCollection.document(habitID))
             }
             
             let goalsCollection = sprintDocument.collection("goals")
-            let goals = goalsService.fetchGoalEntitiesInBackground(sprintID: sprintID)
+            let goals = self.goalsService.fetchGoalEntitiesInBackground(sprintID: sprintID)
             goals.forEach { goal in
                 guard let goalID = goal.id else { return }
                 batch.setData(goal.encode(), forDocument: goalsCollection.document(goalID))
@@ -347,15 +357,53 @@ private extension AgileeSynchronizationService {
             }
         }
         
-        if let waterControl = waterControlService.fetchWaterControlEntityInBakground() {
+        if let waterControl = self.waterControlService.fetchWaterControlEntityInBakground() {
             let waterControlDocument = userDocument.collection("water_control").document("water_control")
             
             batch.setData(waterControl.encode(), forDocument: waterControlDocument)
         }
+        
+        pushDeletedEntities(deletedEntities, batch: batch, userDocument: userDocument)
         
         batch.commit { error in
             completion(error == nil)
         }
     }
     
+    // TODO: Не удаляются вложенные объекты - если удалился спринт, то в deletedEntities не попадут привычки и цели...
+    private func pushDeletedEntities(_ deletedEntities: DeletedEntities, batch: WriteBatch, userDocument: DocumentReference) {
+        deletedEntities.sprints.forEach { sprintID in
+            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            batch.deleteDocument(sprintDocument)
+        }
+        
+        deletedEntities.habits.forEach { sprintID, habits in
+            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            habits.forEach { habitID in
+                batch.deleteDocument(sprintDocument.collection("habits").document(habitID))
+            }
+        }
+        
+        deletedEntities.goals.forEach { sprintID, goals in
+            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            goals.forEach { goalID in
+                batch.deleteDocument(sprintDocument.collection("goals").document(goalID))
+            }
+        }
+        
+        deletedEntities.stages.forEach { sprintID, goalID, stages in
+            let goalDocument = userDocument.collection("sprints").document(sprintID).collection("goals").document(goalID)
+            stages.forEach { stageID in
+                batch.deleteDocument(goalDocument.collection("stages").document(stageID))
+            }
+        }
+    }
+    
+}
+
+struct DeletedEntities {
+    var sprints: [String] = []
+    var habits: [(String, [String])] = []
+    var goals: [(String, [String])] = []
+    var stages: [(String, String, [String])] = []
 }

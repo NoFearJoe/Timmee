@@ -316,3 +316,6 @@
 "purchase_pro_version_error_try_again" = "Не удалось купить PRO версию. Попробуйте снова";
 
 "my_sprints" = "Мои спринты";
+"past_sprint" = "Прошедший";
+"current_sprint" = "Текущий";
+"future_sprint" = "Будущий";

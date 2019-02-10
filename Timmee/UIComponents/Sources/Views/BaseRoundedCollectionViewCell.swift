@@ -8,24 +8,24 @@
 
 import UIKit
 
-class BaseRoundedCollectionViewCell: UICollectionViewCell {
+open class BaseRoundedCollectionViewCell: UICollectionViewCell {
     
-    var roundedCorners: UIRectCorner = .allCorners {
+    open var roundedCorners: UIRectCorner = .allCorners {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    var fillColor: UIColor = AppTheme.current.foregroundColor {
+    open var fillColor: UIColor = .white {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    override func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         
-        layer.cornerRadius = AppTheme.current.cornerRadius
+        layer.cornerRadius = 12
     }
     
 //    override func draw(_ rect: CGRect) {

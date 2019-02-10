@@ -20,6 +20,8 @@ public class Sprint {
     public var endDate: Date
     public var isReady: Bool
     public var notifications: Notifications
+    public var habitsCount: Int
+    public var goalsCount: Int
     
     public init(sprintEntity: SprintEntity) {
         id = sprintEntity.id!
@@ -29,6 +31,8 @@ public class Sprint {
         endDate = sprintEntity.endDate! as Date
         isReady = sprintEntity.isReady
         notifications = Notifications(sprint: sprintEntity)
+        habitsCount = sprintEntity.habits?.count ?? 0
+        goalsCount = sprintEntity.goals?.count ?? 0
     }
     
     public init(id: String,
@@ -45,6 +49,8 @@ public class Sprint {
         self.endDate = endDate
         self.isReady = isReady
         self.notifications = notifications
+        self.habitsCount = 0
+        self.goalsCount = 0
     }
     
     public var copy: Sprint {
