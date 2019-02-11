@@ -24,14 +24,14 @@ extension SprintInteractorTrait {
     func getCurrentSprint() -> Sprint? {
         let existingSprints = sprintsService.fetchSprints()
         return existingSprints.first(where: { sprint in
-            sprint.startDate <= Date.now.startOfDay && sprint.endDate >= Date.now.endOfDay
+            sprint.startDate <= Date.now.startOfDay && sprint.endDate >= Date.now.endOfDay && sprint.isReady
         })
     }
     
     func getNextSprint() -> Sprint? {
         let existingSprints = sprintsService.fetchSprints()
         return existingSprints.first(where: { sprint in
-            sprint.startDate >= Date.now.endOfDay
+            sprint.startDate >= Date.now.endOfDay && sprint.isReady
         })
     }
     

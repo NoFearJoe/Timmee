@@ -13,7 +13,7 @@ import class Foundation.NSOrderedSet
 import class Foundation.NSKeyedUnarchiver
 import class CoreLocation.CLLocation
 
-public class Habit {
+public class Habit: Copyable {
     
     public var id: String
     public var title: String
@@ -165,6 +165,14 @@ extension Habit.Value {
     
 }
 
+extension Habit.Value: Equatable {
+    
+    public static func == (lhs: Habit.Value, rhs: Habit.Value) -> Bool {
+        return lhs.amount == rhs.amount && lhs.units == rhs.units
+    }
+    
+}
+
 extension Habit: Hashable {
     
     public static func ==(lhs: Habit, rhs: Habit) -> Bool {
@@ -173,6 +181,22 @@ extension Habit: Hashable {
     
     public var hashValue: Int {
         return id.hashValue
+    }
+    
+}
+
+extension Habit: CustomEquatable {
+    
+    public func isEqual(to item: Habit) -> Bool {
+        return id == item.id &&
+            title == item.title &&
+            note == item.note &&
+            link == item.link &&
+            value == item.value &&
+            notificationDate == item.notificationDate &&
+            repeatEndingDate == item.repeatEndingDate &&
+            dueDays == item.dueDays &&
+            doneDates == item.doneDates
     }
     
 }

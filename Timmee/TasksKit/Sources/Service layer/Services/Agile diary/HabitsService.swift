@@ -28,6 +28,7 @@ public protocol HabitsManager: class {
 public protocol HabitsObserverProvider: class {
     func habitsObserver(sprintID: String, day: DayUnit?) -> CacheObserver<Habit>
     func habitsBySprintObserver(excludingSprintWithID sprintID: String) -> CacheObserver<Habit>
+    func habitsScope(sprintID: String, day: DayUnit?) -> Scope<HabitEntity, Habit>
 }
 
 public protocol HabitEntitiesProvider: class {
@@ -201,6 +202,23 @@ extension HabitsService: HabitsObserverProvider {
         }
         
         return habitsObserver
+    }
+    
+    public func habitsScope(sprintID: String, day: DayUnit?) -> Scope<HabitEntity, Habit> {
+        let predicate: NSPredicate
+        if let day = day {
+            predicate = NSPredicate(format: "sprint.id = %@ AND dueDays CONTAINS[cd] %@", sprintID, day.string)
+        } else {
+            predicate = NSPredicate(format: "sprint.id = %@", sprintID)
+        }
+        let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
+        let context = Database.localStorage.readContext
+        
+        let scope = Scope<HabitEntity, Habit>.init(context: context,
+                                                   baseRequest: request,
+                                                   mapping: { Habit(habit: $0) })
+        
+        return scope
     }
     
 }

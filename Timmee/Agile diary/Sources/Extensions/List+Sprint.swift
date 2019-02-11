@@ -12,7 +12,7 @@ import Workset
 extension Sprint {
     
     convenience init(number: Int) {
-        self.init(id: "sprint_\(number)",
+        self.init(id: RandomStringGenerator.randomString(length: 24),
                   number: number,
                   title: "",
                   startDate: Date.now.startOfDay,

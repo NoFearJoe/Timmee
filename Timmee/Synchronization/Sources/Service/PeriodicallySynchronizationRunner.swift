@@ -13,6 +13,7 @@ public protocol PeriodicallySynchronizationRunnerDelegate: AnyObject {
     func didFinishSynchronization()
 }
 
+// TODO: Не делать синхронзацию во время создания спринта
 public final class PeriodicallySynchronizationRunner {
     
     public static let willStartSynchronizationNotificationName = "willStartSynchronization"

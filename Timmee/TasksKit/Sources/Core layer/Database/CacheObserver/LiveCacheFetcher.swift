@@ -10,15 +10,18 @@ import CoreData
 import Dwifft
 
 public struct ScopeDelegate<Entity: Equatable> {
-    let onInitialFetch: ([String: [Entity]]) -> Void
-    let onEntitiesCountChange: (Int) -> Void
-    let onChanges: ([CoreDataChange]) -> Void
-    public init(onInitialFetch: @escaping ([String: [Entity]]) -> Void,
-                onEntitiesCountChange: @escaping (Int) -> Void,
-                onChanges: @escaping ([CoreDataChange]) -> Void) {
+    let onInitialFetch: (([String: [Entity]]) -> Void)?
+    let onEntitiesCountChange: ((Int) -> Void)?
+    let onChanges: (([CoreDataChange]) -> Void)?
+    let onBatchUpdatesCompleted: (() -> Void)?
+    public init(onInitialFetch: (([String: [Entity]]) -> Void)? = nil,
+                onEntitiesCountChange: ((Int) -> Void)? = nil,
+                onChanges: (([CoreDataChange]) -> Void)? = nil,
+                onBatchUpdatesCompleted: (() -> Void)? = nil) {
         self.onInitialFetch = onInitialFetch
         self.onEntitiesCountChange = onEntitiesCountChange
         self.onChanges = onChanges
+        self.onBatchUpdatesCompleted = onBatchUpdatesCompleted
     }
 }
 
@@ -72,8 +75,8 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
     public func fetch() {
         guard let fetchResult = try? self.context.fetch(self.baseRequest) else {
             self.currentSectionedEntities = [:]
-            self.delegate.onInitialFetch([:])
-            self.delegate.onEntitiesCountChange(0)
+            self.delegate.onInitialFetch?([:])
+            self.delegate.onEntitiesCountChange?(0)
             self.subscriber?.reloadData()
             return
         }
@@ -98,8 +101,8 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
                 DispatchQueue.main.async {
                     self.currentSectionedEntities = sectionedEntities
                     self.currentSectionedValues = sectionedValues
-                    self.delegate.onInitialFetch(sectionedEntities)
-                    self.delegate.onEntitiesCountChange(self.totalObjectsCount())
+                    self.delegate.onInitialFetch?(sectionedEntities)
+                    self.delegate.onEntitiesCountChange?(self.totalObjectsCount())
                     self.subscriber?.reloadData()
                 }
             } else {
@@ -109,9 +112,10 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
                     self.subscriber?.prepareToProcessChanges()
                     self.currentSectionedEntities = sectionedEntities
                     self.currentSectionedValues = sectionedValues
-                    self.delegate.onEntitiesCountChange(self.totalObjectsCount())
+                    self.delegate.onEntitiesCountChange?(self.totalObjectsCount())
                     self.subscriber?.processChanges(coreDataChanges) {
-                        self.delegate.onChanges(coreDataChanges)
+                        self.delegate.onChanges?(coreDataChanges)
+                        self.delegate.onBatchUpdatesCompleted?()
                     }
                 }
             }

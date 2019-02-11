@@ -34,9 +34,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     private var waterControlViewController: WaterControlViewController!
     
     private var currentSection = SprintSection.habits
-    
-    private var cacheObserver: CacheObserver<Task>?
-    
+        
     private var synchronizationDidFinishObservation: Any?
     
     var sprint: Sprint! {

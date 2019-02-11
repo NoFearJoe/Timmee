@@ -13,7 +13,7 @@ import class Foundation.NSOrderedSet
 import class Foundation.NSKeyedUnarchiver
 import class CoreLocation.CLLocation
 
-public class Goal {
+public class Goal: Copyable {
     
     public var id: String
     public var title: String
@@ -74,6 +74,18 @@ extension Goal: Hashable {
     
     public var hashValue: Int {
         return id.hashValue
+    }
+    
+}
+
+extension Goal: CustomEquatable {
+    
+    public func isEqual(to item: Goal) -> Bool {
+        return id == item.id &&
+            title == item.title &&
+            note == item.note &&
+            isDone == item.isDone &&
+            stages == item.stages
     }
     
 }

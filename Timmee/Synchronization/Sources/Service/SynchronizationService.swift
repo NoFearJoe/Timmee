@@ -18,6 +18,8 @@ public protocol SynchronizationService: AnyObject {
     func sync(completion: ((Bool) -> Void)?)
 }
 
+// TODO: Обработать ситуацию, когда после синхронизации может появиться несколько одинаковых спринтов (с одинаковыми number или пересекающимися startDate-endDate). Надо в этом случае либо предлагать пользователю выбрать актуальный спринт или смержить их
+
 public final class AgileeSynchronizationService: SynchronizationService {
     
     public static let shared = AgileeSynchronizationService()
@@ -106,13 +108,16 @@ private extension AgileeSynchronizationService {
                                                                           data: habitsSnapshot?.documents.map { $0.data() } ?? [],
                                                                           entityType: HabitEntity.self,
                                                                           parentEntityID: sprintID)
-                                deletedEntities.habits.append((sprintID, deletedHabitIDs))
+                                if !deletedHabitIDs.isEmpty {
+                                    deletedEntities.habits.append((sprintID, deletedHabitIDs))
+                                }
                             })
                             dispatchGroup.leave() // Leave habits document
                         })
                         
                         let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
                         dispatchGroup.enter() // Enter goals document
+                        
                         goalsCollection.getDocuments(completion: { goalsSnapshot, error in
                             // Goals save
                             synchronizationActions.append({ context in
@@ -120,7 +125,9 @@ private extension AgileeSynchronizationService {
                                                                          data: goalsSnapshot?.documents.map { $0.data() } ?? [],
                                                                          entityType: GoalEntity.self,
                                                                          parentEntityID: sprintID)
-                                deletedEntities.goals.append((sprintID, deletedGoalIDs))
+                                if !deletedGoalIDs.isEmpty {
+                                    deletedEntities.goals.append((sprintID, deletedGoalIDs))
+                                }
                             })
                             
                             goalsSnapshot?.documents.forEach { goalSnapshot in
@@ -134,7 +141,9 @@ private extension AgileeSynchronizationService {
                                                                                   data: stagesSnapshot?.documents.map { $0.data() } ?? [],
                                                                                   entityType: SubtaskEntity.self,
                                                                                   parentEntityID: goalID)
-                                        deletedEntities.stages.append((sprintID, goalID, deletedStageIDs))
+                                        if !deletedStageIDs.isEmpty {
+                                            deletedEntities.stages.append((sprintID, goalID, deletedStageIDs))
+                                        }
                                     })
                                     dispatchGroup.leave() // Leave stages document
                                 })
@@ -205,7 +214,6 @@ private extension AgileeSynchronizationService {
                 }
                 guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
                 context.delete(cachedEntity)
-                id.map { deletedEntityIDs.append($0) }
                 
                 removeNotificationsForRemovedEntity(entity: cachedEntity)
             }
@@ -215,6 +223,7 @@ private extension AgileeSynchronizationService {
                 if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
                     context.delete(deletedEntity)
                     id.map { deletedEntityIDs.append($0) }
+                    removeNotificationsForRemovedEntity(entity: deletedEntity)
                     return
                 }
                 let entity = try? context.create() as T
@@ -309,6 +318,7 @@ private extension AgileeSynchronizationService {
         } else if let sprintEntity = entity as? SprintEntity {
             let sprint = Sprint(sprintEntity: sprintEntity)
             SprintSchedulerService().removeSprintNotifications(sprint: sprint) {}
+            // TODO: Remove notifications for habits
         } else if entity is WaterControlEntity {
             WaterControlSchedulerService().removeWaterControlNotifications() {}
         }
@@ -370,11 +380,35 @@ private extension AgileeSynchronizationService {
         }
     }
     
-    // TODO: Не удаляются вложенные объекты - если удалился спринт, то в deletedEntities не попадут привычки и цели...
     private func pushDeletedEntities(_ deletedEntities: DeletedEntities, batch: WriteBatch, userDocument: DocumentReference) {
+        let dispatchGroup = DispatchGroup()
+        
         deletedEntities.sprints.forEach { sprintID in
             let sprintDocument = userDocument.collection("sprints").document(sprintID)
             batch.deleteDocument(sprintDocument)
+            
+            dispatchGroup.enter()
+            sprintDocument.collection("habits").getDocuments(completion: { documents, error in
+                documents?.documents.forEach {
+                    batch.deleteDocument($0.reference)
+                }
+                dispatchGroup.leave()
+            })
+            dispatchGroup.enter()
+            sprintDocument.collection("goals").getDocuments(completion: { documents, error in
+                documents?.documents.forEach {
+                    batch.deleteDocument($0.reference)
+                    
+                    dispatchGroup.enter()
+                    $0.reference.collection("stages").getDocuments(completion: { documents, error in
+                        documents?.documents.forEach {
+                            batch.deleteDocument($0.reference)
+                        }
+                        dispatchGroup.leave()
+                    })
+                }
+                dispatchGroup.leave()
+            })
         }
         
         deletedEntities.habits.forEach { sprintID, habits in
@@ -387,7 +421,16 @@ private extension AgileeSynchronizationService {
         deletedEntities.goals.forEach { sprintID, goals in
             let sprintDocument = userDocument.collection("sprints").document(sprintID)
             goals.forEach { goalID in
-                batch.deleteDocument(sprintDocument.collection("goals").document(goalID))
+                let goalDocument = sprintDocument.collection("goals").document(goalID)
+                batch.deleteDocument(goalDocument)
+                
+                dispatchGroup.enter()
+                goalDocument.collection("stages").getDocuments(completion: { documents, error in
+                    documents?.documents.forEach {
+                        batch.deleteDocument($0.reference)
+                    }
+                    dispatchGroup.leave()
+                })
             }
         }
         
@@ -397,6 +440,8 @@ private extension AgileeSynchronizationService {
                 batch.deleteDocument(goalDocument.collection("stages").document(stageID))
             }
         }
+        
+        dispatchGroup.wait()
     }
     
 }

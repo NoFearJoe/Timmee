@@ -58,8 +58,6 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
                 }
             }
         }
-        // TODO: Постоянно появляется ошибка - неверно обновляется таблица
-        // FIXME
         tableView.endUpdates()
         
         completion()

@@ -52,13 +52,21 @@
                                     <outlet property="delegate" destination="jfw-kp-g5K" id="4Bu-iz-WTc"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65w-8Y-AJV">
+                                <rect key="frame" x="0.0" y="116" width="375" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="65w-8Y-AJV" firstAttribute="top" secondItem="s94-4C-Vgv" secondAttribute="top" id="2Y8-V3-Ct0"/>
+                            <constraint firstItem="s94-4C-Vgv" firstAttribute="bottom" secondItem="65w-8Y-AJV" secondAttribute="bottom" id="Dr4-de-A6s"/>
                             <constraint firstAttribute="bottom" secondItem="Txz-tP-QTR" secondAttribute="bottom" id="Hq6-L3-VvT"/>
+                            <constraint firstItem="65w-8Y-AJV" firstAttribute="leading" secondItem="s94-4C-Vgv" secondAttribute="leading" id="JUZ-3o-ac1"/>
                             <constraint firstItem="Txz-tP-QTR" firstAttribute="leading" secondItem="s94-4C-Vgv" secondAttribute="leading" id="Uqc-xz-nJT"/>
                             <constraint firstItem="s94-4C-Vgv" firstAttribute="trailing" secondItem="Txz-tP-QTR" secondAttribute="trailing" id="e9Z-sM-7ff"/>
                             <constraint firstItem="Txz-tP-QTR" firstAttribute="top" secondItem="s94-4C-Vgv" secondAttribute="top" id="gSt-uS-emG"/>
+                            <constraint firstItem="s94-4C-Vgv" firstAttribute="trailing" secondItem="65w-8Y-AJV" secondAttribute="trailing" id="zR2-Tk-lnf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="s94-4C-Vgv"/>
                     </view>
@@ -72,6 +80,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="placeholderContainer" destination="65w-8Y-AJV" id="oX9-xN-bTm"/>
                         <outlet property="sprintsView" destination="Txz-tP-QTR" id="J7X-ln-OeZ"/>
                         <segue destination="gC0-FD-pCk" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="zVF-te-WU4"/>
                     </connections>

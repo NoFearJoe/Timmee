@@ -10,14 +10,16 @@ import UIKit
 import TasksKit
 import UIComponents
 
-// TOOD: Placeholder
 final class SprintsViewController: BaseViewController, AlertInput {
     
     @IBOutlet private var sprintsView: UICollectionView!
     
-    private let sprintsService = ServicesAssembly.shared.sprintsService
+    @IBOutlet private var placeholderContainer: UIView!
+    private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
-    private var sprints: [Sprint] = []
+    private let sprintsService = ServicesAssembly.shared.sprintsService
+    private let sprintsObserver = ServicesAssembly.shared.sprintsService.sprintsObserver()
+    private var sprintsCacheAdapter: CollectionViewCacheAdapter!
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
@@ -26,37 +28,55 @@ final class SprintsViewController: BaseViewController, AlertInput {
     override func prepare() {
         super.prepare()
         title = "my_sprints".localized
+        sprintsCacheAdapter = CollectionViewCacheAdapter(collectionView: sprintsView)
         sprintsView.register(UINib(nibName: "SprintCell", bundle: nil), forCellWithReuseIdentifier: "SprintCell")
+        setupPlaceholder()
+        setupSprintsObserver()
     }
     
     override func refresh() {
         super.refresh()
-        reloadSprints()
+        sprintsObserver.fetchInitialEntities()
     }
     
     override func setupAppearance() {
         super.setupAppearance()
+        setupPlaceholderAppearance()
     }
     
-    private func reloadSprints() {
-        sprints = sprintsService.fetchSprints()
-        sprintsView.reloadData()
+    private func setupSprintsObserver() {
+        sprintsObserver.setActions(onInitialFetch: nil,
+                                   onItemsCountChange: { [unowned self] count in
+                                       count == 0 ? self.showPlaceholder() : self.hidePlaceholder()
+                                   },
+                                   onItemChange: nil,
+                                   onBatchUpdatesStarted: nil,
+                                   onBatchUpdatesCompleted: nil)
+        sprintsObserver.setMapping { entity in
+            let entity = entity as! SprintEntity
+            return Sprint(sprintEntity: entity)
+        }
+        
+        sprintsObserver.setSubscriber(sprintsCacheAdapter)
     }
     
 }
 
 extension SprintsViewController: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sprintsObserver.numberOfSections()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sprints.count
+        return sprintsObserver.numberOfItems(in: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SprintCell", for: indexPath) as! SprintCell
         cell.actionsProvider = self
-        if let sprint = sprints.item(at: indexPath.item) {
-            cell.configure(sprint: sprint)
-        }
+        let sprint = sprintsObserver.item(at: indexPath)
+        cell.configure(sprint: sprint)
         return cell
     }
     
@@ -65,7 +85,7 @@ extension SprintsViewController: UICollectionViewDataSource {
 extension SprintsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedSprint = sprints.item(at: indexPath.item) else { return }
+        let selectedSprint = sprintsObserver.item(at: indexPath)
     }
     
 }
@@ -73,7 +93,7 @@ extension SprintsViewController: UICollectionViewDelegate {
 extension SprintsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let sprint = sprints.item(at: indexPath.item) else { return .zero }
+        let sprint = sprintsObserver.item(at: indexPath)
         let width = collectionView.bounds.width - (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset.left * 2
         switch sprint.tense {
         case .past:
@@ -88,7 +108,7 @@ extension SprintsViewController: UICollectionViewDelegateFlowLayout {
 extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
     
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction] {
-        guard let sprint = self.sprints.item(at: indexPath.item) else { return [] }
+        let sprint = sprintsObserver.item(at: indexPath)
 
         let removeSprintAction = SwipeCollectionAction(icon: UIImage(named: "trash") ?? UIImage(),
                                                        tintColor: AppTheme.current.colors.wrongElementColor)
@@ -99,7 +119,6 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                     self.view.isUserInteractionEnabled = false
                     self.sprintsService.removeSprint(sprint, completion: { _ in
                         self.view.isUserInteractionEnabled = true
-                        self.reloadSprints() // TODO: Cache observer
                     })
                 }
             }
@@ -127,6 +146,34 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                       case .ok: completion(true)
                       }
                   }
+    }
+    
+}
+
+private extension SprintsViewController {
+    
+    func setupPlaceholder() {
+        placeholderView.setup(into: placeholderContainer)
+        placeholderContainer.isHidden = true
+    }
+    
+    func setupPlaceholderAppearance() {
+        placeholderView.backgroundColor = .clear
+        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
+        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
+        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+    }
+    
+    func showPlaceholder() {
+        placeholderContainer.isHidden = false
+        placeholderView.icon = #imageLiteral(resourceName: "calendar")
+        placeholderView.title = "there_is_no_sprints".localized
+        placeholderView.subtitle = nil
+    }
+    
+    func hidePlaceholder() {
+        placeholderContainer.isHidden = true
     }
     
 }

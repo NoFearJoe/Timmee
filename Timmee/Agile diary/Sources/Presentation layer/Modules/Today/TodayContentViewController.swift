@@ -52,8 +52,8 @@ final class TodayContentViewController: UIViewController {
     let stagesService = ServicesAssembly.shared.subtasksService
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
-    private var habitsCacheObserver: CacheObserver<Habit>?
-    private var goalsCacheObserver: CacheObserver<Goal>?
+    private var habitsCacheObserver: Scope<HabitEntity, Habit>?
+    private var goalsCacheObserver: Scope<GoalEntity, Goal>?
     
     private let targetCellActionsProvider = TodayTargetCellSwipeActionsProvider()
     private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
@@ -171,28 +171,26 @@ private extension TodayContentViewController {
     
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
         goalsCacheObserver = nil
-        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsObserver(sprintID: sprintID, day: DayUnit(weekday: Date.now.weekday))
-        habitsCacheObserver?.setActions(
-            onInitialFetch: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) },
-            onItemsCountChange: { count in self.state = count == 0 ? .empty : .content },
-            onItemChange: nil,
-            onBatchUpdatesStarted: nil,
+        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(sprintID: sprintID, day: DayUnit(weekday: Date.now.weekday))
+        let delegate = ScopeDelegate<Habit>(
+            onInitialFetch: { [unowned self] _ in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) },
+            onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
             onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) })
+        habitsCacheObserver?.setDelegate(delegate)
         habitsCacheObserver?.setSubscriber(cacheAdapter)
-        habitsCacheObserver?.fetchInitialEntities()
+        habitsCacheObserver?.fetch()
     }
     
     func setupGoalsCacheObserver(forSection section: SprintSection, sprintID: String) {
         habitsCacheObserver = nil
-        goalsCacheObserver = ServicesAssembly.shared.goalsService.goalsObserver(sprintID: sprintID)
-        goalsCacheObserver?.setActions(
-            onInitialFetch: { [unowned self] in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) },
-            onItemsCountChange: { count in self.state = count == 0 ? .empty : .content },
-            onItemChange: nil,
-            onBatchUpdatesStarted: nil,
+        goalsCacheObserver = ServicesAssembly.shared.goalsService.goalsScope(sprintID: sprintID)
+        let delegate = ScopeDelegate<Goal>(
+            onInitialFetch: { [unowned self] _ in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) },
+            onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
             onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) })
+        goalsCacheObserver?.setDelegate(delegate)
         goalsCacheObserver?.setSubscriber(cacheAdapter)
-        goalsCacheObserver?.fetchInitialEntities()
+        goalsCacheObserver?.fetch()
     }
     
 }

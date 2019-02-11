@@ -319,3 +319,5 @@
 "past_sprint" = "Прошедший";
 "current_sprint" = "Текущий";
 "future_sprint" = "Будущий";
+
+"are_you_sure_you_want_to_remove_sprint" = "После удаления спринта также удалятся привычки, цели и статистика. Удалить спринт?";

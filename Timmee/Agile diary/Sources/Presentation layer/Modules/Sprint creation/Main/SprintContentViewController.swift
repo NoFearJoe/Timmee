@@ -159,7 +159,8 @@ private extension SprintContentViewController {
         habitsCacheObserver = habitsService.habitsObserver(sprintID: sprintID, day: nil)
         habitsCacheObserver?.setActions(
             onInitialFetch: nil,
-            onItemsCountChange: { count in
+            onItemsCountChange: { [weak self] count in
+                guard let self = self else { return }
                 self.state = count == 0 ? .empty : .content
                 self.delegate?.didChangeItemsCount(in: self.section, to: count)
             },
@@ -174,7 +175,8 @@ private extension SprintContentViewController {
         goalsCacheObserver = goalsService.goalsObserver(sprintID: sprintID)
         goalsCacheObserver?.setActions(
             onInitialFetch: nil,
-            onItemsCountChange: { count in
+            onItemsCountChange: { [weak self] count in
+                guard let self = self else { return }
                 self.state = count == 0 ? .empty : .content
                 self.delegate?.didChangeItemsCount(in: self.section, to: count)
         },
