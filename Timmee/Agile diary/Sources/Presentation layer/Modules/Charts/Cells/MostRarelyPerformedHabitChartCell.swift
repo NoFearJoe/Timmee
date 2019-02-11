@@ -11,9 +11,8 @@ import TasksKit
 
 fileprivate typealias Progress = (done: Int, total: Int, percent: Double)
 
-final class MostRarelyPerformedHabitChartCell: BaseChartCell, SprintInteractorTrait {
+final class MostRarelyPerformedHabitChartCell: BaseChartCell {
     
-    let sprintsService = ServicesAssembly.shared.sprintsService
     let habitsService = ServicesAssembly.shared.habitsService
     
     @IBOutlet private var titleLabel: UILabel! {
@@ -37,9 +36,8 @@ final class MostRarelyPerformedHabitChartCell: BaseChartCell, SprintInteractorTr
         }
     }
     
-    override func update() {
-        guard let currentSprint = getCurrentSprint() else { return }
-        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
+    override func update(sprint: Sprint) {
+        let habits = habitsService.fetchHabits(sprintID: sprint.id)
         
         var progressForHabit: [Habit: Progress] = [:]
         
@@ -47,7 +45,7 @@ final class MostRarelyPerformedHabitChartCell: BaseChartCell, SprintInteractorTr
             progressForHabit[$0] = (0, 0, 0)
         }
         
-        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
+        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
             let repeatDay = DayUnit(weekday: date.weekday)

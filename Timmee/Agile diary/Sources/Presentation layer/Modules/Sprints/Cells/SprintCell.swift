@@ -12,6 +12,9 @@ import UIComponents
 
 final class SprintCell: SwipableCollectionViewCell {
     
+    private let habitsService = ServicesAssembly.shared.habitsService
+    private let goalsService = ServicesAssembly.shared.goalsService
+    
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var tenseLabel: UILabel!
@@ -35,6 +38,16 @@ final class SprintCell: SwipableCollectionViewCell {
             subtitleLabel.text = sprint.startDate.asString(format: "dd.MM.yyyy") + " - " + sprint.endDate.asString(format: "dd.MM.yyyy")
             habitsProgressLabel.isHidden = false
             goalsProgressLabel.isHidden = false
+            
+            let habits = habitsService.fetchHabits(sprintID: sprint.id)
+            let habitsProgress = habits.reduce(0, { $0 + Double($1.doneDates.count).safeDivide(by: Double($1.dueDays.count * Constants.sprintDuration)) }).safeDivide(by: Double(habits.count))
+            habitsProgressLabel.text = "\(Int(habitsProgress * 100))%"
+            habitsProgressLabel.textColor = progressLabelColor(progress: habitsProgress)
+            
+            let goals = goalsService.fetchGoals(sprintID: sprint.id)
+            let goalsProgress = Double(goals.filter { $0.isDone }.count).safeDivide(by: Double(goals.count))
+            goalsProgressLabel.text = "\(Int(goalsProgress * 100))%"
+            goalsProgressLabel.textColor = progressLabelColor(progress: goalsProgress)
         case .current:
             subtitleLabel.text = "remains_n_days".localized(with: Date.now.days(before: sprint.endDate))
             habitsProgressLabel.isHidden = true
@@ -58,7 +71,7 @@ final class SprintCell: SwipableCollectionViewCell {
     
     private func setupAppearance() {
         layer.cornerRadius = 12
-        configureShadow(radius: 10, opacity: 0.2)
+        configureShadow(radius: 8, opacity: 0.1)
         backgroundColor = AppTheme.current.colors.foregroundColor
         separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
         titleLabel.font = AppTheme.current.fonts.medium(26)
@@ -74,7 +87,15 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.font = AppTheme.current.fonts.regular(16)
         goalsCountLabel.textColor = AppTheme.current.colors.inactiveElementColor
         goalsProgressLabel.font = AppTheme.current.fonts.bold(40)
-        goalsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor // TODO: Цвет в зависимости от процента
+        goalsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor
+    }
+    
+    private func progressLabelColor(progress: Double) -> UIColor {
+        switch progress {
+        case ...0.33: return AppTheme.current.colors.wrongElementColor
+        case 0.33...0.66: return AppTheme.current.colors.incompleteElementColor
+        default: return AppTheme.current.colors.selectedElementColor
+        }
     }
     
 }

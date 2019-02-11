@@ -314,3 +314,10 @@
 "wait_until_sync_is_complete" = "Wait until the end of synchronization";
 
 "purchase_pro_version_error_try_again" = "Could not buy PRO version. Try again";
+
+"my_sprints" = "My sprints";
+"past_sprint" = "Completed";
+"current_sprint" = "Current";
+"future_sprint" = "Upcoming";
+
+"are_you_sure_you_want_to_remove_sprint" = "After removing the sprint, habits, goals and statistics will also be deleted. Remove sprint?After removing the sprint, habits, goals and statistics will also be deleted. Remove sprint?";

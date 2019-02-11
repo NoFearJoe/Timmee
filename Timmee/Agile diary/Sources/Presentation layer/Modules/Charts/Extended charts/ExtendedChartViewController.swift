@@ -9,11 +9,12 @@
 import UIKit
 import Charts
 
-class ExtendedChartViewController: BaseViewController, SprintInteractorTrait {
+class ExtendedChartViewController: BaseViewController {
+    
+    var sprint: Sprint?
     
     @IBOutlet private(set) var chartView: BarChartView!
     
-    let sprintsService = ServicesAssembly.shared.sprintsService
     private let waterControlService = ServicesAssembly.shared.waterControlService
     
     override func prepare() {
@@ -27,13 +28,12 @@ class ExtendedChartViewController: BaseViewController, SprintInteractorTrait {
 
 private extension ExtendedChartViewController {
     
-    func refreshWaterControlProgress() {
-        guard let currentSprint = getCurrentSprint() else { return }
+    func refreshWaterControlProgress(sprint: Sprint) {
         guard let waterControl = waterControlService.fetchWaterControl() else { return }
         
         var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []
-        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
+        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
             let drunkVolume = Double((waterControl.drunkVolume[date] ?? 0)) / 1000

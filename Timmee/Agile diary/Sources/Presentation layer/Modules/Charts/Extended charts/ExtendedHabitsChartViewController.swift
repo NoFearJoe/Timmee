@@ -30,8 +30,9 @@ final class ExtendedHabitsChartViewController: ExtendedChartViewController {
     
     override func refresh() {
         super.refresh()
-        refreshHabitsProgress()
-        refreshHabitsDetailsTableView()
+        guard let sprint = sprint else { return }
+        refreshHabitsProgress(sprint: sprint)
+        refreshHabitsDetailsTableView(sprint: sprint)
     }
     
     override func setupAppearance() {
@@ -79,11 +80,10 @@ extension ExtendedHabitsChartViewController: UITableViewDelegate {
 
 private extension ExtendedHabitsChartViewController {
     
-    func refreshHabitsProgress() {
-        guard let currentSprint = getCurrentSprint() else { return }
-        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
+    func refreshHabitsProgress(sprint: Sprint) {
+        let habits = habitsService.fetchHabits(sprintID: sprint.id)
 
-        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
+        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
         var entries: [HabitsChartEntry] = []
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
@@ -104,9 +104,8 @@ private extension ExtendedHabitsChartViewController {
         chart.entries = entries
     }
     
-    func refreshHabitsDetailsTableView() {
-        guard let currentSprint = getCurrentSprint() else { return }
-        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
+    func refreshHabitsDetailsTableView(sprint: Sprint) {
+        let habits = habitsService.fetchHabits(sprintID: sprint.id)
         
         var progressForHabit: [Habit: Progress] = [:]
         
@@ -114,7 +113,7 @@ private extension ExtendedHabitsChartViewController {
             progressForHabit[$0] = (0, 0, 0)
         }
         
-        let daysFromSprintStart = currentSprint.startDate.days(before: Date.now)
+        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
             let repeatDay = DayUnit(weekday: date.weekday)

@@ -82,7 +82,7 @@ extension SprintsService: SprintsObserverProvider {
     
     public func sprintsObserver() -> CacheObserver<Sprint> {
         let observer: CacheObserver<Sprint>
-        observer = CacheObserver(request: SprintsService.sprintsFetchRequest().nsFetchRequestWithResult,
+        observer = CacheObserver(request: SprintsService.sprintsFetchRequest().sorted(keyPath: \SprintEntity.startDate, ascending: false).nsFetchRequestWithResult,
                                  section: nil,
                                  cacheName: nil,
                                  context: Database.localStorage.readContext)

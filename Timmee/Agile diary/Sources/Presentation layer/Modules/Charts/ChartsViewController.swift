@@ -43,7 +43,11 @@ enum ChartType {
 
 // Передавать sprint, чтобы можно было смотреть статистику по предыдущим спринтам
 
-final class ChartsViewController: BaseViewController {
+final class ChartsViewController: BaseViewController, SprintInteractorTrait {
+    
+    var sprint: Sprint?
+    
+    let sprintsService = ServicesAssembly.shared.sprintsService
     
     @IBOutlet private var collectionView: UICollectionView!
     
@@ -60,14 +64,26 @@ final class ChartsViewController: BaseViewController {
     override func refresh() {
         super.refresh()
         
+        if sprint == nil {
+            sprint = getCurrentSprint()
+        }
+        
         collectionView.reloadData()
     }
     
     private func showFullProgress(chartType: ChartType) {
         switch chartType {
-        case .habits: performSegue(withIdentifier: "ShowExtendedHabitsProgress", sender: nil)
-        case .water: performSegue(withIdentifier: "ShowExtendedWaterProgress", sender: nil)
+        case .habits: performSegue(withIdentifier: "ShowExtendedHabitsProgress", sender: sprint)
+        case .water: performSegue(withIdentifier: "ShowExtendedWaterProgress", sender: sprint)
         default: return
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let extendedChartViewController = segue.destination as? ExtendedChartViewController {
+            extendedChartViewController.sprint = sender as? Sprint
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
     }
     
@@ -86,7 +102,9 @@ extension ChartsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let chart = ChartType.all[indexPath.item]
         let cell = dequeueChartCell(ofType: chart.cellType, collectionView: collectionView, indexPath: indexPath)
-        cell.update()
+        if let sprint = sprint {
+            cell.update(sprint: sprint)
+        }
         cell.onShowFullProgress = { [unowned self] in
             self.showFullProgress(chartType: chart)
         }

@@ -9,9 +9,8 @@
 import UIKit
 import Charts
 
-final class HabitsChartCell: BaseChartCell, SprintInteractorTrait {
+final class HabitsChartCell: BaseChartCell {
     
-    let sprintsService = ServicesAssembly.shared.sprintsService
     let habitsService = ServicesAssembly.shared.habitsService
     
     @IBOutlet private var titleLabel: UILabel! {
@@ -28,7 +27,7 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait {
         didSet {
             fullProgressButton.setTitle("show_full_progress".localized, for: .normal)
             fullProgressButton.tintColor = AppTheme.current.colors.mainElementColor
-            fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
+            fullProgressButton.isHidden = true
         }
     }
     
@@ -36,11 +35,10 @@ final class HabitsChartCell: BaseChartCell, SprintInteractorTrait {
         onShowFullProgress?()
     }
     
-    override func update() {
+    override func update(sprint: Sprint) {
         fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
         
-        guard let currentSprint = getCurrentSprint() else { return }
-        let habits = habitsService.fetchHabits(sprintID: currentSprint.id)
+        let habits = habitsService.fetchHabits(sprintID: sprint.id)
         
         var chartEntries: [ChartDataEntry] = []
         var xAxisTitles: [String] = []

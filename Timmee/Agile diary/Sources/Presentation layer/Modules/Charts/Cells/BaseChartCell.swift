@@ -38,7 +38,7 @@ class BaseChartCell: UICollectionViewCell {
         backgroundColor = AppTheme.current.colors.foregroundColor
     }
     
-    func update() {}
+    func update(sprint: Sprint) {}
     
     class func size(for collectionViewSize: CGSize) -> CGSize { return .zero }
     

@@ -35,7 +35,7 @@ final class WaterChartCell: BaseChartCell {
         onShowFullProgress?()
     }
     
-    override func update() {
+    override func update(sprint: Sprint) {
         guard let waterControl = waterControlService.fetchWaterControl() else { return }
         
         var chartEntries: [BarChartDataEntry] = []

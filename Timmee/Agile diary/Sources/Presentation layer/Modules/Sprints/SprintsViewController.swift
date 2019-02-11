@@ -44,6 +44,14 @@ final class SprintsViewController: BaseViewController, AlertInput {
         setupPlaceholderAppearance()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let chartsViewController = (segue.destination as? UINavigationController)?.topViewController as? ChartsViewController {
+            chartsViewController.sprint = sender as? Sprint
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
     private func setupSprintsObserver() {
         sprintsObserver.setActions(onInitialFetch: nil,
                                    onItemsCountChange: { [unowned self] count in
@@ -85,7 +93,7 @@ extension SprintsViewController: UICollectionViewDataSource {
 extension SprintsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedSprint = sprintsObserver.item(at: indexPath)
+//        let selectedSprint = sprintsObserver.item(at: indexPath)
     }
     
 }
@@ -127,7 +135,7 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                                                      tintColor: AppTheme.current.colors.mainElementColor)
             { [unowned self] indexPath in
                 self.sprintsView.hideSwipedCell()
-                self.performSegue(withIdentifier: "ShowCharts", sender: nil)
+                self.performSegue(withIdentifier: "ShowCharts", sender: sprint)
             }
         
         switch sprint.tense {
