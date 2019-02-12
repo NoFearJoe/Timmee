@@ -12,6 +12,8 @@ import UIComponents
 
 final class SprintCell: SwipableCollectionViewCell {
     
+    var onTapToAlert: ((UIButton) -> Void)?
+    
     private let habitsService = ServicesAssembly.shared.habitsService
     private let goalsService = ServicesAssembly.shared.goalsService
     
@@ -24,7 +26,13 @@ final class SprintCell: SwipableCollectionViewCell {
     @IBOutlet private var goalsCountLabel: UILabel!
     @IBOutlet private var goalsProgressLabel: UILabel!
     
+    @IBOutlet private var alertButton: UIButton!
+    
     @IBOutlet private var separatorViews: [UIView]!
+    
+    @IBAction private func onTapToAlertButton() {
+        self.onTapToAlert?(alertButton)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,13 +61,15 @@ final class SprintCell: SwipableCollectionViewCell {
             habitsProgressLabel.isHidden = true
             goalsProgressLabel.isHidden = true
         case .future:
-            subtitleLabel.text = "after_n_days".localized(with: Date.now.days(before: sprint.startDate))
+            subtitleLabel.text = "starts".localized + " " + sprint.startDate.asNearestShortDateString.lowercased()
             habitsProgressLabel.isHidden = true
             goalsProgressLabel.isHidden = true
         }
         tenseLabel.text = sprint.tense == .current ? sprint.tense.localized : nil
         habitsCountLabel.text = "n_habits".localized(with: sprint.habitsCount)
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
+        
+        alertButton.isHidden = sprint.isReady
     }
     
     override func prepareForReuse() {
@@ -88,6 +98,7 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.textColor = AppTheme.current.colors.inactiveElementColor
         goalsProgressLabel.font = AppTheme.current.fonts.bold(40)
         goalsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor
+        alertButton.tintColor = AppTheme.current.colors.incompleteElementColor
     }
     
     private func progressLabelColor(progress: Double) -> UIColor {

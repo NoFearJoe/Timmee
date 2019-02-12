@@ -10,12 +10,25 @@ import UIKit
 import TasksKit
 import UIComponents
 
-final class SprintsViewController: BaseViewController, AlertInput {
+final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait {
     
     @IBOutlet private var sprintsView: UICollectionView!
     
+    @IBOutlet private var createSprintButton: UIButton!
+    
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
+    
+    private var selectedHintButton: UIButton?
+    var hintPopover: HintPopoverView? {
+        didSet {
+            hintPopover?.willCloseBlock = {
+                self.selectedHintButton?.isSelected = false
+                self.selectedHintButton?.isUserInteractionEnabled = false
+            }
+            hintPopover?.didCloseBlock = { self.selectedHintButton?.isUserInteractionEnabled = true }
+        }
+    }
     
     private let sprintsService = ServicesAssembly.shared.sprintsService
     private let sprintsObserver = ServicesAssembly.shared.sprintsService.sprintsObserver()
@@ -42,14 +55,25 @@ final class SprintsViewController: BaseViewController, AlertInput {
     override func setupAppearance() {
         super.setupAppearance()
         setupPlaceholderAppearance()
+        setupCreateSprintButton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chartsViewController = (segue.destination as? UINavigationController)?.topViewController as? ChartsViewController {
             chartsViewController.sprint = sender as? Sprint
+        } else if let sprintCreationViewController = segue.destination as? SprintCreationViewController {
+            sprintCreationViewController.loadViewIfNeeded()
+            sprintCreationViewController.canClose = true
+            sprintCreationViewController.isFirstTimeSprintCreation = (sender as? Sprint) == nil
+            sprintCreationViewController.sprint = sender as? Sprint
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.updateHintPopover()
     }
     
     private func setupSprintsObserver() {
@@ -85,6 +109,16 @@ extension SprintsViewController: UICollectionViewDataSource {
         cell.actionsProvider = self
         let sprint = sprintsObserver.item(at: indexPath)
         cell.configure(sprint: sprint)
+        cell.onTapToAlert = { [unowned self] button in
+            button.isSelected = !button.isSelected
+            if button.isSelected {
+                self.selectedHintButton = button
+                self.showFullWidthHintPopover("not_ready_sprint_hint".localized, button: button)
+            } else {
+                self.selectedHintButton = nil
+                self.hideHintPopover()
+            }
+        }
         return cell
     }
     
@@ -93,7 +127,16 @@ extension SprintsViewController: UICollectionViewDataSource {
 extension SprintsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let selectedSprint = sprintsObserver.item(at: indexPath)
+        let selectedSprint = sprintsObserver.item(at: indexPath)
+        
+        if !selectedSprint.isReady || selectedSprint.tense == .future {
+            performSegue(withIdentifier: "ShowSprintCreation", sender: selectedSprint)
+        }
+        // TODO: Открывать экран Сегодня???
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        hideHintPopover()
     }
     
 }
@@ -159,6 +202,12 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
 }
 
 private extension SprintsViewController {
+    
+    func setupCreateSprintButton() {
+        createSprintButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
+        createSprintButton.setTitleColor(.white, for: .normal)
+        createSprintButton.tintColor = .white
+    }
     
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)

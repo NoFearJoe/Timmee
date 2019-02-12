@@ -199,7 +199,14 @@ private extension AgileeSynchronizationService {
         let locallyDeletedEntities = (LocallyDeletedEntity.request() as FetchRequest<LocallyDeletedEntity>).execute(context: context)
         var deletedEntityIDs: [String] = []
         if T.self is IdentifiableEntity.Type {
-            let cachedEntitiesIDs = cachedEntities.compactMap { ($0 as? IdentifiableEntity)?.id }
+            let cachedEntitiesIDs = cachedEntities
+                .filter {
+                    if let childEntity = $0 as? ChildEntity {
+                        return childEntity.parent?.id == parentEntityID
+                    }
+                    return true
+                }
+                .compactMap { ($0 as? IdentifiableEntity)?.id }
             let remoteEntitiesIDs = data.map { $0["id"] as? String }
             
             let removedEntitiesIDs = Array(Set(cachedEntitiesIDs).subtracting(remoteEntitiesIDs))

@@ -41,8 +41,6 @@ enum ChartType {
     }
 }
 
-// Передавать sprint, чтобы можно было смотреть статистику по предыдущим спринтам
-
 final class ChartsViewController: BaseViewController, SprintInteractorTrait {
     
     var sprint: Sprint?

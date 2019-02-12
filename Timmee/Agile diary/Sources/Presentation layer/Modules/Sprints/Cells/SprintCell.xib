@@ -109,6 +109,17 @@
                             <constraint firstAttribute="bottom" secondItem="pbW-Xl-dEH" secondAttribute="bottom" constant="8" id="nxS-2T-1eK"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjH-Nf-GVm">
+                        <rect key="frame" x="347" y="2" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="FjH-Nf-GVm" secondAttribute="height" id="0yr-va-Nac"/>
+                            <constraint firstAttribute="width" constant="32" id="Kci-n0-a22"/>
+                        </constraints>
+                        <state key="normal" image="alert"/>
+                        <connections>
+                            <action selector="onTapToAlertButton" destination="7iC-BN-ZLJ" eventType="touchUpInside" id="J0D-7I-Xbu"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
@@ -116,6 +127,7 @@
                 <constraint firstItem="Wt3-wf-1Dc" firstAttribute="leading" secondItem="FkT-H6-xfs" secondAttribute="trailing" id="1QF-yM-3vK"/>
                 <constraint firstAttribute="trailing" secondItem="Wt3-wf-1Dc" secondAttribute="trailing" id="3np-d4-jhW"/>
                 <constraint firstItem="Wt3-wf-1Dc" firstAttribute="top" secondItem="djh-mb-014" secondAttribute="bottom" id="523-nJ-471"/>
+                <constraint firstAttribute="trailing" secondItem="FjH-Nf-GVm" secondAttribute="trailing" constant="2" id="9S9-v5-9SK"/>
                 <constraint firstItem="AwP-17-N9H" firstAttribute="bottom" secondItem="W2P-el-PMd" secondAttribute="bottom" constant="-3" id="CK9-oa-ncE"/>
                 <constraint firstItem="AmV-HB-cAB" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" constant="15" id="Eof-Uq-Ztr"/>
                 <constraint firstItem="Ktb-xC-GZJ" firstAttribute="top" secondItem="djh-mb-014" secondAttribute="bottom" id="KV1-mU-EU1"/>
@@ -125,6 +137,7 @@
                 <constraint firstAttribute="trailing" secondItem="djh-mb-014" secondAttribute="trailing" id="XZG-wD-7hW"/>
                 <constraint firstItem="FkT-H6-xfs" firstAttribute="leading" secondItem="Ktb-xC-GZJ" secondAttribute="trailing" id="ZOG-ot-fdz"/>
                 <constraint firstItem="W2P-el-PMd" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" constant="15" id="b17-qq-rbe"/>
+                <constraint firstItem="FjH-Nf-GVm" firstAttribute="top" secondItem="7iC-BN-ZLJ" secondAttribute="top" constant="2" id="cLW-Ns-O8f"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AwP-17-N9H" secondAttribute="trailing" constant="15" id="dDV-2S-8Y6"/>
                 <constraint firstItem="Ktb-xC-GZJ" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" id="dGC-zo-hkB"/>
                 <constraint firstItem="W2P-el-PMd" firstAttribute="top" secondItem="7iC-BN-ZLJ" secondAttribute="top" constant="8" id="ddG-vU-qhC"/>
@@ -137,6 +150,7 @@
             <viewLayoutGuide key="safeArea" id="lSL-Xc-WwH"/>
             <size key="customSize" width="381" height="170"/>
             <connections>
+                <outlet property="alertButton" destination="FjH-Nf-GVm" id="q72-Jm-dhD"/>
                 <outlet property="goalsCountLabel" destination="9Fb-1j-Oje" id="iuH-eP-tHx"/>
                 <outlet property="goalsProgressLabel" destination="thH-kq-b1u" id="Jht-2l-Hmf"/>
                 <outlet property="habitsCountLabel" destination="kab-ts-Aef" id="iFI-rg-Igj"/>
@@ -150,4 +164,7 @@
             <point key="canvasLocation" x="349.60000000000002" y="214.09295352323841"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="alert" width="20" height="20"/>
+    </resources>
 </document>

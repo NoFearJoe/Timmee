@@ -18,4 +18,8 @@ public extension GoalEntity {
     
 }
 
-extension GoalEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}
+extension GoalEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity, ChildEntity {
+    public var parent: IdentifiableEntity? {
+        return sprint
+    }
+}

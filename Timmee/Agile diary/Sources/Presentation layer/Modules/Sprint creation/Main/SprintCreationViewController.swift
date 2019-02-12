@@ -44,12 +44,17 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     var sprint: Sprint! {
         didSet {
+            guard sprint != nil else { return }
             contentViewController.sprintID = sprint.id
             headerView.titleLabel.text = "Sprint".localized + " #\(sprint.number)"
+            headerView?.leftButton?.isHidden = !(canClose || sprint.isReady)
             updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
             updateDoneButtonState()
         }
     }
+    
+    var canClose: Bool = false
+    var isFirstTimeSprintCreation: Bool = true
     
     let sprintsService = ServicesAssembly.shared.sprintsService
     let habitsService = ServicesAssembly.shared.habitsService
@@ -71,18 +76,17 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         habitsCollectionMenuButton.setTitle("choose_habits_from_collection".localized, for: .normal)
         
         hideAddHabitMenu()
-        
-        if sprint == nil {
-            getOrCreateSprint { [weak self] sprint in
-                self?.sprint = sprint
-            }
-        }
     }
     
     override func refresh() {
         super.refresh()
         
-        guard let sprint = sprint else { return }
+        guard let sprint = sprint else {
+            getOrCreateSprint { [weak self] sprint in
+                self?.sprint = sprint
+            }
+            return
+        }
         
         if sprint.startDate.compare(Date.now.startOfDay) == .orderedAscending {
             sprint.startDate = Date.now.startOfDay
@@ -160,6 +164,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         let dueDatePicker = ViewControllersFactory.dueDatePicker
         dueDatePicker.output = self
         dueDatePicker.loadViewIfNeeded()
+        dueDatePicker.minimumAvailableDate = sprint.startDate
         dueDatePicker.setDueDate(sprint.startDate)
         editorContainer.setViewController(dueDatePicker)
         present(editorContainer, animated: true, completion: nil)
@@ -179,12 +184,19 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     }
     
     @IBAction private func onClose() {
-        showAlert(title: "attention".localized,
-                  message: "are_you_sure_you_want_to_cancel_sprint_creation".localized,
-                  actions: [.cancel, .ok("close".localized)])
-            { action in
-                self.close()
-            }
+        if sprint.isReady || !isFirstTimeSprintCreation {
+            close()
+        } else {
+            showAlert(title: "attention".localized,
+                      message: "are_you_sure_you_want_to_cancel_sprint_creation".localized,
+                      actions: [.cancel, .ok("close".localized)])
+                { [unowned self] action in
+                    guard case .ok = action else { return }
+                    self.sprintsService.removeSprint(self.sprint, completion: { [weak self] _ in
+                        self?.close()
+                    })
+                }
+        }
     }
     
     @IBAction private func onAdd() {

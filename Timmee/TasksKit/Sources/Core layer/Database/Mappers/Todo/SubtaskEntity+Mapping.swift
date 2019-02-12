@@ -20,4 +20,8 @@ public extension SubtaskEntity {
 
 }
 
-extension SubtaskEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}
+extension SubtaskEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity, ChildEntity {
+    public var parent: IdentifiableEntity? {
+        return goal // ?? task
+    }
+}

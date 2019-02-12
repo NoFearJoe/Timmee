@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2B9D242212A9D20038F11D /* ChildEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D232212A9D20038F11D /* ChildEntity.swift */; };
 		0C3DA5342154D73700CAE635 /* WaterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5332154D73700CAE635 /* WaterControl.swift */; };
 		0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */; };
 		0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5372154D8D200CAE635 /* WaterControlService.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C2B9D232212A9D20038F11D /* ChildEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildEntity.swift; sourceTree = "<group>"; };
 		0C3DA5332154D73700CAE635 /* WaterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControl.swift; sourceTree = "<group>"; };
 		0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Mapping.swift"; sourceTree = "<group>"; };
 		0C3DA5372154D8D200CAE635 /* WaterControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlService.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				0C90018D21F9912100D6C15F /* IdentifiableEntity.swift */,
 				0C90018B21F98FB700D6C15F /* ModifiableEntity.swift */,
 				0C90018F21F9C49800D6C15F /* SyncableEntity.swift */,
+				0C2B9D232212A9D20038F11D /* ChildEntity.swift */,
 				0C90018A21F98F7D00D6C15F /* Todo */,
 				96BE8393217517CE00CDECAF /* Agilee */,
 			);
@@ -514,6 +517,7 @@
 				0CE4755D2175DA1E005FD8CC /* GoalsService.swift in Sources */,
 				0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */,
 				0C90018C21F98FB700D6C15F /* ModifiableEntity.swift in Sources */,
+				0C2B9D242212A9D20038F11D /* ChildEntity.swift in Sources */,
 				96BE83972175190E00CDECAF /* HabitEntity+Mapping.swift in Sources */,
 				0CE4755A2175BAFF005FD8CC /* HabitsService.swift in Sources */,
 				0CE0185B2077B2BD00633EFF /* Subtask.swift in Sources */,

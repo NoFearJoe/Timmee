@@ -25,4 +25,8 @@ public extension HabitEntity {
     
 }
 
-extension HabitEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity {}
+extension HabitEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity, ChildEntity {
+    public var parent: IdentifiableEntity? {
+        return sprint
+    }
+}

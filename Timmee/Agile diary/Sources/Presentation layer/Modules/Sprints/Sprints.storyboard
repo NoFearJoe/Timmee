@@ -52,6 +52,26 @@
                                     <outlet property="delegate" destination="jfw-kp-g5K" id="4Bu-iz-WTc"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7F9-NA-YMe">
+                                <rect key="frame" x="155.5" y="539" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.24313725489999999" green="0.79215686269999996" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="jer-0g-gVS"/>
+                                    <constraint firstAttribute="width" constant="64" id="sBL-ck-rMT"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="plus">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Q6g-0T-t4e" kind="showDetail" identifier="ShowSprintCreation" id="JeR-sH-mzS"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65w-8Y-AJV">
                                 <rect key="frame" x="0.0" y="116" width="375" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,6 +84,8 @@
                             <constraint firstAttribute="bottom" secondItem="Txz-tP-QTR" secondAttribute="bottom" id="Hq6-L3-VvT"/>
                             <constraint firstItem="65w-8Y-AJV" firstAttribute="leading" secondItem="s94-4C-Vgv" secondAttribute="leading" id="JUZ-3o-ac1"/>
                             <constraint firstItem="Txz-tP-QTR" firstAttribute="leading" secondItem="s94-4C-Vgv" secondAttribute="leading" id="Uqc-xz-nJT"/>
+                            <constraint firstItem="7F9-NA-YMe" firstAttribute="centerX" secondItem="tnM-1v-4ZN" secondAttribute="centerX" id="ZM3-xT-cUx"/>
+                            <constraint firstItem="s94-4C-Vgv" firstAttribute="bottom" secondItem="7F9-NA-YMe" secondAttribute="bottom" constant="20" id="dUZ-vM-1Y0"/>
                             <constraint firstItem="s94-4C-Vgv" firstAttribute="trailing" secondItem="Txz-tP-QTR" secondAttribute="trailing" id="e9Z-sM-7ff"/>
                             <constraint firstItem="Txz-tP-QTR" firstAttribute="top" secondItem="s94-4C-Vgv" secondAttribute="top" id="gSt-uS-emG"/>
                             <constraint firstItem="s94-4C-Vgv" firstAttribute="trailing" secondItem="65w-8Y-AJV" secondAttribute="trailing" id="zR2-Tk-lnf"/>
@@ -80,6 +102,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="createSprintButton" destination="7F9-NA-YMe" id="86u-bE-NUL"/>
                         <outlet property="placeholderContainer" destination="65w-8Y-AJV" id="oX9-xN-bTm"/>
                         <outlet property="sprintsView" destination="Txz-tP-QTR" id="J7X-ln-OeZ"/>
                         <segue destination="gC0-FD-pCk" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="zVF-te-WU4"/>
@@ -97,8 +120,17 @@
             </objects>
             <point key="canvasLocation" x="1042" y="169"/>
         </scene>
+        <!--SprintCreation-->
+        <scene sceneID="ijl-RI-iQ3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SprintCreation" id="Q6g-0T-t4e" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S0Q-AG-0Iv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079" y="222"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cross" width="20" height="20"/>
+        <image name="plus" width="20" height="20"/>
     </resources>
 </document>
