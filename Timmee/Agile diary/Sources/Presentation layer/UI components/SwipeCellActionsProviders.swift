@@ -64,9 +64,11 @@ final class TodayHabitCellSwipeActionsProvider {
     
     var shouldShowLinkAction: ((IndexPath) -> Bool)?
     var shouldShowEditAction: ((IndexPath) -> Bool)?
+    var shouldShowDeleteAction: ((IndexPath) -> Bool)?
     
     var onLink: ((IndexPath) -> Void)?
     var onEdit: ((IndexPath) -> Void)?
+    var onDelete: ((IndexPath) -> Void)?
     
     static var backgroundColor: UIColor {
         return .clear
@@ -111,6 +113,22 @@ final class TodayHabitCellSwipeActionsProvider {
         return action
     }()
     
+    private lazy var swipeDeleteAction: SwipeAction = {
+        let action = SwipeAction(style: .default,
+                                 title: "remove".localized,
+                                 handler:
+            { [weak self] action, indexPath in
+                self?.onDelete?(indexPath)
+                action.fulfill(with: .reset)
+            })
+        action.image = UIImage(named: "trash")
+        action.title = nil
+        action.textColor = AppTheme.current.colors.wrongElementColor
+        action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
+        action.transitionDelegate = nil
+        return action
+    }()
+    
 }
 
 extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
@@ -120,6 +138,9 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         case .left: return nil
         case .right:
             var actions: [SwipeAction] = []
+            if shouldShowDeleteAction?(indexPath) == true {
+                actions.append(swipeDeleteAction)
+            }
             if shouldShowEditAction?(indexPath) == true {
                 swipeEditAction.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
                 actions.append(swipeEditAction)
@@ -143,9 +164,11 @@ final class TodayTargetCellSwipeActionsProvider {
     
     var shouldShowDoneAction: ((IndexPath) -> Bool)?
     var shouldShowEditAction: ((IndexPath) -> Bool)?
+    var shouldShowDeleteAction: ((IndexPath) -> Bool)?
     
     var onDone: ((IndexPath) -> Void)?
     var onEdit: ((IndexPath) -> Void)?
+    var onDelete: ((IndexPath) -> Void)?
     
     static var backgroundColor: UIColor {
         return .clear
@@ -206,6 +229,22 @@ final class TodayTargetCellSwipeActionsProvider {
         return action
     }()
     
+    private lazy var swipeDeleteAction: SwipeAction = {
+        let action = SwipeAction(style: .default,
+                                 title: "remove".localized,
+                                 handler:
+            { [weak self] action, indexPath in
+                self?.onDelete?(indexPath)
+                action.fulfill(with: .reset)
+        })
+        action.image = UIImage(named: "trash")
+        action.title = nil
+        action.textColor = AppTheme.current.colors.wrongElementColor
+        action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
+        action.transitionDelegate = nil
+        return action
+    }()
+    
 }
 
 extension TodayTargetCellSwipeActionsProvider: SwipeTableViewCellDelegate {
@@ -215,6 +254,9 @@ extension TodayTargetCellSwipeActionsProvider: SwipeTableViewCellDelegate {
         case .left: return nil
         case .right:
             var actions: [SwipeAction] = []
+            if shouldShowDeleteAction?(indexPath) == true {
+                actions.append(swipeDeleteAction)
+            }
             if shouldShowEditAction?(indexPath) == true {
                 swipeEditAction.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
                 actions.append(swipeEditAction)

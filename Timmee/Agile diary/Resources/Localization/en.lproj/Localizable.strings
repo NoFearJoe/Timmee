@@ -324,3 +324,6 @@
 "are_you_sure_you_want_to_remove_sprint" = "After removing the sprint, habits, goals and statistics will also be deleted. Remove sprint?";
 
 "not_ready_sprint_hint" = "You have not completed the creation of this sprint, so it will be inactive until the minimum number of habits and tasks are added, and its creation is not confirmed.";
+
+"are_you_sure_you_want_to_remove_habit" = "After removing the habit, all the associated progress will be lost. Remove the habit?";
+"are_you_sure_you_want_to_remove_goal" = "After removing the goal, all the associated progress will be lost. Remove the goal?";

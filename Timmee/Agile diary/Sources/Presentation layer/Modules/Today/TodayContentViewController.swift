@@ -9,7 +9,7 @@
 import UIKit
 import UIComponents
 
-final class TodayContentViewController: UIViewController {
+final class TodayContentViewController: UIViewController, AlertInput {
     
     enum State {
         case empty
@@ -34,7 +34,7 @@ final class TodayContentViewController: UIViewController {
     
     var sprintID: String = "" {
         didSet {
-            guard isViewLoaded else { return }
+            guard isViewLoaded, sprintID != oldValue else { return }
             setupCurrentCacheObserver()
         }
     }
@@ -254,6 +254,8 @@ private extension TodayContentViewController {
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return false }
             return !habit.isDone(at: Date.now)
         }
+        habitCellActionsProvider.shouldShowDeleteAction = { _ in true }
+        
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
             self.openLink(habit.link)
@@ -261,6 +263,19 @@ private extension TodayContentViewController {
         habitCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
             self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
+        }
+        habitCellActionsProvider.onDelete = { [unowned self] indexPath in
+            guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
+            self.showAlert(title: "attention".localized,
+                           message: "are_you_sure_you_want_to_remove_habit".localized,
+                           actions: [.cancel, .ok("remove".localized)],
+                           completion: { action in
+                               guard case .ok = action else { return }
+                               self.view.isUserInteractionEnabled = false
+                               self.habitsService.removeHabit(habit, completion: { _ in
+                                   self.view.isUserInteractionEnabled = true
+                               })
+                           })
         }
     }
     
@@ -273,6 +288,8 @@ private extension TodayContentViewController {
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return false }
             return !goal.isDone
         }
+        targetCellActionsProvider.shouldShowDeleteAction = { _ in true }
+        
         targetCellActionsProvider.onDone = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             goal.isDone = !goal.isDone
@@ -281,6 +298,19 @@ private extension TodayContentViewController {
         targetCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+        }
+        targetCellActionsProvider.onDelete = { [unowned self] indexPath in
+            guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
+            self.showAlert(title: "attention".localized,
+                           message: "are_you_sure_you_want_to_remove_goal".localized,
+                           actions: [.cancel, .ok("remove".localized)],
+                           completion: { action in
+                               guard case .ok = action else { return }
+                               self.view.isUserInteractionEnabled = false
+                               self.goalsService.removeGoal(goal, completion: { _ in
+                                   self.view.isUserInteractionEnabled = true
+                               })
+                           })
         }
     }
     
