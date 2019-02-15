@@ -131,8 +131,9 @@ extension SprintsViewController: UICollectionViewDelegate {
         
         if !selectedSprint.isReady || selectedSprint.tense == .future {
             performSegue(withIdentifier: "ShowSprintCreation", sender: selectedSprint)
+        } else {
+            dismiss(animated: true, completion: nil)
         }
-        // TODO: Открывать экран Сегодня???
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
