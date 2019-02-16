@@ -19,7 +19,6 @@ extension SprintEntity: DictionaryEncodable {
             "notificationsEnabled": notificationsEnabled,
             "number": number,
             "startDate": startDate as Any,
-            "title": title as Any,
             "modificationDate": modificationDate
         ]
         
@@ -46,7 +45,6 @@ extension SprintEntity: DictionaryDecodable {
         if endDate == nil {
             endDate = (dictionary["endDate"] as? Timestamp)?.dateValue()
         }
-        title = dictionary["title"] as? String
         notificationsDays = dictionary["notificationsDays"] as? String
         notificationsTime = dictionary["notificationsTime"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0

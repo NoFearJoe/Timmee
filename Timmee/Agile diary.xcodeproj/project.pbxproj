@@ -269,6 +269,8 @@
 		96888C1E2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
 		96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
+		96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
+		96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* HabitsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* HabitsChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
@@ -473,6 +475,7 @@
 		967C32902157716500B9201A /* HabitsChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartCell.swift; sourceTree = "<group>"; };
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
+		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* HabitsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -596,6 +599,7 @@
 		0C14D4A12121604A004C0559 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96888C222217EDE400479667 /* Utils */,
 				0C14D5042122B052004C0559 /* Extensions */,
 				0C14D4A421216059004C0559 /* Application layer */,
 				0C14D4A321216058004C0559 /* Presentation layer */,
@@ -1100,6 +1104,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		96888C222217EDE400479667 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				96888C232217EDF400479667 /* BackgroundImagesLoader.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		96CAD81A216D39A4005D707C /* Extended charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1182,6 +1194,9 @@
 		0C14D46A211C55D9004C0559 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					BackgroundImages,
+				);
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Mesterra;
@@ -1594,6 +1609,7 @@
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
+				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				0CC405E021EDFEBD0069C6C5 /* FocusableTextField.swift in Sources */,
 				0CC405E321EE027D0069C6C5 /* EmailValidator.swift in Sources */,
@@ -1695,6 +1711,7 @@
 				0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
 				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
+				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
 				0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */,
 				0CB673AF21A52C3900178EB1 /* TargetCreationViewController.swift in Sources */,
@@ -1950,6 +1967,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET";
@@ -1979,6 +1997,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;

@@ -14,7 +14,6 @@ extension Sprint {
     convenience init(number: Int) {
         self.init(id: RandomStringGenerator.randomString(length: 24),
                   number: number,
-                  title: "",
                   startDate: Date.now.startOfDay,
                   endDate: Date.now.startOfDay + Constants.sprintDuration.asWeeks,
                   isReady: false,

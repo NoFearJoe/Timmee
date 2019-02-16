@@ -15,7 +15,7 @@ public final class SprintSchedulerService: BaseSchedulerService {
     public func scheduleSprint(_ sprint: Sprint) {
         removeSprintNotifications(sprint: sprint) {
             self.scheduleNewSprint(sprint)
-            self.scheduleSprintFinishedNotification()
+            self.scheduleSprintFinishedNotification(sprint)
         }
     }
     

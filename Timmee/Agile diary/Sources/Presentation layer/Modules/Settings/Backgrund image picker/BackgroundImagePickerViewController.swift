@@ -43,7 +43,8 @@ extension BackgroundImagePickerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BackgroundImagePickerCell", for: indexPath) as! BackgroundImagePickerCell
         let backgroundImage = BackgroundImage.all[indexPath.item]
-        cell.configure(image: backgroundImage.image, isPicked: backgroundImage == BackgroundImage.current)
+        cell.configure(image: backgroundImage.image ?? backgroundImage.previewImage,
+                       isPicked: backgroundImage == BackgroundImage.current)
         return cell
     }
     
