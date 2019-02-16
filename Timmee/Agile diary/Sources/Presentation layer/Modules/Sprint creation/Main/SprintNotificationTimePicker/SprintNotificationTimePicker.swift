@@ -161,6 +161,7 @@ private extension SprintNotificationTimePicker {
     
     func updateNotificationsDaysButtons() {
         notificationsDaysButtons.forEach {
+            $0.setTitle(DayUnit(number: $0.tag).localizedShort, for: .normal)
             $0.isSelected = days.map { $0.number }.contains($0.tag)
         }
     }

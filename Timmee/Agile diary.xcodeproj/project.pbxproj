@@ -265,6 +265,10 @@
 		967C328C215181D700B9201A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C328B215181D700B9201A /* Settings.storyboard */; };
 		967C328E2157709900B9201A /* BaseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328D2157709900B9201A /* BaseChartCell.swift */; };
 		967C32912157716500B9201A /* HabitsChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C32902157716500B9201A /* HabitsChartCell.swift */; };
+		96888C1D2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
+		96888C1E2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
+		96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
+		96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* HabitsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* HabitsChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
@@ -467,6 +471,8 @@
 		967C328B215181D700B9201A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		967C328D2157709900B9201A /* BaseChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChartCell.swift; sourceTree = "<group>"; };
 		967C32902157716500B9201A /* HabitsChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartCell.swift; sourceTree = "<group>"; };
+		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* HabitsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -748,6 +754,8 @@
 				96A5A0E32171065C007511ED /* HabitsChartView.swift */,
 				96BE83D5217C9C8D00CDECAF /* CardView.swift */,
 				0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */,
+				96888C1C2217DFE800479667 /* AddButton.swift */,
+				96888C1F2217E1BD00479667 /* AddMenuButton.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -1517,6 +1525,7 @@
 				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
 				0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */,
+				96888C1D2217DFE800479667 /* AddButton.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
 				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
 				0C3DA5282153BF7500CAE635 /* BackgroundImage.swift in Sources */,
@@ -1568,6 +1577,7 @@
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
 				0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */,
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
+				96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
@@ -1638,6 +1648,7 @@
 				0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */,
 				0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */,
 				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
+				96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */,
 				0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */,
 				0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */,
 				964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */,
@@ -1660,6 +1671,7 @@
 				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
 				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
+				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
 				0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */,

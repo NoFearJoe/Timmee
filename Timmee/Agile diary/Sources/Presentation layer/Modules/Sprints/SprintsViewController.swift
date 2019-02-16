@@ -129,10 +129,8 @@ extension SprintsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedSprint = sprintsObserver.item(at: indexPath)
         
-        if !selectedSprint.isReady || selectedSprint.tense == .future {
+        if selectedSprint.tense != .past {
             performSegue(withIdentifier: "ShowSprintCreation", sender: selectedSprint)
-        } else {
-            dismiss(animated: true, completion: nil)
         }
     }
     

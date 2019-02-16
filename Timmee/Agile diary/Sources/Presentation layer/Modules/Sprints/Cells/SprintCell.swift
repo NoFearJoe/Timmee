@@ -40,7 +40,7 @@ final class SprintCell: SwipableCollectionViewCell {
     }
     
     func configure(sprint: Sprint) {
-        titleLabel.text = "Sprint".localized + " #\(sprint.number)"
+        titleLabel.text = sprint.title
         switch sprint.tense {
         case .past:
             subtitleLabel.text = sprint.startDate.asString(format: "dd.MM.yyyy") + " - " + sprint.endDate.asString(format: "dd.MM.yyyy")
@@ -70,6 +70,8 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
         
         alertButton.isHidden = sprint.isReady
+        
+        alpha = sprint.tense == .past ? 0.75 : 1
     }
     
     override func prepareForReuse() {

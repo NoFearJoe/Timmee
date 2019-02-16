@@ -15,6 +15,7 @@ public final class SprintSchedulerService: BaseSchedulerService {
     public func scheduleSprint(_ sprint: Sprint) {
         removeSprintNotifications(sprint: sprint) {
             self.scheduleNewSprint(sprint)
+            self.scheduleSprintFinishedNotification()
         }
     }
     
@@ -31,15 +32,25 @@ public final class SprintSchedulerService: BaseSchedulerService {
             guard !(fireDate <= Date()) else { return }
             guard (days.map { $0.weekday }).contains(fireDate.weekday) else { return }
             
-            scheduleLocalNotification(withID: sprint.id,
-                                      title: "Sprint".localized + " #\(sprint.number)",
-                message: "sprint_notification_message".localized,
-                at: fireDate,
-                repeatUnit: .weekOfYear,
-                category: "sprint",
-                userInfo: ["sprint_id": sprint.id,
-                           "end_date": sprint.endDate])
+            scheduleLocalNotification(withID: sprint.id + "\(fireDate.weekday)",
+                                      title: sprint.title,
+                                      message: "sprint_notification_message".localized,
+                                      at: fireDate,
+                                      repeatUnit: .weekOfYear,
+                                      category: "sprint",
+                                      userInfo: ["sprint_id": sprint.id,
+                                                 "end_date": sprint.endDate])
         }
+    }
+    
+    private func scheduleSprintFinishedNotification(_ sprint: Sprint) {
+        scheduleLocalNotification(withID: sprint.id + "finished",
+                                  title: sprint.title,
+                                  message: "sprint_has_finished_notification_message".localized,
+                                  at: sprint.endDate,
+                                  repeatUnit: nil,
+                                  userInfo: ["sprint_id": sprint.id,
+                                             "end_date": sprint.endDate])
     }
     
     public func removeSprintNotifications(sprint: Sprint, completion: @escaping () -> Void) {
