@@ -352,7 +352,7 @@ private extension SprintCreationViewController {
     
     func updateSprintSettingsButtons() {
         addButton.isHidden = sprint.tense == .past
-        startDateButton.isHidden = sprint.tense != .future
+        startDateButton.isHidden = sprint.isReady && sprint.tense != .future
         notificationsButton.isHidden = sprint.tense == .past
     }
     
