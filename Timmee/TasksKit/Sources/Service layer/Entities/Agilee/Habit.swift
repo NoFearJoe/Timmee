@@ -75,6 +75,29 @@ public class Habit: Copyable {
                   creationDate: Date())
     }
     
+    public convenience init?(json: [String: Any]) {
+        guard let id = json["id"] as? String,
+              let title = json["title"] as? String,
+              let note = json["note"] as? String,
+              let link = json["link"] as? String,
+              let dueDaysString = json["dueDays"] as? String
+        else { return nil }
+        
+        let value = (json["value"] as? String).flatMap(Value.init(string:))
+        let dueDays = (dueDaysString.split(separator: ",").map { DayUnit(string: String($0)) })
+        
+        self.init(id: id,
+                  title: title,
+                  note: note,
+                  link: link,
+                  value: value,
+                  notificationDate: nil,
+                  repeatEndingDate: nil,
+                  dueDays: dueDays,
+                  doneDates: [],
+                  creationDate: Date())
+    }
+    
     public var copy: Habit {
         return Habit(id: id,
                      title: title,

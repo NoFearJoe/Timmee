@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         SynchronizationConfigurator.configure()
+        HabitsCollectionsLoader.initialize()
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)

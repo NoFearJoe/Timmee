@@ -59,6 +59,8 @@
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
 		0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
+		0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */; };
+		0C737A97221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */; };
 		0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
@@ -383,6 +385,7 @@
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C5C469C2141014000390F85 /* EditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContainer.swift; sourceTree = "<group>"; };
+		0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionsLoader.swift; sourceTree = "<group>"; };
 		0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionEducationScreen.swift; sourceTree = "<group>"; };
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -842,6 +845,14 @@
 			path = DueDatePicker;
 			sourceTree = "<group>";
 		};
+		0C737A94221AD6D900D741C6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0C8D0744212AD13A008122A6 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +891,7 @@
 		0CB02FF52192D625006C5146 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				0C737A94221AD6D900D741C6 /* Services */,
 				0CB02FF82192D65C006C5146 /* Categories */,
 				0CB02FF92192D677006C5146 /* Category */,
 			);
@@ -1593,6 +1605,7 @@
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
 				0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */,
 				0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */,
+				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
@@ -1639,6 +1652,7 @@
 				0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */,
 				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
 				0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */,
+				0C737A97221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */,
 				964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */,
 				0CB6738821A52C3900178EB1 /* HabitsChartView.swift in Sources */,

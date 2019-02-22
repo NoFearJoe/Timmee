@@ -29,11 +29,11 @@ final class HabitsCollectionViewController: BaseViewController {
         headerView.titleLabel.text = "Collection".localized
         
         sectionSwitcher.items = [Section.shop.title, Section.history.title]
-        sectionSwitcher.selectedItemIndex = 1
+        sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         
-        shopContainerView.isHidden = true
-        historyContainerView.isHidden = false
+        shopContainerView.isHidden = false
+        historyContainerView.isHidden = true
     }
     
     override func setupAppearance() {

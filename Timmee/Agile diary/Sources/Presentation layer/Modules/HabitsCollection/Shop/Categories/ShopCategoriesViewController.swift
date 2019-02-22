@@ -12,12 +12,23 @@ final class ShopCategoriesViewController: BaseViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
     
+    private let collectionsLoader = HabitsCollectionsLoader.shared
+    
+    private var collections: [HabitsCollection] = []
+    
     override func prepare() {
         super.prepare()
     }
     
     override func refresh() {
         super.refresh()
+        
+        collectionsLoader.loadHabitsCollections(success: { [weak self] collections in
+            self?.collections = collections
+            self?.collectionView.reloadData()
+        }) { [weak self] error in
+            print(error)
+        }
     }
     
     override func setupAppearance() {
@@ -30,7 +41,7 @@ final class ShopCategoriesViewController: BaseViewController {
 extension ShopCategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return collections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
