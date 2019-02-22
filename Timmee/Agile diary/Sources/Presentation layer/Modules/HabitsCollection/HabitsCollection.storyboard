@@ -267,18 +267,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wzB-ry-bCg">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wzB-ry-bCg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MeO-fn-5z5">
                                     <size key="itemSize" width="138" height="134"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCategoryCell" id="SMz-lt-CYh" customClass="ShopCategoryCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="138" height="134"/>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCategoryCell" id="SMz-lt-CYh" customClass="ShopCategoryCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15" width="138" height="134"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="138" height="134"/>
@@ -315,18 +315,38 @@
                                     <outlet property="delegate" destination="dyi-op-cKi" id="HEb-8p-mS2"/>
                                 </connections>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1k-oz-av2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-3g-IvX" customClass="LoadingView" customModule="UIComponents">
+                                <rect key="frame" x="155.5" y="225" width="64" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="XHt-mb-AAv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="M1k-oz-av2" firstAttribute="top" secondItem="pgU-jH-Tfj" secondAttribute="top" id="03i-h9-Mhq"/>
+                            <constraint firstItem="uq3-3g-IvX" firstAttribute="centerX" secondItem="pgU-jH-Tfj" secondAttribute="centerX" id="8ur-1f-ddo"/>
                             <constraint firstAttribute="bottom" secondItem="wzB-ry-bCg" secondAttribute="bottom" id="Eip-PS-QVl"/>
+                            <constraint firstItem="uq3-3g-IvX" firstAttribute="width" secondItem="uq3-3g-IvX" secondAttribute="height" multiplier="1:1" id="G8A-cB-Ffa"/>
                             <constraint firstItem="wzB-ry-bCg" firstAttribute="top" secondItem="pgU-jH-Tfj" secondAttribute="top" id="IAh-Zp-xIh"/>
                             <constraint firstItem="nFC-jh-XLG" firstAttribute="trailing" secondItem="wzB-ry-bCg" secondAttribute="trailing" id="K4c-WY-lYM"/>
                             <constraint firstItem="wzB-ry-bCg" firstAttribute="leading" secondItem="nFC-jh-XLG" secondAttribute="leading" id="Lst-Tv-pBU"/>
+                            <constraint firstItem="M1k-oz-av2" firstAttribute="leading" secondItem="nFC-jh-XLG" secondAttribute="leading" id="UqS-nq-mU6"/>
+                            <constraint firstItem="uq3-3g-IvX" firstAttribute="centerY" secondItem="pgU-jH-Tfj" secondAttribute="centerY" id="VCS-b1-xdL"/>
+                            <constraint firstAttribute="bottom" secondItem="M1k-oz-av2" secondAttribute="bottom" id="YpT-cV-TWB"/>
+                            <constraint firstAttribute="trailing" secondItem="M1k-oz-av2" secondAttribute="trailing" id="aLS-Lw-gUg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nFC-jh-XLG"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="wzB-ry-bCg" id="6g5-dm-eYG"/>
+                        <outlet property="loadingView" destination="uq3-3g-IvX" id="EVg-2H-WgB"/>
+                        <outlet property="placeholderContainer" destination="M1k-oz-av2" id="m0B-jl-7OL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vv-Ks-HBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
