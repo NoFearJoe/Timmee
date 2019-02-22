@@ -1,12 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "filename" : "bgImage1~iPhone.pdf"
-    },
-    {
-      "idiom" : "ipad",
-      "filename" : "bgImage1.pdf"
     }
   ],
   "info" : {
@@ -14,6 +10,10 @@
     "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "original"
+    "template-rendering-intent" : "original",
+    "on-demand-resource-tags" : [
+      "BackgroundImages"
+    ],
+    "preserves-vector-representation" : true
   }
 }

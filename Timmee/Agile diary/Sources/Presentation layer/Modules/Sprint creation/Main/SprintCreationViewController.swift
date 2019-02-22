@@ -30,10 +30,10 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     @IBOutlet private var startDateButton: UIButton!
     @IBOutlet private var notificationsButton: UIButton!
     
-    @IBOutlet private var addButton: UIButton!
+    @IBOutlet private var addButton: AddButton!
     @IBOutlet private var addHabitMenu: UIStackView!
-    @IBOutlet private var createHabitMenuButton: UIButton!
-    @IBOutlet private var habitsCollectionMenuButton: UIButton!
+    @IBOutlet private var createHabitMenuButton: AddMenuButton!
+    @IBOutlet private var habitsCollectionMenuButton: AddMenuButton!
     @IBOutlet private var dimmedBackgroundView: UIView!
     
     private var contentViewController: SprintContentViewController!
@@ -46,10 +46,11 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         didSet {
             guard sprint != nil else { return }
             contentViewController.sprintID = sprint.id
-            headerView.titleLabel.text = "Sprint".localized + " #\(sprint.number)"
+            headerView.titleLabel.text = sprint.title
             headerView?.leftButton?.isHidden = !(canClose || sprint.isReady)
             updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
             updateDoneButtonState()
+            updateSprintSettingsButtons()
         }
     }
     
@@ -68,6 +69,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         UserProperty.isInitialSprintCreated.setBool(false)
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
+        headerView.rightButton?.setTitle("done".localized, for: .normal)
         sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
@@ -107,19 +109,9 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         headerView.rightButton?.tintColor = AppTheme.current.colors.mainElementColor
         sectionSwitcher.setupAppearance()
         
-        addButton.tintColor = .white
-        addButton.adjustsImageWhenHighlighted = false
-        addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
-        addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
-        addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
-        createHabitMenuButton.tintColor = .white
-        createHabitMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
-        createHabitMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
-        createHabitMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
-        habitsCollectionMenuButton.tintColor = .white
-        habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
-        habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
-        habitsCollectionMenuButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
+        addButton.setupAppearance()
+        createHabitMenuButton.setupAppearance()
+        habitsCollectionMenuButton.setupAppearance()
         
         startDateButton.tintColor = .white
         startDateButton.adjustsImageWhenHighlighted = false
@@ -226,40 +218,34 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     }
     
     @IBAction private func onDone() {
-        showAlert(title: "attention".localized,
-                  message: "are_you_sure_you_want_to_finish_sprint_creation".localized,
-                  actions: [.cancel, .ok("finish".localized)])
-            { action in
-                guard case .ok = action else { return }
-                self.sprint.isReady = true
-                self.updateNotificationInfoForAllHabits { [weak self] habits in
-                    guard let `self` = self else { return }
-                    let saveSprintThanClose = {
-                        self.saveSprint(self.sprint) { [weak self] success in
-                            UserProperty.isInitialSprintCreated.setBool(true)
-                            self?.close()
-                        }
-                    }
-                    let scheduleAndSaveSprintThanClose = {
-                        self.sprintSchedulerService.scheduleSprint(self.sprint)
-                        habits.forEach { self.habitsSchedulerService.scheduleHabit($0) }
-                        saveSprintThanClose()
-                    }
-                    NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
+        self.sprint.isReady = true
+        self.updateNotificationInfoForAllHabits { [weak self] habits in
+            guard let `self` = self else { return }
+            let saveSprintThanClose = {
+                self.saveSprint(self.sprint) { [weak self] success in
+                    UserProperty.isInitialSprintCreated.setBool(true)
+                    self?.close()
+                }
+            }
+            let scheduleAndSaveSprintThanClose = {
+                self.sprintSchedulerService.scheduleSprint(self.sprint)
+                habits.forEach { self.habitsSchedulerService.scheduleHabit($0) }
+                saveSprintThanClose()
+            }
+            NotificationsConfigurator.getNotificationsPermissionStatus { isAuthorized in
+                if isAuthorized {
+                    scheduleAndSaveSprintThanClose()
+                } else {
+                    NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
                         if isAuthorized {
                             scheduleAndSaveSprintThanClose()
                         } else {
-                            NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
-                                if isAuthorized {
-                                    scheduleAndSaveSprintThanClose()
-                                } else {
-                                    saveSprintThanClose()
-                                }
-                            }
+                            saveSprintThanClose()
                         }
                     }
                 }
             }
+        }
     }
     
     func setupDoneButton() {
@@ -364,8 +350,14 @@ private extension SprintCreationViewController {
         }
     }
     
+    func updateSprintSettingsButtons() {
+        addButton.isHidden = sprint.tense == .past
+        startDateButton.isHidden = sprint.isReady && sprint.tense != .future
+        notificationsButton.isHidden = sprint.tense == .past
+    }
+    
     func showAddHabitMenu(animated: Bool = false) {
-        addHabitMenu.transform = makeaddHabitMenuInitialTransform()
+        addHabitMenu.transform = makeAddHabitMenuInitialTransform()
         
         addHabitMenu.isHidden = false
         dimmedBackgroundView.alpha = 0
@@ -375,7 +367,6 @@ private extension SprintCreationViewController {
             self.dimmedBackgroundView.alpha = 1
             self.addHabitMenu.transform = .identity
             self.addButton.isSelected = true
-            self.addButton.transform = self.makeAddListButtonRotationTransform()
         }
     }
     
@@ -384,23 +375,18 @@ private extension SprintCreationViewController {
                        animations: {
                         self.addHabitMenu.alpha = 0
                         self.dimmedBackgroundView.alpha = 0
-                        self.addHabitMenu.transform = self.makeaddHabitMenuInitialTransform()
+                        self.addHabitMenu.transform = self.makeAddHabitMenuInitialTransform()
                         self.addButton.isSelected = false
-                        self.addButton.transform = .identity
         }) { _ in
             self.addHabitMenu.isHidden = true
             self.dimmedBackgroundView.isHidden = true
         }
     }
     
-    func makeaddHabitMenuInitialTransform() -> CGAffineTransform {
+    func makeAddHabitMenuInitialTransform() -> CGAffineTransform {
         let translation = CGAffineTransform(translationX: 0, y: 64)
         let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
         return scale.concatenating(translation)
-    }
-    
-    func makeAddListButtonRotationTransform() -> CGAffineTransform {
-        return CGAffineTransform(rotationAngle: 45 * .pi / 180)
     }
     
 }

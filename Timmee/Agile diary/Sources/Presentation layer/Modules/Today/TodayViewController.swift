@@ -65,6 +65,12 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupPlaceholder()
         
         subscribeToSynchronizationCompletion()
+        
+        BackgroundImagesLoader.shared.onLoad = { [weak self] in
+            DispatchQueue.main.async {
+                self?.setupBackgroundImage()
+            }
+        }
     }
     
     override func refresh() {

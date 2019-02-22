@@ -53,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         synchronizationRunner.delegate = self
         synchronizationRunner.run(interval: 10)
         
+        BackgroundImagesLoader.shared.load()
+        
         return true
     }
     

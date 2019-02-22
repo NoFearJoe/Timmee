@@ -132,7 +132,7 @@
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8T3-WM-hml">
                                 <rect key="frame" x="89.5" y="479" width="196" height="96"/>
                                 <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqS-zu-hm3">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqS-zu-hm3" customClass="AddMenuButton" customModule="Agile_diary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="196" height="40"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -148,7 +148,7 @@
                                             <action selector="onTapToCreateHabitButton" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="nqd-Nd-yqc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZq-hU-mvs">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZq-hU-mvs" customClass="AddMenuButton" customModule="Agile_diary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="56" width="196" height="40"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -171,7 +171,7 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="jQF-zM-MBd"/>
                             </stackView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkS-e4-0x0">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkS-e4-0x0" customClass="AddButton" customModule="Agile_diary" customModuleProvider="target">
                                 <rect key="frame" x="155.5" y="595" width="64" height="64"/>
                                 <color key="backgroundColor" red="0.24313725490196078" green="0.792156862745098" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
