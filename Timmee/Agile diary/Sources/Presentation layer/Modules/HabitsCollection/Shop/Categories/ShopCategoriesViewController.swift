@@ -10,6 +10,8 @@ import UIKit
 
 final class ShopCategoriesViewController: BaseViewController {
     
+    var sprintID: String?
+    
     @IBOutlet private var collectionView: UICollectionView!
     
     @IBOutlet private var placeholderContainer: UIView!
@@ -19,7 +21,7 @@ final class ShopCategoriesViewController: BaseViewController {
     
     private let collectionsLoader = HabitsCollectionsLoader.shared
     
-    private var collections: [HabitsCollection] = []
+    private var categories: [HabitsCollection] = []
     
     override func prepare() {
         super.prepare()
@@ -32,7 +34,7 @@ final class ShopCategoriesViewController: BaseViewController {
         loadingView.isHidden = false
         collectionsLoader.loadHabitsCollections(success: { [weak self] collections in
             self?.loadingView.isHidden = true
-            self?.collections = collections
+            self?.categories = collections
             self?.collectionView.reloadData()
             self?.placeholderContainer.isHidden = true
         }) { [weak self] error in
@@ -48,18 +50,27 @@ final class ShopCategoriesViewController: BaseViewController {
         loadingView.backgroundColor = AppTheme.current.colors.backgroundColor
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let categoryViewController = segue.destination as? ShopCategoryViewController {
+            categoryViewController.sprintID = sprintID
+            categoryViewController.habits = (sender as? [Habit]) ?? []
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
 }
 
 extension ShopCategoriesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collections.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShopCategoryCell", for: indexPath) as! ShopCategoryCell
-        if let collection = collections.item(at: indexPath.item) {
-            cell.configure(title: collection.title, backgroundImage: UIImage())
+        if let category = categories.item(at: indexPath.item) {
+            cell.configure(title: category.title, backgroundImage: UIImage())
         }
         return cell
     }
@@ -69,7 +80,8 @@ extension ShopCategoriesViewController: UICollectionViewDataSource {
 extension ShopCategoriesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let category = categories.item(at: indexPath.item) else { return }
+        performSegue(withIdentifier: "ShowCategory", sender: category.habits)
     }
     
 }

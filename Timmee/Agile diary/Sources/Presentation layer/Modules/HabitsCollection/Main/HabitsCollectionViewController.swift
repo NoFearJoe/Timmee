@@ -63,6 +63,7 @@ final class HabitsCollectionViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Shop" {
             shopViewController = segue.destination as? ShopCategoriesViewController
+            shopViewController?.sprintID = sprintID
         } else if segue.identifier == "History" {
             historyViewController = segue.destination as? HabitsHistoryViewController
             historyViewController?.sprintID = sprintID
