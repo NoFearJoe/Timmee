@@ -10,9 +10,10 @@ import UIKit
 
 final class ShopCategoryViewController: BaseViewController {
     
-    var habits: [Habit] = []
+    var collection: HabitsCollection?
     var sprintID: String?
     
+    @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var tableView: UITableView!
     
     @IBOutlet private var placeholderContainer: UIView!
@@ -22,6 +23,14 @@ final class ShopCategoryViewController: BaseViewController {
     
     private var pickedHabbitIDs: [(original: String, new: String)] = []
     
+    @IBAction private func onTapToBackButton() {
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     override func prepare() {
         super.prepare()
         setupPlaceholder()
@@ -29,6 +38,7 @@ final class ShopCategoryViewController: BaseViewController {
     
     override func refresh() {
         super.refresh()
+        headerView.titleLabel.text = collection?.title
         updatePlaceholderVisibility()
         tableView.reloadData()
     }
@@ -44,12 +54,12 @@ final class ShopCategoryViewController: BaseViewController {
 extension ShopCategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habits.count
+        return collection?.habits.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCategoryHabitCell", for: indexPath) as! ShopCategoryHabitCell
-        if let habit = habits.item(at: indexPath.row) {
+        if let habit = collection?.habits.item(at: indexPath.row) {
             let isPicked = pickedHabbitIDs.contains(where: { $0.original == habit.id })
             cell.configure(habit: habit, isPicked: isPicked)
         }
@@ -61,7 +71,7 @@ extension ShopCategoryViewController: UITableViewDataSource {
 extension ShopCategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let habit = habits.item(at: indexPath.row) else { return }
+        guard let habit = collection?.habits.item(at: indexPath.row) else { return }
         if let pickedHabitID = pickedHabbitIDs.first(where: { $0.original == habit.id })?.new {
             let pickedHabit = habit.copy
             pickedHabit.id = pickedHabitID
@@ -107,7 +117,8 @@ private extension ShopCategoryViewController {
     }
     
     func updatePlaceholderVisibility() {
-        placeholderContainer.isHidden = !habits.isEmpty
+        guard let collection = collection else { return }
+        placeholderContainer.isHidden = !collection.habits.isEmpty
     }
     
 }

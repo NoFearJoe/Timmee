@@ -53,7 +53,7 @@ final class ShopCategoriesViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let categoryViewController = segue.destination as? ShopCategoryViewController {
             categoryViewController.sprintID = sprintID
-            categoryViewController.habits = (sender as? [Habit]) ?? []
+            categoryViewController.collection = sender as? HabitsCollection
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -81,7 +81,7 @@ extension ShopCategoriesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let category = categories.item(at: indexPath.item) else { return }
-        performSegue(withIdentifier: "ShowCategory", sender: category.habits)
+        performSegue(withIdentifier: "ShowCategory", sender: category)
     }
     
 }
