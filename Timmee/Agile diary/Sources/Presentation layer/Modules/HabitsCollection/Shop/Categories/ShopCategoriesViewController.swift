@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 final class ShopCategoriesViewController: BaseViewController {
     
@@ -70,7 +71,7 @@ extension ShopCategoriesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShopCategoryCell", for: indexPath) as! ShopCategoryCell
         if let category = categories.item(at: indexPath.item) {
-            cell.configure(title: category.title, backgroundImage: UIImage())
+            cell.configure(title: category.title, backgroundImageUrl: category.backgroundImageUrl)
         }
         return cell
     }
@@ -146,9 +147,14 @@ final class ShopCategoryCell: UICollectionViewCell {
         setupAppearance()
     }
     
-    func configure(title: String, backgroundImage: UIImage) {
+    func configure(title: String, backgroundImageUrl: String) {
         titleLabel.text = title
-        backgroundImageView.image = backgroundImage
+        backgroundImageView.setImage(firebasePath: backgroundImageUrl)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backgroundImageView.cancelImageLoadingTask()
     }
     
     func setupAppearance() {

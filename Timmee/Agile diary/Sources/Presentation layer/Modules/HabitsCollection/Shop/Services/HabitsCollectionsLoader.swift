@@ -13,6 +13,7 @@ import FirebaseStorage
 struct HabitsCollection {
     let id: String
     let title: String
+    let backgroundImageUrl: String
     let habits: [Habit]
     
     init?(json: [String: Any]) {
@@ -23,6 +24,7 @@ struct HabitsCollection {
         
         self.id = id
         self.title = title
+        self.backgroundImageUrl = json["backgroundImageUrl"] as? String ?? ""
         self.habits = habitsJSON.compactMap(Habit.init(json:))
     }
 }

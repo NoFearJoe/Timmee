@@ -255,6 +255,8 @@
 		72FBD1015AFBE50D122CB628 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
 		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
 		94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */; };
+		9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
+		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
@@ -467,6 +469,7 @@
 		4D57D6A23D0AB2DD851BFADF /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
 		6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
 		8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
+		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -779,6 +782,7 @@
 				0CDF8D852125B8AB001A2F70 /* Task+Target.swift */,
 				0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */,
 				0C936543215A0B1A00B4EB48 /* Date+Today.swift */,
+				9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1627,6 +1631,7 @@
 				0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
+				9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				0CC405E021EDFEBD0069C6C5 /* FocusableTextField.swift in Sources */,
 				0CC405E321EE027D0069C6C5 /* EmailValidator.swift in Sources */,
@@ -1697,6 +1702,7 @@
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
+				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
