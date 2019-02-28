@@ -20,6 +20,7 @@ public class Habit: Copyable {
     public var note: String
     public var link: String
     public var value: Value?
+    public var dayTime: DayTime?
     public var notificationDate: Date?
     public var repeatEndingDate: Date?
     public var dueDays: [DayUnit]
@@ -32,6 +33,7 @@ public class Habit: Copyable {
         note = habit.note ?? ""
         link = habit.link ?? ""
         value = habit.value.flatMap(Value.init(string:))
+        dayTime = habit.dayTime.flatMap(DayTime.init(rawValue:))
         notificationDate = habit.notificationDate
         repeatEndingDate = habit.repeatEndingDate as Date?
         dueDays = habit.dueDays?.split(separator: ",").map { DayUnit(string: String($0)) } ?? []
@@ -44,6 +46,7 @@ public class Habit: Copyable {
                 note: String,
                 link: String,
                 value: Value?,
+                dayTime: DayTime?,
                 notificationDate: Date?,
                 repeatEndingDate: Date?,
                 dueDays: [DayUnit],
@@ -54,6 +57,7 @@ public class Habit: Copyable {
         self.note = note
         self.link = link
         self.value = value
+        self.dayTime = dayTime
         self.notificationDate = notificationDate
         self.repeatEndingDate = repeatEndingDate
         self.dueDays = dueDays
@@ -68,6 +72,7 @@ public class Habit: Copyable {
                   note: "",
                   link: "",
                   value: nil,
+                  dayTime: .midday,
                   notificationDate: nil,
                   repeatEndingDate: nil,
                   dueDays: [],
@@ -84,6 +89,7 @@ public class Habit: Copyable {
         let note = json["note"] as? String
         let link = json["link"] as? String
         
+        let dayTime = (json["dayTime"] as? String).flatMap(DayTime.init(rawValue:))
         let value = (json["value"] as? String).flatMap(Value.init(string:))
         let dueDays = (dueDaysString.split(separator: ",").map { DayUnit(string: String($0)) })
         
@@ -92,6 +98,7 @@ public class Habit: Copyable {
                   note: note ?? "",
                   link: link ?? "",
                   value: value,
+                  dayTime: dayTime,
                   notificationDate: nil,
                   repeatEndingDate: nil,
                   dueDays: dueDays,
@@ -105,6 +112,7 @@ public class Habit: Copyable {
                      note: note,
                      link: link,
                      value: value,
+                     dayTime: dayTime,
                      notificationDate: notificationDate,
                      repeatEndingDate: repeatEndingDate,
                      dueDays: dueDays,
@@ -145,7 +153,20 @@ public class Habit: Copyable {
         isDone ? doneDates.append(date) : doneDates.remove(object: date)
     }
     
+    /// Возвращает время суток если свойство dayTime не nil или возвращает время суток на основе notificationDate.hours
+    public var calculatedDayTime: DayTime? {
+        if let dayTime = dayTime {
+            return dayTime
+        } else if let notificationDate = notificationDate {
+            return DayTime(hours: notificationDate.hours)
+        } else {
+            return nil
+        }
+    }
+    
 }
+
+// MARK: - Value
 
 extension Habit {
     
@@ -189,6 +210,35 @@ extension Habit.Value {
     
 }
 
+// MARK: - DayTime
+
+extension Habit {
+    
+    public enum DayTime: String {
+        case morning, midday, evening
+        
+        public var localized: String {
+            return "\(rawValue)".localized
+        }
+        
+        /// Утром, днем, вечером
+        public var localizedAt: String {
+            return "\(rawValue)_at".localized
+        }
+        
+        public init(hours: Int) {
+            switch hours {
+            case 4..<12: self = .morning
+            case 12..<18: self = .midday
+            default: self = .evening
+            }
+        }
+    }
+    
+}
+
+// MARK: - Equatable
+
 extension Habit.Value: Equatable {
     
     public static func == (lhs: Habit.Value, rhs: Habit.Value) -> Bool {
@@ -196,6 +246,8 @@ extension Habit.Value: Equatable {
     }
     
 }
+
+// MARK: - Hashable
 
 extension Habit: Hashable {
     
@@ -208,6 +260,8 @@ extension Habit: Hashable {
     }
     
 }
+
+// MARK: - Custom equatable
 
 extension Habit: CustomEquatable {
     
