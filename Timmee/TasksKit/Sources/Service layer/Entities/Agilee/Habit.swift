@@ -184,7 +184,7 @@ extension Habit.Value {
     }
     
     public var localized: String {
-        return "\(amount)" + units.localized
+        return "\(amount) " + units.localized
     }
     
 }

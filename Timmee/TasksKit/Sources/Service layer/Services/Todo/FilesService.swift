@@ -26,83 +26,87 @@ public final class FilesService {
         }
     }
     
-    public init() {}
+    private let directory: String
+    
+    public init(directory: String) {
+        self.directory = directory
+    }
         
     // MARK: - Save file
     
     public func saveFileInDocuments(withName name: String, contents: Data) {
         guard let documentsURL = URLs.documents else { return }
-        saveFile(withName: name, contents: contents, url: documentsURL)
+        saveFile(withName: name, directory: directory, contents: contents, url: documentsURL)
     }
     
     public func saveFileInCaches(withName name: String, contents: Data) {
         guard let cachesURL = URLs.caches else { return }
-        saveFile(withName: name, contents: contents, url: cachesURL)
+        saveFile(withName: name, directory: directory, contents: contents, url: cachesURL)
     }
     
     // MARK: - Remove file
     
     public func removeFileFromDocuments(withName name: String) {
         guard let documentsURL = URLs.documents else { return }
-        removeFile(withName: name, url: documentsURL)
+        removeFile(withName: name, directory: directory, url: documentsURL)
     }
     
     public func removeFileFromCaches(withName name: String) {
         guard let cachesURL = URLs.caches else { return }
-        removeFile(withName: name, url: cachesURL)
+        removeFile(withName: name, directory: directory, url: cachesURL)
     }
     
     // MARK: - Get file
     
     public func getFileFromDocuments(withName name: String) -> Data? {
         guard let documentsURL = URLs.documents else { return nil }
-        return getFile(withName: name, url: documentsURL)
+        return getFile(withName: name, directory: directory, url: documentsURL)
     }
     
     public func getFileFromCaches(withName name: String) -> Data? {
         guard let cachesURL = URLs.caches else { return nil }
-        return getFile(withName: name, url: cachesURL)
+        return getFile(withName: name, directory: directory, url: cachesURL)
     }
     
     // MARK: - File existanse
     
     public func isFileExistsInDocuments(withName name: String) -> Bool {
         guard let documentsURL = URLs.documents else { return false }
-        return isFileExists(withName: name, url: documentsURL)
+        return isFileExists(withName: name, directory: directory, url: documentsURL)
     }
     
     public func isFileExistsInCaches(withName name: String) -> Bool {
         guard let cachesURL = URLs.caches else { return false }
-        return isFileExists(withName: name, url: cachesURL)
+        return isFileExists(withName: name, directory: directory, url: cachesURL)
     }
     
     // MARK: - Private methods
     
-    private func saveFile(withName name: String, contents: Data, url: URL) {
-        if !FileManager.default.fileExists(atPath: url.appendingPathComponent("Attachments").path) {
-            try! FileManager.default.createDirectory(at: url.appendingPathComponent("Attachments"), withIntermediateDirectories: true, attributes: nil)
+    private func saveFile(withName name: String, directory: String, contents: Data, url: URL) {
+        if !FileManager.default.fileExists(atPath: url.appendingPathComponent(directory).path) {
+            try! FileManager.default.createDirectory(at: url.appendingPathComponent(directory), withIntermediateDirectories: true, attributes: nil)
         }
         
-        FileManager.default.createFile(atPath: makeAttachmentsURL(baseURL: url, filename: name).path,
+        FileManager.default.createFile(atPath: makeFullURL(baseURL: url, directory: directory, filename: name).path,
                                        contents: contents,
                                        attributes: nil)
     }
         
-    private func removeFile(withName name: String, url: URL) {
-        try? FileManager.default.removeItem(at: makeAttachmentsURL(baseURL: url, filename: name))
+    private func removeFile(withName name: String, directory: String, url: URL) {
+        try? FileManager.default.removeItem(at: makeFullURL(baseURL: url, directory: directory, filename: name))
     }
     
-    private func getFile(withName name: String, url: URL) -> Data? {
-        return FileManager.default.contents(atPath: makeAttachmentsURL(baseURL: url, filename: name).path)
+    private func getFile(withName name: String, directory: String, url: URL) -> Data? {
+        return FileManager.default.contents(atPath: makeFullURL(baseURL: url, directory: directory, filename: name).path)
     }
     
-    private func isFileExists(withName name: String, url: URL) -> Bool {
-        return FileManager.default.fileExists(atPath: makeAttachmentsURL(baseURL: url, filename: name).path)
+    private func isFileExists(withName name: String, directory: String, url: URL) -> Bool {
+        return FileManager.default.fileExists(atPath: makeFullURL(baseURL: url, directory: directory, filename: name).path)
     }
     
     
-    private func makeAttachmentsURL(baseURL: URL, filename: String) -> URL {
-        return baseURL.appendingPathComponent("Attachments").appendingPathComponent(filename)
+    private func makeFullURL(baseURL: URL, directory: String, filename: String) -> URL {
+        return baseURL.appendingPathComponent(directory).appendingPathComponent(filename)
     }
     
 }

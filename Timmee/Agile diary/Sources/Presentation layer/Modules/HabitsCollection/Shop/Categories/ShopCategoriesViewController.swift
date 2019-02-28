@@ -27,10 +27,6 @@ final class ShopCategoriesViewController: BaseViewController {
     override func prepare() {
         super.prepare()
         setupPlaceholder()
-    }
-    
-    override func refresh() {
-        super.refresh()
         
         loadingView.isHidden = false
         collectionsLoader.loadHabitsCollections(success: { [weak self] collections in

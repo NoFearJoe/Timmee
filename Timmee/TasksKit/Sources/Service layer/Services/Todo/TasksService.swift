@@ -179,7 +179,7 @@ extension TasksService: TasksManager {
         
         Database.localStorage.write({ (context, save) in
             tasks.forEach { task in
-                task.attachments.forEach { FilesService().removeFileFromDocuments(withName: $0) }
+                task.attachments.forEach { FilesService(directory: "Attachments").removeFileFromDocuments(withName: $0) }
                 
                 if let existingTask = self.fetchTaskEntityInBackground(id: task.id) {
                     context.delete(existingTask)

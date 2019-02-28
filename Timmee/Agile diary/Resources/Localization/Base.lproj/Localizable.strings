@@ -329,3 +329,5 @@
 "are_you_sure_you_want_to_remove_goal" = "After removing the goal, all the associated progress will be lost. Remove the goal?";
 
 "sprint_has_finished_notification_message" = "Sprint is over! It's time to look at the results and start a new one";
+
+"error_while_loading_habits_collections" = "An error occurred while loading collections. Check your internet connection or try again later.";

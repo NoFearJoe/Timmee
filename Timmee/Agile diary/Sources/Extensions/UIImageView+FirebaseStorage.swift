@@ -18,7 +18,17 @@ public extension UIImageView {
             return objc_getAssociatedObject(self, &UIImageView.imageLoadingTaskKey) as? StorageDownloadTask
         }
         set {
-            objc_setAssociatedObject(self, &UIImageView.imageLoadingTaskKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            objc_setAssociatedObject(self, &UIImageView.imageLoadingTaskKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
+    private static var imageReferenceKey = "image_loading_task_key"
+    private var imageReference: StorageReference? {
+        get {
+            return objc_getAssociatedObject(self, &UIImageView.imageLoadingTaskKey) as? StorageReference
+        }
+        set {
+            objc_setAssociatedObject(self, &UIImageView.imageReferenceKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
     
@@ -35,16 +45,21 @@ public extension UIImageView {
         if let cachedImage = ImageCache.shared.load(reference: reference) {
             image = cachedImage
         } else {
-            imageLoadingTask = reference.getData(maxSize: 1024 * 1024) { data, error in
+            if imageReference != reference {
+                cancelImageLoadingTask()
+            }
+            
+            imageLoadingTask = reference.getData(maxSize: 1024 * 1024) { [weak self] data, error in
                 if let error = error {
                     print(error)
                 } else if let data = data {
                     ImageCache.shared.save(imageData: data, reference: reference)
                     
                     DispatchQueue.main.async {
-                        self.image = UIImage(data: data)
+                        self?.image = UIImage(data: data)
                     }
                 }
+                self?.imageLoadingTask = nil
             }
         }
     }
@@ -55,23 +70,21 @@ fileprivate final class ImageCache {
     
     static let shared = ImageCache()
     
+    private let filesService = FilesService(directory: "ImageCache")
+    
     private let syncQueue = DispatchQueue(label: "image_cache_sync_queue",
                                           qos: .utility,
                                           attributes: .concurrent)
     
     func save(imageData: Data, reference: StorageReference) {
         syncQueue.async(flags: .barrier) {
-            let filename = "\(reference.fullPath.hashValue)\(reference.name)"
-            let imageCacheDirectory = "image_cache"
-            FilesService().saveFileInCaches(withName: imageCacheDirectory + "/" + filename, contents: imageData)
+            self.filesService.saveFileInCaches(withName: reference.name, contents: imageData)
         }
     }
     
     func load(reference: StorageReference) -> UIImage? {
         return syncQueue.sync {
-            let filename = "\(reference.fullPath.hashValue)\(reference.name)"
-            let imageCacheDirectory = "image_cache"
-            guard let data = FilesService().getFileFromCaches(withName: imageCacheDirectory + "/" + filename) else { return nil }
+            guard let data = self.filesService.getFileFromCaches(withName: reference.name) else { return nil }
             return UIImage(data: data)
         }
     }
