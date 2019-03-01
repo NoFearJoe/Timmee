@@ -27,6 +27,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBOutlet private var valueLabel: UILabel!
     @IBOutlet private var valuePicker: UIPickerView!
     
+    @IBOutlet private var dayTimePickerContainer: UIView!
+    private var dayTimePicker: DayTimePickerSubmodule!
+    
     @IBOutlet private var notificationTimeCheckbox: Checkbox!
     @IBOutlet private var notificationTimeTitleLabel: UILabel!
     @IBOutlet private var notificationTimePickerContainer: UIView!
@@ -132,6 +135,10 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
             guard let picker = segue.destination as? NotificationTimePicker else { return }
             picker.output = self
             notificationTimePicker = picker
+        } else if segue.identifier == "EmbedDayTimePicker" {
+            guard let picker = segue.destination as? DayTimePickerSubmodule else { return }
+            picker.delegate = self
+            dayTimePicker = picker
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -231,11 +238,20 @@ extension HabitCreationViewController: NotificationTimePickerOutput {
     func didChangeHours(to hours: Int) {
         habit.notificationDate => hours.asHours
         lastSelectedNotificationTime => hours.asHours
+        dayTimePicker.setDayTime(habit.calculatedDayTime)
     }
     
     func didChangeMinutes(to minutes: Int) {
         habit.notificationDate => minutes.asMinutes
         lastSelectedNotificationTime => minutes.asMinutes
+    }
+    
+}
+
+extension HabitCreationViewController: DayTimePickerSubmoduleDelegate {
+    
+    func dayTimePicker(_ picker: DayTimePickerSubmodule, didSelectDayTime dayTime: Habit.DayTime) {
+        habit.dayTime = dayTime
     }
     
 }
@@ -286,6 +302,7 @@ private extension HabitCreationViewController {
         updateDoneButtonState()
         setNotificationTimePickerVisible(habit.notificationDate != nil, animated: false)
         setValuePickerVisible(habit.value != nil, animated: false)
+        dayTimePicker.setDayTime(habit.calculatedDayTime)
     }
     
     func updateValueLabel() {

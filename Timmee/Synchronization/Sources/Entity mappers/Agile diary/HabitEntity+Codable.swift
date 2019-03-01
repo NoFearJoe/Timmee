@@ -28,6 +28,7 @@ extension HabitEntity: DictionaryEncodable {
         link.map {optionalFields["link"] = $0 }
         value.map { optionalFields["value"] = $0 }
         note.map { optionalFields["note"] = $0 }
+        dayTime.map { optionalFields["dayTime"] = $0 }
         
         return requiredFields.merging(optionalFields, uniquingKeysWith: { old, new in new })
     }
@@ -46,6 +47,7 @@ extension HabitEntity: DictionaryDecodable {
         dueDays = dictionary["dueDays"] as? String
         link = dictionary["link"] as? String
         note = dictionary["note"] as? String
+        dayTime = dictionary["dayTime"] as? String
         notificationDate = (dictionary["notificationDate"] as? Timestamp)?.dateValue()
         repeatEndingDate = (dictionary["repeatEndingDate"] as? Timestamp)?.dateValue()
         value = dictionary["value"] as? String

@@ -76,6 +76,8 @@
 		0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
 		0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */; };
 		0CACF2D422241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */; };
+		0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */; };
+		0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */; };
 		0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */; };
 		0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */; };
 		0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */; };
@@ -408,6 +410,7 @@
 		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
 		0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintNotificationTimePicker.swift; sourceTree = "<group>"; };
 		0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoryViewController.swift; sourceTree = "<group>"; };
+		0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimePickerSubmodule.swift; sourceTree = "<group>"; };
 		0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionViewController.swift; sourceTree = "<group>"; };
 		0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitsCollection.storyboard; sourceTree = "<group>"; };
 		0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryViewController.swift; sourceTree = "<group>"; };
@@ -737,7 +740,7 @@
 		0C14D4E921219611004C0559 /* Habit creation */ = {
 			isa = PBXGroup;
 			children = (
-				0CDF8D97212A8D24001A2F70 /* NotificationTimePicker */,
+				0CACF33B2229263D00EE97E4 /* Submodules */,
 				0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */,
 				0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */,
 			);
@@ -894,6 +897,15 @@
 				0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */,
 			);
 			path = SprintNotificationTimePicker;
+			sourceTree = "<group>";
+		};
+		0CACF33B2229263D00EE97E4 /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+				0CDF8D97212A8D24001A2F70 /* NotificationTimePicker */,
+				0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */,
+			);
+			path = Submodules;
 			sourceTree = "<group>";
 		};
 		0CB02FF42192D619006C5146 /* HabitsCollection */ = {
@@ -1607,6 +1619,7 @@
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
+				0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
@@ -1704,6 +1717,7 @@
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
 				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
+				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,

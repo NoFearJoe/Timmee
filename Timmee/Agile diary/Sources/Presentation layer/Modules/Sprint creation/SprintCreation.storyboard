@@ -613,7 +613,7 @@
             <objects>
                 <viewController storyboardIdentifier="HabitCreationViewController" id="aS1-37-JFS" customClass="HabitCreationViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1pQ-PA-3ce">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zP-as-NhU" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
@@ -691,10 +691,10 @@
                                 </connections>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGb-hB-jir">
-                                <rect key="frame" x="0.0" y="112" width="375" height="555"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="688"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-0Q-2oz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-A8-IFy" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="15" width="345" height="74"/>
@@ -936,8 +936,17 @@
                                                 </constraints>
                                                 <viewLayoutGuide key="safeArea" id="WnT-PR-7Xx"/>
                                             </view>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlX-ix-Zmh" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="281" width="345" height="64"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="64" id="D7N-d8-zrV"/>
+                                                </constraints>
+                                                <connections>
+                                                    <segue destination="C2e-Rt-zYq" kind="embed" identifier="EmbedDayTimePicker" id="2zE-c3-ZS6"/>
+                                                </connections>
+                                            </containerView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-cu-MoF" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="281" width="345" height="138"/>
+                                                <rect key="frame" x="15" y="360" width="345" height="138"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbN-vX-SrP">
                                                         <rect key="frame" x="8" y="8" width="105.5" height="18"/>
@@ -979,7 +988,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-LA-xlj" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="434" width="345" height="65"/>
+                                                <rect key="frame" x="15" y="513" width="345" height="65"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ссылка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-lt-1Kb">
                                                         <rect key="frame" x="8" y="8" width="55.5" height="18"/>
@@ -1031,17 +1040,20 @@
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Vz7-A8-IFy" secondAttribute="trailing" constant="15" id="0nU-SZ-JzF"/>
+                                            <constraint firstItem="1Ww-cu-MoF" firstAttribute="top" secondItem="qlX-ix-Zmh" secondAttribute="bottom" constant="15" id="8gc-Ds-MfR"/>
                                             <constraint firstItem="X0p-24-Lxq" firstAttribute="top" secondItem="Vz7-A8-IFy" secondAttribute="bottom" constant="15" id="GHx-TJ-mEC"/>
                                             <constraint firstAttribute="bottom" secondItem="p4G-LA-xlj" secondAttribute="bottom" constant="15" id="Ib7-LY-vkq"/>
+                                            <constraint firstItem="qlX-ix-Zmh" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="NFI-Ia-p42"/>
                                             <constraint firstItem="p4G-LA-xlj" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="OMN-yD-JRN"/>
+                                            <constraint firstAttribute="trailing" secondItem="qlX-ix-Zmh" secondAttribute="trailing" constant="15" id="RUf-IZ-oh7"/>
                                             <constraint firstAttribute="trailing" secondItem="1Ww-cu-MoF" secondAttribute="trailing" constant="15" id="bip-oD-kdN"/>
                                             <constraint firstItem="Vz7-A8-IFy" firstAttribute="top" secondItem="4Pt-0Q-2oz" secondAttribute="top" constant="15" id="cfO-74-aoB"/>
                                             <constraint firstItem="Vz7-A8-IFy" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="fhn-3R-FPn"/>
                                             <constraint firstItem="p4G-LA-xlj" firstAttribute="top" secondItem="1Ww-cu-MoF" secondAttribute="bottom" constant="15" id="gGB-N6-gq9"/>
                                             <constraint firstAttribute="trailing" secondItem="X0p-24-Lxq" secondAttribute="trailing" constant="15" id="lzd-EV-SGS"/>
+                                            <constraint firstItem="qlX-ix-Zmh" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="bottom" constant="15" id="qhv-rT-4MS"/>
                                             <constraint firstItem="1Ww-cu-MoF" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="sOf-wP-Hwy"/>
                                             <constraint firstItem="X0p-24-Lxq" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="tSm-pm-UZP"/>
-                                            <constraint firstItem="1Ww-cu-MoF" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="bottom" constant="15" id="tof-WD-8HP"/>
                                             <constraint firstAttribute="trailing" secondItem="p4G-LA-xlj" secondAttribute="trailing" constant="15" id="ycf-zg-cDn"/>
                                         </constraints>
                                     </view>
@@ -1072,6 +1084,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZnJ-sB-7Bl"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="contentScrollView" destination="YGb-hB-jir" id="c10-Ez-CK6"/>
                         <outlet property="contentView" destination="4Pt-0Q-2oz" id="8MD-Fk-YV4"/>
@@ -1114,7 +1128,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="376.80000000000001" y="881.10944527736137"/>
+            <point key="canvasLocation" x="375" y="941"/>
         </scene>
         <!--Sprint Content View Controller-->
         <scene sceneID="e1Q-Y2-9VW">
@@ -1559,6 +1573,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lu-GI-Bwt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1188" y="881"/>
+        </scene>
+        <!--Day Time Picker Submodule-->
+        <scene sceneID="M42-lp-KHg">
+            <objects>
+                <viewController id="C2e-Rt-zYq" customClass="DayTimePickerSubmodule" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OwS-Ui-dLs">
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="64"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-JR-xfo" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
+                                <rect key="frame" x="8" y="18" width="329" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="H9M-Cw-Y9o"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onDayTimeSwitcherValueChanged" destination="C2e-Rt-zYq" eventType="valueChanged" id="jHC-Lx-nku"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HrM-JR-xfo" firstAttribute="leading" secondItem="i5X-Pf-gu0" secondAttribute="leading" constant="8" id="8Dc-0M-haZ"/>
+                            <constraint firstItem="HrM-JR-xfo" firstAttribute="centerY" secondItem="OwS-Ui-dLs" secondAttribute="centerY" id="Xgk-uG-4sk"/>
+                            <constraint firstAttribute="trailing" secondItem="HrM-JR-xfo" secondAttribute="trailing" constant="8" id="koZ-Ie-YLB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="i5X-Pf-gu0"/>
+                    </view>
+                    <connections>
+                        <outlet property="dayTimeSwitcher" destination="HrM-JR-xfo" id="la3-ws-kr0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWQ-56-uKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1380" y="1020"/>
         </scene>
         <!--Due Date Picker-->
         <scene sceneID="Twm-PP-WKS">

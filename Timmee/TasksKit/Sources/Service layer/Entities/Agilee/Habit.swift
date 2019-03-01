@@ -72,7 +72,7 @@ public class Habit: Copyable {
                   note: "",
                   link: "",
                   value: nil,
-                  dayTime: .midday,
+                  dayTime: .day,
                   notificationDate: nil,
                   repeatEndingDate: nil,
                   dueDays: [],
@@ -154,13 +154,13 @@ public class Habit: Copyable {
     }
     
     /// Возвращает время суток если свойство dayTime не nil или возвращает время суток на основе notificationDate.hours
-    public var calculatedDayTime: DayTime? {
+    public var calculatedDayTime: DayTime {
         if let dayTime = dayTime {
             return dayTime
         } else if let notificationDate = notificationDate {
             return DayTime(hours: notificationDate.hours)
         } else {
-            return nil
+            return .day
         }
     }
     
@@ -214,8 +214,8 @@ extension Habit.Value {
 
 extension Habit {
     
-    public enum DayTime: String {
-        case morning, midday, evening
+    public enum DayTime: String, CaseIterable {
+        case morning, midday, evening, day
         
         public var localized: String {
             return "\(rawValue)".localized
