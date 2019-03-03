@@ -331,3 +331,13 @@
 "sprint_has_finished_notification_message" = "Спринт окончен! Настало время взглянуть на результаты и начать новый";
 
 "error_while_loading_habits_collections" = "При загрузке коллекций произошла ошибка. Проверьте интернет-соединение или повторите попытку позже";
+
+"day_time_picker_title" = "Время суток";
+"morning" = "Утро";
+"afternoon" = "День";
+"evening" = "Вечер";
+"during_the_day" = "В течение дня";
+"morning_at" = "Утром";
+"afternoon_at" = "Днем";
+"evening_at" = "Вечером";
+"during_the_day_at" = "В течение дня";

@@ -694,7 +694,7 @@
                                 <rect key="frame" x="0.0" y="112" width="375" height="688"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-0Q-2oz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-A8-IFy" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="15" width="345" height="74"/>
@@ -937,16 +937,16 @@
                                                 <viewLayoutGuide key="safeArea" id="WnT-PR-7Xx"/>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlX-ix-Zmh" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="281" width="345" height="64"/>
+                                                <rect key="frame" x="15" y="281" width="345" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="64" id="D7N-d8-zrV"/>
+                                                    <constraint firstAttribute="height" constant="70" id="D7N-d8-zrV"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="C2e-Rt-zYq" kind="embed" identifier="EmbedDayTimePicker" id="2zE-c3-ZS6"/>
                                                 </connections>
                                             </containerView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-cu-MoF" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="360" width="345" height="138"/>
+                                                <rect key="frame" x="15" y="366" width="345" height="138"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbN-vX-SrP">
                                                         <rect key="frame" x="8" y="8" width="105.5" height="18"/>
@@ -988,7 +988,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-LA-xlj" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="513" width="345" height="65"/>
+                                                <rect key="frame" x="15" y="519" width="345" height="65"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ссылка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-lt-1Kb">
                                                         <rect key="frame" x="8" y="8" width="55.5" height="18"/>
@@ -1579,30 +1579,47 @@
             <objects>
                 <viewController id="C2e-Rt-zYq" customClass="DayTimePickerSubmodule" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OwS-Ui-dLs">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="64"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-JR-xfo" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="8" y="18" width="329" height="28"/>
+                                <rect key="frame" x="8" y="34" width="329" height="28"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="H9M-Cw-Y9o"/>
                                 </constraints>
                                 <connections>
+                                    <action selector="onDayTimeSwitcherValueChanged" destination="C2e-Rt-zYq" eventType="touchUpInside" id="bp0-dI-j9O"/>
                                     <action selector="onDayTimeSwitcherValueChanged" destination="C2e-Rt-zYq" eventType="valueChanged" id="jHC-Lx-nku"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bij-Rp-bW2">
+                                <rect key="frame" x="8" y="8" width="329" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="ABE-OY-6tE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HrM-JR-xfo" firstAttribute="leading" secondItem="i5X-Pf-gu0" secondAttribute="leading" constant="8" id="8Dc-0M-haZ"/>
-                            <constraint firstItem="HrM-JR-xfo" firstAttribute="centerY" secondItem="OwS-Ui-dLs" secondAttribute="centerY" id="Xgk-uG-4sk"/>
+                            <constraint firstItem="i5X-Pf-gu0" firstAttribute="bottom" secondItem="HrM-JR-xfo" secondAttribute="bottom" constant="8" id="982-oJ-ttj"/>
+                            <constraint firstItem="Bij-Rp-bW2" firstAttribute="top" secondItem="OwS-Ui-dLs" secondAttribute="top" constant="8" id="FNy-og-DFL"/>
+                            <constraint firstItem="i5X-Pf-gu0" firstAttribute="trailing" secondItem="Bij-Rp-bW2" secondAttribute="trailing" constant="8" id="WbS-Qe-N4G"/>
+                            <constraint firstItem="Bij-Rp-bW2" firstAttribute="leading" secondItem="i5X-Pf-gu0" secondAttribute="leading" constant="8" id="ebh-MM-9xb"/>
                             <constraint firstAttribute="trailing" secondItem="HrM-JR-xfo" secondAttribute="trailing" constant="8" id="koZ-Ie-YLB"/>
+                            <constraint firstItem="HrM-JR-xfo" firstAttribute="top" secondItem="Bij-Rp-bW2" secondAttribute="bottom" constant="8" id="l2i-kS-bwf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i5X-Pf-gu0"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="345" height="70"/>
                     <connections>
                         <outlet property="dayTimeSwitcher" destination="HrM-JR-xfo" id="la3-ws-kr0"/>
+                        <outlet property="titleLabel" destination="Bij-Rp-bW2" id="JCP-jG-BZH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWQ-56-uKK" userLabel="First Responder" sceneMemberID="firstResponder"/>

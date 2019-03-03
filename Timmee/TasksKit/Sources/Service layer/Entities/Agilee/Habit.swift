@@ -72,7 +72,7 @@ public class Habit: Copyable {
                   note: "",
                   link: "",
                   value: nil,
-                  dayTime: .day,
+                  dayTime: .duringTheDay,
                   notificationDate: nil,
                   repeatEndingDate: nil,
                   dueDays: [],
@@ -160,7 +160,7 @@ public class Habit: Copyable {
         } else if let notificationDate = notificationDate {
             return DayTime(hours: notificationDate.hours)
         } else {
-            return .day
+            return .duringTheDay
         }
     }
     
@@ -215,7 +215,7 @@ extension Habit.Value {
 extension Habit {
     
     public enum DayTime: String, CaseIterable {
-        case morning, midday, evening, day
+        case morning, afternoon, evening, duringTheDay = "during_the_day"
         
         public var localized: String {
             return "\(rawValue)".localized
@@ -229,7 +229,7 @@ extension Habit {
         public init(hours: Int) {
             switch hours {
             case 4..<12: self = .morning
-            case 12..<18: self = .midday
+            case 12..<18: self = .afternoon
             default: self = .evening
             }
         }
@@ -271,6 +271,7 @@ extension Habit: CustomEquatable {
             note == item.note &&
             link == item.link &&
             value == item.value &&
+            dayTime == item.dayTime &&
             notificationDate == item.notificationDate &&
             repeatEndingDate == item.repeatEndingDate &&
             dueDays == item.dueDays &&

@@ -55,8 +55,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         headerView.subtitleLabel.text = nil
         headerView.subtitleLabel.isHidden = true
         setupSections()
-        sectionSwitcher.selectedItemIndex = 0
-        sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         progressBar.setProgress(0)
         contentViewContainer.isHidden = false
         waterControlViewContainer.isHidden = true
@@ -205,6 +203,8 @@ private extension TodayViewController {
         } else {
             sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         }
+        sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
+        sectionSwitcher.selectedItemIndex = sectionSwitcher.selectedItemIndex
     }
     
     func setupBackgroundImage() {

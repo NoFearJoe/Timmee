@@ -33,11 +33,17 @@ class SprintCreationHabitCell: SwipeTableViewCell {
             attributedSubtitle.append(NSAttributedString(string: value.localized + " ",
                                                          attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         }
-        attributedSubtitle.append(NSAttributedString(string: RepeatMask(type: .on(.custom(Set(habit.dueDays)))).localized.capitalizedFirst,
+        
+        let repeatMask = RepeatMask(type: .on(.custom(Set(habit.dueDays)))).localized
+        let repeatMaskString = attributedSubtitle.string.isEmpty ? repeatMask.capitalizedFirst : repeatMask.lowercased()
+        attributedSubtitle.append(NSAttributedString(string: repeatMaskString + " ",
+                                                     attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+        
+        attributedSubtitle.append(NSAttributedString(string: habit.calculatedDayTime.localizedAt.lowercased() + " ",
                                                      attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         
         if let notificationDate = habit.notificationDate {
-            attributedSubtitle.append(NSAttributedString(string: " " + "at".localized + " ",
+            attributedSubtitle.append(NSAttributedString(string: "at".localized + " ",
                                                          attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
             attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString,
                                                          attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))

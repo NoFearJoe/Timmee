@@ -331,3 +331,13 @@
 "sprint_has_finished_notification_message" = "Sprint is over! It's time to look at the results and start a new one";
 
 "error_while_loading_habits_collections" = "An error occurred while loading collections. Check your internet connection or try again later.";
+
+"day_time_picker_title" = "Time of day";
+"morning" = "Morning";
+"afternoon" = "Afternoon";
+"evening" = "Evening";
+"during_the_day" = "During the day";
+"morning_at" = "Morning";
+"afternoon_at" = "Afternoon";
+"evening_at" = "Evening";
+"during_the_day_at" = "During the day";

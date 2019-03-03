@@ -12,7 +12,7 @@ class Switcher: UIControl {
     
     private var itemViews: [SwitcherItemView] = []
     
-    var items: [String] = [] {
+    var items: [SwitcherItem] = [] {
         didSet {
             createItemViews(with: items)
         }
@@ -24,13 +24,13 @@ class Switcher: UIControl {
         }
     }
     
-    private func createItemViews(with items: [String]) {
+    private func createItemViews(with items: [SwitcherItem]) {
         itemViews.forEach { $0.removeFromSuperview() }
         
         itemViews = []
         for (index, item) in items.enumerated() {
             let view = SwitcherItemView(frame: .zero)
-            view.titleLabel.text = item
+            view.setItem(item)
             view.roundedCorners = index == 0 ? .left : index >= items.count - 1 ? .right : .none
             view.isSelected = false
             view.setupAppearance()
@@ -39,7 +39,6 @@ class Switcher: UIControl {
         }
         
         layoutItemViews()
-        self.selectItemView(at: selectedItemIndex, oldIndex: selectedItemIndex)
     }
     
     override func layoutSubviews() {
@@ -49,9 +48,14 @@ class Switcher: UIControl {
     
     private func layoutItemViews() {
         UIView.performWithoutAnimation {
-            let width = bounds.width / CGFloat(itemViews.count)
+            let iconWidth = max(bounds.height, 56)
+            let iconsWidth = iconWidth * CGFloat(items.filter { $0 is UIImage }.count)
+            let labelWidth = (bounds.width - iconsWidth) / CGFloat(items.filter { $0 is String }.count)
+            var offsetX: CGFloat = 0
             for (index, view) in itemViews.enumerated() {
-                view.frame = CGRect(x: CGFloat(index) * width, y: 0, width: width, height: bounds.height)
+                let width = items[index] is UIImage ? iconWidth : labelWidth
+                view.frame = CGRect(x: offsetX, y: 0, width: width, height: bounds.height)
+                offsetX += width
             }
         }
     }
@@ -77,13 +81,34 @@ class Switcher: UIControl {
     
 }
 
+// MARK: - Switcher item view
+
+protocol SwitcherItem {}
+
+extension String: SwitcherItem {}
+extension UIImage: SwitcherItem {}
+
 class SwitcherItemView: UIView {
     
-    let titleLabel: UILabel = {
+    func setItem(_ item: SwitcherItem) {
+        if let string = item as? String {
+            titleLabel.text = string
+        } else if let icon = item as? UIImage {
+            iconView.image = icon
+        }
+    }
+    
+    private let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = AppTheme.current.fonts.medium(14)
         label.textAlignment = .center
         return label
+    }()
+    
+    private let iconView: UIImageView = {
+        let iconView = UIImageView(frame: .zero)
+        iconView.contentMode = .scaleAspectFit
+        return iconView
     }()
     
     enum RoundedCorners {
@@ -107,17 +132,20 @@ class SwitcherItemView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(titleLabel)
+        addSubview(iconView)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addSubview(titleLabel)
+        addSubview(iconView)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         updateMaskLayer()
         titleLabel.frame = bounds
+        iconView.frame = bounds.insetBy(dx: 4, dy: 4)
     }
     
     func updateMaskLayer() {
