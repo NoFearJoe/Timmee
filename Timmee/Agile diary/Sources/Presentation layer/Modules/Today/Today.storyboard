@@ -13,7 +13,7 @@
         <!--Today View Controller-->
         <scene sceneID="VeU-nx-hzZ">
             <objects>
-                <viewController storyboardIdentifier="TodayViewController" id="YFK-lV-GWC" customClass="TodayViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TodayViewController" automaticallyAdjustsScrollViewInsets="NO" id="YFK-lV-GWC" customClass="TodayViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nei-Q3-f4w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,7 +266,7 @@
         <!--Today Content View Controller-->
         <scene sceneID="mzz-VX-Sgc">
             <objects>
-                <viewController storyboardIdentifier="TodayContentViewController" id="3rx-bc-jDa" customClass="TodayContentViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TodayContentViewController" automaticallyAdjustsScrollViewInsets="NO" id="3rx-bc-jDa" customClass="TodayContentViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L1I-dJ-39k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="489"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -275,7 +275,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="389"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Me0-Vd-6eW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Me0-Vd-6eW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="489"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="rP5-UP-6AA">

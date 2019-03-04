@@ -215,6 +215,10 @@ extension Scope {
         return IndexPath(row: index, section: section)
     }
     
+    public func allObjects() -> [Entity] {
+        return currentSectionedValues.sectionsAndValues.flatMap { $0.1 }
+    }
+    
     public func totalObjectsCount() -> Int {
         return (0..<numberOfSections()).reduce(0) { (result, section) in
             return result + self.numberOfItems(in: section)

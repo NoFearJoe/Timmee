@@ -60,10 +60,10 @@ final class TodayContentViewController: UIViewController, AlertInput {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.contentInset.top = 10
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
         contentView.rowHeight = UITableView.automaticDimension
+        contentView.register(TableHeaderViewWithTitle.self, forHeaderFooterViewReuseIdentifier: "Header")
         
         setupPlaceholder()
         
@@ -144,6 +144,20 @@ extension TodayContentViewController: UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard case .habits = self.section else { return 0 }
+        return 28
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard case .habits = self.section else { return nil }
+        guard let sectionName = habitsCacheObserver?.sectionInfo(at: section)?.name else { return nil }
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as! TableHeaderViewWithTitle
+        let dayTime = Habit.DayTime(sortID: sectionName)
+        view.titleLabel.text = dayTime.localizedAt
+        return view
+    }
+    
 }
 
 extension TodayContentViewController: UITableViewDelegate {
@@ -173,9 +187,9 @@ private extension TodayContentViewController {
         goalsCacheObserver = nil
         habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(sprintID: sprintID, day: DayUnit(weekday: Date.now.weekday))
         let delegate = ScopeDelegate<Habit>(
-            onInitialFetch: { [unowned self] _ in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) },
+            onInitialFetch: { [unowned self] _ in self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? []) },
             onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
-            onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.items(in: 0) ?? []) })
+            onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? []) })
         habitsCacheObserver?.setDelegate(delegate)
         habitsCacheObserver?.setSubscriber(cacheAdapter)
         habitsCacheObserver?.fetch()

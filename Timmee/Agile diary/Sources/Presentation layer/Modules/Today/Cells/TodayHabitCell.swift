@@ -43,11 +43,7 @@ final class TodayHabitCell: SwipeTableViewCell {
             attributedSubtitle.append(NSAttributedString(string: value.localized + " ",
                                                          attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         }
-        // утром
-        let dayTimeString = attributedSubtitle.string.isEmpty
-            ? habit.calculatedDayTime.localizedAt.capitalizedFirst : habit.calculatedDayTime.localizedAt.lowercased()
-        attributedSubtitle.append(NSAttributedString(string: dayTimeString + " ",
-                                                     attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
+        
         // в 5:00
         if let notificationDate = habit.notificationDate {
             attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString,

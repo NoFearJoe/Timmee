@@ -217,6 +217,15 @@ extension Habit {
     public enum DayTime: String, CaseIterable {
         case morning, afternoon, evening, duringTheDay = "during_the_day"
         
+        var sortID: String {
+            switch self {
+            case .morning: return "0"
+            case .afternoon: return "1"
+            case .evening: return "2"
+            case .duringTheDay: return "3"
+            }
+        }
+        
         public var localized: String {
             return "\(rawValue)".localized
         }
@@ -231,6 +240,15 @@ extension Habit {
             case 4..<12: self = .morning
             case 12..<18: self = .afternoon
             default: self = .evening
+            }
+        }
+        
+        public init(sortID: String) {
+            switch sortID {
+            case "0": self = .morning
+            case "1": self = .afternoon
+            case "2": self = .evening
+            default: self = .duringTheDay
             }
         }
     }
@@ -252,7 +270,7 @@ extension Habit.Value: Equatable {
 extension Habit: Hashable {
     
     public static func ==(lhs: Habit, rhs: Habit) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.isEqual(to: rhs)
     }
     
     public var hashValue: Int {

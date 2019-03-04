@@ -90,7 +90,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             return
         }
         
-        if sprint.startDate.compare(Date.now.startOfDay) == .orderedAscending {
+        if sprint.startDate.compare(Date.now.startOfDay) == .orderedAscending, !sprint.isReady {
             sprint.startDate = Date.now.startOfDay
             sprint.endDate = Date.now.startOfDay + Constants.sprintDuration.asWeeks
             updateDoneButtonState()

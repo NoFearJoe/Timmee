@@ -214,9 +214,10 @@ extension HabitsService: HabitsObserverProvider {
         let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
         let context = Database.localStorage.readContext
         
-        let scope = Scope<HabitEntity, Habit>.init(context: context,
-                                                   baseRequest: request,
-                                                   mapping: { Habit(habit: $0) })
+        let scope = Scope<HabitEntity, Habit>(context: context,
+                                              baseRequest: request,
+                                              grouping: { $0.calculatedDayTime.sortID },
+                                              mapping: { Habit(habit: $0) })
         
         return scope
     }

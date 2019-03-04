@@ -27,7 +27,7 @@ final class HabitsHistoryViewController: BaseViewController {
         super.prepare()
         setupPlaceholder()
         setupCacheObserver()
-        tableView.register(HabitsHistoryHeaderView.self, forHeaderFooterViewReuseIdentifier: "HabitsHistoryHeaderView")
+        tableView.register(TableHeaderViewWithTitle.self, forHeaderFooterViewReuseIdentifier: "Header")
     }
     
     override func refresh() {
@@ -95,7 +95,7 @@ extension HabitsHistoryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HabitsHistoryHeaderView") as! HabitsHistoryHeaderView
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as! TableHeaderViewWithTitle
         if let sprintNumber = cacheObserver.sectionInfo(at: section)?.name {
             view.titleLabel.text = "Sprint".localized + " #" + sprintNumber
         }
@@ -149,7 +149,7 @@ final class HabitsHistoryCell: SprintCreationHabitCell {
     
 }
 
-final class HabitsHistoryHeaderView: UITableViewHeaderFooterView {
+final class TableHeaderViewWithTitle: UITableViewHeaderFooterView {
     
     let titleLabel: UILabel = UILabel(frame: .zero)
     

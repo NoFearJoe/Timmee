@@ -124,8 +124,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         guard sprint != nil else { return }
         switch currentSection {
         case .habits, .goals:
-            setSectionContainersVisible(content: true, water: false)
             contentViewController.section = currentSection
+            setSectionContainersVisible(content: true, water: false)
         case .water:
             setSectionContainersVisible(content: false, water: true)
         }

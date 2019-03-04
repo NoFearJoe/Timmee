@@ -69,7 +69,7 @@ public class Goal: Copyable {
 extension Goal: Hashable {
     
     public static func ==(lhs: Goal, rhs: Goal) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.isEqual(to: rhs)
     }
     
     public var hashValue: Int {
