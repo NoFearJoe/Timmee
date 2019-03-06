@@ -300,27 +300,61 @@
                                             <rect key="frame" x="0.0" y="0.0" width="138" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cS8-IL-9W6">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHH-iu-Tph">
                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="134"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIr-dO-x8a">
-                                                    <rect key="frame" x="8" y="105" width="122" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cS8-IL-9W6">
+                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="134"/>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WjZ-T8-osJ" customClass="GradientView" customModule="UIComponents">
+                                                            <rect key="frame" x="0.0" y="81" width="138" height="53"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                                                    <point key="value" x="0.0" y="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                                                    <point key="value" x="0.0" y="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIr-dO-x8a">
+                                                            <rect key="frame" x="8" y="105" width="122" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="WjZ-T8-osJ" firstAttribute="top" secondItem="kIr-dO-x8a" secondAttribute="top" constant="-24" id="10Q-ZN-Y8Z"/>
+                                                        <constraint firstAttribute="bottom" secondItem="WjZ-T8-osJ" secondAttribute="bottom" id="33g-9J-Cza"/>
+                                                        <constraint firstItem="WjZ-T8-osJ" firstAttribute="leading" secondItem="jHH-iu-Tph" secondAttribute="leading" id="Hvk-yi-rkJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cS8-IL-9W6" secondAttribute="trailing" id="WcO-pr-NF8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="kIr-dO-x8a" secondAttribute="trailing" constant="8" id="WkG-YY-z0a"/>
+                                                        <constraint firstItem="cS8-IL-9W6" firstAttribute="leading" secondItem="jHH-iu-Tph" secondAttribute="leading" id="ejS-XI-xa1"/>
+                                                        <constraint firstItem="kIr-dO-x8a" firstAttribute="leading" secondItem="jHH-iu-Tph" secondAttribute="leading" constant="8" id="gxj-dW-Xjr"/>
+                                                        <constraint firstItem="cS8-IL-9W6" firstAttribute="top" secondItem="jHH-iu-Tph" secondAttribute="top" id="h2c-mG-HPl"/>
+                                                        <constraint firstAttribute="bottom" secondItem="kIr-dO-x8a" secondAttribute="bottom" constant="8" id="hPF-wT-mw0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="WjZ-T8-osJ" secondAttribute="trailing" id="t3x-la-a5V"/>
+                                                        <constraint firstAttribute="bottom" secondItem="cS8-IL-9W6" secondAttribute="bottom" id="vGZ-CP-KSh"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="kIr-dO-x8a" firstAttribute="leading" secondItem="SMz-lt-CYh" secondAttribute="leading" constant="8" id="61W-BV-4As"/>
-                                            <constraint firstAttribute="trailing" secondItem="cS8-IL-9W6" secondAttribute="trailing" id="EcE-FJ-VbS"/>
-                                            <constraint firstItem="cS8-IL-9W6" firstAttribute="leading" secondItem="SMz-lt-CYh" secondAttribute="leading" id="RaC-Rq-svP"/>
-                                            <constraint firstAttribute="bottom" secondItem="kIr-dO-x8a" secondAttribute="bottom" constant="8" id="Ug9-HK-t3M"/>
-                                            <constraint firstAttribute="trailing" secondItem="kIr-dO-x8a" secondAttribute="trailing" constant="8" id="buC-Ql-Lao"/>
-                                            <constraint firstAttribute="bottom" secondItem="cS8-IL-9W6" secondAttribute="bottom" id="iy1-Pv-kjE"/>
-                                            <constraint firstItem="cS8-IL-9W6" firstAttribute="top" secondItem="SMz-lt-CYh" secondAttribute="top" id="uO4-kf-jn3"/>
+                                            <constraint firstAttribute="bottom" secondItem="jHH-iu-Tph" secondAttribute="bottom" id="01p-J3-MtV"/>
+                                            <constraint firstItem="jHH-iu-Tph" firstAttribute="top" secondItem="SMz-lt-CYh" secondAttribute="top" id="TEV-qK-rA6"/>
+                                            <constraint firstItem="jHH-iu-Tph" firstAttribute="leading" secondItem="SMz-lt-CYh" secondAttribute="leading" id="ahl-Pb-a70"/>
+                                            <constraint firstAttribute="trailing" secondItem="jHH-iu-Tph" secondAttribute="trailing" id="cux-c7-R6n"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="backgroundGradientView" destination="WjZ-T8-osJ" id="fK2-Zf-176"/>
                                             <outlet property="backgroundImageView" destination="cS8-IL-9W6" id="j0R-tN-nqT"/>
                                             <outlet property="titleLabel" destination="kIr-dO-x8a" id="Qjr-bW-pvo"/>
                                         </connections>
@@ -368,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Vv-Ks-HBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="-588"/>
+            <point key="canvasLocation" x="1144.8" y="-588.30584707646176"/>
         </scene>
         <!--Shop Category View Controller-->
         <scene sceneID="lpW-W0-Qge">

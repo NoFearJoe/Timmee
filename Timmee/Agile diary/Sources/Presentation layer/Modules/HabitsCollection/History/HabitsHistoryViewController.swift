@@ -155,14 +155,30 @@ final class TableHeaderViewWithTitle: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        setupBackgroundView()
         setupTitleLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        setupBackgroundView()
         setupTitleLabel()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        backgroundView?.frame = bounds
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backgroundView?.backgroundColor = AppTheme.current.colors.middlegroundColor
+        titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+    }
+    
+    private func setupBackgroundView() {
+        backgroundView = UIView(frame: .zero)
+        backgroundView?.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
     private func setupTitleLabel() {

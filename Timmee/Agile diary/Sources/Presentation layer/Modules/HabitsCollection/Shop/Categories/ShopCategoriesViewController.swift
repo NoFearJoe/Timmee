@@ -137,6 +137,7 @@ final class ShopCategoryCell: UICollectionViewCell {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var backgroundImageView: UIImageView!
+    @IBOutlet private var backgroundGradientView: GradientView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -158,6 +159,8 @@ final class ShopCategoryCell: UICollectionViewCell {
         configureShadow(radius: 4, opacity: 0.1)
         backgroundColor = AppTheme.current.colors.foregroundColor
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        backgroundGradientView.startColor = AppTheme.current.colors.foregroundColor
+        backgroundGradientView.endColor = AppTheme.current.colors.foregroundColor.withAlphaComponent(0)
     }
     
 }
