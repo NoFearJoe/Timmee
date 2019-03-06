@@ -15,7 +15,7 @@ final class SynchronizationConfigurator {
     static func configure() {
         AuthorizationService.initializeAuthorization()
         AgileeSynchronizationService.initializeSynchronization()
-        AgileeSynchronizationService.shared.checkSynchronizationConditions = {
+        SynchronizationAvailabilityChecker.shared.checkSynchronizationConditions = {
             ProVersionPurchase.shared.isPurchased()
         }
     }

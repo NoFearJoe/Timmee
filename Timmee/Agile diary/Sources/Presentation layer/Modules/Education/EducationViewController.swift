@@ -53,7 +53,7 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     }
     
     private func showAppropriateScreenAfterEducation() {
-        if AgileeSynchronizationService.shared.synchronizationEnabled && !isSynchronized {
+        if SynchronizationAvailabilityChecker.shared.synchronizationEnabled && !isSynchronized {
             shouldShowAppropriateScreenAfterSynchronization = true
             showAlert(title: "attention".localized,
                       message: "wait_until_sync_is_complete".localized,

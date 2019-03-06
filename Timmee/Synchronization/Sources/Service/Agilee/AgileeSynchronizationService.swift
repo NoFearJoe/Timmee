@@ -1,5 +1,5 @@
 //
-//  SynchronizationService.swift
+//  AgileeSynchronizationService.swift
 //  Synchronization
 //
 //  Created by i.kharabet on 23.01.2019.
@@ -12,11 +12,6 @@ import NotificationsKit
 import Authorization
 import FirebaseCore
 import FirebaseFirestore
-
-public protocol SynchronizationService: AnyObject {
-    var synchronizationEnabled: Bool { get }
-    func sync(completion: ((Bool) -> Void)?)
-}
 
 // TODO: Обработать ситуацию, когда после синхронизации может появиться несколько одинаковых спринтов (с одинаковыми number или пересекающимися startDate-endDate). Надо в этом случае либо предлагать пользователю выбрать актуальный спринт или смержить их
 
@@ -40,20 +35,18 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let goalsService = EntityServicesAssembly.shared.goalsService
     private let waterControlService = EntityServicesAssembly.shared.waterControlService
     
+    private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
+    private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
+    
     private var isSynchronizationInProgress = false
     
     private init() {}
     
-    public var checkSynchronizationConditions: (() -> Bool)?
-    
-    public var synchronizationEnabled: Bool {
-        return authorizationService.authorizedUser != nil && (checkSynchronizationConditions == nil || checkSynchronizationConditions?() == true)
-    }
-    
     public func sync(completion: ((Bool) -> Void)?) {
-        guard synchronizationEnabled else { completion?(false); return }
+        guard synchronizationAvailabilityChecker.synchronizationEnabled else { completion?(false); return }
         guard !isSynchronizationInProgress else { completion?(false); return }
         isSynchronizationInProgress = true
+        
         pull { [weak self] success, deletedEntities in
             guard let self = self, success else { completion?(false); return }
             self.push(deletedEntities: deletedEntities, completion: { success in
@@ -91,10 +84,11 @@ private extension AgileeSynchronizationService {
                 sprintsCollection.getDocuments(completion: { sprintSnapshot, error in
                     // Sprints save
                     synchronizationActions.append({ context in
-                        deletedEntities.sprints = self.syncCollection(context: context,
-                                                                      data: sprintSnapshot?.documents.map { $0.data() } ?? [],
-                                                                      entityType: SprintEntity.self,
-                                                                      parentEntityID: nil)
+                        deletedEntities.sprints = self.collectionSynchronizationManager
+                            .syncCollection(context: context,
+                                            data: sprintSnapshot?.documents.map { $0.data() } ?? [],
+                                            entityType: SprintEntity.self,
+                                            parentEntityID: nil)
                     })
                     
                     sprintSnapshot?.documents.forEach { sprintSnapshot in
@@ -104,10 +98,11 @@ private extension AgileeSynchronizationService {
                         habitsCollection.getDocuments(completion: { habitsSnapshot, error in
                             // Habits save
                             synchronizationActions.append({ context in
-                                let deletedHabitIDs = self.syncCollection(context: context,
-                                                                          data: habitsSnapshot?.documents.map { $0.data() } ?? [],
-                                                                          entityType: HabitEntity.self,
-                                                                          parentEntityID: sprintID)
+                                let deletedHabitIDs = self.collectionSynchronizationManager
+                                    .syncCollection(context: context,
+                                                    data: habitsSnapshot?.documents.map { $0.data() } ?? [],
+                                                    entityType: HabitEntity.self,
+                                                    parentEntityID: sprintID)
                                 if !deletedHabitIDs.isEmpty {
                                     deletedEntities.habits.append((sprintID, deletedHabitIDs))
                                 }
@@ -121,10 +116,11 @@ private extension AgileeSynchronizationService {
                         goalsCollection.getDocuments(completion: { goalsSnapshot, error in
                             // Goals save
                             synchronizationActions.append({ context in
-                                let deletedGoalIDs = self.syncCollection(context: context,
-                                                                         data: goalsSnapshot?.documents.map { $0.data() } ?? [],
-                                                                         entityType: GoalEntity.self,
-                                                                         parentEntityID: sprintID)
+                                let deletedGoalIDs = self.collectionSynchronizationManager
+                                    .syncCollection(context: context,
+                                                    data: goalsSnapshot?.documents.map { $0.data() } ?? [],
+                                                    entityType: GoalEntity.self,
+                                                    parentEntityID: sprintID)
                                 if !deletedGoalIDs.isEmpty {
                                     deletedEntities.goals.append((sprintID, deletedGoalIDs))
                                 }
@@ -137,10 +133,11 @@ private extension AgileeSynchronizationService {
                                 stagesCollection.getDocuments(completion: { stagesSnapshot, error in
                                     // Stages save
                                     synchronizationActions.append({ context in
-                                        let deletedStageIDs = self.syncCollection(context: context,
-                                                                                  data: stagesSnapshot?.documents.map { $0.data() } ?? [],
-                                                                                  entityType: SubtaskEntity.self,
-                                                                                  parentEntityID: goalID)
+                                        let deletedStageIDs = self.collectionSynchronizationManager
+                                            .syncCollection(context: context,
+                                                            data: stagesSnapshot?.documents.map { $0.data() } ?? [],
+                                                            entityType: SubtaskEntity.self,
+                                                            parentEntityID: goalID)
                                         if !deletedStageIDs.isEmpty {
                                             deletedEntities.stages.append((sprintID, goalID, deletedStageIDs))
                                         }
@@ -161,7 +158,8 @@ private extension AgileeSynchronizationService {
                 waterControlDocument.getDocument(completion: { [weak self] snapshot, error in
                     guard let self = self else { return }
                     synchronizationActions.append({ context in
-                        self.syncCollection(context: context,
+                        self.collectionSynchronizationManager
+                            .syncCollection(context: context,
                                             data: snapshot?.data().flatMap({ [$0] }) ?? [],
                                             entityType: WaterControlEntity.self,
                                             parentEntityID: nil)
@@ -187,147 +185,6 @@ private extension AgileeSynchronizationService {
                     completion(success, deletedEntities)
                 })
             }
-        }
-    }
-    
-    @discardableResult
-    func syncCollection<T: NSManagedObject & ModifiableEntity>(context: NSManagedObjectContext,
-                                                               data: [[String: Any]],
-                                                               entityType: T.Type,
-                                                               parentEntityID: String?) -> [String] {
-        let cachedEntities = (T.request() as FetchRequest<T>).execute(context: context)
-        let locallyDeletedEntities = (LocallyDeletedEntity.request() as FetchRequest<LocallyDeletedEntity>).execute(context: context)
-        var deletedEntityIDs: [String] = []
-        if T.self is IdentifiableEntity.Type {
-            let cachedEntitiesIDs = cachedEntities
-                .filter {
-                    if let childEntity = $0 as? ChildEntity {
-                        return childEntity.parent?.id == parentEntityID
-                    }
-                    return true
-                }
-                .compactMap { ($0 as? IdentifiableEntity)?.id }
-            let remoteEntitiesIDs = data.map { $0["id"] as? String }
-            
-            let removedEntitiesIDs = Array(Set(cachedEntitiesIDs).subtracting(remoteEntitiesIDs))
-            let insertedEntitiesIDs = Array(Set(remoteEntitiesIDs).subtracting(cachedEntitiesIDs))
-            let updatedEntitiesIDs = Array(Set(cachedEntitiesIDs).intersection(remoteEntitiesIDs))
-            
-            removedEntitiesIDs.forEach { id in
-                guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
-                // Если сущность синхронизирована, значит ее удалили, иначе - добавили
-                if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
-                    context.delete(deletedEntity)
-                }
-                guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return }
-                context.delete(cachedEntity)
-                
-                removeNotificationsForRemovedEntity(entity: cachedEntity)
-            }
-            insertedEntitiesIDs.forEach { id in
-                guard let entityData = data.first(where: { ($0["id"] as? String) == id }) else { return }
-                // Если существует сущность, помоченная как удаленная, то удаляем ее, а новую не добавляем
-                if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
-                    context.delete(deletedEntity)
-                    id.map { deletedEntityIDs.append($0) }
-                    removeNotificationsForRemovedEntity(entity: deletedEntity)
-                    return
-                }
-                let entity = try? context.create() as T
-                (entity as? DictionaryDecodable)?.decode(entityData)
-                addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
-                
-                scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
-            }
-            updatedEntitiesIDs.forEach { id in
-                guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
-                guard let remoteEntityData = data.first(where: { ($0["id"] as? String) == id }) else { return }
-                
-                let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
-                if cachedEntity.modificationDate < remoteModificationDate {
-                    (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
-                    scheduleNotificationsForInsertedOrUpdatedEntity(entity: cachedEntity)
-                }
-            }
-        } else {
-            if let cachedEntity = cachedEntities.first {
-                if let remoteEntityData = data.first {
-                    // Modified
-                    let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
-                    if cachedEntity.modificationDate < remoteModificationDate {
-                        (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
-                        scheduleNotificationsForInsertedOrUpdatedEntity(entity: cachedEntity)
-                    }
-                } else {
-                    // Removed
-                    if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName }) {
-                        context.delete(deletedEntity)
-                    }
-                    guard let syncableEntity = cachedEntity as? SyncableEntity, syncableEntity.isSynced else { return deletedEntityIDs }
-                    context.delete(cachedEntity)
-                    removeNotificationsForRemovedEntity(entity: cachedEntity)
-                }
-            } else if let firstEntityData = data.first {
-                // Inserted
-                if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName }) {
-                    context.delete(deletedEntity)
-                    return deletedEntityIDs
-                }
-                let entity = try? context.create() as T
-                (entity as? DictionaryDecodable)?.decode(firstEntityData)
-                addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
-                scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
-            }
-        }
-        
-        return deletedEntityIDs
-    }
-    
-    func addRelationToParent(entity: NSManagedObject?, parentEntityID: String?, context: NSManagedObjectContext) {
-        guard let entity = entity, let parentEntityID = parentEntityID else { return }
-        switch entity {
-        case let subtask as SubtaskEntity:
-            subtask.goal = GoalEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
-        case let goal as GoalEntity:
-            goal.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
-        case let habit as HabitEntity:
-            habit.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
-        default: return
-        }
-    }
-    
-    func scheduleNotificationsForInsertedOrUpdatedEntity<T: NSManagedObject>(entity: T?) {
-        if let habitEntity = entity as? HabitEntity {
-            let habit = Habit(habit: habitEntity)
-            HabitsSchedulerService().scheduleHabit(habit)
-        } else if let sprintEntity = entity as? SprintEntity {
-            let sprint = Sprint(sprintEntity: sprintEntity)
-            SprintSchedulerService().scheduleSprint(sprint)
-        } else if let waterControlEntity = entity as? WaterControlEntity {
-            let waterControl = WaterControl(entity: waterControlEntity)
-            let existingSprints = ServicesAssembly.shared.sprintsService.fetchSprints()
-            let currentSprint = existingSprints.first(where: { sprint in
-                sprint.startDate <= Date().startOfDay && sprint.endDate >= Date().endOfDay
-            })
-            if let currentSprint = currentSprint {
-                WaterControlSchedulerService().scheduleWaterControl(waterControl,
-                                                                    startDate: currentSprint.startDate,
-                                                                    endDate: currentSprint.endDate)
-            }
-        }
-    }
-    
-    func removeNotificationsForRemovedEntity<T: NSManagedObject>(entity: T?) {
-        if let habitEntity = entity as? HabitEntity {
-            let habit = Habit(habit: habitEntity)
-            HabitsSchedulerService().removeNotifications(for: habit) {}
-            HabitsSchedulerService().removeDeferredNotifications(for: habit) {}
-        } else if let sprintEntity = entity as? SprintEntity {
-            let sprint = Sprint(sprintEntity: sprintEntity)
-            SprintSchedulerService().removeSprintNotifications(sprint: sprint) {}
-            // TODO: Remove notifications for habits
-        } else if entity is WaterControlEntity {
-            WaterControlSchedulerService().removeWaterControlNotifications() {}
         }
     }
     

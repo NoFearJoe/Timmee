@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C47ED53222FDC2200593AA3 /* SynchronizationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */; };
+		0C47ED56222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */; };
+		0C47ED58222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */; };
+		0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED59222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift */; };
 		0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */; };
-		0C90017D21F8688B00D6C15F /* SynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90017C21F8688B00D6C15F /* SynchronizationService.swift */; };
+		0C90017D21F8688B00D6C15F /* AgileeSynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90017C21F8688B00D6C15F /* AgileeSynchronizationService.swift */; };
 		0C90018121F88FC300D6C15F /* DictionaryCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018021F88FC300D6C15F /* DictionaryCodable.swift */; };
 		0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */; };
 		0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */; };
@@ -24,8 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationServiceProtocol.swift; sourceTree = "<group>"; };
+		0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgileeHabitsSynchronizationService.swift; sourceTree = "<group>"; };
+		0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionSynchronizationManager.swift; sourceTree = "<group>"; };
+		0C47ED59222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationAvailabilityChecker.swift; sourceTree = "<group>"; };
 		0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Codable.swift"; sourceTree = "<group>"; };
-		0C90017C21F8688B00D6C15F /* SynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationService.swift; sourceTree = "<group>"; };
+		0C90017C21F8688B00D6C15F /* AgileeSynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgileeSynchronizationService.swift; sourceTree = "<group>"; };
 		0C90018021F88FC300D6C15F /* DictionaryCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCodable.swift; sourceTree = "<group>"; };
 		0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Codable.swift"; sourceTree = "<group>"; };
@@ -60,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C47ED54222FDC3600593AA3 /* Agilee */ = {
+			isa = PBXGroup;
+			children = (
+				0C90017C21F8688B00D6C15F /* AgileeSynchronizationService.swift */,
+				0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */,
+			);
+			path = Agilee;
+			sourceTree = "<group>";
+		};
 		0C90017121F856A900D6C15F /* Entity mappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,8 +101,11 @@
 		0C90017B21F8687700D6C15F /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				0C90017C21F8688B00D6C15F /* SynchronizationService.swift */,
+				0C47ED54222FDC3600593AA3 /* Agilee */,
+				0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */,
 				0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */,
+				0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */,
+				0C47ED59222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -292,12 +312,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C47ED56222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift in Sources */,
 				0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */,
 				0C90018121F88FC300D6C15F /* DictionaryCodable.swift in Sources */,
-				0C90017D21F8688B00D6C15F /* SynchronizationService.swift in Sources */,
+				0C90017D21F8688B00D6C15F /* AgileeSynchronizationService.swift in Sources */,
+				0C47ED58222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift in Sources */,
 				0C90018721F892A900D6C15F /* SubtaskEntity+Codable.swift in Sources */,
+				0C47ED53222FDC2200593AA3 /* SynchronizationServiceProtocol.swift in Sources */,
 				0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */,
 				0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */,
+				0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */,
 				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,
 				0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */,
 			);

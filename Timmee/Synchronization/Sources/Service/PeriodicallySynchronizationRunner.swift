@@ -20,6 +20,7 @@ public final class PeriodicallySynchronizationRunner {
     
     public weak var delegate: PeriodicallySynchronizationRunnerDelegate?
     
+    private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
     private let synchronizationService: SynchronizationService
     private var timer: Timer?
     
@@ -33,7 +34,7 @@ public final class PeriodicallySynchronizationRunner {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false, block: { [weak self] timer in
             guard let self = self else { return }
-            guard self.synchronizationService.synchronizationEnabled else {
+            guard self.synchronizationAvailabilityChecker.synchronizationEnabled else {
                 self.run(interval: interval)
                 return
             }
