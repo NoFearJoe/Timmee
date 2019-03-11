@@ -38,7 +38,12 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
     private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
     
-    private var isSynchronizationInProgress = false
+    
+    private var isSynchronizationInProgress = false {
+        didSet {
+            AgileeHabitsSynchronizationService.shared.setSynchronizationSuspended(isSynchronizationInProgress)
+        }
+    }
     
     private init() {}
     

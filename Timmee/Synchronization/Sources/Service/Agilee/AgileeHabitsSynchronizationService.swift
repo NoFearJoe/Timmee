@@ -15,6 +15,8 @@ import FirebaseFirestore
 
 public final class AgileeHabitsSynchronizationService {
     
+    public static let shared = AgileeHabitsSynchronizationService()
+    
     private let authorizationService = AuthorizationService()
     private let sprintsService = EntityServicesAssembly.shared.sprintsService
     private let habitsService = EntityServicesAssembly.shared.habitsService
@@ -22,17 +24,85 @@ public final class AgileeHabitsSynchronizationService {
     private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
     private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
     
-    public func sync(habit: Habit, sprintID: String, completion: @escaping (Bool) -> Void) {
-        guard synchronizationAvailabilityChecker.synchronizationEnabled else { completion(false); return }
+    private let syncQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
+    private class SyncOperation: Operation {
+        let operation: (@escaping () -> Void) -> Void
+
+        override var isConcurrent: Bool { return false }
+        override var isAsynchronous: Bool { return true }
         
-        pullHabit(habit, sprintID: sprintID) { [weak self] success, deleted in
-            guard success else { completion(false); return }
-            if deleted {
-                self?.deleteHabit(habit, sprintID: sprintID, completion: completion)
-            } else {
-                self?.pushHabit(habit, sprintID: sprintID, completion: completion)
+        private var _isExecuting: Bool = false
+        override var isExecuting: Bool {
+            get { return _isExecuting }
+            set {
+                willChangeValue(for: \.isExecuting)
+                _isExecuting = newValue
+                didChangeValue(for: \.isExecuting)
             }
         }
+        
+        private var _isFinished: Bool = false
+        override var isFinished: Bool {
+            get { return _isFinished }
+            set {
+                willChangeValue(for: \.isFinished)
+                _isFinished = newValue
+                didChangeValue(for: \.isFinished)
+            }
+        }
+        
+        init(operation: @escaping (@escaping () -> Void) -> Void) {
+            self.operation = operation
+            super.init()
+        }
+        
+        override func main() {
+            guard !isCancelled else {
+                isFinished = true
+                isExecuting = false
+                return
+            }
+            isExecuting = true
+            operation { [weak self] in
+                self?.isExecuting = false
+                self?.isFinished = true
+            }
+        }
+    }
+    
+    private init() {}
+    
+    public func setSynchronizationSuspended(_ isSuspended: Bool) {
+        if isSuspended { syncQueue.cancelAllOperations() }
+        syncQueue.isSuspended = isSuspended
+    }
+    
+    public func sync(habit: Habit, sprintID: String, completion: @escaping (Bool) -> Void) {
+        let operation = SyncOperation { [weak self] complete in
+            guard let self = self, self.synchronizationAvailabilityChecker.synchronizationEnabled
+            else { completion(false); complete(); return }
+            
+            self.pullHabit(habit, sprintID: sprintID) { [weak self] success, deleted in
+                guard success else { completion(false); complete(); return }
+                if deleted {
+                    self?.deleteHabit(habit, sprintID: sprintID, completion: { success in
+                        complete()
+                        completion(success)
+                    })
+                } else {
+                    self?.pushHabit(habit, sprintID: sprintID, completion: { success in
+                        complete()
+                        completion(success)
+                    })
+                }
+            }
+        }
+        syncQueue.addOperation(operation)
     }
     
     private func pullHabit(_ habit: Habit, sprintID: String, completion: @escaping (Bool, _ isDeleted: Bool) -> Void) {

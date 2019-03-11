@@ -285,7 +285,7 @@
 
 "synchronization_section" = "Synchronization";
 "synchronization_enabled" = "Synchronization enabled";
-"enable_synchronization" = "Enabled synchronization";
+"enable_synchronization" = "Enable synchronization";
 "log_out" = "Log out";
 "log_out_alert_title" = "Log out";
 "log_out_alert_message" = "After exit, synchronization will stop working. Do you want to continue?";
