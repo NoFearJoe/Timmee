@@ -225,21 +225,39 @@
                                     <action selector="onTapToSprintStartDate" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="P1d-OU-i5P"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHg-ag-n19">
+                                <rect key="frame" x="31.5" y="607" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="pOI-of-hBX"/>
+                                </constraints>
+                                <state key="normal" image="sandClock"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapToSprintDurationButton" destination="cGf-Ss-mFQ" eventType="touchUpInside" id="NhR-Fm-aIq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8fA-KT-HkE" firstAttribute="trailing" secondItem="KP9-bl-viw" secondAttribute="trailing" id="6p1-yJ-yt0"/>
+                            <constraint firstItem="7HH-1q-kKd" firstAttribute="leading" secondItem="PHg-ag-n19" secondAttribute="trailing" constant="16" id="A7V-mW-P45"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="top" secondItem="YMI-H3-bli" secondAttribute="bottom" id="Ao9-Vd-y4W"/>
                             <constraint firstItem="iKg-7z-Hwm" firstAttribute="centerY" secondItem="mkS-e4-0x0" secondAttribute="centerY" id="B8S-vm-YVW"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="EDF-Rj-Um8"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="EfT-hm-liK"/>
                             <constraint firstItem="8T3-WM-hml" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="QCT-js-1ax"/>
-                            <constraint firstItem="7HH-1q-kKd" firstAttribute="width" secondItem="7HH-1q-kKd" secondAttribute="height" id="Ybn-hQ-A24"/>
                             <constraint firstItem="mkS-e4-0x0" firstAttribute="centerY" secondItem="7HH-1q-kKd" secondAttribute="centerY" id="axE-Bd-uj7"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="YMI-H3-bli" secondAttribute="trailing" id="bsJ-dq-r0r"/>
                             <constraint firstAttribute="bottom" secondItem="ejl-6k-3JG" secondAttribute="bottom" id="d0V-Ey-XQ7"/>
+                            <constraint firstItem="7HH-1q-kKd" firstAttribute="centerY" secondItem="PHg-ag-n19" secondAttribute="centerY" id="gst-pl-Ku4"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="trailing" secondItem="ejl-6k-3JG" secondAttribute="trailing" id="mNc-r0-Hmb"/>
                             <constraint firstItem="mkS-e4-0x0" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="nfj-FR-K0l"/>
+                            <constraint firstItem="PHg-ag-n19" firstAttribute="width" secondItem="PHg-ag-n19" secondAttribute="height" id="oGf-LP-4ey"/>
                             <constraint firstItem="mkS-e4-0x0" firstAttribute="top" secondItem="8T3-WM-hml" secondAttribute="bottom" constant="20" id="pk4-40-IQ9"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="psl-oM-hMK"/>
                             <constraint firstAttribute="bottom" secondItem="8fA-KT-HkE" secondAttribute="bottom" id="qDs-qr-0r8"/>
@@ -261,6 +279,7 @@
                         <outlet property="headerView" destination="YMI-H3-bli" id="ZR8-RU-0Lb"/>
                         <outlet property="notificationsButton" destination="iKg-7z-Hwm" id="yr8-Si-0yE"/>
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
+                        <outlet property="sprintDurationButton" destination="PHg-ag-n19" id="18F-wN-hlt"/>
                         <outlet property="startDateButton" destination="7HH-1q-kKd" id="sM8-Vm-g31"/>
                         <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowGoalCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
                         <segue destination="aS1-37-JFS" kind="presentation" identifier="ShowHabitCreation" modalTransitionStyle="coverVertical" id="moZ-UT-TDC"/>
@@ -1756,6 +1775,54 @@
             </objects>
             <point key="canvasLocation" x="1454" y="-151"/>
         </scene>
+        <!--Sprint Duration Picker-->
+        <scene sceneID="GYc-iO-UBl">
+            <objects>
+                <viewController storyboardIdentifier="SprintDurationPicker" id="hRY-06-ToV" customClass="SprintDurationPicker" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nis-Ms-PBj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2o-CA-2Yq" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
+                                <rect key="frame" x="15" y="15" width="345" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="ZkX-a5-f6Y"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onSprintDurationSwitcherValueChanged" destination="hRY-06-ToV" eventType="touchUpInside" id="2U5-fG-o8k"/>
+                                    <action selector="onSprintDurationSwitcherValueChanged" destination="hRY-06-ToV" eventType="valueChanged" id="bs7-Nd-LAe"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in weeks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFi-q5-xLg">
+                                <rect key="frame" x="163" y="45" width="49" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AFi-q5-xLg" firstAttribute="top" secondItem="u2o-CA-2Yq" secondAttribute="bottom" constant="2" id="3rT-w6-Jdf"/>
+                            <constraint firstItem="3JV-pL-oT4" firstAttribute="trailing" secondItem="u2o-CA-2Yq" secondAttribute="trailing" constant="15" id="6do-IV-bfN"/>
+                            <constraint firstItem="u2o-CA-2Yq" firstAttribute="top" secondItem="3JV-pL-oT4" secondAttribute="top" constant="15" id="8uF-MY-qFG"/>
+                            <constraint firstItem="AFi-q5-xLg" firstAttribute="centerX" secondItem="nis-Ms-PBj" secondAttribute="centerX" id="YJk-2k-NDD"/>
+                            <constraint firstItem="3JV-pL-oT4" firstAttribute="bottom" secondItem="AFi-q5-xLg" secondAttribute="bottom" constant="12" id="evz-f6-9LM"/>
+                            <constraint firstItem="u2o-CA-2Yq" firstAttribute="leading" secondItem="3JV-pL-oT4" secondAttribute="leading" constant="15" id="sbX-d8-T33"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3JV-pL-oT4"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="72"/>
+                    <connections>
+                        <outlet property="sprintDurationSwitcher" destination="u2o-CA-2Yq" id="SrO-Ph-t4f"/>
+                        <outlet property="subtitleLabel" destination="AFi-q5-xLg" id="NmY-rf-fJW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xUl-UY-idg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1454" y="36"/>
+        </scene>
         <!--Sprint Notification Time Picker-->
         <scene sceneID="Utd-ti-VY0">
             <objects>
@@ -2019,7 +2086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="em2-V0-7J4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1453.5999999999999" y="60.26986506746627"/>
+            <point key="canvasLocation" x="1454" y="300"/>
         </scene>
         <!--Editor Container-->
         <scene sceneID="6Lj-IF-jdg">
@@ -2155,9 +2222,10 @@
         <image name="hintActive" width="20" height="20"/>
         <image name="hintInactive" width="20" height="20"/>
         <image name="plus" width="20" height="20"/>
+        <image name="sandClock" width="20" height="20"/>
         <image name="trash" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u3C-xu-46P"/>
+        <segue reference="9sp-Mw-Hzj"/>
     </inferredMetricsTieBreakers>
 </document>

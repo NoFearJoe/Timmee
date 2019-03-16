@@ -13,6 +13,7 @@ public extension SprintEntity {
         number = Int32(entity.number)
         startDate = entity.startDate
         endDate = entity.endDate
+        duration = Int16(entity.duration)
         isReady = entity.isReady
         notificationsEnabled = entity.notifications.isEnabled
         notificationsDays = entity.notifications.days?.map { $0.string }.joined(separator: ",")

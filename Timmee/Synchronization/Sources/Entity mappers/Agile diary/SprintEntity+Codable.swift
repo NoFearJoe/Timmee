@@ -19,7 +19,8 @@ extension SprintEntity: DictionaryEncodable {
             "notificationsEnabled": notificationsEnabled,
             "number": number,
             "startDate": startDate as Any,
-            "modificationDate": modificationDate
+            "modificationDate": modificationDate,
+            "duration": duration
         ]
         
         var optionalFields: [String: Any] = [:]
@@ -45,6 +46,7 @@ extension SprintEntity: DictionaryDecodable {
         if endDate == nil {
             endDate = (dictionary["endDate"] as? Timestamp)?.dateValue()
         }
+        duration = Int16(dictionary["duration"] as? Int ?? 7)
         notificationsDays = dictionary["notificationsDays"] as? String
         notificationsTime = dictionary["notificationsTime"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0

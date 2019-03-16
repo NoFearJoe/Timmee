@@ -341,3 +341,7 @@
 "afternoon_at" = "Днем";
 "evening_at" = "Вечером";
 "during_the_day_at" = "В течение дня";
+
+"sprint_duration_picker_title" = "Продолжительность спринта";
+
+"in_weeks" = "в неделях";

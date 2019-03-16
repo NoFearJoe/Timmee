@@ -29,6 +29,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @IBOutlet private var startDateButton: UIButton!
     @IBOutlet private var notificationsButton: UIButton!
+    @IBOutlet private var sprintDurationButton: UIButton!
     
     @IBOutlet private var addButton: AddButton!
     @IBOutlet private var addHabitMenu: UIStackView!
@@ -48,7 +49,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             contentViewController.sprintID = sprint.id
             headerView.titleLabel.text = sprint.title
             headerView?.leftButton?.isHidden = !(canClose || sprint.isReady)
-            updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
+            updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
             updateDoneButtonState()
             updateSprintSettingsButtons()
         }
@@ -96,7 +97,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             updateDoneButtonState()
         }
         
-        updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
+        updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
     override func setupAppearance() {
@@ -123,6 +124,11 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         notificationsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.incompleteElementColor), for: .normal)
         notificationsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
         notificationsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
+        sprintDurationButton.tintColor = .white
+        sprintDurationButton.adjustsImageWhenHighlighted = false
+        sprintDurationButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.wrongElementColor), for: .normal)
+        sprintDurationButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
+        sprintDurationButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -173,6 +179,17 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         sprintNotificationTimePicker.setNotificationsDays(sprint.notifications.days ?? [])
         sprintNotificationTimePicker.setNotificationsTime(sprint.notifications.time ?? (0, 0))
         editorContainer.setViewController(sprintNotificationTimePicker)
+        present(editorContainer, animated: true, completion: nil)
+    }
+    
+    @IBAction private func onTapToSprintDurationButton() {
+        let editorContainer = ViewControllersFactory.editorContainer
+        editorContainer.loadViewIfNeeded()
+        let sprintDurationPicker = ViewControllersFactory.sprintDurationPicker
+        sprintDurationPicker.delegate = self
+        sprintDurationPicker.loadViewIfNeeded()
+        sprintDurationPicker.setSprintDuration(sprint.duration)
+        editorContainer.setViewController(sprintDurationPicker)
         present(editorContainer, animated: true, completion: nil)
     }
     
@@ -269,7 +286,7 @@ extension SprintCreationViewController: DueDatePickerOutput {
     func didChangeDueDate(to date: Date) {
         sprint.startDate = date
         sprint.endDate = date + Constants.sprintDuration.asWeeks
-        updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
+        updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
 }
@@ -278,17 +295,26 @@ extension SprintCreationViewController: SprintNotificationTimePickerOutput {
     
     func didSetNotificationsEnabled(_ isEnabled: Bool) {
         sprint.notifications.isEnabled = isEnabled
-        updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
+        updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
     func didChangeNotificationsDays(_ days: [DayUnit]) {
         sprint.notifications.days = days
-        updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
+        updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
     func didChangeNotificationsTime(_ time: (Int, Int)) {
         sprint.notifications.time = time
-        updateHeaderSubtitle(startDate: sprint.startDate, sprintNotifications: sprint.notifications)
+        updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
+    }
+    
+}
+
+extension SprintCreationViewController: SprintDurationPickerDelegate {
+    
+    func sprintDurationPicker(_ picker: SprintDurationPicker, didSelectSprintDuration duration: Int) {
+        sprint.duration = duration
+        updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
 }
@@ -310,28 +336,35 @@ private extension SprintCreationViewController {
         headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isGoalsEnough
     }
     
-    func updateHeaderSubtitle(startDate: Date, sprintNotifications: Sprint.Notifications) {
-        let resultStirng = NSMutableAttributedString(string: "starts".localized + " ",
+    func updateHeaderSubtitle(startDate: Date, duration: Int, sprintNotifications: Sprint.Notifications) {
+        let resultString = NSMutableAttributedString(string: "starts".localized + " ",
                                                      attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
+        
         let dateString = NSAttributedString(string: startDate.asNearestShortDateString.lowercased(),
                                             attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor])
-        resultStirng.append(dateString)
+        resultString.append(dateString)
+        
+        let durationString = NSAttributedString(string: ", \(duration) " + "n_weeks".localized(with: duration),
+                                                attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
+        resultString.append(durationString)
+        
         if sprintNotifications.isEnabled, let days = sprintNotifications.days, let time = sprintNotifications.time {
-            resultStirng.append(NSAttributedString(string: ", " + "reminder".localized.lowercased() + " ",
+            resultString.append(NSAttributedString(string: ", " + "reminder".localized.lowercased() + " ",
                                                    attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor]))
             let repeating = RepeatMask(type: .on(.custom(Set(days))))
-            resultStirng.append(NSAttributedString(string: repeating.localized.lowercased(),
+            resultString.append(NSAttributedString(string: repeating.localized.lowercased(),
                                                    attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
-            resultStirng.append(NSAttributedString(string: " " + "at".localized + " ",
+            resultString.append(NSAttributedString(string: " " + "at".localized + " ",
                                                    attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor]))
             let minutesString = time.1 < 10 ? "0\(time.1)" : "\(time.1)"
-            resultStirng.append(NSAttributedString(string: "\(time.0):" + minutesString,
+            resultString.append(NSAttributedString(string: "\(time.0):" + minutesString,
                                                    attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         } else {
-            resultStirng.append(NSAttributedString(string: ", " + "notifications_are_disabled".localized.lowercased(),
+            resultString.append(NSAttributedString(string: ", " + "notifications_are_disabled".localized.lowercased(),
                                                    attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor]))
         }
-        headerView.subtitleLabel.attributedText = resultStirng
+        
+        headerView.subtitleLabel.attributedText = resultString
     }
     
     func updateNotificationInfoForAllHabits(completion: @escaping ([Habit]) -> Void) {
@@ -354,6 +387,7 @@ private extension SprintCreationViewController {
     func updateSprintSettingsButtons() {
         addButton.isHidden = sprint.tense == .past
         startDateButton.isHidden = sprint.isReady && sprint.tense != .future
+        sprintDurationButton.isHidden = sprint.isReady && sprint.tense != .future
         notificationsButton.isHidden = sprint.tense == .past
     }
     

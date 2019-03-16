@@ -9,5 +9,6 @@
 public struct Constants {
     
     static let sprintDuration = 7 // In weeks
+    static let sprintDurations: [Int] = [4, 5, 6, 7, 8]
     
 }
