@@ -24,6 +24,7 @@ public protocol MoodProvider: class {
 public protocol MoodEntityBackgroundProvider: class {
     func createMoodEntity() -> MoodEntity?
     func fetchMoodEntityInBakground(date: Date) -> MoodEntity?
+    func fetchAllMoodEntitiesInBackground() -> [MoodEntity]
 }
 
 public protocol MoodManager: class {
@@ -58,6 +59,10 @@ extension MoodService: MoodEntityBackgroundProvider {
     
     public func fetchMoodEntityInBakground(date: Date) -> MoodEntity? {
         return MoodService.moodEntityFetchRequest(date: date).executeInBackground().first
+    }
+    
+    public func fetchAllMoodEntitiesInBackground() -> [MoodEntity] {
+        return MoodService.allMoodEntitiesFetchRequest().executeInBackground()
     }
 }
 

@@ -34,6 +34,7 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let habitsService = EntityServicesAssembly.shared.habitsService
     private let goalsService = EntityServicesAssembly.shared.goalsService
     private let waterControlService = EntityServicesAssembly.shared.waterControlService
+    private let moodService = EntityServicesAssembly.shared.moodService
     
     private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
     private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
@@ -172,6 +173,20 @@ private extension AgileeSynchronizationService {
                     dispatchGroup.leave() // Leave water control document
                 })
                 
+                let moodCollection = userDocument.collection("mood")
+                dispatchGroup.enter() // Enter moods collection
+                moodCollection.getDocuments(completion: { [weak self] moodsSnapshot, error in
+                    guard let self = self else { return }
+                    synchronizationActions.append({ context in
+                        self.collectionSynchronizationManager
+                            .syncCollection(context: context,
+                                            data: moodsSnapshot?.documents.map { $0.data() } ?? [],
+                                            entityType: MoodEntity.self,
+                                            parentEntityID: nil)
+                    })
+                    dispatchGroup.leave() // Leave moods collection
+                })
+                
                 dispatchGroup.leave() // Leave user document
             }
             
@@ -240,6 +255,13 @@ private extension AgileeSynchronizationService {
             let waterControlDocument = userDocument.collection("water_control").document("water_control")
             
             batch.setData(waterControl.encode(), forDocument: waterControlDocument)
+        }
+        
+        let moodEntities = moodService.fetchAllMoodEntitiesInBackground()
+        moodEntities.forEach { mood in
+            guard let date = mood.date else { return }
+            let moodDocument = userDocument.collection("mood").document(date.asDateTimeString)
+            batch.setData(mood.encode(), forDocument: moodDocument)
         }
         
         pushDeletedEntities(deletedEntities, batch: batch, userDocument: userDocument)

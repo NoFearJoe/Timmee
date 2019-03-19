@@ -16,7 +16,9 @@ final class MoodActivityWidget: UIViewController {
     @IBOutlet private var moodButtons: [UIButton]!
     
     @IBAction private func onTapToMoodButton(_ button: UIButton) {
-        
+        guard let selectedMoodKind = Mood.Kind.allCases.item(at: button.tag) else { return }
+        let mood = Mood(kind: selectedMoodKind, date: Date.now.startOfDay)
+        moodService.createOrUpdateMood(mood, completion: nil)
     }
     
 }
@@ -24,7 +26,11 @@ final class MoodActivityWidget: UIViewController {
 extension MoodActivityWidget: ActivityWidget {
     
     func refresh() {
-        
+        if let todayMood = getTodayMood() {
+            
+        } else {
+            
+        }
     }
     
 }
@@ -33,6 +39,14 @@ extension MoodActivityWidget: StaticHeightStackChidController {
     
     var height: CGFloat {
         return 156
+    }
+    
+}
+
+private extension MoodActivityWidget {
+    
+    func getTodayMood() -> Mood? {
+        return moodService.fetchMood(date: Date.now.startOfDay)
     }
     
 }

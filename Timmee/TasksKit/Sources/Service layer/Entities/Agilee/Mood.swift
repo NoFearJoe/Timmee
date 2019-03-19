@@ -10,7 +10,7 @@ import struct Foundation.Date
 
 public final class Mood {
     
-    public enum Kind: String {
+    public enum Kind: String, CaseIterable {
         case veryBad, bad, normal, good, veryGood
     }
     

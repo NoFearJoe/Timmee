@@ -24,6 +24,7 @@
 		0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066421F1DF7D0069C6C5 /* Authorization.framework */; };
 		0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */; };
 		0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066821F1DF7D0069C6C5 /* Workset.framework */; };
+		0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81F2240C88500061B58 /* Mood+Codable.swift */; };
 		8841F944A584F20E250F3314 /* Pods_Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69097069053A1886AEB108B9 /* Pods_Synchronization.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		0CC4066421F1DF7D0069C6C5 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4066821F1DF7D0069C6C5 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD8F81F2240C88500061B58 /* Mood+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+Codable.swift"; sourceTree = "<group>"; };
 		69097069053A1886AEB108B9 /* Pods_Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC197D8BA57226F8BA656239 /* Pods-Synchronization.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.release.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.release.xcconfig"; sourceTree = "<group>"; };
 		ECE19B21111D77AF80CC7187 /* Pods-Synchronization.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.debug.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */,
 				0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */,
 				0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */,
+				0CD8F81F2240C88500061B58 /* Mood+Codable.swift */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				0C47ED53222FDC2200593AA3 /* SynchronizationServiceProtocol.swift in Sources */,
 				0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */,
 				0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */,
+				0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */,
 				0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */,
 				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,
 				0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */,
