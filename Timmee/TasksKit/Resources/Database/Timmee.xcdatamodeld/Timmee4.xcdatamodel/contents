@@ -52,6 +52,12 @@
         <attribute name="entityID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="entityType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="MoodEntity" representedClassName="MoodEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mood" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SmartListEntity" representedClassName="SmartListEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="sortPosition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -180,5 +186,6 @@
         <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>
         <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="150"/>
         <element name="WaterControlEntity" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="MoodEntity" positionX="9" positionY="153" width="128" height="105"/>
     </elements>
 </model>

@@ -35,8 +35,22 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "SprintDurationPicker") as! SprintDurationPicker
     }
     
+    // Today
+    
     static var today: TodayViewController {
         return UIStoryboard(name: "Today", bundle: nil).instantiateInitialViewController() as! TodayViewController
+    }
+    
+    static var waterControlActivityWidget: WaterControlActivityWidget {
+        return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "WaterControl") as! WaterControlActivityWidget
+    }
+    
+    static var moodActivityWidget: MoodActivityWidget {
+        return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "Mood") as! MoodActivityWidget
+    }
+    
+    static var stepsActivityWidget: StepsActivityWidget {
+        return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "Steps") as! StepsActivityWidget
     }
     
     // Authorization

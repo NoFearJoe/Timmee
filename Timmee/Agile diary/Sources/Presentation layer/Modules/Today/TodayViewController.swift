@@ -25,13 +25,13 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     @IBOutlet private var backgroundImageView: UIImageView!
     
     @IBOutlet private var contentViewContainer: UIView!
-    @IBOutlet private var waterControlViewContainer: UIView!
+    @IBOutlet private var activityViewContainer: UIView!
     
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     private var contentViewController: TodayContentViewController!
-    private var waterControlViewController: WaterControlViewController!
+    private var activityViewController: ActivityViewController!
     
     private var currentSection = SprintSection.habits
         
@@ -41,7 +41,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         didSet {
             hidePlaceholder()
             contentViewController.sprintID = sprint.id
-            waterControlViewController.sprint = sprint
+            activityViewController.sprint = sprint
             updateHeaderSubtitle(sprint: sprint)
         }
     }
@@ -57,7 +57,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupSections()
         progressBar.setProgress(0)
         contentViewContainer.isHidden = false
-        waterControlViewContainer.isHidden = true
+        activityViewContainer.isHidden = true
         createSprintButton.isHidden = true
         
         setupPlaceholder()
@@ -103,9 +103,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
             contentViewController.progressListener = self
-        } else if segue.identifier == "WaterControl" {
-            waterControlViewController = segue.destination as? WaterControlViewController
-            waterControlViewController.progressListener = self
+        } else if segue.identifier == "Activity" {
+            activityViewController = segue.destination as? ActivityViewController
         } else if segue.identifier == "ShowTargetEditor" {
             guard let controller = segue.destination as? TargetCreationViewController else { return }
             controller.setGoal(sender as? Goal, sprintID: sprint.id)
@@ -125,9 +124,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         switch currentSection {
         case .habits, .goals:
             contentViewController.section = currentSection
-            setSectionContainersVisible(content: true, water: false)
+            setSectionContainersVisible(content: true, activity: false)
         case .water:
-            setSectionContainersVisible(content: false, water: true)
+            setSectionContainersVisible(content: false, activity: true)
         }
     }   
     
@@ -153,9 +152,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         sectionSwitcher.isHidden = !isEnabled
     }
     
-    private func setSectionContainersVisible(content: Bool, water: Bool) {
+    private func setSectionContainersVisible(content: Bool, activity: Bool) {
         contentViewController.performAppearanceTransition(isAppearing: content) { contentViewContainer.isHidden = !content }
-        waterControlViewController.performAppearanceTransition(isAppearing: water) { waterControlViewContainer.isHidden = !water }
+        activityViewController.performAppearanceTransition(isAppearing: activity) { activityViewContainer.isHidden = !activity }
     }
     
 }
@@ -173,14 +172,14 @@ private extension TodayViewController {
             headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.startDate.asNearestShortDateString.lowercased()
             headerView.subtitleLabel.isHidden = false
             showNextSprintPlaceholder(sprintNumber: nextSprint.number, startDate: nextSprint.startDate)
-            setSectionContainersVisible(content: false, water: false)
+            setSectionContainersVisible(content: false, activity: false)
         } else {
             createSprintButton.isHidden = false
             setSwitcherEnabled(false)
             headerView.subtitleLabel.text = nil
             headerView.subtitleLabel.isHidden = true
             showCreateSprintPlaceholder()
-            setSectionContainersVisible(content: false, water: false)
+            setSectionContainersVisible(content: false, activity: false)
         }
     }
     

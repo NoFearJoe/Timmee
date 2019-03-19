@@ -34,6 +34,7 @@
 		0C9001A021FB18CB00D6C15F /* SynchronizationProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */; };
 		0C9364F32155320000B4EB48 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364F22155320000B4EB48 /* UIViewController+Extensions.swift */; };
 		0C9364F52155333100B4EB48 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364F42155333100B4EB48 /* UIView+Extensions.swift */; };
+		0CD8F810223F7A9900061B58 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F80F223F7A9900061B58 /* StackViewController.swift */; };
 		0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */; };
 		0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52A2146AAC50071DABD /* ProgressBar.swift */; };
 		96956C31221019C400DD6855 /* BaseRoundedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96956C2F221019C400DD6855 /* BaseRoundedCollectionViewCell.swift */; };
@@ -71,6 +72,7 @@
 		0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationProgressView.swift; sourceTree = "<group>"; };
 		0C9364F22155320000B4EB48 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0C9364F42155333100B4EB48 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		0CD8F80F223F7A9900061B58 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
 		0CF7E52A2146AAC50071DABD /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		279254AB751F727F989F812F /* Pods_UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 		0C14D3E9211C190A004C0559 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0CD8F80E223F7A7700061B58 /* View controllers */,
 				0C9364F1215531EF00B4EB48 /* Extensions */,
 				0C14D3EF211C19F8004C0559 /* Protocol extensions */,
 				0C14D3EE211C19AE004C0559 /* Transitions */,
@@ -219,6 +222,14 @@
 				0C9364F42155333100B4EB48 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0CD8F80E223F7A7700061B58 /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0CD8F80F223F7A9900061B58 /* StackViewController.swift */,
+			);
+			path = "View controllers";
 			sourceTree = "<group>";
 		};
 		65C45592446C9DFE6FFF8C5B /* Frameworks */ = {
@@ -368,6 +379,7 @@
 				0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */,
 				0C5C4688213E9A5D00390F85 /* HintPopoverView.swift in Sources */,
 				0C14D415211C1B65004C0559 /* NextGrowingInternalTextView.swift in Sources */,
+				0CD8F810223F7A9900061B58 /* StackViewController.swift in Sources */,
 				0C14D416211C1B65004C0559 /* PlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

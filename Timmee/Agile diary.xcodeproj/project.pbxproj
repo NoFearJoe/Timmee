@@ -222,6 +222,18 @@
 		0CC4067021F1E0A30069C6C5 /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
+		0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F802223F77AB00061B58 /* ActivityViewController.swift */; };
+		0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F802223F77AB00061B58 /* ActivityViewController.swift */; };
+		0CD8F806223F780700061B58 /* WaterControlActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */; };
+		0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */; };
+		0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */; };
+		0CD8F80A223F783F00061B58 /* MoodActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */; };
+		0CD8F80C223F786100061B58 /* StepsActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */; };
+		0CD8F80D223F786100061B58 /* StepsActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */; };
+		0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F811223F7C4000061B58 /* ActivityWidget.swift */; };
+		0CD8F813223F7C4100061B58 /* ActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F811223F7C4000061B58 /* ActivityWidget.swift */; };
+		0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CD8F814223F7D3E00061B58 /* Activity.storyboard */; };
+		0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CD8F814223F7D3E00061B58 /* Activity.storyboard */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -443,6 +455,12 @@
 		0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		0CD8F802223F77AB00061B58 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlActivityWidget.swift; sourceTree = "<group>"; };
+		0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodActivityWidget.swift; sourceTree = "<group>"; };
+		0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsActivityWidget.swift; sourceTree = "<group>"; };
+		0CD8F811223F7C4000061B58 /* ActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityWidget.swift; sourceTree = "<group>"; };
+		0CD8F814223F7D3E00061B58 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -1032,6 +1050,27 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
+		0CD8F800223F778D00061B58 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				0CD8F801223F779A00061B58 /* Widgets */,
+				0CD8F802223F77AB00061B58 /* ActivityViewController.swift */,
+				0CD8F814223F7D3E00061B58 /* Activity.storyboard */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		0CD8F801223F779A00061B58 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				0CD8F811223F7C4000061B58 /* ActivityWidget.swift */,
+				0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */,
+				0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */,
+				0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		0CDF8D802125B75A001A2F70 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1066,6 +1105,7 @@
 		0CF7E51B214669520071DABD /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				0CD8F800223F778D00061B58 /* Activity */,
 				0CF7E51E21466A830071DABD /* Today.storyboard */,
 				0C3DA52C2154CA0000CAE635 /* Water control */,
 				0CF7E5252146878C0071DABD /* Cells */,
@@ -1303,6 +1343,7 @@
 				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
 				96BE83882175034400CDECAF /* InfoPlist.strings in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
+				0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
 				96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */,
@@ -1331,6 +1372,7 @@
 				0CB673C321A52C3900178EB1 /* Today.storyboard in Resources */,
 				0CB673C421A52C3900178EB1 /* InfoPlist.strings in Resources */,
 				0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */,
+				0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
 				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
 				0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */,
@@ -1600,6 +1642,8 @@
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
+				0CD8F80C223F786100061B58 /* StepsActivityWidget.swift in Sources */,
+				0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
@@ -1617,6 +1661,7 @@
 				0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
+				0CD8F806223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
 				96A5A0E42171065C007511ED /* HabitsChartView.swift in Sources */,
 				0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */,
@@ -1627,6 +1672,7 @@
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
 				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
+				0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
@@ -1684,6 +1730,7 @@
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */,
+				0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
 			);
@@ -1741,6 +1788,7 @@
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
+				0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
@@ -1752,14 +1800,17 @@
 				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
+				0CD8F80D223F786100061B58 /* StepsActivityWidget.swift in Sources */,
 				0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */,
 				0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */,
 				0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */,
 				0CB6739D21A52C3900178EB1 /* TodayViewController.swift in Sources */,
+				0CD8F80A223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
 				0CB6739E21A52C3900178EB1 /* CalendarView.swift in Sources */,
 				0CB6739F21A52C3900178EB1 /* AppDelegate+Notifications.swift in Sources */,
 				0CB673A021A52C3900178EB1 /* CardView.swift in Sources */,
+				0CD8F813223F7C4100061B58 /* ActivityWidget.swift in Sources */,
 				0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */,
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
@@ -1769,6 +1820,7 @@
 				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
 				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
+				0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,

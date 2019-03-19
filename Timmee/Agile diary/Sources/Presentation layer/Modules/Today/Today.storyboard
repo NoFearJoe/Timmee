@@ -142,7 +142,7 @@
                                 <rect key="frame" x="0.0" y="178" width="375" height="489"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="APQ-C6-bu2" kind="embed" identifier="WaterControl" id="WeR-EB-etE"/>
+                                    <segue destination="APQ-C6-bu2" kind="embed" identifier="Activity" id="WeR-EB-etE"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG5-iM-CHH">
@@ -189,6 +189,7 @@
                         <viewLayoutGuide key="safeArea" id="ibh-Jp-ctc"/>
                     </view>
                     <connections>
+                        <outlet property="activityViewContainer" destination="nTA-3z-kRg" id="Na0-SO-zdg"/>
                         <outlet property="backgroundImageView" destination="kq5-QA-Okj" id="bpo-P0-sYV"/>
                         <outlet property="chartsButton" destination="Ogh-lU-sPL" id="ZdK-FO-mIb"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
@@ -198,7 +199,6 @@
                         <outlet property="progressBar" destination="n2E-og-p5R" id="qiV-v9-HZL"/>
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
                         <outlet property="sprintsButton" destination="fjR-Bh-1q4" id="gPh-hk-ARw"/>
-                        <outlet property="waterControlViewContainer" destination="nTA-3z-kRg" id="PDv-Dg-fQy"/>
                         <segue destination="m5L-p8-Gva" kind="presentation" identifier="ShowHabitEditor" modalTransitionStyle="coverVertical" id="c90-3s-KUG"/>
                         <segue destination="3ji-X3-ILJ" kind="presentation" identifier="ShowTargetEditor" modalTransitionStyle="coverVertical" id="xpM-BJ-OZs"/>
                     </connections>
@@ -255,13 +255,13 @@
             </objects>
             <point key="canvasLocation" x="-323" y="648"/>
         </scene>
-        <!--WaterControl-->
+        <!--Activity-->
         <scene sceneID="qbj-bi-7qr">
             <objects>
-                <viewControllerPlaceholder storyboardName="WaterControl" id="APQ-C6-bu2" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Activity" id="APQ-C6-bu2" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heI-Oz-CSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="-153"/>
+            <point key="canvasLocation" x="529" y="-154"/>
         </scene>
         <!--Today Content View Controller-->
         <scene sceneID="mzz-VX-Sgc">

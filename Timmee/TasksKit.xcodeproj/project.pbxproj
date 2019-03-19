@@ -19,6 +19,9 @@
 		0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24082077B9EE009EF6DE /* NSManagedObject+entityName.swift */; };
 		0C9B242F207E244B009EF6DE /* TableViewCacheAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */; };
 		0C9B2431207E2457009EF6DE /* CollectionViewCacheAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */; };
+		0CD8F81A2240B6A500061B58 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F8192240B6A500061B58 /* Mood.swift */; };
+		0CD8F81C2240B79E00061B58 /* MoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81B2240B79E00061B58 /* MoodService.swift */; };
+		0CD8F81E2240BE5A00061B58 /* MoodEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81D2240BE5A00061B58 /* MoodEntity+Mapping.swift */; };
 		0CE017F42077B09200633EFF /* TasksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CE017F22077B09200633EFF /* TasksKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CE018052077B24200633EFF /* Timmee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018032077B24200633EFF /* Timmee.xcdatamodeld */; };
 		0CE018532077B2BD00633EFF /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0180B2077B2BD00633EFF /* ServicesAssembly.swift */; };
@@ -77,6 +80,9 @@
 		0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCacheAdapter.swift; sourceTree = "<group>"; };
 		0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCacheAdapter.swift; sourceTree = "<group>"; };
 		0CC4063721F0B1DC0069C6C5 /* Timmee3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee3.xcdatamodel; sourceTree = "<group>"; };
+		0CD8F8192240B6A500061B58 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		0CD8F81B2240B79E00061B58 /* MoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodService.swift; sourceTree = "<group>"; };
+		0CD8F81D2240BE5A00061B58 /* MoodEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoodEntity+Mapping.swift"; sourceTree = "<group>"; };
 		0CE017EF2077B09200633EFF /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE017F22077B09200633EFF /* TasksKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksKit.h; sourceTree = "<group>"; };
 		0CE017F32077B09200633EFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -341,6 +347,7 @@
 				0CE475592175BAFF005FD8CC /* HabitsService.swift */,
 				0CE4755C2175DA1E005FD8CC /* GoalsService.swift */,
 				0C3DA5372154D8D200CAE635 /* WaterControlService.swift */,
+				0CD8F81B2240B79E00061B58 /* MoodService.swift */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -361,6 +368,7 @@
 				96BE838F217511E500CDECAF /* Habit.swift */,
 				96BE838D217511D700CDECAF /* Goal.swift */,
 				0C3DA5332154D73700CAE635 /* WaterControl.swift */,
+				0CD8F8192240B6A500061B58 /* Mood.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";
@@ -372,6 +380,7 @@
 				96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */,
 				96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */,
 				0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */,
+				0CD8F81D2240BE5A00061B58 /* MoodEntity+Mapping.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";
@@ -486,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C90018E21F9912100D6C15F /* IdentifiableEntity.swift in Sources */,
+				0CD8F81E2240BE5A00061B58 /* MoodEntity+Mapping.swift in Sources */,
 				0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */,
 				9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */,
 				0CE018612077B2BD00633EFF /* FetchRequest.swift in Sources */,
@@ -507,6 +517,7 @@
 				0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */,
 				0CE0186A2077B2BD00633EFF /* ListSorting.swift in Sources */,
 				0C9B242F207E244B009EF6DE /* TableViewCacheAdapter.swift in Sources */,
+				0CD8F81A2240B6A500061B58 /* Mood.swift in Sources */,
 				0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */,
 				9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */,
 				0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */,
@@ -532,6 +543,7 @@
 				0C9B24092077B9EE009EF6DE /* NSManagedObjectContext+Create.swift in Sources */,
 				96BE8399217519A600CDECAF /* SprintEntity+Mapping.swift in Sources */,
 				0CE0185A2077B2BD00633EFF /* TimeTemplatesService.swift in Sources */,
+				0CD8F81C2240B79E00061B58 /* MoodService.swift in Sources */,
 				0CE018052077B24200633EFF /* Timmee.xcdatamodeld in Sources */,
 				0CE018652077B2BD00633EFF /* Database.swift in Sources */,
 				0CE018532077B2BD00633EFF /* ServicesAssembly.swift in Sources */,

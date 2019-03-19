@@ -25,6 +25,12 @@ final class WaterLevelView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         animateWave()
+        backgroundColor = AppTheme.current.colors.decorationElementColor
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height / 2
     }
     
     private func animateWave() {
