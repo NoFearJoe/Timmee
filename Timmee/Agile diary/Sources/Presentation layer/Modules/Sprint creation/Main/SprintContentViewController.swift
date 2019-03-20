@@ -95,7 +95,7 @@ extension SprintContentViewController: UITableViewDataSource {
         switch section {
         case .habits: return habitsCacheObserver?.numberOfSections() ?? 0
         case .goals: return goalsCacheObserver?.numberOfSections() ?? 0
-        case .water: return 0
+        case .activity: return 0
         }
     }
     
@@ -103,7 +103,7 @@ extension SprintContentViewController: UITableViewDataSource {
         switch self.section {
         case .habits: return habitsCacheObserver?.numberOfItems(in: section) ?? 0
         case .goals: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
-        case .water: return 0
+        case .activity: return 0
         }
     }
     
@@ -123,7 +123,7 @@ extension SprintContentViewController: UITableViewDataSource {
                 cell.delegate = targetCellActionsProvider
             }
             return cell
-        case .water: return UITableViewCell()
+        case .activity: return UITableViewCell()
         }
     }
     
@@ -139,7 +139,7 @@ extension SprintContentViewController: UITableViewDelegate {
         case .goal:
             guard let goal = goalsCacheObserver?.item(at: indexPath) else { return }
             transitionHandler?.performSegue(withIdentifier: "ShowGoalCreation", sender: goal)
-        case .water: break
+        case .activity: break
         }
     }
     
@@ -151,7 +151,7 @@ private extension SprintContentViewController {
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
         case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
-        case .water: break
+        case .activity: break
         }
     }
     
@@ -211,7 +211,7 @@ private extension SprintContentViewController {
         case .habits:
             placeholderView.title = "habits_section_placeholder_title".localized
             placeholderView.subtitle = "habits_section_placeholder_subtitle".localized
-        case .water: break
+        case .activity: break
         }
     }
     

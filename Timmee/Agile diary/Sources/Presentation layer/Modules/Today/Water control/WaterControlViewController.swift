@@ -164,7 +164,7 @@ private extension WaterControlViewController {
         guard let waterControl = waterControl else { return }
         let todayDrunkVolume = waterControl.drunkVolume[Date.now.startOfDay] ?? 0
         let progress = min(1, CGFloat(todayDrunkVolume).safeDivide(by: CGFloat(waterControl.neededVolume)))
-        progressListener?.didChangeProgress(for: .water, to: progress)
+        progressListener?.didChangeProgress(for: .activity, to: progress)
     }
     
     func addDrunkVolume(milliliters: Int) {

@@ -23,7 +23,7 @@ class CardView: UIView {
     func setupAppearance() {
         backgroundColor = AppTheme.current.colors.foregroundColor
         configureShadow(radius: 4, opacity: 0.1)
-        clipsToBounds = true
+        clipsToBounds = false
         layer.cornerRadius = 12
     }
     

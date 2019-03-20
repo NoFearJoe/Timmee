@@ -13,6 +13,7 @@ final class MoodActivityWidget: UIViewController {
     
     private let moodService = ServicesAssembly.shared.moodServce
     
+    @IBOutlet private var containerView: CardView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var moodButtons: [MoodButton]!
     
@@ -29,12 +30,14 @@ final class MoodActivityWidget: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = "mood_widget_title".localized
+        deselectAllMoodButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         titleLabel.font = AppTheme.current.fonts.medium(20)
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        containerView.setupAppearance()
     }
     
 }
@@ -54,7 +57,7 @@ extension MoodActivityWidget: ActivityWidget {
 extension MoodActivityWidget: StaticHeightStackChidController {
     
     var height: CGFloat {
-        return 108
+        return 100
     }
     
 }
@@ -100,11 +103,16 @@ final class MoodButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         adjustsImageWhenHighlighted = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 4
     }
     
     override var isSelected: Bool {
         didSet {
             transform = isSelected ? CGAffineTransform(scaleX: 1.2, y: 1.2) : .identity
+            layer.shadowOpacity = isSelected ? 0.2 : 0
+            alpha = isSelected ? 1 : 0.75
         }
     }
     

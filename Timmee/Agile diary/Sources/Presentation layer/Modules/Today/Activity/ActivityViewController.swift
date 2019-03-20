@@ -19,7 +19,6 @@ final class ActivityViewController: BaseViewController {
     private let stackViewController = StackViewController()
     
     private lazy var waterControlWidget = ViewControllersFactory.waterControlActivityWidget
-    private lazy var stepsWidget = ViewControllersFactory.stepsActivityWidget
     private lazy var moodWidget = ViewControllersFactory.moodActivityWidget
     
     override func prepare() {
@@ -31,13 +30,14 @@ final class ActivityViewController: BaseViewController {
     override func refresh() {
         super.refresh()
         waterControlWidget.refresh()
-        stepsWidget.refresh()
         moodWidget.refresh()
     }
     
     override func setupAppearance() {
         super.setupAppearance()
-        
+        view.backgroundColor = .clear
+        stackViewController.view.backgroundColor = .clear
+        stackViewController.scrollView.backgroundColor = .clear
     }
     
 }
@@ -56,7 +56,6 @@ private extension ActivityViewController {
     func setupWidgets() {
         stackViewController.setChild(waterControlWidget, at: 0)
         stackViewController.setChild(moodWidget, at: 1)
-        stackViewController.setChild(stepsWidget, at: 2)
     }
     
 }

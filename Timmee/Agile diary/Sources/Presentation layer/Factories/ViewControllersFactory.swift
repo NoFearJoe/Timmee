@@ -49,10 +49,6 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "Mood") as! MoodActivityWidget
     }
     
-    static var stepsActivityWidget: StepsActivityWidget {
-        return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "Steps") as! StepsActivityWidget
-    }
-    
     // Authorization
     
     static var authorization: AuthorizationViewController {

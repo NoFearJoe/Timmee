@@ -125,7 +125,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         case .habits, .goals:
             contentViewController.section = currentSection
             setSectionContainersVisible(content: true, activity: false)
-        case .water:
+        case .activity:
             setSectionContainersVisible(content: false, activity: true)
         }
     }   
@@ -198,7 +198,7 @@ private extension TodayViewController {
     
     func setupSections() {
         if ProVersionPurchase.shared.isPurchased() {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, SprintSection.water.title]
+            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, SprintSection.activity.title]
         } else {
             sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         }

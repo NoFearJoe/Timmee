@@ -213,7 +213,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         switch currentSection {
         case .goals: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
         case .habits: toggleAddHabitMenu()
-        case .water: break
+        case .activity: break
         }
     }
     

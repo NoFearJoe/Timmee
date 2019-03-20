@@ -228,8 +228,6 @@
 		0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */; };
 		0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */; };
 		0CD8F80A223F783F00061B58 /* MoodActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */; };
-		0CD8F80C223F786100061B58 /* StepsActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */; };
-		0CD8F80D223F786100061B58 /* StepsActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */; };
 		0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F811223F7C4000061B58 /* ActivityWidget.swift */; };
 		0CD8F813223F7C4100061B58 /* ActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F811223F7C4000061B58 /* ActivityWidget.swift */; };
 		0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CD8F814223F7D3E00061B58 /* Activity.storyboard */; };
@@ -458,7 +456,6 @@
 		0CD8F802223F77AB00061B58 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlActivityWidget.swift; sourceTree = "<group>"; };
 		0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodActivityWidget.swift; sourceTree = "<group>"; };
-		0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsActivityWidget.swift; sourceTree = "<group>"; };
 		0CD8F811223F7C4000061B58 /* ActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityWidget.swift; sourceTree = "<group>"; };
 		0CD8F814223F7D3E00061B58 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
@@ -1066,7 +1063,6 @@
 				0CD8F811223F7C4000061B58 /* ActivityWidget.swift */,
 				0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */,
 				0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */,
-				0CD8F80B223F786100061B58 /* StepsActivityWidget.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1642,7 +1638,6 @@
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
-				0CD8F80C223F786100061B58 /* StepsActivityWidget.swift in Sources */,
 				0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
@@ -1800,7 +1795,6 @@
 				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
-				0CD8F80D223F786100061B58 /* StepsActivityWidget.swift in Sources */,
 				0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */,
 				0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */,

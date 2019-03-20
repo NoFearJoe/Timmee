@@ -11,6 +11,8 @@ import TasksKit
 
 final class WaterControlActivityWidget: UIViewController {
     
+    @IBOutlet private var containerView: CardView!
+    
     @IBOutlet private var drunkVolumeLabel: UILabel!
     
     @IBOutlet private var waterLevelView: WaterLevelView!
@@ -81,7 +83,9 @@ final class WaterControlActivityWidget: UIViewController {
     }
     
     func setupAppearance() {
+        containerView.setupAppearance()
         setupWaterControlConfigurationButton()
+        waterLevelView.backgroundColor = AppTheme.current.colors.decorationElementColor
         waterControlReconfigurationButton.tintColor = AppTheme.current.colors.mainElementColor
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground

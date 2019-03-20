@@ -107,7 +107,7 @@ extension TodayContentViewController: UITableViewDataSource {
         switch section {
         case .habits: return habitsCacheObserver?.numberOfSections() ?? 0
         case .goals: return goalsCacheObserver?.numberOfSections() ?? 0
-        case .water: return 0
+        case .activity: return 0
         }
     }
     
@@ -115,7 +115,7 @@ extension TodayContentViewController: UITableViewDataSource {
         switch self.section {
         case .habits: return habitsCacheObserver?.numberOfItems(in: section) ?? 0
         case .goals: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
-        case .water: return 0
+        case .activity: return 0
         }
     }
     
@@ -146,7 +146,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 }
             }
             return cell
-        case .water: return UITableViewCell()
+        case .activity: return UITableViewCell()
         }
     }
     
@@ -159,6 +159,7 @@ extension TodayContentViewController: UITableViewDataSource {
         guard case .habits = self.section else { return nil }
         guard let sectionName = habitsCacheObserver?.sectionInfo(at: section)?.name else { return nil }
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as! TableHeaderViewWithTitle
+        view.backgroundView?.backgroundColor = BackgroundImage.current == .noImage ? AppTheme.current.colors.middlegroundColor : AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.75)
         let dayTime = Habit.DayTime(sortID: sectionName)
         view.titleLabel.text = dayTime.localizedAt
         return view
@@ -173,7 +174,7 @@ extension TodayContentViewController: UITableViewDelegate {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
             openLink(habit.link)
-        case .goal, .water: return
+        case .goal, .activity: return
         }
     }
     
@@ -185,7 +186,7 @@ private extension TodayContentViewController {
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
         case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
-        case .water: break
+        case .activity: break
         }
     }
     
@@ -253,7 +254,7 @@ private extension TodayContentViewController {
         case .habits:
             placeholderView.title = "today_habits_section_placeholder_title".localized
             placeholderView.subtitle = nil
-        case .water: break
+        case .activity: break
         }
     }
     
