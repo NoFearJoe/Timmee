@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rl-ec-eeh" userLabel="Placeholder Container">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="188"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FO6-4U-pRA" customClass="WaterLevelView" customModule="Agile_diary" customModuleProvider="target">
@@ -56,7 +56,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY5-l1-Rbo">
-                                <rect key="frame" x="20" y="102" width="335" height="52"/>
+                                <rect key="frame" x="20" y="196" width="335" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="Pua-BX-4gd"/>
                                 </constraints>
@@ -193,15 +193,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8lM-96-ySz" firstAttribute="bottom" secondItem="Kfn-WM-cVw" secondAttribute="bottom" constant="8" id="1ih-Ib-GQO"/>
+                            <constraint firstItem="8lM-96-ySz" firstAttribute="bottom" secondItem="MY5-l1-Rbo" secondAttribute="bottom" constant="8" id="3DN-2A-upH"/>
                             <constraint firstItem="YyV-aH-L6I" firstAttribute="top" secondItem="8lM-96-ySz" secondAttribute="top" constant="20" id="3LQ-cP-hcI"/>
+                            <constraint firstItem="MY5-l1-Rbo" firstAttribute="top" secondItem="8rl-ec-eeh" secondAttribute="bottom" constant="8" id="7fy-cA-Xjs"/>
                             <constraint firstItem="MY5-l1-Rbo" firstAttribute="leading" secondItem="8lM-96-ySz" secondAttribute="leading" constant="20" id="7sd-66-5YF"/>
                             <constraint firstItem="8rl-ec-eeh" firstAttribute="leading" secondItem="oKV-SU-UI5" secondAttribute="leading" id="BbE-Dp-R4z"/>
                             <constraint firstItem="FO6-4U-pRA" firstAttribute="centerX" secondItem="oKV-SU-UI5" secondAttribute="centerX" id="CqY-gd-9L8"/>
                             <constraint firstItem="FO6-4U-pRA" firstAttribute="top" secondItem="8lM-96-ySz" secondAttribute="top" constant="20" id="HeX-vB-509"/>
                             <constraint firstItem="Kfn-WM-cVw" firstAttribute="top" secondItem="FO6-4U-pRA" secondAttribute="bottom" constant="10" id="Ldy-Dk-pPV"/>
-                            <constraint firstAttribute="bottom" secondItem="8rl-ec-eeh" secondAttribute="bottom" id="U5c-Zt-evV"/>
                             <constraint firstItem="8lM-96-ySz" firstAttribute="trailing" secondItem="YyV-aH-L6I" secondAttribute="trailing" constant="15" id="Xp2-SW-o5h"/>
-                            <constraint firstItem="MY5-l1-Rbo" firstAttribute="centerY" secondItem="oKV-SU-UI5" secondAttribute="centerY" id="aqb-w4-Osc"/>
                             <constraint firstItem="8rl-ec-eeh" firstAttribute="top" secondItem="oKV-SU-UI5" secondAttribute="top" id="dWU-QL-BUJ"/>
                             <constraint firstItem="8lM-96-ySz" firstAttribute="trailing" secondItem="MY5-l1-Rbo" secondAttribute="trailing" constant="20" id="jFs-U9-dsD"/>
                             <constraint firstItem="Kfn-WM-cVw" firstAttribute="centerX" secondItem="oKV-SU-UI5" secondAttribute="centerX" id="lIc-dY-cGa"/>
@@ -228,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVe-aM-6b2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="-70"/>
+            <point key="canvasLocation" x="908" y="-70.164917541229386"/>
         </scene>
         <!--WaterControl-->
         <scene sceneID="oeL-e5-ncp">
@@ -238,27 +238,111 @@
             </objects>
             <point key="canvasLocation" x="1510" y="-70"/>
         </scene>
-        <!--Steps Activity Widget-->
+        <!--Mood Activity Widget-->
         <scene sceneID="a1R-qj-ph5">
             <objects>
-                <viewController storyboardIdentifier="Steps" id="UiI-Pg-ZqC" customClass="StepsActivityWidget" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Mood" id="UiI-Pg-ZqC" customClass="MoodActivityWidget" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8lk-Ha-f9L">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1J-bC-n6j">
+                                <rect key="frame" x="20" y="20" width="335" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gMK-lf-UTe">
+                                <rect key="frame" x="20" y="52" width="335" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wE4-LR-AVt" customClass="MoodButton" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="TTF-Rh-PqT"/>
+                                            <constraint firstAttribute="width" constant="48" id="tqi-mc-pOm"/>
+                                        </constraints>
+                                        <state key="normal" image="avatar"/>
+                                        <connections>
+                                            <action selector="onTapToMoodButton:" destination="UiI-Pg-ZqC" eventType="touchUpInside" id="ftE-jJ-JWV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dq-Uj-zUD" customClass="MoodButton" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="72" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="Ecp-23-Sjd"/>
+                                            <constraint firstAttribute="height" constant="48" id="UUF-be-tYH"/>
+                                        </constraints>
+                                        <state key="normal" image="avatar"/>
+                                        <connections>
+                                            <action selector="onTapToMoodButton:" destination="UiI-Pg-ZqC" eventType="touchUpInside" id="KNs-0m-82X"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKY-BT-OUm" customClass="MoodButton" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="143.5" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="NXX-6i-dui"/>
+                                            <constraint firstAttribute="width" constant="48" id="P8p-4G-hLk"/>
+                                        </constraints>
+                                        <state key="normal" image="avatar"/>
+                                        <connections>
+                                            <action selector="onTapToMoodButton:" destination="UiI-Pg-ZqC" eventType="touchUpInside" id="JeS-pw-uSH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE0-rY-6j0" customClass="MoodButton" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="215.5" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="HzF-5Y-GhR"/>
+                                            <constraint firstAttribute="height" constant="48" id="T44-xh-zXt"/>
+                                        </constraints>
+                                        <state key="normal" image="avatar"/>
+                                        <connections>
+                                            <action selector="onTapToMoodButton:" destination="UiI-Pg-ZqC" eventType="touchUpInside" id="J0P-Jt-5PD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-jr-pem" customClass="MoodButton" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="287" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Ulb-pr-1x0"/>
+                                            <constraint firstAttribute="width" constant="48" id="zGN-l4-PLb"/>
+                                        </constraints>
+                                        <state key="normal" image="avatar"/>
+                                        <connections>
+                                            <action selector="onTapToMoodButton:" destination="UiI-Pg-ZqC" eventType="touchUpInside" id="L5E-Px-UKz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gNM-dm-yxj"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="gMK-lf-UTe" secondAttribute="bottom" constant="8" id="4N3-0U-Tu1"/>
+                            <constraint firstItem="gMK-lf-UTe" firstAttribute="leading" secondItem="8lk-Ha-f9L" secondAttribute="leading" constant="20" id="53U-wN-EcV"/>
+                            <constraint firstItem="q1J-bC-n6j" firstAttribute="leading" secondItem="8lk-Ha-f9L" secondAttribute="leading" constant="20" id="5U6-J0-jd0"/>
+                            <constraint firstAttribute="trailing" secondItem="q1J-bC-n6j" secondAttribute="trailing" constant="20" id="5rj-GN-JMj"/>
+                            <constraint firstItem="q1J-bC-n6j" firstAttribute="top" secondItem="8lk-Ha-f9L" secondAttribute="top" constant="20" id="Qdc-jD-5vc"/>
+                            <constraint firstItem="gMK-lf-UTe" firstAttribute="top" secondItem="q1J-bC-n6j" secondAttribute="bottom" constant="8" id="cEp-Xj-ZjC"/>
+                            <constraint firstAttribute="trailing" secondItem="gMK-lf-UTe" secondAttribute="trailing" constant="20" id="ir8-XG-9Af"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="212"/>
+                    <size key="freeformSize" width="375" height="108"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="q1J-bC-n6j" id="CSa-uV-5Kw"/>
+                        <outletCollection property="moodButtons" destination="wE4-LR-AVt" collectionClass="NSMutableArray" id="Rt5-Cg-rLm"/>
+                        <outletCollection property="moodButtons" destination="3Dq-Uj-zUD" collectionClass="NSMutableArray" id="KqT-n5-bS0"/>
+                        <outletCollection property="moodButtons" destination="hKY-BT-OUm" collectionClass="NSMutableArray" id="hcG-5U-uaV"/>
+                        <outletCollection property="moodButtons" destination="lE0-rY-6j0" collectionClass="NSMutableArray" id="Dm5-Ag-GSy"/>
+                        <outletCollection property="moodButtons" destination="3Jg-jr-pem" collectionClass="NSMutableArray" id="IXL-jc-aA3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGi-H1-bIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="193"/>
+            <point key="canvasLocation" x="908" y="173"/>
         </scene>
-        <!--Mood Activity Widget-->
+        <!--Steps Activity Widget-->
         <scene sceneID="rwk-kP-ez0">
             <objects>
-                <viewController storyboardIdentifier="Mood" id="DVj-G1-qyR" customClass="MoodActivityWidget" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Steps" id="DVj-G1-qyR" customClass="StepsActivityWidget" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hjQ-Io-gh5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -274,6 +358,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avatar" width="20" height="20"/>
         <image name="cogwheel" width="20" height="20"/>
         <image name="glass100ml" width="52" height="52"/>
         <image name="glass200ml" width="52" height="52"/>

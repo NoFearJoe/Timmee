@@ -55,8 +55,8 @@ private extension ActivityViewController {
     
     func setupWidgets() {
         stackViewController.setChild(waterControlWidget, at: 0)
-        stackViewController.setChild(stepsWidget, at: 1)
-        stackViewController.setChild(moodWidget, at: 2)
+        stackViewController.setChild(moodWidget, at: 1)
+        stackViewController.setChild(stepsWidget, at: 2)
     }
     
 }

@@ -120,6 +120,7 @@ private extension WaterControlActivityWidget {
             switch state {
             case .notConfigured:
                 showPlaceholder()
+                waterLevelView.isHidden = true
                 waterControlConfigurationButton.isHidden = false
                 waterControlReconfigurationButton.isHidden = true
                 setDrinkWaterButtonsVisible(false)
@@ -127,6 +128,7 @@ private extension WaterControlActivityWidget {
             case let .configured(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
+                waterLevelView.isHidden = false
                 waterControlConfigurationButton.isHidden = true
                 waterControlReconfigurationButton.isHidden = true
                 setDrinkWaterButtonsVisible(true)
@@ -134,6 +136,7 @@ private extension WaterControlActivityWidget {
             case let .outdated(waterControl):
                 hidePlaceholder()
                 self.waterControl = waterControl
+                waterLevelView.isHidden = false
                 waterControlConfigurationButton.isHidden = true
                 waterControlReconfigurationButton.isHidden = false
                 setDrinkWaterButtonsVisible(true)
