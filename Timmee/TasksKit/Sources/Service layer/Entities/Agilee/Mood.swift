@@ -28,3 +28,48 @@ public final class Mood {
     }
     
 }
+
+extension Mood.Kind {
+    
+    public var localized: String {
+        switch self {
+        case .veryBad: return "very_bad_mood".localized
+        case .bad: return "bad_mood".localized
+        case .normal: return "normal_mood".localized
+        case .good: return "good_mood".localized
+        case .veryGood: return "very_good_mood".localized
+        }
+    }
+    
+    public var icon: String {
+        switch self {
+        case .veryBad: return "veryBad"
+        case .bad: return "bad"
+        case .normal: return "normal"
+        case .good: return "good"
+        case .veryGood: return "veryGood"
+        }
+    }
+    
+    public var value: Int {
+        switch self {
+        case .veryBad: return -2
+        case .bad: return -1
+        case .normal: return 0
+        case .good: return 1
+        case .veryGood: return 2
+        }
+    }
+    
+    public init(value: Int) {
+        switch value {
+        case ...(-2): self = .veryBad
+        case -1: self = .bad
+        case 0: self = .normal
+        case 1: self = .good
+        case 2...: self = .veryGood
+        default: self = .normal
+        }
+    }
+    
+}

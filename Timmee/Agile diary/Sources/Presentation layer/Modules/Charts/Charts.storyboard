@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -256,6 +256,67 @@
                                             <outlet property="titleLabel" destination="plE-j2-MzK" id="agb-Gi-a4h"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MoodChartCell" id="apy-gf-ggz" customClass="MoodChartCell" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="731" width="345" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Среднее настроение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-2k-B2y">
+                                                    <rect key="frame" x="8" y="8" width="199" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="Cyf-FC-OMo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZy-rX-qKF">
+                                                    <rect key="frame" x="283" y="6" width="54" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="Show all">
+                                                        <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showFullProgress" destination="apy-gf-ggz" eventType="touchUpInside" id="byv-nd-Xu8"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="normal" translatesAutoresizingMaskIntoConstraints="NO" id="xQk-6D-PRQ">
+                                                    <rect key="frame" x="293" y="38" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="VKl-AK-7eI"/>
+                                                        <constraint firstAttribute="width" secondItem="xQk-6D-PRQ" secondAttribute="height" id="cpb-Nh-sil"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="xj7-YP-cdp">
+                                                    <rect key="frame" x="8" y="48" width="277" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="xQk-6D-PRQ" firstAttribute="leading" secondItem="xj7-YP-cdp" secondAttribute="trailing" constant="8" id="6PO-aq-Bzx"/>
+                                            <constraint firstItem="xQk-6D-PRQ" firstAttribute="top" secondItem="UZy-rX-qKF" secondAttribute="bottom" constant="4" id="8OL-iD-GhZ"/>
+                                            <constraint firstItem="xj7-YP-cdp" firstAttribute="leading" secondItem="apy-gf-ggz" secondAttribute="leading" constant="8" id="G9U-O4-qWn"/>
+                                            <constraint firstItem="UZy-rX-qKF" firstAttribute="centerY" secondItem="8gS-2k-B2y" secondAttribute="centerY" id="Kkl-C4-4Iv"/>
+                                            <constraint firstAttribute="trailing" secondItem="xQk-6D-PRQ" secondAttribute="trailing" constant="8" id="M1k-Mw-znH"/>
+                                            <constraint firstAttribute="trailing" secondItem="UZy-rX-qKF" secondAttribute="trailing" constant="8" id="NN6-vL-iTl"/>
+                                            <constraint firstItem="8gS-2k-B2y" firstAttribute="top" secondItem="apy-gf-ggz" secondAttribute="top" constant="8" id="OsP-xA-sMP"/>
+                                            <constraint firstAttribute="bottom" secondItem="xQk-6D-PRQ" secondAttribute="bottom" constant="8" id="bSp-DM-3I1"/>
+                                            <constraint firstItem="8gS-2k-B2y" firstAttribute="leading" secondItem="apy-gf-ggz" secondAttribute="leading" constant="8" id="r0R-iq-MZi"/>
+                                            <constraint firstItem="xQk-6D-PRQ" firstAttribute="centerY" secondItem="xj7-YP-cdp" secondAttribute="centerY" id="slm-AL-CFq"/>
+                                        </constraints>
+                                        <size key="customSize" width="345" height="90"/>
+                                        <connections>
+                                            <outlet property="fullProgressButton" destination="UZy-rX-qKF" id="y6c-zL-GCf"/>
+                                            <outlet property="moodIconView" destination="xQk-6D-PRQ" id="NGr-Cw-q1h"/>
+                                            <outlet property="moodLabel" destination="xj7-YP-cdp" id="fOg-Zo-vWJ"/>
+                                            <outlet property="titleLabel" destination="8gS-2k-B2y" id="egQ-O5-pyr"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="rC1-gM-x1M" id="Ld2-hG-Zg8"/>
@@ -399,5 +460,6 @@
     </scenes>
     <resources>
         <image name="cross" width="20" height="20"/>
+        <image name="normal" width="102" height="100"/>
     </resources>
 </document>

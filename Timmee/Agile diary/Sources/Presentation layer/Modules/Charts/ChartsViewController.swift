@@ -12,13 +12,14 @@ enum ChartType {
     case habits
     case water
     case mostFrequentlyPerformedHabit
-    case MostRarelyPerformedHabit
+    case mostRarelyPerformedHabit
+    case averageMood
     
     static var all: [ChartType] {
         if ProVersionPurchase.shared.isPurchased() {
-            return [habits, mostFrequentlyPerformedHabit, MostRarelyPerformedHabit, water]
+            return [habits, mostFrequentlyPerformedHabit, mostRarelyPerformedHabit, water, averageMood]
         } else {
-            return [habits, mostFrequentlyPerformedHabit, MostRarelyPerformedHabit]
+            return [habits, mostFrequentlyPerformedHabit, mostRarelyPerformedHabit]
         }
     }
     
@@ -27,7 +28,8 @@ enum ChartType {
         case .habits: return "habits".localized
         case .water: return "water".localized
         case .mostFrequentlyPerformedHabit: return "f".localized
-        case .MostRarelyPerformedHabit: return "r".localized
+        case .mostRarelyPerformedHabit: return "r".localized
+        case .averageMood: return "average_mood".localized
         }
     }
     
@@ -36,7 +38,8 @@ enum ChartType {
         case .habits: return HabitsChartCell.self
         case .water: return WaterChartCell.self
         case .mostFrequentlyPerformedHabit: return MostFrequentlyPerformedHabitChartCell.self
-        case .MostRarelyPerformedHabit: return MostRarelyPerformedHabitChartCell.self
+        case .mostRarelyPerformedHabit: return MostRarelyPerformedHabitChartCell.self
+        case .averageMood: return MoodChartCell.self
         }
     }
 }
@@ -73,6 +76,7 @@ final class ChartsViewController: BaseViewController, SprintInteractorTrait {
         switch chartType {
         case .habits: performSegue(withIdentifier: "ShowExtendedHabitsProgress", sender: sprint)
         case .water: performSegue(withIdentifier: "ShowExtendedWaterProgress", sender: sprint)
+        case .averageMood: performSegue(withIdentifier: "ShowExtendedMoodProgress", sender: sprint)
         default: return
         }
     }

@@ -16,7 +16,7 @@ final class WaterChartCell: BaseChartCell {
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = "water".localized
-            titleLabel.textColor = AppTheme.current.colors.activeElementColor
+            titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         }
     }
     

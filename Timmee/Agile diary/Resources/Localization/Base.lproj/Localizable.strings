@@ -187,7 +187,7 @@
 "+100ml" = "+ 100ml";
 "+200ml" = "+ 200ml";
 "+300ml" = "+ 300ml";
-"show_full_progress" = "Show all";
+"show_full_progress" = "More";
 "Progress_till_today" = "Progress till today";
 
 "configure_water_control" = "Set up water control";
@@ -349,3 +349,10 @@
 "mood_widget_title" = "Mood";
 
 "activity" = "Activity";
+
+"average_mood" = "Average mood";
+"very_bad_mood" = "Very bad";
+"bad_mood" = "Bad";
+"normal_mood" = "Normal";
+"good_mood" = "Good";
+"very_good_mood" = "Very good";

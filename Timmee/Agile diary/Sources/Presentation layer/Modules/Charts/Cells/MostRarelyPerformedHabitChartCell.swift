@@ -18,7 +18,7 @@ final class MostRarelyPerformedHabitChartCell: BaseChartCell {
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = "most_rarely_performed_habit".localized
-            titleLabel.textColor = AppTheme.current.colors.activeElementColor
+            titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         }
     }
     

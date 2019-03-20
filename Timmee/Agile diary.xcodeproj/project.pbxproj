@@ -271,6 +271,8 @@
 		94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */; };
 		9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
+		961063232242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
+		961063242242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
@@ -491,6 +493,7 @@
 		6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
 		8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
+		961063222242B26000E1446E /* MoodChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartCell.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1188,6 +1191,7 @@
 				0C9365192158F04F00B4EB48 /* WaterChartCell.swift */,
 				0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */,
 				0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */,
+				961063222242B26000E1446E /* MoodChartCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1638,6 +1642,7 @@
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
+				961063232242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
@@ -1738,6 +1743,7 @@
 				0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */,
 				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
 				0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */,
+				961063242242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
 				0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */,
 				0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */,
