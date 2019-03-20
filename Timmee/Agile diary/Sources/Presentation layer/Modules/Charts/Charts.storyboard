@@ -346,6 +346,7 @@
                     <connections>
                         <outlet property="collectionView" destination="CIu-rc-FA7" id="hsH-T5-Cty"/>
                         <segue destination="Zn7-Z2-pN3" kind="show" identifier="ShowExtendedHabitsProgress" id="lEU-EC-pqc"/>
+                        <segue destination="6Je-kp-1Z8" kind="show" identifier="ShowExtendedMoodProgress" id="uIc-Hr-ep0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMl-m7-LyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -456,6 +457,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHg-0G-8Fn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="148"/>
+        </scene>
+        <!--Настроение-->
+        <scene sceneID="agG-lf-gAI">
+            <objects>
+                <viewController title="Настроение" extendedLayoutIncludesOpaqueBars="YES" id="6Je-kp-1Z8" customClass="ExtendedMoodChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rij-rO-P3j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1Er-YR-RPB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ADE-QP-1UM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1993" y="148"/>
         </scene>
     </scenes>
     <resources>
