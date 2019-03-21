@@ -166,7 +166,7 @@
 "pro_version_features_title" = "By purchasing the PRO version, you open access to additional features, as well as help the development of the application.\nAdditional features:";
 "pro_version_feature_0" = "Synchronization";
 "pro_version_feature_1" = "Advanced progress view";
-"pro_version_feature_2" = "Water, mood and steps control";
+"pro_version_feature_2" = "Water and mood control";
 "pro_version_feature_3" = "Background image";
 "restore_error_try_again" = "Failed to restore the PRO version. Try again";
 "pro_version_section" = "PRO version";
@@ -357,3 +357,5 @@
 "normal_mood" = "Normal";
 "good_mood" = "Good";
 "very_good_mood" = "Very good";
+
+"mood_chart_placeholder_text" = "No mood data";

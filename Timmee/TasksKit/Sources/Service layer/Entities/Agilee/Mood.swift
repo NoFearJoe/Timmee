@@ -53,11 +53,11 @@ extension Mood.Kind {
     
     public var color: UIColor {
         switch self {
-        case .veryBad: return .red
-        case .bad: return .magenta
-        case .normal: return .yellow
-        case .good: return .blue
-        case .veryGood: return .green
+        case .veryBad: return UIColor(rgba: "#3C557F")
+        case .bad: return UIColor(rgba: "#78ABFF")
+        case .normal: return UIColor(rgba: "#9782FF")
+        case .good: return UIColor(rgba: "#A16AE8")
+        case .veryGood: return UIColor(rgba: "#D675FF")
         }
     }
     

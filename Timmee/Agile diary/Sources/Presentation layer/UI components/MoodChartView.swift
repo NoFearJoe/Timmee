@@ -44,7 +44,7 @@ final class MoodChartView: UIView {
     
     private func calculateContentSize() {
         let width = leftPadding + CGFloat(entries.count) * spaceBetweenEntries + entryDiameter / 2 + rightPadding
-        contentSize = CGSize(width: max(width, bounds.width), height: bounds.height)
+        contentSize = CGSize(width: max(width, superview?.bounds.width ?? 0), height: bounds.height)
         invalidateIntrinsicContentSize()
     }
     

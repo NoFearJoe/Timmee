@@ -463,38 +463,106 @@
             <objects>
                 <viewController title="Настроение" extendedLayoutIncludesOpaqueBars="YES" id="6Je-kp-1Z8" customClass="ExtendedMoodChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rij-rO-P3j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zA-M7-aGS">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="684"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0V-Tf-5N9">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-9y-Lyq" customClass="PieChartView" customModule="Charts">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="256" id="v40-Zg-98U"/>
+                                        </constraints>
+                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0V-Tf-5N9">
+                                        <rect key="frame" x="0.0" y="256" width="375" height="256"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gu7-Ke-gqO" customClass="MoodChartView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                                <rect key="frame" x="15" y="0.0" width="345" height="256"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9a-0b-FL2">
+                                                        <rect key="frame" x="151.5" y="117.5" width="42" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="J9a-0b-FL2" firstAttribute="centerY" secondItem="gu7-Ke-gqO" secondAttribute="centerY" id="3be-tb-ovx"/>
+                                                    <constraint firstItem="J9a-0b-FL2" firstAttribute="centerX" secondItem="gu7-Ke-gqO" secondAttribute="centerX" id="Qv1-Lw-Sl5"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="gu7-Ke-gqO" secondAttribute="bottom" id="Bew-j7-ugJ"/>
-                                            <constraint firstItem="gu7-Ke-gqO" firstAttribute="leading" secondItem="A0V-Tf-5N9" secondAttribute="leading" id="JAv-lT-q1E"/>
-                                            <constraint firstAttribute="trailing" secondItem="gu7-Ke-gqO" secondAttribute="trailing" id="YZl-k8-Ckx"/>
+                                            <constraint firstItem="gu7-Ke-gqO" firstAttribute="leading" secondItem="A0V-Tf-5N9" secondAttribute="leading" constant="15" id="JAv-lT-q1E"/>
+                                            <constraint firstAttribute="trailing" secondItem="gu7-Ke-gqO" secondAttribute="trailing" constant="15" id="YZl-k8-Ckx"/>
                                             <constraint firstItem="gu7-Ke-gqO" firstAttribute="centerY" secondItem="A0V-Tf-5N9" secondAttribute="centerY" id="alN-oX-UOP"/>
                                             <constraint firstAttribute="height" constant="256" id="cbm-by-m7Q"/>
                                             <constraint firstItem="gu7-Ke-gqO" firstAttribute="centerX" secondItem="A0V-Tf-5N9" secondAttribute="centerX" placeholder="YES" id="dwE-J8-Ynv"/>
                                             <constraint firstItem="gu7-Ke-gqO" firstAttribute="top" secondItem="A0V-Tf-5N9" secondAttribute="top" id="nyG-sj-2PD"/>
                                         </constraints>
                                     </scrollView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaG-im-d5k" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="527" width="345" height="44"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="th5-2D-g6d">
+                                                <rect key="frame" x="0.0" y="2" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="th5-2D-g6d" secondAttribute="height" id="ZkP-pB-qXG"/>
+                                                    <constraint firstAttribute="width" constant="40" id="dKl-ba-IGg"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEe-UL-F6W">
+                                                <rect key="frame" x="48" y="19.5" width="297" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUn-tI-M6G">
+                                                <rect key="frame" x="48" y="-1" width="297" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="lEe-UL-F6W" firstAttribute="centerY" secondItem="GaG-im-d5k" secondAttribute="centerY" constant="8" id="0S1-P4-aGP"/>
+                                            <constraint firstAttribute="height" constant="44" id="FH8-9O-k2T"/>
+                                            <constraint firstItem="th5-2D-g6d" firstAttribute="centerY" secondItem="GaG-im-d5k" secondAttribute="centerY" id="PSO-ov-7MR"/>
+                                            <constraint firstAttribute="trailing" secondItem="eUn-tI-M6G" secondAttribute="trailing" id="WOL-G6-CQA"/>
+                                            <constraint firstItem="lEe-UL-F6W" firstAttribute="leading" secondItem="th5-2D-g6d" secondAttribute="trailing" constant="8" id="YmQ-di-jGw"/>
+                                            <constraint firstAttribute="trailing" secondItem="lEe-UL-F6W" secondAttribute="trailing" id="gtn-To-U8a"/>
+                                            <constraint firstItem="eUn-tI-M6G" firstAttribute="leading" secondItem="th5-2D-g6d" secondAttribute="trailing" constant="8" id="kQz-0F-POP"/>
+                                            <constraint firstItem="th5-2D-g6d" firstAttribute="leading" secondItem="GaG-im-d5k" secondAttribute="leading" id="seT-BR-uPP"/>
+                                            <constraint firstItem="lEe-UL-F6W" firstAttribute="top" secondItem="eUn-tI-M6G" secondAttribute="bottom" id="xqd-be-8um"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="moodIconView" destination="th5-2D-g6d" id="TL2-x6-quH"/>
+                                            <outlet property="moodLabel" destination="lEe-UL-F6W" id="sKV-oR-efC"/>
+                                            <outlet property="titleLabel" destination="eUn-tI-M6G" id="NeN-Mh-dC9"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="A0V-Tf-5N9" secondAttribute="bottom" id="7MO-8L-9wT"/>
-                                    <constraint firstItem="A0V-Tf-5N9" firstAttribute="top" secondItem="2zA-M7-aGS" secondAttribute="top" id="81e-BC-Q4D"/>
+                                    <constraint firstAttribute="trailing" secondItem="GaG-im-d5k" secondAttribute="trailing" constant="15" id="9Ig-em-gme"/>
+                                    <constraint firstItem="IUK-9y-Lyq" firstAttribute="top" secondItem="2zA-M7-aGS" secondAttribute="top" id="DjW-BX-UVB"/>
+                                    <constraint firstAttribute="bottom" secondItem="GaG-im-d5k" secondAttribute="bottom" constant="15" id="ICg-ag-Slf"/>
+                                    <constraint firstItem="GaG-im-d5k" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" constant="15" id="Ktz-oT-Lwu"/>
                                     <constraint firstItem="A0V-Tf-5N9" firstAttribute="centerX" secondItem="2zA-M7-aGS" secondAttribute="centerX" id="MZC-EX-rQL"/>
+                                    <constraint firstAttribute="trailing" secondItem="IUK-9y-Lyq" secondAttribute="trailing" id="U35-4e-onx"/>
+                                    <constraint firstItem="IUK-9y-Lyq" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="UmQ-80-xlY"/>
+                                    <constraint firstItem="A0V-Tf-5N9" firstAttribute="top" secondItem="IUK-9y-Lyq" secondAttribute="bottom" id="ZaG-vz-T1t"/>
+                                    <constraint firstAttribute="trailing" secondItem="IUK-9y-Lyq" secondAttribute="trailing" id="fX2-gI-DS9"/>
                                     <constraint firstItem="A0V-Tf-5N9" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="gXB-u5-uEb"/>
+                                    <constraint firstItem="GaG-im-d5k" firstAttribute="top" secondItem="A0V-Tf-5N9" secondAttribute="bottom" constant="15" id="oIo-o8-k99"/>
                                     <constraint firstAttribute="trailing" secondItem="A0V-Tf-5N9" secondAttribute="trailing" id="qdl-KN-vmg"/>
+                                    <constraint firstItem="IUK-9y-Lyq" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="y07-kX-hwO"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -507,13 +575,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Er-YR-RPB"/>
                     </view>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
-                        <outlet property="chart" destination="gu7-Ke-gqO" id="GLk-4b-nfs"/>
+                        <outlet property="averageMoodView" destination="GaG-im-d5k" id="Zf0-kR-TIC"/>
+                        <outlet property="lineChart" destination="gu7-Ke-gqO" id="4RD-TX-wYP"/>
+                        <outlet property="lineChartPlaceholderLabel" destination="J9a-0b-FL2" id="jRa-X3-783"/>
+                        <outlet property="pieChart" destination="IUK-9y-Lyq" id="MXY-xP-icM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADE-QP-1UM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992.8" y="147.97601199400302"/>
+            <point key="canvasLocation" x="1992.8" y="147.52623688155924"/>
         </scene>
     </scenes>
     <resources>
