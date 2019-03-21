@@ -57,6 +57,8 @@
 		0C3DA5322154CCAF00CAE635 /* WaterControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */; };
 		0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */; };
 		0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */; };
+		0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C52A0DA2243792700D50D1B /* MoodChartView.swift */; };
+		0C52A0DC2243792700D50D1B /* MoodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C52A0DA2243792700D50D1B /* MoodChartView.swift */; };
 		0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
@@ -410,6 +412,7 @@
 		0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlConfigurationViewController.swift; sourceTree = "<group>"; };
 		0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WaterControl.storyboard; sourceTree = "<group>"; };
 		0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintDurationPicker.swift; sourceTree = "<group>"; };
+		0C52A0DA2243792700D50D1B /* MoodChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartView.swift; sourceTree = "<group>"; };
 		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -795,6 +798,7 @@
 				0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */,
 				96888C1C2217DFE800479667 /* AddButton.swift */,
 				96888C1F2217E1BD00479667 /* AddMenuButton.swift */,
+				0C52A0DA2243792700D50D1B /* MoodChartView.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -1709,6 +1713,7 @@
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
+				0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */,
 				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
@@ -1787,6 +1792,7 @@
 				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
 				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
+				0C52A0DC2243792700D50D1B /* MoodChartView.swift in Sources */,
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,

@@ -24,6 +24,10 @@ public extension Date {
         return asString(format: "d MMMM")
     }
     
+    public var asShortDayMonth: String {
+        return asString(format: "d.MM")
+    }
+    
     public var asDayMonthYear: String {
         return asString(format: "d MMMM YYYY")
     }
