@@ -43,7 +43,7 @@ final class HabitsChartView: UIView {
     
     private func calculateContentSize() {
         let width = CGFloat(entries.count) * barWidth + CGFloat(entries.count - 1) * barSpace + horizontalPadding * 2 + leftPadding
-        contentSize = CGSize(width: width, height: bounds.height)
+        contentSize = CGSize(width: max(width, superview?.bounds.width ?? 0), height: bounds.height)
         invalidateIntrinsicContentSize()
     }
     

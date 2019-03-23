@@ -359,3 +359,4 @@
 "very_good_mood" = "Отличное";
 
 "mood_chart_placeholder_text" = "Нет данных о настроении";
+"habits_chart_placeholder_text" = "Нет выполненных привычек";

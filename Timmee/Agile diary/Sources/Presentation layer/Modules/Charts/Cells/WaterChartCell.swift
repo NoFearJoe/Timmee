@@ -28,6 +28,7 @@ final class WaterChartCell: BaseChartCell {
         didSet {
             fullProgressButton.setTitle("show_full_progress".localized, for: .normal)
             fullProgressButton.tintColor = AppTheme.current.colors.mainElementColor
+            fullProgressButton.isHidden = true
         }
     }
     
@@ -36,6 +37,8 @@ final class WaterChartCell: BaseChartCell {
     }
     
     override func update(sprint: Sprint) {
+        fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
+
         guard let waterControl = waterControlService.fetchWaterControl() else { return }
         
         var chartEntries: [BarChartDataEntry] = []

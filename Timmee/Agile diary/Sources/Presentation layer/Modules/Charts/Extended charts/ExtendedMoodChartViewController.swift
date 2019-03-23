@@ -9,7 +9,9 @@
 import UIKit
 import Charts
 
-final class ExtendedMoodChartViewController: ExtendedChartViewController {
+final class ExtendedMoodChartViewController: BaseViewController, AnyExtendedChart {
+    
+    var sprint: Sprint?
     
     @IBOutlet private var lineChartPlaceholderLabel: UILabel!
     @IBOutlet private var lineChart: MoodChartView!

@@ -347,11 +347,44 @@
                         <outlet property="collectionView" destination="CIu-rc-FA7" id="hsH-T5-Cty"/>
                         <segue destination="Zn7-Z2-pN3" kind="show" identifier="ShowExtendedHabitsProgress" id="lEU-EC-pqc"/>
                         <segue destination="6Je-kp-1Z8" kind="show" identifier="ShowExtendedMoodProgress" id="uIc-Hr-ep0"/>
+                        <segue destination="d2x-b8-oqC" kind="show" identifier="ShowExtendedWaterProgress" id="Tnb-F7-7vG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMl-m7-LyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="389.60000000000002" y="387.70614692653675"/>
+        </scene>
+        <!--Extended Water Chart View Controller-->
+        <scene sceneID="Wgw-bO-YjW">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="d2x-b8-oqC" customClass="ExtendedWaterChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fVe-rb-8cq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-d1-ZsZ" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="116" width="375" height="256"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="CL5-g2-umR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="cg4-d1-ZsZ" secondAttribute="trailing" id="HcA-vK-Ij2"/>
+                            <constraint firstItem="cg4-d1-ZsZ" firstAttribute="top" secondItem="ge6-rY-SCG" secondAttribute="top" id="Wz1-V6-IFn"/>
+                            <constraint firstItem="cg4-d1-ZsZ" firstAttribute="leading" secondItem="ge6-rY-SCG" secondAttribute="leading" id="XUH-fx-QsF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ge6-rY-SCG"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="cg4-d1-ZsZ" id="gE8-FV-KeU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BdN-hN-BfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1238" y="819"/>
         </scene>
         <!--Привычки-->
         <scene sceneID="eRI-FJ-EqS">
@@ -372,11 +405,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rX-kE-MRf">
+                                            <rect key="frame" x="166.5" y="117.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="2rX-kE-MRf" firstAttribute="centerX" secondItem="BQI-23-pnz" secondAttribute="centerX" id="8qe-hc-ud7"/>
                                         <constraint firstAttribute="trailing" secondItem="Tgz-dR-8Im" secondAttribute="trailing" id="FGq-Gn-LPN"/>
                                         <constraint firstItem="Tgz-dR-8Im" firstAttribute="leading" secondItem="BQI-23-pnz" secondAttribute="leading" id="Uha-n4-JwC"/>
                                         <constraint firstItem="Tgz-dR-8Im" firstAttribute="centerX" secondItem="BQI-23-pnz" secondAttribute="centerX" placeholder="YES" id="bZl-I6-1Lr"/>
+                                        <constraint firstItem="2rX-kE-MRf" firstAttribute="centerY" secondItem="BQI-23-pnz" secondAttribute="centerY" id="m9c-JT-ld0"/>
                                         <constraint firstItem="Tgz-dR-8Im" firstAttribute="centerY" secondItem="BQI-23-pnz" secondAttribute="centerY" id="s0O-1t-HUV"/>
                                         <constraint firstAttribute="bottom" secondItem="Tgz-dR-8Im" secondAttribute="bottom" id="t7z-av-Fuh"/>
                                         <constraint firstItem="Tgz-dR-8Im" firstAttribute="top" secondItem="BQI-23-pnz" secondAttribute="top" id="v6J-lj-zns"/>
@@ -451,6 +492,7 @@
                     </view>
                     <connections>
                         <outlet property="chart" destination="Tgz-dR-8Im" id="uZn-q7-jfj"/>
+                        <outlet property="chartPlaceholderLabel" destination="2rX-kE-MRf" id="fqC-7s-lVD"/>
                         <outlet property="detailedHabitsTableView" destination="KOK-fs-vZI" id="p9M-ZK-Oen"/>
                     </connections>
                 </viewController>

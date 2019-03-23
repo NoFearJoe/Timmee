@@ -139,7 +139,7 @@
 		0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
 		0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
 		0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
-		0CB6739421A52C3900178EB1 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
+		0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
 		0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
 		0CB6739621A52C3900178EB1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
 		0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
@@ -302,9 +302,11 @@
 		96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83D5217C9C8D00CDECAF /* CardView.swift */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
-		96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */; };
+		96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
 		96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
+		96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
+		96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
 /* End PBXBuildFile section */
 
@@ -521,8 +523,9 @@
 		96BE83CB217644F400CDECAF /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BE83D5217C9C8D00CDECAF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
-		96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedChartViewController.swift; sourceTree = "<group>"; };
+		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
+		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1214,10 +1217,11 @@
 		96CAD81A216D39A4005D707C /* Extended charts */ = {
 			isa = PBXGroup;
 			children = (
-				96D67EE7216A1D0800AE23D0 /* ExtendedChartViewController.swift */,
+				96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */,
 				96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */,
-				96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */,
 				96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */,
+				96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */,
+				96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */,
 			);
 			path = "Extended charts";
 			sourceTree = "<group>";
@@ -1678,6 +1682,7 @@
 				0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
+				96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
@@ -1688,7 +1693,7 @@
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CC405E521EE031E0069C6C5 /* PasswordValidator.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
-				96D67EE8216A1D0800AE23D0 /* ExtendedChartViewController.swift in Sources */,
+				96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */,
 				0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
@@ -1806,7 +1811,7 @@
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
 				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,
-				0CB6739421A52C3900178EB1 /* ExtendedChartViewController.swift in Sources */,
+				0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */,
 				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
 				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
@@ -1826,6 +1831,7 @@
 				0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */,
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
+				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
 				0CB673A521A52C3900178EB1 /* TodayTargetCell.swift in Sources */,
 				0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */,

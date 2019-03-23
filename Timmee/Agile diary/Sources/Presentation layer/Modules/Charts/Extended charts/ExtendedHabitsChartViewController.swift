@@ -11,8 +11,11 @@ import Charts
 
 fileprivate typealias Progress = (done: Int, total: Int, percent: Double)
 
-final class ExtendedHabitsChartViewController: ExtendedChartViewController {
+final class ExtendedHabitsChartViewController: BaseViewController, AnyExtendedChart {
     
+    var sprint: Sprint?
+    
+    @IBOutlet private var chartPlaceholderLabel: UILabel!
     @IBOutlet private var chart: HabitsChartView!
     @IBOutlet private var detailedHabitsTableView: UITableView!
     
@@ -23,6 +26,7 @@ final class ExtendedHabitsChartViewController: ExtendedChartViewController {
     override func prepare() {
         super.prepare()
         title = "habits".localized
+        chartPlaceholderLabel.text = "habits_chart_placeholder_text".localized
         detailedHabitsTableView.contentInset.bottom = 15
         detailedHabitsTableView.register(UINib(nibName: "HabitProgressHeaderView", bundle: nil),
                                          forHeaderFooterViewReuseIdentifier: "HabitProgressHeaderView")
@@ -37,6 +41,8 @@ final class ExtendedHabitsChartViewController: ExtendedChartViewController {
     
     override func setupAppearance() {
         super.setupAppearance()
+        chartPlaceholderLabel.font = AppTheme.current.fonts.regular(14)
+        chartPlaceholderLabel.textColor = AppTheme.current.colors.inactiveElementColor
         chart.backgroundColor = AppTheme.current.colors.middlegroundColor
         chart.underlyingBarColor = AppTheme.current.colors.decorationElementColor
         detailedHabitsTableView.backgroundColor = .clear
@@ -102,6 +108,8 @@ private extension ExtendedHabitsChartViewController {
         }
         
         chart.entries = entries
+        
+        chartPlaceholderLabel.isHidden = !entries.isEmpty
     }
     
     func refreshHabitsDetailsTableView(sprint: Sprint) {

@@ -82,8 +82,8 @@ final class ChartsViewController: BaseViewController, SprintInteractorTrait {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let extendedChartViewController = segue.destination as? ExtendedChartViewController {
-            extendedChartViewController.sprint = sender as? Sprint
+        if let extendedChart = segue.destination as? AnyExtendedChart {
+            extendedChart.sprint = sender as? Sprint
         } else {
             super.prepare(for: segue, sender: sender)
         }
