@@ -16,8 +16,12 @@ final class TodayTargetCell: SwipeTableViewCell {
     
     @IBOutlet private var containerView: UIView!
     @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var noteExistanceIconView: UIImageView!
     @IBOutlet private var stagesTitleLabel: UILabel!
     @IBOutlet private var stagesContainer: UIView!
+    
+    @IBOutlet private var noteExistanceIconViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private var noteExistanceIconViewLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet private var stagesTitleLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var stagesTitleLabelTopConstraint: NSLayoutConstraint!
@@ -36,9 +40,12 @@ final class TodayTargetCell: SwipeTableViewCell {
         setupAppearance()
         containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
         titleLabel.text = goal.title
+        noteExistanceIconView.isHidden = goal.note.isEmpty
+        noteExistanceIconViewWidthConstraint.constant = goal.note.isEmpty ? 0 : 20
+        noteExistanceIconViewLeadingConstraint.constant = goal.note.isEmpty ? 0 : 8
         addStageViews(goal: goal)
-        stagesTitleLabelHeightConstraint.constant = goal.stages.isEmpty ? 0 : 20
-        stagesTitleLabelTopConstraint.constant = goal.stages.isEmpty ? 0 : 4
+        stagesTitleLabelHeightConstraint.constant = goal.stages.isEmpty ? 0 : 16
+        stagesTitleLabelTopConstraint.constant = goal.stages.isEmpty ? 0 : 8
         stagesTitleLabelBottomConstraint.constant = goal.stages.isEmpty ? 0 : 4
     }
     
@@ -75,6 +82,7 @@ final class TodayTargetCell: SwipeTableViewCell {
         containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         stagesTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        noteExistanceIconView.tintColor = AppTheme.current.colors.inactiveElementColor
     }
     
 }
