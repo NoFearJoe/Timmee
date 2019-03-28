@@ -271,10 +271,7 @@ private extension TodayContentViewController {
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return false }
             return !habit.link.trimmed.isEmpty
         }
-        habitCellActionsProvider.shouldShowEditAction = { [unowned self] indexPath in
-            guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return false }
-            return !habit.isDone(at: Date.now)
-        }
+        habitCellActionsProvider.shouldShowEditAction = { _ in true }
         habitCellActionsProvider.shouldShowDeleteAction = { _ in true }
         
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
@@ -307,10 +304,7 @@ private extension TodayContentViewController {
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return false }
             return !goal.isDone
         }
-        targetCellActionsProvider.shouldShowEditAction = { [unowned self] indexPath in
-            guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return false }
-            return !goal.isDone
-        }
+        targetCellActionsProvider.shouldShowEditAction = { _ in true }
         targetCellActionsProvider.shouldShowDeleteAction = { _ in true }
         
         targetCellActionsProvider.onDone = { [unowned self] indexPath in
