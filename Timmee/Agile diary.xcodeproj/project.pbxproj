@@ -258,6 +258,8 @@
 		0CE883E9215123FF00637BD9 /* TodayExtensionHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883E8215123FF00637BD9 /* TodayExtensionHabitCell.swift */; };
 		0CE883EA2151391300637BD9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
 		0CE883EB2151391500637BD9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
+		0CF2F932224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2F931224CC2100042F3DC /* ProVersionPurchaseViewController.swift */; };
+		0CF2F933224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2F931224CC2100042F3DC /* ProVersionPurchaseViewController.swift */; };
 		0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E51C2146697C0071DABD /* TodayViewController.swift */; };
 		0CF7E51F21466A830071DABD /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E51E21466A830071DABD /* Today.storyboard */; };
 		0CF7E52121466EB10071DABD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
@@ -483,6 +485,7 @@
 		0CE883E621510ECD00637BD9 /* HabitsTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitsTodayExtension.entitlements; sourceTree = "<group>"; };
 		0CE883E8215123FF00637BD9 /* TodayExtensionHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayExtensionHabitCell.swift; sourceTree = "<group>"; };
 		0CE883EC215139A400637BD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		0CF2F931224CC2100042F3DC /* ProVersionPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchaseViewController.swift; sourceTree = "<group>"; };
 		0CF7E51C2146697C0071DABD /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		0CF7E51E21466A830071DABD /* Today.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Today.storyboard; sourceTree = "<group>"; };
 		0CF7E52021466EB10071DABD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -683,7 +686,7 @@
 				0CF7E51B214669520071DABD /* Today */,
 				0C2B9D15220DA9900038F11D /* Sprints */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
-				0C14D4A62121608E004C0559 /* Education */,
+				0CF2F92F224CC1C90042F3DC /* Onboardings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1109,6 +1112,23 @@
 				0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */,
 			);
 			path = HabitsTodayExtension;
+			sourceTree = "<group>";
+		};
+		0CF2F92F224CC1C90042F3DC /* Onboardings */ = {
+			isa = PBXGroup;
+			children = (
+				0CF2F930224CC1DC0042F3DC /* ProVersionPurchase */,
+				0C14D4A62121608E004C0559 /* Education */,
+			);
+			path = Onboardings;
+			sourceTree = "<group>";
+		};
+		0CF2F930224CC1DC0042F3DC /* ProVersionPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				0CF2F931224CC2100042F3DC /* ProVersionPurchaseViewController.swift */,
+			);
+			path = ProVersionPurchase;
 			sourceTree = "<group>";
 		};
 		0CF7E51B214669520071DABD /* Today */ = {
@@ -1735,6 +1755,7 @@
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
 				0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
 				0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */,
+				0CF2F932224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */,
 				0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */,
 				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
@@ -1811,6 +1832,7 @@
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
 				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,
+				0CF2F933224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */,
 				0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */,
 				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
