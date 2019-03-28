@@ -367,7 +367,6 @@ private extension TargetCreationViewController {
         titleField.textView.textContainerInset = UIEdgeInsets(top: 3, left: -2, bottom: -1, right: 0)
         titleField.maxNumberOfLines = 5
         titleField.showsVerticalScrollIndicator = false
-        titleField.isUserInteractionEnabled = editingMode == .full
         titleField.placeholderAttributedText
             = NSAttributedString(string: "goal_title_placeholder".localized,
                                  attributes: [.font: AppTheme.current.fonts.bold(28),

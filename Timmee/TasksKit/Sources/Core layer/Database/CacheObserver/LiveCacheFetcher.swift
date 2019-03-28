@@ -84,7 +84,10 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
         subscribeToChangesInContext()
         
         processingQueue.async {
-            let entities = fetchResult.compactMap(self.mapping)
+            var entities: [Entity] = []
+            self.context.performAndWait {
+                entities = fetchResult.compactMap(self.mapping)
+            }
             
             let filteredEntities = self.filter.flatMap { entities.filter($0) } ?? entities
             

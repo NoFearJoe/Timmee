@@ -24,7 +24,7 @@ public class Goal: Copyable {
     public var stages: [Subtask] = []
     
     public init(goal: GoalEntity) {
-        id = goal.id!
+        id = goal.id ?? ""
         title = goal.title ?? ""
         note = goal.note ?? ""
         isDone = goal.isDone

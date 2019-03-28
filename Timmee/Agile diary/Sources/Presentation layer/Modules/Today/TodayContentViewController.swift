@@ -173,8 +173,11 @@ extension TodayContentViewController: UITableViewDelegate {
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
-            openLink(habit.link)
-        case .goal, .activity: return
+            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
+        case .goal:
+            guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
+            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+        case .activity: return
         }
     }
     
@@ -271,7 +274,7 @@ private extension TodayContentViewController {
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return false }
             return !habit.link.trimmed.isEmpty
         }
-        habitCellActionsProvider.shouldShowEditAction = { _ in true }
+        habitCellActionsProvider.shouldShowEditAction = { _ in false }
         habitCellActionsProvider.shouldShowDeleteAction = { _ in true }
         
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
@@ -304,7 +307,7 @@ private extension TodayContentViewController {
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return false }
             return !goal.isDone
         }
-        targetCellActionsProvider.shouldShowEditAction = { _ in true }
+        targetCellActionsProvider.shouldShowEditAction = { _ in false }
         targetCellActionsProvider.shouldShowDeleteAction = { _ in true }
         
         targetCellActionsProvider.onDone = { [unowned self] indexPath in
