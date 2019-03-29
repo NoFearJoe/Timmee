@@ -44,6 +44,7 @@
 		960E1CC32093B10700225193 /* UICollectionView+syncBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */; };
 		9615A48A21E38BB6008923C3 /* String+NilIfEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615A48921E38BB6008923C3 /* String+NilIfEmpty.swift */; };
 		96ECB7B7224403F600ED42D7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B6224403F600ED42D7 /* UIImage+Resize.swift */; };
+		96F59437224E965A00F6D10A /* UIScreen+isLittle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59436224E965A00F6D10A /* UIScreen+isLittle.swift */; };
 		BAA0543A5E4A7F9E7D0B4168 /* Pods_Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF8720556CF553C57C8FDB1 /* Pods_Workset.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+syncBatchUpdates.swift"; sourceTree = "<group>"; };
 		9615A48921E38BB6008923C3 /* String+NilIfEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NilIfEmpty.swift"; sourceTree = "<group>"; };
 		96ECB7B6224403F600ED42D7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		96F59436224E965A00F6D10A /* UIScreen+isLittle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+isLittle.swift"; sourceTree = "<group>"; };
 		A4BC4520B1B7B07A3D482269 /* Pods-Workset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workset.release.xcconfig"; path = "Pods/Target Support Files/Pods-Workset/Pods-Workset.release.xcconfig"; sourceTree = "<group>"; };
 		F2B66F9223C5A92774D9AB72 /* Pods-Workset.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Workset.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Workset/Pods-Workset.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				0C9B23D12077B757009EF6DE /* UIView+nib.swift */,
 				960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */,
 				96ECB7B6224403F600ED42D7 /* UIImage+Resize.swift */,
+				96F59436224E965A00F6D10A /* UIScreen+isLittle.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				0C9B23F82077B757009EF6DE /* String+Localized.swift in Sources */,
 				0C9B23EF2077B757009EF6DE /* UIColor+Interpolate.swift in Sources */,
 				9606627F20A359FF00B23EDF /* Sound.swift in Sources */,
+				96F59437224E965A00F6D10A /* UIScreen+isLittle.swift in Sources */,
 				0C9B23F12077B757009EF6DE /* UIImage+one-colored.swift in Sources */,
 				0C9B23FC2077B757009EF6DE /* Sequence+Categorised.swift in Sources */,
 				0C9B23FF2077B757009EF6DE /* Array+RemoveObject.swift in Sources */,

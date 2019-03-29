@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXR-7k-mWa" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AF0-uC-Dhj">
                                         <rect key="frame" x="0.0" y="20" width="375" height="129"/>
@@ -83,23 +83,13 @@
                                             <constraint firstItem="mPa-LV-9JE" firstAttribute="top" secondItem="AF0-uC-Dhj" secondAttribute="top" constant="8" id="zUl-z8-gq9"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCm-Oa-Yck" customClass="ProgressBar" customModule="UIComponents">
-                                        <rect key="frame" x="0.0" y="149" width="375" height="4"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="FXy-rX-5Ub"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="oCm-Oa-Yck" firstAttribute="leading" secondItem="ncU-mL-vrW" secondAttribute="leading" id="0Km-hW-yrH"/>
                                     <constraint firstItem="AF0-uC-Dhj" firstAttribute="top" secondItem="ncU-mL-vrW" secondAttribute="top" id="8nL-uP-lFC"/>
                                     <constraint firstItem="AF0-uC-Dhj" firstAttribute="leading" secondItem="aXR-7k-mWa" secondAttribute="leading" id="DAc-Yt-tuL"/>
-                                    <constraint firstItem="ncU-mL-vrW" firstAttribute="bottom" secondItem="oCm-Oa-Yck" secondAttribute="bottom" id="adW-Fu-DHN"/>
+                                    <constraint firstAttribute="bottom" secondItem="AF0-uC-Dhj" secondAttribute="bottom" id="NG6-Kf-r29"/>
                                     <constraint firstAttribute="trailing" secondItem="AF0-uC-Dhj" secondAttribute="trailing" id="hBp-85-14C"/>
-                                    <constraint firstItem="oCm-Oa-Yck" firstAttribute="top" secondItem="AF0-uC-Dhj" secondAttribute="bottom" id="tg8-LA-tZV"/>
-                                    <constraint firstItem="oCm-Oa-Yck" firstAttribute="trailing" secondItem="ncU-mL-vrW" secondAttribute="trailing" id="wSt-NF-XSU"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="ncU-mL-vrW"/>
                                 <connections>
@@ -108,13 +98,13 @@
                                 </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU8-R8-ob1">
-                                <rect key="frame" x="0.0" y="153" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="149" width="375" height="518"/>
                                 <connections>
                                     <segue destination="fYw-wf-Cue" kind="embed" identifier="History" id="5s5-ZD-bbF"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhC-lo-gfO">
-                                <rect key="frame" x="0.0" y="153" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="149" width="375" height="518"/>
                                 <connections>
                                     <segue destination="dyi-op-cKi" kind="embed" identifier="Shop" id="Crl-4V-VUG"/>
                                 </connections>
@@ -153,11 +143,11 @@
             <objects>
                 <viewController id="fYw-wf-Cue" customClass="HabitsHistoryViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cXP-AR-bd1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IFa-VL-tIJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="8g5-Dc-lMY">
                                     <rect key="frame" x="0.0" y="96" width="375" height="0.0"/>
@@ -249,7 +239,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O95-dy-Ma2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -280,11 +270,11 @@
             <objects>
                 <viewController id="dyi-op-cKi" customClass="ShopCategoriesViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pgU-jH-Tfj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wzB-ry-bCg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MeO-fn-5z5">
                                     <size key="itemSize" width="138" height="134"/>
@@ -366,11 +356,11 @@
                                 </connections>
                             </collectionView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1k-oz-av2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-3g-IvX" customClass="LoadingView" customModule="UIComponents">
-                                <rect key="frame" x="155.5" y="225" width="64" height="64"/>
+                                <rect key="frame" x="155.5" y="227" width="64" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="XHt-mb-AAv"/>
@@ -409,11 +399,11 @@
             <objects>
                 <viewController id="jCq-zW-J24" customClass="ShopCategoryViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1Y-75-s8n">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="514"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujP-9R-Leg" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rzn-F3-Ahm">
                                         <rect key="frame" x="0.0" y="20" width="375" height="93"/>
@@ -455,22 +445,12 @@
                                             <constraint firstItem="p6O-6B-rUW" firstAttribute="leading" secondItem="Rzn-F3-Ahm" secondAttribute="leading" constant="15" id="jjY-nJ-aGd"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWm-Py-sFO" customClass="ProgressBar" customModule="UIComponents">
-                                        <rect key="frame" x="0.0" y="113" width="375" height="4"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="Uwx-Cd-KBL"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="lWm-Py-sFO" firstAttribute="leading" secondItem="C2Z-F5-uA6" secondAttribute="leading" id="0a5-4V-yoj"/>
                                     <constraint firstItem="Rzn-F3-Ahm" firstAttribute="leading" secondItem="ujP-9R-Leg" secondAttribute="leading" id="1DR-Ql-73h"/>
-                                    <constraint firstItem="lWm-Py-sFO" firstAttribute="top" secondItem="Rzn-F3-Ahm" secondAttribute="bottom" id="Axn-jb-196"/>
                                     <constraint firstItem="Rzn-F3-Ahm" firstAttribute="top" secondItem="C2Z-F5-uA6" secondAttribute="top" id="In8-VD-VeX"/>
-                                    <constraint firstItem="C2Z-F5-uA6" firstAttribute="bottom" secondItem="lWm-Py-sFO" secondAttribute="bottom" id="RpZ-Cw-aDM"/>
-                                    <constraint firstItem="lWm-Py-sFO" firstAttribute="trailing" secondItem="C2Z-F5-uA6" secondAttribute="trailing" id="Zg9-Aq-k0R"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rzn-F3-Ahm" secondAttribute="bottom" id="YvP-ds-7gx"/>
                                     <constraint firstAttribute="trailing" secondItem="Rzn-F3-Ahm" secondAttribute="trailing" id="fyc-q6-y6n"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="C2Z-F5-uA6"/>
@@ -480,7 +460,7 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s5x-58-BMw">
-                                <rect key="frame" x="0.0" y="117" width="375" height="397"/>
+                                <rect key="frame" x="0.0" y="113" width="375" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="j5W-eR-AgG">
                                     <rect key="frame" x="0.0" y="96" width="375" height="0.0"/>
@@ -572,7 +552,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GH-E2-bos">
-                                <rect key="frame" x="0.0" y="117" width="375" height="397"/>
+                                <rect key="frame" x="0.0" y="113" width="375" height="405"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>

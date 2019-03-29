@@ -86,8 +86,6 @@ final class SettingsViewController: BaseViewController {
     
     private let authorizationService = AuthorizationService()
     
-    private var areProVersionFeaturesShown = false
-    
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
     }
@@ -170,9 +168,6 @@ extension SettingsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1, !ProVersionPurchase.shared.isPurchased(), indexPath.row == 1, areProVersionFeaturesShown {
-            return UITableView.automaticDimension
-        }
         return 52
     }
     
@@ -302,41 +297,15 @@ fileprivate extension SettingsViewController {
     func makeProVersionSectionItems() -> [SettingsItem] {
         var proVersionSectionItems: [SettingsItem] = []
         
-        let buyProVersionAction = { [unowned self] in
-            self.setLoadingVisible(true)
-            ProVersionPurchase.shared.requestData { [weak self] in
-                ProVersionPurchase.shared.purchase {
-                    self?.setLoadingVisible(false)
-                    self?.reloadSettings()
-                }
-            }
+        let proVersionAction = { [unowned self] in
+            self.performSegue(withIdentifier: "ShowProVersionPurchase", sender: nil)
         }
-        var buyProVersionItem = SettingsItem(title: "pro_version".localized,
-                                             subtitle: "pro_version_price".localized,
-                                             icon: #imageLiteral(resourceName: "crown"),
-                                             style: .proVersion,
-                                             action: buyProVersionAction)
-        buyProVersionItem.helpAction = { [unowned self] in
-            self.areProVersionFeaturesShown = !self.areProVersionFeaturesShown
-            self.settingsItems = self.makeSettingsItems()
-            if self.areProVersionFeaturesShown {
-                self.tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .middle)
-            } else {
-                self.tableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .middle)
-            }
-        }
+        let proVersionItem = SettingsItem(title: "pro_version".localized,
+                                          icon: #imageLiteral(resourceName: "crown"),
+                                          style: .proVersion,
+                                          action: proVersionAction)
         
-        proVersionSectionItems.append(buyProVersionItem)
-        
-        if areProVersionFeaturesShown {
-            let features = (0...3).map { "pro_version_feature_\($0)".localized }
-            let featuresItem = SettingsItem(title: features.map { "- " + $0 }.joined(separator: "\n"),
-                                            icon: UIImage(),
-                                            style: .proVersionFeatures,
-                                            action: nil)
-            
-            proVersionSectionItems.append(featuresItem)
-        }
+        proVersionSectionItems.append(proVersionItem)
         
         let restoreProVersionAction = { [unowned self] in
             self.setLoadingVisible(true)

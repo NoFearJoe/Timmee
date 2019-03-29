@@ -126,6 +126,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             contentViewController.section = currentSection
             setSectionContainersVisible(content: true, activity: false)
         case .activity:
+            progressBar.setProgress(0, animated: true)
             setSectionContainersVisible(content: false, activity: true)
         }
     }   

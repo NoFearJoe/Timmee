@@ -160,9 +160,9 @@
 "today_targets_section_placeholder_title" = "У вас нет целей";
 "today_habits_section_placeholder_title" = "На сегодня привычек нет";
 
-"pro_version" = "Приобрести PRO версию";
-"pro_version_price" = "Всего за 75 рублей";
-"pro_version_features_title" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\nДополнительные возможности:";
+"pro_version" = "PRO версия";
+"pro_version_price" = "75₽";
+"pro_version_description" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\n\nВам будут доступны:";
 "pro_version_feature_0" = "Синхронизация";
 "pro_version_feature_1" = "Расширенный просмотр прогресса";
 "pro_version_feature_2" = "Контроль воды и настроения";
@@ -360,3 +360,5 @@
 
 "mood_chart_placeholder_text" = "Нет данных о настроении";
 "habits_chart_placeholder_text" = "Нет выполненных привычек";
+
+"buy_for" = "Купить за";

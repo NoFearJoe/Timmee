@@ -309,6 +309,12 @@
 		96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
 		96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
+		96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
+		96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
+		96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
+		96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
+		96F59434224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
+		96F59435224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
 		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
 /* End PBXBuildFile section */
 
@@ -529,6 +535,9 @@
 		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
+		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
+		96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionFeatureView.swift; sourceTree = "<group>"; };
+		96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProVersionFeatureView.xib; sourceTree = "<group>"; };
 		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1126,7 +1135,10 @@
 		0CF2F930224CC1DC0042F3DC /* ProVersionPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */,
 				0CF2F931224CC2100042F3DC /* ProVersionPurchaseViewController.swift */,
+				96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */,
+				96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */,
 			);
 			path = ProVersionPurchase;
 			sourceTree = "<group>";
@@ -1191,7 +1203,6 @@
 			children = (
 				967C328B215181D700B9201A /* Settings.storyboard */,
 				0C3DA5292153C0AD00CAE635 /* Backgrund image picker */,
-				967C328621517E0700B9201A /* Pro version purchase */,
 				967C328521517DFE00B9201A /* Main */,
 			);
 			path = Settings;
@@ -1204,13 +1215,6 @@
 				967C328921517F3C00B9201A /* SettingsViewController.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		967C328621517E0700B9201A /* Pro version purchase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Pro version purchase";
 			sourceTree = "<group>";
 		};
 		967C328F2157714700B9201A /* Cells */ = {
@@ -1372,9 +1376,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F59434224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */,
 				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
 				96BE83882175034400CDECAF /* InfoPlist.strings in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
+				96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
 				0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
@@ -1401,9 +1407,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F59435224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */,
 				0CB673C321A52C3900178EB1 /* Today.storyboard in Resources */,
 				0CB673C421A52C3900178EB1 /* InfoPlist.strings in Resources */,
 				0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */,
+				96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
 				0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
 				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
@@ -1757,6 +1765,7 @@
 				0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */,
 				0CF2F932224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */,
 				0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */,
+				96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
@@ -1828,6 +1837,7 @@
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
 				0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
+				96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
