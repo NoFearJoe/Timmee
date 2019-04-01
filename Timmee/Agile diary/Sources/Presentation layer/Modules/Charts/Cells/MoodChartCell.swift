@@ -43,8 +43,7 @@ final class MoodChartCell: BaseChartCell {
         fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
         
         let moods = moodService.fetchMoods(sprint: sprint)
-        let averageMoodValue = moods.reduce(0, { $0 + $1.kind.value })
-        let averageMood = Mood.Kind(value: averageMoodValue)
+        let averageMood = moods.averageKind()
         
         moodLabel.text = averageMood.localized
         switch averageMood {

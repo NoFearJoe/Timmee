@@ -83,3 +83,10 @@ extension Mood.Kind {
     }
     
 }
+
+extension Array where Element == Mood {
+    public func averageKind() -> Mood.Kind {
+        let averageMoodValue = Int(round(Double(reduce(0, { $0 + $1.kind.value })) / Double(count)))
+        return Mood.Kind(value: averageMoodValue)
+    }
+}

@@ -19,6 +19,7 @@ final class ExtendedMoodChartViewController: BaseViewController, AnyExtendedChar
     @IBOutlet private var pieChart: PieChartView!
     
     @IBOutlet private var averageMoodView: AverageMoodView!
+    @IBOutlet private var mostFrequentlyMoodView: AverageMoodView!
     
     private let moodService = ServicesAssembly.shared.moodServce
     
@@ -36,6 +37,7 @@ final class ExtendedMoodChartViewController: BaseViewController, AnyExtendedChar
         refreshMoodLineChart(moods: moods)
         refreshMoodPieChart(moods: moods)
         refreshAverageMood(moods: moods)
+        refreshMostFrequentlyMood(moods: moods)
     }
     
     override func setupAppearance() {
@@ -79,10 +81,19 @@ private extension ExtendedMoodChartViewController {
     }
     
     func refreshAverageMood(moods: [Mood]) {
-        let averageMoodValue = moods.reduce(0, { $0 + $1.kind.value })
-        let averageMood = Mood.Kind(value: averageMoodValue)
-        averageMoodView.configure(mood: averageMood)
+        let averageMood = moods.averageKind()
+        averageMoodView.configure(mood: averageMood, title: "average_mood".localized)
         averageMoodView.isHidden = moods.isEmpty
+    }
+    
+    func refreshMostFrequentlyMood(moods: [Mood]) {
+        guard let mostFrequentlyMood = Dictionary(grouping: moods, by: { $0.kind.rawValue }).max(by: { $0.value.count < $1.value.count })?.value.first else {
+            mostFrequentlyMoodView.isHidden = true
+            return
+        }
+        
+        mostFrequentlyMoodView.isHidden = false
+        mostFrequentlyMoodView.configure(mood: mostFrequentlyMood.kind, title: "most_frequently_mood".localized)
     }
     
 }
@@ -100,8 +111,8 @@ final class AverageMoodView: UIView {
         moodLabel.textColor = AppTheme.current.colors.activeElementColor
     }
     
-    func configure(mood: Mood.Kind) {
-        titleLabel.text = "average_mood".localized
+    func configure(mood: Mood.Kind, title: String) {
+        titleLabel.text = title
         moodIconView.image = UIImage(named: mood.icon)
         moodLabel.text = mood.localized
     }

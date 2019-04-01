@@ -589,12 +589,56 @@
                                             <outlet property="titleLabel" destination="eUn-tI-M6G" id="NeN-Mh-dC9"/>
                                         </connections>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glh-Dv-NkH" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="583" width="345" height="44"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tO8-M1-VxX">
+                                                <rect key="frame" x="0.0" y="2" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="TnI-xy-lNM"/>
+                                                    <constraint firstAttribute="width" secondItem="tO8-M1-VxX" secondAttribute="height" id="zRp-ga-3Ud"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGv-uB-UlL">
+                                                <rect key="frame" x="48" y="19.5" width="297" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9z-ng-PZR">
+                                                <rect key="frame" x="48" y="-1" width="297" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="V9z-ng-PZR" firstAttribute="leading" secondItem="tO8-M1-VxX" secondAttribute="trailing" constant="8" id="86g-0t-tmV"/>
+                                            <constraint firstItem="tO8-M1-VxX" firstAttribute="centerY" secondItem="glh-Dv-NkH" secondAttribute="centerY" id="Jbl-Ne-jpO"/>
+                                            <constraint firstItem="kGv-uB-UlL" firstAttribute="top" secondItem="V9z-ng-PZR" secondAttribute="bottom" id="Kgi-yf-OdU"/>
+                                            <constraint firstAttribute="trailing" secondItem="V9z-ng-PZR" secondAttribute="trailing" id="RHc-v6-WOx"/>
+                                            <constraint firstItem="tO8-M1-VxX" firstAttribute="leading" secondItem="glh-Dv-NkH" secondAttribute="leading" id="YdO-V3-BdJ"/>
+                                            <constraint firstItem="kGv-uB-UlL" firstAttribute="leading" secondItem="tO8-M1-VxX" secondAttribute="trailing" constant="8" id="hz6-1J-wZU"/>
+                                            <constraint firstAttribute="height" constant="44" id="l7u-5x-u0u"/>
+                                            <constraint firstItem="kGv-uB-UlL" firstAttribute="centerY" secondItem="glh-Dv-NkH" secondAttribute="centerY" constant="8" id="xou-Bo-A57"/>
+                                            <constraint firstAttribute="trailing" secondItem="kGv-uB-UlL" secondAttribute="trailing" id="zpl-1n-9Sd"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="safeArea" id="pVo-95-aZp"/>
+                                        <connections>
+                                            <outlet property="moodIconView" destination="tO8-M1-VxX" id="KsC-r5-HFm"/>
+                                            <outlet property="moodLabel" destination="kGv-uB-UlL" id="r6c-Fe-0sM"/>
+                                            <outlet property="titleLabel" destination="V9z-ng-PZR" id="WHY-Yk-gHj"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="glh-Dv-NkH" firstAttribute="top" secondItem="GaG-im-d5k" secondAttribute="bottom" constant="12" id="0sO-Ki-Cx7"/>
+                                    <constraint firstItem="glh-Dv-NkH" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" constant="15" id="1Bw-gW-Sal"/>
                                     <constraint firstAttribute="trailing" secondItem="GaG-im-d5k" secondAttribute="trailing" constant="15" id="9Ig-em-gme"/>
+                                    <constraint firstAttribute="trailing" secondItem="glh-Dv-NkH" secondAttribute="trailing" constant="15" id="9dW-E1-eAr"/>
                                     <constraint firstItem="IUK-9y-Lyq" firstAttribute="top" secondItem="2zA-M7-aGS" secondAttribute="top" id="DjW-BX-UVB"/>
-                                    <constraint firstAttribute="bottom" secondItem="GaG-im-d5k" secondAttribute="bottom" constant="15" id="ICg-ag-Slf"/>
                                     <constraint firstItem="GaG-im-d5k" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" constant="15" id="Ktz-oT-Lwu"/>
                                     <constraint firstItem="A0V-Tf-5N9" firstAttribute="centerX" secondItem="2zA-M7-aGS" secondAttribute="centerX" id="MZC-EX-rQL"/>
                                     <constraint firstAttribute="trailing" secondItem="IUK-9y-Lyq" secondAttribute="trailing" id="U35-4e-onx"/>
@@ -605,6 +649,7 @@
                                     <constraint firstItem="GaG-im-d5k" firstAttribute="top" secondItem="A0V-Tf-5N9" secondAttribute="bottom" constant="15" id="oIo-o8-k99"/>
                                     <constraint firstAttribute="trailing" secondItem="A0V-Tf-5N9" secondAttribute="trailing" id="qdl-KN-vmg"/>
                                     <constraint firstItem="IUK-9y-Lyq" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="y07-kX-hwO"/>
+                                    <constraint firstAttribute="bottom" secondItem="glh-Dv-NkH" secondAttribute="bottom" constant="20" id="zAC-RX-Wdh"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -622,6 +667,7 @@
                         <outlet property="averageMoodView" destination="GaG-im-d5k" id="Zf0-kR-TIC"/>
                         <outlet property="lineChart" destination="gu7-Ke-gqO" id="4RD-TX-wYP"/>
                         <outlet property="lineChartPlaceholderLabel" destination="J9a-0b-FL2" id="jRa-X3-783"/>
+                        <outlet property="mostFrequentlyMoodView" destination="glh-Dv-NkH" id="5BI-z3-py3"/>
                         <outlet property="pieChart" destination="IUK-9y-Lyq" id="MXY-xP-icM"/>
                     </connections>
                 </viewController>

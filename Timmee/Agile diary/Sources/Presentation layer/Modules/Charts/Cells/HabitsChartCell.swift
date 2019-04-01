@@ -45,7 +45,7 @@ final class HabitsChartCell: BaseChartCell {
         for i in stride(from: 6, through: 0, by: -1) {
             let date = (Date.now - i.asDays).startOfDay
             let repeatDay = DayUnit(weekday: date.weekday)
-            let allHabits = habits.filter { $0.dueDays.contains(repeatDay) }
+            let allHabits = habits.filter { $0.creationDate.startOfDay <= date && $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
             chartEntries.append(ChartDataEntry(x: Double(6 - i), y: Double(completedHabits)))
             xAxisTitles.append(date.asShortWeekday)
