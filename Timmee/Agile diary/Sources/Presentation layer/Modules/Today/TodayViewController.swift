@@ -63,6 +63,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupPlaceholder()
         
         subscribeToSynchronizationCompletion()
+        setupShowProVersionTracker()
         
         BackgroundImagesLoader.shared.onLoad = { [weak self] in
             DispatchQueue.main.async {
@@ -95,6 +96,11 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupPlaceholderAppearance()
         setupCreateSprintButton()
         sprint.flatMap { updateHeaderSubtitle(sprint: $0) }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        TrackersConfigurator.shared.showProVersionTracker?.commit()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -272,6 +278,14 @@ private extension TodayViewController {
                                                                                      object: nil,
                                                                                      queue: .main) { [weak self] _ in
                                                                                         self?.loadSprint()
+        }
+    }
+    
+    func setupShowProVersionTracker() {
+        guard !ProVersionPurchase.shared.isPurchased() else { return }
+        TrackersConfigurator.shared.showProVersionTracker?.checkpoint = { [weak self] in
+            guard !ProVersionPurchase.shared.isPurchased() else { return }
+            self?.performSegue(withIdentifier: "ShowProVersionPurchase", sender: nil)
         }
     }
     

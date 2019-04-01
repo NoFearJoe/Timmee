@@ -316,6 +316,8 @@ fileprivate extension SettingsViewController {
                 self.reloadSettings()
                 if !success {
                     self.showErrorAlert(title: "error".localized, message: "restore_error_try_again".localized)
+                } else {
+                    TrackersConfigurator.shared.showProVersionTracker?.disable()
                 }
             }
         }

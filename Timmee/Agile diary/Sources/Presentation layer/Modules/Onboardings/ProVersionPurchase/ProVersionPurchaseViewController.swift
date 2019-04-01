@@ -26,6 +26,7 @@ final class ProVersionPurchaseViewController: BaseViewController, AlertInput {
                 self?.loadingView.isHidden = true
                 if ProVersionPurchase.shared.isPurchased() {
                     self?.showAuthorization()
+                    TrackersConfigurator.shared.showProVersionTracker?.disable()
                 } else {
                     self?.showAlert(title: "error".localized,
                                     message: "purchase_pro_version_error_try_again".localized,
@@ -43,6 +44,7 @@ final class ProVersionPurchaseViewController: BaseViewController, AlertInput {
                 self?.loadingView.isHidden = true
                 if success, ProVersionPurchase.shared.isPurchased() {
                     self?.showAuthorization()
+                    TrackersConfigurator.shared.showProVersionTracker?.disable()
                 } else {
                     self?.showAlert(title: "error".localized,
                                     message: "restore_error_try_again".localized,

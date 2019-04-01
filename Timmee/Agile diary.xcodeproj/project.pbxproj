@@ -35,6 +35,8 @@
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
 		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */; };
+		0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */; };
 		0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
 		0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
 		0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */; };
@@ -406,6 +408,7 @@
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
 		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
+		0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersConfigurator.swift; sourceTree = "<group>"; };
 		0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationConfigurator.swift; sourceTree = "<group>"; };
 		0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsViewController.swift; sourceTree = "<group>"; };
 		0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sprints.storyboard; sourceTree = "<group>"; };
@@ -736,6 +739,7 @@
 				96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */,
 				964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */,
 				0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */,
+				0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -1698,6 +1702,7 @@
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
 				96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */,
+				0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
@@ -1865,6 +1870,7 @@
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
 				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
+				0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0CB673A521A52C3900178EB1 /* TodayTargetCell.swift in Sources */,
 				0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
