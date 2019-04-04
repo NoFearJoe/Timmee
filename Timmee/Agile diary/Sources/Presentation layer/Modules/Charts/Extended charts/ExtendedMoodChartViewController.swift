@@ -27,6 +27,8 @@ final class ExtendedMoodChartViewController: BaseViewController, AnyExtendedChar
         super.prepare()
         title = "mood".localized
         lineChartPlaceholderLabel.text = "mood_chart_placeholder_text".localized
+        averageMoodView.isHidden = true
+        mostFrequentlyMoodView.isHidden = true
     }
     
     override func refresh() {
@@ -115,5 +117,11 @@ final class AverageMoodView: UIView {
         titleLabel.text = title
         moodIconView.image = UIImage(named: mood.icon)
         moodLabel.text = mood.localized
+    }
+    
+    func configure(waterVolume: Double, title: String) {
+        titleLabel.text = title
+        moodIconView.image = UIImage(named: "pro_version_feature_icon_2")?.withRenderingMode(.alwaysOriginal)
+        moodLabel.text = "\(waterVolume) " + "l".localized
     }
 }

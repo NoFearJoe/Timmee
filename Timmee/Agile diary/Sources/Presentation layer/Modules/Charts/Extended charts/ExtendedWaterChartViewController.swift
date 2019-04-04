@@ -14,6 +14,7 @@ class ExtendedWaterChartViewController: BaseViewController, AnyExtendedChart {
     var sprint: Sprint?
     
     @IBOutlet private var chartView: BarChartView!
+    @IBOutlet private var averageWaterView: AverageMoodView!
     
     private let waterControlService = ServicesAssembly.shared.waterControlService
     
@@ -21,12 +22,14 @@ class ExtendedWaterChartViewController: BaseViewController, AnyExtendedChart {
         super.prepare()
         title = "water".localized
         setupChart()
+        averageWaterView.isHidden = true
     }
     
     override func refresh() {
         super.refresh()
-        guard let sprint = sprint else { return }
-        refreshWaterControlProgress(sprint: sprint)
+        guard let waterControl = waterControlService.fetchWaterControl() else { return }
+        refreshWaterControlProgress(waterControl: waterControl)
+        refreshAverageWaterVolume(waterControl: waterControl)
     }
     
 }
@@ -35,9 +38,8 @@ class ExtendedWaterChartViewController: BaseViewController, AnyExtendedChart {
 
 private extension ExtendedWaterChartViewController {
     
-    func refreshWaterControlProgress(sprint: Sprint) {
-        guard let waterControl = waterControlService.fetchWaterControl() else { return }
-        
+    func refreshWaterControlProgress(waterControl: WaterControl) {
+        guard let sprint = sprint else { return }
         var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []
         let daysFromSprintStart = max(sprint.startDate.days(before: Date.now), 5)
@@ -50,7 +52,12 @@ private extension ExtendedWaterChartViewController {
         let dataSet = BarChartDataSet(values: chartEntries, label: nil)
         dataSet.label = nil
         dataSet.colors = [AppTheme.current.colors.mainElementColor]
-        dataSet.drawValuesEnabled = false
+        dataSet.drawValuesEnabled = true
+        dataSet.valueFont = AppTheme.current.fonts.medium(10)
+        dataSet.valueColors = [.white]
+        dataSet.valueFormatter = DefaultValueFormatter(block: { value, _, _, _ -> String in
+            return value == 0 ? "" : "\(value)"
+        })
         
         let limitLine = ChartLimitLine(limit: Double(waterControl.neededVolume / 1000))
         limitLine.lineColor = AppTheme.current.colors.inactiveElementColor
@@ -66,6 +73,23 @@ private extension ExtendedWaterChartViewController {
         
         chartView.data = BarChartData(dataSet: dataSet)
         chartView.notifyDataSetChanged()
+    }
+    
+    func refreshAverageWaterVolume(waterControl: WaterControl) {
+        guard let sprint = sprint else { return }
+        var totalDrunkVolume: Double = 0
+        var notZeroDrunkVolumeDaysCount: Int = 0
+        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
+        for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
+            let date = (Date.now - i.asDays).startOfDay
+            let drunkVolume = Double((waterControl.drunkVolume[date] ?? 0)) / 1000
+            guard drunkVolume != 0 else { continue }
+            totalDrunkVolume += drunkVolume
+            notZeroDrunkVolumeDaysCount += 1
+        }
+        let averageWaterVolume = totalDrunkVolume / Double(notZeroDrunkVolumeDaysCount)
+        averageWaterView.configure(waterVolume: averageWaterVolume, title: "average_water_volume".localized)
+        averageWaterView.isHidden = averageWaterVolume == 0
     }
     
 }

@@ -369,16 +369,62 @@
                                     <constraint firstAttribute="height" constant="256" id="CL5-g2-umR"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySk-ij-zc1" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
+                                <rect key="frame" x="15" y="392" width="345" height="44"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A1k-cH-ovN">
+                                        <rect key="frame" x="0.0" y="2" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="A1k-cH-ovN" secondAttribute="height" id="B5X-qY-Vu3"/>
+                                            <constraint firstAttribute="width" constant="40" id="jH3-KP-689"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HX8-Ka-sNe">
+                                        <rect key="frame" x="48" y="19.5" width="297" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygn-aO-nn6">
+                                        <rect key="frame" x="48" y="-1" width="297" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="A1k-cH-ovN" firstAttribute="leading" secondItem="ySk-ij-zc1" secondAttribute="leading" id="2o6-Sa-diF"/>
+                                    <constraint firstItem="HX8-Ka-sNe" firstAttribute="top" secondItem="Ygn-aO-nn6" secondAttribute="bottom" id="3z1-dl-UBO"/>
+                                    <constraint firstItem="Ygn-aO-nn6" firstAttribute="leading" secondItem="A1k-cH-ovN" secondAttribute="trailing" constant="8" id="Bxw-xc-aBk"/>
+                                    <constraint firstItem="HX8-Ka-sNe" firstAttribute="centerY" secondItem="ySk-ij-zc1" secondAttribute="centerY" constant="8" id="Clm-7C-maP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ygn-aO-nn6" secondAttribute="trailing" id="FWy-Xk-DfC"/>
+                                    <constraint firstItem="A1k-cH-ovN" firstAttribute="centerY" secondItem="ySk-ij-zc1" secondAttribute="centerY" id="Qvk-6K-ssc"/>
+                                    <constraint firstItem="HX8-Ka-sNe" firstAttribute="leading" secondItem="A1k-cH-ovN" secondAttribute="trailing" constant="8" id="TzV-9c-Nw3"/>
+                                    <constraint firstAttribute="height" constant="44" id="aGm-xi-rXj"/>
+                                    <constraint firstAttribute="trailing" secondItem="HX8-Ka-sNe" secondAttribute="trailing" id="qCL-6o-hRv"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="bH5-AX-Sec"/>
+                                <connections>
+                                    <outlet property="moodIconView" destination="A1k-cH-ovN" id="ntN-ng-vG3"/>
+                                    <outlet property="moodLabel" destination="HX8-Ka-sNe" id="W2e-mL-Zag"/>
+                                    <outlet property="titleLabel" destination="Ygn-aO-nn6" id="fWH-ME-Ifa"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="cg4-d1-ZsZ" secondAttribute="trailing" id="HcA-vK-Ij2"/>
+                            <constraint firstItem="ySk-ij-zc1" firstAttribute="top" secondItem="cg4-d1-ZsZ" secondAttribute="bottom" constant="20" id="IeC-u4-l71"/>
                             <constraint firstItem="cg4-d1-ZsZ" firstAttribute="top" secondItem="ge6-rY-SCG" secondAttribute="top" id="Wz1-V6-IFn"/>
                             <constraint firstItem="cg4-d1-ZsZ" firstAttribute="leading" secondItem="ge6-rY-SCG" secondAttribute="leading" id="XUH-fx-QsF"/>
+                            <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="ySk-ij-zc1" secondAttribute="trailing" constant="15" id="etD-Si-nuJ"/>
+                            <constraint firstItem="ySk-ij-zc1" firstAttribute="leading" secondItem="ge6-rY-SCG" secondAttribute="leading" constant="15" id="mwk-Gd-bEW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ge6-rY-SCG"/>
                     </view>
                     <connections>
+                        <outlet property="averageWaterView" destination="ySk-ij-zc1" id="zgo-s5-oUW"/>
                         <outlet property="chartView" destination="cg4-d1-ZsZ" id="gE8-FV-KeU"/>
                     </connections>
                 </viewController>
