@@ -48,7 +48,7 @@ final class SprintCell: SwipableCollectionViewCell {
             goalsProgressLabel.isHidden = false
             
             let habits = habitsService.fetchHabits(sprintID: sprint.id)
-            let habitsProgress = habits.reduce(0, { $0 + Double($1.doneDates.count).safeDivide(by: Double($1.dueDays.count * Constants.sprintDuration)) }).safeDivide(by: Double(habits.count))
+            let habitsProgress = habits.reduce(0, { $0 + Double($1.doneDates.count).safeDivide(by: Double($1.dueDays.count * sprint.duration)) }).safeDivide(by: Double(habits.count))
             habitsProgressLabel.text = "\(Int(habitsProgress * 100))%"
             habitsProgressLabel.textColor = progressLabelColor(progress: habitsProgress)
             

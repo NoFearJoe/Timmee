@@ -93,7 +93,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         
         if sprint.startDate.compare(Date.now.startOfDay) == .orderedAscending, !sprint.isReady {
             sprint.startDate = Date.now.startOfDay
-            sprint.endDate = Date.now.startOfDay + Constants.sprintDuration.asWeeks
+            sprint.endDate = Date.now.startOfDay + sprint.duration.asWeeks
             updateDoneButtonState()
         }
         
@@ -285,7 +285,7 @@ extension SprintCreationViewController: DueDatePickerOutput {
     
     func didChangeDueDate(to date: Date) {
         sprint.startDate = date
-        sprint.endDate = date + Constants.sprintDuration.asWeeks
+        sprint.endDate = date + sprint.duration.asWeeks
         updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
@@ -314,6 +314,7 @@ extension SprintCreationViewController: SprintDurationPickerDelegate {
     
     func sprintDurationPicker(_ picker: SprintDurationPicker, didSelectSprintDuration duration: Int) {
         sprint.duration = duration
+        sprint.endDate = sprint.startDate + duration.asWeeks
         updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
     }
     
