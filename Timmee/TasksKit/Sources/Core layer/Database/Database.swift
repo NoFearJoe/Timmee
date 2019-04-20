@@ -51,7 +51,7 @@ private final class CoreDataStorage: Storage {
     
     lazy var synchronizationContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.parent = self.readContext
+        context.parent = self.writeContext
         return context
     }()
     

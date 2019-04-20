@@ -18,8 +18,9 @@ final class FirebaseCollectionSynchronizationManager {
     func syncCollection<T: NSManagedObject & ModifiableEntity>(context: NSManagedObjectContext,
                                                                data: [[String: Any]],
                                                                entityType: T.Type,
+                                                               request: FetchRequest<T> = T.request(),
                                                                parentEntityID: String?) -> [String] {
-        let cachedEntities = (T.request() as FetchRequest<T>).execute(context: context)
+        let cachedEntities = request.execute(context: context)
         let locallyDeletedEntities = (LocallyDeletedEntity.request() as FetchRequest<LocallyDeletedEntity>).execute(context: context)
         var deletedEntityIDs: [String] = []
         if T.self is IdentifiableEntity.Type {

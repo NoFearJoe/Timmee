@@ -14,4 +14,4 @@ FOUNDATION_EXPORT double WorksetVersionNumber;
 //! Project version string for Workset.
 FOUNDATION_EXPORT const unsigned char WorksetVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Workset/PublicHeader.h>
+#import <Workset/ObjectiveCTryCatch.h>

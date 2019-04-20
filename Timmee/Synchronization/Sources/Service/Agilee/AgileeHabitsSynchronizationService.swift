@@ -120,6 +120,7 @@ public final class AgileeHabitsSynchronizationService {
                     .syncCollection(context: context,
                                     data: snapshot?.data().map { [$0] } ?? [],
                                     entityType: HabitEntity.self,
+                                    request: HabitEntity.request().filtered(key: "id", value: habit.id),
                                     parentEntityID: sprintID)
                 isDeleted = !deletedHabitIDs.isEmpty
                 save()
