@@ -112,8 +112,6 @@ extension EducationViewController: EducationScreenOutput {
     
     func didAskToSkipEducation(screen: EducationScreen) {
         switch screen {
-        case .initial:
-            didAskToContinueEducation(screen: .habits)
         case .notificationsSetupSuggestion:
             didAskToContinueEducation(screen: .notificationsSetupSuggestion)
         case .pinCodeSetupSuggestion:
@@ -134,10 +132,8 @@ fileprivate extension EducationViewController {
         switch screen {
         case .initial:
             viewController = ViewControllersFactory.initialEducationScreen
-        case .goals:
-            viewController = ViewControllersFactory.targetsEducationScreen
-        case .habits:
-            viewController = ViewControllersFactory.habitsEducationScreen
+        case .immutableSprints:
+            viewController = ViewControllersFactory.immutableSprintsEducationScreen
         case .notificationsSetupSuggestion:
             viewController = ViewControllersFactory.notificationsSetupSuggestionScreen
         case .pinCodeSetupSuggestion:

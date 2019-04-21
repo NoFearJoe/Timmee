@@ -272,6 +272,8 @@ private extension AgileeSynchronizationService {
     }
     
     private func pushDeletedEntities(_ deletedEntities: DeletedEntities, batch: WriteBatch, userDocument: DocumentReference) {
+        guard !deletedEntities.isEmpty else { return }
+        
         let dispatchGroup = DispatchGroup()
         
         deletedEntities.sprints.forEach { sprintID in
@@ -342,4 +344,8 @@ struct DeletedEntities {
     var habits: [(String, [String])] = []
     var goals: [(String, [String])] = []
     var stages: [(String, String, [String])] = []
+    
+    var isEmpty: Bool {
+        return sprints.isEmpty && habits.isEmpty && goals.isEmpty && stages.isEmpty
+    }
 }

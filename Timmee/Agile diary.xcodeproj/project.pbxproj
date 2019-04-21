@@ -90,8 +90,7 @@
 		0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */; };
 		0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
 		0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
-		0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
-		0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */; };
+		0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */; };
 		0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */; };
 		0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */; };
 		0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */; };
@@ -163,7 +162,6 @@
 		0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
 		0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
 		0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
-		0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */; };
 		0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */; };
 		0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
 		0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */; };
@@ -178,7 +176,7 @@
 		0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
 		0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */; };
 		0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
-		0CB673B921A52C3900178EB1 /* TargetsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */; };
+		0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */; };
 		0CB673BA21A52C3900178EB1 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
 		0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
 		0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
@@ -450,8 +448,7 @@
 		0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoriesViewController.swift; sourceTree = "<group>"; };
 		0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
-		0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsEducationScreen.swift; sourceTree = "<group>"; };
-		0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsEducationScreen.swift; sourceTree = "<group>"; };
+		0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmutableSprintsEducationScreen.swift; sourceTree = "<group>"; };
 		0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupSuggestionScreen.swift; sourceTree = "<group>"; };
 		0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeSetupSuggestionEducationScreen.swift; sourceTree = "<group>"; };
 		0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalEducationScreen.swift; sourceTree = "<group>"; };
@@ -1030,8 +1027,7 @@
 			children = (
 				0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */,
 				0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */,
-				0CB2EDDF214F945500AA4FB8 /* TargetsEducationScreen.swift */,
-				0CB2EDE1214F946300AA4FB8 /* HabitsEducationScreen.swift */,
+				0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */,
 				0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */,
 				0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */,
 				0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */,
@@ -1755,7 +1751,6 @@
 				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
-				0CB2EDE2214F946300AA4FB8 /* HabitsEducationScreen.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
@@ -1779,7 +1774,7 @@
 				0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
-				0CB2EDE0214F945500AA4FB8 /* TargetsEducationScreen.swift in Sources */,
+				0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
@@ -1878,7 +1873,6 @@
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
 				0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
-				0CB673AA21A52C3900178EB1 /* HabitsEducationScreen.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
 				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
@@ -1896,7 +1890,7 @@
 				0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */,
 				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
-				0CB673B921A52C3900178EB1 /* TargetsEducationScreen.swift in Sources */,
+				0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CB673BA21A52C3900178EB1 /* WaterLevelView.swift in Sources */,
 				0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */,
 			);

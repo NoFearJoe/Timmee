@@ -14,14 +14,9 @@ final class InitialEducationScreen: UIViewController {
     @IBOutlet private var textLabel: UILabel!
     
     @IBOutlet private var continueButton: UIButton!
-    @IBOutlet private var skipButton: UIButton!
     
     @IBAction func continueEducation() {
         output.didAskToContinueEducation(screen: .initial)
-    }
-    
-    @IBAction func skipEducation() {
-        output.didAskToSkipEducation(screen: .initial)
     }
     
     private var output: EducationScreenOutput!
@@ -33,7 +28,6 @@ final class InitialEducationScreen: UIViewController {
         textLabel.text = "education_initial_text".localized
         
         continueButton.setTitle("education_initial_continue".localized, for: .normal)
-        skipButton.setTitle("education_initial_skip".localized, for: .normal)
         
         setupAppearance()
     }
@@ -43,10 +37,7 @@ final class InitialEducationScreen: UIViewController {
         textLabel.textColor = AppTheme.current.colors.inactiveElementColor
         
         continueButton.setTitleColor(.white, for: .normal)
-        skipButton.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .normal)
-        
         continueButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
-        skipButton.backgroundColor = .clear
     }
     
 }

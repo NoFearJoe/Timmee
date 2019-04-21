@@ -10,11 +10,8 @@ enum EducationScreen {
     // Стартовый экран
     case initial
     
-    // Экран с ответом на вопрос - что такое цели
-    case goals
-    
-    // Экран с ответом на вопрос - что такое привычки
-    case habits
+    // Экран с объяснением, что спринты нельзя изменять
+    case immutableSprints
     
     // Экран с предложением включить уведомления
     case notificationsSetupSuggestion
@@ -40,7 +37,7 @@ final class EducationState {
     
     lazy var screensToShow: [EducationScreen] = {
         if !isEducationShown {
-            return [.initial, .goals, .habits,
+            return [.initial, .immutableSprints,
                     .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation,
                     .proVersion, .final]
         }

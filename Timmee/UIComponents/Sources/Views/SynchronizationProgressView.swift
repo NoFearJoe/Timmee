@@ -141,7 +141,7 @@ public class SynchronizationStatusBar: ModalWindow {
     public func show() {
         guard !self.isShown else { return }
         let size: CGSize = statusBarFrame?().size ?? .zero
-        let height = size.height > 20 ? size.height + 3 : size.height
+        let height = size.height > 20 ? size.height + 6 : size.height
         self.windowFrame = CGRect(x: 0, y: -height, width: size.width, height: height)
         self.isHidden = false
         self.isShown = true

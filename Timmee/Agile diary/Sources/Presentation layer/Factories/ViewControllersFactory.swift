@@ -81,12 +81,8 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "InitialEducationScreen") as! InitialEducationScreen
     }
     
-    static var targetsEducationScreen: TargetsEducationScreen {
-        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "TargetsEducationScreen") as! TargetsEducationScreen
-    }
-    
-    static var habitsEducationScreen: HabitsEducationScreen {
-        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "HabitsEducationScreen") as! HabitsEducationScreen
+    static var immutableSprintsEducationScreen: ImmutableSprintsEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "ImmutableSprintsEducationScreen") as! ImmutableSprintsEducationScreen
     }
     
     static var notificationsSetupSuggestionScreen: NotificationsSetupSuggestionScreen {

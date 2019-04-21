@@ -220,17 +220,11 @@
 "no_data" = "No data";
 
 "education_initial_title" = "What is an Agile diary?";
-"education_initial_text" = "Agile diary helps to achieve goals and develop habits. At the heart of everything - the sprints. These are time periods of 7 weeks, during which you need to develop habits and achieve goals.";
+"education_initial_text" = "Agile diary helps to achieve goals and develop habits.\nAt the heart of everything - the sprints. These are time periods of several weeks, during which you need to develop habits and achieve goals.\nAt the end of the sprint, you make the next sprint based on the result of the previous";
 "education_initial_continue" = "Next";
-"education_initial_skip" = "Skip";
-"education_targets_title" = "Goals";
-"education_targets_text" = "In each sprint you assign several goals that you want to achieve in 7 weeks";
-"education_targets_continue" = "Ok";
-"education_targets_skip" = "Skip";
-"education_habits_title" = "Habits";
-"education_habits_text" = "Habits are simple regular actions that you want to get used to doing. For example, morning run or reading a book.";
-"education_habits_continue" = "Next";
-"education_habits_skip" = "Skip";
+"education_immutable_sprints_title" = "Try not to change the sprint";
+"education_immutable_sprints_text" = "The essence of the methodology is that the sprint is immutable, that is, when it started, you can not add or delete habits and goals.\nOf course in the application you can do it, but only in extreme cases";
+"education_immutable_sprints_continue" = "Next";
 "education_notifications_setup_title" = "How to remember habits?";
 "education_notifications_setup_text" = "You just need to enable notifications and the application will remind you of the most important";
 "education_notifications_setup_continue" = "Enable notifications";
@@ -238,7 +232,7 @@
 "education_pin_setup_title" = "Do not want to share secrets?";
 "education_pin_setup_text" = "You can put a short password and sleep peacefully";
 "education_pin_setup_continue" = "Put a password";
-"education_pin_setup_skip" = "Skip";
+"education_pin_setup_skip" = "Not now";
 "education_pro_version_title" = "Do you have a PRO version?";
 "education_pro_version_text" = "If you have already purchased the PRO version, you can restore it to immediately access additional functions and synchronize your data";
 "education_pro_version_buy" = "Buy";

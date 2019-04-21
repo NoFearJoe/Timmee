@@ -52,7 +52,7 @@ final class TodayContentViewController: UIViewController, AlertInput {
     let goalsService = ServicesAssembly.shared.goalsService
     let stagesService = ServicesAssembly.shared.subtasksService
     
-    let habitsSynchronizationService = AgileeHabitsSynchronizationService.shared
+//    let habitsSynchronizationService = AgileeHabitsSynchronizationService.shared
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
     private var habitsCacheObserver: Scope<HabitEntity, Habit>?
@@ -128,10 +128,10 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     habit.setDone(isChecked, at: Date.now)
-                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, completion: { [weak self] _ in
+                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, completion: { _ in })/*{ [weak self] _ in
                         guard let self = self else { return }
                         self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
-                    })
+                    })*/
                 }
             }
             return cell
@@ -296,7 +296,7 @@ private extension TodayContentViewController {
                                self.habitsService.removeHabit(habit, completion: { [weak self] _ in
                                    guard let self = self else { return }
                                    self.view.isUserInteractionEnabled = true
-                                   self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
+//                                   self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
                                })
                            })
         }
