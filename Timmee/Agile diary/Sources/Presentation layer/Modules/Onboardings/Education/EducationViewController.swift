@@ -49,7 +49,7 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     }
     
     private var shouldShowSprintCreationAfterEducation: Bool {
-        return !UserProperty.isInitialSprintCreated.bool() && getCurrentSprint() == nil && getNextSprint() == nil
+        return getCurrentSprint() == nil && getNextSprint() == nil
     }
     
     private func showAppropriateScreenAfterEducation() {

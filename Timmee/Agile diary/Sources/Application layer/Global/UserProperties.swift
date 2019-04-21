@@ -14,8 +14,6 @@ public enum UserProperty: UserPropertyProtocol {
     case isEducationShown
     case isAppRated
     
-    case isInitialSprintCreated
-    
     case pinCode
     case biometricsAuthenticationEnabled
     
@@ -30,7 +28,6 @@ public enum UserProperty: UserPropertyProtocol {
         case .isFirstLoad: return "isFirstLoad"
         case .isEducationShown: return "isEducationShown"
         case .isAppRated: return "isAppRated"
-        case .isInitialSprintCreated: return "isInitialSmartListsAdded"
         case .pinCode: return "pinCode"
         case .biometricsAuthenticationEnabled: return "biometricsAuthenticationEnabled"
         case .inApp(let id): return "inApp_\(id)"

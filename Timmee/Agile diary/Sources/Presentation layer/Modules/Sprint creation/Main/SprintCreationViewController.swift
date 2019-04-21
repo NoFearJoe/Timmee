@@ -67,7 +67,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     override func prepare() {
         super.prepare()
         
-        UserProperty.isInitialSprintCreated.setBool(false)
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
         headerView.rightButton?.setTitle("done".localized, for: .normal)
@@ -241,7 +240,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             guard let `self` = self else { return }
             let saveSprintThanClose = {
                 self.saveSprint(self.sprint) { [weak self] success in
-                    UserProperty.isInitialSprintCreated.setBool(true)
                     self?.close()
                 }
             }

@@ -14,7 +14,6 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         guard let window = window else { return }
         #if MOCKS
         RuMocksConfigurator.prepareMocks { [weak self] in
-            UserProperty.isInitialSprintCreated.setBool(true)
             self?.presentMockInitialScreen(in: window)
         }
         #else
@@ -38,8 +37,8 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             initialViewController = ViewControllersFactory.education
         } else if UserProperty.pinCode.value() != nil {
             let pinAuthenticationViewController = ViewControllersFactory.pinAuthentication
-            pinAuthenticationViewController.onComplete = {
-                if !UserProperty.isInitialSprintCreated.bool() {
+            pinAuthenticationViewController.onComplete = { [unowned self] in
+                if self.getCurrentSprint() == nil, self.getNextSprint() == nil {
                     self.showSprintCreation()
                 } else {
                     self.showToday()
@@ -47,7 +46,7 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             }
 
             initialViewController = pinAuthenticationViewController
-        } else if !UserProperty.isInitialSprintCreated.bool(), getCurrentSprint() == nil, getNextSprint() == nil {
+        } else if getCurrentSprint() == nil, getNextSprint() == nil {
             initialViewController = ViewControllersFactory.sprintCreation
         } else {
             initialViewController = ViewControllersFactory.today
