@@ -8,7 +8,7 @@
 
 public extension Double {
     
-    public func safeDivide(by divisor: Double) -> Double {
+    func safeDivide(by divisor: Double) -> Double {
         guard divisor != 0 else { return 0 }
         return self / divisor
     }
@@ -17,9 +17,18 @@ public extension Double {
 
 public extension CGFloat {
     
-    public func safeDivide(by divisor: CGFloat) -> CGFloat {
+    func safeDivide(by divisor: CGFloat) -> CGFloat {
         guard divisor != 0 else { return 0 }
         return self / divisor
+    }
+    
+}
+
+public extension Double {
+    
+    func rounded(precision: Int) -> Double {
+        let precision: Double = Double(10 * precision)
+        return Foundation.round(precision * self) / precision
     }
     
 }

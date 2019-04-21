@@ -88,7 +88,7 @@ private extension ExtendedWaterChartViewController {
             notZeroDrunkVolumeDaysCount += 1
         }
         let averageWaterVolume = totalDrunkVolume / Double(notZeroDrunkVolumeDaysCount)
-        averageWaterView.configure(waterVolume: averageWaterVolume, title: "average_water_volume".localized)
+        averageWaterView.configure(waterVolume: averageWaterVolume.rounded(precision: 2), title: "average_water_volume".localized)
         averageWaterView.isHidden = averageWaterVolume == 0
     }
     
