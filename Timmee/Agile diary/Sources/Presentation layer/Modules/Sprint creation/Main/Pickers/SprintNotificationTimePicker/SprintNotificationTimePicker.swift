@@ -39,6 +39,9 @@ final class SprintNotificationTimePicker: UIViewController {
     private var minutes: Int = 0
     
     @IBAction private func onSelectDay(_ button: UIButton) {
+        if button.isSelected, days.count <= 1 {
+            return
+        }
         button.isSelected = !button.isSelected
         updateSprintNotificationsDays()
     }
@@ -59,9 +62,9 @@ final class SprintNotificationTimePicker: UIViewController {
         notificationsDaysTitleLabel.text = "sprint_notification_days_title".localized
         notificationTimeLabel.text = "sprint_notification_time_title".localized
         enableNotificationCheckbox.didChangeCkeckedState = { [unowned self] isChecked in
-            self.isNotificationsEnabled = isChecked
-            self.updateUIForNotificationsEnabledState(isChecked)
+            self.setNotificationsEnabled(isChecked)
             self.output?.didSetNotificationsEnabled(isChecked)
+            self.output?.didChangeNotificationsDays(self.days)
         }
         notificationsDaysButtons.forEach { $0.isSelected = false }
     }
@@ -94,6 +97,9 @@ extension SprintNotificationTimePicker: SprintNotificationTimePickerInput {
     
     func setNotificationsEnabled(_ isEnabled: Bool) {
         isNotificationsEnabled = isEnabled
+        if isEnabled, days.isEmpty {
+            setNotificationsDays([.monday])
+        }
         updateUIForNotificationsEnabledState(isEnabled)
     }
     

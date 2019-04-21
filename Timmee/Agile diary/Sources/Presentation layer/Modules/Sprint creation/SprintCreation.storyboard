@@ -1744,7 +1744,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="HcD-fP-dTY"/>
                                     <constraint firstAttribute="bottom" secondItem="qhg-uH-HjS" secondAttribute="bottom" id="SK7-7k-8kG"/>
                                     <constraint firstAttribute="trailing" secondItem="qhg-uH-HjS" secondAttribute="trailing" id="U48-1t-GQu"/>
                                     <constraint firstItem="qhg-uH-HjS" firstAttribute="top" secondItem="NLF-oV-JZa" secondAttribute="top" id="fLU-kZ-p09"/>
