@@ -27,6 +27,7 @@ target 'Agile diary debug' do
     pod 'SwipeCellKit'
     pod 'Foto'
     pod 'Charts'
+    pod 'Dwifft'
     
     pod 'Firebase/Core'
     pod 'Firebase/Auth'

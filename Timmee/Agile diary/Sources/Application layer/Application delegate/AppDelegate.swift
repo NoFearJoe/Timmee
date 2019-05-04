@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    private let initialScreenPresenter = InitialScreenPresenter()
+    
     private lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
     
     private lazy var synchronizationStatusBar: SynchronizationStatusBar = {
@@ -48,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ProVersionPurchase.shared.loadStore()
         
-        InitialScreenPresenter().presentInitialScreen(in: window)
+        initialScreenPresenter.presentInitialScreen(in: window)
         
         synchronizationRunner.delegate = self
         synchronizationRunner.run(interval: 10)

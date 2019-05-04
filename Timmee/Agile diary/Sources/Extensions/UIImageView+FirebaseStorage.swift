@@ -50,8 +50,10 @@ public extension UIImageView {
             }
             
             imageLoadingTask = reference.getData(maxSize: 1024 * 1024) { [weak self] data, error in
-                if let error = error {
-                    print(error)
+                if error != nil {
+                    DispatchQueue.main.async {
+                        self?.image = nil
+                    }
                 } else if let data = data {
                     ImageCache.shared.save(imageData: data, reference: reference)
                     
@@ -67,26 +69,57 @@ public extension UIImageView {
 }
 
 fileprivate final class ImageCache {
-    
+
     static let shared = ImageCache()
-    
+
+    func save(imageData: Data, reference: StorageReference) {
+        InMemoryImageCache.shared.save(imageData: imageData, reference: reference)
+        DiskImageCache.shared.save(imageData: imageData, reference: reference)
+    }
+
+    func load(reference: StorageReference) -> UIImage? {
+        return InMemoryImageCache.shared.load(reference: reference) ?? DiskImageCache.shared.load(reference: reference)
+    }
+
+}
+
+fileprivate final class InMemoryImageCache {
+
+    static let shared = InMemoryImageCache()
+
+    private let cache = NSCache<NSString, NSData>()
+
+    func save(imageData: Data, reference: StorageReference) {
+        cache.setObject(imageData as NSData, forKey: reference.name as NSString)
+    }
+
+    func load(reference: StorageReference) -> UIImage? {
+        return (cache.object(forKey: reference.name as NSString) as Data?).flatMap { UIImage(data: $0) }
+    }
+
+}
+
+fileprivate final class DiskImageCache {
+
+    static let shared = DiskImageCache()
+
     private let filesService = FilesService(directory: "ImageCache")
-    
+
     private let syncQueue = DispatchQueue(label: "image_cache_sync_queue",
                                           qos: .utility,
                                           attributes: .concurrent)
-    
+
     func save(imageData: Data, reference: StorageReference) {
         syncQueue.async(flags: .barrier) {
             self.filesService.saveFileInCaches(withName: reference.name, contents: imageData)
         }
     }
-    
+
     func load(reference: StorageReference) -> UIImage? {
         return syncQueue.sync {
             guard let data = self.filesService.getFileFromCaches(withName: reference.name) else { return nil }
             return UIImage(data: data)
         }
     }
-    
+
 }

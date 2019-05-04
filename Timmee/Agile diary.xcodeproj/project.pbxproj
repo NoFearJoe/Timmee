@@ -277,6 +277,8 @@
 		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		961063232242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
 		961063242242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
+		9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; };
+		9615FAE9226C79AB00E285DE /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		963FD7E321B3B3E8000817D4 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD7E221B3B3E8000817D4 /* Pods_Agile_diary.framework */; };
@@ -354,6 +356,7 @@
 				0CB673D521A52C3900178EB1 /* NotificationsKit.framework in Embed Frameworks */,
 				0CB673D621A52C3900178EB1 /* Workset.framework in Embed Frameworks */,
 				0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */,
+				9615FAE9226C79AB00E285DE /* Synchronization.framework in Embed Frameworks */,
 				0CC405FA21EF28B90069C6C5 /* Authorization.framework in Embed Frameworks */,
 				0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */,
 			);
@@ -570,6 +573,7 @@
 				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
 				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
 				94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */,
+				9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,6 +1564,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
@@ -1579,6 +1584,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
@@ -2167,6 +2173,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
