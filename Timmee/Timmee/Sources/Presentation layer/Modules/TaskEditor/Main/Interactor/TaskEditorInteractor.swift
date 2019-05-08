@@ -26,6 +26,7 @@ final class TaskEditorInteractor {
     
     let tasksService = ServicesAssembly.shared.tasksService
     let taskSchedulerService = TaskSchedulerService()
+    let filesService = FilesService(directory: "attachments")
 
 }
 
@@ -67,20 +68,20 @@ extension TaskEditorInteractor: TaskEditorInteractorInput {
         removedAttachments.forEach { attachment in
             group.enter()
             
-            FilesService().removeFileFromDocuments(withName: attachment)
+            filesService.removeFileFromDocuments(withName: attachment)
             
             group.leave()
         }
         
         newAttachments.forEach { attachment in
-            guard !FilesService().isFileExistsInDocuments(withName: attachment.name) else { return }
+            guard !filesService.isFileExistsInDocuments(withName: attachment.name) else { return }
             
             group.enter()
             
-            attachment.loadImageData(completion: { data in
+            attachment.loadImageData(completion: { [weak self] data in
                 guard let data = data else { return }
                 
-                FilesService().saveFileInDocuments(withName: attachment.name, contents: data)
+                self?.filesService.saveFileInDocuments(withName: attachment.name, contents: data)
                 
                 group.leave()
             })

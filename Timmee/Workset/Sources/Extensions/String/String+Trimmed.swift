@@ -8,7 +8,7 @@
 
 public extension String {
 
-    public var trimmed: String {
+    var trimmed: String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
@@ -16,7 +16,7 @@ public extension String {
 
 public extension Optional where Wrapped == String {
 
-    public var orEmpty: Wrapped {
+    var orEmpty: Wrapped {
         return self ?? ""
     }
 

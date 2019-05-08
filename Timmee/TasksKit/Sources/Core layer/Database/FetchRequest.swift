@@ -24,7 +24,7 @@ public final class FetchRequest<T: NSManagedObject> {
 
 public extension FetchRequest {
     
-    public var nsFetchRequest: NSFetchRequest<T> {
+    var nsFetchRequest: NSFetchRequest<T> {
         let request = NSFetchRequest<T>(entityName: T.entityName)
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
@@ -35,13 +35,13 @@ public extension FetchRequest {
         return request
     }
     
-    public var nsCountFetchRequest: NSFetchRequest<T> {
+    var nsCountFetchRequest: NSFetchRequest<T> {
         let request = nsFetchRequest
         request.resultType = .countResultType
         return request
     }
     
-    public var nsFetchRequestWithResult: NSFetchRequest<NSFetchRequestResult> {
+    var nsFetchRequestWithResult: NSFetchRequest<NSFetchRequestResult> {
         return nsFetchRequest as! NSFetchRequest<NSFetchRequestResult>
     }
     
@@ -49,29 +49,29 @@ public extension FetchRequest {
 
 public extension FetchRequest {
    
-    public func execute() -> [T] {
+    func execute() -> [T] {
         return (try? Database.localStorage.readContext.fetch(self.nsFetchRequest)) ?? []
     }
     
-    public func executeInBackground() -> [T] {
+    func executeInBackground() -> [T] {
         return (try? Database.localStorage.writeContext.fetch(self.nsFetchRequest)) ?? []
     }
     
-    public func execute(context: NSManagedObjectContext) -> [T] {
+    func execute(context: NSManagedObjectContext) -> [T] {
         return (try? context.fetch(self.nsFetchRequest)) ?? []
     }
     
     // MARK: Count
     
-    public func count() -> Int {
+    func count() -> Int {
         return (try? Database.localStorage.readContext.count(for: self.nsCountFetchRequest)) ?? 0
     }
     
-    public func countInBackground() -> Int {
+    func countInBackground() -> Int {
         return (try? Database.localStorage.writeContext.count(for: self.nsCountFetchRequest)) ?? 0
     }
     
-    public func count(context: NSManagedObjectContext) -> Int {
+    func count(context: NSManagedObjectContext) -> Int {
         return (try? context.count(for: self.nsCountFetchRequest)) ?? 0
     }
     
@@ -81,22 +81,22 @@ public extension FetchRequest {
 
 public extension FetchRequest {
     
-    public func filtered(predicate: NSPredicate?) -> FetchRequest<T> {
+    func filtered(predicate: NSPredicate?) -> FetchRequest<T> {
         self.predicate = predicate
         return self
     }
     
-    public func filtered(key: String, value: String) -> FetchRequest<T> {
+    func filtered(key: String, value: String) -> FetchRequest<T> {
         self.predicate = NSPredicate(format: "\(key) = %@", value)
         return self
     }
     
-    public func filtered(key: String, in array: [String]) -> FetchRequest<T> {
+    func filtered(key: String, in array: [String]) -> FetchRequest<T> {
         self.predicate = NSPredicate(format: "\(key) IN %@", array)
         return self
     }
     
-    public func filtered(key: String, contains value: String) -> FetchRequest<T> {
+    func filtered(key: String, contains value: String) -> FetchRequest<T> {
         self.predicate = NSPredicate(format: "\(key) CONTAINS[cd] %@", value)
         return self
     }
@@ -107,7 +107,7 @@ public extension FetchRequest {
 
 public extension FetchRequest {
     
-    public func sorted(sortDescriptor: NSSortDescriptor) -> FetchRequest<T> {
+    func sorted(sortDescriptor: NSSortDescriptor) -> FetchRequest<T> {
         if let sortDescriptors = self.sortDescriptors {
             self.sortDescriptors = sortDescriptors + [sortDescriptor]
         } else {
@@ -116,7 +116,7 @@ public extension FetchRequest {
         return self
     }
         
-    public func sorted<V>(keyPath: KeyPath<T, V>, ascending: Bool) -> FetchRequest<T> {
+    func sorted<V>(keyPath: KeyPath<T, V>, ascending: Bool) -> FetchRequest<T> {
         if let sortDescriptors = self.sortDescriptors {
             self.sortDescriptors = sortDescriptors + [NSSortDescriptor(keyPath: keyPath, ascending: ascending)]
         } else {
@@ -131,12 +131,12 @@ public extension FetchRequest {
 
 public extension FetchRequest {
     
-    public func limited(value: Int) -> FetchRequest<T> {
+    func limited(value: Int) -> FetchRequest<T> {
         self.limit = value
         return self
     }
     
-    public func batchSize(_ size: Int) -> FetchRequest<T> {
+    func batchSize(_ size: Int) -> FetchRequest<T> {
         self.batchSize = size
         return self
     }

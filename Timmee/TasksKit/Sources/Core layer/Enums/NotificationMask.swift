@@ -32,7 +32,7 @@ public enum NotificationMask: Int16 {
 
 public extension NotificationMask {
 
-    public var title: String {
+    var title: String {
         switch self {
         case .doNotNotify: return "no_reminder".localized
         case .justInTime: return "remind_just_in_time".localized
@@ -43,7 +43,7 @@ public extension NotificationMask {
         }
     }
     
-    public var minutes: Int {
+    var minutes: Int {
         switch self {
         case .doNotNotify: return 0
         case .justInTime: return 0

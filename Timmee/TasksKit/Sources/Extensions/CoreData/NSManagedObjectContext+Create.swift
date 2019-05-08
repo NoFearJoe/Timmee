@@ -12,7 +12,7 @@ import class CoreData.NSManagedObjectContext
 
 public extension NSManagedObjectContext {
     
-    public func create<T: NSManagedObject>() throws -> T {
+    func create<T: NSManagedObject>() throws -> T {
         return NSEntityDescription.insertNewObject(forEntityName: T.entityName, into: self) as! T
     }
     

@@ -10,7 +10,7 @@ import class Foundation.NSDate
 
 public extension SubtaskEntity {
 
-    public func map(from subtask: Subtask) {
+    func map(from subtask: Subtask) {
         self.id = subtask.id
         self.title = subtask.title
         self.isDone = subtask.isDone

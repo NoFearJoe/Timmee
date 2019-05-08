@@ -22,7 +22,7 @@ public extension Collection {
      
      */
     
-    public func dictionarised<Key: Hashable>(by key: (Self.Iterator.Element) -> Key) -> [Key: Self.Iterator.Element] {
+    func dictionarised<Key: Hashable>(by key: (Self.Iterator.Element) -> Key) -> [Key: Self.Iterator.Element] {
         var dictionary: [Key: Self.Iterator.Element] = [:]
         
         self.forEach {

@@ -8,7 +8,7 @@
 
 public extension GoalEntity {
     
-    public func map(from entity: Goal) {
+    func map(from entity: Goal) {
         id = entity.id
         title = entity.title
         note = entity.note

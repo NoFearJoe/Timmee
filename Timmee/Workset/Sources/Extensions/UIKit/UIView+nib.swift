@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIView {
     
-    public static func loadedFromNib(named name: String? = nil) -> Self {
+    static func loadedFromNib(named name: String? = nil) -> Self {
         return self.loadFromNib(named: name)
     }
     

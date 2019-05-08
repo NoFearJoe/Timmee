@@ -29,7 +29,7 @@ extension SubtasksEditorInteractor: SubtasksEditorOutput {
         taskProvider.task.subtasks.append(subtask)
         
         addSubtask(subtask, task: taskProvider.task) { [weak self] in
-            if let index = self?.sortedSubtasks.index(where: { $0.id == subtask.id }) {
+            if let index = self?.sortedSubtasks.firstIndex(where: { $0.id == subtask.id }) {
                 self?.output?.subtasksInserted(at: [index])
             }
         }
@@ -49,7 +49,7 @@ extension SubtasksEditorInteractor: SubtasksEditorOutput {
             removeSubtask(subtask, completion: { [weak self] in
                 guard let `self` = self else { return }
                 guard let taskProvider = self.taskProvider else { return  }
-                guard let deletionIndex = taskProvider.task.subtasks.index(where: { $0.id == subtask.id }) else { return }
+                guard let deletionIndex = taskProvider.task.subtasks.firstIndex(where: { $0.id == subtask.id }) else { return }
                 taskProvider.task.subtasks.remove(at: deletionIndex)
                 self.output?.subtasksRemoved(at: [index])
             })

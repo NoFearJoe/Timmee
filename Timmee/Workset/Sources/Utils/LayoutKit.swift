@@ -38,7 +38,7 @@ public struct Constraint {
 public extension Constraint {
     
     @discardableResult
-    public func to(_ view: UIView, addTo containerView: UIView? = nil) -> NSLayoutConstraint {
+    func to(_ view: UIView, addTo containerView: UIView? = nil) -> NSLayoutConstraint {
         self.view.translatesAutoresizingMaskIntoConstraints = false
 
         let constraint = NSLayoutConstraint(item: self.view,
@@ -59,7 +59,7 @@ public extension Constraint {
     }
     
     @discardableResult
-    public func toSuperview() -> NSLayoutConstraint? {
+    func toSuperview() -> NSLayoutConstraint? {
         guard let superview = view.superview else { return nil }
         return to(superview)
     }
@@ -69,14 +69,14 @@ public extension Constraint {
 public extension Array where Element == Constraint {
     
     @discardableResult
-    public func to(_ view: UIView, addTo containerView: UIView? = nil) -> [NSLayoutConstraint] {
+    func to(_ view: UIView, addTo containerView: UIView? = nil) -> [NSLayoutConstraint] {
         return self.map { constraint in
             return constraint.to(view, addTo: containerView)
         }
     }
     
     @discardableResult
-    public func toSuperview() -> [NSLayoutConstraint] {
+    func toSuperview() -> [NSLayoutConstraint] {
         return self.compactMap { constraint in
             return constraint.toSuperview()
         }
@@ -88,41 +88,41 @@ public extension UIView {
     
     // MARK: - Sides
     
-    public func top(_ offset: CGFloat = 0) -> Constraint {
+    func top(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .top, attribute2: .top, relation: .equal, constant: offset)
     }
     
-    public func bottom(_ offset: CGFloat = 0) -> Constraint {
+    func bottom(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .bottom, attribute2: .bottom, relation: .equal, multiplier: 1, constant: -offset)
     }
     
-    public func leading(_ offset: CGFloat = 0) -> Constraint {
+    func leading(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .leading, attribute2: .leading, relation: .equal, multiplier: 1, constant: offset)
     }
     
-    public func trailing(_ offset: CGFloat = 0) -> Constraint {
+    func trailing(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .trailing, attribute2: .trailing, relation: .equal, multiplier: 1, constant: -offset)
     }
     
     
-    public func topToBottom(_ offset: CGFloat = 0) -> Constraint {
+    func topToBottom(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .top, attribute2: .bottom, constant: offset)
     }
     
-    public func bottomToTop(_ offset: CGFloat = 0) -> Constraint {
+    func bottomToTop(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .bottom, attribute2: .top, constant: offset)
     }
     
-    public func leadingToTrailing(_ offset: CGFloat = 0) -> Constraint {
+    func leadingToTrailing(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .leading, attribute2: .trailing, constant: offset)
     }
     
-    public func trailingToLeading(_ offset: CGFloat = 0) -> Constraint {
+    func trailingToLeading(_ offset: CGFloat = 0) -> Constraint {
         return Constraint(view: self, attribute1: .trailing, attribute2: .leading, constant: offset)
     }
     
     
-    public func allEdges(_ offset: CGFloat = 0) -> [Constraint] {
+    func allEdges(_ offset: CGFloat = 0) -> [Constraint] {
         return [
             top(offset),
             bottom(offset),
@@ -133,11 +133,11 @@ public extension UIView {
     
     // MARK: - Center
     
-    public func centerX() -> Constraint {
+    func centerX() -> Constraint {
         return Constraint(view: self, attribute1: .centerX, attribute2: .centerX)
     }
     
-    public func centerY() -> Constraint {
+    func centerY() -> Constraint {
         return Constraint(view: self, attribute1: .centerY, attribute2: .centerY)
     }
     
@@ -160,37 +160,37 @@ public extension UIView {
     }
     
     @discardableResult
-    public func width(_ constant: CGFloat) -> NSLayoutConstraint {
+    func width(_ constant: CGFloat) -> NSLayoutConstraint {
         return size(.width, constant: constant)
     }
     
     @discardableResult
-    public func width(lessOrEqual constant: CGFloat) -> NSLayoutConstraint {
+    func width(lessOrEqual constant: CGFloat) -> NSLayoutConstraint {
         return size(.width, constant: constant, relation: .lessThanOrEqual)
     }
     
     @discardableResult
-    public func width(greatherOrEqual constant: CGFloat) -> NSLayoutConstraint {
+    func width(greatherOrEqual constant: CGFloat) -> NSLayoutConstraint {
         return size(.width, constant: constant, relation: .greaterThanOrEqual)
     }
     
     @discardableResult
-    public func height(_ constant: CGFloat) -> NSLayoutConstraint {
+    func height(_ constant: CGFloat) -> NSLayoutConstraint {
         return size(.height, constant: constant)
     }
     
     @discardableResult
-    public func height(lessOrEqual constant: CGFloat) -> NSLayoutConstraint {
+    func height(lessOrEqual constant: CGFloat) -> NSLayoutConstraint {
         return size(.height, constant: constant, relation: .lessThanOrEqual)
     }
     
     @discardableResult
-    public func height(greatherOrEqual constant: CGFloat) -> NSLayoutConstraint {
+    func height(greatherOrEqual constant: CGFloat) -> NSLayoutConstraint {
         return size(.height, constant: constant, relation: .greaterThanOrEqual)
     }
     
     @discardableResult
-    public func aspectRatio() -> NSLayoutConstraint {
+    func aspectRatio() -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let constraint = NSLayoutConstraint(item: self,

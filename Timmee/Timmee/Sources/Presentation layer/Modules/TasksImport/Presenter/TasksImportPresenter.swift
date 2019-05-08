@@ -93,7 +93,7 @@ extension TasksImportPresenter: TasksImportViewOutput {
     
     func didSelectTask(at indexPath: IndexPath) {
         if let selectedTask = self.task(at: indexPath) {
-            if let index = selectedTasks.index(where: { $0.id == selectedTask.id }) {
+            if let index = selectedTasks.firstIndex(where: { $0.id == selectedTask.id }) {
                 selectedTasks.remove(at: index)
             } else {
                 selectedTasks.append(selectedTask)

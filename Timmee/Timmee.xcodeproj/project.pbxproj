@@ -33,7 +33,6 @@
 		0C1F923821D5FCB400D3B9D6 /* TaskComplexParameterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F923721D5FCB400D3B9D6 /* TaskComplexParameterView.xib */; };
 		0C3B801121AD1212003F5394 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3B801021AD1212003F5394 /* NotificationsKit.framework */; };
 		0C3B801321AD1286003F5394 /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3B801021AD1212003F5394 /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */; };
 		0C5D847D1FF61C8C0019BEB2 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */; };
 		0C5DBF4C20F8A71A00D3228E /* TableListRepresentationBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */; };
 		0C5DBF4E20F8A8B400D3228E /* TableListRepresentationBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */; };
@@ -96,7 +95,6 @@
 		0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFD36200DD1C9000C2975 /* FinalEducationScreen.swift */; };
 		0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB8F2001FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift */; };
 		0CC5923F20AB1C3C00211653 /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5923E20AB1C3C00211653 /* ProVersionPurchase.swift */; };
-		0CC7C8562005E41F006758C1 /* NextDayNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */; };
 		0CC7C8582008C7F1006758C1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */; };
 		0CC7C85B2008CDFE006758C1 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85A2008CDFE006758C1 /* EducationViewController.swift */; };
 		0CC7C85D2008D208006758C1 /* AppearanceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */; };
@@ -104,7 +102,6 @@
 		0CCBBCF621D0BA5200EE5831 /* BorderedSelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCBBCF521D0BA5200EE5831 /* BorderedSelectableButton.swift */; };
 		0CCD3BA020A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD3B9F20A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift */; };
 		0CF30954201F301E00FD7E3E /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF30953201F301E00FD7E3E /* ListsViewController.swift */; };
-		0CF309742020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309732020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift */; };
 		0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */; };
 		0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */; };
 		0CF3097C2021E14700FD7E3E /* ListsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF3097B2021E14600FD7E3E /* ListsViewController+CollectionView.swift */; };
@@ -233,7 +230,6 @@
 		0C1F923721D5FCB400D3B9D6 /* TaskComplexParameterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskComplexParameterView.xib; sourceTree = "<group>"; };
 		0C3B801021AD1212003F5394 /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3B801421AD1CD4003F5394 /* Timmee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timmee.entitlements; sourceTree = "<group>"; };
-		0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationBaseCell.swift; sourceTree = "<group>"; };
 		0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationBaseCell.xib; sourceTree = "<group>"; };
@@ -305,7 +301,6 @@
 		0CCBBCF521D0BA5200EE5831 /* BorderedSelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedSelectableButton.swift; sourceTree = "<group>"; };
 		0CCD3B9F20A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorAudioNotePresenter.swift; sourceTree = "<group>"; };
 		0CF30953201F301E00FD7E3E /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
-		0CF309732020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRoundedCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDataConfigurator.swift; sourceTree = "<group>"; };
 		0CF3097B2021E14600FD7E3E /* ListsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListsViewController+CollectionView.swift"; sourceTree = "<group>"; };
@@ -889,8 +884,6 @@
 		0CF309722020B45700FD7E3E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0CF309732020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift */,
-				0C4B8A3E2023446500E9F459 /* SwipableCollectionViewCell.swift */,
 				0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */,
 				96594E5E2026DE1800998133 /* ListsSectionView.swift */,
 			);
@@ -1508,7 +1501,7 @@
 					96E543361F49EBB20081C6F0 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 485UNLA592;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1519,7 +1512,7 @@
 					96E5434D1F49EBB20081C6F0 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 485UNLA592;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 96E543361F49EBB20081C6F0;
 					};
@@ -1527,7 +1520,7 @@
 			};
 			buildConfigurationList = 96E543321F49EBB20081C6F0 /* Build configuration list for PBXProject "Timmee" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -1739,7 +1732,6 @@
 				0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */,
 				0C7B2A55208F612000009096 /* AppTheme.swift in Sources */,
 				0C9B2455207F5CEC009EF6DE /* TableListRepresentationAssembly.swift in Sources */,
-				0CF309742020B47400FD7E3E /* BaseRoundedCollectionViewCell.swift in Sources */,
 				0C8738D01FB9747700EA1571 /* CalendarView.swift in Sources */,
 				0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */,
 				963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */,
@@ -1766,7 +1758,6 @@
 				0C713F521FC54F5600D8FF8B /* TaskDueDatePicker.swift in Sources */,
 				0C9B246420808B7B009EF6DE /* GroupEditingPanelViewController.swift in Sources */,
 				96BE0A321F65B79C0041FBEA /* ListEditorPresenter.swift in Sources */,
-				0C4B8A3F2023446500E9F459 /* SwipableCollectionViewCell.swift in Sources */,
 				0CAFFD37200DD1C9000C2975 /* FinalEducationScreen.swift in Sources */,
 				96CF79321FB23C8700AD0594 /* SearchAssembly.swift in Sources */,
 				9615A48821E343CF008923C3 /* FloatingButton.swift in Sources */,
@@ -1790,7 +1781,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CC7C8562005E41F006758C1 /* NextDayNumberTests.swift in Sources */,
 				96E543531F49EBB20081C6F0 /* TimmeeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1967,8 +1957,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1985,8 +1974,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Timmee/BridgingHeader.h;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -2000,8 +1988,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TimmeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timmee.app/Timmee";
 			};
 			name = Debug;
@@ -2016,8 +2003,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TimmeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timmee.app/Timmee";
 			};
 			name = Release;

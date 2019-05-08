@@ -273,8 +273,8 @@ extension Habit: Hashable {
         return lhs.isEqual(to: rhs)
     }
     
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
 }

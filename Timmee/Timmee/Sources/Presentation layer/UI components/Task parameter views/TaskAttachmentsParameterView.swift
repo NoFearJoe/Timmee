@@ -62,7 +62,7 @@ extension TaskAttachmentsParameterView: UICollectionViewDataSource {
             }
             
             DispatchQueue.global().async {
-                if let data = FilesService().getFileFromDocuments(withName: attachmentName) {
+                if let data = FilesService.init(directory: "attachments").getFileFromDocuments(withName: attachmentName) {
                     DispatchQueue.main.async {
                         cell.image = UIImage(data: data)
                     }

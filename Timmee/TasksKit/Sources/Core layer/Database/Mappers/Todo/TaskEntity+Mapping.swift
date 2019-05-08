@@ -14,7 +14,7 @@ import struct CoreLocation.CLLocationCoordinate2D
 
 public extension TaskEntity {
 
-    public func map(from entity: Task) {
+    func map(from entity: Task) {
         id = entity.id
         kind = entity.kind.rawValue
         title = entity.title

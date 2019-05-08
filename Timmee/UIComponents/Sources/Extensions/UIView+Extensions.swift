@@ -10,14 +10,14 @@ import UIKit
 
 public extension UIView {
     
-    public func configureShadow(radius: CGFloat, opacity: Float, color: UIColor = .black, offset: CGSize = .zero) {
+    func configureShadow(radius: CGFloat, opacity: Float, color: UIColor = .black, offset: CGSize = .zero) {
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offset
         layer.shadowOpacity = opacity
         layer.shadowRadius = radius
     }
     
-    public func currentFirstResponder() -> UIResponder? {
+    func currentFirstResponder() -> UIResponder? {
         if self.isFirstResponder {
             return self
         }

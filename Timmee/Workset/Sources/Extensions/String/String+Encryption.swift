@@ -10,7 +10,7 @@ import class Foundation.NSData
 
 public extension String {
     
-    public func sha256() -> String {
+    func sha256() -> String {
         guard let data = self.data(using: .utf8) else { return "" }
         return data.base64EncodedString()
     }

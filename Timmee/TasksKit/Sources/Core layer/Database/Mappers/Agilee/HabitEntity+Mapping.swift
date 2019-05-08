@@ -10,7 +10,7 @@ import class Foundation.NSArray
 
 public extension HabitEntity {
     
-    public func map(from entity: Habit) {
+    func map(from entity: Habit) {
         id = entity.id
         title = entity.title
         note = entity.note

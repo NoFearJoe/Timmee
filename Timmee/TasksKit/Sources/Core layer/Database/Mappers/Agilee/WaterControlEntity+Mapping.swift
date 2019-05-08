@@ -10,7 +10,7 @@ import class Foundation.NSArray
 
 public extension WaterControlEntity {
     
-    public func map(from waterControl: WaterControl) {
+    func map(from waterControl: WaterControl) {
         neededVolume = Int32(waterControl.neededVolume)
         drunkVolumes = waterControl.drunkVolume as NSDictionary
         lastConfiguredSprintID = waterControl.lastConfiguredSprintID

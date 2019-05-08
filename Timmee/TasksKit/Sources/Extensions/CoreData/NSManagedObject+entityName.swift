@@ -12,11 +12,11 @@ import class CoreData.NSManagedObject
 
 public extension NSManagedObject {
     
-    public class var entityName: String {
+    class var entityName: String {
         return String(describing: self.classForCoder())
     }
     
-    public static func request<T: NSManagedObject>() -> FetchRequest<T> {
+    static func request<T: NSManagedObject>() -> FetchRequest<T> {
         return FetchRequest() as FetchRequest<T>
     }
     

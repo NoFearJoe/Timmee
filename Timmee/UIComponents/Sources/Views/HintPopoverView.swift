@@ -162,14 +162,14 @@ public final class HintPopoverView: UIView {
         let position = superview.convert(view.center, to: holder)
         
         if position.x <= self.leftInset {
-            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView,
+            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView!,
                                                                            attribute: .leading,
                                                                            relatedBy: .equal,
                                                                            toItem: self,
                                                                            attribute: .leading,
                                                                            multiplier: 1,
                                                                            constant: 0)
-            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.roundedView,
+            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.roundedView!,
                                                                          attribute: .top,
                                                                          relatedBy: .equal,
                                                                          toItem: self.triangleView,
@@ -178,14 +178,14 @@ public final class HintPopoverView: UIView {
                                                                          constant: 0)
             self.triangleView.image = #imageLiteral(resourceName: "popoverCornerTriangle")//.rotated(with: .down)
         } else if holder.bounds.width - position.x - HintPopoverView.roundedViewCornerRadius <= self.rightInset {
-            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView,
+            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView!,
                                                                            attribute: .trailing,
                                                                            relatedBy: .equal,
                                                                            toItem: self,
                                                                            attribute: .trailing,
                                                                            multiplier: 1,
                                                                            constant: 0)
-            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.roundedView,
+            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.roundedView!,
                                                                          attribute: .top,
                                                                          relatedBy: .equal,
                                                                          toItem: self.triangleView,
@@ -194,14 +194,14 @@ public final class HintPopoverView: UIView {
                                                                          constant: 0)
             self.triangleView.image = #imageLiteral(resourceName: "popoverCornerTriangle")
         } else if self.isBeyondBottom{
-            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView,
+            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView!,
                                                                            attribute: .centerX,
                                                                            relatedBy: .equal,
                                                                            toItem: self,
                                                                            attribute: .left,
                                                                            multiplier: 1,
                                                                            constant: position.x - self.leftInset)
-            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.triangleView,
+            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.triangleView!,
                                                                          attribute: .top,
                                                                          relatedBy: .equal,
                                                                          toItem: self.roundedView,
@@ -210,14 +210,14 @@ public final class HintPopoverView: UIView {
                                                                          constant: 0)
             self.triangleView.image = #imageLiteral(resourceName: "popoverTriangle")//.rotated(with: .down)
         } else {
-            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView,
+            self.triangleHorisontalPositionConstraint = NSLayoutConstraint(item: self.triangleView!,
                                                                            attribute: .centerX,
                                                                            relatedBy: .equal,
                                                                            toItem: self,
                                                                            attribute: .left,
                                                                            multiplier: 1,
                                                                            constant: position.x - self.leftInset)
-            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.roundedView,
+            self.triangleVerticalPositionConstraint = NSLayoutConstraint(item: self.roundedView!,
                                                                          attribute: .top,
                                                                          relatedBy: .equal,
                                                                          toItem: self.triangleView,
@@ -243,11 +243,11 @@ public final class HintPopoverView: UIView {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-(0)-[rounded]-(0)-|",
                                                            options: [],
                                                            metrics: nil,
-                                                           views: ["rounded": self.roundedView]))
+                                                           views: ["rounded": self.roundedView!]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[rounded]-(0)-|",
                                                            options: [],
                                                            metrics: nil,
-                                                           views: ["rounded": self.roundedView]))
+                                                           views: ["rounded": self.roundedView!]))
         
         self.updateTrianglePosition()
         
@@ -328,7 +328,7 @@ public final class HintPopoverView: UIView {
         viewToAdd.addConstraint(NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: viewToAdd, attribute: .left, multiplier: 1, constant: self.leftInset))
         viewToAdd.addConstraint(NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: viewToAdd, attribute: .right, multiplier: 1, constant: -self.rightInset))
         
-        let topSpaceConstraint = NSLayoutConstraint(item: self.triangleView, attribute: .top, relatedBy: .equal, toItem: viewToAdd, attribute: .top, multiplier: 1, constant: 0)
+        let topSpaceConstraint = NSLayoutConstraint(item: self.triangleView!, attribute: .top, relatedBy: .equal, toItem: viewToAdd, attribute: .top, multiplier: 1, constant: 0)
         self.popoverViewTopSpaceConstraint = topSpaceConstraint
         self.updateTopSpace()
         

@@ -140,6 +140,7 @@ public final class CacheObserver<T: Equatable>: NSObject, NSFetchedResultsContro
             batchChanges.append(.update(indexPathWithOffset!))
         case .move:
             batchChanges.append(.move(indexPathWithOffset!, newIndexPathWithOffset!))
+        @unknown default: break
         }
     }
     
@@ -201,56 +202,56 @@ extension CacheObserver: CacheObserverConfigurable {
 
 public extension CacheObserver {
 
-    public func numberOfSections() -> Int {
+    func numberOfSections() -> Int {
         guard let sections = fetchedResultsController.sections else { return 0 }
         return sections.count
     }
     
-    public func numberOfItems(in section: Int) -> Int {
+    func numberOfItems(in section: Int) -> Int {
         guard let sections = fetchedResultsController.sections else { return 0 }
         guard let section = sections.item(at: section - sectionOffset) else { return 0 }
         return section.numberOfObjects
     }
     
-    public func item(at indexPath: IndexPath) -> T {
+    func item(at indexPath: IndexPath) -> T {
         return mapping(entity(at: indexPath))
     }
     
-    public func items(in section: Int) -> [T] {
+    func items(in section: Int) -> [T] {
         return fetchedResultsController.fetchedObjects?.compactMap { self.mapping($0 as! NSManagedObject) } ?? []
     }
     
-    public func entity(at indexPath: IndexPath) -> NSManagedObject {
+    func entity(at indexPath: IndexPath) -> NSManagedObject {
         var indexPathWithOffset = indexPath
         indexPathWithOffset.section -= sectionOffset
         
         return fetchedResultsController.object(at: indexPathWithOffset) as! NSManagedObject
     }
     
-    public func index(of item: T) -> Int? {
-        return fetchedResultsController.fetchedObjects?.index(where: { entity in
+    func index(of item: T) -> Int? {
+        return fetchedResultsController.fetchedObjects?.firstIndex(where: { entity in
             let object = self.mapping(entity as! NSManagedObject)
             return object == item
         })
     }
     
-    public func totalObjectsCount() -> Int {
+    func totalObjectsCount() -> Int {
         return (0..<numberOfSections()).reduce(0) { (result, section) in
             return result + self.numberOfItems(in: section)
         }
     }
     
-    public func containsSection(withName name: String) -> Bool {
+    func containsSection(withName name: String) -> Bool {
         return sectionInfo(with: name) != nil
     }
     
-    public func sectionInfo(with sectionName: String) -> (name: String, numberOfItems: Int)? {
+    func sectionInfo(with sectionName: String) -> (name: String, numberOfItems: Int)? {
         guard let sections = fetchedResultsController.sections else { return nil }
         guard let sectionInfo = sections.first(where: { $0.name == sectionName }) else { return nil }
         return (sectionInfo.name, sectionInfo.numberOfObjects)
     }
     
-    public func sectionInfo(at index: Int) -> (name: String, numberOfItems: Int)? {
+    func sectionInfo(at index: Int) -> (name: String, numberOfItems: Int)? {
         guard let sections = fetchedResultsController.sections else { return nil }
         guard let sectionInfo = sections.item(at: index) else { return nil }
         return (sectionInfo.name, sectionInfo.numberOfObjects)

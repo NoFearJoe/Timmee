@@ -18,7 +18,7 @@ public protocol AlertInput: class {
 }
 
 public extension AlertInput where Self: UIViewController {
-    public func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?) {
+    func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach { action in
             switch action {

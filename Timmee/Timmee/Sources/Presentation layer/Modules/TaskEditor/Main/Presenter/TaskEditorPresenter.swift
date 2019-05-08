@@ -36,6 +36,8 @@ final class TaskEditorPresenter {
     var interactor: TaskEditorInteractorInput!
     var router: TaskEditorRouterInput!
     
+    private lazy var filesService = FilesService(directory: "attachments")
+    
     weak var output: TaskEditorOutput?
     
     weak var audioNotePresenter: TaskEditorAudioNotePresenterInput!
@@ -131,7 +133,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         interactor.saveTask(task, listID: isNewTask ? listID : nil, success: { [weak self] in
             guard let `self` = self else { return }
             DispatchQueue.main.async {
-                self.attachmentsToRemove.forEach { FilesService().removeFileFromDocuments(withName: $0) }
+                self.attachmentsToRemove.forEach { self.filesService.removeFileFromDocuments(withName: $0) }
                 NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { isAuthorized in
                     if isAuthorized { self.interactor.scheduleTask(self.task) }
                     if self.isNewTask { self.output?.taskCreated() }
@@ -311,7 +313,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func attachmentSelected(_ attachment: String) {
-        let photosData = task.attachments.compactMap { FilesService().getFileFromDocuments(withName: $0) }
+        let photosData = task.attachments.compactMap { filesService.getFileFromDocuments(withName: $0) }
         let photos = photosData.compactMap { UIImage(data: $0) }
         
         guard !photos.isEmpty else { return }
@@ -322,7 +324,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func attachmentRemoved(_ attachment: String) {
-        FilesService().removeFileFromDocuments(withName: attachment)
+        filesService.removeFileFromDocuments(withName: attachment)
         task.attachments.remove(object: attachment)
         
         view.setAttachments(task.attachments)

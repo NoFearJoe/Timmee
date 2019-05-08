@@ -76,8 +76,8 @@ extension Sprint: Equatable {
 }
 
 extension Sprint: Hashable {
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

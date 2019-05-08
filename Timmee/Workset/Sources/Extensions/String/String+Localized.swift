@@ -9,11 +9,11 @@
 import func Foundation.NSLocalizedString
 
 public extension String {
-    public var localized: String {
+    var localized: String {
         return NSLocalizedString(self, comment: "")
     }
     
-    public func localized(with number: Int) -> String {
+    func localized(with number: Int) -> String {
         return String(format: self.localized, number)
     }
 }

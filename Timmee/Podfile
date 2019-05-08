@@ -1,66 +1,16 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target 'Agile diary' do
-  workspace 'Agile diary.xcworkspace'
-  project 'Agile diary.xcodeproj'
+target 'Timmee' do
+  workspace 'Timmee.xcworkspace'
+  project 'Timmee.xcodeproj'
     
   pod 'SwipeCellKit'
   pod 'Foto'
-  pod 'Charts'
   pod 'Dwifft'
-  
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Storage'
-  pod 'FBSDKLoginKit'
   
   pod 'Fabric'
   pod 'Crashlytics'
-end
-
-target 'Agile diary debug' do
-    workspace 'Agile diary.xcworkspace'
-    project 'Agile diary.xcodeproj'
-    
-    pod 'SwipeCellKit'
-    pod 'Foto'
-    pod 'Charts'
-    pod 'Dwifft'
-    
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Firestore'
-    pod 'Firebase/Storage'
-    pod 'FBSDKLoginKit'
-    
-    pod 'Fabric'
-    pod 'Crashlytics'
-end
-
-target 'HabitsTodayExtension' do
-    inherit! :search_paths
-    
-    workspace 'Agile diary.xcworkspace'
-    project 'Agile diary.xcodeproj'
-    
-    pod 'SwipeCellKit'
-end
-
-target 'Synchronization' do
-    project 'Synchronization.xcodeproj'
-    
-    pod 'Firebase/Core'
-    pod 'Firebase/Firestore'
-end
-
-target 'Authorization' do    
-    project 'Authorization.xcodeproj'
-    
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    pod 'FBSDKLoginKit'
 end
 
 target 'UIComponents' do

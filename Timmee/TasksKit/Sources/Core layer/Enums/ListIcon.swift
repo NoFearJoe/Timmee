@@ -55,7 +55,7 @@ public enum ListIcon: Int {
 
 public extension ListIcon {
 
-    public var image: UIImage {
+    var image: UIImage {
         switch self {
         case .default: return #imageLiteral(resourceName: "defaultListIcon")
         case .job: return #imageLiteral(resourceName: "jobListIcon")
@@ -87,7 +87,7 @@ public extension ListIcon {
 
 public extension ListIcon {
 
-    public static var randomIcon: ListIcon {
+    static var randomIcon: ListIcon {
         let randomRawValue = Int(arc4random_uniform(13))
         return ListIcon(rawValue: randomRawValue) ?? .default
     }

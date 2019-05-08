@@ -8,7 +8,7 @@
 
 public extension SprintEntity {
     
-    public func map(from entity: Sprint) {
+    func map(from entity: Sprint) {
         id = entity.id
         number = Int32(entity.number)
         startDate = entity.startDate

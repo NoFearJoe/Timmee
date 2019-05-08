@@ -12,7 +12,7 @@ import class LocalAuthentication.LAContext
 
 public extension UIDevice {
     
-    public var biometricsType: BiometricsType {
+    var biometricsType: BiometricsType {
         let localAuthenticationContext = LAContext()
         guard localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
             else { return .none }
@@ -22,6 +22,7 @@ public extension UIDevice {
             case .faceID: return .faceID
             case .touchID: return .touchID
             case .none: return .none
+            @unknown default: return .none
             }
         } else {
             return .touchID

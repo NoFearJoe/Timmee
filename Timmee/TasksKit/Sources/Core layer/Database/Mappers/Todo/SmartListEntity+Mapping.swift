@@ -10,7 +10,7 @@ import class Foundation.NSDate
 
 public extension SmartListEntity {
     
-    public func map(from list: SmartList) {
+    func map(from list: SmartList) {
         id = list.id
         sortPosition = Int16(list.smartListType.sortPosition)
     }

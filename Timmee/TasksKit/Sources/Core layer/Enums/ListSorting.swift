@@ -47,7 +47,7 @@ public enum ListSorting: Int {
 
 public extension ListSorting {
 
-    public var sortDescriptor: NSSortDescriptor {
+    var sortDescriptor: NSSortDescriptor {
         switch self {
         case .byCreationDateAscending:
             return NSSortDescriptor(key: "creationDate", ascending: true)
