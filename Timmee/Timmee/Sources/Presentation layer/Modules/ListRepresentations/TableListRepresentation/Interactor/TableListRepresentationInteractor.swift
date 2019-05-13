@@ -51,7 +51,7 @@ final class TableListRepresentationInteractor {
     
     private var lastListID: String?
     
-    private var scope: Scope<TaskEntity, Task>!
+    private var observer: CachedEntitiesObserver<TaskEntity, Task>!
     
     private var fetchedTasks: [Task] = []
     
@@ -60,7 +60,7 @@ final class TableListRepresentationInteractor {
 extension TableListRepresentationInteractor: TableListRepresentationInteractorInput {
     
     func subscribeToTasks(in list: List?) {
-        if let listID = list?.id, scope == nil || lastListID != listID {
+        if let listID = list?.id, observer == nil || lastListID != listID {
             setupScope(listID: listID)
         } else {
             output.didNotSubscribeToTasks()
@@ -139,28 +139,28 @@ extension TableListRepresentationInteractor: TableListRepresentationInteractorIn
 extension TableListRepresentationInteractor: TableListRepresentationDataSource {
     
     func sectionsCount() -> Int {
-        return scope?.numberOfSections() ?? 0
+        return observer?.numberOfSections() ?? 0
     }
     
     func itemsCount(in section: Int) -> Int {
-        return scope?.numberOfItems(in: section) ?? 0
+        return observer?.numberOfItems(in: section) ?? 0
     }
     
     func item(at index: Int, in section: Int) -> Task? {
         let indexPath = IndexPath(row: index, section: section)
-        return scope?.item(at: indexPath)
+        return observer?.item(at: indexPath)
     }
     
     func sectionInfo(forSectionAt index: Int) -> (name: String, numberOfItems: Int)? {
-        return scope?.sectionInfo(at: index)
+        return observer?.sectionInfo(at: index)
     }
     
     func sectionInfo(forSectionWithName name: String) -> (name: String, numberOfItems: Int)? {
-        return scope?.sectionInfo(with: name)
+        return observer?.sectionInfo(with: name)
     }
     
     func totalObjectsCount() -> Int {
-        return scope?.totalObjectsCount() ?? 0
+        return observer?.totalObjectsCount() ?? 0
     }
     
 }
@@ -168,16 +168,16 @@ extension TableListRepresentationInteractor: TableListRepresentationDataSource {
 private extension TableListRepresentationInteractor {
     
     func setupScope(listID: String) {
-        scope = tasksService.tasksScope(listID: listID)
-        scope.setDelegate(ScopeDelegate<Task>(onInitialFetch: { [weak self] _ in
+        observer = tasksService.tasksScope(listID: listID)
+        observer.setDelegate(CachedEntitiesObserverDelegate<Task>(onInitialFetch: { [weak self] _ in
             self?.output.initialTasksFetched()
         }, onEntitiesCountChange: { [weak self] count in
             self?.output.tasksCountChanged(count: count)
         }, onChanges: { [weak self] changes in
             changes.forEach { self?.output.taskChanged(change: $0) }
         }))
-        output.prepareCacheObserver(scope)
-        scope.fetch()
+        output.prepareCacheObserver(observer)
+        observer.fetch()
     }
     
 }

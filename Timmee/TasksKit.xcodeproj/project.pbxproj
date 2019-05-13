@@ -19,6 +19,9 @@
 		0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24082077B9EE009EF6DE /* NSManagedObject+entityName.swift */; };
 		0C9B242F207E244B009EF6DE /* TableViewCacheAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */; };
 		0C9B2431207E2457009EF6DE /* CollectionViewCacheAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */; };
+		0CB31F01228948DD00520791 /* CoreDataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB31F00228948DD00520791 /* CoreDataChange.swift */; };
+		0CB31F032289493E00520791 /* CacheObserverProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB31F022289493E00520791 /* CacheObserverProtocols.swift */; };
+		0CB31F0422894CD600520791 /* CacheObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018222077B2BD00633EFF /* CacheObserver.swift */; };
 		0CD8F81A2240B6A500061B58 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F8192240B6A500061B58 /* Mood.swift */; };
 		0CD8F81C2240B79E00061B58 /* MoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81B2240B79E00061B58 /* MoodService.swift */; };
 		0CD8F81E2240BE5A00061B58 /* MoodEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81D2240BE5A00061B58 /* MoodEntity+Mapping.swift */; };
@@ -42,7 +45,6 @@
 		0CE018632077B2BD00633EFF /* TaskEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0181F2077B2BD00633EFF /* TaskEntity+Mapping.swift */; };
 		0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018202077B2BD00633EFF /* TagEntity+Mapping.swift */; };
 		0CE018652077B2BD00633EFF /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018212077B2BD00633EFF /* Database.swift */; };
-		0CE018662077B2BD00633EFF /* CacheObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018222077B2BD00633EFF /* CacheObserver.swift */; };
 		0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018232077B2BD00633EFF /* ListEntity+Mapping.swift */; };
 		0CE018682077B2BD00633EFF /* SmartListEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018242077B2BD00633EFF /* SmartListEntity+Mapping.swift */; };
 		0CE018692077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018252077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift */; };
@@ -79,6 +81,8 @@
 		0C9B24082077B9EE009EF6DE /* NSManagedObject+entityName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+entityName.swift"; sourceTree = "<group>"; };
 		0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCacheAdapter.swift; sourceTree = "<group>"; };
 		0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCacheAdapter.swift; sourceTree = "<group>"; };
+		0CB31F00228948DD00520791 /* CoreDataChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataChange.swift; sourceTree = "<group>"; };
+		0CB31F022289493E00520791 /* CacheObserverProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheObserverProtocols.swift; sourceTree = "<group>"; };
 		0CC4063721F0B1DC0069C6C5 /* Timmee3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee3.xcdatamodel; sourceTree = "<group>"; };
 		0CD8F8192240B6A500061B58 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		0CD8F81B2240B79E00061B58 /* MoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodService.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 		0C9B242D207E228F009EF6DE /* CacheObserver */ = {
 			isa = PBXGroup;
 			children = (
+				0CB31F00228948DD00520791 /* CoreDataChange.swift */,
+				0CB31F022289493E00520791 /* CacheObserverProtocols.swift */,
 				0CE018222077B2BD00633EFF /* CacheObserver.swift */,
 				0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */,
 				0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */,
@@ -499,6 +505,7 @@
 				0C90018E21F9912100D6C15F /* IdentifiableEntity.swift in Sources */,
 				0CD8F81E2240BE5A00061B58 /* MoodEntity+Mapping.swift in Sources */,
 				0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */,
+				0CB31F0422894CD600520791 /* CacheObserver.swift in Sources */,
 				9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */,
 				0CE018612077B2BD00633EFF /* FetchRequest.swift in Sources */,
 				0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */,
@@ -509,12 +516,12 @@
 				96BE8390217511E500CDECAF /* Habit.swift in Sources */,
 				96BE8395217518AD00CDECAF /* GoalEntity+Mapping.swift in Sources */,
 				0CE018572077B2BD00633EFF /* FilesService.swift in Sources */,
-				0CE018662077B2BD00633EFF /* CacheObserver.swift in Sources */,
 				0CE018562077B2BD00633EFF /* TagsService.swift in Sources */,
 				0CE018592077B2BD00633EFF /* TasksService.swift in Sources */,
 				0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */,
 				96BE838E217511D700CDECAF /* Goal.swift in Sources */,
 				0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */,
+				0CB31F032289493E00520791 /* CacheObserverProtocols.swift in Sources */,
 				0C9B2431207E2457009EF6DE /* CollectionViewCacheAdapter.swift in Sources */,
 				0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */,
 				0CE0186A2077B2BD00633EFF /* ListSorting.swift in Sources */,
@@ -523,6 +530,7 @@
 				0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */,
 				9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */,
 				0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */,
+				0CB31F01228948DD00520791 /* CoreDataChange.swift in Sources */,
 				0CE018602077B2BD00633EFF /* TimeTemplate.swift in Sources */,
 				0CE018622077B2BD00633EFF /* SubtaskEntity+Mapping.swift in Sources */,
 				0CE0185D2077B2BD00633EFF /* SmartList.swift in Sources */,

@@ -26,8 +26,8 @@ public protocol GoalsManager: class {
 }
 
 public protocol GoalsObserverProvider: class {
-    func goalsObserver(sprintID: String) -> CacheObserver<Goal>
-    func goalsScope(sprintID: String) -> Scope<GoalEntity, Goal>
+//    func goalsObserver(sprintID: String) -> CacheObserver<Goal>
+    func goalsScope(sprintID: String) -> CachedEntitiesObserver<GoalEntity, Goal>
 }
 
 public protocol GoalEntitiesProvider: class {
@@ -158,33 +158,33 @@ extension GoalsService: GoalsManager {
 
 extension GoalsService: GoalsObserverProvider {
     
-    public func goalsObserver(sprintID: String) -> CacheObserver<Goal> {
-        let predicate = NSPredicate(format: "sprint.id = %@", sprintID)
-        let request = GoalsService.allGoalsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
-        let context = Database.localStorage.readContext
-        let goalsObserver = CacheObserver<Goal>(request: request,
-                                                  section: nil,
-                                                  cacheName: nil,
-                                                  context: context)
-        
-        goalsObserver.setMapping { entity in
-            let entity = entity as! GoalEntity
-            return Goal(goal: entity)
-        }
-        
-        return goalsObserver
-    }
+//    public func goalsObserver(sprintID: String) -> CacheObserver<Goal> {
+//        let predicate = NSPredicate(format: "sprint.id = %@", sprintID)
+//        let request = GoalsService.allGoalsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
+//        let context = Database.localStorage.readContext
+//        let goalsObserver = CacheObserver<Goal>(request: request,
+//                                                  section: nil,
+//                                                  cacheName: nil,
+//                                                  context: context)
+//        
+//        goalsObserver.setMapping { entity in
+//            let entity = entity as! GoalEntity
+//            return Goal(goal: entity)
+//        }
+//        
+//        return goalsObserver
+//    }
     
-    public func goalsScope(sprintID: String) -> Scope<GoalEntity, Goal> {
+    public func goalsScope(sprintID: String) -> CachedEntitiesObserver<GoalEntity, Goal> {
         let predicate = NSPredicate(format: "sprint.id = %@", sprintID)
         let request = GoalsService.allGoalsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
         let context = Database.localStorage.readContext
         
-        let scope = Scope<GoalEntity, Goal>(context: context,
+        let observer = CachedEntitiesObserver<GoalEntity, Goal>(context: context,
                                             baseRequest: request,
                                             mapping: { Goal(goal: $0) })
         
-        return scope
+        return observer
     }
     
 }

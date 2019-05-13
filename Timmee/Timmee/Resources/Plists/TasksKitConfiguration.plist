@@ -5,7 +5,7 @@
 	<key>database_shared_group</key>
 	<string>group.Scope</string>
 	<key>database_configuration</key>
-	<string>Scope</string>
+	<string>CachedEntitiesObserver</string>
 	<key>database_name</key>
 	<string>Timmee</string>
 </dict>

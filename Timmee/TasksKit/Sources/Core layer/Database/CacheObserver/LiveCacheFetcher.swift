@@ -9,7 +9,7 @@
 import CoreData
 import Dwifft
 
-public struct ScopeDelegate<Entity: Equatable> {
+public struct CachedEntitiesObserverDelegate<Entity: Equatable> {
     let onInitialFetch: (([String: [Entity]]) -> Void)?
     let onEntitiesCountChange: ((Int) -> Void)?
     let onChanges: (([CoreDataChange]) -> Void)?
@@ -25,7 +25,8 @@ public struct ScopeDelegate<Entity: Equatable> {
     }
 }
 
-public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & CustomEquatable & Copyable>: CacheSubscribable where Entity.T == Entity {
+/// Своя реализация NSFetchedResultsController, позволяющая более гибко разбивать сущности на секции и фильтровать их
+public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity: Equatable & CustomEquatable & Copyable>: CacheSubscribable where Entity.T == Entity {
     
     public typealias Observer = ([String: [Entity]]) -> Void
     
@@ -36,10 +37,10 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
     let filter: ((Entity) -> Bool)?
     let sectionsOffset: Int
     
-    var delegate: ScopeDelegate<Entity>!
+    var delegate: CachedEntitiesObserverDelegate<Entity>!
     private weak var subscriber: CacheSubscriber?
     
-    private let processingQueue = DispatchQueue(label: "scope_processing_queue")
+    private let processingQueue = DispatchQueue(label: "cached_entities_observer_processing_queue")
     
     private var currentSectionedEntities: [String: [Entity]] = [:]
     private var currentSectionedValues: SectionedValues<String, Entity> = .init()
@@ -64,7 +65,7 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
         NotificationCenter.default.removeObserver(self)
     }
     
-    public func setDelegate(_ delegate: ScopeDelegate<Entity>) {
+    public func setDelegate(_ delegate: CachedEntitiesObserverDelegate<Entity>) {
         self.delegate = delegate
     }
     
@@ -186,7 +187,7 @@ public final class Scope<ManagedObject: NSManagedObject, Entity: Equatable & Cus
     
 }
 
-extension Scope {
+extension CachedEntitiesObserver {
     
     public func numberOfSections() -> Int {
         return currentSectionedEntities.count
