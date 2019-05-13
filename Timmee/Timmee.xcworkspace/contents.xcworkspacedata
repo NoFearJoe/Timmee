@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Timmee.xcodeproj">
+      location = "group:/Users/i.kharabet/Documents/GitHub/Timmee/Timmee/Scope.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:UIComponents.xcodeproj">

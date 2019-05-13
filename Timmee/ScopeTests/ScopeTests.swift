@@ -1,15 +1,15 @@
 //
-//  TimmeeTests.swift
-//  TimmeeTests
+//  ScopeTests.swift
+//  ScopeTests
 //
 //  Created by Ilya Kharabet on 20.08.17.
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
 import XCTest
-@testable import Timmee
+@testable import Scope
 
-class TimmeeTests: XCTestCase {
+class ScopeTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -171,7 +171,7 @@
 		96CF79301FB2377B00AD0594 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF792F1FB2377B00AD0594 /* SearchInteractor.swift */; };
 		96CF79321FB23C8700AD0594 /* SearchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF79311FB23C8700AD0594 /* SearchAssembly.swift */; };
 		96CF79341FB2DFBB00AD0594 /* TableListRepresentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CF79331FB2DFBB00AD0594 /* TableListRepresentationCell.xib */; };
-		96E543531F49EBB20081C6F0 /* TimmeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E543521F49EBB20081C6F0 /* TimmeeTests.swift */; };
+		96E543531F49EBB20081C6F0 /* ScopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E543521F49EBB20081C6F0 /* ScopeTests.swift */; };
 		96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E5435F1F49ED890081C6F0 /* Assets.xcassets */; };
 		96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E543681F49ED890081C6F0 /* LaunchScreen.storyboard */; };
 		96E5437D1F49ED890081C6F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5436D1F49ED890081C6F0 /* AppDelegate.swift */; };
@@ -229,7 +229,7 @@
 		0C1F923521D5FC3600D3B9D6 /* TaskParameterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskParameterView.xib; sourceTree = "<group>"; };
 		0C1F923721D5FCB400D3B9D6 /* TaskComplexParameterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskComplexParameterView.xib; sourceTree = "<group>"; };
 		0C3B801021AD1212003F5394 /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C3B801421AD1CD4003F5394 /* Timmee.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timmee.entitlements; sourceTree = "<group>"; };
+		0C3B801421AD1CD4003F5394 /* Scope.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scope.entitlements; sourceTree = "<group>"; };
 		0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationBaseCell.swift; sourceTree = "<group>"; };
 		0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationBaseCell.xib; sourceTree = "<group>"; };
@@ -375,9 +375,9 @@
 		96CF792F1FB2377B00AD0594 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		96CF79311FB23C8700AD0594 /* SearchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAssembly.swift; sourceTree = "<group>"; };
 		96CF79331FB2DFBB00AD0594 /* TableListRepresentationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationCell.xib; sourceTree = "<group>"; };
-		96E543371F49EBB20081C6F0 /* Timmee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timmee.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		96E5434E1F49EBB20081C6F0 /* TimmeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimmeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		96E543521F49EBB20081C6F0 /* TimmeeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimmeeTests.swift; sourceTree = "<group>"; };
+		96E543371F49EBB20081C6F0 /* Scope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scope.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E5434E1F49EBB20081C6F0 /* ScopeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScopeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E543521F49EBB20081C6F0 /* ScopeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeTests.swift; sourceTree = "<group>"; };
 		96E543541F49EBB20081C6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E5435F1F49ED890081C6F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96E543651F49ED890081C6F0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1256,8 +1256,8 @@
 		96E5432E1F49EBB20081C6F0 = {
 			isa = PBXGroup;
 			children = (
-				96E543391F49EBB20081C6F0 /* Timmee */,
-				96E543511F49EBB20081C6F0 /* TimmeeTests */,
+				96E543391F49EBB20081C6F0 /* Scope */,
+				96E543511F49EBB20081C6F0 /* ScopeTests */,
 				96E543381F49EBB20081C6F0 /* Products */,
 				A0CA419F3C43D8434E707942 /* Frameworks */,
 				B0BCE10F040E52F1C6FD485F /* Pods */,
@@ -1267,31 +1267,31 @@
 		96E543381F49EBB20081C6F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96E543371F49EBB20081C6F0 /* Timmee.app */,
-				96E5434E1F49EBB20081C6F0 /* TimmeeTests.xctest */,
+				96E543371F49EBB20081C6F0 /* Scope.app */,
+				96E5434E1F49EBB20081C6F0 /* ScopeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		96E543391F49EBB20081C6F0 /* Timmee */ = {
+		96E543391F49EBB20081C6F0 /* Scope */ = {
 			isa = PBXGroup;
 			children = (
-				0C3B801421AD1CD4003F5394 /* Timmee.entitlements */,
+				0C3B801421AD1CD4003F5394 /* Scope.entitlements */,
 				96E5436A1F49ED890081C6F0 /* Sources */,
 				96E5435D1F49ED890081C6F0 /* Resources */,
 				0C9B2412207B440E009EF6DE /* BridgingHeader.h */,
 			);
-			path = Timmee;
+			path = Scope;
 			sourceTree = "<group>";
 		};
-		96E543511F49EBB20081C6F0 /* TimmeeTests */ = {
+		96E543511F49EBB20081C6F0 /* ScopeTests */ = {
 			isa = PBXGroup;
 			children = (
-				96E543521F49EBB20081C6F0 /* TimmeeTests.swift */,
+				96E543521F49EBB20081C6F0 /* ScopeTests.swift */,
 				96E543541F49EBB20081C6F0 /* Info.plist */,
 				0CC7C8552005E41F006758C1 /* NextDayNumberTests.swift */,
 			);
-			path = TimmeeTests;
+			path = ScopeTests;
 			sourceTree = "<group>";
 		};
 		96E5435D1F49ED890081C6F0 /* Resources */ = {
@@ -1449,9 +1449,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		96E543361F49EBB20081C6F0 /* Timmee */ = {
+		96E543361F49EBB20081C6F0 /* Scope */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96E543571F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "Timmee" */;
+			buildConfigurationList = 96E543571F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "Scope" */;
 			buildPhases = (
 				B922E50A3D5261172849765B /* [CP] Check Pods Manifest.lock */,
 				96E543331F49EBB20081C6F0 /* Sources */,
@@ -1465,14 +1465,14 @@
 			);
 			dependencies = (
 			);
-			name = Timmee;
+			name = Scope;
 			productName = Timmee;
-			productReference = 96E543371F49EBB20081C6F0 /* Timmee.app */;
+			productReference = 96E543371F49EBB20081C6F0 /* Scope.app */;
 			productType = "com.apple.product-type.application";
 		};
-		96E5434D1F49EBB20081C6F0 /* TimmeeTests */ = {
+		96E5434D1F49EBB20081C6F0 /* ScopeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96E5435A1F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "TimmeeTests" */;
+			buildConfigurationList = 96E5435A1F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "ScopeTests" */;
 			buildPhases = (
 				96E5434A1F49EBB20081C6F0 /* Sources */,
 				96E5434B1F49EBB20081C6F0 /* Frameworks */,
@@ -1483,9 +1483,9 @@
 			dependencies = (
 				96E543501F49EBB20081C6F0 /* PBXTargetDependency */,
 			);
-			name = TimmeeTests;
+			name = ScopeTests;
 			productName = TimmeeTests;
-			productReference = 96E5434E1F49EBB20081C6F0 /* TimmeeTests.xctest */;
+			productReference = 96E5434E1F49EBB20081C6F0 /* ScopeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1518,7 +1518,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 96E543321F49EBB20081C6F0 /* Build configuration list for PBXProject "Timmee" */;
+			buildConfigurationList = 96E543321F49EBB20081C6F0 /* Build configuration list for PBXProject "Scope" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1532,8 +1532,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				96E543361F49EBB20081C6F0 /* Timmee */,
-				96E5434D1F49EBB20081C6F0 /* TimmeeTests */,
+				96E543361F49EBB20081C6F0 /* Scope */,
+				96E5434D1F49EBB20081C6F0 /* ScopeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1781,7 +1781,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96E543531F49EBB20081C6F0 /* TimmeeTests.swift in Sources */,
+				96E543531F49EBB20081C6F0 /* ScopeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1790,7 +1790,7 @@
 /* Begin PBXTargetDependency section */
 		96E543501F49EBB20081C6F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 96E543361F49EBB20081C6F0 /* Timmee */;
+			target = 96E543361F49EBB20081C6F0 /* Scope */;
 			targetProxy = 96E5434F1F49EBB20081C6F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1947,15 +1947,15 @@
 			baseConfigurationReference = 9411A2F120085851CC822876 /* Pods-Timmee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Timmee/Timmee.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Scope/Scope.entitlements;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = "$(SRCROOT)/Timmee/Resources/Plists/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Scope/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = Timmee/BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Scope/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1966,14 +1966,14 @@
 			baseConfigurationReference = 31B7E1C2C5BD3C6C7846E986 /* Pods-Timmee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Timmee/Timmee.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Scope/Scope.entitlements;
 				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = "$(SRCROOT)/Timmee/Resources/Plists/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Scope/Resources/Plists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.memori;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = Timmee/BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Scope/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1989,7 +1989,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TimmeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timmee.app/Timmee";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scope.app/Scope";
 			};
 			name = Debug;
 		};
@@ -2004,14 +2004,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.TimmeeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Timmee.app/Timmee";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scope.app/Scope";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		96E543321F49EBB20081C6F0 /* Build configuration list for PBXProject "Timmee" */ = {
+		96E543321F49EBB20081C6F0 /* Build configuration list for PBXProject "Scope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96E543551F49EBB20081C6F0 /* Debug */,
@@ -2020,7 +2020,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96E543571F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "Timmee" */ = {
+		96E543571F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "Scope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96E543581F49EBB20081C6F0 /* Debug */,
@@ -2029,7 +2029,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96E5435A1F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "TimmeeTests" */ = {
+		96E5435A1F49EBB20081C6F0 /* Build configuration list for PBXNativeTarget "ScopeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96E5435B1F49EBB20081C6F0 /* Debug */,
