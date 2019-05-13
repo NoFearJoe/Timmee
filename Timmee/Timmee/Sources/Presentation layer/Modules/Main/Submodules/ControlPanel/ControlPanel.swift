@@ -21,6 +21,8 @@ final class ControlPanel: BarView {
     @IBOutlet private var searchButton: UIButton!
     @IBOutlet private var editButton: UIButton!
     
+    @IBOutlet private var scopesButton: UIButton!
+    
     private var isControlsHidden = false
     
     private var isGroupEditingAvailable = false
@@ -56,12 +58,19 @@ final class ControlPanel: BarView {
         isGroupEditing = isEditing
     }
     
+    func setScopesEnabled(_ enabled: Bool) {
+        scopesButton.isEnabled = enabled
+        UIView.animate(withDuration: 0.2) {
+            self.scopesButton.tintColor = enabled ? AppTheme.current.yellowColor : AppTheme.current.secondaryTintColor
+        }
+    }
+    
     func setNotGroupEditingControlsHidden(_ isHidden: Bool) {
         UIView.animate(withDuration: 0.33,
                        delay: 0,
                        options: .curveEaseOut,
                        animations: {
-                        [self.settingsButton, self.searchButton].forEach {
+                        [self.settingsButton, self.searchButton, self.scopesButton].forEach {
                             $0?.isHidden = isHidden
                             $0?.alpha = isHidden ? 0 : 1
                         }
@@ -114,9 +123,9 @@ final class ControlPanel: BarView {
             if isGroupEditing {
                 return [editButton]
             }
-            return [settingsButton, searchButton, editButton]
+            return [settingsButton, searchButton, editButton, scopesButton]
         }
-        return [settingsButton, searchButton]
+        return [settingsButton, searchButton, scopesButton]
     }
 
 }
@@ -133,6 +142,8 @@ extension ControlPanel {
         settingsButton.tintColor = AppTheme.current.backgroundTintColor
         searchButton.tintColor = AppTheme.current.backgroundTintColor
         editButton.tintColor = AppTheme.current.backgroundTintColor
+        
+        scopesButton.tintColor = AppTheme.current.secondaryTintColor
     }
     
 }
