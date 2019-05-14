@@ -10,15 +10,15 @@ import UIKit
 
 final class TaskTagsView: HiddingParameterView {
     
-    @IBOutlet fileprivate var iconView: UIImageView!
-    @IBOutlet fileprivate var placeholderLabel: UILabel! {
+    @IBOutlet private var iconView: UIImageView!
+    @IBOutlet private var placeholderLabel: UILabel! {
         didSet {
             placeholderLabel.text = "tags_picker".localized
             placeholderLabel.textColor = AppTheme.current.secondaryTintColor
             placeholderLabel.isHidden = true
         }
     }
-    @IBOutlet fileprivate var tagsView: UICollectionView! {
+    @IBOutlet private var tagsView: UICollectionView! {
         didSet {
             addTapGestureRecognizer(to: tagsView)
         }
@@ -44,10 +44,10 @@ final class TaskTagsView: HiddingParameterView {
     
     var sortedTags: [Tag] = []
     
-    fileprivate let filledIconColor = AppTheme.current.blueColor
-    fileprivate let notFilledIconColor = AppTheme.current.thirdlyTintColor
+    private let filledIconColor = AppTheme.current.blueColor
+    private let notFilledIconColor = AppTheme.current.thirdlyTintColor
     
-    fileprivate func setFilled(_ isFilled: Bool) {
+    private func setFilled(_ isFilled: Bool) {
         UIView.animate(withDuration: 0.2) {
             self.iconView.tintColor = isFilled ? self.filledIconColor : self.notFilledIconColor
         }
@@ -63,12 +63,12 @@ final class TaskTagsView: HiddingParameterView {
         addTapGestureRecognizer(to: self)
     }
     
-    fileprivate func addTapGestureRecognizer(to view: UIView) {
+    private func addTapGestureRecognizer(to view: UIView) {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
         view.addGestureRecognizer(recognizer)
     }
     
-    @objc fileprivate func onTap() {
+    @objc private func onTap() {
         didTouchedUp?()
     }
     

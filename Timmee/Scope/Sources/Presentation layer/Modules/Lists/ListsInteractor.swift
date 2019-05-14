@@ -31,6 +31,7 @@ final class ListsInteractor {
 
     private let listsService = ServicesAssembly.shared.listsService
     private let tasksService: TaskEntitiesCountProvider = ServicesAssembly.shared.tasksService
+    private let tagsService = ServicesAssembly.shared.tagsService
     
     private var smartListsObserver: CacheObserver<SmartList>!
     private var listsObserver: CacheObserver<List>!
@@ -51,6 +52,10 @@ final class ListsInteractor {
         
         smartListsObserver.fetchInitialEntities()
         listsObserver.fetchInitialEntities()
+    }
+    
+    func fetchTags() -> [Tag] {
+        return tagsService.fetchTags()
     }
     
     func createListEntity() -> List {

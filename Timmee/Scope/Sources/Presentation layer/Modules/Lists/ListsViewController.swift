@@ -28,6 +28,7 @@ final class ListsViewController: UIViewController {
     
     @IBOutlet private var collectionViewContainer: BarView!
     @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet private var taskTagsView: TaskTagsView!
     
     @IBOutlet private var addListButton: FloatingButton!
     @IBOutlet private var addListMenu: UIStackView!
@@ -106,6 +107,8 @@ final class ListsViewController: UIViewController {
         initialDataConfigurator.addInitialSmartLists { [weak self] in
             self?.listsInteractor.requestLists()
         }
+        
+        reloadTags()
     }
     
     @IBAction private func didSelectAddListMenuItem() {
@@ -360,6 +363,17 @@ private extension ListsViewController {
         let translation = CGAffineTransform(translationX: 0, y: 64)
         let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
         return scale.concatenating(translation)
+    }
+    
+}
+
+private extension ListsViewController {
+    
+    func reloadTags() {
+        let tags = listsInteractor.fetchTags()
+        
+        taskTagsView.isHidden = tags.isEmpty
+        taskTagsView.tags = tags
     }
     
 }

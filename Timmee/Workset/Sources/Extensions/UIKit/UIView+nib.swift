@@ -10,15 +10,15 @@ import UIKit
 
 public extension UIView {
     
-    static func loadedFromNib(named name: String? = nil) -> Self {
-        return self.loadFromNib(named: name)
+    static func loadedFromNib(named name: String? = nil, owner: Any? = nil) -> Self {
+        return self.loadFromNib(named: name, owner: owner)
     }
     
-    private static func loadFromNib<T: UIView>(named name: String? = nil) -> T {
+    private static func loadFromNib<T: UIView>(named name: String? = nil, owner: Any? = nil) -> T {
         let nibName = name ?? String(describing: T.classForCoder())
         return UINib(nibName: nibName,
                      bundle: Bundle(for: T.self))
-            .instantiate(withOwner: nil,
+            .instantiate(withOwner: owner,
                          options: nil)
             .first as! T
     }

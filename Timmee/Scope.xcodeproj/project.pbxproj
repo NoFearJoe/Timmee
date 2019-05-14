@@ -433,7 +433,6 @@
 				0C14D44A211C1FAF004C0559 /* TableListRepresentationCompletedSectionHeaderView.swift */,
 				0C14D44B211C1FAF004C0559 /* TableListRepresentationCompletedSectionHeaderView.xib */,
 				0C14D44C211C1FAF004C0559 /* TaskImportancyPicker.swift */,
-				0C14D443211C1F71004C0559 /* TaskTagsView.swift */,
 				0CCBBCF521D0BA5200EE5831 /* BorderedSelectableButton.swift */,
 				9615A48521E1FCFC008923C3 /* FloatingMenu.swift */,
 				9615A48721E343CF008923C3 /* FloatingButton.swift */,
@@ -469,6 +468,7 @@
 		0C1F923021D5E8B700D3B9D6 /* Submodules */ = {
 			isa = PBXGroup;
 			children = (
+				0CB31F0E228AF0D000520791 /* TagsView */,
 				0C1F923121D5E8CF00D3B9D6 /* RegularitySettings */,
 				0C8738B81FB971D800EA1571 /* SubtasksEditor */,
 			);
@@ -850,6 +850,14 @@
 				0CA9EE7A202AEA2E00C24003 /* SmartListsPickerState.swift */,
 			);
 			path = State;
+			sourceTree = "<group>";
+		};
+		0CB31F0E228AF0D000520791 /* TagsView */ = {
+			isa = PBXGroup;
+			children = (
+				0C14D443211C1F71004C0559 /* TaskTagsView.swift */,
+			);
+			path = TagsView;
 			sourceTree = "<group>";
 		};
 		0CB8F1FD1FE3BE53005D9E11 /* TaskAttachmentsPicker */ = {

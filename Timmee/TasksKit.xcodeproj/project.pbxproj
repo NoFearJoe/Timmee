@@ -83,6 +83,7 @@
 		0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCacheAdapter.swift; sourceTree = "<group>"; };
 		0CB31F00228948DD00520791 /* CoreDataChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataChange.swift; sourceTree = "<group>"; };
 		0CB31F022289493E00520791 /* CacheObserverProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheObserverProtocols.swift; sourceTree = "<group>"; };
+		0CB31F0B228AE6A200520791 /* Timmee5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee5.xcdatamodel; sourceTree = "<group>"; };
 		0CC4063721F0B1DC0069C6C5 /* Timmee3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee3.xcdatamodel; sourceTree = "<group>"; };
 		0CD8F8192240B6A500061B58 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		0CD8F81B2240B79E00061B58 /* MoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodService.swift; sourceTree = "<group>"; };
@@ -768,12 +769,13 @@
 		0CE018032077B24200633EFF /* Timmee.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0CB31F0B228AE6A200520791 /* Timmee5.xcdatamodel */,
 				960164952228676700E30580 /* Timmee4.xcdatamodel */,
 				0CC4063721F0B1DC0069C6C5 /* Timmee3.xcdatamodel */,
 				0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */,
 				0CE018042077B24200633EFF /* Timmee.xcdatamodel */,
 			);
-			currentVersion = 960164952228676700E30580 /* Timmee4.xcdatamodel */;
+			currentVersion = 0CB31F0B228AE6A200520791 /* Timmee5.xcdatamodel */;
 			path = Timmee.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
