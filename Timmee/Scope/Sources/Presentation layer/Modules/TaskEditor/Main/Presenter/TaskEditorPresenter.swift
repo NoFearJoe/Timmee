@@ -24,6 +24,7 @@ protocol TaskEditorInput: class {
     func setTaskKind(_ taskKind: Task.Kind)
     func setTaskTitle(_ title: String)
     func setDueDate(_ dueDate: Date)
+    func setTags(_ tags: [Tag])
 }
 
 protocol TaskEditorOutput: class {
@@ -112,6 +113,11 @@ extension TaskEditorPresenter: TaskEditorInput {
     func setDueDate(_ dueDate: Date) {
         task.dueDate = dueDate
         regularitySettings?.updateParameters(task: task)
+    }
+    
+    func setTags(_ tags: [Tag]) {
+        task.tags = tags
+        view.setTags(tags)
     }
 
 }

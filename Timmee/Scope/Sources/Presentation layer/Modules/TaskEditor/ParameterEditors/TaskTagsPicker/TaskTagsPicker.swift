@@ -242,12 +242,33 @@ final class TagTableCell: SwipeTableViewCell {
 
 final class AddTagView: BarView {
     
-    @IBOutlet fileprivate var colorView: UIView! {
+    @IBOutlet private var colorView: UIView! {
         didSet {
             addTapGestureRecognizer(to: colorView)
         }
     }
-    @IBOutlet fileprivate var textField: UITextField!
+    
+    @IBOutlet private var textField: UITextField! {
+        didSet {
+            textField.addTarget(self, action: #selector(onTextChange(_:)), for: .editingChanged)
+        }
+    }
+    
+    @IBOutlet private var addButton: UIButton! {
+        didSet {
+            addButton.adjustsImageWhenHighlighted = false
+            addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
+            addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.secondaryTintColor), for: .disabled)
+            addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.secondaryTintColor), for: .selected)
+            addButton.tintColor = .white
+            addButton.layer.cornerRadius = AppTheme.current.cornerRadius
+            addButton.isEnabled = false
+        }
+    }
+    
+    @IBAction private func onTapToAddButton() {
+        createTag()
+    }
     
     var placeholder: String = "" {
         didSet {
@@ -265,7 +286,7 @@ final class AddTagView: BarView {
     
     var onCreateTag: ((String, UIColor) -> Void)?
     
-    @IBOutlet fileprivate weak var colorPicker: ColorPicker? {
+    @IBOutlet private weak var colorPicker: ColorPicker? {
         didSet {
             colorPicker?.backgroundColor = AppTheme.current.panelColor
             colorPicker?.colors = colors
@@ -275,14 +296,14 @@ final class AddTagView: BarView {
             }
         }
     }
-    @IBOutlet fileprivate weak var colorPickerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var colorPickerHeightConstraint: NSLayoutConstraint!
     
-    fileprivate func addTapGestureRecognizer(to view: UIView) {
+    private func addTapGestureRecognizer(to view: UIView) {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tapToColor))
         view.addGestureRecognizer(recognizer)
     }
     
-    @objc fileprivate func tapToColor() {
+    @objc private func tapToColor() {
         guard let colorPicker = colorPicker else { return }
         colorPicker.selectedColorIndex = colors.index(of: color) ?? -1
         
@@ -308,18 +329,25 @@ final class AddTagView: BarView {
 extension AddTagView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text, !text.isEmpty {
-            onCreateTag?(text, color)
-            textField.text = nil
-        }
+        createTag()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        createTag()
+        return true
+    }
+    
+    @objc private func onTextChange(_ textField: UITextField) {
+        addButton.isEnabled = !(textField.text == nil || textField.text!.isEmpty)
+    }
+    
+}
+
+private extension AddTagView {
+    func createTag() {
         if let text = textField.text, !text.isEmpty {
             onCreateTag?(text, color)
             textField.text = nil
         }
-        return true
     }
-    
 }

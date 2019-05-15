@@ -9,8 +9,18 @@
 import UIKit
 
 protocol MainRouterInput: class {
-    func showTaskEditor(with task: Task?, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?)
-    func showTaskEditor(with taskTitle: String, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?)
+    func showTaskEditor(with task: Task?,
+                        list: List?,
+                        taskKind: Task.Kind,
+                        isImportant: Bool,
+                        tags: [Tag],
+                        output: TaskEditorOutput?)
+    func showTaskEditor(with taskTitle: String,
+                        list: List?,
+                        taskKind: Task.Kind,
+                        isImportant: Bool,
+                        tags: [Tag],
+                        output: TaskEditorOutput?)
 }
 
 final class MainRouter {
@@ -21,8 +31,13 @@ final class MainRouter {
 
 extension MainRouter: MainRouterInput {
     
-    func showTaskEditor(with task: Task?, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?) {
-        showTaskEditor(list: list, isImportant: isImportant, output: output) { taskEditorInput in
+    func showTaskEditor(with task: Task?,
+                        list: List?,
+                        taskKind: Task.Kind,
+                        isImportant: Bool,
+                        tags: [Tag],
+                        output: TaskEditorOutput?) {
+        showTaskEditor(list: list, isImportant: isImportant, tags: tags, output: output) { taskEditorInput in
             taskEditorInput.setTask(task)
             taskEditorInput.setTaskKind(task?.kind ?? taskKind)
             if let smartList = list as? SmartList, smartList.smartListType == .today, task?.dueDate == nil {
@@ -31,8 +46,13 @@ extension MainRouter: MainRouterInput {
         }
     }
     
-    func showTaskEditor(with taskTitle: String, list: List?, taskKind: Task.Kind, isImportant: Bool, output: TaskEditorOutput?) {
-        showTaskEditor(list: list, isImportant: isImportant, output: output) { taskEditorInput in
+    func showTaskEditor(with taskTitle: String,
+                        list: List?,
+                        taskKind: Task.Kind,
+                        isImportant: Bool,
+                        tags: [Tag],
+                        output: TaskEditorOutput?) {
+        showTaskEditor(list: list, isImportant: isImportant, tags: tags, output: output) { taskEditorInput in
             taskEditorInput.setTask(nil)
             taskEditorInput.setTaskKind(taskKind)
             taskEditorInput.setTaskTitle(taskTitle)
@@ -42,7 +62,7 @@ extension MainRouter: MainRouterInput {
         }
     }
     
-    private func showTaskEditor(list: List?, isImportant: Bool, output: TaskEditorOutput?, configuration: (TaskEditorInput) -> Void) {
+    private func showTaskEditor(list: List?, isImportant: Bool, tags: [Tag], output: TaskEditorOutput?, configuration: (TaskEditorInput) -> Void) {
         let taskEditorView = ViewControllersFactory.taskEditor
         
         let taskEditorInput = TaskEditorAssembly.assembly(with: taskEditorView)
@@ -54,6 +74,7 @@ extension MainRouter: MainRouterInput {
         configuration(taskEditorInput)
         
         if isImportant { taskEditorView.setTaskImportant(true) }
+        taskEditorInput.setTags(tags)
         
         transitionHandler.present(taskEditorView, animated: true, completion: nil)
     }

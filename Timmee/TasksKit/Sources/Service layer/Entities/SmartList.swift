@@ -34,6 +34,9 @@ public enum SmartListType {
     // Важные задачи
     case important
     
+    // Тэг
+    case tag(Tag)
+    
     // Звонки
     // TODO
 //    case calls
@@ -45,8 +48,10 @@ public enum SmartListType {
     public static let allValues: [SmartListType] = [all, today, tomorrow, week, inProgress, overdue, important]
     
     public static func isSmartListID(_ id: String) -> Bool {
-        return SmartListType.allValues.contains(where: { $0.id == id })
+        return SmartListType.allValues.contains(where: { $0.id == id }) || id.starts(with: SmartListType.tagPrefix)
     }
+    
+    public static let tagPrefix = "Smart.Tag"
     
     public init(id: String) {
         switch id {
@@ -56,6 +61,13 @@ public enum SmartListType {
         case SmartListType.inProgress.id: self = .inProgress
         case SmartListType.overdue.id: self = .overdue
         case SmartListType.important.id: self = .important
+        case let id where id.starts(with: SmartListType.tagPrefix):
+            let tagID = id.suffix(from: id.index(id.startIndex, offsetBy: SmartListType.tagPrefix.count + 1))
+            guard let tag = ServicesAssembly.shared.tagsService.fetchTags().first(where: { $0.id == tagID }) else {
+                self = .all
+                return
+            }
+            self = .tag(tag)
         default: self = .all
         }
     }
@@ -69,6 +81,7 @@ public enum SmartListType {
         case .inProgress: return "Smart.InProgress"
         case .overdue: return "Smart.Overdue"
         case .important: return "Smart.Important"
+        case let .tag(tag): return SmartListType.tagPrefix + ".\(tag.id)"
         }
     }
     
@@ -81,11 +94,15 @@ public enum SmartListType {
         case .inProgress: return 4
         case .overdue: return 5
         case .important: return 6
+        case .tag: return 99
         }
     }
     
     public var canDelete: Bool {
-        return self != .all
+        switch self {
+        case .all, .tag: return false
+        default: return true
+        }
     }
     
     public var fetchPredicate: NSPredicate? {
@@ -98,6 +115,8 @@ public enum SmartListType {
             return NSPredicate(format: "kind == \(Task.Kind.single.rawValue) && dueDate < %@", now.nsDate)
         case .important:
             return NSPredicate(format: "isImportant == true")
+        case let .tag(tag):
+            return NSPredicate(format: "SUBQUERY(tags, $t, $t.id == %@).@count > 0", tag.id)
         }
     }
     
@@ -107,6 +126,19 @@ public enum SmartListType {
         case .tomorrow: return { $0.shouldBeDoneTomorrow }
         case .week: return { $0.shouldBeDoneAtThisWeek }
         default: return nil
+        }
+    }
+}
+
+extension SmartListType: Equatable {
+    public static func == (lhs: SmartListType, rhs: SmartListType) -> Bool {
+        switch (lhs, rhs) {
+        case (.all, .all), (.today, .today), (.tomorrow, .tomorrow), (.week, .week), (.inProgress, .inProgress), (.overdue, .overdue), (.important, .important):
+            return true
+        case let (.tag(lhsTag), .tag(rhsTag)):
+            return lhsTag == rhsTag
+        default:
+            return false
         }
     }
 }
@@ -140,6 +172,9 @@ public final class SmartList: List {
         case .important:
             title = "important".localized
             icon = .important
+        case let .tag(tag):
+            title = tag.title
+            icon = .tag
         }
         
         self.init(id: type.id,

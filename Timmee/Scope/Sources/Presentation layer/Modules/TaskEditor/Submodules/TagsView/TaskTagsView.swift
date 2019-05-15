@@ -21,8 +21,13 @@ final class TaskTagsView: HiddingParameterView {
     @IBOutlet private var tagsView: UICollectionView! {
         didSet {
             addTapGestureRecognizer(to: tagsView)
+            tagsView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagCollectionViewCell")
+            tagsView.delegate = tagsAdapter
+            tagsView.dataSource = tagsAdapter
         }
     }
+    
+    private let tagsAdapter = TaskTagsCollectionAdapter()
     
     var didChangeFilledState: ((Bool) -> Void)?
     var didTouchedUp: (() -> Void)?
@@ -36,13 +41,11 @@ final class TaskTagsView: HiddingParameterView {
     
     var tags: [Tag] = [] {
         didSet {
-            sortedTags = tags.sorted(by: { $0.title < $1.title })
+            tagsAdapter.tags = tags.sorted(by: { $0.title < $1.title })
             placeholderLabel.isHidden = !tags.isEmpty
             tagsView.reloadData()
         }
     }
-    
-    var sortedTags: [Tag] = []
     
     private let filledIconColor = AppTheme.current.blueColor
     private let notFilledIconColor = AppTheme.current.thirdlyTintColor
@@ -74,7 +77,13 @@ final class TaskTagsView: HiddingParameterView {
     
 }
 
-extension TaskTagsView: UICollectionViewDataSource {
+final class TaskTagsCollectionAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    var tags: [Tag] = []
+    
+    var onSelectTag: ((Tag) -> Void)?
+    
+    var cellSize: (CGFloat) -> CGSize = { width in CGSize(width: width + 10, height: 24) }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -88,7 +97,7 @@ extension TaskTagsView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell",
                                                       for: indexPath) as! TagCollectionViewCell
         
-        if let tag = sortedTags.item(at: indexPath.row) {
+        if let tag = tags.item(at: indexPath.row) {
             cell.title = tag.title
             cell.color = tag.color
         }
@@ -96,52 +105,24 @@ extension TaskTagsView: UICollectionViewDataSource {
         return cell
     }
     
-}
-
-extension TaskTagsView: UICollectionViewDelegate {}
-
-extension TaskTagsView: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let tag = sortedTags.item(at: indexPath.row) {
-            let width = (tag.title as NSString).size(withAttributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
-            ]).width
-            return CGSize(width: width + 10, height: 24)
+        if let tag = tags.item(at: indexPath.row) {
+            return cellSize(tag.width)
         }
         return .zero
     }
     
-}
-
-final class TagCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var colorView: TagCollectionColorView!
-    
-    var title: String? {
-        get { return titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
-    
-    var color: UIColor {
-        get { return colorView.color }
-        set { colorView.color = newValue }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let tag = tags.item(at: indexPath.item) else { return }
+        onSelectTag?(tag)
     }
     
 }
 
-final class TagCollectionColorView: UIView {
-    
-    var color: UIColor {
-        get { return backgroundColor ?? .clear }
-        set { backgroundColor = newValue }
+extension Tag {
+    var width: CGFloat {
+        return (title as NSString).size(withAttributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)
+        ]).width
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        layer.cornerRadius = frame.height * 0.5
-    }
-    
 }

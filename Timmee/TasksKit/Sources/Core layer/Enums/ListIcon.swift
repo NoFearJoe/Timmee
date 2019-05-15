@@ -45,6 +45,7 @@ public enum ListIcon: Int {
     case inProgress
     case overdue
     case important
+    case tag
     
     public static let all: [ListIcon] = [.default, .job, .shopping, .lock, .group, .home, .eat, .games, .idea, .money, .star, .chat, .art, .call, .mail]
     
@@ -80,6 +81,7 @@ public extension ListIcon {
         case .inProgress: return #imageLiteral(resourceName: "mailListIcon")
         case .overdue: return #imageLiteral(resourceName: "overdue")
         case .important: return #imageLiteral(resourceName: "importantListIcon")
+        case .tag: return #imageLiteral(resourceName: "tag")
         }
     }
 

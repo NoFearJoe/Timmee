@@ -100,6 +100,9 @@
 		0CC7C85D2008D208006758C1 /* AppearanceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */; };
 		0CC7C85F2008FE48006758C1 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC7C85E2008FE48006758C1 /* EducationState.swift */; };
 		0CCBBCF621D0BA5200EE5831 /* BorderedSelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCBBCF521D0BA5200EE5831 /* BorderedSelectableButton.swift */; };
+		0CCC537F228BE7020060BAA7 /* ListsTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC537E228BE7020060BAA7 /* ListsTagsView.swift */; };
+		0CCC5381228BE9530060BAA7 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CCC5380228BE9530060BAA7 /* TagCollectionViewCell.xib */; };
+		0CCC5383228BE9840060BAA7 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC5382228BE9840060BAA7 /* TagCollectionViewCell.swift */; };
 		0CCD3BA020A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD3B9F20A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift */; };
 		0CF30954201F301E00FD7E3E /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF30953201F301E00FD7E3E /* ListsViewController.swift */; };
 		0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */; };
@@ -299,6 +302,9 @@
 		0CC7C85C2008D208006758C1 /* AppearanceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigurator.swift; sourceTree = "<group>"; };
 		0CC7C85E2008FE48006758C1 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		0CCBBCF521D0BA5200EE5831 /* BorderedSelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedSelectableButton.swift; sourceTree = "<group>"; };
+		0CCC537E228BE7020060BAA7 /* ListsTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTagsView.swift; sourceTree = "<group>"; };
+		0CCC5380228BE9530060BAA7 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
+		0CCC5382228BE9840060BAA7 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CCD3B9F20A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorAudioNotePresenter.swift; sourceTree = "<group>"; };
 		0CF30953201F301E00FD7E3E /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -856,6 +862,8 @@
 			isa = PBXGroup;
 			children = (
 				0C14D443211C1F71004C0559 /* TaskTagsView.swift */,
+				0CCC5380228BE9530060BAA7 /* TagCollectionViewCell.xib */,
+				0CCC5382228BE9840060BAA7 /* TagCollectionViewCell.swift */,
 			);
 			path = TagsView;
 			sourceTree = "<group>";
@@ -894,6 +902,7 @@
 			children = (
 				0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */,
 				96594E5E2026DE1800998133 /* ListsSectionView.swift */,
+				0CCC537E228BE7020060BAA7 /* ListsTagsView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1572,6 +1581,7 @@
 				963D6A551F5AEDB50063E295 /* ListRepresentations.storyboard in Resources */,
 				963D6A611F5C42990063E295 /* TaskEditor.storyboard in Resources */,
 				96AAA5861FB041D000F547A0 /* Settings.storyboard in Resources */,
+				0CCC5381228BE9530060BAA7 /* TagCollectionViewCell.xib in Resources */,
 				96BE0A2E1F6314AE0041FBEA /* ListEditor.storyboard in Resources */,
 				0C14D44E211C1FAF004C0559 /* TableListRepresentationCompletedSectionHeaderView.xib in Resources */,
 			);
@@ -1669,6 +1679,7 @@
 				0C14D45D211C222D004C0559 /* ListsSeparatorView.swift in Sources */,
 				96477A601F8131BE005C3520 /* TasksImportView.swift in Sources */,
 				0C8738C81FB972DA00EA1571 /* SubtasksEditorProtocols.swift in Sources */,
+				0CCC5383228BE9840060BAA7 /* TagCollectionViewCell.swift in Sources */,
 				0C0816CB208F4039008F2645 /* MainViewController+State.swift in Sources */,
 				0CF3097C2021E14700FD7E3E /* ListsViewController+CollectionView.swift in Sources */,
 				0C8738CC1FB9746200EA1571 /* TaskEditorInteractor.swift in Sources */,
@@ -1702,6 +1713,7 @@
 				0C822F8120F5FFF90071FEE1 /* TemporaryActionPanelViewController.swift in Sources */,
 				0C9B244B207F46DF009EF6DE /* TableListRepresentationViewProtocols.swift in Sources */,
 				0C74D8261FEB8C2700CDA0BE /* PhotoPreviewCollectionCell.swift in Sources */,
+				0CCC537F228BE7020060BAA7 /* ListsTagsView.swift in Sources */,
 				0C14D45F211C222D004C0559 /* ContinueEducationButton.swift in Sources */,
 				963D6A571F5B262A0063E295 /* ListRepresentationOutput.swift in Sources */,
 				0C14D447211C1F71004C0559 /* TaskTagsView.swift in Sources */,

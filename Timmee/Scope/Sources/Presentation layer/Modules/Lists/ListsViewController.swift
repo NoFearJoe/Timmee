@@ -28,7 +28,9 @@ final class ListsViewController: UIViewController {
     
     @IBOutlet private var collectionViewContainer: BarView!
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet private var taskTagsView: TaskTagsView!
+    
+    @IBOutlet private var tagsView: ListsTagsView!
+    @IBOutlet private var tagsViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private var addListButton: FloatingButton!
     @IBOutlet private var addListMenu: UIStackView!
@@ -82,6 +84,11 @@ final class ListsViewController: UIViewController {
         addListMenu.isHidden = true
         
         setPickingListIfPossible()
+        
+        tagsView.onSelectTag = { [unowned self] tag in
+            self.output?.didSelectList(SmartList(type: .tag(tag)))
+            self.close()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -372,8 +379,9 @@ private extension ListsViewController {
     func reloadTags() {
         let tags = listsInteractor.fetchTags()
         
-        taskTagsView.isHidden = tags.isEmpty
-        taskTagsView.tags = tags
+        tagsView.isHidden = tags.isEmpty
+        tagsView.configure(tags: tags)
+        tagsViewHeightConstraint.constant = tags.isEmpty ? 0 : 80
     }
     
 }

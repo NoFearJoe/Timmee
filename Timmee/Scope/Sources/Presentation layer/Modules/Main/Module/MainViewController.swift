@@ -153,7 +153,8 @@ extension MainViewController: TaskCreationPanelOutput {
                         dueDate: state.currentList.defaultDueDate,
                         inProgress: progressStateForInProgressSmartList(),
                         isImportant: taskCreationPanel.isImportancySelected,
-                        listID: state.currentList.id)
+                        listID: state.currentList.id,
+                        tags: tagsForCurrentSmartList())
         }
     }
     
@@ -163,12 +164,14 @@ extension MainViewController: TaskCreationPanelOutput {
                                   list: state.currentList,
                                   taskKind: taskKind,
                                   isImportant: taskCreationPanel.isImportancySelected,
+                                  tags: tagsForCurrentSmartList(),
                                   output: self)
         } else {
             router.showTaskEditor(with: nil,
                                   list: state.currentList,
                                   taskKind: taskKind,
                                   isImportant: taskCreationPanel.isImportancySelected,
+                                  tags: tagsForCurrentSmartList(),
                                   output: self)
         }
     }
@@ -246,6 +249,7 @@ extension MainViewController: ListRepresentationOutput {
                               list: state.currentList,
                               taskKind: task.kind,
                               isImportant: taskCreationPanel.isImportancySelected,
+                              tags: task.tags,
                               output: self)
     }
     
@@ -300,7 +304,7 @@ private extension MainViewController {
         present(listsViewController, animated: true, completion: nil)
     }
     
-    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String) {
+    func addShortTask(with title: String, dueDate: Date?, inProgress: Bool, isImportant: Bool, listID: String, tags: [Tag]) {
         let task = Task(id: RandomStringGenerator.randomString(length: 24),
                         title: title)
         
@@ -309,6 +313,7 @@ private extension MainViewController {
         }
         task.inProgress = inProgress
         task.isImportant = isImportant
+        task.tags = tags
         
         tasksService.addTask(task, listID: listID, completion: { _ in })
     }
@@ -322,6 +327,13 @@ private extension MainViewController {
             return true
         }
         return false
+    }
+    
+    func tagsForCurrentSmartList() -> [Tag] {
+        if let smartList = state.currentList as? SmartList, case .tag(let tag) = smartList.smartListType {
+            return [tag]
+        }
+        return []
     }
     
     func setupAppLaunchTracker() {

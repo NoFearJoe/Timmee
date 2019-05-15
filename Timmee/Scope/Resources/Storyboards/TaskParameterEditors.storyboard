@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ckK-c1-1xp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ckK-c1-1xp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Task Parameter Editor Container-->
         <scene sceneID="dMr-4F-XQP">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="ckK-c1-1xp" customClass="TaskParameterEditorContainer" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="ckK-c1-1xp" customClass="TaskParameterEditorContainer" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fq4-6r-Er2"/>
                         <viewControllerLayoutGuide type="bottom" id="lhF-A5-qjj"/>
@@ -127,7 +127,7 @@
         <!--Task Due Date Time Editor-->
         <scene sceneID="kJJ-uo-tPw">
             <objects>
-                <viewController storyboardIdentifier="TaskDueDateTimeEditor" id="ZeM-iW-yFw" customClass="TaskDueDateTimeEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskDueDateTimeEditor" id="ZeM-iW-yFw" customClass="TaskDueDateTimeEditor" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="guN-g9-S4e"/>
                         <viewControllerLayoutGuide type="bottom" id="tx7-vz-Cva"/>
@@ -189,14 +189,14 @@
         <!--Task Reminder Editor-->
         <scene sceneID="TLs-bo-bjZ">
             <objects>
-                <tableViewController storyboardIdentifier="TaskReminderEditor" id="Rrd-Cb-lEm" customClass="TaskReminderEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TaskReminderEditor" id="Rrd-Cb-lEm" customClass="TaskReminderEditor" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gQX-aH-sm2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaskReminderCell" rowHeight="44" id="nko-QD-f4u" customClass="TaskReminderCell" customModule="Timmee" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaskReminderCell" rowHeight="44" id="nko-QD-f4u" customClass="TaskReminderCell" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nko-QD-f4u" id="m3h-Ga-hHX">
@@ -237,7 +237,7 @@
                                     <outlet property="titleView" destination="Stc-0e-Gcm" id="hcU-Xc-5MD"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskReminderDateCell" rowHeight="44" id="DzJ-3K-9NE" customClass="TaskReminderDateCell" customModule="Timmee" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskReminderDateCell" rowHeight="44" id="DzJ-3K-9NE" customClass="TaskReminderDateCell" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DzJ-3K-9NE" id="Z9G-1X-CEa">
@@ -292,7 +292,7 @@
         <!--Task Interval Repeating Picker-->
         <scene sceneID="cPW-Rb-9Oq">
             <objects>
-                <viewController storyboardIdentifier="TaskIntervalRepeatingPicker" id="Seg-e6-2RC" customClass="TaskIntervalRepeatingPicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskIntervalRepeatingPicker" id="Seg-e6-2RC" customClass="TaskIntervalRepeatingPicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lwK-jK-1C8"/>
                         <viewControllerLayoutGuide type="bottom" id="rmh-T6-57n"/>
@@ -314,14 +314,14 @@
                                     <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskIntervalRepeatingPickerNumberCell" id="hff-rV-720" customClass="TaskIntervalRepeatingPickerNumberCell" customModule="Timmee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskIntervalRepeatingPickerNumberCell" id="hff-rV-720" customClass="TaskIntervalRepeatingPickerNumberCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="15" y="0.0" width="38" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9H-KQ-eMx" customClass="DayNumberLabel" customModule="Timmee" customModuleProvider="target">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9H-KQ-eMx" customClass="DayNumberLabel" customModule="Scope" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -363,7 +363,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskIntervalRepeatingPickerUnitCell" id="fOg-hJ-evs" customClass="TaskIntervalRepeatingPickerUnitCell" customModule="Timmee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskIntervalRepeatingPickerUnitCell" id="fOg-hJ-evs" customClass="TaskIntervalRepeatingPickerUnitCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -432,7 +432,7 @@
         <!--Task Location Editor-->
         <scene sceneID="ynm-3t-9IS">
             <objects>
-                <viewController storyboardIdentifier="TaskLocationEditor" id="Gbg-l2-2PO" customClass="TaskLocationEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskLocationEditor" id="Gbg-l2-2PO" customClass="TaskLocationEditor" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="skt-BN-IeO"/>
                         <viewControllerLayoutGuide type="bottom" id="7JL-Nf-Szr"/>
@@ -476,7 +476,7 @@
         <!--Task Tags Picker-->
         <scene sceneID="M0U-SG-nYj">
             <objects>
-                <viewController storyboardIdentifier="TaskTagsPicker" id="eie-4J-J8n" customClass="TaskTagsPicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskTagsPicker" id="eie-4J-J8n" customClass="TaskTagsPicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u5T-hD-gf8"/>
                         <viewControllerLayoutGuide type="bottom" id="Vfk-dh-Qyv"/>
@@ -485,7 +485,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-c4-Vqg" customClass="AddTagView" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-c4-Vqg" customClass="AddTagView" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6CU-bG-uRB">
@@ -502,7 +502,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XP7-lg-oax">
-                                        <rect key="frame" x="70" y="15.5" width="290" height="21"/>
+                                        <rect key="frame" x="70" y="15.5" width="252" height="21"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -510,17 +510,32 @@
                                             <outlet property="delegate" destination="hSm-c4-Vqg" id="E6I-bU-fLC"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30N-80-QeA">
+                                        <rect key="frame" x="330" y="10" width="37" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="Npb-bd-EuF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="onTapToAddButton" destination="hSm-c4-Vqg" eventType="touchUpInside" id="31p-pQ-49N"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="6CU-bG-uRB" firstAttribute="centerY" secondItem="hSm-c4-Vqg" secondAttribute="centerY" id="HFU-ET-tdm"/>
-                                    <constraint firstAttribute="trailing" secondItem="XP7-lg-oax" secondAttribute="trailing" constant="15" id="Pdn-qM-CZz"/>
+                                    <constraint firstItem="30N-80-QeA" firstAttribute="leading" secondItem="XP7-lg-oax" secondAttribute="trailing" constant="8" id="KD1-Fg-LnP"/>
                                     <constraint firstItem="XP7-lg-oax" firstAttribute="leading" secondItem="6CU-bG-uRB" secondAttribute="trailing" constant="15" id="QAS-hT-9oX"/>
+                                    <constraint firstAttribute="trailing" secondItem="30N-80-QeA" secondAttribute="trailing" constant="8" id="Qta-Gr-hGf"/>
+                                    <constraint firstItem="30N-80-QeA" firstAttribute="centerY" secondItem="hSm-c4-Vqg" secondAttribute="centerY" id="do0-tw-cUj"/>
                                     <constraint firstItem="XP7-lg-oax" firstAttribute="centerY" secondItem="hSm-c4-Vqg" secondAttribute="centerY" id="m0s-j2-iam"/>
                                     <constraint firstItem="6CU-bG-uRB" firstAttribute="leading" secondItem="hSm-c4-Vqg" secondAttribute="leading" constant="15" id="mo6-VH-p6A"/>
                                     <constraint firstAttribute="height" constant="52" id="rxU-uT-6ku"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="addButton" destination="30N-80-QeA" id="Xe1-AG-gBl"/>
                                     <outlet property="colorPicker" destination="cdv-fr-KRq" id="GLX-D0-bQ1"/>
                                     <outlet property="colorPickerHeightConstraint" destination="xT0-Oi-LsC" id="tSn-9c-GYZ"/>
                                     <outlet property="colorView" destination="6CU-bG-uRB" id="DiR-Od-sl3"/>
@@ -536,7 +551,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TagTableCell" id="YOF-Wb-vI2" customClass="TagTableCell" customModule="Timmee" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TagTableCell" id="YOF-Wb-vI2" customClass="TagTableCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YOF-Wb-vI2" id="bUs-kp-u3v">
@@ -562,7 +577,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmo-pJ-LEs" customClass="CheckBox" customModule="Timmee" customModuleProvider="target">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmo-pJ-LEs" customClass="CheckBox" customModule="Scope" customModuleProvider="target">
                                                     <rect key="frame" x="340" y="12" width="20" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -594,7 +609,7 @@
                                     <outlet property="delegate" destination="eie-4J-J8n" id="hgE-eU-LVF"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdv-fr-KRq" customClass="ColorPicker" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdv-fr-KRq" customClass="ColorPicker" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="52" width="375" height="0.0"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rbu-Ma-TaP">
@@ -607,7 +622,7 @@
                                             <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorPickerCell" id="MIS-cd-uYj" customClass="ColorPickerCell" customModule="Timmee" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorPickerCell" id="MIS-cd-uYj" customClass="ColorPickerCell" customModule="Scope" customModuleProvider="target">
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -666,6 +681,7 @@
                             <constraint firstItem="TIy-YK-QFE" firstAttribute="top" secondItem="cdv-fr-KRq" secondAttribute="bottom" id="ywV-GN-wN4"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addTagView" destination="hSm-c4-Vqg" id="oAt-A8-ZAB"/>
                         <outlet property="tagsView" destination="TIy-YK-QFE" id="2si-FW-4PU"/>
@@ -678,7 +694,7 @@
         <!--Task Time Template Picker-->
         <scene sceneID="AAT-hE-SIq">
             <objects>
-                <viewController storyboardIdentifier="TaskTimeTemplatePicker" id="McA-jA-62e" customClass="TaskTimeTemplatePicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskTimeTemplatePicker" id="McA-jA-62e" customClass="TaskTimeTemplatePicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="746-ge-cN7"/>
                         <viewControllerLayoutGuide type="bottom" id="Hpu-hu-dKD"/>
@@ -696,7 +712,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimeTemplateTableCell" rowHeight="52" id="0Qg-tr-zxh" customClass="TimeTemplateTableCell" customModule="Timmee" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimeTemplateTableCell" rowHeight="52" id="0Qg-tr-zxh" customClass="TimeTemplateTableCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Qg-tr-zxh" id="0MV-h0-kUU">
@@ -764,7 +780,7 @@
                                     <outlet property="delegate" destination="McA-jA-62e" id="HQD-8q-pOu"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSp-FE-yn9" customClass="AddTimeTemplateView" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSp-FE-yn9" customClass="AddTimeTemplateView" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add time template..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm9-uv-Low">
@@ -826,7 +842,7 @@
         <!--Task Time Template Editor-->
         <scene sceneID="9qp-x2-Z0E">
             <objects>
-                <viewController storyboardIdentifier="TaskTimeTemplateEditor" id="rJo-9e-d3n" customClass="TaskTimeTemplateEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskTimeTemplateEditor" id="rJo-9e-d3n" customClass="TaskTimeTemplateEditor" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="71e-c9-dBE"/>
                         <viewControllerLayoutGuide type="bottom" id="Agx-ZN-Gwy"/>
@@ -864,7 +880,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="55B-iw-7CW">
                                 <rect key="frame" x="0.0" y="45" width="375" height="622"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xom-bW-3Fn" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xom-bW-3Fn" customClass="TaskParameterView" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="15" y="0.0" width="345" height="40"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="duI-vB-8uH">
@@ -910,7 +926,7 @@
                                             <outlet property="titleView" destination="hmp-TZ-2YX" id="caW-P7-Xd6"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVZ-gJ-XjV" customClass="TaskParameterView" customModule="Timmee" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVZ-gJ-XjV" customClass="TaskParameterView" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="15" y="40" width="345" height="40"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alarm" translatesAutoresizingMaskIntoConstraints="NO" id="tQp-cB-Gct">
@@ -997,7 +1013,7 @@
         <!--Task Photo Attachments Picker-->
         <scene sceneID="boY-j1-4st">
             <objects>
-                <viewController storyboardIdentifier="TaskPhotoAttachmentsPicker" id="LO9-zy-vmb" customClass="TaskPhotoAttachmentsPicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskPhotoAttachmentsPicker" id="LO9-zy-vmb" customClass="TaskPhotoAttachmentsPicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UYD-y5-SeA"/>
                         <viewControllerLayoutGuide type="bottom" id="t4V-Ow-bM0"/>
@@ -1016,7 +1032,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TakePhotoCell" id="fTx-2i-BVY" customClass="TakePhotoCell" customModule="Timmee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TakePhotoCell" id="fTx-2i-BVY" customClass="TakePhotoCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1040,7 +1056,7 @@
                                             <outlet property="imageView" destination="zqf-jH-RH5" id="7O8-p9-COw"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="sK4-oJ-bGT" customClass="PhotoCell" customModule="Timmee" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="sK4-oJ-bGT" customClass="PhotoCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="137.5" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1107,14 +1123,14 @@
         <!--Task Repeating Editor-->
         <scene sceneID="5XD-Pg-F6C">
             <objects>
-                <tableViewController storyboardIdentifier="TaskRepeatingEditor" id="bNu-4X-S01" customClass="TaskRepeatingEditor" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TaskRepeatingEditor" id="bNu-4X-S01" customClass="TaskRepeatingEditor" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tnT-4X-NDR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaskRepeatingCell" rowHeight="44" id="EVX-kR-Odf" customClass="TaskRepeatingCell" customModule="Timmee" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaskRepeatingCell" rowHeight="44" id="EVX-kR-Odf" customClass="TaskRepeatingCell" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EVX-kR-Odf" id="yO4-Pm-I08">
@@ -1169,7 +1185,7 @@
         <!--Task Weekly Repeating Picker-->
         <scene sceneID="ES7-7M-ToX">
             <objects>
-                <viewController storyboardIdentifier="TaskWeeklyRepeatingPicker" id="ruu-9t-IwS" customClass="TaskWeeklyRepeatingPicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskWeeklyRepeatingPicker" id="ruu-9t-IwS" customClass="TaskWeeklyRepeatingPicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M6W-Cw-Ov7"/>
                         <viewControllerLayoutGuide type="bottom" id="xSL-vb-5D4"/>
@@ -1178,10 +1194,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhT-1V-1RY" customClass="WeekDaysPicker" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhT-1V-1RY" customClass="WeekDaysPicker" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="26.5" y="8" width="322" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exg-Of-LQH" customClass="WeekDaysButton" customModule="Timmee" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exg-Of-LQH" customClass="WeekDaysButton" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="68" y="0.0" width="86" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
@@ -1198,7 +1214,7 @@
                                             <action selector="didSelectWeekdays" destination="AhT-1V-1RY" eventType="touchUpInside" id="Hbs-RR-5Ad"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss4-Mz-h9x" customClass="WeekDaysButton" customModule="Timmee" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss4-Mz-h9x" customClass="WeekDaysButton" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="234" y="0.0" width="88" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
@@ -1218,7 +1234,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QvJ-oU-10r">
                                         <rect key="frame" x="0.0" y="42" width="322" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufj-Ee-aLN" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufj-Ee-aLN" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="dtJ-vl-lYf"/>
@@ -1235,7 +1251,7 @@
                                                     <action selector="didSelectDay:" destination="AhT-1V-1RY" eventType="touchUpInside" id="2Dr-DE-MJP"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzn-n2-ALH" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzn-n2-ALH" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="46" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="F90-Cz-b1e"/>
@@ -1252,7 +1268,7 @@
                                                     <action selector="didSelectDay:" destination="AhT-1V-1RY" eventType="touchUpInside" id="YFi-vg-6cc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdo-tC-CPy" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdo-tC-CPy" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="92" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="gnH-Fw-0gk"/>
@@ -1269,7 +1285,7 @@
                                                     <action selector="didSelectDay:" destination="AhT-1V-1RY" eventType="touchUpInside" id="AFm-Fl-oRE"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyd-pY-7tI" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyd-pY-7tI" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="138" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="kpJ-Wc-oHa"/>
@@ -1286,7 +1302,7 @@
                                                     <action selector="didSelectDay:" destination="AhT-1V-1RY" eventType="touchUpInside" id="wIy-av-KMi"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeH-yl-427" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeH-yl-427" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="184" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="LcH-Ww-3wg"/>
@@ -1310,7 +1326,7 @@
                                                     <constraint firstAttribute="width" id="ow1-ea-Y5c"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1B-ZB-Q46" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1B-ZB-Q46" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="238" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="tDa-Eg-OEs"/>
@@ -1327,7 +1343,7 @@
                                                     <action selector="didSelectDay:" destination="AhT-1V-1RY" eventType="touchUpInside" id="3If-ko-JcI"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJs-HQ-Qqo" customClass="DayButton" customModule="Timmee" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJs-HQ-Qqo" customClass="DayButton" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="284" y="0.0" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="38" id="19e-TO-Tbd"/>
@@ -1400,7 +1416,7 @@
         <!--Task Due Time Picker-->
         <scene sceneID="Bpc-i7-lJ8">
             <objects>
-                <viewController storyboardIdentifier="TaskDueTimePicker" id="juX-AT-7Wd" customClass="TaskDueTimePicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskDueTimePicker" id="juX-AT-7Wd" customClass="TaskDueTimePicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="thB-iI-arn"/>
                         <viewControllerLayoutGuide type="bottom" id="Y3X-q5-fxw"/>
@@ -1409,7 +1425,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ab3-lN-SLC" customClass="NumberPicker" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ab3-lN-SLC" customClass="NumberPicker" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="135.5" y="8" width="48" height="96"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0jH-p0-lbx">
@@ -1422,7 +1438,7 @@
                                             <inset key="sectionInset" minX="1" minY="32" maxX="0.0" maxY="32"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NumberPickerCell" id="Gz1-a4-OlW" customClass="NumberPickerCell" customModule="Timmee" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NumberPickerCell" id="Gz1-a4-OlW" customClass="NumberPickerCell" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="32" width="47" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1464,7 +1480,7 @@
                                     <outlet property="collectionView" destination="0jH-p0-lbx" id="9YA-XG-W2V"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-fK-ACH" customClass="NumberPicker" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-fK-ACH" customClass="NumberPicker" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="191.5" y="8" width="48" height="96"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gom-AL-qrV">
@@ -1477,7 +1493,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="32" maxX="0.0" maxY="32"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NumberPickerCell" id="SgW-9P-hPI" customClass="NumberPickerCell" customModule="Timmee" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NumberPickerCell" id="SgW-9P-hPI" customClass="NumberPickerCell" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="32" width="48" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1594,7 +1610,7 @@
         <!--Task Due Date Picker-->
         <scene sceneID="bEn-aO-hi1">
             <objects>
-                <viewController storyboardIdentifier="TaskDueDatePicker" id="gbT-db-EPL" customClass="TaskDueDatePicker" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskDueDatePicker" id="gbT-db-EPL" customClass="TaskDueDatePicker" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uuW-NA-Lhp"/>
                         <viewControllerLayoutGuide type="bottom" id="Spy-CM-Ztk"/>
@@ -1603,22 +1619,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-yk-dVX" customClass="CalendarView" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-yk-dVX" customClass="CalendarView" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UH4-cH-aBh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <collectionViewLayout key="collectionViewLayout" id="HZz-1D-LrO" customClass="CalendarViewLayout" customModule="Timmee" customModuleProvider="target"/>
+                                        <collectionViewLayout key="collectionViewLayout" id="HZz-1D-LrO" customClass="CalendarViewLayout" customModule="Scope" customModuleProvider="target"/>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarDayCell" id="vNt-gS-euE" customClass="CalendarDayCell" customModule="Timmee" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarDayCell" id="vNt-gS-euE" customClass="CalendarDayCell" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="48" height="62"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="пн" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJK-wP-UUw" customClass="DayNameLabel" customModule="Timmee" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="пн" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJK-wP-UUw" customClass="DayNameLabel" customModule="Scope" customModuleProvider="target">
                                                             <rect key="frame" x="4" y="4" width="40" height="12"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="12" id="a9k-vR-IpY"/>
@@ -1627,7 +1643,7 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-Na-XBy" customClass="DayNumberLabel" customModule="Timmee" customModuleProvider="target">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-Na-XBy" customClass="DayNumberLabel" customModule="Scope" customModuleProvider="target">
                                                             <rect key="frame" x="5" y="20" width="38" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="caZ-Na-XBy" secondAttribute="height" multiplier="1:1" id="k2c-tz-tz6"/>
@@ -1658,7 +1674,7 @@
                                                     <outlet property="dayNumberLabel" destination="caZ-Na-XBy" id="rSK-dZ-Sg5"/>
                                                 </connections>
                                             </collectionViewCell>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarMonthCell" id="3vI-zN-9KG" customClass="CalendarMonthCell" customModule="Timmee" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CalendarMonthCell" id="3vI-zN-9KG" customClass="CalendarMonthCell" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="58" y="21" width="48" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
