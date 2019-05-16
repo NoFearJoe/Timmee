@@ -55,8 +55,14 @@ enum NotificationAction {
 
 final class NotificationsConfigurator {
     
+    static func setupNotifications(application: UIApplication) {
+        DispatchQueue.main.safeAsync {
+            UNUserNotificationCenter.current().delegate = application.delegate as? UNUserNotificationCenterDelegate
+        }
+    }
+    
     static func getNotificationsPermissionStatus(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.safeAsync {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
                 DispatchQueue.main.async {
                     completion(settings.authorizationStatus == .authorized)
@@ -66,11 +72,10 @@ final class NotificationsConfigurator {
     }
     
     static func registerForLocalNotifications(application: UIApplication, completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.async {
-            UNUserNotificationCenter.current().delegate = application.delegate as? UNUserNotificationCenterDelegate
+        DispatchQueue.main.safeAsync {
             UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { isAuthorized, _ in
-                DispatchQueue.main.async {
+                DispatchQueue.main.safeAsync {
                     completion(isAuthorized)
                 }
             }
@@ -78,7 +83,7 @@ final class NotificationsConfigurator {
     }
     
     static func updateNotificationCategoriesIfPossible() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.safeAsync {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
                 guard settings.authorizationStatus == .authorized else { return }
                 UNUserNotificationCenter.current().setNotificationCategories(makeLocalNotificationsCategories())

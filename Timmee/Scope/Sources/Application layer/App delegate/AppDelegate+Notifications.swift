@@ -47,7 +47,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     center.removePendingNotificationRequests(withIdentifiers: [response.notification.request.identifier])
                 }
             }
-            
+
             guard let taskID = response.notification.request.content.userInfo["task_id"] as? String else {
                 completionHandler()
                 return

@@ -9,11 +9,19 @@
 import UIKit
 import Fabric
 import Crashlytics
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        NotificationsConfigurator.setupNotifications(application: application)
+        NotificationsConfigurator.updateNotificationCategoriesIfPossible()
+        
+        return true
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
@@ -23,8 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppThemeConfigurator.setupInitialThemeIfNeeded()
         
         AppearanceConfigurator.setupAppearance()
-        
-        NotificationsConfigurator.updateNotificationCategoriesIfPossible()
         
         if let window = self.window {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)

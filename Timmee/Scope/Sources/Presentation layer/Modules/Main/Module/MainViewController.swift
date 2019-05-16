@@ -55,6 +55,7 @@ final class MainViewController: UIViewController {
         setupAppLaunchTracker()
         setupKeyboardManager()
         setupEditingModeController()
+        subscribeToApplicationDidBecomeActive()
         
         representationManager.setRepresentation(.table, animated: false)
         
@@ -67,6 +68,11 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = AppTheme.current.backgroundColor
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        performGlobalRouting()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,6 +98,10 @@ final class MainViewController: UIViewController {
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
@@ -293,6 +303,17 @@ private extension MainViewController {
         }
     }
     
+    func subscribeToApplicationDidBecomeActive() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onApplicationDidBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+    }
+    
+    @objc private func onApplicationDidBecomeActive() {
+        performGlobalRouting()
+    }
+    
     func showLists(animated: Bool) {
         menuPanel.hideControls(animated: animated)
         taskCreationPanel.setTaskTitleFieldFirstResponder(false)
@@ -340,6 +361,26 @@ private extension MainViewController {
         Trackers.appLaunchTracker?.checkpoint = {
             guard #available(iOS 10.3, *) else { return }
             SKStoreReviewController.requestReview()
+        }
+    }
+    
+}
+
+// MARK: - Global routing
+
+private extension MainViewController {
+    
+    func performGlobalRouting() {
+        switch GlobalRoutingManager.shared.currentTarget {
+        case let .taskEditor(kind)?:
+            GlobalRoutingManager.shared.currentTarget = nil
+            router.showTaskEditor(with: nil,
+                                  list: state.currentList,
+                                  taskKind: kind,
+                                  isImportant: taskCreationPanel.isImportancySelected,
+                                  tags: tagsForCurrentSmartList(),
+                                  output: self)
+        default: break
         }
     }
     
