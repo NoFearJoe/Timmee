@@ -32,3 +32,24 @@ public enum CoreDataChange {
         return self.indexPath == indexPath || moveIndexPaths?.0 == indexPath || moveIndexPaths?.1 == indexPath
     }
 }
+
+extension CoreDataChange: Equatable {
+    public static func == (lhs: CoreDataChange, rhs: CoreDataChange) -> Bool {
+        switch (lhs, rhs) {
+        case let (.sectionInsertion(lhsSection), .sectionInsertion(rhsSection)):
+            return lhsSection == rhsSection
+        case let (.sectionDeletion(lhsSection), .sectionDeletion(rhsSection)):
+            return lhsSection == rhsSection
+        case let (.insertion(lhsIndexPath), .insertion(rhsIndexPath)):
+            return lhsIndexPath == rhsIndexPath
+        case let (.deletion(lhsIndexPath), .deletion(rhsIndexPath)):
+            return lhsIndexPath == rhsIndexPath
+        case let (.update(lhsIndexPath), .update(rhsIndexPath)):
+            return lhsIndexPath == rhsIndexPath
+        case let (.move(lhsFrom, lhsTo), .move(rhsFrom, rhsTo)):
+            return lhsFrom == rhsFrom && lhsTo == rhsTo
+        default:
+            return false
+        }
+    }
+}

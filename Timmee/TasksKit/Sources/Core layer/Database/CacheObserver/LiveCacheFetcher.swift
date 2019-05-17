@@ -111,6 +111,7 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                 }
             } else {
                 let diff = Dwifft.diff(lhs: self.currentSectionedValues, rhs: sectionedValues)
+//                let coreDataChanges = diff.map(self.mapDwifftStepToCoreDataChange)
                 let coreDataChanges = self.mapStepsToChanges(from: diff)
                 DispatchQueue.main.async {
                     self.subscriber?.prepareToProcessChanges()
@@ -152,37 +153,75 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
         }
     }
     
+//    private func mapStepsToChanges(from steps: [SectionedDiffStep<String, Entity>]) -> [CoreDataChange] {
+//        var result: [CoreDataChange] = []
+//        var temporaryUpdatesOrMoves: [CoreDataChange] = []
+//        steps.enumerated().forEach { index, step in
+//            switch step {
+//            case .sectionInsert, .sectionDelete:
+//                result.append(mapDwifftStepToCoreDataChange(step))
+//            case let .insert(section, row, _):
+//                let indexPath = IndexPath(row: row, section: section + sectionsOffset)
+//                if let temporaryChange = temporaryUpdatesOrMoves.first(where: { $0.isEqualByIndexPath(with: indexPath) }) {
+//                    result.append(temporaryChange)
+//                    temporaryUpdatesOrMoves.removeAll(where: { $0.isEqualByIndexPath(with: indexPath) })
+//                } else {
+//                    result.append(.insertion(indexPath))
+//                }
+//            case let .delete(section, row, value):
+//                let indexPath = IndexPath(row: row, section: section + sectionsOffset)
+//                if let inserted = steps.first(where: { $0.isInsertion && ($0.value == value || $0.value?.isEqual(to: value) == true) }),
+//                   !steps.contains(where: { $0.isSectionInsertion && $0.sectionIndex == section + sectionsOffset }) {
+//                    let insertedChange = mapDwifftStepToCoreDataChange(inserted)
+//                    if insertedChange.indexPath == indexPath {
+//                        temporaryUpdatesOrMoves.append(.update(indexPath))
+//                    } else {
+//                        temporaryUpdatesOrMoves.append(.move(indexPath, insertedChange.indexPath!))
+//                    }
+//                } else {
+//                    result.append(.deletion(indexPath))
+//                }
+//            }
+//        }
+//        return result
+//    }
+    
     private func mapStepsToChanges(from steps: [SectionedDiffStep<String, Entity>]) -> [CoreDataChange] {
-        var result: [CoreDataChange] = []
-        var temporaryUpdatesOrMoves: [CoreDataChange] = []
-        steps.enumerated().forEach { index, step in
-            switch step {
-            case .sectionInsert, .sectionDelete:
-                result.append(mapDwifftStepToCoreDataChange(step))
-            case let .insert(section, row, _):
-                let indexPath = IndexPath(row: row, section: section + sectionsOffset)
-                if let temporaryChange = temporaryUpdatesOrMoves.first(where: { $0.isEqualByIndexPath(with: indexPath) }) {
-                    result.append(temporaryChange)
-                    temporaryUpdatesOrMoves.removeAll(where: { $0.isEqualByIndexPath(with: indexPath) })
-                } else {
-                    result.append(.insertion(indexPath))
-                }
-            case let .delete(section, row, value):
-                let indexPath = IndexPath(row: row, section: section + sectionsOffset)
-                if let inserted = steps.first(where: { $0.isInsertion && ($0.value == value || $0.value?.isEqual(to: value) == true) }),
-                   !steps.contains(where: { $0.isSectionInsertion && $0.sectionIndex == section + sectionsOffset }) {
-                    let insertedChange = mapDwifftStepToCoreDataChange(inserted)
-                    if insertedChange.indexPath == indexPath {
-                        temporaryUpdatesOrMoves.append(.update(indexPath))
-                    } else {
-                        temporaryUpdatesOrMoves.append(.move(indexPath, insertedChange.indexPath!))
-                    }
-                } else {
-                    result.append(.deletion(indexPath))
-                }
+        // Собрать изменения
+        var changesByEntity: [(Any, [CoreDataChange])] = []
+        steps.forEach { step in
+            let change = self.mapDwifftStepToCoreDataChange(step)
+            guard let key: Any = step.value ?? step.section else { return }
+            if changesByEntity.first(where: { $0.0 }) {
+                changesByEntity[key] = [change]
+            } else {
+                changesByEntity[key]!.append(change)
             }
         }
-        return result
+        
+        // Преобразовать изменения в move, update...
+        var mappedChangesByEntity: [(Any, CoreDataChange)] = []
+        changesByEntity.forEach { key, value in
+            switch value {
+            case let changes where changes.count == 1:
+                mappedChangesByEntity[key] = changes.first!
+            case let changes where changes.count == 2:
+                switch (changes[0], changes[1]) {
+                case let (.deletion(deletionIndex), .insertion(insertionIndex)), let (.insertion(insertionIndex), .deletion(deletionIndex)):
+                    if deletionIndex == insertionIndex {
+                        mappedChangesByEntity[key] = .update(insertionIndex)
+                    } else {
+                        mappedChangesByEntity[key] = .move(deletionIndex, insertionIndex)
+                    }
+                default:
+                    mappedChangesByEntity[key] = changes.first!
+                }
+            default: break
+            }
+        }
+        
+        // вернуть массив изменений
+        return mappedChangesByEntity.map { $0.value }
     }
     
 }
@@ -256,6 +295,15 @@ fileprivate extension SectionedDiffStep {
         }
     }
     
+    var section: Section? {
+        switch self {
+        case let .sectionInsert(_, section), let .sectionDelete(_, section):
+            return section
+        default:
+            return nil
+        }
+    }
+    
     var sectionIndex: Int? {
         switch self {
         case let .sectionInsert(index, _), let .sectionDelete(index, _):
@@ -286,4 +334,21 @@ fileprivate extension SectionedDiffStep {
         return false
     }
     
+}
+
+extension SectionedDiffStep: Equatable where Value: Equatable, Section: Equatable {
+    public static func == (lhs: SectionedDiffStep, rhs: SectionedDiffStep) -> Bool {
+        switch (lhs, rhs) {
+        case let (.insert(lhsRow, lhsSection, lhsValue), .insert(rhsRow, rhsSection, rhsValue)):
+            return lhsRow == rhsRow && lhsSection == rhsSection && lhsValue == rhsValue
+        case let (.delete(lhsRow, lhsSection, lhsValue), .delete(rhsRow, rhsSection, rhsValue)):
+            return lhsRow == rhsRow && lhsSection == rhsSection && lhsValue == rhsValue
+        case let (.sectionInsert(lhsSection, lhsValue), .sectionInsert(rhsSection, rhsValue)):
+            return lhsSection == rhsSection && lhsValue == rhsValue
+        case let (.sectionDelete(lhsSection, lhsValue), .sectionDelete(rhsSection, rhsValue)):
+            return lhsSection == rhsSection && lhsValue == rhsValue
+        default:
+            return false
+        }
+    }
 }

@@ -110,7 +110,6 @@
 		0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */; };
 		0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */; };
 		0CF3097C2021E14700FD7E3E /* ListsViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF3097B2021E14600FD7E3E /* ListsViewController+CollectionView.swift */; };
-		38176EB50AB3D8C8B188E64F /* Pods_Timmee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1DF85975C140C3E76B19CA /* Pods_Timmee.framework */; };
 		9606627C20A3575D00B23EDF /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B243A207E3759009EF6DE /* TasksKit.framework */; };
 		9606627D20A3575D00B23EDF /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9B243A207E3759009EF6DE /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9606628320A6FE8100B23EDF /* Trackers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606628220A6FE8100B23EDF /* Trackers.swift */; };
@@ -180,6 +179,7 @@
 		96E543781F49ED890081C6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E5435F1F49ED890081C6F0 /* Assets.xcassets */; };
 		96E5437B1F49ED890081C6F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E543681F49ED890081C6F0 /* LaunchScreen.storyboard */; };
 		96E5437D1F49ED890081C6F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5436D1F49ED890081C6F0 /* AppDelegate.swift */; };
+		E249902E6EA0D28B003A798C /* Pods_Scope.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB84FDBAA53542B9BC0D157 /* Pods_Scope.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,7 +315,8 @@
 		0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDataConfigurator.swift; sourceTree = "<group>"; };
 		0CF3097B2021E14600FD7E3E /* ListsViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListsViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		31B7E1C2C5BD3C6C7846E986 /* Pods-Timmee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.release.xcconfig"; sourceTree = "<group>"; };
-		4C1DF85975C140C3E76B19CA /* Pods_Timmee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Timmee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AB84FDBAA53542B9BC0D157 /* Pods_Scope.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scope.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E33224A5D23C2F0FE767FD5 /* Pods-Scope.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scope.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scope/Pods-Scope.debug.xcconfig"; sourceTree = "<group>"; };
 		9411A2F120085851CC822876 /* Pods-Timmee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Timmee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Timmee/Pods-Timmee.debug.xcconfig"; sourceTree = "<group>"; };
 		9606628220A6FE8100B23EDF /* Trackers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trackers.swift; sourceTree = "<group>"; };
 		960A0DDB1F921551003DCDAD /* BiometricsActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsActivationController.swift; sourceTree = "<group>"; };
@@ -393,6 +394,7 @@
 		96E543651F49ED890081C6F0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E543681F49ED890081C6F0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96E5436D1F49ED890081C6F0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		995778422B6C72A655557AE6 /* Pods-Scope.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scope.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scope/Pods-Scope.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,7 +406,7 @@
 				0C14D43B211C1EF9004C0559 /* UIComponents.framework in Frameworks */,
 				0C9B243E207E377F009EF6DE /* Workset.framework in Frameworks */,
 				9606627C20A3575D00B23EDF /* TasksKit.framework in Frameworks */,
-				38176EB50AB3D8C8B188E64F /* Pods_Timmee.framework in Frameworks */,
+				E249902E6EA0D28B003A798C /* Pods_Scope.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,7 +1465,7 @@
 				0C14D43A211C1EF9004C0559 /* UIComponents.framework */,
 				0C9B243A207E3759009EF6DE /* TasksKit.framework */,
 				0C9B2438207E3724009EF6DE /* Workset.framework */,
-				4C1DF85975C140C3E76B19CA /* Pods_Timmee.framework */,
+				6AB84FDBAA53542B9BC0D157 /* Pods_Scope.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1473,6 +1475,8 @@
 			children = (
 				9411A2F120085851CC822876 /* Pods-Timmee.debug.xcconfig */,
 				31B7E1C2C5BD3C6C7846E986 /* Pods-Timmee.release.xcconfig */,
+				6E33224A5D23C2F0FE767FD5 /* Pods-Scope.debug.xcconfig */,
+				995778422B6C72A655557AE6 /* Pods-Scope.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1617,7 +1621,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Scope/Pods-Scope-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
 				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
@@ -1630,7 +1634,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Timmee/Pods-Timmee-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Scope/Pods-Scope-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		96594E5A201918CF00998133 /* ShellScript */ = {
@@ -1657,7 +1661,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Timmee-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Scope-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1980,7 +1984,7 @@
 		};
 		96E543581F49EBB20081C6F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9411A2F120085851CC822876 /* Pods-Timmee.debug.xcconfig */;
+			baseConfigurationReference = 6E33224A5D23C2F0FE767FD5 /* Pods-Scope.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Scope/Scope.entitlements;
@@ -1999,7 +2003,7 @@
 		};
 		96E543591F49EBB20081C6F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31B7E1C2C5BD3C6C7846E986 /* Pods-Timmee.release.xcconfig */;
+			baseConfigurationReference = 995778422B6C72A655557AE6 /* Pods-Scope.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Scope/Scope.entitlements;
