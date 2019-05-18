@@ -186,6 +186,7 @@ extension TodayContentViewController: UITableViewDelegate {
 private extension TodayContentViewController {
     
     func setupCurrentCacheObserver() {
+        guard !sprintID.trimmed.isEmpty else { return }
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
         case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)

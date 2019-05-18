@@ -285,6 +285,7 @@ extension SprintCreationViewController: DueDatePickerOutput {
         sprint.startDate = date
         sprint.endDate = date.endOfDay + sprint.duration.asWeeks
         updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
+        updateSprintSettingsButtons()
     }
     
 }
@@ -384,10 +385,10 @@ private extension SprintCreationViewController {
     }
     
     func updateSprintSettingsButtons() {
-        addButton.isHidden = sprint.tense == .past
+        addButton.isHidden = sprint.isReady && sprint.tense == .past
         startDateButton.isHidden = sprint.isReady && sprint.tense != .future
         sprintDurationButton.isHidden = sprint.isReady && sprint.tense != .future
-        notificationsButton.isHidden = sprint.tense == .past
+        notificationsButton.isHidden = sprint.isReady && sprint.tense == .past
     }
     
     func showAddHabitMenu(animated: Bool = false) {

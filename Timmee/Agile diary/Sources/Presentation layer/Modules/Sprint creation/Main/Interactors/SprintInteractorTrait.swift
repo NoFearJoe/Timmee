@@ -43,7 +43,12 @@ extension SprintInteractorTrait {
             let latestSprint = existingSprints.max(by: { $0.number < $1.number })
             let nextSprintNumber = (latestSprint?.number ?? 0) + 1
             let sprint = Sprint(number: nextSprintNumber)
-            sprint.startDate = (latestSprint?.endDate + 1.asDays)?.startOfDay ?? Date.now.startOfDay
+            let estimatedStartDate = (latestSprint?.endDate + 1.asDays)?.startOfDay ?? Date.now.startOfDay
+            if estimatedStartDate.isLower(than: Date.now.startOfDay) {
+                sprint.startDate = Date.now.startOfDay
+            } else {
+                sprint.startDate = estimatedStartDate
+            }
             sprint.endDate = sprint.startDate.endOfDay + sprint.duration.asWeeks
             sprintsService.createOrUpdateSprint(sprint) { _ in
                 completion(sprint)
