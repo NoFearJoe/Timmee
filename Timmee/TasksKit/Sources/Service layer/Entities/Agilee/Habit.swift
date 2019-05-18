@@ -140,6 +140,8 @@ public class Habit: Copyable {
             date = date + dayNumbersDifference.asDays as Date
         }
         
+        if let repeatEndingDate = repeatEndingDate, date >= repeatEndingDate { return nil }
+        
         return date
     }
     

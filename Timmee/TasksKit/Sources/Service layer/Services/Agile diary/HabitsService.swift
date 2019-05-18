@@ -22,7 +22,8 @@ public protocol HabitsManager: class {
     func updateHabits(_ habits: [Habit], sprintID: String?, completion: @escaping (Bool) -> Void)
     func removeHabit(_ habit: Habit, completion: @escaping (Bool) -> Void)
     func removeHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void)
-    func updateHabitsNotificationDates()
+    func updateHabitsNotificationDates(completion: @escaping () -> Void)
+    func setRepeatEndingDateForAllHabitsIfNeeded(completion: @escaping () -> Void)
 }
 
 public protocol HabitsObserverProvider: class {
@@ -38,6 +39,7 @@ public protocol HabitEntitiesProvider: class {
 public protocol HabitEntitiesBackgroundProvider: class {
     func fetchHabitEntitiesInBackground(sprintID: String) -> [HabitEntity]
     func fetchHabitEntityInBackground(id: String) -> HabitEntity?
+    func fetchAllHabitsInBackground() -> [HabitEntity]
     func fetchHabitEntitiesToUpdateNotificationDateInBackground() -> [HabitEntity]
 }
 
@@ -148,7 +150,7 @@ extension HabitsService: HabitsManager {
         }
     }
     
-    public func updateHabitsNotificationDates() {
+    public func updateHabitsNotificationDates(completion: @escaping () -> Void) {
         DispatchQueue.global().async {
             let habitsToUpdate = self.fetchHabitEntitiesToUpdateNotificationDateInBackground()
             let updatedHabits = habitsToUpdate.map { entity -> Habit in
@@ -156,7 +158,23 @@ extension HabitsService: HabitsManager {
                 habit.notificationDate = habit.nextNotificationDate
                 return habit
             }
-            self.updateHabits(updatedHabits, completion: { _ in })
+            self.updateHabits(updatedHabits, completion: { _ in
+                completion()
+            })
+        }
+    }
+    
+    public func setRepeatEndingDateForAllHabitsIfNeeded(completion: @escaping () -> Void) {
+        DispatchQueue.global().async {
+            let habitsToUpdate = self.fetchAllHabitsInBackground()
+            let updatedHabits = habitsToUpdate.map { entity -> Habit in
+                let habit = Habit(habit: entity)
+                habit.repeatEndingDate = entity.sprint?.endDate
+                return habit
+            }
+            self.updateHabits(updatedHabits, completion: { _ in
+                completion()
+            })
         }
     }
     
@@ -188,7 +206,13 @@ extension HabitsService: HabitsObserverProvider {
     
     public func habitsBySprintObserver(excludingSprintWithID sprintID: String) -> CacheObserver<Habit> {
         let predicate = NSPredicate(format: "sprint.id != %@", sprintID)
-        let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
+        let request = HabitEntity.request()
+            .filtered(predicate: predicate)
+            .sorted(keyPath: \HabitEntity.sprint?.number, ascending: true)
+            .sorted(keyPath: \.title, ascending: true)
+            .sorted(keyPath: \.creationDate, ascending: false)
+            .batchSize(10)
+            .nsFetchRequestWithResult
         let context = Database.localStorage.readContext
         
         let habitsObserver = CacheObserver<Habit>(request: request,
@@ -240,6 +264,10 @@ extension HabitsService: HabitEntitiesBackgroundProvider {
     
     public func fetchHabitEntityInBackground(id: String) -> HabitEntity? {
         return HabitsService.habitFetchRequest(id: id).executeInBackground().first
+    }
+    
+    public func fetchAllHabitsInBackground() -> [HabitEntity] {
+        return HabitsService.allHabitsFetchRequest().executeInBackground()
     }
     
     public func fetchHabitEntitiesToUpdateNotificationDateInBackground() -> [HabitEntity] {

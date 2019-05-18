@@ -65,10 +65,8 @@ final class PinAuthenticationViewController: BaseViewController {
         showMessage("enter_password".localized)
     }
     
-    override func refresh() {
-        super.refresh()
-        
-        setupAppearance()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showBiometricsAuthenticationIfPossible()
     }
     

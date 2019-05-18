@@ -47,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
+        ServicesAssembly.shared.habitsService.setRepeatEndingDateForAllHabitsIfNeeded {
+            self.rescheduleAllNotifications()
+        }
         
         ProVersionPurchase.shared.loadStore()
         
@@ -79,3 +82,11 @@ extension AppDelegate: PeriodicallySynchronizationRunnerDelegate {
     
 }
 
+private extension AppDelegate {
+    func rescheduleAllNotifications() {
+        let allHabits = EntityServicesAssembly.shared.habitsService.fetchAllHabitsInBackground().map { Habit(habit: $0) }
+        allHabits.forEach { habit in
+            HabitsSchedulerService.shared.scheduleHabit(habit)
+        }
+    }
+}

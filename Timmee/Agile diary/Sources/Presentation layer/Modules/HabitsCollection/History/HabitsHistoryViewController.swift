@@ -77,6 +77,7 @@ extension HabitsHistoryViewController: UITableViewDelegate {
             }
         } else {
             let newHabit = habit.copy
+            newHabit.doneDates = []
             newHabit.id = RandomStringGenerator.randomString(length: 24)
             habitsService.addHabit(newHabit, sprintID: sprintID) { [weak self] success in
                 guard let self = self, success else { return }

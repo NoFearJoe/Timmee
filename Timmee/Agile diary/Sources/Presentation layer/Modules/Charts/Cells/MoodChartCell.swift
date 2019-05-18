@@ -20,6 +20,7 @@ final class MoodChartCell: BaseChartCell {
     @IBOutlet private var moodLabel: UILabel! {
         didSet {
             moodLabel.font = AppTheme.current.fonts.medium(24)
+            moodLabel.textColor = AppTheme.current.colors.activeElementColor
         }
     }
     

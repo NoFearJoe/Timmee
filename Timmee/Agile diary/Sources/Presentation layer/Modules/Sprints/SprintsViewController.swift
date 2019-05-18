@@ -169,6 +169,7 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                     self.view.isUserInteractionEnabled = false
                     self.sprintsService.removeSprint(sprint, completion: { _ in
                         self.view.isUserInteractionEnabled = true
+                        SprintSchedulerService().removeSprintNotifications(sprint: sprint, completion: {})
                     })
                 }
             }

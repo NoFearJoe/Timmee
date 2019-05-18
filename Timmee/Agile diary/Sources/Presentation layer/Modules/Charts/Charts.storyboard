@@ -282,7 +282,7 @@
                                                         <action selector="showFullProgress" destination="apy-gf-ggz" eventType="touchUpInside" id="byv-nd-Xu8"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="normal" translatesAutoresizingMaskIntoConstraints="NO" id="xQk-6D-PRQ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xQk-6D-PRQ">
                                                     <rect key="frame" x="293" y="38" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="VKl-AK-7eI"/>
@@ -724,6 +724,5 @@
     </scenes>
     <resources>
         <image name="cross" width="20" height="20"/>
-        <image name="normal" width="102" height="100"/>
     </resources>
 </document>

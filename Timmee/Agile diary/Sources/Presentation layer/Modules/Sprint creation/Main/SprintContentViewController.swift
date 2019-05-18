@@ -75,6 +75,7 @@ final class SprintContentViewController: UIViewController {
         habitCellActionsProvider.onDelete = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
             self.habitsService.removeHabit(habit, completion: { _ in })
+            HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
         }
     }
     

@@ -370,13 +370,13 @@ private extension SprintCreationViewController {
         let habits = habitsService.fetchHabits(sprintID: sprint.id)
         let repeatEndingDate = sprint.endDate
         habits.forEach {
+            $0.repeatEndingDate = repeatEndingDate
             guard $0.notificationDate != nil else { return }
             let notificationHour = $0.notificationDate?.hours ?? 0
             let notificationMinute = $0.notificationDate?.minutes ?? 0
             $0.notificationDate = sprint.startDate.startOfDay
             $0.notificationDate => notificationHour.asHours
             $0.notificationDate => notificationMinute.asMinutes
-            $0.repeatEndingDate = repeatEndingDate
         }
         habitsService.updateHabits(habits) { _ in
             completion(habits)

@@ -14,6 +14,7 @@ import class UserNotifications.UNUserNotificationCenter
 import struct UserNotifications.UNNotificationPresentationOptions
 import protocol UserNotifications.UNUserNotificationCenterDelegate
 import var UserNotifications.UNNotificationDefaultActionIdentifier
+import class UserNotifications.UNCalendarNotificationTrigger
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
@@ -21,17 +22,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if let endDate = notification.request.content.userInfo["end_date"] as? Date {
-            if endDate <= Date.now {
+            let nextTriggerDate = (notification.request.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate()
+            if endDate <= Date.now || endDate <= (nextTriggerDate ?? Date.now) {
                 center.removeDeliveredNotifications(withIdentifiers: [notification.request.identifier])
                 center.removePendingNotificationRequests(withIdentifiers: [notification.request.identifier])
             }
         }
         
         if notification.request.content.categoryIdentifier == NotificationCategories.habit.rawValue {
-            if let habitID = notification.request.content.userInfo["habit_id"] as? String {
-                updateNotificationDate(ofHabitWithID: habitID)
-            }
-            
             completionHandler([.alert, .sound])
         } else if notification.request.content.categoryIdentifier == NotificationCategories.waterControl.rawValue {
             completionHandler([.alert, .sound])
@@ -42,7 +40,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         if let endDate = response.notification.request.content.userInfo["end_date"] as? Date {
-            if endDate <= Date.now {
+            let nextTriggerDate = (response.notification.request.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate()
+            if endDate <= Date.now || endDate <= (nextTriggerDate ?? Date.now) {
                 center.removeDeliveredNotifications(withIdentifiers: [response.notification.request.identifier])
                 center.removePendingNotificationRequests(withIdentifiers: [response.notification.request.identifier])
             }
@@ -110,12 +109,6 @@ private extension AppDelegate {
 }
 
 private extension AppDelegate {
-    
-    func updateNotificationDate(ofHabitWithID id: String) {
-        guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: id) else { return }
-        habit.notificationDate = habit.nextNotificationDate
-        ServicesAssembly.shared.habitsService.updateHabit(habit, completion: { _ in })
-    }
     
     func deferNotification(ofHabitWithID id: String, by minutes: Int, fireDate: Date?, completion: @escaping () -> Void) {
         guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: id) else {

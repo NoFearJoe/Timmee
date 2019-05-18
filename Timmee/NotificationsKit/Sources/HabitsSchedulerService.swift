@@ -12,6 +12,8 @@ import UserNotifications
 
 public final class HabitsSchedulerService: BaseSchedulerService {
     
+    public static let shared = HabitsSchedulerService()
+    
     public func scheduleHabit(_ habit: Habit) {
         removeNotifications(for: habit) {
             self.scheduleNewHabit(habit)
@@ -20,6 +22,7 @@ public final class HabitsSchedulerService: BaseSchedulerService {
     
     private func scheduleNewHabit(_ habit: Habit) {
         guard var notificationDate = habit.notificationDate else { return }
+        guard let endDate = habit.repeatEndingDate else { return }
         
         let now = Date()
         if notificationDate.isLower(than: now) {
@@ -29,24 +32,28 @@ public final class HabitsSchedulerService: BaseSchedulerService {
             notificationDate => oldDate.minutes.asMinutes
         }
         
-        if let endDate = habit.repeatEndingDate, notificationDate <= endDate {
-            return
-        }
-        
-        (0..<7).forEach { day in
-            let fireDate = notificationDate + day.asDays
+        while notificationDate <= endDate {
+            let fireDate = notificationDate
             
-            guard fireDate >= Date() else { return }
-            guard (habit.dueDays.map { $0.weekday }).contains(fireDate.weekday) else { return }
+            guard fireDate >= now else {
+                notificationDate = notificationDate + 1.asDays
+                continue
+            }
+            guard (habit.dueDays.map { $0.weekday }).contains(fireDate.weekday) else {
+                notificationDate = notificationDate + 1.asDays
+                continue
+            }
             
             let userInfo = HabitsSchedulerService.makeUserInfo(habitID: habit.id, isDeferred: false, endDate: habit.repeatEndingDate)
-            scheduleLocalNotification(withID: habit.id + "\(fireDate.weekday)",
-                                      title: habit.title,
-                                      message: HabitsSchedulerService.makeNotificationMessage(for: habit),
-                                      at: fireDate,
-                                      repeatUnit: .weekOfYear,
-                                      category: "habit",
-                                      userInfo: userInfo)
+            scheduleLocalNotification(withID: habit.id + "\(fireDate.timeIntervalSince1970)",
+                title: habit.title,
+                message: HabitsSchedulerService.makeNotificationMessage(for: habit),
+                at: fireDate,
+                repeatUnit: nil,
+                category: "habit",
+                userInfo: userInfo)
+            
+            notificationDate = notificationDate + 1.asDays
         }
     }
     
@@ -83,7 +90,9 @@ public final class HabitsSchedulerService: BaseSchedulerService {
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
             
-            completion()
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
     
@@ -118,7 +127,9 @@ public final class HabitsSchedulerService: BaseSchedulerService {
             
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
             
-            completion()
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
     

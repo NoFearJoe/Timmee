@@ -294,6 +294,7 @@ private extension TodayContentViewController {
                                guard case .ok = action else { return }
                                self.view.isUserInteractionEnabled = false
                                self.habitsService.removeHabit(habit, completion: { [weak self] _ in
+                                   HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
                                    guard let self = self else { return }
                                    self.view.isUserInteractionEnabled = true
 //                                   self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
