@@ -16,16 +16,30 @@ public enum CoreDataChange {
     case update(IndexPath)
     case move(IndexPath, IndexPath)
     
-    var indexPath: IndexPath? {
+    public var indexPath: IndexPath? {
         switch self {
         case let .insertion(indexPath), let .deletion(indexPath), let .update(indexPath): return indexPath
         default: return nil
         }
     }
     
-    var moveIndexPaths: (IndexPath, IndexPath)? {
+    public var moveIndexPaths: (IndexPath, IndexPath)? {
         guard case .move(let from, let to) = self else { return nil }
         return (from, to)
+    }
+    
+    public var isDeletion: Bool {
+        if case .deletion = self {
+            return true
+        }
+        return false
+    }
+    
+    public var isUpdate: Bool {
+        if case .update = self {
+            return true
+        }
+        return false
     }
     
     func isEqualByIndexPath(with indexPath: IndexPath) -> Bool {

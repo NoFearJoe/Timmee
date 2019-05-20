@@ -47,7 +47,7 @@ public protocol TaskEntitiesBackgroundProvider: class {
 }
 
 public protocol TasksObserverProvider: class {
-//    func tasksObserver(listID: String) -> CacheObserver<Task>
+    func tasksObserver(listID: String) -> CacheObserver<Task>
     func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task>
     func tasksScope(listID: String) -> CachedEntitiesObserver<TaskEntity, Task>
 }
@@ -235,32 +235,33 @@ extension TasksService: TasksManager {
 
 extension TasksService: TasksObserverProvider {
     
-//    public func tasksObserver(listID: String) -> CacheObserver<Task> {
-//        var request: FetchRequest<TaskEntity> = TaskEntity.request()
-//            .sorted(keyPath: \.isImportant, ascending: false)
-//            .sorted(keyPath: \.inProgress, ascending: false)
-//            .sorted(keyPath: \.creationDate, ascending: false)
-//            .batchSize(10)
-//        
-//        if SmartListType.isSmartListID(listID) {
-//            request = request.filtered(predicate: SmartListType(id: listID).fetchPredicate)
-//        } else {
-//            request = request.filtered(key: "list.id", value: listID)
-//        }
-//        
-//        let context = Database.localStorage.readContext
-//        let tasksObserver = CacheObserver<Task>(request: request.nsFetchRequestWithResult,
-//                                                section: "isDone",
-//                                                cacheName: nil,
-//                                                context: context)
-//        
-//        tasksObserver.setMapping { entity in
-//            let taskEntity = entity as! TaskEntity
-//            return Task(entity: taskEntity)
-//        }
-//        
-//        return tasksObserver
-//    }
+    public func tasksObserver(listID: String) -> CacheObserver<Task> {
+        var request: FetchRequest<TaskEntity> = TaskEntity.request()
+            .sorted(keyPath: \.isDone, ascending: true)
+            .sorted(keyPath: \.isImportant, ascending: false)
+            .sorted(keyPath: \.inProgress, ascending: false)
+            .sorted(keyPath: \.creationDate, ascending: false)
+            .batchSize(10)
+        
+        if SmartListType.isSmartListID(listID) {
+            request = request.filtered(predicate: SmartListType(id: listID).fetchPredicate)
+        } else {
+            request = request.filtered(key: "list.id", value: listID)
+        }
+        
+        let context = Database.localStorage.readContext
+        let tasksObserver = CacheObserver<Task>(request: request.nsFetchRequestWithResult,
+                                                section: "isDone",
+                                                cacheName: nil,
+                                                context: context)
+        
+        tasksObserver.setMapping { entity in
+            let taskEntity = entity as! TaskEntity
+            return Task(entity: taskEntity)
+        }
+        
+        return tasksObserver
+    }
     
     public func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task> {
         let request = TasksService.allTasksFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult

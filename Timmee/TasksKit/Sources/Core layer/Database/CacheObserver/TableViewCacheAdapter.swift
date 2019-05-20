@@ -33,6 +33,7 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
     
     public func prepareToProcessChanges() {
         if #available(iOSApplicationExtension 11.0, *) {} else {
+            tableView?.isUserInteractionEnabled = false
             tableView?.beginUpdates()
         }
     }
@@ -66,19 +67,23 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
         
         SwiftTryCatch.try({
             if #available(iOSApplicationExtension 11.0, *) {
+                tableView.isUserInteractionEnabled = false
                 tableView.performBatchUpdates({
                     performChanges()
                 }) { _ in
+                    tableView.isUserInteractionEnabled = true
                     completion()
                 }
             } else {
                 performChanges()
                 
                 tableView.endUpdates()
+                tableView.isUserInteractionEnabled = true
                 
                 completion()
             }
         }, catch: { _ in
+            tableView.isUserInteractionEnabled = true
             tableView.reloadData()
         }, finally: nil)
     }

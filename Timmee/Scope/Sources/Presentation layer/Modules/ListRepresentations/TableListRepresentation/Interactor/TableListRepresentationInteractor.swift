@@ -52,6 +52,7 @@ final class TableListRepresentationInteractor {
     private var lastListID: String?
     
     private var observer: CachedEntitiesObserver<TaskEntity, Task>!
+//    private var observer: CacheObserver<Task>!
     
     private var fetchedTasks: [Task] = []
     
@@ -174,10 +175,26 @@ private extension TableListRepresentationInteractor {
         }, onEntitiesCountChange: { [weak self] count in
             self?.output.tasksCountChanged(count: count)
         }, onChanges: { [weak self] changes in
-            changes.forEach { self?.output.taskChanged(change: $0) }
+            if let change = changes.first(where: { !$0.isDeletion && !$0.isUpdate && ($0.indexPath != nil || $0.moveIndexPaths != nil) }) {
+                self?.output.taskChanged(change: change)
+            }
         }))
         output.prepareCacheObserver(observer)
         observer.fetch()
     }
+    
+//    func setupScope(listID: String) {
+//        observer = tasksService.tasksObserver(listID: listID)
+//        observer.setActions(onInitialFetch: { [weak self] in
+//            self?.output.initialTasksFetched()
+//        }, onItemsCountChange: { [weak self] count in
+//            self?.output.tasksCountChanged(count: count)
+//        }, onItemChange: { [weak self] change in
+//            self?.output.taskChanged(change: change)
+//        }, onBatchUpdatesStarted: nil,
+//           onBatchUpdatesCompleted: nil)
+//        output.prepareCacheObserver(observer)
+//        observer.fetchInitialEntities()
+//    }
     
 }

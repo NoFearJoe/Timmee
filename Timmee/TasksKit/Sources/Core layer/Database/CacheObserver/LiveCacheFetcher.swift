@@ -111,8 +111,8 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                 }
             } else {
                 let diff = Dwifft.diff(lhs: self.currentSectionedValues, rhs: sectionedValues)
-//                let coreDataChanges = diff.map(self.mapDwifftStepToCoreDataChange)
-                let coreDataChanges = self.mapStepsToChanges(from: diff)
+                let coreDataChanges = diff.map(self.mapDwifftStepToCoreDataChange)
+//                let coreDataChanges = self.mapStepsToChanges(from: diff)
                 DispatchQueue.main.async {
                     self.subscriber?.prepareToProcessChanges()
                     self.currentSectionedEntities = sectionedEntities
@@ -187,15 +187,26 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
 //    }
     
     private func mapStepsToChanges(from steps: [SectionedDiffStep<String, Entity>]) -> [CoreDataChange] {
+        func getIndex(array: [(Any, [CoreDataChange])], element: Any) -> Int? {
+            return array.firstIndex(where: { e in
+                if let entity1 = e.0 as? Entity, let entity2 = element as? Entity {
+                    return entity1.isEqual(to: entity2)
+                } else if let string1 = e.0 as? String, let string2 = element as? String {
+                    return string1 == string2
+                } else {
+                    return false
+                }
+            })
+        }
         // Собрать изменения
         var changesByEntity: [(Any, [CoreDataChange])] = []
         steps.forEach { step in
             let change = self.mapDwifftStepToCoreDataChange(step)
             guard let key: Any = step.value ?? step.section else { return }
-            if changesByEntity.first(where: { $0.0 }) {
-                changesByEntity[key] = [change]
+            if let index = getIndex(array: changesByEntity, element: key) {
+                changesByEntity[index] = (key, changesByEntity[index].1 + [change])
             } else {
-                changesByEntity[key]!.append(change)
+                changesByEntity.append((key, [change]))
             }
         }
         
@@ -204,24 +215,24 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
         changesByEntity.forEach { key, value in
             switch value {
             case let changes where changes.count == 1:
-                mappedChangesByEntity[key] = changes.first!
+                mappedChangesByEntity.append((key, changes.first!))
             case let changes where changes.count == 2:
                 switch (changes[0], changes[1]) {
                 case let (.deletion(deletionIndex), .insertion(insertionIndex)), let (.insertion(insertionIndex), .deletion(deletionIndex)):
                     if deletionIndex == insertionIndex {
-                        mappedChangesByEntity[key] = .update(insertionIndex)
+                        mappedChangesByEntity.append((key, .update(insertionIndex)))
                     } else {
-                        mappedChangesByEntity[key] = .move(deletionIndex, insertionIndex)
+                        mappedChangesByEntity.append((key, .move(deletionIndex, insertionIndex)))
                     }
                 default:
-                    mappedChangesByEntity[key] = changes.first!
+                    mappedChangesByEntity.append((key, changes.first!))
                 }
             default: break
             }
         }
         
         // вернуть массив изменений
-        return mappedChangesByEntity.map { $0.value }
+        return mappedChangesByEntity.map { $0.1 }
     }
     
 }
