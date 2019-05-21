@@ -269,3 +269,5 @@
 "create_single_task" = "Create common task";
 "create_regular_task" = "Create regular task";
 "regular_task_finished" = "Finished";
+
+"no_tasks_for_today" = "No tasks for today";

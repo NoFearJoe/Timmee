@@ -269,3 +269,5 @@
 "create_single_task" = "Создать обычную задачу";
 "create_regular_task" = "Создать регулярную задачу";
 "regular_task_finished" = "Окончена";
+
+"no_tasks_for_today" = "Нет задач на сегодня";

@@ -22,7 +22,13 @@ class CheckBox: UIView {
     }
     
     var checkedColor: UIColor { return AppTheme.current.blueColor }
-    var uncheckedColor: UIColor { return AppTheme.current.secondaryTintColor}
+    var uncheckedColor: UIColor {
+        #if TODAY_EXTENSION
+        return AppTheme.current.blueColor
+        #else
+        return AppTheme.current.secondaryTintColor
+        #endif
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

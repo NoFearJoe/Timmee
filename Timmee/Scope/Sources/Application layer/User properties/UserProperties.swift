@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mesterra. All rights reserved.
 //
 
+import Workset
 import class Foundation.UserDefaults
 
 public enum UserProperty: UserPropertyProtocol {
