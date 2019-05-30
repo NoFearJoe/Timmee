@@ -22,6 +22,7 @@ enum TaskParameterEditorType {
     case timeTemplates
     case attachments
     case audioNote
+    case calendar
     
     var title: String {
         switch self {
@@ -38,6 +39,7 @@ enum TaskParameterEditorType {
         case .timeTemplates: return "time_templates".localized
         case .attachments: return "attachments".localized
         case .audioNote: return "audio_note".localized
+        case .calendar: return "".localized
         }
     }
 }
@@ -70,10 +72,15 @@ protocol TaskParameterEditorContainerOutput: class {
 protocol TaskParameterEditorInput: class {
     var container: TaskParameterEditorOutput? { get set }
     var requiredHeight: CGFloat { get }
+    var onChangeHeight: ((CGFloat) -> Void)? { get set }
     func completeEditing(completion: @escaping (Bool) -> Void)
 }
 
 extension TaskParameterEditorInput {
+    var onChangeHeight: ((CGFloat) -> Void)? {
+        get { return nil }
+        set {}
+    }
     func completeEditing(completion: @escaping (Bool) -> Void) {
         completion(true)
     }
@@ -237,6 +244,12 @@ private extension TaskParameterEditorContainer {
         if let editorInput = viewController as? TaskParameterEditorInput {
             editorInput.container = self
             editorContainerHeightConstraint.constant = editorInput.requiredHeight
+            editorInput.onChangeHeight = { [unowned self] height in
+                self.editorContainerHeightConstraint.constant = height
+                UIView.animate(withDuration: 0.25) {
+                    self.view.layoutSubviews()
+                }
+            }
         }
         
         viewControllers.append(viewController)

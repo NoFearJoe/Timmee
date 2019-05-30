@@ -39,6 +39,7 @@
 		0C1F923821D5FCB400D3B9D6 /* TaskComplexParameterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C1F923721D5FCB400D3B9D6 /* TaskComplexParameterView.xib */; };
 		0C3B801121AD1212003F5394 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3B801021AD1212003F5394 /* NotificationsKit.framework */; };
 		0C3B801321AD1286003F5394 /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3B801021AD1212003F5394 /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C59FE41229D1D9500C115CA /* CalendarViewController+TaskParameterEditorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59FE40229D1D9500C115CA /* CalendarViewController+TaskParameterEditorInput.swift */; };
 		0C5D847D1FF61C8C0019BEB2 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */; };
 		0C5DBF4C20F8A71A00D3228E /* TableListRepresentationBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */; };
 		0C5DBF4E20F8A8B400D3228E /* TableListRepresentationBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */; };
@@ -272,6 +273,7 @@
 		0C1F923721D5FCB400D3B9D6 /* TaskComplexParameterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskComplexParameterView.xib; sourceTree = "<group>"; };
 		0C3B801021AD1212003F5394 /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3B801421AD1CD4003F5394 /* Scope.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scope.entitlements; sourceTree = "<group>"; };
+		0C59FE40229D1D9500C115CA /* CalendarViewController+TaskParameterEditorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController+TaskParameterEditorInput.swift"; sourceTree = "<group>"; };
 		0C5D847C1FF61C8C0019BEB2 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		0C5DBF4B20F8A71A00D3228E /* TableListRepresentationBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableListRepresentationBaseCell.swift; sourceTree = "<group>"; };
 		0C5DBF4D20F8A8B400D3228E /* TableListRepresentationBaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableListRepresentationBaseCell.xib; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 				0C8738A71FB971D800EA1571 /* CalendarDayCell.swift */,
 				0C8738A81FB971D800EA1571 /* CalendarView.swift */,
 				0C713F511FC54F5600D8FF8B /* TaskDueDatePicker.swift */,
+				0C59FE40229D1D9500C115CA /* CalendarViewController+TaskParameterEditorInput.swift */,
 			);
 			path = TaskDueDatePicker;
 			sourceTree = "<group>";
@@ -1891,6 +1894,7 @@
 				0C9B2455207F5CEC009EF6DE /* TableListRepresentationAssembly.swift in Sources */,
 				0C8738D01FB9747700EA1571 /* CalendarView.swift in Sources */,
 				0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */,
+				0C59FE41229D1D9500C115CA /* CalendarViewController+TaskParameterEditorInput.swift in Sources */,
 				963D6A371F59EBBB0063E295 /* ListRepresentationInput.swift in Sources */,
 				0C9B2451207F5266009EF6DE /* TableListRepresentationPresenter+State.swift in Sources */,
 				960D03522035ED9D00321BC3 /* ListEditorTextFieldController.swift in Sources */,

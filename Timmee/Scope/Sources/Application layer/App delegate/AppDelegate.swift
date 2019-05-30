@@ -36,6 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             InitialScreenPresenter.presentInitialScreen(inWindow: window)
         }
         
+        CalendarDesign.shared = CalendarDesign(defaultBackgroundColor: AppTheme.current.middlegroundColor,
+                                               defaultTintColor: AppTheme.current.tintColor,
+                                               selectedBackgroundColor: AppTheme.current.blueColor,
+                                               selectedTintColor: AppTheme.current.backgroundTintColor,
+                                               disabledBackgroundColor: AppTheme.current.panelColor,
+                                               disabledTintColor: AppTheme.current.secondaryTintColor,
+                                               weekdaysColor: AppTheme.current.backgroundColor,
+                                               badgeBackgroundColor: AppTheme.current.redColor,
+                                               badgeTintColor: AppTheme.current.backgroundTintColor)
+        
         return true
     }
     

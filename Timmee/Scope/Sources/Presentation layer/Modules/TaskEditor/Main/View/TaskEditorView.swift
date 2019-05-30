@@ -314,6 +314,7 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
         case .dueDate, .startDate: return
         case .dueTime: return
         case .attachments: return//output?.attachmentsCleared()
+        case .calendar: return
         }
     }
 
@@ -381,6 +382,10 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.output = self
             output.willPresentAttachmentsPicker(viewController)
             return viewController
+        case .calendar:
+            let viewController = CalendarViewController()
+            viewController.loadViewIfNeeded()
+            return viewController
         case .audioNote, .dueTime:
             return UIViewController()
         }
@@ -409,8 +414,8 @@ extension TaskEditorView: RegularitySettingsViewOutput {
                             didSelectParameter parameter: RegularitySettingsViewController.Parameter) {
         switch parameter {
         case .timeTemplate: showTaskParameterEditor(with: .timeTemplates)
-        case .dueDateTime: showTaskParameterEditor(with: .dueDateTime)
-        case .dueDate: showTaskParameterEditor(with: .dueDate)
+        case .dueDateTime: showTaskParameterEditor(with: .calendar)
+        case .dueDate: showTaskParameterEditor(with: .calendar)
         case .dueTime: showTaskParameterEditor(with: .dueTime)
         case .startDate: showTaskParameterEditor(with: .startDate)
         case .endDate: showTaskParameterEditor(with: .endDate)

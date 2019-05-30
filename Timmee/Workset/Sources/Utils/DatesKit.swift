@@ -109,6 +109,10 @@ public extension Date {
         date = date.changeComponents { $0.weekOfYear = dateUnit.value }
     }
     
+    static func =>(date: inout Date, dateUnit: Days) {
+        date = date.changeComponents { $0.day = dateUnit.value }
+    }
+    
     static func =>(date: inout Date, dateUnit: Hours) {
         date = date.changeComponents { $0.hour = dateUnit.value }
     }
@@ -271,8 +275,54 @@ public extension Date {
         }
     }
     
+    var startOfYear: Date {
+        return startOfMonth.changeComponents { components in
+            components.month = 0
+        }
+    }
+    
     var daysInMonth: Int {
         return Foundation.Calendar.current.range(of: .day, in: .month, for: self)?.count ?? 0
+    }
+    
+    
+    func startOfDay(in timeZone: TimeZone = .current) -> Date {
+        return Foundation.Calendar.current(in: timeZone).startOfDay(for: self)
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func startOfWeek(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .weekOfYear, for: self)?.start
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func startOfMonth(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .month, for: self)?.start
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func startOfYear(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .year, for: self)?.start
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfDay(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .day, for: self)?.end
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfWeek(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .weekOfYear, for: self)?.end
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfMonth(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .month, for: self)?.end
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfYear(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .year, for: self)?.end
     }
     
     
@@ -434,6 +484,16 @@ public extension Int {
     
     var asSeconds: Seconds {
         return Seconds(value: self)
+    }
+    
+}
+
+extension Foundation.Calendar {
+    
+    static func current(in timeZone: TimeZone) -> Foundation.Calendar {
+        var calendar = Foundation.Calendar.current
+        calendar.timeZone = timeZone
+        return calendar
     }
     
 }

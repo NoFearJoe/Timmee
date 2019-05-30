@@ -184,10 +184,6 @@ final class CalendarViewLayout: UICollectionViewFlowLayout {
         return a
     }
     
-    override func invalidateLayout() {
-        super.invalidateLayout()
-    }
-    
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
