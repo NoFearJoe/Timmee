@@ -167,3 +167,19 @@ final class EnMocksConfigurator: MocksConfigurator {
     }
     
 }
+
+final class PastSprintMocksConfigurator: MocksConfigurator {
+    static func prepareMocks(completion: @escaping () -> Void) {
+        let sprint = Sprint(id: "0",
+                            number: 1,
+                            startDate: Date().startOfDay - 7.asWeeks,
+                            endDate: Date() - 1.asDays,
+                            duration: 7,
+                            isReady: true,
+                            notifications: Sprint.Notifications())
+        
+        ServicesAssembly.shared.sprintsService.createOrUpdateSprint(sprint, completion: { _ in
+            completion()
+        })
+    }
+}

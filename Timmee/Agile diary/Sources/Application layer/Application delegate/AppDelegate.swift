@@ -53,10 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ProVersionPurchase.shared.loadStore()
         
-        initialScreenPresenter.presentInitialScreen(in: window)
-        
         synchronizationRunner.delegate = self
-        synchronizationRunner.run(interval: 10)
+        
+        let presentInitialScreen = {
+            self.initialScreenPresenter.presentInitialScreen(in: self.window) {
+                self.synchronizationRunner.run(interval: 10)
+            }
+        }
+        
+        if SynchronizationAvailabilityChecker.shared.synchronizationEnabled {
+            AgileeSynchronizationService.shared.sync { success in
+                presentInitialScreen()
+            }
+        } else {
+            presentInitialScreen()
+        }
         
         BackgroundImagesLoader.shared.load()
         
