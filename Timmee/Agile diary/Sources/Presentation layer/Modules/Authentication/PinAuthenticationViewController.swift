@@ -18,13 +18,15 @@ import class LocalAuthentication.LAContext
 
 final class PinAuthenticationViewController: BaseViewController {
     
-    @IBOutlet fileprivate var messageLabel: UILabel!
-    @IBOutlet fileprivate var pinCodeView: PinCodeView!
-    @IBOutlet fileprivate var numberPadView: UICollectionView!
+    @IBOutlet private var messageLabel: UILabel!
+    @IBOutlet private var pinCodeView: PinCodeView!
+    @IBOutlet private var numberPadView: UICollectionView!
     
-    fileprivate let numberPadAdapter = NumberPadAdapter()
+    private let numberPadAdapter = NumberPadAdapter()
     
-    fileprivate var enteredPinCode: [Int] = []
+    private var enteredPinCode: [Int] = []
+    
+    private var isBiometricsAlertShown: Bool = false
     
     fileprivate lazy var padItems: [NumberPadItem] = {
         var items = [NumberPadItem]()
@@ -67,6 +69,7 @@ final class PinAuthenticationViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         showBiometricsAuthenticationIfPossible()
     }
     
@@ -153,15 +156,18 @@ private extension PinAuthenticationViewController {
 private extension PinAuthenticationViewController {
     
     func showBiometricsAuthenticationIfPossible() {
-        guard UserProperty.biometricsAuthenticationEnabled.bool(), isBiometricsAuthenticationAvailable else { return }
+        guard UserProperty.biometricsAuthenticationEnabled.bool(), isBiometricsAuthenticationAvailable, !isBiometricsAlertShown else { return }
+        isBiometricsAlertShown = true
         showBiometricsAuthenticationAlert()
     }
     
     func showBiometricsAuthenticationAlert() {
         localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                                   localizedReason: biometricsType.localizedReason)
-        { success, error in
+        { [weak self] success, error in
+            guard let self = self else { return }
             DispatchQueue.main.async {
+                self.isBiometricsAlertShown = false
                 if success {
                     self.pinCodeView.showPinCodeRight()
                     self.closeAuthorization()

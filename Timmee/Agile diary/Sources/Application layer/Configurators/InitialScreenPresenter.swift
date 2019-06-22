@@ -12,7 +12,6 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     
     func presentPreInitialScreen(in window: UIWindow?) {
         window?.rootViewController = ViewControllersFactory.preInitialScreen
-        window?.makeKeyAndVisible()
     }
     
     func presentInitialScreen(in window: UIWindow?, completion: @escaping () -> Void) {
@@ -65,11 +64,9 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             initialViewController.loadViewIfNeeded()
             UIView.transition(from: rootViewController.view, to: initialViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
                 window.rootViewController = initialViewController
-                window.makeKeyAndVisible()
             }
         } else {
             window.rootViewController = initialViewController
-            window.makeKeyAndVisible()
         }
     }
     
@@ -79,7 +76,6 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         sprintCreationViewController.loadViewIfNeeded()
         UIView.transition(from: rootView, to: sprintCreationViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
             window.rootViewController = sprintCreationViewController
-            window.makeKeyAndVisible()
         }
     }
     
@@ -89,7 +85,6 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         todayViewController.loadViewIfNeeded()
         UIView.transition(from: rootView, to: todayViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
             window.rootViewController = todayViewController
-            window.makeKeyAndVisible()
         }
     }
     

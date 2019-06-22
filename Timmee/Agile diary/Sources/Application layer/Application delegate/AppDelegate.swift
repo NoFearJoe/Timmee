@@ -22,7 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
-    lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    lazy var window: UIWindow? = {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.makeKeyAndVisible()
+        return window
+    }()
     
     private let initialScreenPresenter = InitialScreenPresenter()
     

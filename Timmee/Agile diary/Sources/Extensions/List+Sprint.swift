@@ -15,8 +15,8 @@ extension Sprint {
         self.init(id: RandomStringGenerator.randomString(length: 24),
                   number: number,
                   startDate: Date.now.startOfDay,
-                  endDate: Date.now.startOfDay + Constants.sprintDuration.asWeeks,
-                  duration: Constants.sprintDuration,
+                  endDate: Date.now.startOfDay + Constants.defaultSprintDuration.asWeeks,
+                  duration: Constants.defaultSprintDuration,
                   isReady: false,
                   notifications: Notifications())
     }
