@@ -15,10 +15,11 @@ public enum AlertAction {
 
 public protocol AlertInput: class {
     func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?)
+    func hideAlert(animated: Bool)
 }
 
 public extension AlertInput where Self: UIViewController {
-    public func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?) {
+    func showAlert(title: String?, message: String?, actions: [AlertAction], completion: ((AlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach { action in
             switch action {
@@ -33,5 +34,9 @@ public extension AlertInput where Self: UIViewController {
             }
         }
         self.present(alert, animated: true, completion: nil)
+    }
+    func hideAlert(animated: Bool) {
+        guard let alert = self.presentedViewController as? UIAlertController else { return }
+        alert.dismiss(animated: animated, completion: nil)
     }
 }

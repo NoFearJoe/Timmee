@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jEM-qz-vyb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jEM-qz-vyb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,21 +30,27 @@
             <objects>
                 <viewController storyboardIdentifier="WaterControl" id="kHp-X3-HNo" customClass="WaterControlActivityWidget" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oKV-SU-UI5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="288"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nRP-1r-c7X" customClass="CardView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="15" y="12" width="345" height="238"/>
+                                <rect key="frame" x="15" y="12" width="345" height="270"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Water" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bER-xs-kbI">
+                                        <rect key="frame" x="8" y="4" width="329" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91A-b7-5gR" userLabel="Placeholder Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="170"/>
+                                        <rect key="frame" x="0.0" y="32" width="345" height="170"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHl-rI-fuT" customClass="WaterLevelView" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="99.5" y="8" width="146" height="146"/>
+                                        <rect key="frame" x="97.5" y="36" width="150" height="150"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5л" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Mo3-RA-usd" userLabel="1.5л">
-                                                <rect key="frame" x="45" y="56.5" width="56" height="33.5"/>
+                                                <rect key="frame" x="47" y="58.5" width="56" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -59,7 +65,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ2-Oi-gpi">
-                                        <rect key="frame" x="20" y="178" width="305" height="52"/>
+                                        <rect key="frame" x="20" y="210" width="305" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="Mu1-KX-Zqa"/>
                                         </constraints>
@@ -75,7 +81,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZf-PJ-HrA">
-                                        <rect key="frame" x="309" y="8" width="28" height="28"/>
+                                        <rect key="frame" x="309" y="4" width="28" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="28" id="V93-Mn-uEg"/>
                                             <constraint firstAttribute="width" secondItem="lZf-PJ-HrA" secondAttribute="height" id="wJF-9w-laW"/>
@@ -86,7 +92,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-X5-gy2">
-                                        <rect key="frame" x="58.5" y="162" width="228" height="68"/>
+                                        <rect key="frame" x="58.5" y="194" width="228" height="68"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1z-gp-r79">
                                                 <rect key="frame" x="0.0" y="0.0" width="52" height="68"/>
@@ -195,20 +201,23 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="lZf-PJ-HrA" firstAttribute="top" secondItem="nRP-1r-c7X" secondAttribute="top" constant="8" id="1BM-XV-pmc"/>
+                                    <constraint firstItem="lZf-PJ-HrA" firstAttribute="top" secondItem="nRP-1r-c7X" secondAttribute="top" constant="4" id="1BM-XV-pmc"/>
+                                    <constraint firstAttribute="trailing" secondItem="bER-xs-kbI" secondAttribute="trailing" constant="8" id="1eM-dG-8RX"/>
                                     <constraint firstItem="cHl-rI-fuT" firstAttribute="centerX" secondItem="nRP-1r-c7X" secondAttribute="centerX" id="1ze-9f-cnC"/>
+                                    <constraint firstItem="cHl-rI-fuT" firstAttribute="top" secondItem="bER-xs-kbI" secondAttribute="bottom" constant="8" id="8JQ-UI-ANh"/>
                                     <constraint firstAttribute="bottom" secondItem="CJ2-Oi-gpi" secondAttribute="bottom" constant="8" id="EFH-re-G1M"/>
                                     <constraint firstAttribute="bottom" secondItem="AaS-X5-gy2" secondAttribute="bottom" constant="8" id="JMA-8d-BEw"/>
                                     <constraint firstItem="91A-b7-5gR" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" id="M6i-Yu-Vi3"/>
+                                    <constraint firstItem="bER-xs-kbI" firstAttribute="top" secondItem="nRP-1r-c7X" secondAttribute="top" constant="4" id="OUe-Vo-xXB"/>
                                     <constraint firstAttribute="trailing" secondItem="lZf-PJ-HrA" secondAttribute="trailing" constant="8" id="Ohd-Ng-HA8"/>
                                     <constraint firstItem="AaS-X5-gy2" firstAttribute="centerX" secondItem="nRP-1r-c7X" secondAttribute="centerX" id="R8v-zy-PLP"/>
                                     <constraint firstItem="AaS-X5-gy2" firstAttribute="top" secondItem="cHl-rI-fuT" secondAttribute="bottom" constant="8" id="Sz7-eA-t7U"/>
+                                    <constraint firstItem="91A-b7-5gR" firstAttribute="top" secondItem="bER-xs-kbI" secondAttribute="bottom" constant="4" id="UfT-hb-gge"/>
                                     <constraint firstItem="CJ2-Oi-gpi" firstAttribute="top" secondItem="91A-b7-5gR" secondAttribute="bottom" constant="8" id="Xd6-Mm-sJ5"/>
                                     <constraint firstAttribute="trailing" secondItem="91A-b7-5gR" secondAttribute="trailing" id="ZMh-vW-Wjy"/>
-                                    <constraint firstItem="cHl-rI-fuT" firstAttribute="top" secondItem="nRP-1r-c7X" secondAttribute="top" constant="8" id="hWb-PS-Byh"/>
+                                    <constraint firstItem="bER-xs-kbI" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" constant="8" id="agl-s0-AmD"/>
                                     <constraint firstAttribute="trailing" secondItem="CJ2-Oi-gpi" secondAttribute="trailing" constant="20" id="jVL-Pz-WHR"/>
                                     <constraint firstItem="CJ2-Oi-gpi" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" constant="20" id="pPH-eP-eVE"/>
-                                    <constraint firstItem="91A-b7-5gR" firstAttribute="top" secondItem="nRP-1r-c7X" secondAttribute="top" id="vat-h9-iqc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -219,9 +228,10 @@
                             <constraint firstAttribute="trailing" secondItem="nRP-1r-c7X" secondAttribute="trailing" constant="15" id="UjU-Lw-II3"/>
                             <constraint firstAttribute="bottom" secondItem="nRP-1r-c7X" secondAttribute="bottom" constant="6" id="q0B-Vo-b0b"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="IuY-g1-Ctp"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="256"/>
+                    <size key="freeformSize" width="375" height="288"/>
                     <connections>
                         <outlet property="containerView" destination="nRP-1r-c7X" id="E2X-wq-s81"/>
                         <outlet property="drink100mlButton" destination="FMi-gn-4DE" id="hof-X3-8rY"/>
@@ -233,6 +243,7 @@
                         <outlet property="drinkButtonsContainer" destination="AaS-X5-gy2" id="XD5-z8-mXy"/>
                         <outlet property="drunkVolumeLabel" destination="Mo3-RA-usd" id="1u5-lC-4UM"/>
                         <outlet property="placeholderContainer" destination="91A-b7-5gR" id="wse-Ak-Cha"/>
+                        <outlet property="titleLabel" destination="bER-xs-kbI" id="hrJ-UY-f7f"/>
                         <outlet property="waterControlConfigurationButton" destination="CJ2-Oi-gpi" id="dSd-xj-V09"/>
                         <outlet property="waterControlReconfigurationButton" destination="lZf-PJ-HrA" id="eKn-tf-6bZ"/>
                         <outlet property="waterLevelView" destination="cHl-rI-fuT" id="0Ok-4c-B4O"/>
@@ -347,6 +358,7 @@
                             <constraint firstItem="vE7-dS-HPh" firstAttribute="leading" secondItem="8lk-Ha-f9L" secondAttribute="leading" constant="15" id="SNE-Es-5Ok"/>
                             <constraint firstItem="vE7-dS-HPh" firstAttribute="top" secondItem="8lk-Ha-f9L" secondAttribute="top" constant="6" id="m7t-QA-XNc"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="jMZ-We-JFe"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="100"/>

@@ -11,6 +11,8 @@ import class MessageUI.MFMailComposeViewController
 
 final class ViewControllersFactory {
     
+    // Sprints
+    
     static var sprintCreation: SprintCreationViewController {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateInitialViewController() as! SprintCreationViewController
     }
@@ -110,6 +112,10 @@ final class ViewControllersFactory {
         }
         viewController.setToRecipients(["mesterra.co@gmail.com"])
         return viewController
+    }
+    
+    static var preInitialScreen: PreInitialScreenViewController {
+        return PreInitialScreenViewController()
     }
     
 }

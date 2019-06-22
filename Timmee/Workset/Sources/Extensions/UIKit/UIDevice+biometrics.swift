@@ -47,7 +47,7 @@ public enum BiometricsType {
         switch self {
         case .none: return "device_is_not_support_biometrics".localized
         case .touchID: return "enter_with_touch_id_question".localized
-        case .faceID: return "enter_with_fase_id_question".localized
+        case .faceID: return "enter_with_face_id_question".localized
         }
     }
     

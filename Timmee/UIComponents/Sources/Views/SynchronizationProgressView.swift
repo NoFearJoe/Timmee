@@ -139,24 +139,26 @@ public class SynchronizationStatusBar: ModalWindow {
     }
     
     public func show() {
-        guard !self.isShown else { return }
+        guard !isShown else { return }
         let size: CGSize = statusBarFrame?().size ?? .zero
         let height = size.height > 20 ? size.height + 6 : size.height
-        self.windowFrame = CGRect(x: 0, y: -height, width: size.width, height: height)
-        self.isHidden = false
-        self.isShown = true
-        self.layer.removeAllAnimations()
+        windowFrame = CGRect(x: 0, y: -height, width: size.width, height: height)
+        isHidden = false
+        isShown = true
+        layer.removeAllAnimations()
         UIView.animate(withDuration: 0.2, animations: {
             self.windowFrame = CGRect(origin: .zero, size: CGSize(width: size.width, height: height))
         })
-        self.startStatusBarFrameChangesObserving()
+        startStatusBarFrameChangesObserving()
+        
+        controller.startAnimation()
     }
     
     public func hide() {
-        guard self.isShown else { return }
-        self.stopStatusBarChangesObserving()
-        self.isShown = false
-        self.layer.removeAllAnimations()
+        guard isShown else { return }
+        stopStatusBarChangesObserving()
+        isShown = false
+        layer.removeAllAnimations()
         UIView.animate(withDuration: 0.2, animations: {
             let height = self.frame.height
             self.windowFrame = CGRect(x: 0, y: -height,
@@ -164,6 +166,7 @@ public class SynchronizationStatusBar: ModalWindow {
         }) { finished in
             if finished {
                 self.isHidden = true
+                self.controller.stopAnimation()
             }
         }
     }
@@ -190,8 +193,14 @@ public class SynchronizationViewController: UIViewController {
         [loadingView.leadingToTrailing(4), loadingView.centerY()].to(statusLabel, addTo: view)
         loadingView.width(14)
         loadingView.height(14)
-        
+    }
+    
+    func startAnimation() {
         loadingView.isHidden = false
+    }
+    
+    func stopAnimation() {
+        loadingView.isHidden = true
     }
     
 }

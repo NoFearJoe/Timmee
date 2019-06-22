@@ -153,15 +153,14 @@ private extension PinAuthenticationViewController {
 private extension PinAuthenticationViewController {
     
     func showBiometricsAuthenticationIfPossible() {
-        if UserProperty.biometricsAuthenticationEnabled.bool(), isBiometricsAuthenticationAvailable {
-            showBiometricsAuthenticationAlert()
-        }
+        guard UserProperty.biometricsAuthenticationEnabled.bool(), isBiometricsAuthenticationAvailable else { return }
+        showBiometricsAuthenticationAlert()
     }
     
     func showBiometricsAuthenticationAlert() {
         localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                                   localizedReason: biometricsType.localizedReason)
-        { (success, error) in
+        { success, error in
             DispatchQueue.main.async {
                 if success {
                     self.pinCodeView.showPinCodeRight()

@@ -174,7 +174,7 @@ final class TableHeaderViewWithTitle: UITableViewHeaderFooterView {
     override func prepareForReuse() {
         super.prepareForReuse()
         backgroundView?.backgroundColor = AppTheme.current.colors.middlegroundColor
-        titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
     }
     
     private func setupBackgroundView() {
@@ -185,8 +185,10 @@ final class TableHeaderViewWithTitle: UITableViewHeaderFooterView {
     private func setupTitleLabel() {
         addSubview(titleLabel)
         titleLabel.font = AppTheme.current.fonts.medium(14)
-        titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-        [titleLabel.leading(15), titleLabel.trailing(15)].toSuperview()
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        titleLabel.clipsToBounds = true
+        titleLabel.layer.cornerRadius = 6
+        [titleLabel.leading(15), titleLabel.trailing(15), titleLabel.top(4)].toSuperview()
         titleLabel.centerY().toSuperview()
     }
     

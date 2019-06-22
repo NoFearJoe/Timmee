@@ -13,6 +13,8 @@ final class WaterControlActivityWidget: UIViewController {
     
     @IBOutlet private var containerView: CardView!
     
+    @IBOutlet private var titleLabel: UILabel!
+    
     @IBOutlet private var drunkVolumeLabel: UILabel!
     
     @IBOutlet private var waterLevelView: WaterLevelView!
@@ -56,6 +58,7 @@ final class WaterControlActivityWidget: UIViewController {
         super.viewDidLoad()
         setInitialState()
         setupPlaceholder()
+        titleLabel.text = "water_control_widget_title".localized
         drink100mlLabel.text = "+100ml".localized
         drink200mlLabel.text = "+200ml".localized
         drink300mlLabel.text = "+300ml".localized
@@ -85,6 +88,8 @@ final class WaterControlActivityWidget: UIViewController {
     func setupAppearance() {
         containerView.setupAppearance()
         setupWaterControlConfigurationButton()
+        titleLabel.font = AppTheme.current.fonts.medium(20)
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
         waterLevelView.backgroundColor = AppTheme.current.colors.decorationElementColor
         waterControlReconfigurationButton.tintColor = AppTheme.current.colors.mainElementColor
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
@@ -110,7 +115,7 @@ extension WaterControlActivityWidget: ActivityWidget {
 extension WaterControlActivityWidget: StaticHeightStackChidController {
     
     var height: CGFloat {
-        return 256
+        return 288
     }
     
 }

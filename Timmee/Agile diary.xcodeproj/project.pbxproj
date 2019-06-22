@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D479211C55D9004C0559 /* Main.storyboard */; };
 		0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
 		0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
 		0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
@@ -193,7 +192,6 @@
 		0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
 		0CB673CB21A52C3900178EB1 /* WaterControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */; };
 		0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
-		0CB673CD21A52C3900178EB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D479211C55D9004C0559 /* Main.storyboard */; };
 		0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
 		0CB673CF21A52C3900178EB1 /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
 		0CB673D021A52C3900178EB1 /* Education.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4A921216129004C0559 /* Education.storyboard */; };
@@ -305,6 +303,10 @@
 		96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
 		96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83D5217C9C8D00CDECAF /* CardView.swift */; };
+		96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */; };
+		96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */; };
+		96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
+		96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
 		96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
 		96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
@@ -378,7 +380,6 @@
 
 /* Begin PBXFileReference section */
 		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C14D47A211C55D9004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C14D481211C55DA004C0559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -534,6 +535,8 @@
 		96BE838B2175034500CDECAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96BE83CB217644F400CDECAF /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BE83D5217C9C8D00CDECAF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreInitialScreenViewController.swift; sourceTree = "<group>"; };
+		96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreInitialScreenViewController.xib; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
 		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
@@ -618,7 +621,6 @@
 				0CE883E521510D2200637BD9 /* Agile diary.entitlements */,
 				0C14D4A12121604A004C0559 /* Sources */,
 				0C14D4A021216048004C0559 /* Resources */,
-				0C14D479211C55D9004C0559 /* Main.storyboard */,
 				0C14D47C211C55DA004C0559 /* Assets.xcassets */,
 				0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */,
 				0C14D481211C55DA004C0559 /* Info.plist */,
@@ -691,6 +693,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				96B73BF422BDFE0C00043765 /* PreInitialScreen */,
 				0CC4BB5F21BA8DE90066C213 /* Authorization */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0CB02FF42192D619006C5146 /* HabitsCollection */,
@@ -1242,6 +1245,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		96B73BF422BDFE0C00043765 /* PreInitialScreen */ = {
+			isa = PBXGroup;
+			children = (
+				96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */,
+				96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */,
+			);
+			path = PreInitialScreen;
+			sourceTree = "<group>";
+		};
 		96CAD81A216D39A4005D707C /* Extended charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1386,6 +1398,7 @@
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
 				96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
 				0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */,
+				96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
 				96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */,
@@ -1395,7 +1408,6 @@
 				0C3DA5322154CCAF00CAE635 /* WaterControl.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
 				0CC405E921EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */,
-				0C14D47B211C55D9004C0559 /* Main.storyboard in Resources */,
 				0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */,
 				0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */,
 				0C14D4AA21216129004C0559 /* Education.storyboard in Resources */,
@@ -1417,6 +1429,7 @@
 				0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */,
 				96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
 				0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */,
+				96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
 				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
 				0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */,
@@ -1426,7 +1439,6 @@
 				0CB673CB21A52C3900178EB1 /* WaterControl.storyboard in Resources */,
 				0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */,
 				0CC405EA21EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */,
-				0CB673CD21A52C3900178EB1 /* Main.storyboard in Resources */,
 				0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */,
 				0CB673CF21A52C3900178EB1 /* StageView.xib in Resources */,
 				0CB673D021A52C3900178EB1 /* Education.storyboard in Resources */,
@@ -1735,6 +1747,7 @@
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
+				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
@@ -1806,6 +1819,7 @@
 				0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
+				96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
 				0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
@@ -1929,14 +1943,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0C14D479211C55D9004C0559 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0C14D47A211C55D9004C0559 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

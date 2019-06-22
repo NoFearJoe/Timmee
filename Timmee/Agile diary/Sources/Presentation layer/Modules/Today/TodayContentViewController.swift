@@ -159,9 +159,12 @@ extension TodayContentViewController: UITableViewDataSource {
         guard case .habits = self.section else { return nil }
         guard let sectionName = habitsCacheObserver?.sectionInfo(at: section)?.name else { return nil }
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as! TableHeaderViewWithTitle
-        view.backgroundView?.backgroundColor = BackgroundImage.current == .noImage ? AppTheme.current.colors.middlegroundColor : AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.75)
+        
+        let hasBGImage = BackgroundImage.current != .noImage
+        view.titleLabel.backgroundColor = hasBGImage ? AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.75) : .clear
+        view.backgroundView?.backgroundColor = hasBGImage ? .clear : AppTheme.current.colors.middlegroundColor
         let dayTime = Habit.DayTime(sortID: sectionName)
-        view.titleLabel.text = dayTime.localizedAt
+        view.titleLabel.text = hasBGImage ? "  " + dayTime.localizedAt : dayTime.localizedAt
         return view
     }
     

@@ -62,8 +62,10 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
             return
         }
         if shouldShowSprintCreationAfterEducation {
+            hideAlert(animated: false)
             showSprintCreation()
         } else {
+            hideAlert(animated: false)
             showToday()
         }
     }
@@ -90,22 +92,23 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
 extension EducationViewController: EducationScreenOutput {
     
     func didAskToContinueEducation(screen: EducationScreen) {
-        if let screenIndex = educationState.screensToShow.index(of: screen) {
-            let isLastScreen = screenIndex + 1 >= educationState.screensToShow.count - 1
-            if let nextScreen = educationState.screensToShow.item(at: screenIndex + 1) {
-                if nextScreen == .proVersion, ProVersionPurchase.shared.isPurchased() {
-                    // Если PRO версия куплена, то соответствующий экран не показывается
-                    didAskToContinueEducation(screen: .proVersion)
-                } else if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
-                    pushViewController(viewController(forScreen: nextScreen), animated: true)
-                } else {
-                    // Если находимся на последнем экране и после него не надо показать экран создания спринта
-                    showAppropriateScreenAfterEducation()
-                }
-            } else {
-                showAppropriateScreenAfterEducation()
-            }
+        guard let currentScreenIndex = educationState.screensToShow.index(of: screen),
+              let nextScreen = educationState.screensToShow.item(at: currentScreenIndex + 1)
+        else {
+            showAppropriateScreenAfterEducation()
+            return
+        }
+        
+        let isLastScreen = currentScreenIndex + 1 >= educationState.screensToShow.count - 1
+        
+        if nextScreen == .proVersion, ProVersionPurchase.shared.isPurchased() {
+            // Если PRO версия куплена, то соответствующий экран не показывается
+            didAskToContinueEducation(screen: .proVersion)
+        } else if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
+            // Основной флоу обучения
+            pushViewController(viewController(forScreen: nextScreen), animated: true)
         } else {
+            // Если находимся на последнем экране и после него не надо показать экран создания спринта
             showAppropriateScreenAfterEducation()
         }
     }

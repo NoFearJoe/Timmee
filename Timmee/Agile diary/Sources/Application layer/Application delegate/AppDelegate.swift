@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
-    var window: UIWindow?
+    lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
     private let initialScreenPresenter = InitialScreenPresenter()
     
@@ -57,11 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let presentInitialScreen = {
             self.initialScreenPresenter.presentInitialScreen(in: self.window) {
-                self.synchronizationRunner.run(interval: 10)
+                self.synchronizationRunner.run(interval: 10, delay: 10)
             }
         }
         
         if SynchronizationAvailabilityChecker.shared.synchronizationEnabled {
+            self.initialScreenPresenter.presentPreInitialScreen(in: self.window)
             AgileeSynchronizationService.shared.sync { success in
                 presentInitialScreen()
             }

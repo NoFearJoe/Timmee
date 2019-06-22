@@ -358,3 +358,5 @@
 "buy_for" = "Купить за";
 "most_frequently_mood" = "Самое частое настроение";
 "average_water_volume" = "В среднем в день";
+
+"water_control_widget_title" = "Вода";

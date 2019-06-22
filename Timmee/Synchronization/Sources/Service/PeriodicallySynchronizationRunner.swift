@@ -30,6 +30,12 @@ public final class PeriodicallySynchronizationRunner {
         self.synchronizationService = synchronizationService
     }
     
+    public func run(interval: TimeInterval, delay: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            self.run(interval: interval)
+        }
+    }
+    
     public func run(interval: TimeInterval) {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false, block: { [weak self] timer in

@@ -358,3 +358,5 @@
 "buy_for" = "Buy for";
 "most_frequently_mood" = "Most frequently mood";
 "average_water_volume" = "Average water volume";
+
+"water_control_widget_title" = "Water";

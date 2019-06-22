@@ -10,15 +10,20 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     
     let sprintsService = ServicesAssembly.shared.sprintsService
     
+    func presentPreInitialScreen(in window: UIWindow?) {
+        window?.rootViewController = ViewControllersFactory.preInitialScreen
+        window?.makeKeyAndVisible()
+    }
+    
     func presentInitialScreen(in window: UIWindow?, completion: @escaping () -> Void) {
         guard let window = window else { return }
         #if MOCKS
-        PastSprintMocksConfigurator.prepareMocks { [weak self] in
-            UserProperty.isEducationShown.setBool(true)
-            self?.presentRealInitialScreen(in: window)
+//        PastSprintMocksConfigurator.prepareMocks { [weak self] in
+//            UserProperty.isEducationShown.setBool(true)
+            self.presentRealInitialScreen(in: window)
             completion()
 //            self?.presentMockInitialScreen(in: window)
-        }
+//        }
         #else
         presentRealInitialScreen(in: window)
         completion()
@@ -26,7 +31,7 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     }
     
     private func presentMockInitialScreen(in window: UIWindow) {
-        showToday()
+        showToday(in: window)
     }
     
     private func presentRealInitialScreen(in window: UIWindow) {
@@ -43,9 +48,9 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             let pinAuthenticationViewController = ViewControllersFactory.pinAuthentication
             pinAuthenticationViewController.onComplete = { [unowned self] in
                 if self.getCurrentSprint() == nil, self.getNextSprint() == nil {
-                    self.showSprintCreation()
+                    self.showSprintCreation(in: window)
                 } else {
-                    self.showToday()
+                    self.showToday(in: window)
                 }
             }
 
@@ -56,26 +61,36 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             initialViewController = ViewControllersFactory.today
         }
         
-        window.rootViewController = initialViewController
-        window.makeKeyAndVisible()
+        if let rootViewController = window.rootViewController {
+            initialViewController.loadViewIfNeeded()
+            UIView.transition(from: rootViewController.view, to: initialViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
+                window.rootViewController = initialViewController
+                window.makeKeyAndVisible()
+            }
+        } else {
+            window.rootViewController = initialViewController
+            window.makeKeyAndVisible()
+        }
     }
     
-    private func showSprintCreation() {
-        guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
+    private func showSprintCreation(in window: UIWindow) {
+        guard let rootView = window.rootViewController?.view else { return }
         let sprintCreationViewController = ViewControllersFactory.sprintCreation
         sprintCreationViewController.loadViewIfNeeded()
-        UIView.transition(with: rootView, duration: 0.25, options: .transitionCrossDissolve, animations: {
-            AppDelegate.shared.window?.rootViewController = sprintCreationViewController
-        }, completion: nil)
+        UIView.transition(from: rootView, to: sprintCreationViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
+            window.rootViewController = sprintCreationViewController
+            window.makeKeyAndVisible()
+        }
     }
     
-    private func showToday() {
-        guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
+    private func showToday(in window: UIWindow) {
+        guard let rootView = window.rootViewController?.view else { return }
         let todayViewController = ViewControllersFactory.today
         todayViewController.loadViewIfNeeded()
-        UIView.transition(with: rootView, duration: 0.25, options: .transitionCrossDissolve, animations: {
-            AppDelegate.shared.window?.rootViewController = todayViewController
-        }, completion: nil)
+        UIView.transition(from: rootView, to: todayViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
+            window.rootViewController = todayViewController
+            window.makeKeyAndVisible()
+        }
     }
     
 }
