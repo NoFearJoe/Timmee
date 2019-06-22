@@ -41,11 +41,14 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     private var currentSection = SprintSection.habits
     
+    private var minimumStartDate: Date = Date.now.startOfDay
+    
     private var itemsCountBySection: [SprintSection: Int] = [:]
     
     var sprint: Sprint! {
         didSet {
             guard sprint != nil else { return }
+            minimumStartDate = sprint.startDate
             contentViewController.sprintID = sprint.id
             headerView.titleLabel.text = sprint.title
             headerView?.leftButton?.isHidden = !(canClose || sprint.isReady)
@@ -162,7 +165,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         let dueDatePicker = ViewControllersFactory.dueDatePicker
         dueDatePicker.output = self
         dueDatePicker.loadViewIfNeeded()
-        dueDatePicker.minimumAvailableDate = sprint.startDate
+        dueDatePicker.minimumAvailableDate = minimumStartDate
         dueDatePicker.setDueDate(sprint.startDate)
         editorContainer.setViewController(dueDatePicker)
         present(editorContainer, animated: true, completion: nil)

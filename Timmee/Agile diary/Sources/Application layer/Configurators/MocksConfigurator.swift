@@ -172,8 +172,8 @@ final class PastSprintMocksConfigurator: MocksConfigurator {
     static func prepareMocks(completion: @escaping () -> Void) {
         let sprint = Sprint(id: "0",
                             number: 1,
-                            startDate: Date().startOfDay - 7.asWeeks,
-                            endDate: Date() - 1.asDays,
+                            startDate: Date().startOfDay - 8.asWeeks,
+                            endDate: Date() - 5.asDays,
                             duration: 7,
                             isReady: true,
                             notifications: Sprint.Notifications())
