@@ -43,11 +43,12 @@ final class WaterChartCell: BaseChartCell {
         
         var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []
+        let startDate: Date = sprint.endDate.isGreater(than: Date.now) ? Date.now : sprint.endDate
         for i in stride(from: 6, through: 0, by: -1) {
-            let date = (Date.now - i.asDays).startOfDay
+            let date = (startDate - i.asDays).startOfDay
             let drunkVolume = Double((waterControl.drunkVolume[date] ?? 0)) / 1000
             chartEntries.append(BarChartDataEntry(x: Double(6 - i), y: drunkVolume))
-            xAxisTitles.append(date.asShortWeekday)
+            xAxisTitles.append(date.asShortDayMonth)
         }
         let dataSet = BarChartDataSet(values: chartEntries, label: nil)
         dataSet.label = nil

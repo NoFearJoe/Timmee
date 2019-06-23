@@ -12,35 +12,35 @@ import class Foundation.NSDate
 public extension Date {
     
     /// Формат даты, используемый в приложении
-    public static let dateFormat = "dd-MM-yyyy"
+    static let dateFormat = "dd-MM-yyyy"
     
-    public static let dateTimeFormat = "dd.MM.yyyy HH:mm"
+    static let dateTimeFormat = "dd.MM.yyyy HH:mm"
     
-    public var asMonth: String {
+    var asMonth: String {
         return asString(format: "MMMM", localized: true)
     }
     
-    public var asDayMonth: String {
+    var asDayMonth: String {
         return asString(format: "d MMMM")
     }
     
-    public var asShortDayMonth: String {
+    var asShortDayMonth: String {
         return asString(format: "d.MM")
     }
     
-    public var asDayMonthYear: String {
+    var asDayMonthYear: String {
         return asString(format: "d MMMM YYYY")
     }
     
-    public var asDayMonthTime: String {
+    var asDayMonthTime: String {
         return asString(format: "d MMMM, HH:mm")
     }
     
-    public var asShortWeekday: String {
+    var asShortWeekday: String {
         return asString(format: "E")
     }
     
-    public var asDateTimeString: String {
+    var asDateTimeString: String {
         return asString(format: Date.dateTimeFormat)
     }
     

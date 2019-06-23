@@ -16,7 +16,7 @@ final class ExtendedHabitsChartViewController: BaseViewController, AnyExtendedCh
     var sprint: Sprint?
     
     @IBOutlet private var chartPlaceholderLabel: UILabel!
-    @IBOutlet private var chart: HabitsChartView!
+    @IBOutlet private var chartView: ExtendedBarChartView!
     @IBOutlet private var detailedHabitsTableView: UITableView!
     
     private let habitsService = ServicesAssembly.shared.habitsService
@@ -43,8 +43,8 @@ final class ExtendedHabitsChartViewController: BaseViewController, AnyExtendedCh
         super.setupAppearance()
         chartPlaceholderLabel.font = AppTheme.current.fonts.regular(14)
         chartPlaceholderLabel.textColor = AppTheme.current.colors.inactiveElementColor
-        chart.backgroundColor = AppTheme.current.colors.middlegroundColor
-        chart.underlyingBarColor = AppTheme.current.colors.decorationElementColor
+        chartView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        chartView.underlyingBarColor = AppTheme.current.colors.decorationElementColor
         detailedHabitsTableView.backgroundColor = .clear
         detailedHabitsTableView.separatorColor = AppTheme.current.colors.decorationElementColor
     }
@@ -89,10 +89,11 @@ private extension ExtendedHabitsChartViewController {
     func refreshHabitsProgress(sprint: Sprint) {
         let habits = habitsService.fetchHabits(sprintID: sprint.id)
 
-        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
-        var entries: [HabitsChartEntry] = []
+        let startDate: Date = sprint.endDate.isGreater(than: Date.now) ? Date.now : sprint.endDate
+        let daysFromSprintStart = sprint.startDate.days(before: startDate)
+        var entries: [ExtendedBarChartEntry] = []
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
-            let date = (Date.now - i.asDays).startOfDay
+            let date = (startDate - i.asDays).startOfDay
             let repeatDay = DayUnit(weekday: date.weekday)
             let allHabits = habits.filter { $0.creationDate.startOfDay <= date && $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
@@ -104,10 +105,10 @@ private extension ExtendedHabitsChartViewController {
                 color = AppTheme.current.colors.incompleteElementColor
             }
             
-            entries.append(HabitsChartEntry(index: daysFromSprintStart - i, doneHabitsCount: completedHabits, totalHabitsCount: allHabits.count, title: date.asShortWeekday, color: color))
+            entries.append(ExtendedBarChartEntry(index: daysFromSprintStart - i, value: Double(completedHabits), targetValue: Double(allHabits.count), title: date.asShortDayMonth, color: color))
         }
         
-        chart.entries = entries
+        chartView.entries = entries
         
         chartPlaceholderLabel.isHidden = !entries.isEmpty
     }
@@ -121,9 +122,10 @@ private extension ExtendedHabitsChartViewController {
             progressForHabit[$0] = (0, 0, 0)
         }
         
-        let daysFromSprintStart = sprint.startDate.days(before: Date.now)
+        let startDate: Date = sprint.endDate.isGreater(than: Date.now) ? Date.now : sprint.endDate
+        let daysFromSprintStart = sprint.startDate.days(before: startDate)
         for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
-            let date = (Date.now - i.asDays).startOfDay
+            let date = (startDate - i.asDays).startOfDay
             let repeatDay = DayUnit(weekday: date.weekday)
             let allHabits = habits.filter { $0.creationDate.startOfDay <= date && $0.dueDays.contains(repeatDay) }
             let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }

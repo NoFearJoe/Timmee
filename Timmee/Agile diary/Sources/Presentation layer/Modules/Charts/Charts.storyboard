@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -362,13 +362,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-d1-ZsZ" customClass="BarChartView" customModule="Charts">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKg-hc-w0b">
                                 <rect key="frame" x="0.0" y="116" width="375" height="256"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8U-Qq-oCC" customClass="ExtendedBarChartView" customModule="Agile_diary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0U-A0-I7D">
+                                        <rect key="frame" x="166.5" y="117.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="CL5-g2-umR"/>
+                                    <constraint firstAttribute="trailing" secondItem="C8U-Qq-oCC" secondAttribute="trailing" id="82r-j2-KwM"/>
+                                    <constraint firstAttribute="height" constant="256" id="FTU-89-RjT"/>
+                                    <constraint firstItem="r0U-A0-I7D" firstAttribute="centerX" secondItem="UKg-hc-w0b" secondAttribute="centerX" id="Isy-hn-Ek2"/>
+                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="centerY" secondItem="UKg-hc-w0b" secondAttribute="centerY" id="NiZ-IO-ybw"/>
+                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="leading" secondItem="UKg-hc-w0b" secondAttribute="leading" id="QaP-tN-1GJ"/>
+                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="top" secondItem="UKg-hc-w0b" secondAttribute="top" id="RZL-hM-tP0"/>
+                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="centerX" secondItem="UKg-hc-w0b" secondAttribute="centerX" placeholder="YES" id="Vc1-qF-GO2"/>
+                                    <constraint firstAttribute="bottom" secondItem="C8U-Qq-oCC" secondAttribute="bottom" id="i77-tL-fNk"/>
+                                    <constraint firstItem="r0U-A0-I7D" firstAttribute="centerY" secondItem="UKg-hc-w0b" secondAttribute="centerY" id="idc-Gk-LhK"/>
                                 </constraints>
-                            </view>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySk-ij-zc1" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
                                 <rect key="frame" x="15" y="392" width="345" height="44"/>
                                 <subviews>
@@ -414,18 +433,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="cg4-d1-ZsZ" secondAttribute="trailing" id="HcA-vK-Ij2"/>
-                            <constraint firstItem="ySk-ij-zc1" firstAttribute="top" secondItem="cg4-d1-ZsZ" secondAttribute="bottom" constant="20" id="IeC-u4-l71"/>
-                            <constraint firstItem="cg4-d1-ZsZ" firstAttribute="top" secondItem="ge6-rY-SCG" secondAttribute="top" id="Wz1-V6-IFn"/>
-                            <constraint firstItem="cg4-d1-ZsZ" firstAttribute="leading" secondItem="ge6-rY-SCG" secondAttribute="leading" id="XUH-fx-QsF"/>
+                            <constraint firstItem="UKg-hc-w0b" firstAttribute="top" secondItem="ge6-rY-SCG" secondAttribute="top" id="Ioq-8W-aD9"/>
+                            <constraint firstItem="ySk-ij-zc1" firstAttribute="top" secondItem="UKg-hc-w0b" secondAttribute="bottom" constant="20" id="XiH-ri-lZR"/>
                             <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="ySk-ij-zc1" secondAttribute="trailing" constant="15" id="etD-Si-nuJ"/>
+                            <constraint firstItem="UKg-hc-w0b" firstAttribute="leading" secondItem="fVe-rb-8cq" secondAttribute="leading" id="ghb-gZ-Po1"/>
                             <constraint firstItem="ySk-ij-zc1" firstAttribute="leading" secondItem="ge6-rY-SCG" secondAttribute="leading" constant="15" id="mwk-Gd-bEW"/>
+                            <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="UKg-hc-w0b" secondAttribute="trailing" id="xa3-Jw-iwM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ge6-rY-SCG"/>
                     </view>
                     <connections>
                         <outlet property="averageWaterView" destination="ySk-ij-zc1" id="zgo-s5-oUW"/>
-                        <outlet property="chartView" destination="cg4-d1-ZsZ" id="gE8-FV-KeU"/>
+                        <outlet property="chartPlaceholderLabel" destination="r0U-A0-I7D" id="ebG-Yr-wJz"/>
+                        <outlet property="chartView" destination="C8U-Qq-oCC" id="Dl2-ZK-484"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdN-hN-BfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,7 +467,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-dR-8Im" customClass="HabitsChartView" customModule="Agile_diary" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-dR-8Im" customClass="ExtendedBarChartView" customModule="Agile_diary" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
@@ -537,8 +557,8 @@
                         <viewLayoutGuide key="safeArea" id="Gco-hr-DAm"/>
                     </view>
                     <connections>
-                        <outlet property="chart" destination="Tgz-dR-8Im" id="uZn-q7-jfj"/>
                         <outlet property="chartPlaceholderLabel" destination="2rX-kE-MRf" id="fqC-7s-lVD"/>
+                        <outlet property="chartView" destination="Tgz-dR-8Im" id="OeF-Jh-Z7B"/>
                         <outlet property="detailedHabitsTableView" destination="KOK-fs-vZI" id="p9M-ZK-Oen"/>
                     </connections>
                 </viewController>
