@@ -18,6 +18,9 @@ public extension WaterControlEntity {
         notificationsInterval = Int16(waterControl.notificationsInterval)
         notificationsStartTime = waterControl.notificationsStartTime
         notificationsEndTime = waterControl.notificationsEndTime
+        weight = waterControl.weight
+        gender = Int16(waterControl.gender.rawValue)
+        activity = Int16(waterControl.activity.rawValue)
     }
     
 }

@@ -7,13 +7,23 @@
 //
 
 import UIKit
+import TasksKit
 import UIComponents
 
 final class WaterControlConfigurationViewController: BaseViewController {
     
+    enum Mode {
+        case modal, embed
+    }
+    
     // MARK: Required dependencies
     
-    var sprint: Sprint!
+    var sprint: Sprint! {
+        didSet {
+            updateUIWithExistingWaterControlIfPossible()
+        }
+    }
+    var mode: Mode = .modal
     
     // MARK: - Outlets
     
@@ -67,44 +77,80 @@ final class WaterControlConfigurationViewController: BaseViewController {
     
     // MARK: - State properties
     
+    private var waterControlID: String = RandomStringGenerator.randomString(length: 16)
+    
+    private var drunkVolume: [Date: Int] = [:]
+    
     private var gender: Gender = .male {
-        didSet { updateNeededWaterVolume() }
+        didSet {
+            if gender != oldValue { areParametersChanged = true }
+            updateNeededWaterVolume()
+        }
     }
     private var weight: Int = 65 {
-        didSet { updateNeededWaterVolume() }
+        didSet {
+            if weight != oldValue { areParametersChanged = true }
+            updateNeededWaterVolume() }
     }
     private var activity: Activity = .medium {
-        didSet { updateNeededWaterVolume() }
+        didSet {
+            if activity != oldValue { areParametersChanged = true }
+            updateNeededWaterVolume()
+        }
     }
     
     private var notificationsEnabled: Bool = false {
         didSet {
+            if notificationsEnabled != oldValue { areParametersChanged = true }
             updateNotificationsAvailability()
         }
     }
-    private var notificationsInterval: Int = 2
+    private var notificationsInterval: Int = 2 {
+        didSet {
+            if notificationsInterval != oldValue { areParametersChanged = true }
+        }
+    }
     
     private var notificationsStartDate: Date = {
         var date = Date.now
         date => 8.asHours
         return date.startOfHour
-    }()
+    }() {
+        didSet {
+            if notificationsStartDate != oldValue { areParametersChanged = true }
+        }
+    }
     
     private var notificationsEndDate: Date = {
         var date = Date.now
         date => 22.asHours
         return date.startOfHour
-    }()
+    }() {
+        didSet {
+            if notificationsEndDate != oldValue { areParametersChanged = true }
+        }
+    }
+    
+    private var areParametersChanged: Bool = true {
+        didSet {
+            doneButton.isEnabled = areParametersChanged
+        }
+    }
     
     // MARK: - Actions
     
     @IBAction private func onDone() {
         let waterControl = makeWaterControlModel()
         waterControlService.createOrUpdateWaterControl(waterControl) { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
+            
+            self.areParametersChanged = false
+            
             WaterControlSchedulerService().scheduleWaterControl(waterControl,
                                                                 startDate: self.sprint.startDate,
                                                                 endDate: self.sprint.endDate)
+            
+            guard self.mode == .modal else { return }
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -167,7 +213,7 @@ final class WaterControlConfigurationViewController: BaseViewController {
         notificationsIntervalTitleLabel.text = "notifications_interval".localized
         notificationsStartTimeTitleLabel.text = "notifications_interval_start".localized
         notificationsEndTimeTitleLabel.text = "notifications_interval_finish".localized
-        doneButton.setTitle("done".localized, for: .normal)
+        doneButton.setTitle("save".localized, for: .normal)
         
         startNotificationsTimeHandler.date = notificationsStartDate
         startNotificationsTimeHandler.onChangeDate = { [unowned self] date in
@@ -188,6 +234,8 @@ final class WaterControlConfigurationViewController: BaseViewController {
                                                selector: #selector(onChangeWeight),
                                                name: UITextField.textDidChangeNotification,
                                                object: weightField)
+        
+        updateUIWithExistingWaterControlIfPossible()
     }
     
     override func refresh() {
@@ -262,17 +310,35 @@ final class WaterControlConfigurationViewController: BaseViewController {
         notificationsEndTimeContainer.isUserInteractionEnabled = notificationsEnabled
     }
     
+    private func updateUIWithExistingWaterControlIfPossible() {
+        guard let sprintID = sprint?.id else { return }
+        guard let existingWaterControl = waterControlService.fetchWaterControl(sprintID: sprintID) else { return }
+        waterControlID = existingWaterControl.id
+        drunkVolume = existingWaterControl.drunkVolume
+        weight = Int(existingWaterControl.weight)
+        activity = existingWaterControl.activity
+        gender = existingWaterControl.gender
+        notificationsEnabled = existingWaterControl.notificationsEnabled
+        notificationsInterval = existingWaterControl.notificationsInterval
+        notificationsStartDate = existingWaterControl.notificationsStartTime
+        notificationsEndDate = existingWaterControl.notificationsEndTime
+    }
+    
     private func makeWaterControlModel() -> WaterControl {
         let fullNeededVolume = WaterVolumeCalculator.calculateNeededWaterVolume(gender: gender, weight: weight, activity: activity).full
         let neededVolume = WaterVolumeCalculator.calculatePureNeededWaterVolume(waterVolume: fullNeededVolume)
-        return WaterControl(id: RandomStringGenerator.randomString(length: 16),
-                            neededVolume: neededVolume,
-                            drunkVolume: [:],
-                            sprintID: sprint.id,
-                            notificationsEnabled: notificationsEnabled,
-                            notificationsInterval: notificationsInterval,
-                            notificationsStartTime: notificationsStartDate,
-                            notificationsEndTime: notificationsEndDate)
+        let waterControl = WaterControl(id: waterControlID,
+                                        neededVolume: neededVolume,
+                                        drunkVolume: drunkVolume,
+                                        sprintID: sprint.id,
+                                        notificationsEnabled: notificationsEnabled,
+                                        notificationsInterval: notificationsInterval,
+                                        notificationsStartTime: notificationsStartDate,
+                                        notificationsEndTime: notificationsEndDate)
+        waterControl.weight = Double(weight)
+        waterControl.gender = gender
+        waterControl.activity = activity
+        return waterControl
     }
     
     deinit {
@@ -300,56 +366,6 @@ private final class NotificationsTimeHandler: NotificationTimePickerOutput {
         onChangeDate?(date)
     }
     
-}
-
-private typealias Milliliters = Int
-
-private enum Gender: Int {
-    case male = 0
-    case female
-    
-    var title: String {
-        switch self {
-        case .male: return "male".localized
-        case .female: return "female".localized
-        }
-    }
-    
-    var waterVolumePerKilogram: Milliliters {
-        switch self {
-        case .male: return 40
-        case .female: return 30
-        }
-    }
-    
-    var waterVolumePerTrainingHour: Milliliters {
-        switch self {
-        case .male: return 600
-        case .female: return 400
-        }
-    }
-}
-
-private enum Activity: Int {
-    case low = 0
-    case medium
-    case high
-    
-    var title: String {
-        switch self {
-        case .low: return "activity_low".localized
-        case .medium: return "activity_medium".localized
-        case .high: return "activity_high".localized
-        }
-    }
-    
-    var averageTrainingHoursPerDay: Double {
-        switch self {
-        case .low: return 1 / 7
-        case .medium: return 3 / 7
-        case .high: return 6 / 7
-        }
-    }
 }
 
 final class WaterVolumeCalculator {

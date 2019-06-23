@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGf-Ss-mFQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGf-Ss-mFQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,6 +17,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1T-T9-NfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="570" y="-316"/>
+        </scene>
+        <!--WaterControlConfiguration-->
+        <scene sceneID="bW7-01-UJN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WaterControl" referencedIdentifier="WaterControlConfiguration" id="EPV-8Q-MlC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4O-fJ-oZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="619" y="-269"/>
         </scene>
         <!--Sprint Creation View Controller-->
         <scene sceneID="htE-dq-daH">
@@ -127,6 +135,12 @@
                                 <rect key="frame" x="0.0" y="168.5" width="375" height="498.5"/>
                                 <connections>
                                     <segue destination="6Y5-NV-rD5" kind="embed" identifier="SprintContent" id="F9o-xz-vjm"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vQ-kH-n92">
+                                <rect key="frame" x="0.0" y="168.5" width="375" height="498.5"/>
+                                <connections>
+                                    <segue destination="EPV-8Q-MlC" kind="embed" identifier="WaterControlConfiguration" id="ubL-3Y-C6J"/>
                                 </connections>
                             </containerView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8T3-WM-hml">
@@ -248,6 +262,7 @@
                             <constraint firstItem="7HH-1q-kKd" firstAttribute="leading" secondItem="PHg-ag-n19" secondAttribute="trailing" constant="16" id="A7V-mW-P45"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="top" secondItem="YMI-H3-bli" secondAttribute="bottom" id="Ao9-Vd-y4W"/>
                             <constraint firstItem="iKg-7z-Hwm" firstAttribute="centerY" secondItem="mkS-e4-0x0" secondAttribute="centerY" id="B8S-vm-YVW"/>
+                            <constraint firstAttribute="trailing" secondItem="6vQ-kH-n92" secondAttribute="trailing" id="DpY-jh-yzF"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="EDF-Rj-Um8"/>
                             <constraint firstItem="YMI-H3-bli" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="EfT-hm-liK"/>
                             <constraint firstItem="8T3-WM-hml" firstAttribute="centerX" secondItem="Yis-mR-02L" secondAttribute="centerX" id="QCT-js-1ax"/>
@@ -260,8 +275,11 @@
                             <constraint firstItem="PHg-ag-n19" firstAttribute="width" secondItem="PHg-ag-n19" secondAttribute="height" id="oGf-LP-4ey"/>
                             <constraint firstItem="mkS-e4-0x0" firstAttribute="top" secondItem="8T3-WM-hml" secondAttribute="bottom" constant="20" id="pk4-40-IQ9"/>
                             <constraint firstItem="ejl-6k-3JG" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="psl-oM-hMK"/>
+                            <constraint firstItem="6vQ-kH-n92" firstAttribute="top" secondItem="YMI-H3-bli" secondAttribute="bottom" id="pwX-7F-mIU"/>
                             <constraint firstAttribute="bottom" secondItem="8fA-KT-HkE" secondAttribute="bottom" id="qDs-qr-0r8"/>
+                            <constraint firstAttribute="bottom" secondItem="6vQ-kH-n92" secondAttribute="bottom" id="qmz-Uo-DD0"/>
                             <constraint firstItem="8fA-KT-HkE" firstAttribute="top" secondItem="Yis-mR-02L" secondAttribute="top" id="t0a-ow-Ei5"/>
+                            <constraint firstItem="6vQ-kH-n92" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="uK5-pw-yTe"/>
                             <constraint firstItem="KP9-bl-viw" firstAttribute="bottom" secondItem="mkS-e4-0x0" secondAttribute="bottom" constant="8" id="wVA-Nk-rCW"/>
                             <constraint firstItem="8fA-KT-HkE" firstAttribute="leading" secondItem="KP9-bl-viw" secondAttribute="leading" id="y7n-6Y-nme"/>
                             <constraint firstItem="mkS-e4-0x0" firstAttribute="leading" secondItem="7HH-1q-kKd" secondAttribute="trailing" constant="20" id="yuH-Ll-TKD"/>
@@ -281,6 +299,7 @@
                         <outlet property="sectionSwitcher" destination="UHj-6h-dgu" id="YPo-5T-ZrS"/>
                         <outlet property="sprintDurationButton" destination="PHg-ag-n19" id="18F-wN-hlt"/>
                         <outlet property="startDateButton" destination="7HH-1q-kKd" id="sM8-Vm-g31"/>
+                        <outlet property="waterControlConfigurationContainerView" destination="6vQ-kH-n92" id="qpP-bS-RHr"/>
                         <segue destination="cgA-Id-diN" kind="presentation" identifier="ShowGoalCreation" modalTransitionStyle="coverVertical" id="gXL-BO-GuS"/>
                         <segue destination="aS1-37-JFS" kind="presentation" identifier="ShowHabitCreation" modalTransitionStyle="coverVertical" id="moZ-UT-TDC"/>
                         <segue destination="9xa-Oc-D6S" kind="presentation" identifier="ShowHabitsCollection" id="aoD-vj-ZUK"/>

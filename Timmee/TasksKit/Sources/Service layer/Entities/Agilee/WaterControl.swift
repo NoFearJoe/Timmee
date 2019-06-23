@@ -19,6 +19,9 @@ public final class WaterControl {
     public var notificationsInterval: Int
     public var notificationsStartTime: Date
     public var notificationsEndTime: Date
+    public var weight: Double = 65
+    public var activity: Activity = .medium
+    public var gender: Gender = .male
     
     public init(id: String,
                 neededVolume: Int,
@@ -47,5 +50,8 @@ public final class WaterControl {
         notificationsInterval = Int(entity.notificationsInterval)
         notificationsStartTime = entity.notificationsStartTime ?? Date()
         notificationsEndTime = entity.notificationsEndTime ?? Date()
+        weight = entity.weight
+        activity = Activity(rawValue: Int(entity.activity)) ?? .medium
+        gender = Gender(rawValue: Int(entity.gender)) ?? .male
     }
 }

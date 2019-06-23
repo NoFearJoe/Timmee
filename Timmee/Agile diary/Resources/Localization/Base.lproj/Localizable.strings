@@ -66,6 +66,7 @@
 "attention" = "Attention";
 "change_pin_code" = "Do you want to change pin-code?";
 
+"save" = "Save";
 "remove" = "Remove";
 "edit" = "Edit";
 "done" = "Done";

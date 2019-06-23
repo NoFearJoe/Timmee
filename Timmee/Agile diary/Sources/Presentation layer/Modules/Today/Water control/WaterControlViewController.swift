@@ -130,13 +130,6 @@ private extension WaterControlViewController {
                 waterControlReconfigurationButton.isHidden = true
                 setDrinkWaterButtonsVisible(true)
                 drunkVolumeLabel.isHidden = false
-            case let .outdated(waterControl):
-                hidePlaceholder()
-                self.waterControl = waterControl
-                waterControlConfigurationButton.isHidden = true
-                waterControlReconfigurationButton.isHidden = false
-                setDrinkWaterButtonsVisible(true)
-                drunkVolumeLabel.isHidden = false
             }
             updateProgress()
         }

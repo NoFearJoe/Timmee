@@ -898,9 +898,9 @@
 		0C3DA52C2154CA0000CAE635 /* Water control */ = {
 			isa = PBXGroup;
 			children = (
+				0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */,
 				0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */,
 				0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */,
-				0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */,
 				0C936560215BB0C100B4EB48 /* WaterLevelView.swift */,
 			);
 			path = "Water control";
