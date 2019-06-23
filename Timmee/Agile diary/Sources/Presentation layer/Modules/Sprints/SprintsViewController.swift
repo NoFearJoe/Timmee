@@ -119,6 +119,10 @@ extension SprintsViewController: UICollectionViewDataSource {
                 self.hideHintPopover()
             }
         }
+        cell.onTapToCharts = { [unowned self] in
+            self.sprintsView.hideSwipedCell()
+            self.performSegue(withIdentifier: "ShowCharts", sender: sprint)
+        }
         return cell
     }
     
@@ -174,17 +178,9 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                 }
             }
         
-        let showChartsAction = SwipeCollectionAction(icon: UIImage(named: "charts") ?? UIImage(),
-                                                     tintColor: AppTheme.current.colors.mainElementColor)
-            { [unowned self] indexPath in
-                self.sprintsView.hideSwipedCell()
-                self.performSegue(withIdentifier: "ShowCharts", sender: sprint)
-            }
-        
         switch sprint.tense {
-        case .past: return [showChartsAction]
-        case .current: return [showChartsAction, removeSprintAction]
-        case .future: return [removeSprintAction]
+        case .past: return []
+        case .current, .future: return [removeSprintAction]
         }
     }
     

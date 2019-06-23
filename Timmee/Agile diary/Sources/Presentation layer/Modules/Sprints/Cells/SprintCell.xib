@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -109,17 +109,36 @@
                             <constraint firstAttribute="bottom" secondItem="pbW-Xl-dEH" secondAttribute="bottom" constant="8" id="nxS-2T-1eK"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjH-Nf-GVm">
-                        <rect key="frame" x="347" y="2" width="32" height="32"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3sd-lM-Ygg">
+                        <rect key="frame" x="301" y="2" width="72" height="32"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAV-P0-W2M">
+                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="UBx-Dg-lyP"/>
+                                    <constraint firstAttribute="width" secondItem="pAV-P0-W2M" secondAttribute="height" id="f1g-C0-EXR"/>
+                                </constraints>
+                                <state key="normal" image="charts"/>
+                                <connections>
+                                    <action selector="onTapToChartsButton" destination="7iC-BN-ZLJ" eventType="touchUpInside" id="ndH-NC-xE1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjH-Nf-GVm">
+                                <rect key="frame" x="40" y="0.0" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FjH-Nf-GVm" secondAttribute="height" id="0yr-va-Nac"/>
+                                    <constraint firstAttribute="width" constant="32" id="Kci-n0-a22"/>
+                                </constraints>
+                                <state key="normal" image="alert"/>
+                                <connections>
+                                    <action selector="onTapToAlertButton" destination="7iC-BN-ZLJ" eventType="touchUpInside" id="J0D-7I-Xbu"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="FjH-Nf-GVm" secondAttribute="height" id="0yr-va-Nac"/>
-                            <constraint firstAttribute="width" constant="32" id="Kci-n0-a22"/>
+                            <constraint firstAttribute="height" constant="32" id="9Zz-jC-00C"/>
                         </constraints>
-                        <state key="normal" image="alert"/>
-                        <connections>
-                            <action selector="onTapToAlertButton" destination="7iC-BN-ZLJ" eventType="touchUpInside" id="J0D-7I-Xbu"/>
-                        </connections>
-                    </button>
+                    </stackView>
                 </subviews>
             </view>
             <constraints>
@@ -127,7 +146,6 @@
                 <constraint firstItem="Wt3-wf-1Dc" firstAttribute="leading" secondItem="FkT-H6-xfs" secondAttribute="trailing" id="1QF-yM-3vK"/>
                 <constraint firstAttribute="trailing" secondItem="Wt3-wf-1Dc" secondAttribute="trailing" id="3np-d4-jhW"/>
                 <constraint firstItem="Wt3-wf-1Dc" firstAttribute="top" secondItem="djh-mb-014" secondAttribute="bottom" id="523-nJ-471"/>
-                <constraint firstAttribute="trailing" secondItem="FjH-Nf-GVm" secondAttribute="trailing" constant="2" id="9S9-v5-9SK"/>
                 <constraint firstItem="AwP-17-N9H" firstAttribute="bottom" secondItem="W2P-el-PMd" secondAttribute="bottom" constant="-3" id="CK9-oa-ncE"/>
                 <constraint firstItem="AmV-HB-cAB" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" constant="15" id="Eof-Uq-Ztr"/>
                 <constraint firstItem="Ktb-xC-GZJ" firstAttribute="top" secondItem="djh-mb-014" secondAttribute="bottom" id="KV1-mU-EU1"/>
@@ -137,20 +155,22 @@
                 <constraint firstAttribute="trailing" secondItem="djh-mb-014" secondAttribute="trailing" id="XZG-wD-7hW"/>
                 <constraint firstItem="FkT-H6-xfs" firstAttribute="leading" secondItem="Ktb-xC-GZJ" secondAttribute="trailing" id="ZOG-ot-fdz"/>
                 <constraint firstItem="W2P-el-PMd" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" constant="15" id="b17-qq-rbe"/>
-                <constraint firstItem="FjH-Nf-GVm" firstAttribute="top" secondItem="7iC-BN-ZLJ" secondAttribute="top" constant="2" id="cLW-Ns-O8f"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AwP-17-N9H" secondAttribute="trailing" constant="15" id="dDV-2S-8Y6"/>
+                <constraint firstItem="3sd-lM-Ygg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AwP-17-N9H" secondAttribute="trailing" constant="8" id="bFS-OA-87V"/>
                 <constraint firstItem="Ktb-xC-GZJ" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" id="dGC-zo-hkB"/>
                 <constraint firstItem="W2P-el-PMd" firstAttribute="top" secondItem="7iC-BN-ZLJ" secondAttribute="top" constant="8" id="ddG-vU-qhC"/>
                 <constraint firstItem="FkT-H6-xfs" firstAttribute="top" secondItem="djh-mb-014" secondAttribute="bottom" id="keM-KO-iXN"/>
                 <constraint firstAttribute="bottom" secondItem="Wt3-wf-1Dc" secondAttribute="bottom" id="tRb-tZ-VSm"/>
                 <constraint firstItem="djh-mb-014" firstAttribute="leading" secondItem="7iC-BN-ZLJ" secondAttribute="leading" id="uiI-LI-Cxf"/>
+                <constraint firstItem="3sd-lM-Ygg" firstAttribute="top" secondItem="7iC-BN-ZLJ" secondAttribute="top" constant="2" id="vmm-B2-5jX"/>
                 <constraint firstItem="AwP-17-N9H" firstAttribute="leading" secondItem="W2P-el-PMd" secondAttribute="trailing" constant="12" id="xQT-2N-Ood"/>
+                <constraint firstAttribute="trailing" secondItem="3sd-lM-Ygg" secondAttribute="trailing" constant="8" id="xw2-wO-CzF"/>
                 <constraint firstAttribute="bottom" secondItem="FkT-H6-xfs" secondAttribute="bottom" id="yJb-KB-12e"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="lSL-Xc-WwH"/>
             <size key="customSize" width="381" height="170"/>
             <connections>
                 <outlet property="alertButton" destination="FjH-Nf-GVm" id="q72-Jm-dhD"/>
+                <outlet property="chartsButton" destination="pAV-P0-W2M" id="FPu-nf-KOl"/>
                 <outlet property="goalsCountLabel" destination="9Fb-1j-Oje" id="iuH-eP-tHx"/>
                 <outlet property="goalsProgressLabel" destination="thH-kq-b1u" id="Jht-2l-Hmf"/>
                 <outlet property="habitsCountLabel" destination="kab-ts-Aef" id="iFI-rg-Igj"/>
@@ -166,5 +186,6 @@
     </objects>
     <resources>
         <image name="alert" width="20" height="20"/>
+        <image name="charts" width="20" height="20"/>
     </resources>
 </document>

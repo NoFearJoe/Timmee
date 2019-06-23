@@ -13,6 +13,7 @@ import UIComponents
 final class SprintCell: SwipableCollectionViewCell {
     
     var onTapToAlert: ((UIButton) -> Void)?
+    var onTapToCharts: (() -> Void)?
     
     private let habitsService = ServicesAssembly.shared.habitsService
     private let goalsService = ServicesAssembly.shared.goalsService
@@ -27,11 +28,16 @@ final class SprintCell: SwipableCollectionViewCell {
     @IBOutlet private var goalsProgressLabel: UILabel!
     
     @IBOutlet private var alertButton: UIButton!
+    @IBOutlet private var chartsButton: UIButton!
     
     @IBOutlet private var separatorViews: [UIView]!
     
     @IBAction private func onTapToAlertButton() {
-        self.onTapToAlert?(alertButton)
+        onTapToAlert?(alertButton)
+    }
+    
+    @IBAction private func onTapToChartsButton() {
+        onTapToCharts?()
     }
     
     override func awakeFromNib() {
@@ -70,6 +76,7 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
         
         alertButton.isHidden = sprint.isReady
+        chartsButton.isHidden = sprint.tense == .future
         
         alpha = sprint.tense == .past ? 0.75 : 1
     }
@@ -101,6 +108,7 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsProgressLabel.font = AppTheme.current.fonts.bold(40)
         goalsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor
         alertButton.tintColor = AppTheme.current.colors.incompleteElementColor
+        chartsButton.tintColor = AppTheme.current.colors.mainElementColor
     }
     
     private func progressLabelColor(progress: Double) -> UIColor {
