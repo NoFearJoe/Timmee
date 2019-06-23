@@ -37,6 +37,14 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "SprintDurationPicker") as! SprintDurationPicker
     }
     
+    static var habitEditor: HabitCreationViewController {
+        return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "HabitCreationViewController") as! HabitCreationViewController
+    }
+    
+    static var goalEditor: TargetCreationViewController {
+        return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "TargetCreationViewController") as! TargetCreationViewController
+    }
+    
     // Today
     
     static var today: TodayViewController {

@@ -45,6 +45,10 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
         sprintsView.register(UINib(nibName: "SprintCell", bundle: nil), forCellWithReuseIdentifier: "SprintCell")
         setupPlaceholder()
         setupSprintsObserver()
+        
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: sprintsView)
+        }
     }
     
     override func refresh() {
@@ -193,6 +197,28 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                       case .ok: completion(true)
                       }
                   }
+    }
+    
+}
+
+extension SprintsViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let touchedCellIndexPath = sprintsView.indexPathForItem(at: location) else { return nil }
+        let sprint = sprintsObserver.item(at: touchedCellIndexPath)
+        guard sprint.tense != .past else { return nil }
+        let sprintCreationViewController = ViewControllersFactory.sprintCreation
+        sprintCreationViewController.loadViewIfNeeded()
+        sprintCreationViewController.canClose = true
+        sprintCreationViewController.isFirstTimeSprintCreation = false
+        sprintCreationViewController.sprint = sprint
+        return sprintCreationViewController
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        guard let sprintCreationViewController = viewControllerToCommit as? SprintCreationViewController else { return }
+        let sprint = sprintCreationViewController.sprint
+        performSegue(withIdentifier: "ShowSprintCreation", sender: sprint)
     }
     
 }

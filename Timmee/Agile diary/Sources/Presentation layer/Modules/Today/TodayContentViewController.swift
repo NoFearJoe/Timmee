@@ -77,6 +77,10 @@ final class TodayContentViewController: UIViewController, AlertInput {
         
         NotificationCenter.default.addObserver(self, selector: #selector(onBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        if UIScreen.main.traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: contentView)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +183,46 @@ extension TodayContentViewController: UITableViewDelegate {
             self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
         case .goal:
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
+            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+        case .activity: return
+        }
+    }
+    
+}
+
+extension TodayContentViewController: UIViewControllerPreviewingDelegate {
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let touchedCellIndexPath = contentView.indexPathForRow(at: location) else { return nil }
+
+        switch section.itemsKind {
+        case .habit:
+            guard let habit = habitsCacheObserver?.item(at: touchedCellIndexPath) else { return nil }
+            let habitEditorViewController = ViewControllersFactory.habitEditor
+            habitEditorViewController.loadViewIfNeeded()
+            habitEditorViewController.setHabit(habit, sprintID: sprintID)
+            habitEditorViewController.setEditingMode(.short)
+            return habitEditorViewController
+        case .goal:
+            guard let goal = self.goalsCacheObserver?.item(at: touchedCellIndexPath) else { return nil }
+            let goalEditorViewController = ViewControllersFactory.goalEditor
+            goalEditorViewController.loadViewIfNeeded()
+            goalEditorViewController.setGoal(goal, sprintID: sprintID)
+            goalEditorViewController.setEditingMode(.short)
+            return goalEditorViewController
+        case .activity: return nil
+        }
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        switch section.itemsKind {
+        case .habit:
+            guard let habitEditorViewController = viewControllerToCommit as? HabitCreationViewController else { return }
+            guard let habit = habitEditorViewController.habit else { return }
+            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
+        case .goal:
+            guard let goalEditorViewController = viewControllerToCommit as? TargetCreationViewController else { return }
+            guard let goal = goalEditorViewController.goal else { return }
             self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
         case .activity: return
         }

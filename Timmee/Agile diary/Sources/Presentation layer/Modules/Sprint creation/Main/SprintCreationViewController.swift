@@ -38,10 +38,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     @IBOutlet private var habitsCollectionMenuButton: AddMenuButton!
     @IBOutlet private var dimmedBackgroundView: UIView!
     
-    private var sprintSettingsButtons: [UIButton] {
-        return [startDateButton, notificationsButton, sprintDurationButton, addButton]
-    }
-    
     private var contentViewController: SprintContentViewController!
     private var waterControlConfigurationViewController: WaterControlConfigurationViewController!
     
@@ -305,7 +301,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     private func setSectionsVisible(content: Bool, waterConfiguration: Bool) {
         waterControlConfigurationContainerView.isHidden = !waterConfiguration
         contentContainerView.isHidden = !content
-        sprintSettingsButtons.forEach { $0.isHidden = !content }
+        updateSprintSettingsButtons()
     }
     
 }
@@ -416,10 +412,11 @@ private extension SprintCreationViewController {
     }
     
     func updateSprintSettingsButtons() {
-        addButton.isHidden = sprint.isReady && sprint.tense == .past
-        startDateButton.isHidden = sprint.isReady && sprint.tense != .future
-        sprintDurationButton.isHidden = sprint.isReady && sprint.tense != .future
-        notificationsButton.isHidden = sprint.isReady && sprint.tense == .past
+        guard let sprint = sprint else { return }
+        addButton.isHidden = sprint.isReady && sprint.tense == .past || currentSection == .activity
+        startDateButton.isHidden = sprint.isReady && sprint.tense != .future  || currentSection == .activity
+        sprintDurationButton.isHidden = sprint.isReady && sprint.tense != .future  || currentSection == .activity
+        notificationsButton.isHidden = sprint.isReady && sprint.tense == .past  || currentSection == .activity
     }
     
     func showAddHabitMenu(animated: Bool = false) {
