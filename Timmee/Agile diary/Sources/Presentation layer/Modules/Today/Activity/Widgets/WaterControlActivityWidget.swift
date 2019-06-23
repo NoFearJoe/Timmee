@@ -142,14 +142,6 @@ private extension WaterControlActivityWidget {
                 waterControlReconfigurationButton.isHidden = true
                 setDrinkWaterButtonsVisible(true)
                 drunkVolumeLabel.isHidden = false
-            case let .outdated(waterControl):
-                hidePlaceholder()
-                self.waterControl = waterControl
-                waterLevelView.isHidden = false
-                waterControlConfigurationButton.isHidden = true
-                waterControlReconfigurationButton.isHidden = false
-                setDrinkWaterButtonsVisible(true)
-                drunkVolumeLabel.isHidden = false
             }
         }
     }
@@ -222,12 +214,11 @@ private extension WaterControlActivityWidget {
     
 }
 
-private class WaterControlLoader {
+class WaterControlLoader {
     
     enum WaterControlConfigurationState {
         case notConfigured
         case configured(WaterControl)
-        case outdated(WaterControl)
     }
     
     unowned let provider: WaterControlProvider
@@ -237,13 +228,9 @@ private class WaterControlLoader {
     }
     
     func loadWaterControl(sprintID: String, completion: (WaterControlConfigurationState) -> Void) {
-        let waterControl = provider.fetchWaterControl()
+        let waterControl = provider.fetchWaterControl(sprintID: sprintID)
         if let waterControl = waterControl {
-            if waterControl.lastConfiguredSprintID == sprintID {
-                completion(.configured(waterControl))
-            } else {
-                completion(.outdated(waterControl))
-            }
+            completion(.configured(waterControl))
         } else {
             completion(.notConfigured)
         }

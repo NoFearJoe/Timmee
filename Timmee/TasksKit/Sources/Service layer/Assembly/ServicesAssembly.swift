@@ -32,7 +32,7 @@ public final class ServicesAssembly {
     
     public lazy var goalsService: GoalsProvider & GoalsManager & GoalsObserverProvider = PrivateServicesAssembly.shared.goalsService
     
-    public lazy var waterControlService: WaterControlProvider & WaterControlManager = PrivateServicesAssembly.shared.waterControlService
+    public lazy var waterControlService: WaterControlProvider & WaterControlManager & WaterControlMigrationManager = PrivateServicesAssembly.shared.waterControlService
     
     public lazy var moodServce: MoodProvider & MoodManager = PrivateServicesAssembly.shared.moodService
     
@@ -139,8 +139,9 @@ final class PrivateServicesAssembly {
     lazy var waterControlService:
         WaterControlProvider &
         WaterControlEntityBackgroundProvider &
-        WaterControlManager
-        = WaterControlService()
+        WaterControlManager &
+        WaterControlMigrationManager
+        = WaterControlService(sprintsProvider: sprintsService)
     
     lazy var moodService:
         MoodProvider &

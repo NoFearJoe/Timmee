@@ -13,9 +13,10 @@ extension WaterControlEntity: DictionaryEncodable {
     
     func encode() -> [String : Any] {
         let requiredFields = [
+            "id": (id ?? WaterControl.defaultID) as Any,
             "neededVolume": neededVolume,
             "notificationsEnabled": notificationsEnabled,
-            "lastConfiguredSprintID": lastConfiguredSprintID as Any,
+            "sprintID": (sprint?.id ?? "") as Any,
             "modificationDate": modificationDate
         ]
         
@@ -40,9 +41,9 @@ extension WaterControlEntity: DictionaryEncodable {
 extension WaterControlEntity: DictionaryDecodable {
     
     func decode(_ dictionary: [String : Any]) {
+        id = dictionary["id"] as? String ?? WaterControl.defaultID
         neededVolume = dictionary["neededVolume"] as? Int32 ?? 0
         notificationsEnabled = dictionary["notificationsEnabled"] as? Bool ?? false
-        lastConfiguredSprintID = dictionary["lastConfiguredSprintID"] as? String
         notificationsStartTime = (dictionary["notificationsStartTime"] as? Timestamp)?.dateValue()
         notificationsEndTime = (dictionary["notificationsEndTime"] as? Timestamp)?.dateValue()
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0

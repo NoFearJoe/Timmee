@@ -265,9 +265,10 @@ final class WaterControlConfigurationViewController: BaseViewController {
     private func makeWaterControlModel() -> WaterControl {
         let fullNeededVolume = WaterVolumeCalculator.calculateNeededWaterVolume(gender: gender, weight: weight, activity: activity).full
         let neededVolume = WaterVolumeCalculator.calculatePureNeededWaterVolume(waterVolume: fullNeededVolume)
-        return WaterControl(neededVolume: neededVolume,
+        return WaterControl(id: RandomStringGenerator.randomString(length: 16),
+                            neededVolume: neededVolume,
                             drunkVolume: [:],
-                            lastConfiguredSprintID: sprint.id,
+                            sprintID: sprint.id,
                             notificationsEnabled: notificationsEnabled,
                             notificationsInterval: notificationsInterval,
                             notificationsStartTime: notificationsStartDate,

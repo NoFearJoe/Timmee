@@ -39,7 +39,7 @@ final class WaterChartCell: BaseChartCell {
     override func update(sprint: Sprint) {
         fullProgressButton.isHidden = !(ProVersionPurchase.shared.isPurchased() || Environment.isDebug)
 
-        guard let waterControl = waterControlService.fetchWaterControl() else { return }
+        guard let waterControl = waterControlService.fetchWaterControl(sprintID: sprint.id) else { return }
         
         var chartEntries: [BarChartDataEntry] = []
         var xAxisTitles: [String] = []

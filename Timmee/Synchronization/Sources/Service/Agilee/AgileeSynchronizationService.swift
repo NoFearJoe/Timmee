@@ -99,6 +99,8 @@ private extension AgileeSynchronizationService {
                     
                     sprintSnapshot?.documents.forEach { sprintSnapshot in
                         guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
+                        
+                        // Habits
                         let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
                         dispatchGroup.enter() // Enter habits document
                         habitsCollection.getDocuments(completion: { habitsSnapshot, error in
@@ -116,6 +118,7 @@ private extension AgileeSynchronizationService {
                             dispatchGroup.leave() // Leave habits document
                         })
                         
+                        // Goals
                         let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
                         dispatchGroup.enter() // Enter goals document
                         
@@ -154,23 +157,27 @@ private extension AgileeSynchronizationService {
                             
                             dispatchGroup.leave() // Leave goals document
                         })
+                        
+                        // Water controls
+                        let waterControlCollection = sprintsCollection.document(sprintID).collection("water_control")
+                        dispatchGroup.enter() // Enter water control document
+                        
+                        waterControlCollection.getDocuments(completion: { waterControlsSnapshot, error in
+                            synchronizationActions.append({ context in
+                                let deletedWaterControlIDs = self.collectionSynchronizationManager
+                                    .syncCollection(context: context,
+                                                    data: waterControlsSnapshot?.documents.map { $0.data() } ?? [],
+                                                    entityType: WaterControlEntity.self,
+                                                    parentEntityID: sprintID)
+                                if !deletedWaterControlIDs.isEmpty {
+                                    deletedEntities.waterControls.append((sprintID, deletedWaterControlIDs))
+                                }
+                            })
+                            dispatchGroup.leave() // Leave water control document
+                        })
                     }
                     
                     dispatchGroup.leave() // Leave sprint document
-                })
-                
-                let waterControlDocument = userDocument.collection("water_control").document("water_control")
-                dispatchGroup.enter() // Enter water control document
-                waterControlDocument.getDocument(completion: { [weak self] snapshot, error in
-                    guard let self = self else { return }
-                    synchronizationActions.append({ context in
-                        self.collectionSynchronizationManager
-                            .syncCollection(context: context,
-                                            data: snapshot?.data().flatMap({ [$0] }) ?? [],
-                                            entityType: WaterControlEntity.self,
-                                            parentEntityID: nil)
-                    })
-                    dispatchGroup.leave() // Leave water control document
                 })
                 
                 let moodCollection = userDocument.collection("mood")
@@ -227,6 +234,7 @@ private extension AgileeSynchronizationService {
             
             batch.setData(sprint.encode(), forDocument: sprintDocument)
             
+            // Habits
             let habitsCollection = sprintDocument.collection("habits")
             let habits = self.habitsService.fetchHabitEntitiesInBackground(sprintID: sprintID)
             habits.forEach { habit in
@@ -234,6 +242,7 @@ private extension AgileeSynchronizationService {
                 batch.setData(habit.encode(), forDocument: habitsCollection.document(habitID))
             }
             
+            // Goals
             let goalsCollection = sprintDocument.collection("goals")
             let goals = self.goalsService.fetchGoalEntitiesInBackground(sprintID: sprintID)
             goals.forEach { goal in
@@ -249,12 +258,14 @@ private extension AgileeSynchronizationService {
                     }
                 }
             }
-        }
-        
-        if let waterControl = self.waterControlService.fetchWaterControlEntityInBakground() {
-            let waterControlDocument = userDocument.collection("water_control").document("water_control")
             
-            batch.setData(waterControl.encode(), forDocument: waterControlDocument)
+            // Water controls
+            let waterControlCollection = sprintDocument.collection("water_control")
+            if let waterControl = self.waterControlService.fetchWaterControlEntityInBakground(sprintID: sprintID) {
+                let waterControlDocument = waterControlCollection.document(waterControl.id ?? WaterControl.defaultID)
+                
+                batch.setData(waterControl.encode(), forDocument: waterControlDocument)
+            }
         }
         
         let moodEntities = moodService.fetchAllMoodEntitiesInBackground()
@@ -334,6 +345,13 @@ private extension AgileeSynchronizationService {
             }
         }
         
+        deletedEntities.waterControls.forEach { sprintID, waterControls in
+            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            waterControls.forEach { waterControlID in
+                batch.deleteDocument(sprintDocument.collection("water_control").document(waterControlID))
+            }
+        }
+        
         dispatchGroup.wait()
     }
     
@@ -344,8 +362,9 @@ struct DeletedEntities {
     var habits: [(String, [String])] = []
     var goals: [(String, [String])] = []
     var stages: [(String, String, [String])] = []
+    var waterControls: [(String, [String])] = []
     
     var isEmpty: Bool {
-        return sprints.isEmpty && habits.isEmpty && goals.isEmpty && stages.isEmpty
+        return sprints.isEmpty && habits.isEmpty && goals.isEmpty && stages.isEmpty && waterControls.isEmpty
     }
 }

@@ -17,12 +17,12 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     func presentInitialScreen(in window: UIWindow?, completion: @escaping () -> Void) {
         guard let window = window else { return }
         #if MOCKS
-        PastSprintMocksConfigurator.prepareMocks { [weak self] in
-            UserProperty.isEducationShown.setBool(true)
-            self?.presentRealInitialScreen(in: window)
+//        PastSprintMocksConfigurator.prepareMocks { [weak self] in
+//            UserProperty.isEducationShown.setBool(true)
+            self.presentRealInitialScreen(in: window)
             completion()
 //            self?.presentMockInitialScreen(in: window)
-        }
+//        }
         #else
         presentRealInitialScreen(in: window)
         completion()

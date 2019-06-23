@@ -51,27 +51,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
-        ServicesAssembly.shared.habitsService.setRepeatEndingDateForAllHabitsIfNeeded {
-            self.rescheduleAllNotifications()
-        }
+        
         
         ProVersionPurchase.shared.loadStore()
         
         synchronizationRunner.delegate = self
         
-        let presentInitialScreen = {
+        initialScreenPresenter.presentPreInitialScreen(in: self.window)
+        performPreparingActions {
             self.initialScreenPresenter.presentInitialScreen(in: self.window) {
                 self.synchronizationRunner.run(interval: 10, delay: 10)
             }
-        }
-        
-        if SynchronizationAvailabilityChecker.shared.synchronizationEnabled {
-            self.initialScreenPresenter.presentPreInitialScreen(in: self.window)
-            AgileeSynchronizationService.shared.sync { success in
-                presentInitialScreen()
-            }
-        } else {
-            presentInitialScreen()
         }
         
         BackgroundImagesLoader.shared.load()
@@ -96,6 +86,53 @@ extension AppDelegate: PeriodicallySynchronizationRunnerDelegate {
         synchronizationStatusBar.hide()
     }
     
+}
+
+private extension AppDelegate {
+    func performPreparingActions(completion: @escaping () -> Void) {
+        self.performMigrations {
+            self.performOtherPreparingActions {
+                self.performInitialSynchronization {
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func performMigrations(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        ServicesAssembly.shared.waterControlService.performMigration {
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main, execute: completion)
+    }
+    
+    private func performOtherPreparingActions(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        ServicesAssembly.shared.habitsService.setRepeatEndingDateForAllHabitsIfNeeded {
+            self.rescheduleAllNotifications()
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main, execute: completion)
+    }
+    
+    private func performInitialSynchronization(completion: @escaping () -> Void) {
+        if SynchronizationAvailabilityChecker.shared.synchronizationEnabled {
+            AgileeSynchronizationService.shared.sync { success in
+                completion()
+            }
+        } else {
+            completion()
+        }
+    }
 }
 
 private extension AppDelegate {

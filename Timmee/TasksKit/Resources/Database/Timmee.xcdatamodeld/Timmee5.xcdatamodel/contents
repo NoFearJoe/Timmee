@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
+    <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SprintEntity" inverseName="goals" inverseEntity="SprintEntity" syncable="YES"/>
+        <relationship name="stages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubtaskEntity" inverseName="goal" inverseEntity="SubtaskEntity" syncable="YES"/>
+    </entity>
+    <entity name="HabitEntity" representedClassName="HabitEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dayTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doneDates" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="dueDays" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SprintEntity" inverseName="habits" inverseEntity="SprintEntity" syncable="YES"/>
+    </entity>
+    <entity name="ListEntity" representedClassName="ListEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="iconID" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortPosition" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" toMany="YES" deletionRule="Cascade" destinationEntity="TaskEntity" inverseName="list" inverseEntity="TaskEntity" syncable="YES"/>
+        <fetchIndex name="byIdIndex">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byTitleIndex">
+            <fetchIndexElement property="title" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="LocallyDeletedEntity" representedClassName="LocallyDeletedEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="entityID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entityType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MoodEntity" representedClassName="MoodEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mood" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SmartListEntity" representedClassName="SmartListEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="sortPosition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="SprintEntity" representedClassName="SprintEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="7" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isReady" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationsDays" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationsTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="goals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GoalEntity" inverseName="sprint" inverseEntity="GoalEntity" syncable="YES"/>
+        <relationship name="habits" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HabitEntity" inverseName="sprint" inverseEntity="HabitEntity" syncable="YES"/>
+        <relationship name="waterControl" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WaterControlEntity" inverseName="sprint" inverseEntity="WaterControlEntity" syncable="YES"/>
+    </entity>
+    <entity name="SubtaskEntity" representedClassName="SubtaskEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sortPosition" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="stages" inverseEntity="GoalEntity" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="subtasks" inverseEntity="TaskEntity" syncable="YES"/>
+        <fetchIndex name="byCreationDateIndex">
+            <fetchIndexElement property="creationDate" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="bySortPositionIndex">
+            <fetchIndexElement property="sortPosition" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="TagEntity" representedClassName="TagEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="color" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" toMany="YES" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="tags" inverseEntity="TaskEntity" syncable="YES"/>
+    </entity>
+    <entity name="TaskEntity" representedClassName="TaskEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="attachments" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="doneDates" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="inProgress" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isImportant" attributeType="Boolean" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="kind" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notificationMask" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="repeatMask" attributeType="String" defaultValueString="noRepeat" syncable="YES"/>
+        <attribute name="shouldNotifyAtLocation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity" inverseName="tasks" inverseEntity="ListEntity" syncable="YES"/>
+        <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubtaskEntity" inverseName="task" inverseEntity="SubtaskEntity" syncable="YES"/>
+        <relationship name="tags" toMany="YES" deletionRule="Cascade" destinationEntity="TagEntity" inverseName="tasks" inverseEntity="TagEntity" syncable="YES"/>
+        <relationship name="timeTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeTemplateEntity" inverseName="tasks" inverseEntity="TimeTemplateEntity" syncable="YES"/>
+        <fetchIndex name="byCreationDateIndex">
+            <fetchIndexElement property="creationDate" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byDueDateIndex">
+            <fetchIndexElement property="dueDate" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byIdIndex">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byTitleIndex">
+            <fetchIndexElement property="title" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="TimeTemplateEntity" representedClassName="TimeTemplateEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="hours" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="minutes" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notification" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notificationTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskEntity" inverseName="timeTemplate" inverseEntity="TaskEntity" syncable="YES"/>
+    </entity>
+    <entity name="WaterControlEntity" representedClassName="WaterControlEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="drunkVolumes" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="neededVolume" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationsEndTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notificationsInterval" attributeType="Integer 16" defaultValueString="2" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationsStartTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SprintEntity" inverseName="waterControl" inverseEntity="SprintEntity" syncable="YES"/>
+    </entity>
+    <configuration name="Agilee">
+        <memberEntity name="WaterControlEntity"/>
+        <memberEntity name="GoalEntity"/>
+        <memberEntity name="HabitEntity"/>
+        <memberEntity name="SprintEntity"/>
+        <memberEntity name="SubtaskEntity"/>
+        <memberEntity name="LocallyDeletedEntity"/>
+        <memberEntity name="MoodEntity"/>
+    </configuration>
+    <configuration name="Scope">
+        <memberEntity name="ListEntity"/>
+        <memberEntity name="SmartListEntity"/>
+        <memberEntity name="SubtaskEntity"/>
+        <memberEntity name="TagEntity"/>
+        <memberEntity name="TaskEntity"/>
+        <memberEntity name="TimeTemplateEntity"/>
+    </configuration>
+    <elements>
+        <element name="GoalEntity" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="HabitEntity" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="ListEntity" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="LocallyDeletedEntity" positionX="9" positionY="153" width="128" height="75"/>
+        <element name="MoodEntity" positionX="9" positionY="153" width="128" height="105"/>
+        <element name="SmartListEntity" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="SprintEntity" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="SubtaskEntity" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>
+        <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="WaterControlEntity" positionX="0" positionY="0" width="128" height="195"/>
+    </elements>
+</model>

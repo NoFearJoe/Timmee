@@ -10,10 +10,10 @@ import class Foundation.NSArray
 
 public extension WaterControlEntity {
     
-    public func map(from waterControl: WaterControl) {
+    func map(from waterControl: WaterControl) {
+        id = waterControl.id
         neededVolume = Int32(waterControl.neededVolume)
         drunkVolumes = waterControl.drunkVolume as NSDictionary
-        lastConfiguredSprintID = waterControl.lastConfiguredSprintID
         notificationsEnabled = waterControl.notificationsEnabled
         notificationsInterval = Int16(waterControl.notificationsInterval)
         notificationsStartTime = waterControl.notificationsStartTime
@@ -22,4 +22,8 @@ public extension WaterControlEntity {
     
 }
 
-extension WaterControlEntity: ModifiableEntity, SyncableEntity {}
+extension WaterControlEntity: IdentifiableEntity, ModifiableEntity, SyncableEntity, ChildEntity {
+    public var parent: IdentifiableEntity? {
+        return sprint
+    }
+}

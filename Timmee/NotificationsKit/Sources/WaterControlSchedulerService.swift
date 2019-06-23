@@ -13,7 +13,7 @@ import UserNotifications
 public final class WaterControlSchedulerService: BaseSchedulerService {
     
     public func scheduleWaterControl(_ waterControl: WaterControl, startDate: Date, endDate: Date) {
-        removeWaterControlNotifications {
+        removeWaterControlNotifications(waterControl) {
             self.scheduleNewWaterControl(waterControl, startDate: startDate, endDate: endDate)
         }
     }
@@ -26,21 +26,24 @@ public final class WaterControlSchedulerService: BaseSchedulerService {
         date => waterControl.notificationsStartTime.hours.asHours
         date => waterControl.notificationsStartTime.minutes.asMinutes
         while date.hours < endHours {
-            scheduleLocalNotification(withID: "water_control",
+            scheduleLocalNotification(withID: waterControl.id,
                                       title: "water_time_title".localized,
                                       message: "water_time_subtitle".localized,
                                       at: date,
                                       repeatUnit: .day,
                                       category: "water_control",
-                                      userInfo: [:])
+                                      userInfo: ["water_control_id": waterControl.id])
             date = date + waterControl.notificationsInterval.asHours
         }
     }
     
-    public func removeWaterControlNotifications(completion: @escaping () -> Void) {
+    public func removeWaterControlNotifications(_ waterControl: WaterControl, completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let identifiers = requests.filter { request in
-                    return request.identifier == "water_control"
+                    if let id = request.content.userInfo["water_control_id"] as? String {
+                        return id == waterControl.id
+                    }
+                    return false
                 }.map { request in
                     request.identifier
                 }

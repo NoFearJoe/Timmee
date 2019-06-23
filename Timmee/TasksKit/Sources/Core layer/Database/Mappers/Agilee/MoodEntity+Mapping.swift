@@ -8,7 +8,7 @@
 
 public extension MoodEntity {
     
-    public func map(from mood: Mood) {
+    func map(from mood: Mood) {
         self.mood = mood.kind.rawValue
         self.date = mood.date
     }

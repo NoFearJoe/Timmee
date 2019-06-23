@@ -28,7 +28,8 @@ class ExtendedWaterChartViewController: BaseViewController, AnyExtendedChart {
     
     override func refresh() {
         super.refresh()
-        guard let waterControl = waterControlService.fetchWaterControl() else { return }
+        guard let sprintID = sprint?.id else { return }
+        guard let waterControl = waterControlService.fetchWaterControl(sprintID: sprintID) else { return }
         refreshWaterControlProgress(waterControl: waterControl)
         refreshAverageWaterVolume(waterControl: waterControl)
     }

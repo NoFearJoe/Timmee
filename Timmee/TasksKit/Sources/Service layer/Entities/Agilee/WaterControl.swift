@@ -9,24 +9,29 @@
 import struct Foundation.Date
 
 public final class WaterControl {
+    public static let defaultID: String = "water_control"
+    
+    public var id: String
+    public var sprintID: String
     public var neededVolume: Int
     public var drunkVolume: [Date: Int]
-    public var lastConfiguredSprintID: String
     public var notificationsEnabled: Bool
     public var notificationsInterval: Int
     public var notificationsStartTime: Date
     public var notificationsEndTime: Date
     
-    public init(neededVolume: Int,
+    public init(id: String,
+                neededVolume: Int,
                 drunkVolume: [Date: Int],
-                lastConfiguredSprintID: String,
+                sprintID: String,
                 notificationsEnabled: Bool,
                 notificationsInterval: Int,
                 notificationsStartTime: Date,
                 notificationsEndTime: Date) {
+        self.id = id
+        self.sprintID = sprintID
         self.neededVolume = neededVolume
         self.drunkVolume = drunkVolume
-        self.lastConfiguredSprintID = lastConfiguredSprintID
         self.notificationsEnabled = notificationsEnabled
         self.notificationsInterval = notificationsInterval
         self.notificationsStartTime = notificationsStartTime
@@ -34,9 +39,10 @@ public final class WaterControl {
     }
     
     public init(entity: WaterControlEntity) {
+        id = entity.id ?? WaterControl.defaultID
+        sprintID = entity.sprint?.id ?? ""
         neededVolume = Int(entity.neededVolume)
         drunkVolume = entity.drunkVolumes as? [Date: Int] ?? [:]
-        lastConfiguredSprintID = entity.lastConfiguredSprintID ?? ""
         notificationsEnabled = entity.notificationsEnabled
         notificationsInterval = Int(entity.notificationsInterval)
         notificationsStartTime = entity.notificationsStartTime ?? Date()

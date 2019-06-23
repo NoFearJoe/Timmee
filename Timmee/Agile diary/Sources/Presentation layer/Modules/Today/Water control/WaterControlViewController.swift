@@ -217,32 +217,3 @@ private extension WaterControlViewController {
     }
     
 }
-
-private class WaterControlLoader {
-    
-    enum WaterControlConfigurationState {
-        case notConfigured
-        case configured(WaterControl)
-        case outdated(WaterControl)
-    }
-    
-    unowned let provider: WaterControlProvider
-    
-    init(provider: WaterControlProvider) {
-        self.provider = provider
-    }
-    
-    func loadWaterControl(sprintID: String, completion: (WaterControlConfigurationState) -> Void) {
-        let waterControl = provider.fetchWaterControl()
-        if let waterControl = waterControl {
-            if waterControl.lastConfiguredSprintID == sprintID {
-                completion(.configured(waterControl))
-            } else {
-                completion(.outdated(waterControl))
-            }
-        } else {
-            completion(.notConfigured)
-        }
-    }
-    
-}

@@ -117,6 +117,8 @@ final class FirebaseCollectionSynchronizationManager {
             goal.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
         case let habit as HabitEntity:
             habit.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
+        case let waterControl as WaterControlEntity:
+            waterControl.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
         default: return
         }
     }
@@ -151,8 +153,9 @@ final class FirebaseCollectionSynchronizationManager {
             let sprint = Sprint(sprintEntity: sprintEntity)
             SprintSchedulerService().removeSprintNotifications(sprint: sprint) {}
             // TODO: Remove notifications for habits
-        } else if entity is WaterControlEntity {
-            WaterControlSchedulerService().removeWaterControlNotifications() {}
+        } else if let waterControlEntity = entity as? WaterControlEntity {
+            let waterControl = WaterControl(entity: waterControlEntity)
+            WaterControlSchedulerService().removeWaterControlNotifications(waterControl) {}
         }
     }
     

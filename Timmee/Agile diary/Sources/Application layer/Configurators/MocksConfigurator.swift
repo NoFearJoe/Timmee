@@ -49,7 +49,7 @@ final class RuMocksConfigurator: MocksConfigurator {
         let sg16 = Subtask(id: "05", title: "Принц полукровка", isDone: false, sortPosition: 5, creationDate: .now - 7.asDays)
         let sg17 = Subtask(id: "06", title: "Дары смерти", isDone: false, sortPosition: 6, creationDate: .now - 7.asDays)
         
-        let wc = WaterControl(neededVolume: 2300, drunkVolume: [Date.now.startOfDay: 1800], lastConfiguredSprintID: sprint.id, notificationsEnabled: true, notificationsInterval: 2, notificationsStartTime: .now, notificationsEndTime: .now)
+        let wc = WaterControl(id: "1", neededVolume: 2300, drunkVolume: [Date.now.startOfDay: 1800], sprintID: sprint.id, notificationsEnabled: true, notificationsInterval: 2, notificationsStartTime: .now, notificationsEndTime: .now)
         
         var counter = 19
         let group = DispatchGroup()
@@ -126,7 +126,7 @@ final class EnMocksConfigurator: MocksConfigurator {
         let sg16 = Subtask(id: "05", title: "The Half-Blood Prince", isDone: false, sortPosition: 5, creationDate: .now - 7.asDays)
         let sg17 = Subtask(id: "06", title: "The Deathly Hallows", isDone: false, sortPosition: 6, creationDate: .now - 7.asDays)
         
-        let wc = WaterControl(neededVolume: 2300, drunkVolume: [Date.now.startOfDay: 1800], lastConfiguredSprintID: sprint.id, notificationsEnabled: true, notificationsInterval: 2, notificationsStartTime: .now, notificationsEndTime: .now)
+        let wc = WaterControl(id: "1", neededVolume: 2300, drunkVolume: [Date.now.startOfDay: 1800], sprintID: sprint.id, notificationsEnabled: true, notificationsInterval: 2, notificationsStartTime: .now, notificationsEndTime: .now)
         
         var counter = 18
         let group = DispatchGroup()
