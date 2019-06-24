@@ -95,9 +95,9 @@ final class WaterControlActivityWidget: UIViewController {
         placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         drunkVolumeLabel.font = AppTheme.current.fonts.bold(32)
-        drunkVolumeLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        drunkVolumeLabel.textColor = AppTheme.current.colors.activeElementColor
         [drink100mlLabel, drink200mlLabel, drink300mlLabel].forEach {
-            $0?.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+            $0?.textColor = AppTheme.current.colors.activeElementColor
             $0?.font = AppTheme.current.fonts.medium(12)
         }
     }
