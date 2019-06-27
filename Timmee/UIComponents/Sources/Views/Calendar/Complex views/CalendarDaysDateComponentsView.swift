@@ -13,22 +13,23 @@ final class CalendarDaysDateComponentsView: UIView {
     var onTapToMonth: (() -> Void)?
     var onTapToYear: (() -> Void)?
     
-    private let monthView = CalendarDateComponentView(frame: .zero)
-    private let yearView = CalendarDateComponentView(frame: .zero)
+    private lazy var monthView = CalendarDateComponentView(design: design)
+    private lazy var yearView = CalendarDateComponentView(design: design)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let design: CalendarDesign
+    
+    init(design: CalendarDesign) {
+        self.design = design
+        super.init(frame: .zero)
         setupMonthView()
         setupYearView()
         setupConstraints()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError()
-    }
+    required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func configure(date: Date) {
-        configure(month: date.asString(format: "MMM"), year: date.asString(format: "YYYY"))
+        configure(month: date.asString(format: "MMMM"), year: date.asString(format: "YYYY"))
     }
     
     func configure(month: String, year: String) {

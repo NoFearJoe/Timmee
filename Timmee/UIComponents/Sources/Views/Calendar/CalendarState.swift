@@ -6,17 +6,17 @@
 //  Copyright © 2019 Mesterra. All rights reserved.
 //
 
-public enum CalendarSection: Int {
-    case days, months, years
-}
-
 final class CalendarState {
     // Выбранная дана
     var selectedDate: Date?
     // Дата для отображения месяца
-    var currentDate: Date?
+    var currentDate: Date
     // Минимальная дата, которую можно выбрать
-    var minimumDate: Date?
-    // Выбранная секция (Выбор дня, выбор месяца, выбор года)
-    var section: CalendarSection = .days
+    var minimumDate: Date
+    
+    init(currentDate: Date, minimumDate: Date, selectedDate: Date? = nil) {
+        self.currentDate = currentDate
+        self.minimumDate = minimumDate
+        self.selectedDate = selectedDate
+    }
 }

@@ -10,16 +10,17 @@ import UIKit
 
 final class CalendarWeekdaysView: UIStackView {
     
-    override init(frame: CGRect) {
+    private let design: CalendarDesign
+    
+    init(design: CalendarDesign) {
+        self.design = design
         super.init(frame: .zero)
         distribution = .fillEqually
         alignment = .center
         axis = .horizontal
     }
     
-    required init(coder: NSCoder) {
-        fatalError()
-    }
+    required init(coder: NSCoder) { fatalError() }
     
     func configure(weekdays: [String]) {
         arrangedSubviews.forEach {
@@ -27,7 +28,7 @@ final class CalendarWeekdaysView: UIStackView {
             $0.removeFromSuperview()
         }
         weekdays.forEach { weekday in
-            let view = CalendarWeekdayView(frame: .zero)
+            let view = CalendarWeekdayView(design: design)
             addArrangedSubview(view)
             view.configure(title: weekday)
         }

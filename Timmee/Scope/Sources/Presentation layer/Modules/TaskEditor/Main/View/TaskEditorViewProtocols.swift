@@ -45,8 +45,8 @@ protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewD
     func taskImportantChanged(to isImportant: Bool)
     
     func willPresentTimeTemplatePicker(_ input: TaskTimeTemplatePickerInput)
-    func willPresentDueDatePicker(_ input: TaskDueDatePickerInput)
-    func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput)
+    func willPresentDueDatePicker(_ picker: CalendarViewController)
+    func willPresentDueDateTimePicker(_ picker: CalendarWithTimeViewController)
     func willPresentReminderEditor(_ input: TaskReminderEditorInput)
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput)
     func willPresentRepeatEndingDateEditor(_ input: TaskDueDatePickerInput)

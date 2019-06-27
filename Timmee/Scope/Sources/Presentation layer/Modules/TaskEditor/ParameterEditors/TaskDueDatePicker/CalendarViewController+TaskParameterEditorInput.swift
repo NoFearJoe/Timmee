@@ -16,11 +16,28 @@ extension CalendarViewController: TaskParameterEditorInput {
     }
     
     var requiredHeight: CGFloat {
-        return 0
+        return maximumHeight
     }
     
     func completeEditing(completion: @escaping (Bool) -> Void) {
-        
+        completion(true)
+    }
+    
+}
+
+extension CalendarWithTimeViewController: TaskParameterEditorInput {
+    
+    var container: TaskParameterEditorOutput? {
+        get { return nil }
+        set {}
+    }
+    
+    var requiredHeight: CGFloat {
+        return maximumHeight
+    }
+    
+    func completeEditing(completion: @escaping (Bool) -> Void) {
+        completion(true)
     }
     
 }

@@ -314,7 +314,6 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
         case .dueDate, .startDate: return
         case .dueTime: return
         case .attachments: return//output?.attachmentsCleared()
-        case .calendar: return
         }
     }
 
@@ -327,16 +326,14 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
     func editorViewController(forType type: TaskParameterEditorType) -> UIViewController {
         switch type {
         case .dueDateTime:
-            let viewController = ViewControllersFactory.taskDueDateTimeEditor
+            let viewController = CalendarWithTimeViewController(calendarDesign: defaultCalendarDesign,
+                                                                timePickerDesign: defaultTimePickerDesign)
             viewController.loadViewIfNeeded()
-            viewController.output = dueDateEditorHandler
-            output.willPresentDueDateTimeEditor(viewController)
+            output.willPresentDueDateTimePicker(viewController)
             return viewController
         case .dueDate, .startDate:
-            let viewController = ViewControllersFactory.taskDueDatePicker
+            let viewController = CalendarViewController(design: defaultCalendarDesign)
             viewController.loadViewIfNeeded()
-            viewController.output = self
-            viewController.canClear = false
             output.willPresentDueDatePicker(viewController)
             return viewController
         case .reminder:
@@ -382,10 +379,6 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             viewController.output = self
             output.willPresentAttachmentsPicker(viewController)
             return viewController
-        case .calendar:
-            let viewController = CalendarViewController()
-            viewController.loadViewIfNeeded()
-            return viewController
         case .audioNote, .dueTime:
             return UIViewController()
         }
@@ -414,8 +407,8 @@ extension TaskEditorView: RegularitySettingsViewOutput {
                             didSelectParameter parameter: RegularitySettingsViewController.Parameter) {
         switch parameter {
         case .timeTemplate: showTaskParameterEditor(with: .timeTemplates)
-        case .dueDateTime: showTaskParameterEditor(with: .calendar)
-        case .dueDate: showTaskParameterEditor(with: .calendar)
+        case .dueDateTime: showTaskParameterEditor(with: .dueDateTime)
+        case .dueDate: showTaskParameterEditor(with: .dueDate)
         case .dueTime: showTaskParameterEditor(with: .dueTime)
         case .startDate: showTaskParameterEditor(with: .startDate)
         case .endDate: showTaskParameterEditor(with: .endDate)

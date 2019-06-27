@@ -13,30 +13,29 @@ final class CalendarDateComponentView: UIControl {
     private let titleLabel: UILabel = UILabel(frame: .zero)
     private static let titleFont = UIFont.systemFont(ofSize: 14, weight: .bold)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let design: CalendarDesign
+    
+    init(design: CalendarDesign) {
+        self.design = design
+        super.init(frame: .zero)
         commonSetup()
         setupTitleLabel()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonSetup()
-        setupTitleLabel()
-    }
+    required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func configure(title: String) {
         titleLabel.text = title
     }
     
     private func commonSetup() {
-        backgroundColor = CalendarDesign.shared.selectedBackgroundColor
+        backgroundColor = .clear
         clipsToBounds = true
         layer.cornerRadius = 4
     }
     
     private func setupTitleLabel() {
-        titleLabel.textColor = CalendarDesign.shared.selectedTintColor
+        titleLabel.textColor = design.defaultTintColor
         titleLabel.font = CalendarDateComponentView.titleFont
         
         addSubview(titleLabel)

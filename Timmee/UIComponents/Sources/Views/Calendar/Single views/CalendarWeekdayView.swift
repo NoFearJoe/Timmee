@@ -10,22 +10,23 @@ import UIKit
 
 final class CalendarWeekdayView: UILabel {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonSetup()
-    }
+    private let design: CalendarDesign
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    init(design: CalendarDesign) {
+        self.design = design
+        super.init(frame: .zero)
         commonSetup()
     }
+        
+    required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func configure(title: String) {
         text = title
     }
     
     private func commonSetup() {
-        textColor = CalendarDesign.shared.weekdaysColor
+        textColor = design.weekdaysColor
+        translatesAutoresizingMaskIntoConstraints = false
         font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textAlignment = .center
     }

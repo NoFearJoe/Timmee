@@ -49,27 +49,31 @@ final class CalendarDayCell: UICollectionViewCell {
         setupBadgeView()
     }
     
-    func configure(entity: CalendarDayEntity) {
+    func configure(entity: CalendarDayEntity, design: CalendarDesign) {
         titleLabel.text = "\(entity.number)"
-        titleLabel.textColor = entity.isSelected ? CalendarDesign.shared.selectedTintColor : CalendarDesign.shared.defaultTintColor
-        backgroundColor = entity.isSelected ? CalendarDesign.shared.selectedBackgroundColor : CalendarDesign.shared.defaultBackgroundColor
-        layer.borderColor = entity.isCurrent ? CalendarDesign.shared.selectedBackgroundColor.cgColor : UIColor.clear.cgColor
+        titleLabel.textColor = entity.isSelected ? design.selectedTintColor : design.defaultTintColor
+        backgroundColor = entity.isSelected ?
+            design.selectedBackgroundColor :
+            entity.isDisabled ?
+                design.disabledBackgroundColor :
+                design.defaultBackgroundColor
+        layer.borderColor = entity.isCurrent ? design.selectedBackgroundColor.cgColor : UIColor.clear.cgColor
         alpha = entity.isDisabled ? 0.75 : 1
         configureShadow(radius: entity.isSelected ? 4 : 0, opacity: 0.25)
         badgeView.title = entity.tasksCount == 0 ? nil : "\(entity.tasksCount)"
         badgeView.isHidden = entity.tasksCount == 0
+        badgeView.backgroundColor = design.badgeBackgroundColor
+        badgeView.titleColor = design.badgeTintColor
         isUserInteractionEnabled = !entity.isDisabled
     }
     
     private func commonSetup() {
-        backgroundColor = CalendarDesign.shared.defaultBackgroundColor
         clipsToBounds = false
         layer.cornerRadius = 6
         layer.borderWidth = 2
     }
     
     private func setupTitleLabel() {
-        titleLabel.textColor = CalendarDesign.shared.defaultTintColor
         titleLabel.font = CalendarDayCell.titleFont
         titleLabel.textAlignment = .center
         
@@ -80,9 +84,6 @@ final class CalendarDayCell: UICollectionViewCell {
     }
     
     private func setupBadgeView() {
-        badgeView.backgroundColor = CalendarDesign.shared.badgeBackgroundColor
-        badgeView.titleColor = CalendarDesign.shared.badgeTintColor
-        
         addSubview(badgeView)
         
         badgeView.height(18)

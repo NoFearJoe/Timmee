@@ -9,59 +9,61 @@
 import UIKit
 import Workset
 
-final class CalendarDaysView: UIView, CalendarSectionView {
+final class CalendarDaysView: UIView {
     
-    public var onChangeHeight: ((CGFloat) -> Void)?
-    public var onChangeSection: ((CalendarSection) -> Void)?
+    var onSelectDate: ((Date?) -> Void)?
     
-    private let dateComponentsView = CalendarDaysDateComponentsView()
-    private let weekdaysView = CalendarWeekdaysView()
+    var maximumHeight: CGFloat {
+        let staticHeight = 52 + 24 + collectionView.contentInset.top + collectionView.contentInset.bottom
+        
+        let cellHeight = adapter.calculateCellSize(collectionView: collectionView)
+        let verticalSpacing: CGFloat = 10
+        let maxRows: CGFloat = 6
+        let collectionViewHeight = cellHeight * maxRows + verticalSpacing * (maxRows - 1)
+        
+        return staticHeight + collectionViewHeight
+    }
+    
+    private lazy var dateComponentsView = CalendarDaysDateComponentsView(design: design)
+    private lazy var weekdaysView = CalendarWeekdaysView(design: design)
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: CalendarDaysCollectionLayout())
     
     private let adapter = CalendarDaysAdapter()
     
-    private var collectionViewContentSizeObservation: NSKeyValueObservation!
-    private var isHeightUpdatesSuspended: Bool = false
+    private let state: CalendarState
+    private let design: CalendarDesign
     
-    var state: CalendarState
-    
-    convenience init(state: CalendarState) {
-        self.init(frame: .zero)
+    init(state: CalendarState, design: CalendarDesign) {
         self.state = state
-    }
-    
-    private override init(frame: CGRect) {
-        state = CalendarState()
-        super.init(frame: frame)
+        self.design = design
+        self.adapter.design = design
+        
+        super.init(frame: .zero)
+        
         setupDateComponentsView()
         setupWeekdaysView()
         setupCollectionView()
         setupConstraints()
         
-        collectionViewContentSizeObservation = collectionView.observe(\UICollectionView.contentSize, options: .new) { [unowned self] collectionView, change in
-            guard !self.isHeightUpdatesSuspended else { return }
-            let staticHeight = 52 + 24 + collectionView.contentInset.top + collectionView.contentInset.bottom
-            self.onChangeHeight?(staticHeight + (change.newValue?.height ?? 0))
-        }
-        
         adapter.onSelectDay = { [unowned self] index in
-            self.state.selectedDate! => (index + 1).asDays
+            self.state.selectedDate = (self.state.currentDate.startOfMonth + (index + 1).asDays) as Date
+            self.onSelectDate?(self.state.selectedDate)
             self.reload()
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError()
-    }
+    private override init(frame: CGRect) { fatalError() }
+    
+    required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func reload() {
-        weekdaysView.configure(weekdays: ["пн", "вт", "ср", "чт", "пт", "сб", "вс"])
+        weekdaysView.configure(weekdays: Calendar.current.shortWeekdaySymbols)
         
         let startOfMonthDate: Date?
         if #available(iOSApplicationExtension 10.0, *) {
-            startOfMonthDate = (self.state.currentDate ?? self.state.selectedDate)?.startOfMonth()
+            startOfMonthDate = self.state.currentDate.startOfMonth()
         } else {
-            startOfMonthDate = (self.state.currentDate ?? self.state.selectedDate)?.startOfMonth
+            startOfMonthDate = self.state.currentDate.startOfMonth
         }
         guard let startOfMonth = startOfMonthDate else { return }
         
@@ -74,30 +76,15 @@ final class CalendarDaysView: UIView, CalendarSectionView {
                                      weekday: currentDate.weekday - 1,
                                      isSelected: self.state.selectedDate.map { currentDate.isWithinSameDay(of: $0) } ?? false,
                                      isCurrent: currentDate.isWithinSameDay(of: Date()),
-                                     isDisabled: self.state.minimumDate.map { currentDate.isLower(than: $0) } ?? false,
+                                     isDisabled: currentDate.isLower(than: self.state.minimumDate),
                                      tasksCount: 0)
         }
         adapter.days = days
         collectionView.reloadData()
     }
     
-    func triggerHeightUpdate() {
-        self.onChangeHeight?(52 + 24 + collectionView.contentSize.height + collectionView.contentInset.top + collectionView.contentInset.bottom)
-    }
-    
-    func setHeightUpdatesSuspended(_ isSuspended: Bool) {
-        isHeightUpdatesSuspended = isSuspended
-    }
-    
     private func setupDateComponentsView() {
         addSubview(dateComponentsView)
-        
-        dateComponentsView.onTapToMonth = { [unowned self] in
-            self.onChangeSection?(.months)
-        }
-        dateComponentsView.onTapToYear = { [unowned self] in
-            self.onChangeSection?(.years)
-        }
     }
     
     private func setupWeekdaysView() {
@@ -135,13 +122,19 @@ private final class CalendarDaysAdapter: NSObject, UICollectionViewDataSource, U
     
     var onSelectDay: ((Int) -> Void)?
     
+    var design: CalendarDesign!
+    
+    func calculateCellSize(collectionView: UICollectionView) -> CGFloat {
+        return (collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 7
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return days.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCell.identifier, for: indexPath) as! CalendarDayCell
-        cell.configure(entity: days[indexPath.item])
+        cell.configure(entity: days[indexPath.item], design: design)
         return cell
     }
     
@@ -150,7 +143,7 @@ private final class CalendarDaysAdapter: NSObject, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 7
+        let size = calculateCellSize(collectionView: collectionView)
         return CGSize(width: size, height: size)
     }
     

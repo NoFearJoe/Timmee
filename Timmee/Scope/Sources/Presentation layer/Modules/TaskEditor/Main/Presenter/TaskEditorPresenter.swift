@@ -340,13 +340,20 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         input.setSelectedTimeTemplate(task.timeTemplate)
     }
     
-    func willPresentDueDatePicker(_ input: TaskDueDatePickerInput) {
-        input.setDueDate(task.dueDate ?? Date())
+    func willPresentDueDatePicker(_ picker: CalendarViewController) {
+        picker.configure(selectedDate: task.dueDate ?? Date(), minimumDate: Date().previousDay)
+        picker.onSelectDate = { [unowned self] date in
+            self.dueDateTimeChanged(to: date)
+        }
     }
     
-    func willPresentDueDateTimeEditor(_ input: TaskDueDateTimeEditorInput) {
-        input.canClear = task.kind == .single
-        input.setDueDate(task.dueDate)
+    func willPresentDueDateTimePicker(_ picker: CalendarWithTimeViewController) {
+        picker.configure(selectedDate: task.dueDate ?? Date(), minimumDate: Date().previousDay)
+        picker.onSelectDate = { [unowned self] date in
+            self.dueDateTimeChanged(to: date)
+        }
+        // TODO:
+//        input.canClear = task.kind == .single
     }
     
     func willPresentReminderEditor(_ input: TaskReminderEditorInput) {

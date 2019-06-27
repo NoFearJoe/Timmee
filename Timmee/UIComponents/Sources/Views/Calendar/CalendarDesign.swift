@@ -10,16 +10,6 @@ import UIKit
 
 public struct CalendarDesign {
     
-    public static var shared = CalendarDesign(defaultBackgroundColor: .lightGray,
-                                              defaultTintColor: .black,
-                                              selectedBackgroundColor: .blue,
-                                              selectedTintColor: .white,
-                                              disabledBackgroundColor: .lightText,
-                                              disabledTintColor: .darkGray,
-                                              weekdaysColor: .darkGray,
-                                              badgeBackgroundColor: .red,
-                                              badgeTintColor: .white)
-    
     public let defaultBackgroundColor: UIColor
     public let defaultTintColor: UIColor
     public let selectedBackgroundColor: UIColor

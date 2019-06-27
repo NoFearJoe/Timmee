@@ -9,30 +9,113 @@
 import UIKit
 import Workset
 
-public final class CalendarViewController: UIViewController {
+public final class CalendarViewController: UIPageViewController {
     
-    public var onChangeHeight: ((CGFloat) -> Void)?
+    public var onSelectDate: ((Date?) -> Void)?
     
-    public var calendarView: CalendarView {
-        return view as! CalendarView
+    public var maximumHeight: CGFloat {
+        return currentPage?.maximumHeight ?? 0
     }
     
-    public override func loadView() {
-        view = CalendarView(frame: .zero)
+    private var currentPage: CalendarPage? {
+        return viewControllers?.first as? CalendarPage
     }
+    
+    private var selectedDate: Date?
+    private var currentDate: Date = Date()
+    private var minimumDate: Date = Date()
+    
+    private let design: CalendarDesign
+    
+    public init(design: CalendarDesign) {
+        self.design = design
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        calendarView.onChangeHeight = { [unowned self] height in
-            self.onChangeHeight?(height)
-        }
+        delegate = self
+        dataSource = self
+        
+        setupFirstPage()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        calendarView.configure(selectedDate: Date() + 2.asDays, currentDate: Date(), minimumDate: Date() - 5.asDays)
-        calendarView.reload()
+    private var isConfigured: Bool = false
+    
+    public func configure(selectedDate: Date?, minimumDate: Date?) {
+        isConfigured = true
+        
+        self.selectedDate = selectedDate
+        if #available(iOSApplicationExtension 10.0, *) {
+            self.currentDate = selectedDate?.startOfMonth() ?? Date().startOfMonth() ?? Date().startOfMonth
+        } else {
+            self.currentDate = selectedDate?.startOfMonth ?? Date().startOfMonth
+        }
+        self.minimumDate = minimumDate ?? Date(timeIntervalSince1970: 0)
+        
+        setupFirstPage()
+    }
+    
+    private func createPage(state: CalendarState) -> CalendarPage {
+        let page = CalendarPage(state: state, design: design)
+        page.onSelectDate = { [unowned self] date in
+            self.selectedDate = date
+            self.onSelectDate?(date)
+        }
+        return page
+    }
+    
+    private func setupFirstPage() {
+        guard isConfigured else { return }
+        
+        let state = CalendarState(currentDate: currentDate, minimumDate: minimumDate, selectedDate: selectedDate)
+        let page = createPage(state: state)
+        
+        setViewControllers([page],
+                           direction: .forward,
+                           animated: false,
+                           completion: nil)
+        
+        page.reload()
+    }
+    
+}
+
+extension CalendarViewController: UIPageViewControllerDataSource {
+    
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let currentPage = viewController as? CalendarPage else { return nil }
+        let currentDate = currentPage.state.currentDate
+        let nextState = CalendarState(currentDate: currentDate + 1.asMonths, minimumDate: minimumDate, selectedDate: selectedDate)
+        let nextPage = createPage(state: nextState)
+        nextPage.reload()
+        return nextPage
+    }
+    
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let currentPage = viewController as? CalendarPage else { return nil }
+        let currentDate = currentPage.state.currentDate
+        let previousState = CalendarState(currentDate: currentDate - 1.asMonths, minimumDate: minimumDate, selectedDate: selectedDate)
+        let previousPage = createPage(state: previousState)
+        previousPage.reload()
+        return previousPage
+    }
+    
+}
+
+extension CalendarViewController: UIPageViewControllerDelegate {
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let pages = pendingViewControllers as? [CalendarPage] else { return }
+        pages.forEach { page in
+            page.state.selectedDate = selectedDate
+            page.reload()
+        }
     }
     
 }

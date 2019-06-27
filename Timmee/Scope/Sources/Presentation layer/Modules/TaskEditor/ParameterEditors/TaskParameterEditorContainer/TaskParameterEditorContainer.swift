@@ -22,7 +22,6 @@ enum TaskParameterEditorType {
     case timeTemplates
     case attachments
     case audioNote
-    case calendar
     
     var title: String {
         switch self {
@@ -39,7 +38,6 @@ enum TaskParameterEditorType {
         case .timeTemplates: return "time_templates".localized
         case .attachments: return "attachments".localized
         case .audioNote: return "audio_note".localized
-        case .calendar: return "".localized
         }
     }
 }
@@ -243,11 +241,13 @@ private extension TaskParameterEditorContainer {
         
         if let editorInput = viewController as? TaskParameterEditorInput {
             editorInput.container = self
+            self.view.layoutIfNeeded()
             editorContainerHeightConstraint.constant = editorInput.requiredHeight
             editorInput.onChangeHeight = { [unowned self] height in
+                self.view.layoutIfNeeded()
                 self.editorContainerHeightConstraint.constant = height
                 UIView.animate(withDuration: 0.25) {
-                    self.view.layoutSubviews()
+                    self.view.layoutIfNeeded()
                 }
             }
         }

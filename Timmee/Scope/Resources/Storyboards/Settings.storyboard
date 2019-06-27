@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wPA-hm-0ae">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wPA-hm-0ae">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +29,7 @@
         <!--Настройки-->
         <scene sceneID="tP1-m0-J4Z">
             <objects>
-                <viewController id="H0P-DM-O7X" customClass="SettingsViewController" customModule="Timmee" sceneMemberID="viewController">
+                <viewController id="H0P-DM-O7X" customClass="SettingsViewController" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KaY-oz-taj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +43,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitle" rowHeight="52" id="50L-4J-9Dd" customClass="SettingsCellWithTitle" customModule="Timmee">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitle" rowHeight="52" id="50L-4J-9Dd" customClass="SettingsCellWithTitle" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="50L-4J-9Dd" id="H3g-xF-Bls">
@@ -59,7 +58,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="U88-Ka-wMi">
-                                                    <rect key="frame" x="50" y="16" width="310" height="21"/>
+                                                    <rect key="frame" x="50" y="15.5" width="310" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -78,7 +77,7 @@
                                             <outlet property="titleLabel" destination="U88-Ka-wMi" id="2SY-Kf-yDc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitle" rowHeight="52" id="7SD-dr-LrA" customClass="SettingsDetailsCellWithTitle" customModule="Timmee">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitle" rowHeight="52" id="7SD-dr-LrA" customClass="SettingsDetailsCellWithTitle" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="107.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7SD-dr-LrA" id="8vO-No-U5g">
@@ -86,13 +85,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="nIo-r6-yZf">
-                                                    <rect key="frame" x="50" y="14.5" width="277" height="21"/>
+                                                    <rect key="frame" x="50" y="15.5" width="277" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jod-Xj-5He">
-                                                    <rect key="frame" x="15" y="15.5" width="20" height="20"/>
+                                                    <rect key="frame" x="15" y="16" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="nm3-Db-Fsv"/>
                                                     </constraints>
@@ -112,7 +111,7 @@
                                             <outlet property="titleLabel" destination="nIo-r6-yZf" id="ZEN-oV-b16"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSwitch" rowHeight="52" id="4zi-ht-2Iy" customClass="SettingsCellWithTitleAndSwitch" customModule="Timmee">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSwitch" rowHeight="52" id="4zi-ht-2Iy" customClass="SettingsCellWithTitleAndSwitch" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="159.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4zi-ht-2Iy" id="CFp-aL-Yrc">
@@ -120,13 +119,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="6GY-sa-DhM">
-                                                    <rect key="frame" x="50" y="14.5" width="246" height="21"/>
+                                                    <rect key="frame" x="50" y="15.5" width="246" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h9u-rX-vQo">
-                                                    <rect key="frame" x="15" y="15.5" width="20" height="20"/>
+                                                    <rect key="frame" x="15" y="16" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Cij-xh-HT2"/>
                                                     </constraints>
@@ -155,7 +154,7 @@
                                             <outlet property="titleLabel" destination="6GY-sa-DhM" id="Xhz-WK-tTZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSubtitle" rowHeight="52" id="6Ay-5G-jaB" customClass="SettingsCellWithTitleAndSubtitle" customModule="Timmee">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSubtitle" rowHeight="52" id="6Ay-5G-jaB" customClass="SettingsCellWithTitleAndSubtitle" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="211.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ay-5G-jaB" id="yoV-j7-4dS">
@@ -163,13 +162,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FLg-na-u31">
-                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                    <rect key="frame" x="15" y="16" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="gPn-ea-md6"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoN-4C-Dif">
-                                                    <rect key="frame" x="50" y="7" width="310" height="37.5"/>
+                                                    <rect key="frame" x="50" y="7" width="310" height="38"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="4Vi-mm-Tfv">
                                                             <rect key="frame" x="0.0" y="23" width="310" height="15"/>
@@ -213,7 +212,7 @@
                                             <outlet property="titleLabel" destination="fK6-Wb-s9z" id="cHK-f6-wAc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitleAndSubtitle" rowHeight="52" id="S0j-S6-0NM" customClass="SettingsDetailsCellWithTitleAndSubtitle" customModule="Timmee">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitleAndSubtitle" rowHeight="52" id="S0j-S6-0NM" customClass="SettingsDetailsCellWithTitleAndSubtitle" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="263.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S0j-S6-0NM" id="yXK-6R-mR9">
@@ -221,13 +220,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fve-jp-ER4">
-                                                    <rect key="frame" x="15" y="15.5" width="20" height="20"/>
+                                                    <rect key="frame" x="15" y="16" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="DPX-Re-kDg"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62z-8f-XSh">
-                                                    <rect key="frame" x="50" y="6.5" width="277" height="37.5"/>
+                                                    <rect key="frame" x="50" y="7" width="277" height="38"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-Xh-842">
                                                             <rect key="frame" x="0.0" y="23" width="277" height="15"/>
@@ -269,7 +268,7 @@
                                             <outlet property="titleLabel" destination="J6w-Gm-eg5" id="yU1-IX-2Wo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionCell" rowHeight="52" id="r3V-Ed-jGg" customClass="SettingsProVersionCell" customModule="Timmee" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionCell" rowHeight="52" id="r3V-Ed-jGg" customClass="SettingsProVersionCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="315.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r3V-Ed-jGg" id="Bj6-ED-xH8">
@@ -290,7 +289,7 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EkE-rX-gDe">
-                                                    <rect key="frame" x="50" y="7" width="278" height="37.5"/>
+                                                    <rect key="frame" x="50" y="7" width="278" height="38"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ujt-uY-INv">
                                                             <rect key="frame" x="0.0" y="23" width="278" height="15"/>
@@ -334,7 +333,7 @@
                                             <outlet property="titleLabel" destination="9cs-vF-lEc" id="m5d-A9-25E"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionFeaturesCell" rowHeight="75" id="cfS-Sd-CzQ" customClass="SettingsProVersionFeaturesCell" customModule="Timmee" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionFeaturesCell" rowHeight="75" id="cfS-Sd-CzQ" customClass="SettingsProVersionFeaturesCell" customModule="Scope" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="367.5" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cfS-Sd-CzQ" id="c89-aG-tXh">
@@ -354,7 +353,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="1000" text="* 1\n*2" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gib-jJ-IUf">
-                                                    <rect key="frame" x="50" y="35.5" width="310" height="27"/>
+                                                    <rect key="frame" x="50" y="36" width="310" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.57254901960000004" green="0.59999999999999998" blue="0.63529411759999999" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -423,7 +422,7 @@
         <!--About App View Controller-->
         <scene sceneID="3MS-Cb-58b">
             <objects>
-                <viewController storyboardIdentifier="AboutAppViewController" id="uqW-j8-QJb" customClass="AboutAppViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutAppViewController" id="uqW-j8-QJb" customClass="AboutAppViewController" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OTB-UG-tOo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -456,7 +455,7 @@
         <!--Futures View Controller-->
         <scene sceneID="lP0-xo-h5T">
             <objects>
-                <viewController storyboardIdentifier="FuturesViewController" id="bGK-S7-nnL" customClass="FuturesViewController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FuturesViewController" id="bGK-S7-nnL" customClass="FuturesViewController" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kJd-to-Ncd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

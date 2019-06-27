@@ -239,11 +239,15 @@ public extension Date {
     }
     
     var previousDay: Date {
-        return changeComponents { components in
-            if components.day != nil {
-                components.day! -= 1
-            }
-        }
+        return self - 1.asDays
+    }
+    
+    var nextMonth: Date {
+        return self + 1.asMonths
+    }
+    
+    var previousMonth: Date {
+        return self - 1.asMonths
     }
     
     
