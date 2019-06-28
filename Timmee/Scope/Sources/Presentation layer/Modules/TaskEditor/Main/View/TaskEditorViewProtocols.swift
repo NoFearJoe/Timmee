@@ -49,7 +49,7 @@ protocol TaskEditorViewOutput: TaskEditorViewTimeTemplateOutput, TaskEditorViewD
     func willPresentDueDateTimePicker(_ picker: CalendarWithTimeViewController)
     func willPresentReminderEditor(_ input: TaskReminderEditorInput)
     func willPresentRepeatingEditor(_ input: TaskRepeatingEditorInput)
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDatePickerInput)
+    func willPresentRepeatEndingDateEditor(_ calendar: CalendarViewController)
     func willPresentLocationEditor(_ input: TaskLocationEditorInput)
     func willPresentIntervalRepeatingPicker(_ input: TaskIntervalRepeatingPickerInput)
     func willPresentWeeklyRepeatingPicker(_ input: TaskWeeklyRepeatingPickerInput)

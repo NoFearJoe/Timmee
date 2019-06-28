@@ -90,7 +90,8 @@ extension CalendarViewController: UIPageViewControllerDataSource {
                                    viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentPage = viewController as? CalendarPage else { return nil }
         let currentDate = currentPage.state.currentDate
-        let nextState = CalendarState(currentDate: currentDate + 1.asMonths, minimumDate: minimumDate, selectedDate: selectedDate)
+        let nextDate = currentDate + 1.asMonths
+        let nextState = CalendarState(currentDate: nextDate, minimumDate: minimumDate, selectedDate: selectedDate)
         let nextPage = createPage(state: nextState)
         nextPage.reload()
         return nextPage
@@ -100,7 +101,8 @@ extension CalendarViewController: UIPageViewControllerDataSource {
                                    viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentPage = viewController as? CalendarPage else { return nil }
         let currentDate = currentPage.state.currentDate
-        let previousState = CalendarState(currentDate: currentDate - 1.asMonths, minimumDate: minimumDate, selectedDate: selectedDate)
+        let previousDate = currentDate - 1.asMonths
+        let previousState = CalendarState(currentDate: previousDate, minimumDate: minimumDate, selectedDate: selectedDate)
         let previousPage = createPage(state: previousState)
         previousPage.reload()
         return previousPage

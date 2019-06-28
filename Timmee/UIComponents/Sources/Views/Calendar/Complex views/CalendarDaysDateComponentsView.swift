@@ -29,7 +29,7 @@ final class CalendarDaysDateComponentsView: UIView {
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func configure(date: Date) {
-        configure(month: date.asString(format: "MMMM"), year: date.asString(format: "YYYY"))
+        configure(month: date.asString(format: "LLLL"), year: date.asString(format: "YYYY"))
     }
     
     func configure(month: String, year: String) {

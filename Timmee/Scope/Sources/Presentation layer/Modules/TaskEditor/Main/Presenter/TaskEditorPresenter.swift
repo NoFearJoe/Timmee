@@ -352,8 +352,7 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         picker.onSelectDate = { [unowned self] date in
             self.dueDateTimeChanged(to: date)
         }
-        // TODO:
-//        input.canClear = task.kind == .single
+        picker.setClearButtonVisible(task.kind == .single)
     }
     
     func willPresentReminderEditor(_ input: TaskReminderEditorInput) {
@@ -390,11 +389,13 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
         input.setRepeatMasksVisible(!shouldHideRepeatMasks)
     }
     
-    func willPresentRepeatEndingDateEditor(_ input: TaskDueDatePickerInput) {
+    func willPresentRepeatEndingDateEditor(_ calendar: CalendarViewController) {
         let defaultDate = Date()
-        let minimumDate = (task.dueDate ?? defaultDate) + 1.asDays
-        input.minimumAvailableDate = minimumDate
-        input.setDueDate(task.repeatEndingDate ?? minimumDate)
+        let minimumDate = ((task.dueDate ?? defaultDate) + 1.asDays).startOfDay
+        calendar.configure(selectedDate: task.repeatEndingDate ?? minimumDate, minimumDate: minimumDate)
+        calendar.onSelectDate = { [unowned self] date in
+            self.repeatEndingDateChanged(to: date)
+        }
     }
     
     func willPresentLocationEditor(_ input: TaskLocationEditorInput) {

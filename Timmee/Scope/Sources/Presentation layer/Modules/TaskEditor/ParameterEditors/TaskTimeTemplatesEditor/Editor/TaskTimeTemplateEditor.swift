@@ -186,7 +186,7 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
     func editorViewController(forType type: TaskParameterEditorType) -> UIViewController {
         switch type {
         case .dueTime:
-            let viewController = ViewControllersFactory.taskDueTimePicker
+            let viewController = ViewControllersFactory.timePicker
             viewController.loadViewIfNeeded()
             viewController.output = self
             
@@ -218,7 +218,7 @@ extension TaskTimeTemplateEditor: TaskParameterEditorContainerOutput {
     
 }
 
-extension TaskTimeTemplateEditor: TaskDueTimePickerOutput {
+extension TaskTimeTemplateEditor: TimePickerOutput {
     
     func didChangeHours(to hours: Int) {
         timeTemplate.time?.hours = hours

@@ -57,6 +57,7 @@ final class CalendarDayCell: UICollectionViewCell {
             entity.isDisabled ?
                 design.disabledBackgroundColor :
                 design.defaultBackgroundColor
+        layer.borderWidth = entity.isCurrent ? 2 : 0
         layer.borderColor = entity.isCurrent ? design.selectedBackgroundColor.cgColor : UIColor.clear.cgColor
         alpha = entity.isDisabled ? 0.75 : 1
         configureShadow(radius: entity.isSelected ? 4 : 0, opacity: 0.25)
@@ -70,7 +71,6 @@ final class CalendarDayCell: UICollectionViewCell {
     private func commonSetup() {
         clipsToBounds = false
         layer.cornerRadius = 6
-        layer.borderWidth = 2
     }
     
     private func setupTitleLabel() {

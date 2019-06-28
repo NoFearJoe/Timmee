@@ -80,13 +80,13 @@ public final class CalendarWithTimeViewController: UIViewController {
 
 extension CalendarWithTimeViewController: TimePickerOutput {
     
-    func didChangeHours(to hours: Int) {
+    public func didChangeHours(to hours: Int) {
         self.hours = hours
         selectedDate => hours.asHours
         self.onSelectDate?(self.selectedDate)
     }
     
-    func didChangeMinutes(to minutes: Int) {
+    public func didChangeMinutes(to minutes: Int) {
         self.minutes = minutes
         selectedDate => minutes.asMinutes
         self.onSelectDate?(self.selectedDate)

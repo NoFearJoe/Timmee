@@ -13,9 +13,11 @@ final class NumberPickerView: UIView {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
         
         addSubview(collectionView)
+        
+        collectionView.register(NumberPickerCell.self, forCellWithReuseIdentifier: "NumberPickerCell")
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -27,8 +29,6 @@ final class NumberPickerView: UIView {
         if #available(iOSApplicationExtension 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
-        
-        collectionView.register(NumberPickerCell.self, forCellWithReuseIdentifier: "NumberPickerCell")
         
         collectionView.allEdges().toSuperview()
         
@@ -68,16 +68,22 @@ final class NumberPickerView: UIView {
     
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        scrollToNumber(currentNumber)
+    }
+    
     func scrollToNumber(_ number: Int) {
         guard let index = numbers.index(of: number) else { return }
         
-        DispatchQueue.main.async {
-            self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
-                                             at: .centeredVertically,
-                                             animated: false)
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
         
-            self.handleNumberChange()
-        }
+        collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                    at: .centeredVertically,
+                                    animated: false)
+
+        handleNumberChange()
     }
     
 }
@@ -114,14 +120,14 @@ extension NumberPickerView: UICollectionViewDelegate, UICollectionViewDelegateFl
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = getCellHeight()
-        return CGSize(width: collectionView.frame.width - 1, height: height)
+        return CGSize(width: collectionView.frame.width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         let cellHeight = getCellHeight()
-        return UIEdgeInsets(top: cellHeight, left: 1, bottom: cellHeight, right: 0)
+        return UIEdgeInsets(top: cellHeight, left: 0, bottom: cellHeight, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

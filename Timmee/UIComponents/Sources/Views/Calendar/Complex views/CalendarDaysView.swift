@@ -57,7 +57,7 @@ final class CalendarDaysView: UIView {
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
     func reload() {
-        weekdaysView.configure(weekdays: Calendar.current.shortWeekdaySymbols)
+        weekdaysView.configure(weekdays: Calendar.current.localizedShortenedWeekdays)
         
         let startOfMonthDate: Date?
         if #available(iOSApplicationExtension 10.0, *) {
@@ -74,9 +74,9 @@ final class CalendarDaysView: UIView {
             let currentDate = startOfMonth + day.asDays
             return CalendarDayEntity(number: day + 1,
                                      weekday: currentDate.weekday - 1,
-                                     isSelected: self.state.selectedDate.map { currentDate.isWithinSameDay(of: $0) } ?? false,
+                                     isSelected: state.selectedDate.map { currentDate.isWithinSameDay(of: $0) } ?? false,
                                      isCurrent: currentDate.isWithinSameDay(of: Date()),
-                                     isDisabled: currentDate.isLower(than: self.state.minimumDate),
+                                     isDisabled: currentDate.isLower(than: state.minimumDate),
                                      tasksCount: 0)
         }
         adapter.days = days
@@ -125,7 +125,9 @@ private final class CalendarDaysAdapter: NSObject, UICollectionViewDataSource, U
     var design: CalendarDesign!
     
     func calculateCellSize(collectionView: UICollectionView) -> CGFloat {
-        return (collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 7
+        let dirtySize = (collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 7
+        let roundedSize = dirtySize.rounded()
+        return roundedSize
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

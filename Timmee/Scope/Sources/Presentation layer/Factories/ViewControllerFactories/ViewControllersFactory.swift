@@ -49,16 +49,17 @@ final class ViewControllersFactory {
         return StoryboardsFactory.taskParameterEditors.initialViewController()
     }
     
-    static var taskDueDateTimeEditor: TaskDueDateTimeEditor {
-        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDateTimeEditor")
-    }
+//    static var taskDueDateTimeEditor: TaskDueDateTimeEditor {
+//        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDateTimeEditor")
+//    }
+//
+//    static var taskDueDatePicker: TaskDueDatePicker {
+//        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDatePicker")
+//    }
     
-    static var taskDueDatePicker: TaskDueDatePicker {
-        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueDatePicker")
-    }
-    
-    static var taskDueTimePicker: TaskDueTimePicker {
-        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueTimePicker")
+    static var timePicker: TimePicker {
+        return TimePicker(design: defaultTimePickerDesign)
+//        return StoryboardsFactory.taskParameterEditors.viewController(id: "TaskDueTimePicker")
     }
     
     static var taskReminderEditor: TaskReminderEditor {

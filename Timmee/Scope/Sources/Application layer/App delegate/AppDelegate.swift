@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         Trackers.registerAppLaunchTracker()
-        
+                
         AppThemeConfigurator.setupInitialThemeIfNeeded()
         
         AppearanceConfigurator.setupAppearance()

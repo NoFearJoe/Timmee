@@ -46,9 +46,6 @@ final class TaskEditorView: UIViewController {
     
     private var shouldForceResignFirstResponder = false
     
-    private var dueDateEditorHandler = TaskDueDateTimeEditorHandler()
-    private var repeatEndingDateEditorHandler = TaskDueDateTimeEditorHandler()
-    
     private weak var taskParameterEditorContainer: TaskParameterEditorContainer?
     
     private let transitionHandler = ModalPresentationTransitionHandler()
@@ -129,15 +126,6 @@ final class TaskEditorView: UIViewController {
         }
         taskAttachmentsView.didSelectAttachment = { [unowned self] attachment in
             self.output.attachmentSelected(attachment)
-        }
-        
-        
-        dueDateEditorHandler.onDateChange = { [unowned self] date in
-            self.output.dueDateTimeChanged(to: date)
-        }
-        
-        repeatEndingDateEditorHandler.onDateChange = { [unowned self] date in
-            self.output.repeatEndingDateChanged(to: date)
         }
         
         if !ProVersionPurchase.shared.isPurchased() {
@@ -349,9 +337,8 @@ extension TaskEditorView: TaskParameterEditorContainerOutput {
             output.willPresentRepeatingEditor(viewController)
             return viewController
         case .repeatEndingDate, .endDate:
-            let viewController = ViewControllersFactory.taskDueDatePicker
+            let viewController = CalendarViewController(design: defaultCalendarDesign)
             viewController.loadViewIfNeeded()
-            viewController.output = repeatEndingDateEditorHandler
             output.willPresentRepeatEndingDateEditor(viewController)
             return viewController
         case .location:
@@ -419,32 +406,10 @@ extension TaskEditorView: RegularitySettingsViewOutput {
     
 }
 
-final class TaskDueDateTimeEditorHandler: TaskDueDateTimeEditorOutput, TaskDueDatePickerOutput {
-    
-    var onDateChange: ((Date) -> Void)?
-    
-    func didSelectDueDate(_ dueDate: Date) {
-        onDateChange?(dueDate)
-    }
-    
-    func didChangeDueDate(to date: Date) {
-        onDateChange?(date)
-    }
-
-}
-
 extension TaskEditorView: TaskTimeTemplatePickerOutput {
     
     func timeTemplateChanged(to timeTemplate: TimeTemplate?) {
         output.timeTemplateChanged(to: timeTemplate)
-    }
-    
-}
-
-extension TaskEditorView: TaskDueDatePickerOutput {
-    
-    func didChangeDueDate(to date: Date) {
-        output.dueDateTimeChanged(to: date)
     }
     
 }

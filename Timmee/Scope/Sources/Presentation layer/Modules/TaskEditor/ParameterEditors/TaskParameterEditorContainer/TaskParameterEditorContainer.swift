@@ -200,22 +200,20 @@ extension TaskParameterEditorContainer: TaskTimeTemplatePickerTransitionOutput {
 
 extension TaskParameterEditorContainer: TaskReminderEditorTransitionOutput {
     
-    func didAskToShowNotificationDatePicker(completion: @escaping (TaskDueDateTimeEditor) -> Void) {
-        let controller = ViewControllersFactory.taskDueDateTimeEditor
+    func didAskToShowNotificationDatePicker(completion: @escaping (CalendarWithTimeViewController) -> Void) {
+        let controller = CalendarWithTimeViewController(calendarDesign: defaultCalendarDesign, timePickerDesign: defaultTimePickerDesign)
+        controller.loadViewIfNeeded()
         controller.title = "notification_date".localized
-        pushViewController(controller) { viewController in
-            guard let dueDateTimeEditor = viewController as? TaskDueDateTimeEditor else { return }
-            completion(dueDateTimeEditor)
-        }
+        completion(controller)
+        pushViewController(controller) { _ in }
     }
     
-    func didAskToShowNotificationTimePicker(completion: @escaping (TaskDueTimePicker) -> Void) {
-        let controller = ViewControllersFactory.taskDueTimePicker
+    func didAskToShowNotificationTimePicker(completion: @escaping (TimePicker) -> Void) {
+        let controller = ViewControllersFactory.timePicker
+        controller.loadViewIfNeeded()
         controller.title = "notification_time".localized
-        pushViewController(controller) { viewController in
-            guard let dueTimePicker = viewController as? TaskDueTimePicker else { return }
-            completion(dueTimePicker)
-        }
+        completion(controller)
+        pushViewController(controller) { _ in }
     }
     
 }
@@ -269,15 +267,17 @@ private extension TaskParameterEditorContainer {
         addChild(viewController)
         
         let offset = editorContainer.bounds.width
-        if let editorInput = viewController as? TaskParameterEditorInput {
-            editorInput.container = self
-            editorContainerHeightConstraint.constant = editorInput.requiredHeight
-        }
         
         if let fromView = editorContainer.subviews.first {
             editorContainer.addSubview(viewController.view)
             viewController.view.allEdges().toSuperview()
             viewController.view.transform = CGAffineTransform(translationX: offset, y: 0)
+            self.view.layoutIfNeeded()
+            
+            if let editorInput = viewController as? TaskParameterEditorInput {
+                editorInput.container = self
+                editorContainerHeightConstraint.constant = editorInput.requiredHeight
+            }
             
             completion(viewController)
             

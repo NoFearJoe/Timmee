@@ -37,8 +37,8 @@ protocol TaskReminderEditorOutput: class {
 }
 
 protocol TaskReminderEditorTransitionOutput: class {
-    func didAskToShowNotificationDatePicker(completion: @escaping (TaskDueDateTimeEditor) -> Void)
-    func didAskToShowNotificationTimePicker(completion: @escaping (TaskDueTimePicker) -> Void)
+    func didAskToShowNotificationDatePicker(completion: @escaping (CalendarWithTimeViewController) -> Void)
+    func didAskToShowNotificationTimePicker(completion: @escaping (TimePicker) -> Void)
 }
 
 final class TaskReminderEditor: UITableViewController {
@@ -185,11 +185,14 @@ extension TaskReminderEditor {
             selectedNotification = .mask(mask)
         case 1 where isNotificationDatePickerVisible:
             transitionOutput?.didAskToShowNotificationDatePicker { [unowned self] dueDateTimeEditor in
-                dueDateTimeEditor.output = self
+                dueDateTimeEditor.onSelectDate = { [unowned self] date in
+                    guard let date = date else { return }
+                    self.selectedNotification = .date(date)
+                }
                 if case .date(let notificationDate) = self.selectedNotification {
-                    dueDateTimeEditor.setDueDate(notificationDate)
+                    dueDateTimeEditor.configure(selectedDate: notificationDate, minimumDate: nil)
                 } else {
-                    dueDateTimeEditor.setDueDate(Date())
+                    dueDateTimeEditor.configure(selectedDate: Date(), minimumDate: nil)
                 }
             }
         case 1 where !isNotificationDatePickerVisible: fallthrough
@@ -214,15 +217,7 @@ extension TaskReminderEditor {
 
 }
 
-extension TaskReminderEditor: TaskDueDateTimeEditorOutput {
-    
-    func didSelectDueDate(_ dueDate: Date) {
-        selectedNotification = .date(dueDate)
-    }
-    
-}
-
-extension TaskReminderEditor: TaskDueTimePickerOutput {
+extension TaskReminderEditor: TimePickerOutput {
     
     func didChangeHours(to hours: Int) {
         notificationTime = (hours, notificationTime?.1 ?? 0)

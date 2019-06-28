@@ -377,6 +377,10 @@ public extension Date {
     }
     
     
+    func isWithinSameMonth(of date: Date) -> Bool {
+        return self.year == date.year && self.month == date.month
+    }
+    
     func isWithinSameDay(of date: Date) -> Bool {
         return self.year == date.year && self.month == date.month && self.dayOfMonth == date.dayOfMonth
     }
@@ -498,6 +502,12 @@ extension Foundation.Calendar {
         var calendar = Foundation.Calendar.current
         calendar.timeZone = timeZone
         return calendar
+    }
+    
+    public var localizedShortenedWeekdays: [String] {
+        let weekdays = shortWeekdaySymbols
+        let weekdaysRelativeToFirstWeekday = Array(weekdays[firstWeekday - 1..<weekdays.count]) + weekdays[0..<firstWeekday - 1]
+        return weekdaysRelativeToFirstWeekday
     }
     
 }

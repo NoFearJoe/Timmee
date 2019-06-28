@@ -9,20 +9,21 @@
 import UIKit
 import Workset
 
-protocol TimePickerInput: class {
+public protocol TimePickerInput: class {
     func setHours(_ hours: Int)
     func setMinutes(_ minutes: Int)
 }
 
-protocol TimePickerOutput: class {
+public protocol TimePickerOutput: class {
     func didChangeHours(to hours: Int)
     func didChangeMinutes(to minutes: Int)
 }
 
-final class TimePicker: UIViewController {
+public final class TimePicker: UIViewController {
     
     private lazy var hourPicker: NumberPickerView = {
         let picker = NumberPickerView(design: design)
+        picker.frame = CGRect(x: 0, y: 0, width: 48, height: 112)
         picker.alignment = .right
         picker.shouldAddZero = false
         picker.numbers = (0...23).map { $0 }
@@ -31,6 +32,7 @@ final class TimePicker: UIViewController {
     
     private lazy var minutePicker: NumberPickerView = {
         let picker = NumberPickerView(design: design)
+        picker.frame = CGRect(x: 0, y: 0, width: 48, height: 112)
         picker.alignment = .left
         picker.numbers = (0...55).map { $0 }.filter { $0 % 5 == 0 }
         return picker
@@ -53,21 +55,31 @@ final class TimePicker: UIViewController {
     }()
     
     private lazy var timeSeparators: [UIView] = {
-        return []
+        let topSeparator = UIView(frame: CGRect(x: 0, y: 0, width: 2, height: 2))
+        topSeparator.backgroundColor = design.secondaryTintColor
+        topSeparator.layer.cornerRadius = 2
+        topSeparator.clipsToBounds = true
+        
+        let bottomSeparator = UIView(frame: CGRect(x: 0, y: 0, width: 2, height: 2))
+        bottomSeparator.backgroundColor = design.secondaryTintColor
+        bottomSeparator.layer.cornerRadius = 2
+        bottomSeparator.clipsToBounds = true
+        
+        return [topSeparator, bottomSeparator]
     }()
     
-    weak var output: TimePickerOutput?
+    public weak var output: TimePickerOutput?
     
     private let design: TimePickerDesign
     
-    init(design: TimePickerDesign) {
+    public init(design: TimePickerDesign) {
         self.design = design
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         setupLayout()
@@ -81,18 +93,11 @@ final class TimePicker: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         hourHintLabel.text = "hours".localized
         minuteHintLabel.text = "minutes".localized
-        
-        hourHintLabel.textColor = design.secondaryTintColor
-        minuteHintLabel.textColor = design.secondaryTintColor
-        
-        timeSeparators.forEach { view in
-            view.backgroundColor = design.tintColor
-        }
     }
     
     private func setupLayout() {
@@ -117,18 +122,32 @@ final class TimePicker: UIViewController {
         [hourPicker.top(), hourPicker.bottom(), hourPicker.leading()].toSuperview()
         [minutePicker.top(), minutePicker.bottom(), minutePicker.trailing()].toSuperview()
         hourPicker.trailingToLeading(-8).to(minutePicker, addTo: view)
+        
+        let topSeparator = timeSeparators[0]
+        pickersContainer.addSubview(topSeparator)
+        topSeparator.width(4)
+        topSeparator.height(4)
+        topSeparator.centerX().toSuperview()
+        topSeparator.centerYAnchor.constraint(equalTo: pickersContainer.centerYAnchor, constant: -4).isActive = true
+        
+        let bottomSeparator = timeSeparators[1]
+        pickersContainer.addSubview(bottomSeparator)
+        bottomSeparator.width(4)
+        bottomSeparator.height(4)
+        bottomSeparator.centerX().toSuperview()
+        bottomSeparator.centerYAnchor.constraint(equalTo: pickersContainer.centerYAnchor, constant: 4).isActive = true
     }
     
 }
 
 extension TimePicker: TimePickerInput {
     
-    func setHours(_ hours: Int) {
+    public func setHours(_ hours: Int) {
         hourPicker.scrollToNumber(hours)
         output?.didChangeHours(to: hours)
     }
     
-    func setMinutes(_ minutes: Int) {
+    public func setMinutes(_ minutes: Int) {
         let roundedMinutes = TimeRounder.roundMinutes(minutes)
         minutePicker.scrollToNumber(roundedMinutes)
         output?.didChangeMinutes(to: roundedMinutes)
@@ -136,8 +155,7 @@ extension TimePicker: TimePickerInput {
     
 }
 
-// TODO: ?
-extension TimePicker { //}: TaskParameterEditorInput {
+public extension TimePicker {
     
     var requiredHeight: CGFloat {
         return 112
