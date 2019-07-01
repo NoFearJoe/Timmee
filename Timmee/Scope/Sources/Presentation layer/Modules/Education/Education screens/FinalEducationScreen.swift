@@ -19,7 +19,7 @@ final class FinalEducationScreen: UIViewController {
         output.didAskToContinueEducation(screen: .final)
     }
     
-    private var output: EducationScreenOutput!
+    private weak var output: EducationScreenOutput!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -32,7 +32,6 @@ final class FinalEducationScreen: UIViewController {
         textLabel.text = "education_final_text".localized
         
         continueButton.setTitle("education_final_continue".localized, for: .normal)
-        
         continueButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
     }
     

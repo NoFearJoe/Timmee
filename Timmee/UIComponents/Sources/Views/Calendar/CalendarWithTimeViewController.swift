@@ -12,6 +12,7 @@ import Workset
 public final class CalendarWithTimeViewController: UIViewController {
     
     public var onSelectDate: ((Date?) -> Void)?
+    public var badgeValue: ((Date) -> String?)?
     
     public var maximumHeight: CGFloat {
         return calendar.maximumHeight + timePicker.requiredHeight
@@ -44,6 +45,9 @@ public final class CalendarWithTimeViewController: UIViewController {
         calendar.onSelectDate = { [unowned self] date in
             self.updateSelectedDate(with: date)
             self.onSelectDate?(self.selectedDate)
+        }
+        calendar.badgeValue = { [unowned self] date in
+            return self.badgeValue?(date)
         }
         
         timePicker.output = self

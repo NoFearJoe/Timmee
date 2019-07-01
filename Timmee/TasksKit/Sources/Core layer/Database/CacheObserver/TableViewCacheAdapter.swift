@@ -15,7 +15,9 @@ public protocol TableViewManageble: class {
 
 public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
     
-    private weak var tableView: UITableView?
+    public var onReloadFail: (() -> Void)?
+    
+    public weak var tableView: UITableView?
     
     public init() {}
     
@@ -84,7 +86,8 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
             }
         }, catch: { _ in
             tableView.isUserInteractionEnabled = true
-            tableView.reloadData()
+//            tableView.reloadData()
+            onReloadFail?()
         }, finally: nil)
     }
     

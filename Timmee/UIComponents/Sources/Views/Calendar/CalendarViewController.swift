@@ -12,6 +12,7 @@ import Workset
 public final class CalendarViewController: UIPageViewController {
     
     public var onSelectDate: ((Date?) -> Void)?
+    public var badgeValue: ((Date) -> String?)?
     
     public var maximumHeight: CGFloat {
         return currentPage?.maximumHeight ?? 0
@@ -64,6 +65,9 @@ public final class CalendarViewController: UIPageViewController {
         page.onSelectDate = { [unowned self] date in
             self.selectedDate = date
             self.onSelectDate?(date)
+        }
+        page.badgeValue = { [unowned self] date in
+            return self.badgeValue?(date)
         }
         return page
     }

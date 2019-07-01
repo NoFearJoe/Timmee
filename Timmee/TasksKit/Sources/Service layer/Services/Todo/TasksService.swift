@@ -19,6 +19,7 @@ import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObject
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
+import Workset
 
 public enum TasksFetchPredicate {
     case none

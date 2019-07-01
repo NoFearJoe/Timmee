@@ -17,8 +17,8 @@ final class NotificationsSetupSuggestionScreen: UIViewController {
     @IBOutlet private var skipButton: UIButton!
     
     @IBAction func continueEducation() {
-        NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { _ in
-            self.output.didAskToContinueEducation(screen: .notificationsSetupSuggestion)
+        NotificationsConfigurator.registerForLocalNotifications(application: UIApplication.shared) { [weak self] _ in
+            self?.output.didAskToContinueEducation(screen: .notificationsSetupSuggestion)
         }
     }
     
@@ -26,7 +26,7 @@ final class NotificationsSetupSuggestionScreen: UIViewController {
         output.didAskToSkipEducation(screen: .notificationsSetupSuggestion)
     }
     
-    private var output: EducationScreenOutput!
+    private weak var output: EducationScreenOutput!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

@@ -24,7 +24,7 @@ final class PinCodeSetupSuggestionEducationScreen: UIViewController {
         output.didAskToSkipEducation(screen: .pinCodeSetupSuggestion)
     }
     
-    private var output: EducationScreenOutput!
+    private weak var output: EducationScreenOutput!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

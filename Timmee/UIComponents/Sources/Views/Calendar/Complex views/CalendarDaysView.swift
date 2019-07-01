@@ -12,6 +12,7 @@ import Workset
 final class CalendarDaysView: UIView {
     
     var onSelectDate: ((Date?) -> Void)?
+    var badgeValue: ((Date) -> String?)?
     
     var maximumHeight: CGFloat {
         let staticHeight = 52 + 24 + collectionView.contentInset.top + collectionView.contentInset.bottom
@@ -28,7 +29,11 @@ final class CalendarDaysView: UIView {
     private lazy var weekdaysView = CalendarWeekdaysView(design: design)
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: CalendarDaysCollectionLayout())
     
-    private let adapter = CalendarDaysAdapter()
+    private lazy var adapter: CalendarDaysAdapter = {
+        let adapeter = CalendarDaysAdapter()
+        adapeter.dataSource = self
+        return adapeter
+    }()
     
     private let state: CalendarState
     private let design: CalendarDesign
@@ -36,9 +41,10 @@ final class CalendarDaysView: UIView {
     init(state: CalendarState, design: CalendarDesign) {
         self.state = state
         self.design = design
-        self.adapter.design = design
         
         super.init(frame: .zero)
+        
+        self.adapter.design = design
         
         setupDateComponentsView()
         setupWeekdaysView()
@@ -59,13 +65,7 @@ final class CalendarDaysView: UIView {
     func reload() {
         weekdaysView.configure(weekdays: Calendar.current.localizedShortenedWeekdays)
         
-        let startOfMonthDate: Date?
-        if #available(iOSApplicationExtension 10.0, *) {
-            startOfMonthDate = self.state.currentDate.startOfMonth()
-        } else {
-            startOfMonthDate = self.state.currentDate.startOfMonth
-        }
-        guard let startOfMonth = startOfMonthDate else { return }
+        let startOfMonth = self.state.currentDate
         
         dateComponentsView.configure(date: startOfMonth)
         
@@ -116,6 +116,17 @@ final class CalendarDaysView: UIView {
     
 }
 
+extension CalendarDaysView: CalendarDaysAdapterDataSource {
+    fileprivate func adapter(_ adapter: CalendarDaysAdapter, badgeValueAt indexPath: IndexPath) -> String? {
+        let date = self.state.currentDate + (indexPath.item + 1).asDays
+        return badgeValue?(date)
+    }
+}
+
+private protocol CalendarDaysAdapterDataSource: AnyObject {
+    func adapter(_ adapter: CalendarDaysAdapter, badgeValueAt indexPath: IndexPath) -> String?
+}
+
 private final class CalendarDaysAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, CalendarDaysCollectionLayoutDelegate {
     
     var days: [CalendarDayEntity] = []
@@ -123,6 +134,8 @@ private final class CalendarDaysAdapter: NSObject, UICollectionViewDataSource, U
     var onSelectDay: ((Int) -> Void)?
     
     var design: CalendarDesign!
+    
+    weak var dataSource: CalendarDaysAdapterDataSource?
     
     func calculateCellSize(collectionView: UICollectionView) -> CGFloat {
         let dirtySize = (collectionView.bounds.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 7
@@ -137,6 +150,8 @@ private final class CalendarDaysAdapter: NSObject, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCell.identifier, for: indexPath) as! CalendarDayCell
         cell.configure(entity: days[indexPath.item], design: design)
+        let badgeValue = dataSource?.adapter(self, badgeValueAt: indexPath)
+        cell.setBadgeValue(badgeValue)
         return cell
     }
     

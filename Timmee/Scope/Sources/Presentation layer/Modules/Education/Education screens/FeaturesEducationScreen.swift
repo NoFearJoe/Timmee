@@ -14,17 +14,12 @@ final class FeaturesEducationScreen: UIViewController {
     @IBOutlet private var textLabel: UILabel!
     
     @IBOutlet private var continueButton: UIButton!
-    @IBOutlet private var skipButton: UIButton!
     
     @IBAction func continueEducation() {
         output.didAskToContinueEducation(screen: .features)
     }
     
-    @IBAction func skipEducation() {
-        output.didAskToSkipEducation(screen: .features)
-    }
-    
-    private var output: EducationScreenOutput!
+    private weak var output: EducationScreenOutput!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -37,10 +32,7 @@ final class FeaturesEducationScreen: UIViewController {
         textLabel.text = "education_features_text".localized
         
         continueButton.setTitle("education_features_continue".localized, for: .normal)
-        skipButton.setTitle("education_features_skip".localized, for: .normal)
-        
         continueButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-        skipButton.backgroundColor = .clear
     }
     
 }

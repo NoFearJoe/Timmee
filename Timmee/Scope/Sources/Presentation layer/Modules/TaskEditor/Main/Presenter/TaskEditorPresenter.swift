@@ -37,6 +37,8 @@ final class TaskEditorPresenter {
     var interactor: TaskEditorInteractorInput!
     var router: TaskEditorRouterInput!
     
+    private let tasksService = ServicesAssembly.shared.tasksService
+    
     private lazy var filesService = FilesService(directory: "attachments")
     
     weak var output: TaskEditorOutput?

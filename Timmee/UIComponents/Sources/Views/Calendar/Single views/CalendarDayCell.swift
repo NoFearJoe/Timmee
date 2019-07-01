@@ -61,16 +61,21 @@ final class CalendarDayCell: UICollectionViewCell {
         layer.borderColor = entity.isCurrent ? design.selectedBackgroundColor.cgColor : UIColor.clear.cgColor
         alpha = entity.isDisabled ? 0.75 : 1
         configureShadow(radius: entity.isSelected ? 4 : 0, opacity: 0.25)
-        badgeView.title = entity.tasksCount == 0 ? nil : "\(entity.tasksCount)"
-        badgeView.isHidden = entity.tasksCount == 0
+        isUserInteractionEnabled = !entity.isDisabled
         badgeView.backgroundColor = design.badgeBackgroundColor
         badgeView.titleColor = design.badgeTintColor
-        isUserInteractionEnabled = !entity.isDisabled
+    }
+    
+    func setBadgeValue(_ badge: String?) {
+        badgeView.title = badge
+        badgeView.isHidden = badge == nil
     }
     
     private func commonSetup() {
         clipsToBounds = false
         layer.cornerRadius = 6
+        layer.rasterizationScale = UIScreen.main.scale
+        layer.shouldRasterize = true
     }
     
     private func setupTitleLabel() {

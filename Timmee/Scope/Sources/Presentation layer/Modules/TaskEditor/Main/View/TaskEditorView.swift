@@ -130,7 +130,6 @@ final class TaskEditorView: UIViewController {
         
         if !ProVersionPurchase.shared.isPurchased() {
             taskAudioNoteView.isHidden = true
-//            timeTemplateView.isHidden = true
             taskTagsView.isHidden = true
         }
     }

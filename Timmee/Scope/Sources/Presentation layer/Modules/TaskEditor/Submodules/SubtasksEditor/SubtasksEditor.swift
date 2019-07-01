@@ -168,7 +168,7 @@ extension SubtasksEditor: UITableViewDataSource {
             cell.title = subtask.title
             cell.isDone = subtask.isDone
             
-            cell.onBeginEditing = { [unowned self, unowned cell] in
+            cell.onBeginEditing = { [unowned self, unowned cell, unowned tableView] in
                 self.savedContentOffset = nil
                 
                 let frame = cell.frame
@@ -177,11 +177,11 @@ extension SubtasksEditor: UITableViewDataSource {
                     self.contentScrollView.contentOffset = CGPoint(x: 0, y: normalFrame.minY)
                 })
             }
-            cell.onDone = { [unowned self, unowned cell] in
+            cell.onDone = { [unowned self, unowned cell, unowned tableView] in
                 guard let actualIndexPath = tableView.indexPath(for: cell) else { return }
                 self.output?.doneSubtask(at: actualIndexPath.row)
             }
-            cell.onChangeTitle = { [unowned self, unowned cell] title in
+            cell.onChangeTitle = { [unowned self, unowned cell, unowned tableView] title in
                 guard let actualIndexPath = tableView.indexPath(for: cell) else { return }
                 self.output?.updateSubtask(at: actualIndexPath.row, newTitle: title)
             }

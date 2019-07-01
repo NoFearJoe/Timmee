@@ -13,7 +13,7 @@ let defaultCalendarDesign = CalendarDesign(defaultBackgroundColor: AppTheme.curr
                                            selectedBackgroundColor: AppTheme.current.blueColor,
                                            selectedTintColor: AppTheme.current.backgroundTintColor,
                                            disabledBackgroundColor: AppTheme.current.panelColor,
-                                           disabledTintColor: AppTheme.current.secondaryTintColor,
+                                           disabledTintColor: AppTheme.current.thirdlyTintColor,
                                            weekdaysColor: AppTheme.current.backgroundColor,
                                            badgeBackgroundColor: AppTheme.current.redColor,
                                            badgeTintColor: AppTheme.current.backgroundTintColor)

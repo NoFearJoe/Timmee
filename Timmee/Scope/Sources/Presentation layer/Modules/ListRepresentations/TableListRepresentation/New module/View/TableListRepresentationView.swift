@@ -13,7 +13,7 @@ final class TableListRepresentationView: UIViewController, AlertInput {
     var output: TableListRepresentationViewOutput!
     var adapter: TableListRepresentationAdapterInput!
     
-    @IBOutlet private var tableView: UITableView!
+    private lazy var tableView: UITableView = UITableView(frame: .zero, style: .plain)
     
     private lazy var placeholder = PlaceholderView.loadedFromNib()
     
@@ -24,6 +24,11 @@ final class TableListRepresentationView: UIViewController, AlertInput {
         setupTableView()
         setupPlaceholder()
         subscribeToApplicationEvents()
+        
+        cacheAdapter.onReloadFail = { [weak self] in
+            self?.recreateTableView()
+            self?.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +119,22 @@ extension TableListRepresentationView: TableListRepresentationViewInput {
 private extension TableListRepresentationView {
     
     func setupTableView() {
+        tableView = UITableView(frame: .zero, style: .plain)
+        
+        view.addSubview(tableView)
+        tableView.allEdges().toSuperview()
+        
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.alwaysBounceVertical = true
+        tableView.keyboardDismissMode = .onDrag
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        if #available(iOS 11.0, *) {
+            tableView.insetsContentViewsToSafeArea = true
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+        
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: "TableListRepresentationBaseCell", bundle: nil),
@@ -126,6 +147,12 @@ private extension TableListRepresentationView {
                            forHeaderFooterViewReuseIdentifier: "TableListRepresentationCompletedSectionHeaderView")
         
         adapter.setupTableView(tableView)
+        cacheAdapter.tableView = tableView
+    }
+    
+    func recreateTableView() {
+        tableView.removeFromSuperview()
+        setupTableView()
     }
     
     func setupPlaceholder() {
