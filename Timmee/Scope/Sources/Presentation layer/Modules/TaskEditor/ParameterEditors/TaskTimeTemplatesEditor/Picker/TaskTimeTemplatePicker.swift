@@ -28,8 +28,8 @@ final class TaskTimeTemplatePicker: UIViewController {
     weak var transitionOutput: TaskTimeTemplatePickerTransitionOutput?
     weak var container: TaskParameterEditorOutput?
     
-    @IBOutlet private var addTimeTemplateView: AddTimeTemplateView!
     @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var addTimeTemplateButton: UIButton!
     
     private lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
@@ -49,6 +49,8 @@ final class TaskTimeTemplatePicker: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.contentInset.bottom = 52
         
         setupPlaceholder()
         

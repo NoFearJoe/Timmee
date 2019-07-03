@@ -92,7 +92,6 @@
 		0C9B24742080A259009EF6DE /* MenuPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24732080A259009EF6DE /* MenuPanelViewController.swift */; };
 		0C9B24792080BD84009EF6DE /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B24782080BD84009EF6DE /* MainRouter.swift */; };
 		0C9EF54E1FBC728100B36FBB /* TaskTimeTemplatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */; };
-		0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */; };
 		0C9EF5551FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */; };
 		0CA9EE76202AD97200C24003 /* SmartListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE75202AD97200C24003 /* SmartListPickerView.swift */; };
 		0CA9EE78202AE20300C24003 /* SmartListPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA9EE77202AE20300C24003 /* SmartListPickerInteractor.swift */; };
@@ -110,6 +109,7 @@
 		0CCC5381228BE9530060BAA7 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CCC5380228BE9530060BAA7 /* TagCollectionViewCell.xib */; };
 		0CCC5383228BE9840060BAA7 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCC5382228BE9840060BAA7 /* TagCollectionViewCell.swift */; };
 		0CCD3BA020A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD3B9F20A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift */; };
+		0CD892B322CC86AA0093ADC3 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD892B222CC86AA0093ADC3 /* MocksConfigurator.swift */; };
 		0CF30954201F301E00FD7E3E /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF30953201F301E00FD7E3E /* ListsViewController.swift */; };
 		0CF309762020BB6600FD7E3E /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */; };
 		0CF309782021998B00FD7E3E /* InitialDataConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */; };
@@ -324,7 +324,6 @@
 		0C9B24732080A259009EF6DE /* MenuPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPanelViewController.swift; sourceTree = "<group>"; };
 		0C9B24782080BD84009EF6DE /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplatePicker.swift; sourceTree = "<group>"; };
-		0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeTemplateView.swift; sourceTree = "<group>"; };
 		0C9EF5541FBD6CBB00B36FBB /* TaskTimeTemplateEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeTemplateEditor.swift; sourceTree = "<group>"; };
 		0CA9EE75202AD97200C24003 /* SmartListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListPickerView.swift; sourceTree = "<group>"; };
 		0CA9EE77202AE20300C24003 /* SmartListPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListPickerInteractor.swift; sourceTree = "<group>"; };
@@ -343,6 +342,7 @@
 		0CCC5380228BE9530060BAA7 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		0CCC5382228BE9840060BAA7 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CCD3B9F20A41C70003A6F23 /* TaskEditorAudioNotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorAudioNotePresenter.swift; sourceTree = "<group>"; };
+		0CD892B222CC86AA0093ADC3 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
 		0CF30953201F301E00FD7E3E /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		0CF309752020BB6600FD7E3E /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialDataConfigurator.swift; sourceTree = "<group>"; };
@@ -866,7 +866,6 @@
 			isa = PBXGroup;
 			children = (
 				0C9EF54D1FBC728100B36FBB /* TaskTimeTemplatePicker.swift */,
-				0C9EF54F1FBD663700B36FBB /* AddTimeTemplateView.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -1460,6 +1459,7 @@
 				0CC7C8572008C7F1006758C1 /* InitialScreenPresenter.swift */,
 				0CF309772021998B00FD7E3E /* InitialDataConfigurator.swift */,
 				9606628220A6FE8100B23EDF /* Trackers.swift */,
+				0CD892B222CC86AA0093ADC3 /* MocksConfigurator.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -1727,7 +1727,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30\n";
 		};
 		B922E50A3D5261172849765B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1826,6 +1826,7 @@
 				963D6A571F5B262A0063E295 /* ListRepresentationOutput.swift in Sources */,
 				0C14D447211C1F71004C0559 /* TaskTagsView.swift in Sources */,
 				0C14D458211C20DC004C0559 /* GroupEditingActionsView.swift in Sources */,
+				0CD892B322CC86AA0093ADC3 /* MocksConfigurator.swift in Sources */,
 				0CB8F2011FE3BECA005D9E11 /* TaskPhotoAttachmentsPicker.swift in Sources */,
 				0CC5923F20AB1C3C00211653 /* ProVersionPurchase.swift in Sources */,
 				9674D911208E76950085F279 /* EditingModeController.swift in Sources */,
@@ -1897,7 +1898,6 @@
 				0C14D4DF21218266004C0559 /* UserProperties.swift in Sources */,
 				0C8738C61FB971F200EA1571 /* SubtasksEditor.swift in Sources */,
 				9615A48421E1197A008923C3 /* TaskCompletionInteractorTrait.swift in Sources */,
-				0C9EF5501FBD663700B36FBB /* AddTimeTemplateView.swift in Sources */,
 				0C74D8221FEAAF0200CDA0BE /* PhotoPreviewCollectionView.swift in Sources */,
 				0C8738C91FB9745A00EA1571 /* SubtaskCell.swift in Sources */,
 				96594E50200A6FF000998133 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,

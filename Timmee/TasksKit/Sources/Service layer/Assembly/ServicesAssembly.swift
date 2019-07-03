@@ -70,6 +70,7 @@ final class PrivateServicesAssembly {
                                        tagsProvider: tagsService,
                                        timeTemplatesProvider: timeTemplatesService)
             
+            (listsService as! ListsService).tasksProvider = service
             (subtasksService as! SubtasksService).tasksProvider = service
             
             return service

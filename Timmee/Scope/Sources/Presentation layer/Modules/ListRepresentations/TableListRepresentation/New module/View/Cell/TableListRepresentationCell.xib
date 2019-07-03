@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableListRepresentationCell" id="MuB-pi-VUw" customClass="TableListRepresentationCell" customModule="Timmee" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableListRepresentationCell" id="MuB-pi-VUw" customClass="TableListRepresentationCell" customModule="Scope" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MuB-pi-VUw" id="dnI-Ya-Fgb">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="57.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyJ-dv-0Rk" customClass="CheckBox" customModule="Timmee" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyJ-dv-0Rk" customClass="CheckBox" customModule="Scope" customModuleProvider="target">
                         <rect key="frame" x="-28" y="15" width="28" height="28"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="7i6-Np-ULk"/>
                         </constraints>
                     </view>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-IP-lgj" customClass="TableListRepersentationCellContainerView" customModule="Timmee" customModuleProvider="target">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-IP-lgj" customClass="TableListRepersentationCellContainerView" customModule="Scope" customModuleProvider="target">
                         <rect key="frame" x="8" y="0.0" width="359" height="57.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1r-bI-UmP">
-                                <rect key="frame" x="8" y="8.5" width="321" height="40.5"/>
+                                <rect key="frame" x="8" y="7.5" width="321" height="42.5"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0Q-h9-vnE">
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="6"/>
@@ -39,13 +39,13 @@
                                         </constraints>
                                     </scrollView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Задача asd asd asd asd asd asd asd as da asdasdasdasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ov3-YB-nU5">
-                                        <rect key="frame" x="0.0" y="6" width="321" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="8" width="321" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="xlA-T7-43b">
-                                        <rect key="frame" x="0.0" y="25.5" width="321" height="15"/>
+                                        <rect key="frame" x="0.0" y="27.5" width="321" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Перед работой но до того как я лягу спать" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VX5-DM-bQy">
                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
@@ -89,13 +89,13 @@
                                     <constraint firstAttribute="trailing" secondItem="ov3-YB-nU5" secondAttribute="trailing" id="Bwe-xt-WhF"/>
                                     <constraint firstItem="j0Q-h9-vnE" firstAttribute="leading" secondItem="d1r-bI-UmP" secondAttribute="leading" id="Fkc-YC-Q1w"/>
                                     <constraint firstItem="xlA-T7-43b" firstAttribute="leading" secondItem="d1r-bI-UmP" secondAttribute="leading" id="OUA-Js-iMQ"/>
-                                    <constraint firstItem="ov3-YB-nU5" firstAttribute="top" secondItem="j0Q-h9-vnE" secondAttribute="bottom" id="lpo-JM-63r"/>
+                                    <constraint firstItem="ov3-YB-nU5" firstAttribute="top" secondItem="j0Q-h9-vnE" secondAttribute="bottom" constant="2" id="lpo-JM-63r"/>
                                     <constraint firstAttribute="trailing" secondItem="j0Q-h9-vnE" secondAttribute="trailing" id="p8T-AD-EYp"/>
                                     <constraint firstItem="xlA-T7-43b" firstAttribute="top" secondItem="ov3-YB-nU5" secondAttribute="bottom" id="qxj-1V-Ep1"/>
                                     <constraint firstAttribute="trailing" secondItem="xlA-T7-43b" secondAttribute="trailing" id="zSO-Yo-1Ay"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTV-YC-uAI" customClass="TaskImportancyPicker" customModule="Timmee" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FTV-YC-uAI" customClass="TaskImportancyPicker" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="329" y="14" width="30" height="30"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="important_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-g9-NJw">
@@ -123,13 +123,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d1r-bI-UmP" secondAttribute="bottom" priority="750" constant="8" id="8FC-H6-K4U"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d1r-bI-UmP" secondAttribute="bottom" priority="750" constant="6" id="8FC-H6-K4U"/>
                             <constraint firstItem="d1r-bI-UmP" firstAttribute="leading" secondItem="eLU-IP-lgj" secondAttribute="leading" constant="8" id="BHW-t0-p7F"/>
                             <constraint firstItem="FTV-YC-uAI" firstAttribute="leading" secondItem="d1r-bI-UmP" secondAttribute="trailing" id="DS1-Vd-gnW"/>
                             <constraint firstAttribute="trailing" secondItem="FTV-YC-uAI" secondAttribute="trailing" id="GPP-qU-y8q"/>
                             <constraint firstItem="d1r-bI-UmP" firstAttribute="centerY" secondItem="eLU-IP-lgj" secondAttribute="centerY" id="SRn-du-XC1"/>
                             <constraint firstItem="FTV-YC-uAI" firstAttribute="centerY" secondItem="eLU-IP-lgj" secondAttribute="centerY" id="TNr-8v-yLL"/>
-                            <constraint firstItem="d1r-bI-UmP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eLU-IP-lgj" secondAttribute="top" priority="750" constant="8" id="fYs-pj-q9H"/>
+                            <constraint firstItem="d1r-bI-UmP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eLU-IP-lgj" secondAttribute="top" priority="750" constant="6" id="fYs-pj-q9H"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -160,7 +160,7 @@
                 <outlet property="timeTemplateLabel" destination="VX5-DM-bQy" id="aad-3e-NbW"/>
                 <outlet property="titleLabel" destination="ov3-YB-nU5" id="c3q-m1-LQP"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="67"/>
+            <point key="canvasLocation" x="32.799999999999997" y="66.566716641679164"/>
         </tableViewCell>
     </objects>
     <resources>

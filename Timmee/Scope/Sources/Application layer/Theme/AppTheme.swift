@@ -80,7 +80,7 @@ public struct AppThemeScheme {
                                              tagColors: blackThemeTagColors)
     
     public static let new = AppThemeScheme(backgroundColor: UIColor(rgba: "2E2F30"),
-                                           middlegroundColor: UIColor(rgba: "EAECEE"),
+                                           middlegroundColor: UIColor(rgba: "EAEDF0"),
                                            foregroundColor: UIColor(rgba: "FFFFFF"),
                                            tintColor: UIColor(rgba: "131D2C"),
                                            secondaryTintColor: UIColor(rgba: "999EA3"),

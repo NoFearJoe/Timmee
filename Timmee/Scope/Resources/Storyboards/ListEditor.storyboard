@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="asB-od-wn4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="asB-od-wn4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +13,7 @@
         <!--List Editor View-->
         <scene sceneID="pCR-Q0-Dk8">
             <objects>
-                <viewController id="asB-od-wn4" customClass="ListEditorView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="asB-od-wn4" customClass="ListEditorView" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ukE-Pt-uso">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,19 +53,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgc-cl-yAe">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="602"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="list_title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="at1-Fb-RZe">
-                                                        <rect key="frame" x="16" y="16" width="342" height="14.5"/>
+                                                        <rect key="frame" x="16" y="16" width="343" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkh-Sh-QGQ" userLabel="Title container">
-                                                        <rect key="frame" x="8" y="38.5" width="358" height="56"/>
+                                                        <rect key="frame" x="8" y="38.5" width="359" height="56"/>
                                                         <subviews>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAo-YO-304">
-                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="56"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" placeholder="YES" id="7he-5g-ArM"/>
                                                                 </constraints>
@@ -90,16 +89,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="list_description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSi-UA-mBh">
-                                                        <rect key="frame" x="16" y="110.5" width="342" height="14.5"/>
+                                                        <rect key="frame" x="16" y="110.5" width="343" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-d1-cCT" userLabel="Description container">
-                                                        <rect key="frame" x="8" y="133" width="358" height="44"/>
+                                                        <rect key="frame" x="8" y="133" width="359" height="44"/>
                                                         <subviews>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7u-7W-pj7">
-                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="44" placeholder="YES" id="Er8-We-XTa"/>
                                                                 </constraints>
@@ -123,16 +122,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="list_icon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfK-Of-FPL">
-                                                        <rect key="frame" x="16" y="193" width="342" height="14.5"/>
+                                                        <rect key="frame" x="16" y="193" width="343" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RA5-9H-Vet" userLabel="List icons container">
-                                                        <rect key="frame" x="8" y="215.5" width="358" height="76"/>
+                                                        <rect key="frame" x="8" y="215.5" width="359" height="76"/>
                                                         <subviews>
                                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcu-84-8Fg">
-                                                                <rect key="frame" x="8" y="8" width="342" height="60"/>
+                                                                <rect key="frame" x="8" y="8" width="343" height="60"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="Oho-la-DiU"/>
@@ -156,10 +155,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcN-f2-Eml" userLabel="Import tasks container">
-                                                        <rect key="frame" x="8" y="299.5" width="358" height="44"/>
+                                                        <rect key="frame" x="8" y="299.5" width="359" height="44"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKo-hY-e00">
-                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <state key="normal" title="+ Добавить задачи"/>
                                                                 <connections>
@@ -238,7 +237,7 @@
                             <constraint firstItem="GA7-pi-X8K" firstAttribute="top" secondItem="cWF-h2-bVv" secondAttribute="bottom" id="Tpd-LK-fj6"/>
                             <constraint firstItem="7jj-ua-ja6" firstAttribute="top" secondItem="rBg-R3-YIR" secondAttribute="top" id="bFi-hd-hoq"/>
                             <constraint firstItem="rBg-R3-YIR" firstAttribute="trailing" secondItem="GA7-pi-X8K" secondAttribute="trailing" id="oVS-ma-0I0"/>
-                            <constraint firstItem="rBg-R3-YIR" firstAttribute="bottom" secondItem="GA7-pi-X8K" secondAttribute="bottom" id="pL7-Dq-Aww"/>
+                            <constraint firstAttribute="bottom" secondItem="GA7-pi-X8K" secondAttribute="bottom" id="pL7-Dq-Aww"/>
                             <constraint firstItem="GA7-pi-X8K" firstAttribute="leading" secondItem="rBg-R3-YIR" secondAttribute="leading" id="rXQ-KF-4NL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rBg-R3-YIR"/>
@@ -266,7 +265,7 @@
         <!--List Editor Text Field Controller-->
         <scene sceneID="quF-5G-WV3">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1ug-vW-u4X" customClass="ListEditorTextFieldController" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1ug-vW-u4X" customClass="ListEditorTextFieldController" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mgn-31-dsz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,9 +301,9 @@
         <!--List Icons View-->
         <scene sceneID="xWi-3m-qTa">
             <objects>
-                <collectionViewController id="eI1-ii-wZN" customClass="ListIconsView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="eI1-ii-wZN" customClass="ListIconsView" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" id="ikd-t1-gKs">
-                        <rect key="frame" x="0.0" y="0.0" width="342" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="xMU-VG-xKa">
@@ -314,7 +313,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="ListIconCell" id="hzE-5l-aTh" customClass="ListIconCell" customModule="Timmee" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="ListIconCell" id="hzE-5l-aTh" customClass="ListIconCell" customModule="Scope" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -350,7 +349,7 @@
         <!--Smart List Picker View-->
         <scene sceneID="zAu-gl-gjl">
             <objects>
-                <viewController storyboardIdentifier="SmartListPicker" id="HeE-dt-8O5" customClass="SmartListPickerView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SmartListPicker" id="HeE-dt-8O5" customClass="SmartListPickerView" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OUz-JB-TWR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -385,7 +384,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" contentMode="center" reuseIdentifier="SmartListPickerCell" id="Pmm-Ew-cXc" customClass="SmartListPickerCell" customModule="Timmee" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" contentMode="center" reuseIdentifier="SmartListPickerCell" id="Pmm-Ew-cXc" customClass="SmartListPickerCell" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="2" y="0.0" width="371" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -399,12 +398,12 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои задачи" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="wDJ-mM-Phb">
-                                                            <rect key="frame" x="33" y="15" width="294" height="19.5"/>
+                                                            <rect key="frame" x="33" y="15.5" width="294" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.27058823529999998" green="0.2784313725" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJY-WS-ipf" customClass="CheckBox" customModule="Timmee" customModuleProvider="target">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJY-WS-ipf" customClass="CheckBox" customModule="Scope" customModuleProvider="target">
                                                             <rect key="frame" x="335" y="11" width="28" height="28"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -450,7 +449,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6t0-Ub-C0O" firstAttribute="trailing" secondItem="tVS-6L-ZZI" secondAttribute="trailing" id="7ul-5E-gTx"/>
-                            <constraint firstItem="6t0-Ub-C0O" firstAttribute="bottom" secondItem="sYu-X4-RNI" secondAttribute="bottom" id="AdW-mn-gQQ"/>
+                            <constraint firstAttribute="bottom" secondItem="sYu-X4-RNI" secondAttribute="bottom" id="AdW-mn-gQQ"/>
                             <constraint firstItem="sYu-X4-RNI" firstAttribute="leading" secondItem="6t0-Ub-C0O" secondAttribute="leading" id="Eu2-wv-aup"/>
                             <constraint firstItem="6t0-Ub-C0O" firstAttribute="trailing" secondItem="sYu-X4-RNI" secondAttribute="trailing" id="S20-qn-C9p"/>
                             <constraint firstItem="sYu-X4-RNI" firstAttribute="top" secondItem="tVS-6L-ZZI" secondAttribute="bottom" id="TYl-hP-kO5"/>
@@ -471,7 +470,7 @@
         <!--Tasks Import View-->
         <scene sceneID="eeB-AP-N7O">
             <objects>
-                <viewController storyboardIdentifier="TasksImportView" id="9rH-du-qUU" customClass="TasksImportView" customModule="Timmee" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TasksImportView" id="9rH-du-qUU" customClass="TasksImportView" customModule="Scope" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ycr-lZ-erf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -488,7 +487,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TasksImportCell" id="eoD-zQ-oQO" customClass="TasksImportCell" customModule="Timmee" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TasksImportCell" id="eoD-zQ-oQO" customClass="TasksImportCell" customModule="Scope" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="52"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eoD-zQ-oQO" id="Z3x-gY-iB7">
@@ -499,7 +498,7 @@
                                                             <rect key="frame" x="8" y="1" width="323" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5V0-de-EXj">
-                                                                    <rect key="frame" x="15" y="16" width="293" height="19.5"/>
+                                                                    <rect key="frame" x="15" y="15.5" width="293" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -517,7 +516,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fme-Ln-xe1" customClass="CheckBox" customModule="Timmee" customModuleProvider="target">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fme-Ln-xe1" customClass="CheckBox" customModule="Scope" customModuleProvider="target">
                                                             <rect key="frame" x="339" y="12" width="28" height="28"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>

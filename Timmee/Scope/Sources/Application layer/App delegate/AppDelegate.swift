@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppearanceConfigurator.setupAppearance()
         
         if let window = self.window {
+//            RuMocksConfigurator().configure {
+//                InitialScreenPresenter.presentInitialScreen(inWindow: window)
+//            }
             InitialScreenPresenter.presentInitialScreen(inWindow: window)
         }
         

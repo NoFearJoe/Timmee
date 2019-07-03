@@ -87,13 +87,13 @@ extension CalendarWithTimeViewController: TimePickerOutput {
     public func didChangeHours(to hours: Int) {
         self.hours = hours
         selectedDate => hours.asHours
-        self.onSelectDate?(self.selectedDate)
+        self.onSelectDate?(selectedDate)
     }
     
     public func didChangeMinutes(to minutes: Int) {
         self.minutes = minutes
         selectedDate => minutes.asMinutes
-        self.onSelectDate?(self.selectedDate)
+        self.onSelectDate?(selectedDate)
     }
     
 }

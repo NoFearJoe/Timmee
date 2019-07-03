@@ -25,8 +25,8 @@ final class TaskTagsPicker: UIViewController {
     weak var output: TaskTagsPickerOutput?
     weak var container: TaskParameterEditorOutput?
     
-    @IBOutlet fileprivate var addTagView: AddTagView!
-    @IBOutlet fileprivate var tagsView: UITableView!
+    @IBOutlet private var addTagView: AddTagView!
+    @IBOutlet private var tagsView: UITableView!
     
     fileprivate lazy var placeholder: PlaceholderView = PlaceholderView.loadedFromNib()
     
@@ -41,7 +41,7 @@ final class TaskTagsPicker: UIViewController {
     
     fileprivate let tagsService = ServicesAssembly.shared.tagsService
     
-    fileprivate static let rowHeight: CGFloat = 36
+    fileprivate static let rowHeight: CGFloat = 44
     
     fileprivate let cellActionsProvider = SubtaskCellActionsProvider()
     
@@ -49,6 +49,8 @@ final class TaskTagsPicker: UIViewController {
         super.viewDidLoad()
         
         setupPlaceholder()
+        
+        tagsView.separatorStyle = .none
         
         cellActionsProvider.onDelete = { [weak self] indexPath in
             if let tag = self?.allTags.item(at: indexPath.row) {
@@ -124,7 +126,7 @@ extension TaskTagsPicker: UITableViewDelegate {
 extension TaskTagsPicker: TaskParameterEditorInput {
     
     var requiredHeight: CGFloat {
-        return CGFloat(10) * TaskTagsPicker.rowHeight + 96
+        return CGFloat(7) * TaskTagsPicker.rowHeight + 96
     }
 }
 
@@ -173,14 +175,13 @@ fileprivate extension TaskTagsPicker {
     }
     
     func selectTag(at index: Int) {
-        if let tag = allTags.item(at: index) {
-            if selectedTags.contains(tag) {
-                selectedTags.remove(object: tag)
-                output?.tagDeselected(tag)
-            } else {
-                selectedTags.append(tag)
-                output?.tagSelected(tag)
-            }
+        guard let tag = allTags.item(at: index) else { return }
+        if selectedTags.contains(tag) {
+            selectedTags.remove(object: tag)
+            output?.tagDeselected(tag)
+        } else {
+            selectedTags.append(tag)
+            output?.tagSelected(tag)
         }
     }
     
@@ -218,9 +219,9 @@ fileprivate extension TaskTagsPicker {
 
 final class TagTableCell: SwipeTableViewCell {
     
-    @IBOutlet fileprivate var titleLabel: UILabel!
-    @IBOutlet fileprivate var colorView: UIView!
-    @IBOutlet fileprivate var checkBox: CheckBox!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var colorView: UIView!
+    @IBOutlet private var checkBox: CheckBox!
     
     var title: String? {
         get { return titleLabel.text }
@@ -254,15 +255,9 @@ final class AddTagView: BarView {
         }
     }
     
-    @IBOutlet private var addButton: UIButton! {
+    @IBOutlet private var addButton: FloatingButton! {
         didSet {
-            addButton.adjustsImageWhenHighlighted = false
-            addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.blueColor), for: .normal)
-            addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.secondaryTintColor), for: .disabled)
-            addButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.secondaryTintColor), for: .selected)
-            addButton.tintColor = .white
-            addButton.layer.cornerRadius = AppTheme.current.cornerRadius
-            addButton.isEnabled = false
+            addButton.isHidden = true
         }
     }
     
@@ -338,16 +333,16 @@ extension AddTagView: UITextFieldDelegate {
     }
     
     @objc private func onTextChange(_ textField: UITextField) {
-        addButton.isEnabled = !(textField.text == nil || textField.text!.isEmpty)
+        addButton.isHidden = (textField.text == nil || textField.text!.isEmpty)
     }
     
 }
 
 private extension AddTagView {
     func createTag() {
-        if let text = textField.text, !text.isEmpty {
-            onCreateTag?(text, color)
-            textField.text = nil
-        }
+        guard let text = textField.text, !text.isEmpty else { return }
+        onCreateTag?(text, color)
+        textField.text = nil
+        addButton.isHidden = true
     }
 }

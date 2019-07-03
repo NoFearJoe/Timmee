@@ -343,17 +343,17 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentDueDatePicker(_ picker: CalendarViewController) {
-        picker.configure(selectedDate: task.dueDate ?? Date(), minimumDate: Date().previousDay)
         picker.onSelectDate = { [unowned self] date in
             self.dueDateTimeChanged(to: date)
         }
+        picker.configure(selectedDate: task.dueDate ?? Date(), minimumDate: Date().previousDay)
     }
     
     func willPresentDueDateTimePicker(_ picker: CalendarWithTimeViewController) {
-        picker.configure(selectedDate: task.dueDate ?? Date(), minimumDate: Date().previousDay)
         picker.onSelectDate = { [unowned self] date in
             self.dueDateTimeChanged(to: date)
         }
+        picker.configure(selectedDate: task.dueDate ?? Date(), minimumDate: Date().previousDay)
         picker.setClearButtonVisible(task.kind == .single)
     }
     
@@ -392,12 +392,12 @@ extension TaskEditorPresenter: TaskEditorViewOutput {
     }
     
     func willPresentRepeatEndingDateEditor(_ calendar: CalendarViewController) {
-        let defaultDate = Date()
-        let minimumDate = ((task.dueDate ?? defaultDate) + 1.asDays).startOfDay
-        calendar.configure(selectedDate: task.repeatEndingDate ?? minimumDate, minimumDate: minimumDate)
         calendar.onSelectDate = { [unowned self] date in
             self.repeatEndingDateChanged(to: date)
         }
+        let defaultDate = Date()
+        let minimumDate = ((task.dueDate ?? defaultDate) + 1.asDays).startOfDay
+        calendar.configure(selectedDate: task.repeatEndingDate ?? minimumDate, minimumDate: minimumDate)
     }
     
     func willPresentLocationEditor(_ input: TaskLocationEditorInput) {

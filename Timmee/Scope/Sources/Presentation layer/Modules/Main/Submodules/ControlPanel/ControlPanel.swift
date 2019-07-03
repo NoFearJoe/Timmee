@@ -24,6 +24,7 @@ final class ControlPanel: BarView {
 //    @IBOutlet private var scopesButton: UIButton!
     
     private var isControlsHidden = false
+    private var willControlsShown = false
     
     private var isGroupEditingAvailable = false
     private var isGroupEditing = false
@@ -46,6 +47,7 @@ final class ControlPanel: BarView {
     }
     
     func setGroupEditingVisible(_ isVisible: Bool) {
+        guard !isControlsHidden || willControlsShown else { return }
         editButton.isHidden = !isVisible
         editButton.alpha = isVisible ? 1 : 0
         isGroupEditingAvailable = isVisible
@@ -81,6 +83,8 @@ final class ControlPanel: BarView {
     func showControls(animated: Bool) {
         guard isControlsHidden else { return }
         
+        willControlsShown = true
+        
         controlsToChangeVisibility.forEach { $0.isHidden = false }
         
         if animated {
@@ -92,9 +96,11 @@ final class ControlPanel: BarView {
                 self.controlsToChangeVisibility.forEach { $0.alpha = 1 }
             }, completion: { _ in
                 self.isControlsHidden = false
+                self.willControlsShown = false
             })
         } else {
             isControlsHidden = false
+            willControlsShown = false
         }
     }
     
