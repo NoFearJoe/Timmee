@@ -10,11 +10,11 @@ import UIKit
 
 public extension UIDevice {
     
-    public var isIpad: Bool {
+    var isIpad: Bool {
         return userInterfaceIdiom == .pad
     }
     
-    public var isPhone: Bool {
+    var isPhone: Bool {
         return userInterfaceIdiom == .phone
     }
     

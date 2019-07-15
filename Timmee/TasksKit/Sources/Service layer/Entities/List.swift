@@ -72,7 +72,7 @@ public class List {
 }
 
 public extension List {
-    public final var tasksFetchRequest: NSFetchRequest<TaskEntity> {
+    final var tasksFetchRequest: NSFetchRequest<TaskEntity> {
         let fetchRequest = NSFetchRequest<TaskEntity>(entityName: "Task")
         fetchRequest.predicate = tasksFetchPredicate
         return fetchRequest
@@ -86,7 +86,7 @@ extension List: Equatable {
 }
 
 extension List: Hashable {
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

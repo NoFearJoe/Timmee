@@ -28,7 +28,7 @@ public extension UIImage {
      - Returns: Изображение или nil в случае неудачи
      
      */
-    public class func plain(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
+    class func plain(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
         let rect = CGRect(origin: .zero, size: size)
         
         UIGraphicsBeginImageContext(rect.size)

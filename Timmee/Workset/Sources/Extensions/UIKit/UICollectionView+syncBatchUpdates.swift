@@ -21,7 +21,7 @@ public extension UICollectionView {
         return queue
     }
     
-    public func performSynchronizedBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
+    func performSynchronizedBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)? = nil) {
         syncQueue.async {
             let group = DispatchGroup()
 

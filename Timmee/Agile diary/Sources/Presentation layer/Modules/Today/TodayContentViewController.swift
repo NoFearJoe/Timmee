@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TasksKit
 import UIComponents
 import Synchronization
 import FloatingPanel
@@ -56,8 +57,8 @@ final class TodayContentViewController: UIViewController, AlertInput {
 //    let habitsSynchronizationService = AgileeHabitsSynchronizationService.shared
     
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
-    private var habitsCacheObserver: Scope<HabitEntity, Habit>?
-    private var goalsCacheObserver: Scope<GoalEntity, Goal>?
+    private var habitsCacheObserver: CachedEntitiesObserver<HabitEntity, Habit>?
+    private var goalsCacheObserver: CachedEntitiesObserver<GoalEntity, Goal>?
     
     private let targetCellActionsProvider = TodayTargetCellSwipeActionsProvider()
     private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
@@ -318,7 +319,7 @@ private extension TodayContentViewController {
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
         goalsCacheObserver = nil
         habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(sprintID: sprintID, day: DayUnit(weekday: Date.now.weekday))
-        let delegate = ScopeDelegate<Habit>(
+        let delegate = CachedEntitiesObserverDelegate<Habit>(
             onInitialFetch: { [unowned self] _ in self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? []) },
             onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
             onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? []) })
@@ -330,7 +331,7 @@ private extension TodayContentViewController {
     func setupGoalsCacheObserver(forSection section: SprintSection, sprintID: String) {
         habitsCacheObserver = nil
         goalsCacheObserver = ServicesAssembly.shared.goalsService.goalsScope(sprintID: sprintID)
-        let delegate = ScopeDelegate<Goal>(
+        let delegate = CachedEntitiesObserverDelegate<Goal>(
             onInitialFetch: { [unowned self] _ in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) },
             onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
             onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) })

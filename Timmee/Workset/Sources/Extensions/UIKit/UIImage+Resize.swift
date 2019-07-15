@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIImage {
     
-    public func resize(to size: CGSize) -> UIImage {
+    func resize(to size: CGSize) -> UIImage {
         var resultImage = self
         
         guard let cgImage = cgImage else { return resultImage }

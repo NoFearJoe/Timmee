@@ -25,7 +25,7 @@ public extension Array {
      - Returns: Массив с уникальными элементами
      
      */
-    public func unique(include: @escaping (_ lhs: Element, _ rhs: Element) -> Bool) -> [Element] {
+    func unique(include: @escaping (_ lhs: Element, _ rhs: Element) -> Bool) -> [Element] {
         return reduce([]) { (acc, element) in
             return acc.contains(where: { include(element, $0) }) ? acc : acc + [element]
         }
@@ -36,7 +36,7 @@ public extension Array {
 public extension Array where Element: Equatable {
 
     /// Возвращает массив с уникальными объектами, полученными в результате обычного сравнения
-    public var unique: [Element] {
+    var unique: [Element] {
         var acc: [Element] = []
         
         self.forEach {
@@ -53,7 +53,7 @@ public extension Array where Element: Equatable {
 public extension Array where Element: Hashable {
 
     /// Быстрое получение уникальных значений для Hashable-элементов
-    public var uniqueByHash: [Element] {
+    var uniqueByHash: [Element] {
         return Array(Set(self))
     }
 

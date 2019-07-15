@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIViewController {
     
-    public func performAppearanceTransition(isAppearing: Bool, animated: Bool = false, action: () -> Void) {
+    func performAppearanceTransition(isAppearing: Bool, animated: Bool = false, action: () -> Void) {
         beginAppearanceTransition(isAppearing, animated: animated)
         action()
         endAppearanceTransition()

@@ -145,9 +145,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         
         let remainingDaysString = NSMutableAttributedString(string: ", " + "remains_n_days".localized(with: daysRemaining),
                                                             attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor])
-        if let daysCountRange = remainingDaysString.string.range(of: "\(daysRemaining)")?.nsRange {
-            remainingDaysString.setAttributes([.foregroundColor: AppTheme.current.colors.mainElementColor], range: daysCountRange)
-        }
+        let daysCountRange = NSString(string: remainingDaysString.string).range(of: "\(daysRemaining)")
+        remainingDaysString.setAttributes([.foregroundColor: AppTheme.current.colors.mainElementColor], range: daysCountRange)
+        
         subtitle.append(remainingDaysString)
         headerView.subtitleLabel.attributedText = subtitle
         headerView.subtitleLabel.isHidden = false

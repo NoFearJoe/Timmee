@@ -17,7 +17,7 @@ public struct DayOffset {
 
 public extension Date {
     
-    public static var now: Date {
+    static var now: Date {
         #if DEBUG
         return Date() + DayOffset.shared.current.asDays
         #else

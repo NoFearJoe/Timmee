@@ -7,17 +7,17 @@
 //
 
 public extension String {
-    public func capitalizingFirstLetter() -> String {
+    func capitalizingFirstLetter() -> String {
         let first = String(prefix(1)).capitalized
         let other = String(dropFirst())
         return first + other
     }
     
-    public mutating func capitalizedFirstLetter() {
+    mutating func capitalizedFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
     
-    public var capitalizedFirst: String {
+    var capitalizedFirst: String {
         return self.capitalizingFirstLetter()
     }
 }

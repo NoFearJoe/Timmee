@@ -12,7 +12,7 @@ import CoreGraphics
 
 public extension UIColor {
 
-    public class func interpolate(from: UIColor, to: UIColor, fraction: CGFloat) -> UIColor {
+    class func interpolate(from: UIColor, to: UIColor, fraction: CGFloat) -> UIColor {
         let f: CGFloat = min(1, max(0, fraction))
         
         if let fromColorComponents = from.cgColor.components,

@@ -259,7 +259,7 @@ public class Task: Copyable {
 public extension Task {
     
     /// Тип задачи - обычная, регулярная...
-    public enum Kind: String {
+    enum Kind: String {
         case single, regular
     }
     
@@ -297,8 +297,8 @@ extension Task: Hashable {
             && lhs.isImportant == rhs.isImportant
     }
     
-    public var hashValue: Int {
-        return id.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
 }

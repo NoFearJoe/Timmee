@@ -20,7 +20,7 @@ public extension Sequence {
      
      - Returns: Словарь сгруппированный по ключу.
     */
-    public func categorised<Key: Hashable>(by key: @escaping (Iterator.Element) -> Key) -> [Key: [Iterator.Element]] {
+    func categorised<Key: Hashable>(by key: @escaping (Iterator.Element) -> Key) -> [Key: [Iterator.Element]] {
         var accumulated: [Key: [Iterator.Element]] = [:]
         self.forEach { element in
             let key = key(element)

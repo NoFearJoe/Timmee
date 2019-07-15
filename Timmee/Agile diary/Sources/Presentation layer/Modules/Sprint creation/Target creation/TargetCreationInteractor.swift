@@ -51,7 +51,7 @@ extension TargetCreationInteractor {
         goalProvider.goal.stages.append(stage)
         
         addStage(stage, goal: goalProvider.goal) { [weak self] in
-            if let index = self?.sortedStages.index(where: { $0.id == stage.id }) {
+            if let index = self?.sortedStages.firstIndex(where: { $0.id == stage.id }) {
                 self?.output?.stagesInserted(at: [index])
             }
         }
@@ -70,7 +70,7 @@ extension TargetCreationInteractor {
         if let stage = sortedStages.item(at: index) {
             removeStage(stage, completion: { [weak self] in
                 guard let `self` = self else { return }
-                guard let deletionIndex = self.goalProvider.goal.stages.index(where: { $0.id == stage.id }) else { return }
+                guard let deletionIndex = self.goalProvider.goal.stages.firstIndex(where: { $0.id == stage.id }) else { return }
                 self.goalProvider.goal.stages.remove(at: deletionIndex)
                 self.output?.stagesRemoved(at: [index])
             })

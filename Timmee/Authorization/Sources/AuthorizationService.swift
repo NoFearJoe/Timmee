@@ -45,9 +45,7 @@ public enum AuthorizationError: Equatable {
 
 public final class AuthorizationService {
     
-    public static func initializeAuthorization() {
-        FirebaseApp.configure()
-    }
+    public static func initializeAuthorization() {}
     
     private let authorizationStatusStorage = AuthorizationStatusStorage.shared
     

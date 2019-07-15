@@ -10,7 +10,7 @@ import class Foundation.NSDate
 
 public extension TimeTemplateEntity {
     
-    public func map(from timeTemplate: TimeTemplate) {
+    func map(from timeTemplate: TimeTemplate) {
         id = timeTemplate.id
         title = timeTemplate.title
         hours = timeTemplate.time.flatMap { NSNumber(value: $0.hours) }

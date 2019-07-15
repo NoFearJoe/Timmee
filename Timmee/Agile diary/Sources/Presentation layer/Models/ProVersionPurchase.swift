@@ -142,6 +142,8 @@ extension ProVersionPurchase: SKPaymentTransactionObserver {
                 restoreTransaction(transaction: transaction)
             case .deferred:
                 isLoading = false
+            @unknown default:
+                isLoading = false
             }
         }
     }

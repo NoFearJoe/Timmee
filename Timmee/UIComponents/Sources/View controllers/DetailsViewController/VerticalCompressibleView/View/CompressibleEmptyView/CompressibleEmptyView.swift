@@ -58,7 +58,7 @@ public final class CompressibleEmptyView: UIView, VerticalCompressibleView, Conf
 
 public extension CompressibleEmptyView {
     
-    public struct Model {
+    struct Model {
         
         let backgroundColor: UIColor
         

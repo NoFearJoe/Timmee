@@ -27,7 +27,7 @@ public protocol GoalsManager: class {
 
 public protocol GoalsObserverProvider: class {
     func goalsObserver(sprintID: String) -> CacheObserver<Goal>
-    func goalsScope(sprintID: String) -> Scope<GoalEntity, Goal>
+    func goalsScope(sprintID: String) -> CachedEntitiesObserver<GoalEntity, Goal>
 }
 
 public protocol GoalEntitiesProvider: class {
@@ -175,16 +175,16 @@ extension GoalsService: GoalsObserverProvider {
         return goalsObserver
     }
     
-    public func goalsScope(sprintID: String) -> Scope<GoalEntity, Goal> {
+    public func goalsScope(sprintID: String) -> CachedEntitiesObserver<GoalEntity, Goal> {
         let predicate = NSPredicate(format: "sprint.id = %@", sprintID)
         let request = GoalsService.allGoalsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
         let context = Database.localStorage.readContext
         
-        let scope = Scope<GoalEntity, Goal>(context: context,
+        let observer = CachedEntitiesObserver<GoalEntity, Goal>(context: context,
                                             baseRequest: request,
                                             mapping: { Goal(goal: $0) })
         
-        return scope
+        return observer
     }
     
 }

@@ -118,7 +118,7 @@ public final class Calendar {
      - Returns: Номер дня в календаре
      */
     public func index(of date: Date) -> Int {
-        return dates.index(of: date.startOfDay) ?? -1
+        return dates.firstIndex(of: date.startOfDay) ?? -1
     }
     
     

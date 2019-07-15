@@ -45,6 +45,7 @@ public enum ListIcon: Int {
     case inProgress
     case overdue
     case important
+    case tag
     
     public static let all: [ListIcon] = [.default, .job, .shopping, .lock, .group, .home, .eat, .games, .idea, .money, .star, .chat, .art, .call, .mail]
     
@@ -55,7 +56,7 @@ public enum ListIcon: Int {
 
 public extension ListIcon {
 
-    public var image: UIImage {
+    var image: UIImage {
         switch self {
         case .default: return #imageLiteral(resourceName: "defaultListIcon")
         case .job: return #imageLiteral(resourceName: "jobListIcon")
@@ -80,6 +81,7 @@ public extension ListIcon {
         case .inProgress: return #imageLiteral(resourceName: "mailListIcon")
         case .overdue: return #imageLiteral(resourceName: "overdue")
         case .important: return #imageLiteral(resourceName: "importantListIcon")
+        case .tag: return #imageLiteral(resourceName: "tag")
         }
     }
 
@@ -87,7 +89,7 @@ public extension ListIcon {
 
 public extension ListIcon {
 
-    public static var randomIcon: ListIcon {
+    static var randomIcon: ListIcon {
         let randomRawValue = Int(arc4random_uniform(13))
         return ListIcon(rawValue: randomRawValue) ?? .default
     }

@@ -1,13 +1,14 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
-target 'Timmee' do
-  workspace 'Timmee.xcworkspace'
-  project 'Timmee.xcodeproj'
+target 'Scope' do
+  workspace 'Scope.xcworkspace'
+  project 'Scope.xcodeproj'
     
   pod 'SwipeCellKit'
   pod 'Foto'
   pod 'Dwifft'
+  pod 'FloatingPanel'
   
   pod 'Fabric'
   pod 'Crashlytics'

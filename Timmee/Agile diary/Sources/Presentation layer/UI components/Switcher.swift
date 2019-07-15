@@ -67,7 +67,7 @@ class Switcher: UIControl {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let selectedViewIndex = itemViews.index(where: { itemView in
+        guard let selectedViewIndex = itemViews.firstIndex(where: { itemView in
             touches.contains(where: { touch in
                 itemView.frame.contains(touch.location(in: self))
             })

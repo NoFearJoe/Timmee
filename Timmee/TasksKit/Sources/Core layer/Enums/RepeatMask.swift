@@ -62,11 +62,15 @@ extension RepeatType: Hashable {
         }
     }
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         switch self {
-        case .never: return string.hashValue
-        case .every(let unit): return string.hashValue + unit.hashValue
-        case .on(let unit): return string.hashValue + unit.string.hashValue
+        case .never: return hasher.combine(string)
+        case .every(let unit):
+            hasher.combine(string)
+            hasher.combine(unit)
+        case .on(let unit):
+            hasher.combine(string)
+            hasher.combine(unit.string)
         }
     }
 }

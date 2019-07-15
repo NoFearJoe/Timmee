@@ -12,31 +12,31 @@ import Foundation
 
 public extension Date {
     
-    public var year: Int {
+    var year: Int {
         return Foundation.Calendar.current.component(.year, from: self)
     }
     
-    public var month: Int {
+    var month: Int {
         return Foundation.Calendar.current.component(.month, from: self)
     }
     
-    public var weekOfYear: Int {
+    var weekOfYear: Int {
         return Foundation.Calendar.current.component(.weekOfYear, from: self)
     }
     
-    public var weekday: Int {
+    var weekday: Int {
         return Foundation.Calendar.current.ordinality(of: .weekday, in: .weekOfYear, for: self) ?? 1
     }
     
-    public var dayOfMonth: Int {
+    var dayOfMonth: Int {
         return Foundation.Calendar.current.component(.day, from: self)
     }
     
-    public var hours: Int {
+    var hours: Int {
         return Foundation.Calendar.current.component(.hour, from: self)
     }
     
-    public var minutes: Int {
+    var minutes: Int {
         return Foundation.Calendar.current.component(.minute, from: self)
     }
     
@@ -48,72 +48,76 @@ infix operator =>
 
 public extension Date {
     
-    public static func +(date: Date, dateUnit: Years) -> Date {
+    static func +(date: Date, dateUnit: Years) -> Date {
         return date.setupComponents { $0.year = dateUnit.value }
     }
     
-    public static func -(date: Date, dateUnit: Years) -> Date {
+    static func -(date: Date, dateUnit: Years) -> Date {
         return date.setupComponents { $0.year = -dateUnit.value }
     }
     
-    public static func +(date: Date, dateUnit: Months) -> Date {
+    static func +(date: Date, dateUnit: Months) -> Date {
         return date.setupComponents { $0.month = dateUnit.value }
     }
     
-    public static func -(date: Date, dateUnit: Months) -> Date {
+    static func -(date: Date, dateUnit: Months) -> Date {
         return date.setupComponents { $0.month = -dateUnit.value }
     }
     
-    public static func +(date: Date, dateUnit: Weeks) -> Date {
+    static func +(date: Date, dateUnit: Weeks) -> Date {
         return date.setupComponents { $0.weekOfYear = dateUnit.value }
     }
     
-    public static func -(date: Date, dateUnit: Weeks) -> Date {
+    static func -(date: Date, dateUnit: Weeks) -> Date {
         return date.setupComponents { $0.weekOfYear = -dateUnit.value }
     }
     
-    public static func +(date: Date, dateUnit: Days) -> Date {
+    static func +(date: Date, dateUnit: Days) -> Date {
         return date.setupComponents { $0.day = dateUnit.value }
     }
     
-    public static func -(date: Date, dateUnit: Days) -> Date {
+    static func -(date: Date, dateUnit: Days) -> Date {
         return date.setupComponents { $0.day = -dateUnit.value }
     }
     
-    public static func +(date: Date, dateUnit: Hours) -> Date {
+    static func +(date: Date, dateUnit: Hours) -> Date {
         return date.setupComponents { $0.hour = dateUnit.value }
     }
     
-    public static func -(date: Date, dateUnit: Hours) -> Date {
+    static func -(date: Date, dateUnit: Hours) -> Date {
         return date.setupComponents { $0.hour = -dateUnit.value }
     }
     
-    public static func +(date: Date, dateUnit: Minutes) -> Date {
+    static func +(date: Date, dateUnit: Minutes) -> Date {
         return date.setupComponents { $0.minute = dateUnit.value }
     }
     
-    public static func -(date: Date, dateUnit: Minutes) -> Date {
+    static func -(date: Date, dateUnit: Minutes) -> Date {
         return date.setupComponents { $0.minute = -dateUnit.value }
     }
     
     
-    public static func =>(date: inout Date, dateUnit: Years) {
+    static func =>(date: inout Date, dateUnit: Years) {
         date = date.changeComponents { $0.year = dateUnit.value }
     }
     
-    public static func =>(date: inout Date, dateUnit: Months) {
+    static func =>(date: inout Date, dateUnit: Months) {
         date = date.changeComponents { $0.month = dateUnit.value }
     }
     
-    public static func =>(date: inout Date, dateUnit: Weeks) {
+    static func =>(date: inout Date, dateUnit: Weeks) {
         date = date.changeComponents { $0.weekOfYear = dateUnit.value }
     }
     
-    public static func =>(date: inout Date, dateUnit: Hours) {
+    static func =>(date: inout Date, dateUnit: Days) {
+        date = date.changeComponents { $0.day = dateUnit.value }
+    }
+    
+    static func =>(date: inout Date, dateUnit: Hours) {
         date = date.changeComponents { $0.hour = dateUnit.value }
     }
     
-    public static func =>(date: inout Date, dateUnit: Minutes) {
+    static func =>(date: inout Date, dateUnit: Minutes) {
         date = date.changeComponents { $0.minute = dateUnit.value }
     }
     
@@ -134,71 +138,71 @@ public extension Date {
 
 public extension Optional where Wrapped == Date {
     
-    public static func +(date: Date?, dateUnit: Years) -> Date? {
+    static func +(date: Date?, dateUnit: Years) -> Date? {
         return date?.setupComponents { $0.year = dateUnit.value }
     }
     
-    public static func -(date: Date?, dateUnit: Years) -> Date? {
+    static func -(date: Date?, dateUnit: Years) -> Date? {
         return date?.setupComponents { $0.year = -dateUnit.value }
     }
     
-    public static func +(date: Date?, dateUnit: Months) -> Date? {
+    static func +(date: Date?, dateUnit: Months) -> Date? {
         return date?.setupComponents { $0.month = dateUnit.value }
     }
     
-    public static func -(date: Date?, dateUnit: Months) -> Date? {
+    static func -(date: Date?, dateUnit: Months) -> Date? {
         return date?.setupComponents { $0.month = -dateUnit.value }
     }
     
-    public static func +(date: Date?, dateUnit: Weeks) -> Date? {
+    static func +(date: Date?, dateUnit: Weeks) -> Date? {
         return date?.setupComponents { $0.weekOfYear = dateUnit.value }
     }
     
-    public static func -(date: Date?, dateUnit: Weeks) -> Date? {
+    static func -(date: Date?, dateUnit: Weeks) -> Date? {
         return date?.setupComponents { $0.weekOfYear = -dateUnit.value }
     }
     
-    public static func +(date: Date?, dateUnit: Days) -> Date? {
+    static func +(date: Date?, dateUnit: Days) -> Date? {
         return date?.setupComponents { $0.day = dateUnit.value }
     }
     
-    public static func -(date: Date?, dateUnit: Days) -> Date? {
+    static func -(date: Date?, dateUnit: Days) -> Date? {
         return date?.setupComponents { $0.day = -dateUnit.value }
     }
     
-    public static func +(date: Date?, dateUnit: Hours) -> Date? {
+    static func +(date: Date?, dateUnit: Hours) -> Date? {
         return date?.setupComponents { $0.hour = dateUnit.value }
     }
     
-    public static func -(date: Date?, dateUnit: Hours) -> Date? {
+    static func -(date: Date?, dateUnit: Hours) -> Date? {
         return date?.setupComponents { $0.hour = -dateUnit.value }
     }
     
-    public static func +(date: Date?, dateUnit: Minutes) -> Date? {
+    static func +(date: Date?, dateUnit: Minutes) -> Date? {
         return date?.setupComponents { $0.minute = dateUnit.value }
     }
     
-    public static func -(date: Date?, dateUnit: Minutes) -> Date? {
+    static func -(date: Date?, dateUnit: Minutes) -> Date? {
         return date?.setupComponents { $0.minute = -dateUnit.value }
     }
     
-    public static func =>(date: inout Date?, dateUnit: Years) {
+    static func =>(date: inout Date?, dateUnit: Years) {
         date = date?.changeComponents { $0.year = dateUnit.value }
     }
     
-    public static func =>(date: inout Date?, dateUnit: Months) {
+    static func =>(date: inout Date?, dateUnit: Months) {
         date = date?.changeComponents { $0.month = dateUnit.value }
     }
     
-    public static func =>(date: inout Date?, dateUnit: Weeks) {
+    static func =>(date: inout Date?, dateUnit: Weeks) {
         date = date?.changeComponents { $0.weekOfYear = dateUnit.value }
     }
     
-    public static func =>(date: inout Date?, dateUnit: Hours) {
+    static func =>(date: inout Date?, dateUnit: Hours) {
         date = date?.changeComponents { $0.hour = dateUnit.value }
     }
     
-    public static func =>(date: inout Date?, dateUnit: Minutes) {
+    static func =>(date: inout Date?, dateUnit: Minutes) {
         date = date?.changeComponents { $0.minute = dateUnit.value }
     }
     
@@ -208,7 +212,7 @@ public extension Optional where Wrapped == Date {
 
 public extension Date {
     
-    public var startOfDay: Date {
+    var startOfDay: Date {
         return changeComponents { components in
             components.hour = 0
             components.minute = 0
@@ -217,7 +221,7 @@ public extension Date {
         }
     }
     
-    public var endOfDay: Date {
+    var endOfDay: Date {
         return changeComponents { components in
             components.hour = 23
             components.minute = 59
@@ -226,7 +230,7 @@ public extension Date {
         }
     }
     
-    public var nextDay: Date {
+    var nextDay: Date {
         return changeComponents { components in
             if components.day != nil {
                 components.day! += 1
@@ -234,16 +238,20 @@ public extension Date {
         }
     }
     
-    public var previousDay: Date {
-        return changeComponents { components in
-            if components.day != nil {
-                components.day! -= 1
-            }
-        }
+    var previousDay: Date {
+        return self - 1.asDays
+    }
+    
+    var nextMonth: Date {
+        return self + 1.asMonths
+    }
+    
+    var previousMonth: Date {
+        return self - 1.asMonths
     }
     
     
-    public var startOfHour: Date {
+    var startOfHour: Date {
         return changeComponents { components in
             components.minute = 0
             components.second = 0
@@ -252,27 +260,73 @@ public extension Date {
     }
     
     
-    public var startOfMinute: Date {
+    var startOfMinute: Date {
         return changeComponents { components in
             components.second = 0
             components.nanosecond = 0
         }
     }
     
-    public var startOfMonth: Date {
+    var startOfMonth: Date {
         return changeComponents { components in
             components.day = 0
         }
     }
     
-    public var endOfMonth: Date {
+    var endOfMonth: Date {
         return changeComponents { components in
             components.day = daysInMonth
         }
     }
     
-    public var daysInMonth: Int {
+    var startOfYear: Date {
+        return startOfMonth.changeComponents { components in
+            components.month = 0
+        }
+    }
+    
+    var daysInMonth: Int {
         return Foundation.Calendar.current.range(of: .day, in: .month, for: self)?.count ?? 0
+    }
+    
+    
+    func startOfDay(in timeZone: TimeZone = .current) -> Date {
+        return Foundation.Calendar.current(in: timeZone).startOfDay(for: self)
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func startOfWeek(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .weekOfYear, for: self)?.start
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func startOfMonth(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .month, for: self)?.start
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func startOfYear(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .year, for: self)?.start
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfDay(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .day, for: self)?.end
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfWeek(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .weekOfYear, for: self)?.end
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfMonth(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .month, for: self)?.end
+    }
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func endOfYear(in timeZone: TimeZone = .current) -> Date? {
+        return Foundation.Calendar.current(in: timeZone).dateInterval(of: .year, for: self)?.end
     }
     
     
@@ -290,32 +344,32 @@ public extension Date {
 
 public extension Date {
     
-    public static func ==(lhs: Date, rhs: Date) -> Bool {
+    static func ==(lhs: Date, rhs: Date) -> Bool {
         return lhs.compare(rhs) == .orderedSame
     }
     
-    public static func >=(lhs: Date, rhs: Date) -> Bool {
+    static func >=(lhs: Date, rhs: Date) -> Bool {
         switch lhs.compare(rhs) {
         case .orderedSame, .orderedDescending: return true
         case .orderedAscending: return false
         }
     }
     
-    public static func <=(lhs: Date, rhs: Date) -> Bool {
+    static func <=(lhs: Date, rhs: Date) -> Bool {
         switch lhs.compare(rhs) {
         case .orderedSame, .orderedAscending: return true
         case .orderedDescending: return false
         }
     }
     
-    public static func >(lhs: Date, rhs: Date) -> Bool {
+    static func >(lhs: Date, rhs: Date) -> Bool {
         switch lhs.compare(rhs) {
         case .orderedDescending: return true
         default: return false
         }
     }
     
-    public static func <(lhs: Date, rhs: Date) -> Bool {
+    static func <(lhs: Date, rhs: Date) -> Bool {
         switch lhs.compare(rhs) {
         case .orderedAscending: return true
         default: return false
@@ -323,19 +377,23 @@ public extension Date {
     }
     
     
-    public func isWithinSameDay(of date: Date) -> Bool {
+    func isWithinSameMonth(of date: Date) -> Bool {
+        return self.year == date.year && self.month == date.month
+    }
+    
+    func isWithinSameDay(of date: Date) -> Bool {
         return self.year == date.year && self.month == date.month && self.dayOfMonth == date.dayOfMonth
     }
     
-    public func isWithinSameHour(of date: Date) -> Bool {
+    func isWithinSameHour(of date: Date) -> Bool {
         return self.isWithinSameDay(of: date) && self.hours == date.hours
     }
     
-    public func isGreater(than date: Date) -> Bool {
+    func isGreater(than date: Date) -> Bool {
         return self > date
     }
     
-    public func isLower(than date: Date) -> Bool {
+    func isLower(than date: Date) -> Bool {
         return self < date
     }
     
@@ -345,27 +403,27 @@ public extension Date {
 
 public extension Date {
     
-    public func minutes(before date: Date) -> Int {
+    func minutes(before date: Date) -> Int {
         return Foundation.Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
     }
     
-    public func hours(before date: Date) -> Int {
+    func hours(before date: Date) -> Int {
         return Foundation.Calendar.current.dateComponents([.hour], from: self, to: date).hour ?? 0
     }
     
-    public func days(before date: Date) -> Int {
+    func days(before date: Date) -> Int {
         return Foundation.Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
     }
     
-    public func weeks(before date: Date) -> Int {
+    func weeks(before date: Date) -> Int {
         return Foundation.Calendar.current.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
     }
     
-    public func months(before date: Date) -> Int {
+    func months(before date: Date) -> Int {
         return Foundation.Calendar.current.dateComponents([.month], from: self, to: date).month ?? 0
     }
     
-    public func years(before date: Date) -> Int {
+    func years(before date: Date) -> Int {
         return Foundation.Calendar.current.dateComponents([.year], from: self, to: date).year ?? 0
     }
     
@@ -375,7 +433,7 @@ public extension Date {
 
 public extension Date {
     
-    public func asString(format: String, localized: Bool = false) -> String {
+    func asString(format: String, localized: Bool = false) -> String {
         let formatter = DateFormatter()
         if localized {
             formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: format, options: 0, locale: Locale.current)
@@ -408,32 +466,48 @@ public final class Seconds: DateUnit<Int> {}
 
 public extension Int {
     
-    public var asYears: Years {
+    var asYears: Years {
         return Years(value: self)
     }
     
-    public var asMonths: Months {
+    var asMonths: Months {
         return Months(value: self)
     }
     
-    public var asWeeks: Weeks {
+    var asWeeks: Weeks {
         return Weeks(value: self)
     }
     
-    public var asDays: Days {
+    var asDays: Days {
         return Days(value: self)
     }
     
-    public var asHours: Hours {
+    var asHours: Hours {
         return Hours(value: self)
     }
     
-    public var asMinutes: Minutes {
+    var asMinutes: Minutes {
         return Minutes(value: self)
     }
     
-    public var asSeconds: Seconds {
+    var asSeconds: Seconds {
         return Seconds(value: self)
+    }
+    
+}
+
+extension Foundation.Calendar {
+    
+    static func current(in timeZone: TimeZone) -> Foundation.Calendar {
+        var calendar = Foundation.Calendar.current
+        calendar.timeZone = timeZone
+        return calendar
+    }
+    
+    public var localizedShortenedWeekdays: [String] {
+        let weekdays = shortWeekdaySymbols
+        let weekdaysRelativeToFirstWeekday = Array(weekdays[firstWeekday - 1..<weekdays.count]) + weekdays[0..<firstWeekday - 1]
+        return weekdaysRelativeToFirstWeekday
     }
     
 }

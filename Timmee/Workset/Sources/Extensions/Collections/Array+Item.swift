@@ -19,7 +19,7 @@ public extension Array {
      - Returns: Объект или nil
      
      */
-    public func item(at index: Int) -> Element? {
+    func item(at index: Int) -> Element? {
         return 0..<count ~= index ? self[index] : nil
     }
     
@@ -30,7 +30,7 @@ public extension Array {
      - Returns: Объект или nil
      
      */
-    public func randomItem() -> Element? {
+    func randomItem() -> Element? {
         let index = Int(arc4random_uniform(UInt32(self.count)))
         return item(at: index)
     }

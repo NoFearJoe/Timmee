@@ -10,7 +10,7 @@ import class Foundation.NSDate
 
 public extension ListEntity {
 
-    public func map(from list: List) {
+    func map(from list: List) {
         id = list.id
         title = list.title
         note = list.note

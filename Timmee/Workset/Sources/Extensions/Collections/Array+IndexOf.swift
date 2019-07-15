@@ -18,7 +18,7 @@ public extension Array where Element: Equatable {
      - Returns: Индекс либо nil
      
      */
-    public func index(of element: Element, offset: Int = 0) -> Int? {
+    func index(of element: Element, offset: Int = 0) -> Int? {
         guard 0..<count ~= offset else {
             return nil
         }

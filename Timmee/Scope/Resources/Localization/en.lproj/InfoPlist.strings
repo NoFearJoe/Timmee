@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Timmee
+
+  Created by Илья Харабет on 12/01/2019.
+  Copyright © 2019 Mesterra. All rights reserved.
+*/
+
+NSFaceIDUsageDescription = "Provide access to the FaceID to activate biometrics authentication";
+NSMicrophoneUsageDescription = "Provide access to a microphone to activate voice input";
+NSCameraUsageDescription = "Provide access to a camera to make photos";
+NSPhotoLibraryUsageDescription = "Provide access to the photo library to receive photos";
+NSLocationWhenInUseUsageDescription = "Provide access to geolocation while using the application";
+
+CREATE_SINGLE_TASK_SHORTCUT_TITLE = "Single task";
+CREATE_REGULAR_TASK_SHORTCUT_TITLE = "Regular task";

@@ -4,19 +4,19 @@ use_frameworks!
 target 'Agile diary' do
   workspace 'Agile diary.xcworkspace'
   project 'Agile diary.xcodeproj'
-    
+
   pod 'SwipeCellKit'
   pod 'Foto'
   pod 'Charts'
   pod 'Dwifft'
   pod 'FloatingPanel'
-  
+
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'FBSDKLoginKit'
-  
+
   pod 'Fabric'
   pod 'Crashlytics'
 end
@@ -24,41 +24,42 @@ end
 target 'Agile diary debug' do
     workspace 'Agile diary.xcworkspace'
     project 'Agile diary.xcodeproj'
-    
+
     pod 'SwipeCellKit'
     pod 'Foto'
     pod 'Charts'
     pod 'Dwifft'
-    
+    pod 'FloatingPanel'
+
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
     pod 'Firebase/Storage'
     pod 'FBSDKLoginKit'
-    
+
     pod 'Fabric'
     pod 'Crashlytics'
 end
 
 target 'HabitsTodayExtension' do
     inherit! :search_paths
-    
+
     workspace 'Agile diary.xcworkspace'
     project 'Agile diary.xcodeproj'
-    
+
     pod 'SwipeCellKit'
 end
 
 target 'Synchronization' do
     project 'Synchronization.xcodeproj'
-    
+
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
 end
 
-target 'Authorization' do    
+target 'Authorization' do
     project 'Authorization.xcodeproj'
-    
+
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'FBSDKLoginKit'
@@ -70,53 +71,74 @@ end
 
 target 'TasksKit' do
   project 'TasksKit.xcodeproj'
-  
+
   pod 'Dwifft'
 end
 
 target 'Workset' do
   project 'Workset.xcodeproj'
-  
+
   pod 'SwipeCellKit'
   pod 'Foto'
 end
 
 post_install do |installer|
+  application_targets = [
+    'Pods-Agile diary',
+    'Pods-Agile diary debug',
+  ]
 
-    # Remove dublicated static libraries
-    def dedublicate_static_libraries(sharedLibrary, installer)
-        installer.aggregate_targets.each do |aggregate_target|
-            
-            if aggregate_target.name == 'Pods-Authorization' ||
-                aggregate_target.name == 'Pods-Synchronization'
-                
-                aggregate_target.xcconfigs.each do |config_name, config_file|
-                    sharedLibraryPodTargets = sharedLibrary.pod_targets
-                    
-                    aggregate_target.pod_targets.select { |pod_target| sharedLibraryPodTargets.include?(pod_target) }.each do |pod_target|
-                        pod_target.specs.each do |spec|
-                            frameworkPaths = unless spec.attributes_hash['ios'].nil? then spec.attributes_hash['ios']['vendored_frameworks'] else spec.attributes_hash['vendored_frameworks'] end || Set.new
-                        frameworkNames = Array(frameworkPaths).map(&:to_s).map do |filename|
-                            extension = File.extname filename
-                            File.basename filename, extension
-                        end
-                        frameworkNames.each do |name|
-                            puts "Removing #{name} from OTHER_LDFLAGS for #{aggregate_target.name} target"
-                            config_file.frameworks.delete(name)
-                        end
-                    end
-                end
-                xcconfig_path = aggregate_target.xcconfig_path(config_name)
-                config_file.save_as(xcconfig_path)
+  library_targets = [
+    'Pods-Synchronization',
+    'Pods-Authorization',
+  ]
+
+  embedded_targets = installer.aggregate_targets.select { |aggregate_target|
+    library_targets.include? aggregate_target.name
+  }
+
+  embedded_pod_targets = embedded_targets.flat_map { |embedded_target| embedded_target.pod_targets }
+
+  host_targets = installer.aggregate_targets.select { |aggregate_target|
+    application_targets.include? aggregate_target.name
+  }
+
+  host_targets.each do |host_target|
+    host_target.xcconfigs.each do |config_name, config_file|
+      puts "====#{config_name}===="
+      host_target.pod_targets.each do |pod_target|
+        next unless embedded_pod_targets.include? pod_target
+
+        pod_target.specs.each do |spec|
+          attributes_hash = spec.attributes_hash['ios']
+
+          unless attributes_hash
+            attributes_hash = spec.attributes_hash
+          end
+
+          framework_paths = attributes_hash['vendored_frameworks']
+          is_static_framework = attributes_hash['static_framework']
+
+          framework_names = []
+
+          if framework_paths
+            framework_names = Array(framework_paths).map(&:to_s).map do |filename|
+              extension = File.extname(filename)
+              File.basename(filename, extension)
             end
+          elsif is_static_framework
+            framework_names = [attributes_hash['name']]
+          end
+
+          framework_names.each do |name|
+            puts "Removing #{name} from OTHER_LDFLAGS of target #{host_target.name}"
+            config_file.frameworks.delete(name)
+          end
         end
+      end
+
+      xcconfig_path = host_target.xcconfig_path(config_name)
+      config_file.save_as(xcconfig_path)
     end
-    end
-
-    sharedLibrary = installer.aggregate_targets.find { |aggregate_target| aggregate_target.name == 'Pods-Authorization' }
-    dedublicate_static_libraries(sharedLibrary, installer)
-
-    sharedLibrary = installer.aggregate_targets.find { |aggregate_target| aggregate_target.name == 'Pods-Synchronization' }
-    dedublicate_static_libraries(sharedLibrary, installer)
-
+  end
 end

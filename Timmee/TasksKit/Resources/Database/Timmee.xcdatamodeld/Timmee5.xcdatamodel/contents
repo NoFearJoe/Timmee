@@ -124,7 +124,7 @@
         <attribute name="title" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListEntity" inverseName="tasks" inverseEntity="ListEntity" syncable="YES"/>
         <relationship name="subtasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubtaskEntity" inverseName="task" inverseEntity="SubtaskEntity" syncable="YES"/>
-        <relationship name="tags" toMany="YES" deletionRule="Cascade" destinationEntity="TagEntity" inverseName="tasks" inverseEntity="TagEntity" syncable="YES"/>
+        <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="TagEntity" inverseName="tasks" inverseEntity="TagEntity" syncable="YES"/>
         <relationship name="timeTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TimeTemplateEntity" inverseName="tasks" inverseEntity="TimeTemplateEntity" syncable="YES"/>
         <fetchIndex name="byCreationDateIndex">
             <fetchIndexElement property="creationDate" type="Binary" order="ascending"/>
@@ -179,6 +179,7 @@
         <memberEntity name="TagEntity"/>
         <memberEntity name="TaskEntity"/>
         <memberEntity name="TimeTemplateEntity"/>
+        <memberEntity name="LocallyDeletedEntity"/>
     </configuration>
     <elements>
         <element name="GoalEntity" positionX="0" positionY="0" width="128" height="180"/>

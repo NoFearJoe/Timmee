@@ -11,6 +11,9 @@
 		0C3DA5342154D73700CAE635 /* WaterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5332154D73700CAE635 /* WaterControl.swift */; };
 		0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */; };
 		0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5372154D8D200CAE635 /* WaterControlService.swift */; };
+		0C86E4DD22DC550200DA7B15 /* CacheObserverProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4DB22DC550200DA7B15 /* CacheObserverProtocols.swift */; };
+		0C86E4DE22DC550200DA7B15 /* CoreDataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4DC22DC550200DA7B15 /* CoreDataChange.swift */; };
+		0C86E4DF22DC552200DA7B15 /* CacheObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018222077B2BD00633EFF /* CacheObserver.swift */; };
 		0C90018C21F98FB700D6C15F /* ModifiableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018B21F98FB700D6C15F /* ModifiableEntity.swift */; };
 		0C90018E21F9912100D6C15F /* IdentifiableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018D21F9912100D6C15F /* IdentifiableEntity.swift */; };
 		0C90019021F9C49800D6C15F /* SyncableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018F21F9C49800D6C15F /* SyncableEntity.swift */; };
@@ -42,7 +45,6 @@
 		0CE018632077B2BD00633EFF /* TaskEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0181F2077B2BD00633EFF /* TaskEntity+Mapping.swift */; };
 		0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018202077B2BD00633EFF /* TagEntity+Mapping.swift */; };
 		0CE018652077B2BD00633EFF /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018212077B2BD00633EFF /* Database.swift */; };
-		0CE018662077B2BD00633EFF /* CacheObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018222077B2BD00633EFF /* CacheObserver.swift */; };
 		0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018232077B2BD00633EFF /* ListEntity+Mapping.swift */; };
 		0CE018682077B2BD00633EFF /* SmartListEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018242077B2BD00633EFF /* SmartListEntity+Mapping.swift */; };
 		0CE018692077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018252077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift */; };
@@ -72,6 +74,8 @@
 		0C3DA5332154D73700CAE635 /* WaterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControl.swift; sourceTree = "<group>"; };
 		0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Mapping.swift"; sourceTree = "<group>"; };
 		0C3DA5372154D8D200CAE635 /* WaterControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlService.swift; sourceTree = "<group>"; };
+		0C86E4DB22DC550200DA7B15 /* CacheObserverProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheObserverProtocols.swift; sourceTree = "<group>"; };
+		0C86E4DC22DC550200DA7B15 /* CoreDataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataChange.swift; sourceTree = "<group>"; };
 		0C90018B21F98FB700D6C15F /* ModifiableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiableEntity.swift; sourceTree = "<group>"; };
 		0C90018D21F9912100D6C15F /* IdentifiableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEntity.swift; sourceTree = "<group>"; };
 		0C90018F21F9C49800D6C15F /* SyncableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncableEntity.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		0C9B242D207E228F009EF6DE /* CacheObserver */ = {
 			isa = PBXGroup;
 			children = (
+				0C86E4DB22DC550200DA7B15 /* CacheObserverProtocols.swift */,
+				0C86E4DC22DC550200DA7B15 /* CoreDataChange.swift */,
 				0CE018222077B2BD00633EFF /* CacheObserver.swift */,
 				0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */,
 				0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */,
@@ -515,7 +521,6 @@
 				96BE8390217511E500CDECAF /* Habit.swift in Sources */,
 				96BE8395217518AD00CDECAF /* GoalEntity+Mapping.swift in Sources */,
 				0CE018572077B2BD00633EFF /* FilesService.swift in Sources */,
-				0CE018662077B2BD00633EFF /* CacheObserver.swift in Sources */,
 				0CE018562077B2BD00633EFF /* TagsService.swift in Sources */,
 				0CE018592077B2BD00633EFF /* TasksService.swift in Sources */,
 				0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */,
@@ -534,6 +539,7 @@
 				0CE018622077B2BD00633EFF /* SubtaskEntity+Mapping.swift in Sources */,
 				0CE0185D2077B2BD00633EFF /* SmartList.swift in Sources */,
 				0CE475542175AFBE005FD8CC /* SprintsService.swift in Sources */,
+				0C86E4DE22DC550200DA7B15 /* CoreDataChange.swift in Sources */,
 				0C90019021F9C49800D6C15F /* SyncableEntity.swift in Sources */,
 				0CE4755D2175DA1E005FD8CC /* GoalsService.swift in Sources */,
 				0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */,
@@ -545,11 +551,13 @@
 				961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */,
 				0CE018632077B2BD00633EFF /* TaskEntity+Mapping.swift in Sources */,
 				0CE0185C2077B2BD00633EFF /* List.swift in Sources */,
+				0C86E4DF22DC552200DA7B15 /* CacheObserver.swift in Sources */,
 				96BE8392217511F400CDECAF /* Sprint.swift in Sources */,
 				0CE0185E2077B2BD00633EFF /* Task.swift in Sources */,
 				0CE018552077B2BD00633EFF /* ListsService.swift in Sources */,
 				0CE0185F2077B2BD00633EFF /* Tag.swift in Sources */,
 				0C9B24092077B9EE009EF6DE /* NSManagedObjectContext+Create.swift in Sources */,
+				0C86E4DD22DC550200DA7B15 /* CacheObserverProtocols.swift in Sources */,
 				96BE8399217519A600CDECAF /* SprintEntity+Mapping.swift in Sources */,
 				0CE0185A2077B2BD00633EFF /* TimeTemplatesService.swift in Sources */,
 				0CD8F81C2240B79E00061B58 /* MoodService.swift in Sources */,
@@ -706,7 +714,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_APPLICATION";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -735,7 +743,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_APPLICATION;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

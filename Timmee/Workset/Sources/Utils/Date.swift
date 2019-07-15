@@ -44,11 +44,11 @@ public extension Date {
         return asString(format: Date.dateTimeFormat)
     }
     
-    public var asTimeString: String {
+    var asTimeString: String {
         return asString(format: "HH:mm")
     }
     
-    public var asNearestDateString: String {
+    var asNearestDateString: String {
         let nearestDate = NearestDate(date: self)
         
         if case .custom = nearestDate {
@@ -58,7 +58,7 @@ public extension Date {
         }
     }
     
-    public var asNearestShortDateString: String {
+    var asNearestShortDateString: String {
         let nearestDate = NearestDate(date: self)
         
         if case .custom = nearestDate {
@@ -72,7 +72,7 @@ public extension Date {
 
 public extension Date {
     
-    public init?(string: String, format: String, localized: Bool = false) {
+    init?(string: String, format: String, localized: Bool = false) {
         let formatter = DateFormatter()
         if localized {
             formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: format, options: 0, locale: Locale.current)
@@ -89,7 +89,7 @@ public extension Date {
 
 public extension Date {
 
-    public var nsDate: NSDate {
+    var nsDate: NSDate {
         return self as NSDate
     }
 

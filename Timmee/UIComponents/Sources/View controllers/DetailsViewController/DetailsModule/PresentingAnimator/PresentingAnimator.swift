@@ -153,10 +153,10 @@ public extension CAMediaTimingFunction {
 
 public extension UIView {
     
-    @objc public class func animateWithDuration(duration: TimeInterval,
-                                                timingFunction: CAMediaTimingFunction,
-                                                animations: @escaping () -> Void,
-                                                completion: ((Bool) -> Void)?) {
+    @objc class func animateWithDuration(duration: TimeInterval,
+                                         timingFunction: CAMediaTimingFunction,
+                                         animations: @escaping () -> Void,
+                                         completion: ((Bool) -> Void)?) {
         CATransaction.begin()
         CATransaction.setAnimationTimingFunction(timingFunction)
         UIView.animate(withDuration: duration, animations: animations, completion: completion)

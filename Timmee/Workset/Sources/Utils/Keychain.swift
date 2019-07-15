@@ -14,7 +14,7 @@ public class Keychain {
         var keychainQuery: [AnyHashable: Any] = [
             kSecClass as AnyHashable: kSecClassGenericPassword,
             kSecAttrAccount as AnyHashable: key,
-            kSecReturnData as AnyHashable: kCFBooleanTrue,
+            kSecReturnData as AnyHashable: kCFBooleanTrue!,
             kSecMatchLimit as AnyHashable: kSecMatchLimitOne
         ]
         

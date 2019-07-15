@@ -32,16 +32,16 @@ public extension UIImageView {
         }
     }
     
-    public func cancelImageLoadingTask() {
+    func cancelImageLoadingTask() {
         imageLoadingTask?.cancel()
     }
     
-    public final func setImage(firebasePath: String) {
+    final func setImage(firebasePath: String) {
         let reference = Storage.storage().reference(withPath: firebasePath)
         setImage(reference: reference)
     }
     
-    public final func setImage(reference: StorageReference) {
+    final func setImage(reference: StorageReference) {
         if let cachedImage = ImageCache.shared.load(reference: reference) {
             image = cachedImage
         } else {

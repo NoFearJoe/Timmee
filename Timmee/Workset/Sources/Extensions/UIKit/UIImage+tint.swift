@@ -16,7 +16,7 @@ import func UIKit.UIGraphicsEndImageContext
 
 public extension UIImage {
     
-    public func tinted(with color: UIColor) -> UIImage? {
+    func tinted(with color: UIColor) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         
         let context = UIGraphicsGetCurrentContext()
@@ -35,7 +35,7 @@ public extension UIImage {
         return image
     }
     
-    public func translucent() -> UIImage? {
+    func translucent() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         let bounds = CGRect(origin: .zero, size: size)
         

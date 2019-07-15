@@ -10,7 +10,7 @@ import Workset
 
 public extension TagEntity {
     
-    public func map(from tag: Tag) {
+    func map(from tag: Tag) {
         id = tag.id
         title = tag.title
         color = tag.color.hexString()

@@ -19,6 +19,7 @@ import class CoreData.NSFetchRequest
 import class CoreData.NSManagedObject
 import class CoreData.NSManagedObjectContext
 import protocol CoreData.NSFetchRequestResult
+import Workset
 
 public enum TasksFetchPredicate {
     case none
@@ -49,7 +50,7 @@ public protocol TaskEntitiesBackgroundProvider: class {
 public protocol TasksObserverProvider: class {
     func tasksObserver(listID: String) -> CacheObserver<Task>
     func tasksObserver(predicate: NSPredicate?) -> CacheObserver<Task>
-    func tasksScope(listID: String) -> Scope<TaskEntity, Task>
+    func tasksScope(listID: String) -> CachedEntitiesObserver<TaskEntity, Task>
 }
 
 public protocol TaskEntitiesCountProvider: class {
@@ -237,6 +238,7 @@ extension TasksService: TasksObserverProvider {
     
     public func tasksObserver(listID: String) -> CacheObserver<Task> {
         var request: FetchRequest<TaskEntity> = TaskEntity.request()
+            .sorted(keyPath: \.isDone, ascending: true)
             .sorted(keyPath: \.isImportant, ascending: false)
             .sorted(keyPath: \.inProgress, ascending: false)
             .sorted(keyPath: \.creationDate, ascending: false)
@@ -278,7 +280,7 @@ extension TasksService: TasksObserverProvider {
         return tasksObserver
     }
     
-    public func tasksScope(listID: String) -> Scope<TaskEntity, Task> {
+    public func tasksScope(listID: String) -> CachedEntitiesObserver<TaskEntity, Task> {
         var request: FetchRequest<TaskEntity> = TaskEntity.request()
             .sorted(keyPath: \.isImportant, ascending: false)
             .sorted(keyPath: \.inProgress, ascending: false)
@@ -296,7 +298,7 @@ extension TasksService: TasksObserverProvider {
             request = request.filtered(key: "list.id", value: listID)
         }
         
-        return Scope<TaskEntity, Task>(context: Database.localStorage.readContext,
+        return CachedEntitiesObserver<TaskEntity, Task>(context: Database.localStorage.readContext,
                                        baseRequest: request.nsFetchRequest,
                                        grouping: { $0.isDone(at: doneDate) || $0.isFinished(at: doneDate) ? "1" : "0" },
                                        mapping: { Task(entity:$0) },

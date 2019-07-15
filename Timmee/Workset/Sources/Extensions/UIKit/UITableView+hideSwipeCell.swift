@@ -11,11 +11,11 @@ import class SwipeCellKit.SwipeTableViewCell
 
 public extension UITableView {
 
-    public var swipeCells: [SwipeTableViewCell] {
+    var swipeCells: [SwipeTableViewCell] {
         return visibleCells.compactMap({ $0 as? SwipeTableViewCell })
     }
     
-    public func hideSwipeCell(animated: Bool = true) {
+    func hideSwipeCell(animated: Bool = true) {
         swipeCells.forEach { $0.hideSwipe(animated: animated) }
     }
 

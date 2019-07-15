@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Scope
+
+  Created by i.kharabet on 21/05/2019.
+  Copyright © 2019 Mesterra. All rights reserved.
+*/
+
+CFBundleDisplayName = "Задачи";

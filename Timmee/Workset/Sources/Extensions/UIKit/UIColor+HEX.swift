@@ -19,7 +19,7 @@ enum UIColorInputError: Error {
 
 public extension UIColor {
     
-    public convenience init(hex3: UInt16, alpha: CGFloat = 1) {
+    convenience init(hex3: UInt16, alpha: CGFloat = 1) {
         let divisor = CGFloat(15)
         let red     = CGFloat((hex3 & 0xF00) >> 8) / divisor
         let green   = CGFloat((hex3 & 0x0F0) >> 4) / divisor
@@ -27,7 +27,7 @@ public extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    public convenience init(hex4: UInt16) {
+    convenience init(hex4: UInt16) {
         let divisor = CGFloat(15)
         let red     = CGFloat((hex4 & 0xF000) >> 12) / divisor
         let green   = CGFloat((hex4 & 0x0F00) >>  8) / divisor
@@ -36,7 +36,7 @@ public extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    public convenience init(hex6: UInt32, alpha: CGFloat = 1) {
+    convenience init(hex6: UInt32, alpha: CGFloat = 1) {
         let divisor = CGFloat(255)
         let red     = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
         let green   = CGFloat((hex6 & 0x00FF00) >>  8) / divisor
@@ -44,7 +44,7 @@ public extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    public convenience init(hex8: UInt32) {
+    convenience init(hex8: UInt32) {
         let divisor = CGFloat(255)
         let red     = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
         let green   = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
@@ -58,7 +58,7 @@ public extension UIColor {
      
      - parameter rgba: Строковое представление цвета.
      */
-    public convenience init(rgba: String, defaultColor: UIColor = UIColor.clear) {
+    convenience init(rgba: String, defaultColor: UIColor = UIColor.clear) {
         guard let color = UIColor(with: rgba) else {
             self.init(cgColor: defaultColor.cgColor)
             return
@@ -66,7 +66,7 @@ public extension UIColor {
         self.init(cgColor: color.cgColor)
     }
     
-    public convenience init?(with rgba: String) {
+    convenience init?(with rgba: String) {
         let hexString: String = rgba.replacingOccurrences(of: "#", with: "")
         var hexValue:  UInt32 = 0
         
@@ -93,7 +93,7 @@ public extension UIColor {
      
      - parameter includeAlpha: Нужно ли добавить значение альфа канала
      */
-    public func hexString(_ includeAlpha: Bool = true) -> String {
+    func hexString(_ includeAlpha: Bool = true) -> String {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0

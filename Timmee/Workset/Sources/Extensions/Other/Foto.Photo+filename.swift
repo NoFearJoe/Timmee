@@ -10,7 +10,7 @@ import class Foto.Photo
 
 public extension Photo {
     
-    public var name: String {
+    var name: String {
         return filename ?? creationDate?.asDateTimeString ?? ""
     }
     

@@ -1,0 +1,271 @@
+/* 
+  Localizable.strings
+  Timmee
+
+  Created by Ilya Kharabet on 05.09.17.
+  Copyright © 2017 Mesterra. All rights reserved.
+*/
+
+"all_tasks" = "All tasks";
+"yesterday" = "Yeasterday";
+"today" = "Today";
+"tomorrow" = "Tomorrow";
+"week" = "Week";
+"new_list" = "New list";
+"import_tasks" = "Import tasks";
+"no_tasks_to_import" = "No tasks to import";
+"tasks_without_list" = "Not in a list";
+"no_searched_tasks" = "No tasks";
+"input_task_title" = "Task title...";
+"note" = "Here will be my tasks";
+"task_note" = "Note...";
+"completed_tasks" = "Completed tasks";
+"list_title" = "List title";
+"list_description" = "Description";
+"list_icon" = "Icon";
+"list" = "List";
+"smart_list" = "Smart list";
+"my_lists" = "My lists";
+"smart_lists" = "Smart lists";
+
+"search" = "Search...";
+"initial_search_title" = "Search";
+"initial_search_subtitle" = "Start to typing task title in search field";
+"empty_section" = "Unrecognized list";
+
+"no_tasks" = "No tasks";
+"new_task" = "New task...";
+"no_tasks_hint" = "There are no tasks in this list";
+
+"no_lists_placeholder" = "You have no lists";
+
+"important_and_urgent" = "Important and urgent";
+"important" = "Important";
+"urgent" = "Urgent";
+"onther" = "Other";
+
+"reminder" = "Reminder";
+"remind" = "Remind"; // в среду
+"location" = "Location";
+"remind_in_location" = "Remind in location";
+"due_date" = "Due date";
+"due_time" = "Due time";
+"finish" = "Finish"; // сегодня в 21:00
+"start_date" = "Start date";
+"end_date" = "End date";
+"repeat_ending_date" = "Repeat ending date";
+"tags_picker" = "Tags";
+"input_tag" = "Input tag...";
+"no_tags" = "No tags";
+"no_tags_hint" = "To create a tag, select color and enter name";
+"in_progress" = "In progress";
+"time_template" = "Time template";
+"time_templates" = "Time templates";
+"time_template_placeholder" = "Time template";
+"no_time_templates" = "No time templates";
+"no_time_templates_hint" = "Time templates help you to simplify creation of tasks";
+"add_time_template" = "Create time template...";
+"new_time_template" = "Time template...";
+"attachments" = "Attachments";
+"no_attachments" = "Attachments";
+"add_subtask" = "Add subtask...";
+"subtasks" = "subtasks";
+"overdue" = "Overdue";
+"play_audio_note_placeholder" = "Play voice note";
+"record_audio_note_placeholder" = "Record voice note";
+"recording_audio_note_placeholder" = "Recording voice note";
+"playing_audio_note_placeholder" = "Playing voice note";
+"touch_to_stop" = "Touch to stop";
+"choose_notification_date" = "Choose date";
+"choose_notification_time" = "Choose time";
+"notification_date" = "Notification date";
+"notification_time" = "Notification time";
+"starts" = "Starts";
+"ends" = "Ends";
+"from_date" = "From";
+"to_date" = "To";
+
+"repeat" = "Repeat";
+"everyday" = "Everyday";
+"weekly" = "Weekly";
+"on_weekdays" = "On weekdays";
+"on_weekends" = "On weekends";
+"weekdays" = "weekdays";
+"weekends" = "weekends";
+"monthly" = "Monthly";
+"every_year" = "Annually";
+"at" = "at"; // 21:00
+"upon" = ""; // 15 минут
+"no_repeat" = "No repeat";
+"and" = "and";
+
+"hours" = "hours";
+"minutes" = "minutes";
+
+"choose_interval" = "Choose interval";
+"choose_days" = "Choose days";
+
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+"mon" = "mon";
+"tue" = "tue";
+"wed" = "wed";
+"thu" = "thu";
+"fri" = "fri";
+"sat" = "sat";
+"sun" = "sun";
+
+"on_monday" = "On monday";
+"on_tuesday" = "On tuesday";
+"on_wednesday" = "On wednesday";
+"on_thursday" = "On thursday";
+"on_friday" = "On friday";
+"on_saturday" = "On saturday";
+"on_sunday" = "On sunday";
+
+"template_at_morning" = "At morning";
+"template_at_launch" = "At launch";
+"template_at_afternoon" = "At afternoon";
+
+"no_reminder" = "Don't remind";
+"remind_just_in_time" = "Remind just in time";
+"remind_10_minutes_before" = "Remind 10 minutes before";
+"remind_30_minutes_before" = "Remind 30 minutes before";
+"remind_1_hour_before" = "Remind a hour before";
+"remind_1_day_before" = "Remind a day before";
+
+"settings" = "Settings";
+"background_color" = "Background color";
+"password_protection" = "Pin-code protection";
+"licenses" = "Licenses";
+"give_feedback" = "Send feedback";
+"additional_features" = "Additional features";
+"about_app" = "About App";
+"about_app_text" = "About App text";
+"mail_us" = "Send a mail to us";
+"highlight_overdue_tasks" = "Highlight overdue tasks";
+"pro_version_section" = "PRO version";
+"pro_version" = "Get PRO version";
+"restore_pro_version" = "Restore PRO version";
+"restore_error_try_again" = "Unable to restore the purchase, try again or email mesterra.co@gmail.com";
+"pro_version_features_title" = "By purchasing the PRO version, you open access to additional features, as well as help the development of the application.\nAdditional features:";
+"pro_version_feature_1" = "Tags";
+"pro_version_feature_2" = "Time templates";
+"pro_version_feature_3" = "Voice notes";
+"pro_version_feature_4" = "15 attachments";
+"pro_version_feature_5" = "And more functions in future versions";
+"just_for_1_dollar" = "1$";
+
+"remove_list" = "Remove list";
+"remove_tasks" = "Remove tasks";
+"move_tasks" = "Move tasks";
+"are_you_sure_you_want_to_delete_the_list_with_all_tasks" = "Are you sure you want to remove the list with all tasks?";
+"are_you_sure_you_want_to_delete_tasks" = "Are you sure you want to remove this tasks?";
+"are_you_sure_you_want_to_move_tasks" = "Are you sure you want to move this tasks to";
+"are_you_sure_you_want_to_remove_completed_tasks" = "Are you sure you want to remove completed tasks?";
+
+"cancel_last_action" = "Cancel last action";
+"go_to_list" = "Go to";
+
+"attention" = "Attention";
+"change_pin_code" = "Do you want to change pin-code?";
+
+"remove" = "Remove";
+"edit" = "Edit";
+"done" = "Done";
+"close" = "Close";
+"back" = "Back";
+"continue" = "Continue";
+"complete" = "Complete";
+"restore" = "Restore";
+"move" = "Move";
+"cancel" = "Cancel";
+"yes" = "Yes";
+"start" = "Start";
+"stop" = "Stop";
+"error" = "Error";
+
+"of" = "of";
+
+"create_password" = "Create password";
+"enter_password" = "Enter password";
+"wrong_password" = "Wrong password";
+"repeat_password" = "Repeat password";
+"passwords_are_not_equal" = "Passwords are not equal";
+
+"enter_with" = "Enter with";
+"device_is_not_support_biometrics" = "Your device is not support biometrics authentication";
+"touch_id" = "TouchID";
+"face_id" = "FaceID";
+"enter_with_touch_id" = "Enter with TouchID";
+"enter_with_face_id" = "Enter with FaceID";
+"enter_with_touch_id_question" = "Do you want to activate the TouchID?";
+"enter_with_face_id_question" = "Do you want to activate the FaceID?";
+"activate" = "Activate";
+"no_thanks" = "No, thanks";
+"touch_id_reason" = "Use touchID to enter";
+"face_id_reason" = "Use faceID to enter";
+"pin_code_protection" = "Pin-code protection";
+
+"general_section" = "General";
+"security_section" = "Security";
+"about_section" = "Additional";
+"is_on" = "Enabled";
+"is_off" = "Not set";
+"rate" = "Rate the App";
+"license" = "License";
+"restore_purchases" = "Restore purchases";
+"list_sorting" = "Lists sorting";
+"sort_by_creation_date_ascending" = "By creation date ↓";
+"sort_by_creation_date_descending" = "By creation date ↑";
+"sort_by_title_ascending" = "Alphabetically ↓";
+"sort_by_title_descending" = "Alphabetically ↑";
+"theme" = "App theme";
+"white_theme" = "Light";
+"black_theme" = "Dark";
+"version" = "Version";
+
+"every_n_units" = "n %lu";
+"every_n_weeks" = "n %lu";
+"n_days" = "%lu n";
+"n_weeks" = "%lu n";
+"n_months" = "%lu n";
+"n_years" = "%lu n";
+"imported_n_tasks" = "%lu n";
+"n_attachments" = "%lu n";
+
+"remind_after_10" = "Remind after 10 minutes";
+"remind_after_30" = "Remind after 30 minutes";
+"remind_after_60" = "Remind after 1 hour";
+
+"education_initial_title" = "Hi!";
+"education_initial_text" = "It's Scope - your personal daily affairs assistant";
+"education_initial_continue" = "Hi, Scope!";
+"education_features_title" = "Chill out";
+"education_features_text" = "Now I will remember all of your tasks and remind you about them";
+"education_features_continue" = "Well, what's next?";
+"education_notifications_setup_title" = "Speaking of reminders";
+"education_notifications_setup_text" = "Do you want to enable notifications to not forget about the important tasks?";
+"education_notifications_setup_continue" = "Yes, enable";
+"education_notifications_setup_skip" = "No";
+"education_pin_setup_title" = "Do you keep secrets?";
+"education_pin_setup_text" = "Setup pin-code and sleep peacefully";
+"education_pin_setup_continue" = "Setup pin-code";
+"education_pin_setup_skip" = "No, thanks";
+"education_final_title" = "🎉";
+"education_final_text" = "Lets create your first task!";
+"education_final_continue" = "Start";
+
+"task_kind" = "Task kind";
+"single_task_kind" = "Common";
+"regular_task_kind" = "Regular";
+"create_single_task" = "Create common task";
+"create_regular_task" = "Create regular task";
+"regular_task_finished" = "Finished";
+
+"no_tasks_for_today" = "No tasks for today";
