@@ -12,7 +12,7 @@ import UIKit
 public final class CompressibleViewContainerController: UIViewController, VerticalCompressibleViewContainer {
     
     /// Outlet
-    lazy var compressibleViewContainer = CompressibleViewContainer.loadedFromNib()
+    public lazy var compressibleViewContainer = CompressibleViewContainer.loadedFromNib()
     
     /// Private
     private var compressibleViews = [UIView & VerticalCompressibleView]()

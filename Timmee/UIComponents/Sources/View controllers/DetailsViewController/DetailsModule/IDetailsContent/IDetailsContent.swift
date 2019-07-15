@@ -47,7 +47,7 @@ public protocol DetailsModuleElementsProvider {
     var header: UIViewController & VerticalCompressibleViewContainer { get }
     
     // Контент
-    var stackViewContainer: UIScrollView { get }
+    var stackViewContainer: UIScrollView & ITCSStackViewContainer { get }
 }
 
 // MARK: - Управление плейсхолдерами основных элементов модуля

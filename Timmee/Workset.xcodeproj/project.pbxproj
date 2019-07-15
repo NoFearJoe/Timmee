@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */; };
+		0C86E4EB22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4EA22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift */; };
+		0C86E4ED22DC8FA600DA7B15 /* UIView+roundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4EC22DC8FA600DA7B15 /* UIView+roundCorners.swift */; };
+		0C86E4EF22DCB2FF00DA7B15 /* UIWindow+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4EE22DCB2FF00DA7B15 /* UIWindow+Snapshot.swift */; };
+		0C86E4F122DCB41C00DA7B15 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4F022DCB41C00DA7B15 /* UIApplicationExtensions.swift */; };
 		0C9364F02155305100B4EB48 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364EF2155305100B4EB48 /* Double+Extensions.swift */; };
 		0C9B23E42077B757009EF6DE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C12077B757009EF6DE /* Date.swift */; };
 		0C9B23E52077B757009EF6DE /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B23C22077B757009EF6DE /* KeyboardManager.swift */; };
@@ -52,6 +56,10 @@
 
 /* Begin PBXFileReference section */
 		0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyProtocol.swift; sourceTree = "<group>"; };
+		0C86E4EA22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+firstAvailableUIViewController.swift"; sourceTree = "<group>"; };
+		0C86E4EC22DC8FA600DA7B15 /* UIView+roundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+roundCorners.swift"; sourceTree = "<group>"; };
+		0C86E4EE22DCB2FF00DA7B15 /* UIWindow+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Snapshot.swift"; sourceTree = "<group>"; };
+		0C86E4F022DCB41C00DA7B15 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
 		0C9364EF2155305100B4EB48 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		0C9B23C12077B757009EF6DE /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		0C9B23C22077B757009EF6DE /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
@@ -165,6 +173,10 @@
 				960E1CC22093B10700225193 /* UICollectionView+syncBatchUpdates.swift */,
 				96ECB7B6224403F600ED42D7 /* UIImage+Resize.swift */,
 				96F59436224E965A00F6D10A /* UIScreen+isLittle.swift */,
+				0C86E4EA22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift */,
+				0C86E4EC22DC8FA600DA7B15 /* UIView+roundCorners.swift */,
+				0C86E4EE22DCB2FF00DA7B15 /* UIWindow+Snapshot.swift */,
+				0C86E4F022DCB41C00DA7B15 /* UIApplicationExtensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -356,6 +368,7 @@
 				0C9B23F22077B757009EF6DE /* UIView+nib.swift in Sources */,
 				0C9B23EB2077B757009EF6DE /* UIImage+tint.swift in Sources */,
 				960E1CC32093B10700225193 /* UICollectionView+syncBatchUpdates.swift in Sources */,
+				0C86E4ED22DC8FA600DA7B15 /* UIView+roundCorners.swift in Sources */,
 				9606628120A6FE0200B23EDF /* Tracker.swift in Sources */,
 				0C9B23EC2077B757009EF6DE /* UIColor+HEX.swift in Sources */,
 				0C9B24002077B757009EF6DE /* Array+Item.swift in Sources */,
@@ -373,12 +386,15 @@
 				0C9B23FB2077B757009EF6DE /* Array+IndexOf.swift in Sources */,
 				0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */,
 				0C9B23E62077B757009EF6DE /* TimeRounder.swift in Sources */,
+				0C86E4EF22DCB2FF00DA7B15 /* UIWindow+Snapshot.swift in Sources */,
 				9622FC7D226AFC1600FC456C /* ObjectiveCTryCatch.m in Sources */,
 				0C9B23F02077B757009EF6DE /* UIDevice+Idiom.swift in Sources */,
 				96ECB7B7224403F600ED42D7 /* UIImage+Resize.swift in Sources */,
 				0C9B24042077B996009EF6DE /* NearestDate.swift in Sources */,
 				0C9B23FE2077B757009EF6DE /* Array+Unique.swift in Sources */,
 				0C9B23EE2077B757009EF6DE /* UITableView+hideSwipeCell.swift in Sources */,
+				0C86E4EB22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift in Sources */,
+				0C86E4F122DCB41C00DA7B15 /* UIApplicationExtensions.swift in Sources */,
 				0C9B23EA2077B757009EF6DE /* Calendar.swift in Sources */,
 				0C9B23F82077B757009EF6DE /* String+Localized.swift in Sources */,
 				0C9B23EF2077B757009EF6DE /* UIColor+Interpolate.swift in Sources */,

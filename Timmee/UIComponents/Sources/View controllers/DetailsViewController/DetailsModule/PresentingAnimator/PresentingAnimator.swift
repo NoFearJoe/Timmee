@@ -23,7 +23,7 @@ final public class PresentingAnimator: NSObject, UIViewControllerAnimatedTransit
         
         public var backgroundColor: UIColor {
             switch self {
-            case .blur: return .black //.n2Dark
+            case .blur: return .black
             case .transparent: return .black
             }
         }
@@ -31,9 +31,9 @@ final public class PresentingAnimator: NSObject, UIViewControllerAnimatedTransit
         public func createSnapshot() -> UIImage {
             switch self {
             case .blur:
-                return UIImage()//UIApplication.shared.tcs.activeWindowBlurredSnapshot
+                return UIApplication.sharedInExtension?.activeWindowSnapshot ?? UIImage()
             case .transparent:
-                return UIImage()//UIApplication.shared.tcs.activeWindowSnapshot
+                return UIApplication.sharedInExtension?.activeWindowSnapshot ?? UIImage()
             }
         }
     }
@@ -99,7 +99,7 @@ final public class PresentingAnimator: NSObject, UIViewControllerAnimatedTransit
             finalFrame = CGRect(origin: startPoint, size: destinationView.frame.size)
             initialFrame = destinationView.frame
 
-            duration = 0.2//.animation200ms
+            duration = 0.2
             timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         }
 

@@ -112,7 +112,7 @@ public class DetailsBaseViewController: UIViewController {
         
         // layout анимированного плейсхолдера (закругление углов)
         if placeholderBackgroundView.superview != nil {
-//            placeholderBackgroundView.tcs.roundCorners(corners: [.topLeft, .topRight], radius: 12)
+            placeholderBackgroundView.roundCorners(corners: [.topLeft, .topRight], radius: 12)
         }
         
         guard hasContent == true else { return }
@@ -157,7 +157,7 @@ public class DetailsBaseViewController: UIViewController {
         placeContent(header: content.header,
                      stackViewContainer: content.stackViewContainer)
         
-//        content.stackViewContainer.addView(content.contentPlaceholder)
+        content.stackViewContainer.addView(content.contentPlaceholder)
         content.contentPlaceholder.startAnimating()
         
         content.loadContent { [weak self] (error) in
@@ -252,6 +252,8 @@ public class DetailsBaseViewController: UIViewController {
         stackViewContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: stackViewContainerTopOffset).isActive = true
         
         stackViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackViewContainer.delaysContentTouches = false
         
         stackViewContainer.showsVerticalScrollIndicator = false
         stackViewContainer.backgroundColor = .clear

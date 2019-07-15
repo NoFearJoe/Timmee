@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="HrY-5o-wUH" customClass="TCSStackViewContainer" customModule="UIComponents" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbv-pK-Ue0">
+                    <rect key="frame" x="15" y="0.0" width="345" height="668"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dcH-nb-viD">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="668"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCw-vM-sB6">
+                                    <rect key="frame" x="0.0" y="0.0" width="345" height="668"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="dcH-nb-viD" secondAttribute="bottom" id="0tO-7o-mAb"/>
+                        <constraint firstItem="dcH-nb-viD" firstAttribute="top" secondItem="Qbv-pK-Ue0" secondAttribute="top" id="5lx-FH-3dp"/>
+                        <constraint firstItem="dcH-nb-viD" firstAttribute="leading" secondItem="Qbv-pK-Ue0" secondAttribute="leading" id="XUZ-gG-XcK"/>
+                        <constraint firstAttribute="trailing" secondItem="dcH-nb-viD" secondAttribute="trailing" id="hvh-ZV-9Fc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Qbv-pK-Ue0" firstAttribute="top" secondItem="HrY-5o-wUH" secondAttribute="top" id="D4O-4t-u78"/>
+                <constraint firstAttribute="bottom" secondItem="Qbv-pK-Ue0" secondAttribute="bottom" id="U2J-f3-F9W"/>
+                <constraint firstItem="Qbv-pK-Ue0" firstAttribute="centerX" secondItem="HrY-5o-wUH" secondAttribute="centerX" id="WnM-sG-fSg"/>
+                <constraint firstAttribute="trailing" secondItem="Qbv-pK-Ue0" secondAttribute="trailing" constant="15" id="dbO-CI-5Sd"/>
+                <constraint firstItem="dcH-nb-viD" firstAttribute="height" secondItem="HrY-5o-wUH" secondAttribute="height" priority="250" constant="1" id="npP-H7-9tk"/>
+                <constraint firstItem="Qbv-pK-Ue0" firstAttribute="leading" secondItem="HrY-5o-wUH" secondAttribute="leading" constant="15" id="wqU-vP-aCS"/>
+            </constraints>
+            <connections>
+                <outlet property="additionalSpaceHeighEqualConstraint" destination="npP-H7-9tk" id="eef-pO-BKp"/>
+                <outlet property="placeholderView" destination="aCw-vM-sB6" id="xPc-9D-ZSD"/>
+                <outlet property="stackView" destination="dcH-nb-viD" id="tSN-jd-SXu"/>
+            </connections>
+        </scrollView>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+    </objects>
+</document>

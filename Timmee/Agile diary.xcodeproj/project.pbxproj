@@ -66,6 +66,8 @@
 		0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
 		0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */; };
 		0C737A97221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */; };
+		0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */; };
+		0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */; };
 		0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
@@ -440,6 +442,7 @@
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		0C5C469C2141014000390F85 /* EditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContainer.swift; sourceTree = "<group>"; };
 		0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionsLoader.swift; sourceTree = "<group>"; };
+		0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsProvider.swift; sourceTree = "<group>"; };
 		0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionEducationScreen.swift; sourceTree = "<group>"; };
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -1217,6 +1220,7 @@
 		9667C72322C536D30010CC00 /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */,
 				9667C72422C536F00010CC00 /* HabitDetailsViewController.swift */,
 				9667C72722C537A80010CC00 /* HabitDetailsViewController.xib */,
 				9667C72D22D3006F0010CC00 /* GoalDetailsViewController.swift */,
@@ -1720,6 +1724,7 @@
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */,
 				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
+				0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
@@ -1809,6 +1814,7 @@
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
 				9667C72622C536F00010CC00 /* HabitDetailsViewController.swift in Sources */,
 				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
+				0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,

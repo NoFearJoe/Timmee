@@ -182,16 +182,22 @@ extension TodayContentViewController: UITableViewDelegate {
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
-            let detailsViewController = makeDetailsController()
-            let habitDetailsViewController = HabitDetailsViewController(habit: habit)
-            habitDetailsViewController.loadViewIfNeeded()
-            habitDetailsViewController.onEdit = { [unowned self] in
-                detailsViewController.dismiss(animated: true, completion: {
+            let habitDetailsProvider = HabitDetailsProvider(habit: habit)
+            let habitDetailsViewController = DetailsBaseViewController(content: habitDetailsProvider)
+            let navigationController = UINavigationController(rootViewController: habitDetailsViewController)
+            navigationController.isNavigationBarHidden = true
+            navigationController.modalPresentationStyle = .formSheet
+            navigationController.transitioningDelegate = habitDetailsViewController
+            
+            habitDetailsProvider.holderViewController = navigationController
+            
+            habitDetailsProvider.onEdit = { [unowned self] in
+                navigationController.dismiss(animated: true, completion: {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
                 })
             }
-            detailsViewController.set(contentViewController: habitDetailsViewController)
-            self.transitionHandler?.present(detailsViewController, animated: true, completion: nil)
+            
+            self.transitionHandler?.present(navigationController, animated: true, completion: nil)
         case .goal:
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             let detailsViewController = makeDetailsController()

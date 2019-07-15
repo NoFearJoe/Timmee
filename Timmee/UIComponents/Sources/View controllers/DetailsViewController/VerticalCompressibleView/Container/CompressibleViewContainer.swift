@@ -12,8 +12,8 @@ import UIKit
 public final class CompressibleViewContainer: UIView, VerticalCompressibleViewContainer {
     
     // Outlet
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet private var stackView: UIStackView!
+    @IBOutlet public var backgroundView: UIView!
     
     // Internal
     private var arrangedViews = [UIView & VerticalCompressibleView]()
@@ -56,5 +56,10 @@ public final class CompressibleViewContainer: UIView, VerticalCompressibleViewCo
     public override func awakeFromNib() {
         super.awakeFromNib()
         clipsToBounds = true
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        roundCorners(corners: [.topLeft, .topRight], radius: 12)
     }
 }

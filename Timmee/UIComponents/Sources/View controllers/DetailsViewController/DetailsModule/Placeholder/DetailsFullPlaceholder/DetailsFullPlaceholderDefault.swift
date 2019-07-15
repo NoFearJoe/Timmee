@@ -8,7 +8,11 @@
 
 import UIKit
 
-public class DetailsFullPlaceholderDefault: UIView {
+public class DetailsFullPlaceholderDefault: UIView, AnimatableView {
+    
+    public func startAnimating() {}
+    public func stopAnimating() {}
+    public func clearAnimations() {}
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var logoView: UIView!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class DetailsContentPlaceholderDefault: UIView {
+public final class DetailsContentPlaceholderDefault: UIView, AnimatableView {
     
     // Outlet
     @IBOutlet weak var contentView: UIView!
