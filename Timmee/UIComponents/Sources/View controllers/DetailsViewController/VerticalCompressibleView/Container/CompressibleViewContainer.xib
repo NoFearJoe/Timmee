@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="CompressibleViewContainer" customModule="TCSDetailsUIKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="226"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJM-Ao-EPS">
+                    <rect key="frame" x="0.0" y="12" width="362" height="214"/>
+                    <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0Qb-iu-klK">
+                    <rect key="frame" x="0.0" y="0.0" width="362" height="226"/>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0Qb-iu-klK" secondAttribute="bottom" id="6K6-Of-hi2"/>
+                <constraint firstItem="0Qb-iu-klK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OGp-DN-TBU"/>
+                <constraint firstItem="0Qb-iu-klK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h06-DC-Rrq"/>
+                <constraint firstAttribute="trailing" secondItem="0Qb-iu-klK" secondAttribute="trailing" id="iHp-cS-TRN"/>
+                <constraint firstAttribute="trailing" secondItem="sJM-Ao-EPS" secondAttribute="trailing" id="vuq-iP-N2b"/>
+                <constraint firstItem="sJM-Ao-EPS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w23-Vh-wpN"/>
+                <constraint firstAttribute="bottom" secondItem="sJM-Ao-EPS" secondAttribute="bottom" id="ycB-o2-Ewg"/>
+                <constraint firstItem="sJM-Ao-EPS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="750" constant="12" id="zEe-yW-jlR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundView" destination="sJM-Ao-EPS" id="rYF-GB-etP"/>
+                <outlet property="stackView" destination="0Qb-iu-klK" id="Ve8-Ze-hMK"/>
+            </connections>
+            <point key="canvasLocation" x="28" y="14"/>
+        </view>
+    </objects>
+</document>

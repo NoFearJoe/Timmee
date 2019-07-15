@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14109"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-18-CNQ" userLabel="DetailsContentPlaceholderDefault" customClass="DetailsContentPlaceholderDefault" customModule="TCSDetailsUIKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBW-aC-2JR" userLabel="Payment View Placeholder">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4b-Tt-kF2">
+                            <rect key="frame" x="15" y="12" width="131" height="26"/>
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="Yzj-td-uYu"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhM-Tf-zzQ">
+                            <rect key="frame" x="15" y="56" width="298" height="20"/>
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="fMI-2p-aol"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWj-Lx-rGe">
+                            <rect key="frame" x="15" y="82" width="298" height="20"/>
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="CNC-vk-ci7"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="AhM-Tf-zzQ" firstAttribute="top" secondItem="b4b-Tt-kF2" secondAttribute="bottom" constant="18" id="9um-Vr-oko"/>
+                        <constraint firstAttribute="trailing" secondItem="b4b-Tt-kF2" secondAttribute="trailing" constant="229" id="GiI-wo-o4a"/>
+                        <constraint firstItem="AhM-Tf-zzQ" firstAttribute="leading" secondItem="qBW-aC-2JR" secondAttribute="leading" constant="15" id="Hpi-p8-qU1"/>
+                        <constraint firstItem="b4b-Tt-kF2" firstAttribute="top" secondItem="qBW-aC-2JR" secondAttribute="top" constant="12" id="JI2-bn-ZM4"/>
+                        <constraint firstItem="b4b-Tt-kF2" firstAttribute="leading" secondItem="qBW-aC-2JR" secondAttribute="leading" constant="15" id="MRp-XY-rlE"/>
+                        <constraint firstItem="oWj-Lx-rGe" firstAttribute="top" secondItem="AhM-Tf-zzQ" secondAttribute="bottom" constant="6" id="PTp-3H-3DS"/>
+                        <constraint firstAttribute="trailing" secondItem="AhM-Tf-zzQ" secondAttribute="trailing" constant="62" id="e0F-LV-qTH"/>
+                        <constraint firstAttribute="height" constant="124" id="fHP-JY-jW2"/>
+                        <constraint firstAttribute="trailing" secondItem="oWj-Lx-rGe" secondAttribute="trailing" constant="62" id="gAY-we-aQB"/>
+                        <constraint firstItem="oWj-Lx-rGe" firstAttribute="leading" secondItem="qBW-aC-2JR" secondAttribute="leading" constant="15" id="muE-qq-Uhx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qBW-aC-2JR" firstAttribute="top" secondItem="g4x-18-CNQ" secondAttribute="top" id="YD5-1o-9ee"/>
+                <constraint firstAttribute="bottom" secondItem="qBW-aC-2JR" secondAttribute="bottom" id="dns-h5-MOs"/>
+                <constraint firstItem="qBW-aC-2JR" firstAttribute="leading" secondItem="g4x-18-CNQ" secondAttribute="leading" id="qah-PK-NJ5"/>
+                <constraint firstAttribute="trailing" secondItem="qBW-aC-2JR" secondAttribute="trailing" id="rfa-Yp-X4b"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentView" destination="qBW-aC-2JR" id="z9m-Sl-bBw"/>
+            </connections>
+            <point key="canvasLocation" x="191" y="-68"/>
+        </view>
+    </objects>
+</document>

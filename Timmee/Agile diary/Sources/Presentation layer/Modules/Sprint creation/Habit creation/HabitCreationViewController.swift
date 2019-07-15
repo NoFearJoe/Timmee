@@ -321,6 +321,7 @@ private extension HabitCreationViewController {
     }
     
     func setupDoneButton() {
+        headerView.rightButton?.setTitle("done".localized, for: .normal)
         headerView.rightButton?.setTitleColor(AppTheme.current.colors.inactiveElementColor, for: .disabled)
         headerView.rightButton?.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
     }

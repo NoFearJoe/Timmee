@@ -9,6 +9,7 @@
 import UIKit
 import UIComponents
 import Synchronization
+import FloatingPanel
 
 final class TodayContentViewController: UIViewController, AlertInput {
     
@@ -180,14 +181,91 @@ extension TodayContentViewController: UITableViewDelegate {
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
-            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
+            let detailsViewController = makeDetailsController()
+            let habitDetailsViewController = HabitDetailsViewController(habit: habit)
+            habitDetailsViewController.loadViewIfNeeded()
+            habitDetailsViewController.onEdit = { [unowned self] in
+                detailsViewController.dismiss(animated: true, completion: {
+                    self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
+                })
+            }
+            detailsViewController.set(contentViewController: habitDetailsViewController)
+            self.transitionHandler?.present(detailsViewController, animated: true, completion: nil)
         case .goal:
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
-            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+            let detailsViewController = makeDetailsController()
+            let goalDetailsViewController = GoalDetailsViewController(goal: goal)
+            goalDetailsViewController.loadViewIfNeeded()
+            goalDetailsViewController.onEdit = { [unowned self] in
+                detailsViewController.dismiss(animated: true, completion: {
+                    self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+                })
+            }
+            detailsViewController.set(contentViewController: goalDetailsViewController)
+            detailsViewController.track(scrollView: goalDetailsViewController.contentScrollView)
+            self.transitionHandler?.present(detailsViewController, animated: true, completion: nil)
         case .activity: return
         }
     }
     
+    private func makeDetailsController() -> FloatingPanelController {
+        let detailsViewController = FloatingPanelController()
+        detailsViewController.delegate = self
+        detailsViewController.surfaceView.backgroundColor = AppTheme.current.colors.foregroundColor
+        detailsViewController.surfaceView.cornerRadius = 20
+        detailsViewController.surfaceView.shadowHidden = false
+        detailsViewController.isRemovalInteractionEnabled = true
+        return detailsViewController
+    }
+    
+}
+
+extension TodayContentViewController: FloatingPanelControllerDelegate {
+    
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+        return AgileeFloatingPanelLayout()
+    }
+    
+    func floatingPanel(_ vc: FloatingPanelController, behaviorFor newCollection: UITraitCollection) -> FloatingPanelBehavior? {
+        return AgileeFloaingPanelBehavior()
+    }
+    
+}
+
+final class AgileeFloatingPanelLayout: FloatingPanelIntrinsicLayout {
+    func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+        return 0.75
+    }
+}
+
+final class AgileeFloaingPanelBehavior: FloatingPanelBehavior {
+    func removeAnimator(_ fpc: FloatingPanelController, from: FloatingPanelPosition) -> UIViewPropertyAnimator {
+        return UIViewPropertyAnimator(duration: 0.15, curve: .easeInOut)
+    }
+    
+    public func interactionAnimator(_ fpc: FloatingPanelController, to targetPosition: FloatingPanelPosition, with velocity: CGVector) -> UIViewPropertyAnimator {
+        let timing = timeingCurve(with: velocity)
+        let animator = UIViewPropertyAnimator(duration: 0, timingParameters: timing)
+        animator.isInterruptible = false
+        return animator
+    }
+    
+    private func timeingCurve(with velocity: CGVector) -> UITimingCurveProvider {
+        let damping = self.getDamping(with: velocity)
+        return UISpringTimingParameters(dampingRatio: damping,
+                                        frequencyResponse: 0.3,
+                                        initialVelocity: velocity)
+    }
+    
+    private let velocityThreshold: CGFloat = 8.0
+    private func getDamping(with velocity: CGVector) -> CGFloat {
+        let dy = abs(velocity.dy)
+        if dy > velocityThreshold {
+            return 0.7
+        } else {
+            return 1.0
+        }
+    }
 }
 
 extension TodayContentViewController: UIViewControllerPreviewingDelegate {
@@ -198,17 +276,13 @@ extension TodayContentViewController: UIViewControllerPreviewingDelegate {
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: touchedCellIndexPath) else { return nil }
-            let habitEditorViewController = ViewControllersFactory.habitEditor
+            let habitEditorViewController = HabitDetailsViewController(habit: habit)
             habitEditorViewController.loadViewIfNeeded()
-            habitEditorViewController.setHabit(habit, sprintID: sprintID)
-            habitEditorViewController.setEditingMode(.short)
             return habitEditorViewController
         case .goal:
             guard let goal = self.goalsCacheObserver?.item(at: touchedCellIndexPath) else { return nil }
-            let goalEditorViewController = ViewControllersFactory.goalEditor
+            let goalEditorViewController = GoalDetailsViewController(goal: goal)
             goalEditorViewController.loadViewIfNeeded()
-            goalEditorViewController.setGoal(goal, sprintID: sprintID)
-            goalEditorViewController.setEditingMode(.short)
             return goalEditorViewController
         case .activity: return nil
         }

@@ -76,6 +76,7 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.1)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FloatingPanel (1.6.1)
   - Foto (0.3)
   - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -137,6 +138,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Storage
+  - FloatingPanel
   - Foto
   - SwipeCellKit
 
@@ -158,6 +160,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
+    - FloatingPanel
     - Foto
     - GoogleAppMeasurement
     - GoogleUtilities
@@ -186,6 +189,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 58043a1c2d2c91efdaa8d8f385cdbaa2ce750cfe
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseStorage: 3d22c041370593e639fba013d1eb698a8dae2881
+  FloatingPanel: 46f000f80eddffd7c27acdb48b813eb1b4ba7d79
   Foto: 6eb4eacbbc9a0a56418891347128b2ab0fd16553
   GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
@@ -197,6 +201,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SwipeCellKit: 4eada3884ab1bbae5e8d2fb9030c242aa23d7f42
 
-PODFILE CHECKSUM: 284fd43b6e8ac79b53f3d2a72b40ad6d25db98f6
+PODFILE CHECKSUM: 3afc7549ec1765934c29360354dc39678d5ea220
 
 COCOAPODS: 1.6.0.beta.1
