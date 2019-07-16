@@ -197,8 +197,8 @@ private extension SprintContentViewController {
         placeholderView.backgroundColor = .clear
         placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
         placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
-        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        placeholderView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         placeholderContainer.isHidden = true
     }
     
