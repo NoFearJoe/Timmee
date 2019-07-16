@@ -10,7 +10,6 @@ import UIKit
 import TasksKit
 import UIComponents
 import Synchronization
-import FloatingPanel
 
 final class TodayContentViewController: UIViewController, AlertInput {
     
@@ -79,10 +78,6 @@ final class TodayContentViewController: UIViewController, AlertInput {
         
         NotificationCenter.default.addObserver(self, selector: #selector(onBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-        
-        if UIScreen.main.traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: contentView)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -187,7 +182,9 @@ extension TodayContentViewController: UITableViewDelegate {
             let navigationController = UINavigationController(rootViewController: habitDetailsViewController)
             navigationController.isNavigationBarHidden = true
             navigationController.modalPresentationStyle = .formSheet
-            navigationController.transitioningDelegate = habitDetailsViewController
+            if UIDevice.current.isPhone {
+                navigationController.transitioningDelegate = habitDetailsViewController
+            }
             
             habitDetailsProvider.holderViewController = navigationController
             
@@ -205,7 +202,9 @@ extension TodayContentViewController: UITableViewDelegate {
             let navigationController = UINavigationController(rootViewController: goalDetailsViewController)
             navigationController.isNavigationBarHidden = true
             navigationController.modalPresentationStyle = .formSheet
-            navigationController.transitioningDelegate = goalDetailsViewController
+            if UIDevice.current.isPhone {
+                navigationController.transitioningDelegate = goalDetailsViewController
+            }
             
             goalDetailsProvider.holderViewController = navigationController
             
@@ -216,100 +215,6 @@ extension TodayContentViewController: UITableViewDelegate {
             }
             
             self.transitionHandler?.present(navigationController, animated: true, completion: nil)
-        case .activity: return
-        }
-    }
-    
-    private func makeDetailsController() -> FloatingPanelController {
-        let detailsViewController = FloatingPanelController()
-        detailsViewController.delegate = self
-        detailsViewController.surfaceView.backgroundColor = AppTheme.current.colors.foregroundColor
-        detailsViewController.surfaceView.cornerRadius = 20
-        detailsViewController.surfaceView.shadowHidden = false
-        detailsViewController.isRemovalInteractionEnabled = true
-        return detailsViewController
-    }
-    
-}
-
-extension TodayContentViewController: FloatingPanelControllerDelegate {
-    
-    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        return AgileeFloatingPanelLayout()
-    }
-    
-    func floatingPanel(_ vc: FloatingPanelController, behaviorFor newCollection: UITraitCollection) -> FloatingPanelBehavior? {
-        return AgileeFloaingPanelBehavior()
-    }
-    
-}
-
-final class AgileeFloatingPanelLayout: FloatingPanelIntrinsicLayout {
-    func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-        return 0.75
-    }
-}
-
-final class AgileeFloaingPanelBehavior: FloatingPanelBehavior {
-    func removeAnimator(_ fpc: FloatingPanelController, from: FloatingPanelPosition) -> UIViewPropertyAnimator {
-        return UIViewPropertyAnimator(duration: 0.15, curve: .easeInOut)
-    }
-    
-    public func interactionAnimator(_ fpc: FloatingPanelController, to targetPosition: FloatingPanelPosition, with velocity: CGVector) -> UIViewPropertyAnimator {
-        let timing = timeingCurve(with: velocity)
-        let animator = UIViewPropertyAnimator(duration: 0, timingParameters: timing)
-        animator.isInterruptible = false
-        return animator
-    }
-    
-    private func timeingCurve(with velocity: CGVector) -> UITimingCurveProvider {
-        let damping = self.getDamping(with: velocity)
-        return UISpringTimingParameters(dampingRatio: damping,
-                                        frequencyResponse: 0.3,
-                                        initialVelocity: velocity)
-    }
-    
-    private let velocityThreshold: CGFloat = 8.0
-    private func getDamping(with velocity: CGVector) -> CGFloat {
-        let dy = abs(velocity.dy)
-        if dy > velocityThreshold {
-            return 0.7
-        } else {
-            return 1.0
-        }
-    }
-}
-
-extension TodayContentViewController: UIViewControllerPreviewingDelegate {
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let touchedCellIndexPath = contentView.indexPathForRow(at: location) else { return nil }
-
-        switch section.itemsKind {
-        case .habit:
-            guard let habit = habitsCacheObserver?.item(at: touchedCellIndexPath) else { return nil }
-            let habitEditorViewController = HabitDetailsViewController(habit: habit)
-            habitEditorViewController.loadViewIfNeeded()
-            return habitEditorViewController
-        case .goal:
-            guard let goal = self.goalsCacheObserver?.item(at: touchedCellIndexPath) else { return nil }
-            let goalEditorViewController = GoalDetailsViewController(goal: goal)
-            goalEditorViewController.loadViewIfNeeded()
-            return goalEditorViewController
-        case .activity: return nil
-        }
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        switch section.itemsKind {
-        case .habit:
-            guard let habitEditorViewController = viewControllerToCommit as? HabitCreationViewController else { return }
-            guard let habit = habitEditorViewController.habit else { return }
-            self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
-        case .goal:
-            guard let goalEditorViewController = viewControllerToCommit as? TargetCreationViewController else { return }
-            guard let goal = goalEditorViewController.goal else { return }
-            self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
         case .activity: return
         }
     }

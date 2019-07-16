@@ -288,14 +288,6 @@
 		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
 		963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */; };
-		9667C72522C536F00010CC00 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667C72422C536F00010CC00 /* HabitDetailsViewController.swift */; };
-		9667C72622C536F00010CC00 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667C72422C536F00010CC00 /* HabitDetailsViewController.swift */; };
-		9667C72822C537A80010CC00 /* HabitDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667C72722C537A80010CC00 /* HabitDetailsViewController.xib */; };
-		9667C72922C537A80010CC00 /* HabitDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667C72722C537A80010CC00 /* HabitDetailsViewController.xib */; };
-		9667C72B22D300630010CC00 /* GoalDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667C72A22D300620010CC00 /* GoalDetailsViewController.xib */; };
-		9667C72C22D300630010CC00 /* GoalDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667C72A22D300620010CC00 /* GoalDetailsViewController.xib */; };
-		9667C72E22D3006F0010CC00 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667C72D22D3006F0010CC00 /* GoalDetailsViewController.swift */; };
-		9667C72F22D3006F0010CC00 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667C72D22D3006F0010CC00 /* GoalDetailsViewController.swift */; };
 		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
 		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
 		967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328921517F3C00B9201A /* SettingsViewController.swift */; };
@@ -532,10 +524,6 @@
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
-		9667C72422C536F00010CC00 /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
-		9667C72722C537A80010CC00 /* HabitDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitDetailsViewController.xib; sourceTree = "<group>"; };
-		9667C72A22D300620010CC00 /* GoalDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalDetailsViewController.xib; sourceTree = "<group>"; };
-		9667C72D22D3006F0010CC00 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 		967C328221517DC500B9201A /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
 		967C328721517E4100B9201A /* SettingsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCells.swift; sourceTree = "<group>"; };
 		967C328921517F3C00B9201A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -1224,11 +1212,7 @@
 			isa = PBXGroup;
 			children = (
 				0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */,
-				9667C72422C536F00010CC00 /* HabitDetailsViewController.swift */,
-				9667C72722C537A80010CC00 /* HabitDetailsViewController.xib */,
 				0C86E4F422DD9B9600DA7B15 /* GoalDetailsProvider.swift */,
-				9667C72D22D3006F0010CC00 /* GoalDetailsViewController.swift */,
-				9667C72A22D300620010CC00 /* GoalDetailsViewController.xib */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -1424,9 +1408,7 @@
 				0CF7E51F21466A830071DABD /* Today.storyboard in Resources */,
 				96BE83882175034400CDECAF /* InfoPlist.strings in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
-				9667C72B22D300630010CC00 /* GoalDetailsViewController.xib in Resources */,
 				96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
-				9667C72822C537A80010CC00 /* HabitDetailsViewController.xib in Resources */,
 				0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
@@ -1457,9 +1439,7 @@
 				0CB673C321A52C3900178EB1 /* Today.storyboard in Resources */,
 				0CB673C421A52C3900178EB1 /* InfoPlist.strings in Resources */,
 				0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */,
-				9667C72C22D300630010CC00 /* GoalDetailsViewController.xib in Resources */,
 				96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
-				9667C72922C537A80010CC00 /* HabitDetailsViewController.xib in Resources */,
 				0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
@@ -1734,7 +1714,6 @@
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
-				9667C72522C536F00010CC00 /* HabitDetailsViewController.swift in Sources */,
 				9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				0CC405E021EDFEBD0069C6C5 /* FocusableTextField.swift in Sources */,
@@ -1749,7 +1728,6 @@
 				0CB2EDF1214F971700AA4FB8 /* NumberPadAdapter.swift in Sources */,
 				96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
-				9667C72E22D3006F0010CC00 /* GoalDetailsViewController.swift in Sources */,
 				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
@@ -1782,7 +1760,6 @@
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
 				0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
-				9667C72F22D3006F0010CC00 /* GoalDetailsViewController.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
@@ -1817,7 +1794,6 @@
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
-				9667C72622C536F00010CC00 /* HabitDetailsViewController.swift in Sources */,
 				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,

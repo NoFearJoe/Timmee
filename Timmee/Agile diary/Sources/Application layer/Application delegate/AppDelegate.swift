@@ -91,8 +91,11 @@ extension AppDelegate: PeriodicallySynchronizationRunnerDelegate {
 private extension AppDelegate {
     func performPreparingActions(completion: @escaping () -> Void) {
         self.performMigrations {
+            print("Preparing: migrations are finished")
             self.performOtherPreparingActions {
+                print("Preparing: other preparing actions are finished")
                 self.performInitialSynchronization {
+                    print("Preparing: Synchronization is finished")
                     DispatchQueue.main.async {
                         completion()
                     }

@@ -9,7 +9,6 @@ target 'Agile diary' do
   pod 'Foto'
   pod 'Charts'
   pod 'Dwifft'
-  pod 'FloatingPanel'
 
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
@@ -29,7 +28,6 @@ target 'Agile diary debug' do
     pod 'Foto'
     pod 'Charts'
     pod 'Dwifft'
-    pod 'FloatingPanel'
 
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
