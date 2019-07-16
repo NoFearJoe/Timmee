@@ -40,7 +40,7 @@ public final class CompressibleTitleView: UIView, VerticalCompressibleView, Conf
             let minAttributedText = NSAttributedString(string: attributedText.string, attributes: [.font: model.minimumFont])
             minimizedStateHeight = ceil(minAttributedText.boundingRect(with: CGSize(width: constrainedWidth, height: 9999),
                                                                        options: .usesLineFragmentOrigin,
-                                                                       context: nil).height)
+                                                                       context: nil).height) + 2
             sizeHelper = DynamicSizeChangeHelper(maximum: maximizedStateHeight, minimum: minimizedStateHeight)
         }
     }
@@ -54,7 +54,7 @@ public final class CompressibleTitleView: UIView, VerticalCompressibleView, Conf
         height.constant = sizeHelper.size(for: state)
         let scale = sizeHelper.scale(for: state)
         let fontSize = min(model.defaultFont.pointSize, max(model.minimumFont.pointSize, model.defaultFont.pointSize * scale))
-        let newFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        let newFont = model.defaultFont.withSize(fontSize)
         titleLabel.font = newFont
         
         titleLabel.alpha = transparentDisappearingEnabled ? sizeHelper.alpha(for: state) : 1

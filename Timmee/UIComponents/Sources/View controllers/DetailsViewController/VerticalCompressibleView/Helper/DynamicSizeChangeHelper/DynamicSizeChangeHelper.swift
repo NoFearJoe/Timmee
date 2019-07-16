@@ -42,7 +42,7 @@ public class DynamicSizeChangeHelper: IDynamicSizeChangeHelper {
     }
 
     public func alpha(for state: CGFloat) -> CGFloat {
-        return max(0, (state - 0.5) * 2)
+        return max(0, (state - 0.2) * 2)
     }
 
     // MARK: - Private

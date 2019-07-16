@@ -1,25 +1,26 @@
 //
-//  HabitDetailsProvider.swift
+//  GoalDetailsProvider.swift
 //  Agile diary
 //
-//  Created by i.kharabet on 15/07/2019.
+//  Created by i.kharabet on 16/07/2019.
 //  Copyright © 2019 Mesterra. All rights reserved.
 //
 
 import UIComponents
 
-final class HabitDetailsProvider: DetailModuleProvider {
+final class GoalDetailsProvider: DetailModuleProvider {
     
     var onEdit: (() -> Void)?
     
     weak var holderViewController: UIViewController?
     
-    private let habit: Habit
+    private let goal: Goal
     
-    private let habitsService = ServicesAssembly.shared.habitsService
+    private let goalsService = ServicesAssembly.shared.goalsService
+    private let stagesService = ServicesAssembly.shared.subtasksService
     
-    init(habit: Habit) {
-        self.habit = habit
+    init(goal: Goal) {
+        self.goal = goal
     }
     
     func loadContent(completion: @escaping (Error?) -> Void) {
@@ -29,117 +30,43 @@ final class HabitDetailsProvider: DetailModuleProvider {
     func reloadContent() {
         let contentView = stackViewContainer
         
-        // value and time
-        
-        if let value = habit.value {
-            let emptyView0 = UIView()
-            emptyView0.backgroundColor = AppTheme.current.colors.foregroundColor
-            emptyView0.heightAnchor.constraint(equalToConstant: 20).isActive = true
-            contentView.addView(emptyView0)
+        // Stages
+        let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition })
+        if !stages.isEmpty {
+            let emptyView = UIView()
+            emptyView.backgroundColor = AppTheme.current.colors.foregroundColor
+            emptyView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            contentView.addView(emptyView)
             
-            let amountLabel = UILabel()
-            amountLabel.font = AppTheme.current.fonts.regular(24)
-            amountLabel.textColor = AppTheme.current.colors.activeElementColor
-            amountLabel.text = "\(value.amount)" + " " + value.units.localized
-            let amountContainer = DetailView(title: "amount".localized, detailView: amountLabel)
-            amountContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
-            amountContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-            contentView.addView(amountContainer)
-        }
-        
-        let emptyView1 = UIView()
-        emptyView1.backgroundColor = AppTheme.current.colors.foregroundColor
-        emptyView1.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        contentView.addView(emptyView1)
-        
-        let dayTimeLabel = UILabel()
-        dayTimeLabel.font = AppTheme.current.fonts.regular(24)
-        dayTimeLabel.textColor = AppTheme.current.colors.activeElementColor
-        dayTimeLabel.text = habit.calculatedDayTime.localized.capitalizedFirst
-        let dayTimeContainer = DetailView(title: "day_time".localized, detailView: dayTimeLabel)
-        dayTimeContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
-        dayTimeContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-        contentView.addView(dayTimeContainer)
-        
-        // reminder
-        if let notificationDate = habit.notificationDate {
-            let emptyView2 = UIView()
-            emptyView2.backgroundColor = AppTheme.current.colors.foregroundColor
-            emptyView2.heightAnchor.constraint(equalToConstant: 20).isActive = true
-            contentView.addView(emptyView2)
-            
-            let reminderLabel = UILabel()
-            reminderLabel.font = AppTheme.current.fonts.regular(24)
-            reminderLabel.textColor = AppTheme.current.colors.activeElementColor
-            reminderLabel.text = notificationDate.asTimeString
-            let notificationContainer = DetailView(title: "reminder".localized, detailView: reminderLabel)
-            notificationContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
-            notificationContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-            contentView.addView(notificationContainer)
-        }
-        
-        // days
-        
-        let emptyView3 = UIView()
-        emptyView3.backgroundColor = AppTheme.current.colors.foregroundColor
-        emptyView3.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        contentView.addView(emptyView3)
-        
-        let daysContainerView = UIStackView()
-        daysContainerView.axis = .horizontal
-        daysContainerView.alignment = .leading
-        daysContainerView.distribution = .fill
-        daysContainerView.spacing = 8
-        daysContainerView.height(36)
-        daysContainerView.width(CGFloat(habit.dueDays.count) * 36 + CGFloat(habit.dueDays.count - 1) * 8)
-        habit.dueDays.sorted(by: { $0.weekday < $1.weekday }).forEach { dueDay in
-            let dueDayView = UILabel()
-            dueDayView.text = dueDay.localizedShort
-            dueDayView.textColor = AppTheme.current.colors.foregroundColor
-            dueDayView.font = AppTheme.current.fonts.regular(16)
-            dueDayView.textAlignment = .center
-            dueDayView.clipsToBounds = true
-            dueDayView.layer.cornerRadius = 18
-            if dueDay.weekday > 5 {
-                dueDayView.backgroundColor = AppTheme.current.colors.wrongElementColor
-            } else {
-                dueDayView.backgroundColor = AppTheme.current.colors.mainElementColor
+            let stagesContainerView = UIView()
+            for (index, stage) in stages.enumerated() {
+                let stageView = StageView.loadedFromNib()
+                stageView.title = stage.title
+                stageView.isChecked = stage.isDone
+                stageView.setupAppearance()
+                stageView.onChangeCheckedState = { [unowned self] isChecked in
+                    stage.isDone = isChecked
+                    self.stagesService.updateSubtask(stage, completion: nil)
+                }
+                stagesContainerView.addSubview(stageView)
+                if stages.count == 1 {
+                    stageView.allEdges().toSuperview()
+                } else if index == 0 {
+                    [stageView.top(4), stageView.leading(), stageView.trailing()].toSuperview()
+                } else if index >= stages.count - 1 {
+                    [stageView.leading(), stageView.trailing(), stageView.bottom(4)].toSuperview()
+                    let previousView = stagesContainerView.subviews[index - 1]
+                    stageView.topToBottom().to(previousView, addTo: stagesContainerView)
+                } else {
+                    [stageView.leading(), stageView.trailing()].toSuperview()
+                    let previousView = stagesContainerView.subviews[index - 1]
+                    stageView.topToBottom().to(previousView, addTo: stagesContainerView)
+                }
             }
-            dueDayView.height(36)
-            dueDayView.width(36)
-            daysContainerView.addArrangedSubview(dueDayView)
-        }
-        let daysWrapperView = UIView()
-        daysWrapperView.backgroundColor = .clear
-        daysWrapperView.height(44)
-        daysWrapperView.addSubview(daysContainerView)
-        [daysContainerView.top(4), daysContainerView.leading(), daysContainerView.bottom(4)].toSuperview()
-        let daysContainer = DetailView(title: "due_days".localized, detailView: daysWrapperView)
-        daysContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
-        daysContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-        contentView.addView(daysContainer)
-        
-        // link
-        if !habit.link.trimmed.isEmpty {
-            let emptyView4 = UIView()
-            emptyView4.backgroundColor = AppTheme.current.colors.foregroundColor
-            emptyView4.heightAnchor.constraint(equalToConstant: 20).isActive = true
-            contentView.addView(emptyView4)
-            
-            let linkLabel = UILabel()
-            linkLabel.font = AppTheme.current.fonts.regular(16)
-            linkLabel.numberOfLines = 2
-            let linkString = NSAttributedString(string: habit.link,
-                                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                                                             .foregroundColor: AppTheme.current.colors.mainElementColor])
-            linkLabel.attributedText = linkString
-            linkLabel.isUserInteractionEnabled = true
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapToLink))
-            linkLabel.addGestureRecognizer(tapGestureRecognizer)
-            let linkContainer = DetailView(title: "link".localized, detailView: linkLabel)
-            linkContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
-            linkContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-            contentView.addView(linkContainer)
+            let stagesContainer = DetailView(title: "stages".localized, detailView: stagesContainerView)
+            stagesContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
+            stagesContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            contentView.addView(stagesContainer)
         }
         
         // Buttons
@@ -164,7 +91,7 @@ final class HabitDetailsProvider: DetailModuleProvider {
         editButton.layer.cornerRadius = 6
         buttonsContainer.addArrangedSubview(editButton)
         
-        if habit.isDone(at: Date.now) {
+        if goal.isDone {
             let restoreButton = UIButton(type: .custom)
             restoreButton.addTarget(self, action: #selector(onTapToRestoreButton), for: .touchUpInside)
             restoreButton.setTitle("restore".localized, for: .normal)
@@ -204,9 +131,11 @@ final class HabitDetailsProvider: DetailModuleProvider {
                                                               reversed: false))
         container.add(compressibleView: topSpacer)
         
+        // Title
+        
         let titleView = CompressibleTitleView.loadedFromNib()
         titleView.backgroundColor = AppTheme.current.colors.foregroundColor
-        let attributedTitle = NSAttributedString(string: habit.title,
+        let attributedTitle = NSAttributedString(string: goal.title,
                                                  attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
         titleView.configure(with: CompressibleTitleView.Model(attributedText: attributedTitle,
                                                               transparentDisappearing: false,
@@ -215,6 +144,32 @@ final class HabitDetailsProvider: DetailModuleProvider {
                                                               defaultFont: AppTheme.current.fonts.bold(34),
                                                               minimumFont: AppTheme.current.fonts.bold(24)))
         container.add(compressibleView: titleView)
+        
+        if !goal.note.isEmpty {
+            // Middle spacer
+
+            let middleSpacer = CompressibleEmptyView()
+            middleSpacer.configure(with: CompressibleEmptyView.Model(backgroundColor: AppTheme.current.colors.foregroundColor,
+                                                                     maximizedStateHeight: 4,
+                                                                     minimizedStateHeight: 0,
+                                                                     reversed: false))
+            container.add(compressibleView: middleSpacer)
+            
+            // Subtitle
+            
+            let subtitleView = CompressibleTitleView.loadedFromNib()
+            subtitleView.backgroundColor = AppTheme.current.colors.foregroundColor
+            let attributedSubtitle = NSAttributedString(string: goal.note,
+                                                        attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
+            subtitleView.configure(with: CompressibleTitleView.Model(attributedText: attributedSubtitle,
+                                                                     transparentDisappearing: true,
+                                                                     minimumHeight: 0,
+                                                                     sideInset: 15,
+                                                                     defaultFont: AppTheme.current.fonts.regular(18),
+                                                                     minimumFont: AppTheme.current.fonts.regular(0),
+                                                                     compressionDisabled: false))
+            container.add(compressibleView: subtitleView)
+        }
         
         let bottomSpacer = CompressibleEmptyView()
         bottomSpacer.configure(with: CompressibleEmptyView.Model(backgroundColor: AppTheme.current.colors.foregroundColor,
@@ -264,25 +219,20 @@ final class HabitDetailsProvider: DetailModuleProvider {
     
     // Actions
     
-    @objc private func onTapToLink() {
-        guard let url = URL(string: habit.link), UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-    
     @objc private func onTapToEditButton() {
         onEdit?()
     }
     
     @objc private func onTapToCompleteButton() {
-        habit.setDone(true, at: Date.now)
-        habitsService.updateHabit(habit, completion: { [weak self] _ in
+        goal.isDone = true
+        goalsService.updateGoal(goal, completion: { [weak self] _ in
             self?.holderViewController?.dismiss(animated: true, completion: nil)
         })
     }
     
     @objc private func onTapToRestoreButton() {
-        habit.setDone(false, at: Date.now)
-        habitsService.updateHabit(habit, completion: { [weak self] _ in
+        goal.isDone = false
+        goalsService.updateGoal(goal, completion: { [weak self] _ in
             self?.holderViewController?.dismiss(animated: true, completion: nil)
         })
     }

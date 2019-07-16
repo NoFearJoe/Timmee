@@ -298,7 +298,7 @@
 "new_password_error_alert_title" = "Error";
 "new_password_error_alert_message" = "Entered the wrong verification code or no internet connection";
 
-"value_title" = "Amount";
+"amount" = "Amount";
 
 "times" = "times";
 "hours" = "h";
@@ -327,7 +327,7 @@
 
 "error_while_loading_habits_collections" = "An error occurred while loading collections. Check your internet connection or try again later.";
 
-"day_time_picker_title" = "Time of day";
+"day_time" = "Time of day";
 "morning" = "Morning";
 "afternoon" = "Afternoon";
 "evening" = "Evening";

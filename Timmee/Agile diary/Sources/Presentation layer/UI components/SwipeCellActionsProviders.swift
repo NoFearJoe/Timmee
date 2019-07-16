@@ -160,7 +160,7 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
     
 }
 
-final class TodayTargetCellSwipeActionsProvider {
+final class TodayGoalCellSwipeActionsProvider {
     
     var shouldShowDoneAction: ((IndexPath) -> Bool)?
     var shouldShowEditAction: ((IndexPath) -> Bool)?
@@ -178,7 +178,7 @@ final class TodayTargetCellSwipeActionsProvider {
         var options = SwipeTableOptions()
         options.expansionStyle = nil
         options.transitionStyle = SwipeTransitionStyle.drag
-        options.backgroundColor = TodayTargetCellSwipeActionsProvider.backgroundColor
+        options.backgroundColor = TodayGoalCellSwipeActionsProvider.backgroundColor
         return options
     }()
     
@@ -193,7 +193,7 @@ final class TodayTargetCellSwipeActionsProvider {
         action.image = #imageLiteral(resourceName: "checkmark")
         action.textColor = AppTheme.current.colors.mainElementColor
         action.title = nil
-        action.backgroundColor = TodayTargetCellSwipeActionsProvider.backgroundColor
+        action.backgroundColor = TodayGoalCellSwipeActionsProvider.backgroundColor
         action.transitionDelegate = nil
         return action
     }()
@@ -209,7 +209,7 @@ final class TodayTargetCellSwipeActionsProvider {
         action.image = #imageLiteral(resourceName: "repeat")
         action.textColor = AppTheme.current.colors.mainElementColor
         action.title = nil
-        action.backgroundColor = TodayTargetCellSwipeActionsProvider.backgroundColor
+        action.backgroundColor = TodayGoalCellSwipeActionsProvider.backgroundColor
         action.transitionDelegate = nil
         return action
     }()
@@ -247,7 +247,7 @@ final class TodayTargetCellSwipeActionsProvider {
     
 }
 
-extension TodayTargetCellSwipeActionsProvider: SwipeTableViewCellDelegate {
+extension TodayGoalCellSwipeActionsProvider: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         switch orientation {

@@ -512,6 +512,7 @@ final class StageCell: SwipeTableViewCell {
             titleView.textView.delegate = self
             titleView.textView.isEditable = false
             titleView.textView.isSelectable = false
+            titleView.clipsToBounds = true
             titleView.textView.textContainerInset.left = -4
             titleView.maxNumberOfLines = 5
             titleView.delegates.didChangeHeight = { [unowned self] height in

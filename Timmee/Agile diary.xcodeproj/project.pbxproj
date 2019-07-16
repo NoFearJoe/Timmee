@@ -68,6 +68,8 @@
 		0C737A97221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */; };
 		0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */; };
 		0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */; };
+		0C86E4F522DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4F422DD9B9600DA7B15 /* GoalDetailsProvider.swift */; };
+		0C86E4F622DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4F422DD9B9600DA7B15 /* GoalDetailsProvider.swift */; };
 		0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */; };
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
@@ -158,7 +160,7 @@
 		0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
 		0CB673A321A52C3900178EB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
 		0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
-		0CB673A521A52C3900178EB1 /* TodayTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */; };
+		0CB673A521A52C3900178EB1 /* TodayGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayGoalCell.swift */; };
 		0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */; };
 		0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
 		0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
@@ -266,7 +268,7 @@
 		0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5222146833A0071DABD /* TodayContentViewController.swift */; };
 		0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
 		0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */; };
-		0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */; };
+		0CF7E5392147B21F0071DABD /* TodayGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayGoalCell.swift */; };
 		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
 		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
@@ -443,6 +445,7 @@
 		0C5C469C2141014000390F85 /* EditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContainer.swift; sourceTree = "<group>"; };
 		0C737A95221AD6F200D741C6 /* HabitsCollectionsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionsLoader.swift; sourceTree = "<group>"; };
 		0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsProvider.swift; sourceTree = "<group>"; };
+		0C86E4F422DD9B9600DA7B15 /* GoalDetailsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsProvider.swift; sourceTree = "<group>"; };
 		0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionEducationScreen.swift; sourceTree = "<group>"; };
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D0745212AD14A008122A6 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -512,7 +515,7 @@
 		0CF7E5222146833A0071DABD /* TodayContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayContentViewController.swift; sourceTree = "<group>"; };
 		0CF7E526214687C40071DABD /* TodayHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHabitCell.swift; sourceTree = "<group>"; };
 		0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCellActionsProviders.swift; sourceTree = "<group>"; };
-		0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTargetCell.swift; sourceTree = "<group>"; };
+		0CF7E5382147B21E0071DABD /* TodayGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGoalCell.swift; sourceTree = "<group>"; };
 		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -1190,7 +1193,7 @@
 			children = (
 				0CF7E53C2147E3B50071DABD /* StageView */,
 				0CF7E526214687C40071DABD /* TodayHabitCell.swift */,
-				0CF7E5382147B21E0071DABD /* TodayTargetCell.swift */,
+				0CF7E5382147B21E0071DABD /* TodayGoalCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1223,6 +1226,7 @@
 				0C86E4E022DC6B4F00DA7B15 /* HabitDetailsProvider.swift */,
 				9667C72422C536F00010CC00 /* HabitDetailsViewController.swift */,
 				9667C72722C537A80010CC00 /* HabitDetailsViewController.xib */,
+				0C86E4F422DD9B9600DA7B15 /* GoalDetailsProvider.swift */,
 				9667C72D22D3006F0010CC00 /* GoalDetailsViewController.swift */,
 				9667C72A22D300620010CC00 /* GoalDetailsViewController.xib */,
 			);
@@ -1653,6 +1657,7 @@
 				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
 				0C3DA5282153BF7500CAE635 /* BackgroundImage.swift in Sources */,
 				967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */,
+				0C86E4F522DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
@@ -1718,7 +1723,7 @@
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */,
-				0CF7E5392147B21F0071DABD /* TodayTargetCell.swift in Sources */,
+				0CF7E5392147B21F0071DABD /* TodayGoalCell.swift in Sources */,
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
@@ -1821,6 +1826,7 @@
 				0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
+				0C86E4F622DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
 				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,
@@ -1848,7 +1854,7 @@
 				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
 				0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
-				0CB673A521A52C3900178EB1 /* TodayTargetCell.swift in Sources */,
+				0CB673A521A52C3900178EB1 /* TodayGoalCell.swift in Sources */,
 				0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
 				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,

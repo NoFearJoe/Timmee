@@ -60,7 +60,7 @@ final class TodayContentViewController: UIViewController, AlertInput {
     private var habitsCacheObserver: CachedEntitiesObserver<HabitEntity, Habit>?
     private var goalsCacheObserver: CachedEntitiesObserver<GoalEntity, Goal>?
     
-    private let targetCellActionsProvider = TodayTargetCellSwipeActionsProvider()
+    private let targetCellActionsProvider = TodayGoalCellSwipeActionsProvider()
     private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
     
     override func viewDidLoad() {
@@ -142,7 +142,7 @@ extension TodayContentViewController: UITableViewDataSource {
             }
             return cell
         case .goal:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTargetCell", for: indexPath) as! TodayTargetCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayGoalCell", for: indexPath) as! TodayGoalCell
             if let goal = goalsCacheObserver?.item(at: indexPath) {
                 cell.configure(goal: goal)
                 cell.delegate = targetCellActionsProvider
@@ -200,17 +200,22 @@ extension TodayContentViewController: UITableViewDelegate {
             self.transitionHandler?.present(navigationController, animated: true, completion: nil)
         case .goal:
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
-            let detailsViewController = makeDetailsController()
-            let goalDetailsViewController = GoalDetailsViewController(goal: goal)
-            goalDetailsViewController.loadViewIfNeeded()
-            goalDetailsViewController.onEdit = { [unowned self] in
-                detailsViewController.dismiss(animated: true, completion: {
+            let goalDetailsProvider = GoalDetailsProvider(goal: goal)
+            let goalDetailsViewController = DetailsBaseViewController(content: goalDetailsProvider)
+            let navigationController = UINavigationController(rootViewController: goalDetailsViewController)
+            navigationController.isNavigationBarHidden = true
+            navigationController.modalPresentationStyle = .formSheet
+            navigationController.transitioningDelegate = goalDetailsViewController
+            
+            goalDetailsProvider.holderViewController = navigationController
+            
+            goalDetailsProvider.onEdit = { [unowned self] in
+                navigationController.dismiss(animated: true, completion: {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
                 })
             }
-            detailsViewController.set(contentViewController: goalDetailsViewController)
-            detailsViewController.track(scrollView: goalDetailsViewController.contentScrollView)
-            self.transitionHandler?.present(detailsViewController, animated: true, completion: nil)
+            
+            self.transitionHandler?.present(navigationController, animated: true, completion: nil)
         case .activity: return
         }
     }

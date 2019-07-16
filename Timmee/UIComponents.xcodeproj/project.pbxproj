@@ -33,6 +33,7 @@
 		0C86E4E722DC7C1000DA7B15 /* ITCSStackViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4E422DC7C0F00DA7B15 /* ITCSStackViewContainer.swift */; };
 		0C86E4E822DC7C1000DA7B15 /* TCSStackViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4E522DC7C0F00DA7B15 /* TCSStackViewContainer.swift */; };
 		0C86E4E922DC7C1000DA7B15 /* TCSStackViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C86E4E622DC7C0F00DA7B15 /* TCSStackViewContainer.xib */; };
+		0C86E4F322DD912200DA7B15 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4F222DD912200DA7B15 /* DetailView.swift */; };
 		0C8D0738212A8F93008122A6 /* FadeBackgroundModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */; };
 		0C9001A021FB18CB00D6C15F /* SynchronizationProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */; };
 		0C9364F32155320000B4EB48 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364F22155320000B4EB48 /* UIViewController+Extensions.swift */; };
@@ -103,6 +104,7 @@
 		0C86E4E422DC7C0F00DA7B15 /* ITCSStackViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCSStackViewContainer.swift; sourceTree = "<group>"; };
 		0C86E4E522DC7C0F00DA7B15 /* TCSStackViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCSStackViewContainer.swift; sourceTree = "<group>"; };
 		0C86E4E622DC7C0F00DA7B15 /* TCSStackViewContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCSStackViewContainer.xib; sourceTree = "<group>"; };
+		0C86E4F222DD912200DA7B15 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0C8D0737212A8F92008122A6 /* FadeBackgroundModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeBackgroundModalTransition.swift; sourceTree = "<group>"; };
 		0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationProgressView.swift; sourceTree = "<group>"; };
 		0C9364F22155320000B4EB48 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				0C5C4687213E9A5D00390F85 /* HintPopoverView.swift */,
 				0CF7E52A2146AAC50071DABD /* ProgressBar.swift */,
 				0C90019F21FB18CB00D6C15F /* SynchronizationProgressView.swift */,
+				0C86E4F222DD912200DA7B15 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */,
 				0C14D422211C1B65004C0559 /* NumPadButton.swift in Sources */,
 				0C14D41E211C1B65004C0559 /* GradientView.swift in Sources */,
+				0C86E4F322DD912200DA7B15 /* DetailView.swift in Sources */,
 				9667C71522C3F71F0010CC00 /* CompressibleTitleView.swift in Sources */,
 				9667C71322C3F71F0010CC00 /* CompressibleEmptyView.swift in Sources */,
 				9667C71222C3F71F0010CC00 /* CompressibleActionsView.swift in Sources */,

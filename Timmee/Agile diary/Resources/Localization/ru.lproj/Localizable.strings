@@ -298,7 +298,7 @@
 "new_password_error_alert_title" = "Ошибка";
 "new_password_error_alert_message" = "Введен неправильный код проверки или отсутствует интернет-соединение";
 
-"value_title" = "Количество";
+"amount" = "Количество";
 
 "times" = "раз";
 "hours" = "ч";
@@ -327,7 +327,7 @@
 
 "error_while_loading_habits_collections" = "При загрузке коллекций произошла ошибка. Проверьте интернет-соединение или повторите попытку позже";
 
-"day_time_picker_title" = "Время суток";
+"day_time" = "Время суток";
 "morning" = "Утро";
 "afternoon" = "День";
 "evening" = "Вечер";

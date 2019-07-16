@@ -1,5 +1,5 @@
 //
-//  TodayTargetCell.swift
+//  TodayGoalCell.swift
 //  Agile diary
 //
 //  Created by i.kharabet on 11.09.2018.
@@ -10,7 +10,7 @@ import UIKit
 import SwipeCellKit
 import UIComponents
 
-final class TodayTargetCell: SwipeTableViewCell {
+final class TodayGoalCell: SwipeTableViewCell {
     
     var onChangeCheckedState: ((Bool, Subtask) -> Void)?
     
@@ -52,7 +52,7 @@ final class TodayTargetCell: SwipeTableViewCell {
     private func addStageViews(goal: Goal) {
         stagesContainer.subviews.forEach { $0.removeFromSuperview() }
         
-        let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition })
+        let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition }).prefix(3)
         for (index, stage) in stages.enumerated() {
             let stageView = StageView.loadedFromNib()
             stageView.title = stage.title

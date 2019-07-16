@@ -28,7 +28,7 @@ final class DayTimePickerSubmodule: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleLabel.text = "day_time_picker_title".localized
+        titleLabel.text = "day_time".localized
         
         dayTimeSwitcher.items = DayTimePickerSubmodule.makeSwitcherItems()
     }

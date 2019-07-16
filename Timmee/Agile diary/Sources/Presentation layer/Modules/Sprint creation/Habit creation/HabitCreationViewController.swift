@@ -111,6 +111,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
         titleField.textView.font = AppTheme.current.fonts.bold(28)
         titleField.textView.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
         valueLabel.textColor = AppTheme.current.colors.activeElementColor
+        valuePicker.setValue(AppTheme.current.colors.activeElementColor, forKey: "textColor")
         linkField.textColor = AppTheme.current.colors.activeElementColor
         linkField.font = AppTheme.current.fonts.medium(17)
         linkField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
@@ -214,10 +215,12 @@ extension HabitCreationViewController: UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         switch component {
-        case 0: return "\(row + 1)"
-        case 1: return Habit.Value.Unit.allCases.item(at: row)?.localized
+        case 0: return NSAttributedString(string: "\(row + 1)", attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
+        case 1:
+            guard let value = Habit.Value.Unit.allCases.item(at: row)?.localized else { return nil }
+            return NSAttributedString(string: value, attributes: [.foregroundColor: AppTheme.current.colors.activeElementColor])
         default: return nil
         }
     }
@@ -340,7 +343,7 @@ private extension HabitCreationViewController {
     
     func setupLabels() {
         dueDaysTitleLabel.text = "due_days".localized
-        valueTitleLabel.text = "value_title".localized
+        valueTitleLabel.text = "amount".localized
         notificationTimeTitleLabel.text = "reminder".localized
         linkTitleLabel.text = "link".localized
     }
