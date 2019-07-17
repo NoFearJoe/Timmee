@@ -188,7 +188,7 @@ extension TodayContentViewController: UITableViewDelegate {
             
             habitDetailsProvider.holderViewController = navigationController
             
-            habitDetailsProvider.onEdit = { [unowned self] in
+            habitDetailsProvider.onEdit = { [unowned self, unowned navigationController] in
                 navigationController.dismiss(animated: true, completion: {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
                 })
@@ -208,7 +208,7 @@ extension TodayContentViewController: UITableViewDelegate {
             
             goalDetailsProvider.holderViewController = navigationController
             
-            goalDetailsProvider.onEdit = { [unowned self] in
+            goalDetailsProvider.onEdit = { [unowned self, unowned navigationController] in
                 navigationController.dismiss(animated: true, completion: {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
                 })

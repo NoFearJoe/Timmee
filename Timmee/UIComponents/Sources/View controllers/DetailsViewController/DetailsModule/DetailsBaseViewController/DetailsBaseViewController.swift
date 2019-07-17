@@ -58,6 +58,8 @@ public class DetailsBaseViewController: UIViewController {
     private lazy var bottomBackgroundView = UIView()
     private var bottomBackgroundViewHeightConstraint: NSLayoutConstraint?
     
+    private lazy var tapOutsideRecognizer: UITapGestureRecognizer? = UITapGestureRecognizer(target: self, action: #selector(onTapOutside(_:)))
+    
     /// Dynamic UI
     fileprivate var scrollViewStartInset: CGFloat {
         let maxHeaderHeight = self.content.header.maximizedStateHeight
@@ -78,6 +80,9 @@ public class DetailsBaseViewController: UIViewController {
         self.content = content
         
         super.init(nibName: nil, bundle: nil)
+        
+        tapOutsideRecognizer?.cancelsTouchesInView = false
+        tapOutsideRecognizer?.delegate = self
     }
     
     @available(*, unavailable, message: "init(coder:) not implemented")
@@ -107,6 +112,14 @@ public class DetailsBaseViewController: UIViewController {
         setupBottomInsetIfNeeded()
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UIDevice.current.isIpad, let tapOutsideRecognizer = tapOutsideRecognizer {
+            view.window?.addGestureRecognizer(tapOutsideRecognizer)
+        }
+    }
+    
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -129,6 +142,10 @@ public class DetailsBaseViewController: UIViewController {
         super.viewWillDisappear(animated)
         content.fullPlaceholder.clearAnimations()
         content.contentPlaceholder.clearAnimations()
+        if let tapOutsideRecognizer = tapOutsideRecognizer {
+            view.window?.removeGestureRecognizer(tapOutsideRecognizer)
+            self.tapOutsideRecognizer = nil
+        }
     }
     
     public override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -396,6 +413,18 @@ public class DetailsBaseViewController: UIViewController {
                 completion: nil)
     }
     
+    @objc private func onTapOutside(_ recognizer: UITapGestureRecognizer) {
+        guard recognizer.state == .ended else { return }
+        
+        let location = recognizer.location(in: nil)
+        
+        if !view.point(inside: view.convert(location, from: view.window), with: nil) {
+            view.window?.removeGestureRecognizer(recognizer)
+            dismiss(animated: true,
+                    completion: nil)
+        }
+    }
+    
     // MARK: - Dragging placeholder
     
     private var initialPlaceholderPosition: CGPoint?
@@ -548,6 +577,15 @@ extension DetailsBaseViewController: UIViewControllerTransitioningDelegate {
         animator.mode = .dismission
         return animator
     }
+}
+
+extension DetailsBaseViewController: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                                  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
 }
 
 // MARK: - Constants
