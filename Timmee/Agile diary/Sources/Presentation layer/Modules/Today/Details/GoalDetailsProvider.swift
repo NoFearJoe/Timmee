@@ -131,6 +131,30 @@ final class GoalDetailsProvider: DetailModuleProvider {
                                                               reversed: false))
         container.add(compressibleView: topSpacer)
         
+        // Status
+        
+        if goal.isDone {
+            let statusView = CompressibleTitleView.loadedFromNib()
+            statusView.backgroundColor = AppTheme.current.colors.foregroundColor
+            let attributedStatus = NSAttributedString(string: "complete".localized,
+                                                      attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor])
+            statusView.configure(with: CompressibleTitleView.Model(attributedText: attributedStatus,
+                                                                   transparentDisappearing: false,
+                                                                   minimumHeight: 0,
+                                                                   sideInset: 15,
+                                                                   defaultFont: AppTheme.current.fonts.medium(16),
+                                                                   minimumFont: AppTheme.current.fonts.medium(12),
+                                                                   compressionDisabled: false))
+            container.add(compressibleView: statusView)
+            
+            let middleSpacer = CompressibleEmptyView()
+            middleSpacer.configure(with: CompressibleEmptyView.Model(backgroundColor: AppTheme.current.colors.foregroundColor,
+                                                                     maximizedStateHeight: 4,
+                                                                     minimizedStateHeight: 2,
+                                                                     reversed: false))
+            container.add(compressibleView: middleSpacer)
+        }
+        
         // Title
         
         let titleView = CompressibleTitleView.loadedFromNib()

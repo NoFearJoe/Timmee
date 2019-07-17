@@ -15,6 +15,7 @@ final class TodayGoalCell: SwipeTableViewCell {
     var onChangeCheckedState: ((Bool, Subtask) -> Void)?
     
     @IBOutlet private var containerView: UIView!
+    @IBOutlet private var statusLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var noteExistanceIconView: UIImageView!
     @IBOutlet private var stagesTitleLabel: UILabel!
@@ -22,6 +23,8 @@ final class TodayGoalCell: SwipeTableViewCell {
     
     @IBOutlet private var noteExistanceIconViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private var noteExistanceIconViewLeadingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet private var statusLabelBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet private var stagesTitleLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var stagesTitleLabelTopConstraint: NSLayoutConstraint!
@@ -39,6 +42,8 @@ final class TodayGoalCell: SwipeTableViewCell {
     func configure(goal: Goal) {
         setupAppearance()
         containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
+        statusLabel.text = goal.isDone ? "complete".localized : nil
+        statusLabelBottomConstraint.constant = goal.isDone ? 0 : 6
         titleLabel.text = goal.title
         noteExistanceIconView.isHidden = goal.note.isEmpty
         noteExistanceIconViewWidthConstraint.constant = goal.note.isEmpty ? 0 : 20
@@ -80,8 +85,12 @@ final class TodayGoalCell: SwipeTableViewCell {
     
     private func setupAppearance() {
         containerView.backgroundColor = AppTheme.current.colors.foregroundColor
+        statusLabel.textColor = AppTheme.current.colors.mainElementColor
+        statusLabel.font = AppTheme.current.fonts.medium(13)
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        titleLabel.font = AppTheme.current.fonts.medium(18)
         stagesTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
         noteExistanceIconView.tintColor = AppTheme.current.colors.inactiveElementColor
     }
     
