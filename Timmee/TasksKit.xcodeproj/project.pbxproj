@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09C625B6EEC90BAD07A06E28 /* Pods_TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C675C8B3589592E0AA541C /* Pods_TasksKit.framework */; };
 		0C2B9D242212A9D20038F11D /* ChildEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D232212A9D20038F11D /* ChildEntity.swift */; };
 		0C3DA5342154D73700CAE635 /* WaterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5332154D73700CAE635 /* WaterControl.swift */; };
 		0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */; };
@@ -66,7 +67,6 @@
 		96BE8395217518AD00CDECAF /* GoalEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */; };
 		96BE83972175190E00CDECAF /* HabitEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */; };
 		96BE8399217519A600CDECAF /* SprintEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8398217519A600CDECAF /* SprintEntity+Mapping.swift */; };
-		EA1580FFA4C0CE93D6CDB3E1 /* Pods_TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,10 +122,12 @@
 		0CE475532175AFBE005FD8CC /* SprintsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsService.swift; sourceTree = "<group>"; };
 		0CE475592175BAFF005FD8CC /* HabitsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsService.swift; sourceTree = "<group>"; };
 		0CE4755C2175DA1E005FD8CC /* GoalsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsService.swift; sourceTree = "<group>"; };
-		45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39F78E4BBF3044E283A0A1D0 /* Pods-TasksKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.release.xcconfig"; path = "Target Support Files/Pods-TasksKit/Pods-TasksKit.release.xcconfig"; sourceTree = "<group>"; };
+		48C675C8B3589592E0AA541C /* Pods_TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		960164952228676700E30580 /* Timmee4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee4.xcdatamodel; sourceTree = "<group>"; };
 		9606627A20A353D000B23EDF /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		961656052095FDD9001A8387 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
+		96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
 		9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee5.xcdatamodel; sourceTree = "<group>"; };
 		9685BDE922BFEC68005E5126 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		9685BDEB22BFECA0005E5126 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -136,8 +138,6 @@
 		96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE8398217519A600CDECAF /* SprintEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Mapping.swift"; sourceTree = "<group>"; };
-		A57EA6AF1391C2F49F6BD524 /* Pods-TasksKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.release.xcconfig"; sourceTree = "<group>"; };
-		C294AC76DF91C6E63EC9ABD3 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C9B23BE2077B688009EF6DE /* Workset.framework in Frameworks */,
-				EA1580FFA4C0CE93D6CDB3E1 /* Pods_TasksKit.framework in Frameworks */,
+				09C625B6EEC90BAD07A06E28 /* Pods_TasksKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +230,7 @@
 				0CE017F12077B09200633EFF /* TasksKit */,
 				0CE017F02077B09200633EFF /* Products */,
 				A775B53DCC2E8BBC1617B99F /* Frameworks */,
-				5281E0EBE43AED0B2AB155EC /* Pods */,
+				F4A3CB7D0604E0A25CCCBF4A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -365,15 +365,6 @@
 			path = "Agile diary";
 			sourceTree = "<group>";
 		};
-		5281E0EBE43AED0B2AB155EC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C294AC76DF91C6E63EC9ABD3 /* Pods-TasksKit.debug.xcconfig */,
-				A57EA6AF1391C2F49F6BD524 /* Pods-TasksKit.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		96BE838C217511C500CDECAF /* Agilee */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,9 +393,19 @@
 			isa = PBXGroup;
 			children = (
 				0C9B23BD2077B688009EF6DE /* Workset.framework */,
-				45201EB30D25B975E1C4066A /* Pods_TasksKit.framework */,
+				48C675C8B3589592E0AA541C /* Pods_TasksKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4A3CB7D0604E0A25CCCBF4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */,
+				39F78E4BBF3044E283A0A1D0 /* Pods-TasksKit.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,7 +426,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CE017F72077B09200633EFF /* Build configuration list for PBXNativeTarget "TasksKit" */;
 			buildPhases = (
-				4DA0193B37F8864251A77971 /* [CP] Check Pods Manifest.lock */,
+				4570AD075017E5149A47435A /* [CP] Check Pods Manifest.lock */,
 				0CE017EA2077B09200633EFF /* Sources */,
 				0CE017EB2077B09200633EFF /* Frameworks */,
 				0CE017EC2077B09200633EFF /* Headers */,
@@ -482,16 +483,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4DA0193B37F8864251A77971 /* [CP] Check Pods Manifest.lock */ = {
+		4570AD075017E5149A47435A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TasksKit-checkManifestLockResult.txt",
 			);
@@ -692,7 +697,7 @@
 		};
 		0CE017F82077B09200633EFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C294AC76DF91C6E63EC9ABD3 /* Pods-TasksKit.debug.xcconfig */;
+			baseConfigurationReference = 96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -721,7 +726,7 @@
 		};
 		0CE017F92077B09200633EFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A57EA6AF1391C2F49F6BD524 /* Pods-TasksKit.release.xcconfig */;
+			baseConfigurationReference = 39F78E4BBF3044E283A0A1D0 /* Pods-TasksKit.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";

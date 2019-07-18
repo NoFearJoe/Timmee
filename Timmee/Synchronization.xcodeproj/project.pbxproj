@@ -25,7 +25,7 @@
 		0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */; };
 		0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066821F1DF7D0069C6C5 /* Workset.framework */; };
 		0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81F2240C88500061B58 /* Mood+Codable.swift */; };
-		8841F944A584F20E250F3314 /* Pods_Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69097069053A1886AEB108B9 /* Pods_Synchronization.framework */; };
+		EA1F6FE4B4AE4D8252C95DF4 /* Pods_Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601C6D4086AA96F90E7F1A22 /* Pods_Synchronization.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +49,9 @@
 		0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4066821F1DF7D0069C6C5 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD8F81F2240C88500061B58 /* Mood+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+Codable.swift"; sourceTree = "<group>"; };
-		69097069053A1886AEB108B9 /* Pods_Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC197D8BA57226F8BA656239 /* Pods-Synchronization.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.release.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.release.xcconfig"; sourceTree = "<group>"; };
-		ECE19B21111D77AF80CC7187 /* Pods-Synchronization.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.debug.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.debug.xcconfig"; sourceTree = "<group>"; };
+		24E8703EF9D1B1ED288B0430 /* Pods-Synchronization.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.debug.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.debug.xcconfig"; sourceTree = "<group>"; };
+		601C6D4086AA96F90E7F1A22 /* Pods_Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92E54B9540952938DCC6BAC7 /* Pods-Synchronization.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.release.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 				0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */,
 				0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */,
 				0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */,
-				8841F944A584F20E250F3314 /* Pods_Synchronization.framework in Frameworks */,
+				EA1F6FE4B4AE4D8252C95DF4 /* Pods_Synchronization.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +173,7 @@
 				0CC4066421F1DF7D0069C6C5 /* Authorization.framework */,
 				0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */,
 				0CC4066821F1DF7D0069C6C5 /* Workset.framework */,
-				69097069053A1886AEB108B9 /* Pods_Synchronization.framework */,
+				601C6D4086AA96F90E7F1A22 /* Pods_Synchronization.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,8 +181,8 @@
 		3528411A07F990A784253A95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ECE19B21111D77AF80CC7187 /* Pods-Synchronization.debug.xcconfig */,
-				CC197D8BA57226F8BA656239 /* Pods-Synchronization.release.xcconfig */,
+				24E8703EF9D1B1ED288B0430 /* Pods-Synchronization.debug.xcconfig */,
+				92E54B9540952938DCC6BAC7 /* Pods-Synchronization.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -205,12 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CC4065321F1DEDE0069C6C5 /* Build configuration list for PBXNativeTarget "Synchronization" */;
 			buildPhases = (
-				07B14946E7FB3ED733E8F0B2 /* [CP] Check Pods Manifest.lock */,
+				521AB9D2EEC426F305011C47 /* [CP] Check Pods Manifest.lock */,
 				0CC4064621F1DEDE0069C6C5 /* Headers */,
 				0CC4064721F1DEDE0069C6C5 /* Sources */,
 				0CC4064821F1DEDE0069C6C5 /* Frameworks */,
 				0CC4064921F1DEDE0069C6C5 /* Resources */,
-				02A83D10F32B335FA0C76D4A /* [CP] Copy Pods Resources */,
+				A4302CFAA5148385FF741E6C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,24 +264,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02A83D10F32B335FA0C76D4A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		07B14946E7FB3ED733E8F0B2 /* [CP] Check Pods Manifest.lock */ = {
+		521AB9D2EEC426F305011C47 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -301,6 +284,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4302CFAA5148385FF741E6C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -453,7 +458,7 @@
 		};
 		0CC4065421F1DEDE0069C6C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECE19B21111D77AF80CC7187 /* Pods-Synchronization.debug.xcconfig */;
+			baseConfigurationReference = 24E8703EF9D1B1ED288B0430 /* Pods-Synchronization.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -482,7 +487,7 @@
 		};
 		0CC4065521F1DEDE0069C6C5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC197D8BA57226F8BA656239 /* Pods-Synchronization.release.xcconfig */;
+			baseConfigurationReference = 92E54B9540952938DCC6BAC7 /* Pods-Synchronization.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";

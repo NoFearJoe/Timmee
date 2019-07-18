@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -272,9 +272,7 @@
 		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
 		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
-		72FBD1015AFBE50D122CB628 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */; };
-		94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */; };
+		4E4D86BEAE1DE9DA6E568F30 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877F9C2024EB052CCE3A1FBA /* Pods_Agile_diary.framework */; };
 		9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		961063232242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
@@ -322,7 +320,8 @@
 		96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
 		96F59434224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
 		96F59435224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
-		C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */; };
+		B06254CC0B1F2A08555C37DD /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B1D7A1D9BBDDBA6B51E91 /* Pods_Agile_diary_debug.framework */; };
+		B7EE47153D7C4410F606CF21 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B81075A37B59E8E8ADB7910 /* Pods_HabitsTodayExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -382,6 +381,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B81075A37B59E8E8ADB7910 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -511,12 +511,10 @@
 		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3742AF8C22939ABE55A00407 /* Pods-Agile diary debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.debug.xcconfig"; sourceTree = "<group>"; };
-		45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		4D57D6A23D0AB2DD851BFADF /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
-		6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
-		8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
+		3766095D2D5CE71215B67707 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
+		5F51E401B3035BB3D3D36D40 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
+		86AE662AF1DF025C55574803 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
+		877F9C2024EB052CCE3A1FBA /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		961063222242B26000E1446E /* MoodChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartCell.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
@@ -548,9 +546,10 @@
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
 		96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionFeatureView.swift; sourceTree = "<group>"; };
 		96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProVersionFeatureView.xib; sourceTree = "<group>"; };
-		9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
-		F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC4B1D7A1D9BBDDBA6B51E91 /* Pods_Agile_diary_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECABCBECA6486DC06F0A9C0E /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
+		F660BC303DEBAA519B65FB46 /* Pods-Agile diary debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.debug.xcconfig"; sourceTree = "<group>"; };
+		FD189F1CF44FE3EA28F61FAB /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,8 +563,7 @@
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
 				0CC4066F21F1E0A30069C6C5 /* Synchronization.framework in Frameworks */,
-				8273D0555A81E06588106F52 /* Pods_Agile_diary.framework in Frameworks */,
-				72FBD1015AFBE50D122CB628 /* (null) in Frameworks */,
+				4E4D86BEAE1DE9DA6E568F30 /* Pods_Agile_diary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,8 +576,8 @@
 				0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */,
 				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
 				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
-				94EA68FAEC3188B2DEA2C711 /* Pods_Agile_diary_debug.framework in Frameworks */,
 				9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */,
+				B06254CC0B1F2A08555C37DD /* Pods_Agile_diary_debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,7 +588,7 @@
 				0CE883DD215106F000637BD9 /* Workset.framework in Frameworks */,
 				0CE883DC215106EC00637BD9 /* TasksKit.framework in Frameworks */,
 				0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */,
-				C8069F959DDC62BDAAA958E1 /* Pods_HabitsTodayExtension.framework in Frameworks */,
+				B7EE47153D7C4410F606CF21 /* Pods_HabitsTodayExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +602,7 @@
 				0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */,
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
-				422F11A515C6CEDFA0FD93B5 /* Pods */,
+				60E6EBF9B112CF333C10E3FA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -641,10 +639,10 @@
 				0C14D488211C564A004C0559 /* TasksKit.framework */,
 				0C14D48A211C564A004C0559 /* UIComponents.framework */,
 				0C14D48C211C564A004C0559 /* Workset.framework */,
-				9A04F654983CB8ADC27C176A /* Pods_Agile_diary.framework */,
 				0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */,
-				F82A1735964DA2B555E90602 /* Pods_HabitsTodayExtension.framework */,
-				115EFDACA6EF3648DFE9FBB0 /* Pods_Agile_diary_debug.framework */,
+				877F9C2024EB052CCE3A1FBA /* Pods_Agile_diary.framework */,
+				DC4B1D7A1D9BBDDBA6B51E91 /* Pods_Agile_diary_debug.framework */,
+				0B81075A37B59E8E8ADB7910 /* Pods_HabitsTodayExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1195,17 +1193,17 @@
 			path = StageView;
 			sourceTree = "<group>";
 		};
-		422F11A515C6CEDFA0FD93B5 /* Pods */ = {
+		60E6EBF9B112CF333C10E3FA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */,
-				9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */,
-				8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */,
-				4D57D6A23D0AB2DD851BFADF /* Pods-Agile diary.release.xcconfig */,
-				3742AF8C22939ABE55A00407 /* Pods-Agile diary debug.debug.xcconfig */,
-				6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */,
+				5F51E401B3035BB3D3D36D40 /* Pods-Agile diary.debug.xcconfig */,
+				ECABCBECA6486DC06F0A9C0E /* Pods-Agile diary.release.xcconfig */,
+				F660BC303DEBAA519B65FB46 /* Pods-Agile diary debug.debug.xcconfig */,
+				3766095D2D5CE71215B67707 /* Pods-Agile diary debug.release.xcconfig */,
+				FD189F1CF44FE3EA28F61FAB /* Pods-HabitsTodayExtension.debug.xcconfig */,
+				86AE662AF1DF025C55574803 /* Pods-HabitsTodayExtension.release.xcconfig */,
 			);
-			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		9667C72322C536D30010CC00 /* Details */ = {
@@ -1285,15 +1283,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C14D484211C55DA004C0559 /* Build configuration list for PBXNativeTarget "Agile diary" */;
 			buildPhases = (
-				33067EAF591D6099918EE91B /* [CP] Check Pods Manifest.lock */,
+				3F79163DDEB73E74DE1B253B /* [CP] Check Pods Manifest.lock */,
 				0C14D46E211C55D9004C0559 /* Sources */,
 				0C14D46F211C55D9004C0559 /* Frameworks */,
 				0C14D470211C55D9004C0559 /* Resources */,
 				0C14D494211C564F004C0559 /* Embed Frameworks */,
-				F8F04FD59F4FE3586B4DBF27 /* [CP] Embed Pods Frameworks */,
 				0CE883D72150F6EC00637BD9 /* Embed App Extensions */,
 				0C9999EA21E8A63D00DD2040 /* Fabric */,
-				772E836F462B38FD9B2EDC27 /* [CP] Copy Pods Resources */,
+				2832D8B83AAE119F86F6725E /* [CP] Embed Pods Frameworks */,
+				DDF5C5AD0A10CD39C0D452E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1309,13 +1307,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CB673DC21A52C3900178EB1 /* Build configuration list for PBXNativeTarget "Agile diary debug" */;
 			buildPhases = (
-				EC0FA1D9DB3B7900D0D6CF94 /* [CP] Check Pods Manifest.lock */,
+				DFC38A1BE30AEF7F1C47A59B /* [CP] Check Pods Manifest.lock */,
 				0CB6736D21A52C3900178EB1 /* Sources */,
 				0CB673BC21A52C3900178EB1 /* Frameworks */,
 				0CB673C221A52C3900178EB1 /* Resources */,
 				0CB673D421A52C3900178EB1 /* Embed Frameworks */,
-				8CBD4E8B567C49F55234352F /* [CP] Embed Pods Frameworks */,
-				8876C75A275058224AD5B68E /* [CP] Copy Pods Resources */,
+				5FBD4BA188F72713FF9CE677 /* [CP] Embed Pods Frameworks */,
+				CF4CC1014B0FD92BA64C54E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1330,7 +1328,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CE883D62150F6EC00637BD9 /* Build configuration list for PBXNativeTarget "HabitsTodayExtension" */;
 			buildPhases = (
-				746B725D533005ED0858E405 /* [CP] Check Pods Manifest.lock */,
+				7B4A0C1A9E9E517B39C4D8F1 /* [CP] Check Pods Manifest.lock */,
 				0CE883C32150F6EB00637BD9 /* Sources */,
 				0CE883C42150F6EB00637BD9 /* Frameworks */,
 				0CE883C52150F6EB00637BD9 /* Resources */,
@@ -1496,16 +1494,70 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30\n";
 		};
-		33067EAF591D6099918EE91B /* [CP] Check Pods Manifest.lock */ = {
+		2832D8B83AAE119F86F6725E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F79163DDEB73E74DE1B253B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Agile diary-checkManifestLockResult.txt",
 			);
@@ -1514,16 +1566,70 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		746B725D533005ED0858E405 /* [CP] Check Pods Manifest.lock */ = {
+		5FBD4BA188F72713FF9CE677 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B4A0C1A9E9E517B39C4D8F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-HabitsTodayExtension-checkManifestLockResult.txt",
 			);
@@ -1532,58 +1638,51 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		772E836F462B38FD9B2EDC27 /* [CP] Copy Pods Resources */ = {
+		CF4CC1014B0FD92BA64C54E1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8876C75A275058224AD5B68E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8CBD4E8B567C49F55234352F /* [CP] Embed Pods Frameworks */ = {
+		DDF5C5AD0A10CD39C0D452E0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC0FA1D9DB3B7900D0D6CF94 /* [CP] Check Pods Manifest.lock */ = {
+		DFC38A1BE30AEF7F1C47A59B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1603,23 +1702,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F8F04FD59F4FE3586B4DBF27 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2070,7 +2152,7 @@
 		};
 		0C14D485211C55DA004C0559 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D539CED4470CDF53A2E524F /* Pods-Agile diary.debug.xcconfig */;
+			baseConfigurationReference = 5F51E401B3035BB3D3D36D40 /* Pods-Agile diary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -2099,7 +2181,7 @@
 		};
 		0C14D486211C55DA004C0559 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D57D6A23D0AB2DD851BFADF /* Pods-Agile diary.release.xcconfig */;
+			baseConfigurationReference = ECABCBECA6486DC06F0A9C0E /* Pods-Agile diary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -2129,7 +2211,7 @@
 		};
 		0CB673DD21A52C3900178EB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3742AF8C22939ABE55A00407 /* Pods-Agile diary debug.debug.xcconfig */;
+			baseConfigurationReference = F660BC303DEBAA519B65FB46 /* Pods-Agile diary debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -2157,7 +2239,7 @@
 		};
 		0CB673DE21A52C3900178EB1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6085B76940A97A9EFB8F6848 /* Pods-Agile diary debug.release.xcconfig */;
+			baseConfigurationReference = 3766095D2D5CE71215B67707 /* Pods-Agile diary debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -2185,7 +2267,7 @@
 		};
 		0CE883D42150F6EC00637BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45F04A835F03DC09340C01C0 /* Pods-HabitsTodayExtension.debug.xcconfig */;
+			baseConfigurationReference = FD189F1CF44FE3EA28F61FAB /* Pods-HabitsTodayExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -2213,7 +2295,7 @@
 		};
 		0CE883D52150F6EC00637BD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FDA24BA02754ABE43411448 /* Pods-HabitsTodayExtension.release.xcconfig */;
+			baseConfigurationReference = 86AE662AF1DF025C55574803 /* Pods-HabitsTodayExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
