@@ -94,7 +94,7 @@
                                             <segue destination="ojx-Dr-srW" kind="presentation" identifier="ShowWaterControlConfiguration" id="i1u-o3-wC0"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-X5-gy2">
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-X5-gy2">
                                         <rect key="frame" x="58.5" y="194" width="228" height="68"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1z-gp-r79">
@@ -201,6 +201,17 @@
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmx-WF-6CN" customClass="FloatingButton" customModule="UIComponents">
+                                        <rect key="frame" x="305" y="230" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="MhZ-Sn-a6K"/>
+                                            <constraint firstAttribute="width" secondItem="jmx-WF-6CN" secondAttribute="height" id="S2s-j1-fNP"/>
+                                        </constraints>
+                                        <state key="normal" image="plus"/>
+                                        <connections>
+                                            <action selector="onTapToAddDrunkVolumeButton" destination="kHp-X3-HNo" eventType="touchUpInside" id="1VC-bG-3Cg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -221,6 +232,8 @@
                                     <constraint firstItem="bER-xs-kbI" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" constant="8" id="agl-s0-AmD"/>
                                     <constraint firstAttribute="trailing" secondItem="CJ2-Oi-gpi" secondAttribute="trailing" constant="20" id="jVL-Pz-WHR"/>
                                     <constraint firstItem="CJ2-Oi-gpi" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" constant="20" id="pPH-eP-eVE"/>
+                                    <constraint firstAttribute="bottom" secondItem="jmx-WF-6CN" secondAttribute="bottom" constant="8" id="tJH-Ye-X6F"/>
+                                    <constraint firstAttribute="trailing" secondItem="jmx-WF-6CN" secondAttribute="trailing" constant="8" id="zpy-jQ-U2u"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -236,6 +249,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="288"/>
                     <connections>
+                        <outlet property="addDrunkVolumeButton" destination="jmx-WF-6CN" id="XaG-ge-Pc4"/>
                         <outlet property="containerView" destination="nRP-1r-c7X" id="E2X-wq-s81"/>
                         <outlet property="drink100mlButton" destination="FMi-gn-4DE" id="hof-X3-8rY"/>
                         <outlet property="drink100mlLabel" destination="24a-Ge-Zcn" id="1w5-2d-qvr"/>
@@ -388,6 +402,7 @@
         <image name="glass300ml" width="52" height="52"/>
         <image name="good" width="102" height="100"/>
         <image name="normal" width="102" height="100"/>
+        <image name="plus" width="20" height="20"/>
         <image name="veryBad" width="100" height="100"/>
         <image name="veryGood" width="102" height="100"/>
     </resources>

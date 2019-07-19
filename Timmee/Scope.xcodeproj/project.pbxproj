@@ -363,8 +363,8 @@
 		96115F2B1F6B0D700050D7A3 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
 		96115F521F6EEE650050D7A3 /* TaskParameterEditors.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskParameterEditors.storyboard; sourceTree = "<group>"; };
 		9615A48321E1197A008923C3 /* TaskCompletionInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletionInteractorTrait.swift; sourceTree = "<group>"; };
-		9615A48521E1FCFC008923C3 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingMenu.swift; sourceTree = "<group>"; };
-		9615A48721E343CF008923C3 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
+		9615A48521E1FCFC008923C3 /* FloatingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatingMenu.swift; path = ../../../../UIComponents/Sources/Views/FloatingMenu.swift; sourceTree = "<group>"; };
+		9615A48721E343CF008923C3 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatingButton.swift; path = ../../../../UIComponents/Sources/Views/FloatingButton.swift; sourceTree = "<group>"; };
 		9615A48E21E9C9F3008923C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9615A49021E9C9F7008923C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9615F428203033B500D9625C /* ListIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconsView.swift; sourceTree = "<group>"; };

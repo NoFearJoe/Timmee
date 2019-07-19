@@ -8,6 +8,7 @@
 
 import UIKit
 import TasksKit
+import UIComponents
 
 final class WaterControlActivityWidget: UIViewController {
     
@@ -26,6 +27,22 @@ final class WaterControlActivityWidget: UIViewController {
     @IBOutlet private var drink200mlLabel: UILabel!
     @IBOutlet private var drink300mlButton: UIButton!
     @IBOutlet private var drink300mlLabel: UILabel!
+    
+    @IBOutlet private var addDrunkVolumeButton: FloatingButton!
+    
+    private lazy var addDrunkVolumeMenu: FloatingMenu = {
+        return FloatingMenu(items: [
+                                FloatingMenu.Item(title: "+100ml".localized,
+                                                  action: { [unowned self] in self.addDrunkVolume(milliliters: 100) }),
+                                FloatingMenu.Item(title: "+200ml".localized,
+                                                  action: { [unowned self] in self.addDrunkVolume(milliliters: 200) }),
+                                FloatingMenu.Item(title: "+300ml".localized,
+                                                  action: { [unowned self] in self.addDrunkVolume(milliliters: 300) })
+                            ],
+                            colors: FloatingMenu.Colors(tintColor: .white,
+                                                        backgroundColor: AppTheme.current.colors.mainElementColor,
+                                                        secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor))
+    }()
     
     @IBOutlet private var placeholderContainer: UIView!
     @IBOutlet private var waterControlConfigurationButton: UIButton!
@@ -54,6 +71,10 @@ final class WaterControlActivityWidget: UIViewController {
         }
     }
     
+    @IBAction private func onTapToAddDrunkVolumeButton() {
+        addDrunkVolumeMenu.show(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitialState()
@@ -62,6 +83,13 @@ final class WaterControlActivityWidget: UIViewController {
         drink100mlLabel.text = "+100ml".localized
         drink200mlLabel.text = "+200ml".localized
         drink300mlLabel.text = "+300ml".localized
+        
+        addDrunkVolumeButton.colors = FloatingButton.Colors(tintColor: .white,
+                                                            backgroundColor: AppTheme.current.colors.mainElementColor,
+                                                            secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor)
+        
+        addDrunkVolumeMenu.add(to: view)
+        addDrunkVolumeMenu.pin(to: addDrunkVolumeButton, offset: 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
