@@ -42,7 +42,7 @@ public final class FloatingMenu: UIView {
     private weak var containerView: UIView!
     private weak var anchorView: UIView!
     
-    private(set) var isShown: Bool = false
+    public private(set) var isShown: Bool = false
     
     public init(items: [Item], colors: Colors) {
         self.items = items

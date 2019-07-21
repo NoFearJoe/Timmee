@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today Extension View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayExtensionViewController" customModule="WaterControlTodayExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwd-6m-iDX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pue-eo-agx" customClass="WaterLevelView" customModule="WaterControlTodayExtension" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="8" width="112" height="112"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Pue-eo-agx" secondAttribute="height" id="SMa-B8-dIt"/>
+                                        </constraints>
+                                    </view>
+                                    <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxC-j1-7lG">
+                                        <rect key="frame" x="20" y="38" width="280" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="ZZD-oY-ZPK"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Настроить контроль воды"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapToSetupWaterControlButton" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="H7t-Sa-yJC"/>
+                                        </connections>
+                                    </button>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6bw-ak-cDc">
+                                        <rect key="frame" x="136" y="52" width="168" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="b4F-nb-dYl"/>
+                                            <constraint firstAttribute="width" constant="168" placeholder="YES" id="m7X-j6-koz"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5л" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GK4-k0-HaL" userLabel="1.5л">
+                                        <rect key="frame" x="136" y="8" width="168" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6bw-ak-cDc" firstAttribute="leading" secondItem="Pue-eo-agx" secondAttribute="trailing" constant="8" id="5Yg-aK-jUZ"/>
+                                    <constraint firstItem="GK4-k0-HaL" firstAttribute="top" secondItem="uwd-6m-iDX" secondAttribute="top" constant="8" id="PlO-Pd-4dh"/>
+                                    <constraint firstItem="Pue-eo-agx" firstAttribute="top" secondItem="uwd-6m-iDX" secondAttribute="top" constant="8" id="SSj-wp-qY2"/>
+                                    <constraint firstItem="FxC-j1-7lG" firstAttribute="centerY" secondItem="uwd-6m-iDX" secondAttribute="centerY" id="Yt3-Cs-Eaa"/>
+                                    <constraint firstAttribute="bottom" secondItem="6bw-ak-cDc" secondAttribute="bottom" constant="8" id="fF3-uS-fim"/>
+                                    <constraint firstAttribute="trailing" secondItem="FxC-j1-7lG" secondAttribute="trailing" constant="20" id="g7d-So-093"/>
+                                    <constraint firstItem="GK4-k0-HaL" firstAttribute="leading" secondItem="Pue-eo-agx" secondAttribute="trailing" constant="8" id="geb-VM-c7F"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pue-eo-agx" secondAttribute="bottom" constant="8" id="qhn-Zx-N7V"/>
+                                    <constraint firstAttribute="trailing" secondItem="GK4-k0-HaL" secondAttribute="trailing" constant="16" id="rnc-xd-1aC"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6bw-ak-cDc" secondAttribute="trailing" constant="16" id="vC4-JZ-2bv"/>
+                                    <constraint firstItem="Pue-eo-agx" firstAttribute="leading" secondItem="uwd-6m-iDX" secondAttribute="leading" constant="16" id="x2I-Wn-c2g"/>
+                                    <constraint firstItem="FxC-j1-7lG" firstAttribute="leading" secondItem="uwd-6m-iDX" secondAttribute="leading" constant="20" id="y6s-Qz-cLC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="uwd-6m-iDX" secondAttribute="bottom" id="GD8-nP-qeC"/>
+                            <constraint firstItem="uwd-6m-iDX" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="Vv8-S5-E5l"/>
+                            <constraint firstAttribute="trailing" secondItem="uwd-6m-iDX" secondAttribute="trailing" id="WU1-Z4-f2E"/>
+                            <constraint firstItem="uwd-6m-iDX" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="z1Z-Zn-rqA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="128"/>
+                    <connections>
+                        <outlet property="drinkButtonsContainer" destination="6bw-ak-cDc" id="p3w-SY-kNx"/>
+                        <outlet property="drunkVolumeLabel" destination="GK4-k0-HaL" id="oYJ-v6-vw6"/>
+                        <outlet property="waterControlConfigurationButton" destination="FxC-j1-7lG" id="Mxt-PT-bla"/>
+                        <outlet property="waterLevelView" destination="Pue-eo-agx" id="scO-b8-25I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

@@ -81,7 +81,6 @@
 		0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
 		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
-		0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
 		0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
 		0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */; };
 		0CACF2D422241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */; };
@@ -180,7 +179,6 @@
 		0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */; };
 		0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */; };
-		0CB673BA21A52C3900178EB1 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936560215BB0C100B4EB48 /* WaterLevelView.swift */; };
 		0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
 		0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
 		0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
@@ -272,7 +270,8 @@
 		0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CF7E5402147E3CD0071DABD /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
 		0CF7E562214A7A280071DABD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
-		4E4D86BEAE1DE9DA6E568F30 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877F9C2024EB052CCE3A1FBA /* Pods_Agile_diary.framework */; };
+		2E18754B8FAC018397FB4FCD /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D28A1A8276F9DE1AB5AA1E /* Pods_Agile_diary_debug.framework */; };
+		5C1C57BD392E7E1D0CAACB7F /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */; };
 		9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		961063232242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
@@ -298,6 +297,9 @@
 		96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
 		96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
 		96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
+		969A9A2422E451200018188D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 969A9A2622E451200018188D /* InfoPlist.strings */; };
+		969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A9A2822E4E18A0018188D /* AppLinkHandler.swift */; };
+		969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A9A2822E4E18A0018188D /* AppLinkHandler.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
@@ -309,6 +311,21 @@
 		96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
 		96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
+		96CDC72E22E39095009395B9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
+		96CDC73122E39095009395B9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CDC73022E39095009395B9 /* TodayViewController.swift */; };
+		96CDC73422E39095009395B9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96CDC73222E39095009395B9 /* MainInterface.storyboard */; };
+		96CDC73822E39095009395B9 /* WaterControlTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		96CDC73D22E390E0009395B9 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CDC73C22E390E0009395B9 /* TasksKit.framework */; };
+		96CDC73F22E390E0009395B9 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CDC73E22E390E0009395B9 /* UIComponents.framework */; };
+		96CDC74122E390E0009395B9 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CDC74022E390E0009395B9 /* Workset.framework */; };
+		96CDC74222E39267009395B9 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
+		96CDC74322E392B7009395B9 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
+		96CDC74422E392C9009395B9 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
+		96CDC74522E39325009395B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
+		96CDC74822E39701009395B9 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
+		96CDC74A22E3A082009395B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
+		96CDC74B22E450CC009395B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
+		96CDC74C22E450D0009395B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
 		96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
 		96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
@@ -320,8 +337,7 @@
 		96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
 		96F59434224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
 		96F59435224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
-		B06254CC0B1F2A08555C37DD /* Pods_Agile_diary_debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4B1D7A1D9BBDDBA6B51E91 /* Pods_Agile_diary_debug.framework */; };
-		B7EE47153D7C4410F606CF21 /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B81075A37B59E8E8ADB7910 /* Pods_HabitsTodayExtension.framework */; };
+		F569A53D47918794978E9E58 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CF652D448924A7008B5207 /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +347,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0CE883C62150F6EB00637BD9;
 			remoteInfo = HabitsTodayExtension;
+		};
+		96CDC73622E39095009395B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C14D46A211C55D9004C0559 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96CDC72C22E39095009395B9;
+			remoteInfo = WaterControlTodayExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -373,6 +396,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				96CDC73822E39095009395B9 /* WaterControlTodayExtension.appex in Embed App Extensions */,
 				0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -381,7 +405,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B81075A37B59E8E8ADB7910 /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08CF652D448924A7008B5207 /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -447,7 +471,6 @@
 		0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRarelyPerformedHabitChartCell.swift; sourceTree = "<group>"; };
 		0C9365192158F04F00B4EB48 /* WaterChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterChartCell.swift; sourceTree = "<group>"; };
 		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
-		0C936560215BB0C100B4EB48 /* WaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
 		0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintNotificationTimePicker.swift; sourceTree = "<group>"; };
 		0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoryViewController.swift; sourceTree = "<group>"; };
 		0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimePickerSubmodule.swift; sourceTree = "<group>"; };
@@ -511,10 +534,9 @@
 		0CF7E53D2147E3C20071DABD /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		0CF7E53F2147E3CD0071DABD /* StageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StageView.xib; sourceTree = "<group>"; };
 		0CF7E561214A7A280071DABD /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		3766095D2D5CE71215B67707 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
-		5F51E401B3035BB3D3D36D40 /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
-		86AE662AF1DF025C55574803 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
-		877F9C2024EB052CCE3A1FBA /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		536C11C5901EBDCAB32ED02B /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
+		71E81C05CD8FAB58DC43C11A /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
+		7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		961063222242B26000E1446E /* MoodChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartCell.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
@@ -531,6 +553,9 @@
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
+		969A9A2522E451200018188D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		969A9A2722E451210018188D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		969A9A2822E4E18A0018188D /* AppLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkHandler.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBarChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -540,16 +565,25 @@
 		96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreInitialScreenViewController.swift; sourceTree = "<group>"; };
 		96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreInitialScreenViewController.xib; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
+		96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterControlTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		96CDC73022E39095009395B9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		96CDC73322E39095009395B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		96CDC73522E39095009395B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96CDC73C22E390E0009395B9 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96CDC73E22E390E0009395B9 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96CDC74022E390E0009395B9 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96CDC74922E39982009395B9 /* WaterControlTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterControlTodayExtension.entitlements; sourceTree = "<group>"; };
 		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
 		96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionFeatureView.swift; sourceTree = "<group>"; };
 		96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProVersionFeatureView.xib; sourceTree = "<group>"; };
-		DC4B1D7A1D9BBDDBA6B51E91 /* Pods_Agile_diary_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECABCBECA6486DC06F0A9C0E /* Pods-Agile diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.release.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.release.xcconfig"; sourceTree = "<group>"; };
-		F660BC303DEBAA519B65FB46 /* Pods-Agile diary debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.debug.xcconfig"; sourceTree = "<group>"; };
-		FD189F1CF44FE3EA28F61FAB /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		ABFD3495C4552F738193903A /* Pods-HabitsTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.debug.xcconfig"; path = "Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		BFB6A5B7B98FC99B30872EE9 /* Pods-HabitsTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitsTodayExtension.release.xcconfig"; path = "Target Support Files/Pods-HabitsTodayExtension/Pods-HabitsTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
+		D0D28A1A8276F9DE1AB5AA1E /* Pods_Agile_diary_debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary_debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9289F337A46F0DFA86CB283 /* Pods-Agile diary debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.release.xcconfig"; path = "Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.release.xcconfig"; sourceTree = "<group>"; };
+		F4F94357C951C640C0705B7E /* Pods-Agile diary debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary debug.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,7 +597,7 @@
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
 				0CC4066F21F1E0A30069C6C5 /* Synchronization.framework in Frameworks */,
-				4E4D86BEAE1DE9DA6E568F30 /* Pods_Agile_diary.framework in Frameworks */,
+				F569A53D47918794978E9E58 /* Pods_Agile_diary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +611,7 @@
 				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
 				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
 				9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */,
-				B06254CC0B1F2A08555C37DD /* Pods_Agile_diary_debug.framework in Frameworks */,
+				2E18754B8FAC018397FB4FCD /* Pods_Agile_diary_debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +622,18 @@
 				0CE883DD215106F000637BD9 /* Workset.framework in Frameworks */,
 				0CE883DC215106EC00637BD9 /* TasksKit.framework in Frameworks */,
 				0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */,
-				B7EE47153D7C4410F606CF21 /* Pods_HabitsTodayExtension.framework in Frameworks */,
+				5C1C57BD392E7E1D0CAACB7F /* Pods_HabitsTodayExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96CDC72A22E39095009395B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CDC73D22E390E0009395B9 /* TasksKit.framework in Frameworks */,
+				96CDC73F22E390E0009395B9 /* UIComponents.framework in Frameworks */,
+				96CDC74122E390E0009395B9 /* Workset.framework in Frameworks */,
+				96CDC72E22E39095009395B9 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +645,7 @@
 			children = (
 				0C14D474211C55D9004C0559 /* Agile diary */,
 				0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */,
+				96CDC72F22E39095009395B9 /* WaterControlTodayExtension */,
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
 				60E6EBF9B112CF333C10E3FA /* Pods */,
@@ -612,6 +658,7 @@
 				0C14D472211C55D9004C0559 /* Agile diary.app */,
 				0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */,
 				0CB673DF21A52C3900178EB1 /* Agile diary debug.app */,
+				96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -633,6 +680,9 @@
 		0C14D487211C564A004C0559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96CDC73C22E390E0009395B9 /* TasksKit.framework */,
+				96CDC73E22E390E0009395B9 /* UIComponents.framework */,
+				96CDC74022E390E0009395B9 /* Workset.framework */,
 				0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */,
 				963FD80D21BD2D9E000817D4 /* Authorization.framework */,
 				96BE83CB217644F400CDECAF /* NotificationsKit.framework */,
@@ -640,9 +690,9 @@
 				0C14D48A211C564A004C0559 /* UIComponents.framework */,
 				0C14D48C211C564A004C0559 /* Workset.framework */,
 				0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */,
-				877F9C2024EB052CCE3A1FBA /* Pods_Agile_diary.framework */,
-				DC4B1D7A1D9BBDDBA6B51E91 /* Pods_Agile_diary_debug.framework */,
-				0B81075A37B59E8E8ADB7910 /* Pods_HabitsTodayExtension.framework */,
+				08CF652D448924A7008B5207 /* Pods_Agile_diary.framework */,
+				D0D28A1A8276F9DE1AB5AA1E /* Pods_Agile_diary_debug.framework */,
+				7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -744,6 +794,7 @@
 				964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */,
 				0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */,
 				0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */,
+				969A9A2822E4E18A0018188D /* AppLinkHandler.swift */,
 			);
 			path = Configurators;
 			sourceTree = "<group>";
@@ -901,7 +952,6 @@
 				0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */,
 				0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */,
 				0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */,
-				0C936560215BB0C100B4EB48 /* WaterLevelView.swift */,
 			);
 			path = "Water control";
 			sourceTree = "<group>";
@@ -1196,12 +1246,12 @@
 		60E6EBF9B112CF333C10E3FA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5F51E401B3035BB3D3D36D40 /* Pods-Agile diary.debug.xcconfig */,
-				ECABCBECA6486DC06F0A9C0E /* Pods-Agile diary.release.xcconfig */,
-				F660BC303DEBAA519B65FB46 /* Pods-Agile diary debug.debug.xcconfig */,
-				3766095D2D5CE71215B67707 /* Pods-Agile diary debug.release.xcconfig */,
-				FD189F1CF44FE3EA28F61FAB /* Pods-HabitsTodayExtension.debug.xcconfig */,
-				86AE662AF1DF025C55574803 /* Pods-HabitsTodayExtension.release.xcconfig */,
+				71E81C05CD8FAB58DC43C11A /* Pods-Agile diary.debug.xcconfig */,
+				536C11C5901EBDCAB32ED02B /* Pods-Agile diary.release.xcconfig */,
+				F4F94357C951C640C0705B7E /* Pods-Agile diary debug.debug.xcconfig */,
+				E9289F337A46F0DFA86CB283 /* Pods-Agile diary debug.release.xcconfig */,
+				ABFD3495C4552F738193903A /* Pods-HabitsTodayExtension.debug.xcconfig */,
+				BFB6A5B7B98FC99B30872EE9 /* Pods-HabitsTodayExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1276,6 +1326,18 @@
 			path = "Extended charts";
 			sourceTree = "<group>";
 		};
+		96CDC72F22E39095009395B9 /* WaterControlTodayExtension */ = {
+			isa = PBXGroup;
+			children = (
+				96CDC74922E39982009395B9 /* WaterControlTodayExtension.entitlements */,
+				96CDC73022E39095009395B9 /* TodayViewController.swift */,
+				96CDC73222E39095009395B9 /* MainInterface.storyboard */,
+				96CDC73522E39095009395B9 /* Info.plist */,
+				969A9A2622E451200018188D /* InfoPlist.strings */,
+			);
+			path = WaterControlTodayExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1283,20 +1345,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C14D484211C55DA004C0559 /* Build configuration list for PBXNativeTarget "Agile diary" */;
 			buildPhases = (
-				3F79163DDEB73E74DE1B253B /* [CP] Check Pods Manifest.lock */,
+				F0A190C3AE083EF3B0EB0ECA /* [CP] Check Pods Manifest.lock */,
 				0C14D46E211C55D9004C0559 /* Sources */,
 				0C14D46F211C55D9004C0559 /* Frameworks */,
 				0C14D470211C55D9004C0559 /* Resources */,
 				0C14D494211C564F004C0559 /* Embed Frameworks */,
 				0CE883D72150F6EC00637BD9 /* Embed App Extensions */,
 				0C9999EA21E8A63D00DD2040 /* Fabric */,
-				2832D8B83AAE119F86F6725E /* [CP] Embed Pods Frameworks */,
-				DDF5C5AD0A10CD39C0D452E0 /* [CP] Copy Pods Resources */,
+				00B3D60A46BA3F608E5373A0 /* [CP] Embed Pods Frameworks */,
+				4B649747ABF042CA76D092C1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				0CE883D22150F6EC00637BD9 /* PBXTargetDependency */,
+				96CDC73722E39095009395B9 /* PBXTargetDependency */,
 			);
 			name = "Agile diary";
 			productName = "Agile diary";
@@ -1307,13 +1370,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CB673DC21A52C3900178EB1 /* Build configuration list for PBXNativeTarget "Agile diary debug" */;
 			buildPhases = (
-				DFC38A1BE30AEF7F1C47A59B /* [CP] Check Pods Manifest.lock */,
+				00F079C3E5C493B87B4B0650 /* [CP] Check Pods Manifest.lock */,
 				0CB6736D21A52C3900178EB1 /* Sources */,
 				0CB673BC21A52C3900178EB1 /* Frameworks */,
 				0CB673C221A52C3900178EB1 /* Resources */,
 				0CB673D421A52C3900178EB1 /* Embed Frameworks */,
-				5FBD4BA188F72713FF9CE677 /* [CP] Embed Pods Frameworks */,
-				CF4CC1014B0FD92BA64C54E1 /* [CP] Copy Pods Resources */,
+				81F9CE4DFEC521E21B064B35 /* [CP] Embed Pods Frameworks */,
+				033BBCE261A30CE0F19CD815 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1328,7 +1391,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CE883D62150F6EC00637BD9 /* Build configuration list for PBXNativeTarget "HabitsTodayExtension" */;
 			buildPhases = (
-				7B4A0C1A9E9E517B39C4D8F1 /* [CP] Check Pods Manifest.lock */,
+				6FC6646D31CC03A8B3A04F14 /* [CP] Check Pods Manifest.lock */,
 				0CE883C32150F6EB00637BD9 /* Sources */,
 				0CE883C42150F6EB00637BD9 /* Frameworks */,
 				0CE883C52150F6EB00637BD9 /* Resources */,
@@ -1342,6 +1405,23 @@
 			productReference = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		96CDC72C22E39095009395B9 /* WaterControlTodayExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96CDC73922E39095009395B9 /* Build configuration list for PBXNativeTarget "WaterControlTodayExtension" */;
+			buildPhases = (
+				96CDC72922E39095009395B9 /* Sources */,
+				96CDC72A22E39095009395B9 /* Frameworks */,
+				96CDC72B22E39095009395B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WaterControlTodayExtension;
+			productName = WaterControlTodayExtension;
+			productReference = 96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1351,7 +1431,7 @@
 				KnownAssetTags = (
 					BackgroundImages,
 				);
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Mesterra;
 				TargetAttributes = {
@@ -1368,6 +1448,14 @@
 					};
 					0CE883C62150F6EB00637BD9 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					96CDC72C22E39095009395B9 = {
+						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1393,6 +1481,7 @@
 				0C14D471211C55D9004C0559 /* Agile diary */,
 				0CB6736921A52C3900178EB1 /* Agile diary debug */,
 				0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */,
+				96CDC72C22E39095009395B9 /* WaterControlTodayExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1473,9 +1562,116 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96CDC72B22E39095009395B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CDC73422E39095009395B9 /* MainInterface.storyboard in Resources */,
+				969A9A2422E451200018188D /* InfoPlist.strings in Resources */,
+				96CDC74B22E450CC009395B9 /* Localizable.strings in Resources */,
+				96CDC74A22E3A082009395B9 /* Assets.xcassets in Resources */,
+				96CDC74C22E450D0009395B9 /* Localizable.stringsdict in Resources */,
+				96CDC74822E39701009395B9 /* TasksKitConfiguration.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00B3D60A46BA3F608E5373A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		00F079C3E5C493B87B4B0650 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Agile diary debug-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		033BBCE261A30CE0F19CD815 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0C9999EA21E8A63D00DD2040 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1494,24 +1690,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30\n";
 		};
-		2832D8B83AAE119F86F6725E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3F79163DDEB73E74DE1B253B /* [CP] Check Pods Manifest.lock */ = {
+		4B649747ABF042CA76D092C1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1519,38 +1698,21 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Agile diary-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5FBD4BA188F72713FF9CE677 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7B4A0C1A9E9E517B39C4D8F1 /* [CP] Check Pods Manifest.lock */ = {
+		6FC6646D31CC03A8B3A04F14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1572,41 +1734,57 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF4CC1014B0FD92BA64C54E1 /* [CP] Copy Pods Resources */ = {
+		81F9CE4DFEC521E21B064B35 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Foto/Foto.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Foto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DDF5C5AD0A10CD39C0D452E0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DFC38A1BE30AEF7F1C47A59B /* [CP] Check Pods Manifest.lock */ = {
+		F0A190C3AE083EF3B0EB0ECA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1621,7 +1799,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Agile diary debug-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Agile diary-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1645,6 +1823,7 @@
 				967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */,
 				0C86E4F522DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
+				969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				961063232242B26000E1446E /* MoodChartCell.swift in Sources */,
@@ -1743,7 +1922,6 @@
 				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */,
-				0C936561215BB0C100B4EB48 /* WaterLevelView.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1833,6 +2011,7 @@
 				0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */,
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
+				969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
 				0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
@@ -1861,7 +2040,6 @@
 				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */,
-				0CB673BA21A52C3900178EB1 /* WaterLevelView.swift in Sources */,
 				0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1882,6 +2060,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96CDC72922E39095009395B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CDC74522E39325009395B9 /* Constants.swift in Sources */,
+				96CDC74322E392B7009395B9 /* Date+Today.swift in Sources */,
+				96CDC73122E39095009395B9 /* TodayViewController.swift in Sources */,
+				96CDC74222E39267009395B9 /* SprintInteractorTrait.swift in Sources */,
+				96CDC74422E392C9009395B9 /* List+Sprint.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1889,6 +2079,11 @@
 			isa = PBXTargetDependency;
 			target = 0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */;
 			targetProxy = 0CE883D12150F6EC00637BD9 /* PBXContainerItemProxy */;
+		};
+		96CDC73722E39095009395B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96CDC72C22E39095009395B9 /* WaterControlTodayExtension */;
+			targetProxy = 96CDC73622E39095009395B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1946,6 +2141,15 @@
 			name = Info.plist;
 			sourceTree = "<group>";
 		};
+		969A9A2622E451200018188D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				969A9A2522E451200018188D /* en */,
+				969A9A2722E451210018188D /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		96BE838A2175034400CDECAF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1953,6 +2157,14 @@
 				96BE838B2175034500CDECAF /* ru */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		96CDC73222E39095009395B9 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96CDC73322E39095009395B9 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2076,8 +2288,9 @@
 		};
 		0C14D485211C55DA004C0559 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F51E401B3035BB3D3D36D40 /* Pods-Agile diary.debug.xcconfig */;
+			baseConfigurationReference = 71E81C05CD8FAB58DC43C11A /* Pods-Agile diary.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -2105,8 +2318,9 @@
 		};
 		0C14D486211C55DA004C0559 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECABCBECA6486DC06F0A9C0E /* Pods-Agile diary.release.xcconfig */;
+			baseConfigurationReference = 536C11C5901EBDCAB32ED02B /* Pods-Agile diary.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -2135,7 +2349,7 @@
 		};
 		0CB673DD21A52C3900178EB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F660BC303DEBAA519B65FB46 /* Pods-Agile diary debug.debug.xcconfig */;
+			baseConfigurationReference = F4F94357C951C640C0705B7E /* Pods-Agile diary debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -2163,7 +2377,7 @@
 		};
 		0CB673DE21A52C3900178EB1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3766095D2D5CE71215B67707 /* Pods-Agile diary debug.release.xcconfig */;
+			baseConfigurationReference = E9289F337A46F0DFA86CB283 /* Pods-Agile diary debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
@@ -2191,7 +2405,7 @@
 		};
 		0CE883D42150F6EC00637BD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD189F1CF44FE3EA28F61FAB /* Pods-HabitsTodayExtension.debug.xcconfig */;
+			baseConfigurationReference = ABFD3495C4552F738193903A /* Pods-HabitsTodayExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -2219,7 +2433,7 @@
 		};
 		0CE883D52150F6EC00637BD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86AE662AF1DF025C55574803 /* Pods-HabitsTodayExtension.release.xcconfig */;
+			baseConfigurationReference = BFB6A5B7B98FC99B30872EE9 /* Pods-HabitsTodayExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -2241,6 +2455,51 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TODAY_EXTENSION;
 				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		96CDC73A22E39095009395B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WaterControlTodayExtension/WaterControlTodayExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				INFOPLIST_FILE = WaterControlTodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.WaterControlTodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96CDC73B22E39095009395B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WaterControlTodayExtension/WaterControlTodayExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 485UNLA592;
+				INFOPLIST_FILE = WaterControlTodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.WaterControlTodayExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2280,6 +2539,15 @@
 			buildConfigurations = (
 				0CE883D42150F6EC00637BD9 /* Debug */,
 				0CE883D52150F6EC00637BD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96CDC73922E39095009395B9 /* Build configuration list for PBXNativeTarget "WaterControlTodayExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96CDC73A22E39095009395B9 /* Debug */,
+				96CDC73B22E39095009395B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

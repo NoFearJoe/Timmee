@@ -25,10 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
+        appLinkHandler.window = window
         return window
     }()
     
     private let initialScreenPresenter = InitialScreenPresenter()
+    private let appLinkHandler = AppLinkHandler()
     
     private lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
     
@@ -71,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let canOpenWithFacebook = FBSDKApplicationDelegate.sharedInstance()?.application(app, open: url, options: options) ?? false
+        appLinkHandler.handle(url: url)
         return canOpenWithFacebook
     }
 

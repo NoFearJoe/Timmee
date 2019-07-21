@@ -49,7 +49,7 @@
                                         <rect key="frame" x="0.0" y="32" width="345" height="170"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHl-rI-fuT" customClass="WaterLevelView" customModule="Agile_diary" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHl-rI-fuT" customClass="WaterLevelView" customModule="UIComponents">
                                         <rect key="frame" x="97.5" y="36" width="150" height="150"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5л" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Mo3-RA-usd" userLabel="1.5л">
@@ -95,123 +95,12 @@
                                         </connections>
                                     </button>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="AaS-X5-gy2">
-                                        <rect key="frame" x="58.5" y="194" width="228" height="68"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1z-gp-r79">
-                                                <rect key="frame" x="0.0" y="0.0" width="52" height="68"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMi-gn-4DE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="FMi-gn-4DE" secondAttribute="height" id="bS9-X7-tKj"/>
-                                                            <constraint firstAttribute="width" constant="52" id="cjx-jl-1ws"/>
-                                                        </constraints>
-                                                        <state key="normal" image="glass100ml"/>
-                                                        <connections>
-                                                            <action selector="onTapToDrinkButton:" destination="kHp-X3-HNo" eventType="touchUpInside" id="fx7-Sk-aKa"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 100ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24a-Ge-Zcn">
-                                                        <rect key="frame" x="0.0" y="52" width="52" height="16"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="24a-Ge-Zcn" firstAttribute="leading" secondItem="M1z-gp-r79" secondAttribute="leading" id="5ID-8V-9FG"/>
-                                                    <constraint firstItem="FMi-gn-4DE" firstAttribute="top" secondItem="M1z-gp-r79" secondAttribute="top" id="BaX-bs-uIz"/>
-                                                    <constraint firstAttribute="width" constant="52" id="Bct-Ty-qWk"/>
-                                                    <constraint firstAttribute="trailing" secondItem="24a-Ge-Zcn" secondAttribute="trailing" id="N2V-fS-Hnu"/>
-                                                    <constraint firstAttribute="bottom" secondItem="24a-Ge-Zcn" secondAttribute="bottom" id="Wmn-3Q-M5p"/>
-                                                    <constraint firstItem="FMi-gn-4DE" firstAttribute="leading" secondItem="M1z-gp-r79" secondAttribute="leading" id="d3H-Pv-2wG"/>
-                                                    <constraint firstAttribute="height" constant="68" id="du5-2d-qUo"/>
-                                                    <constraint firstItem="24a-Ge-Zcn" firstAttribute="top" secondItem="FMi-gn-4DE" secondAttribute="bottom" id="jeY-7F-EfI"/>
-                                                    <constraint firstAttribute="trailing" secondItem="FMi-gn-4DE" secondAttribute="trailing" id="ySa-8d-bNN"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ECo-vu-e7c">
-                                                <rect key="frame" x="88" y="0.0" width="52" height="68"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-16-8up">
-                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="52" id="7Qf-st-lae"/>
-                                                            <constraint firstAttribute="width" secondItem="6vs-16-8up" secondAttribute="height" id="zMA-A3-gn0"/>
-                                                        </constraints>
-                                                        <state key="normal" title="asd" image="glass200ml"/>
-                                                        <connections>
-                                                            <action selector="onTapToDrinkButton:" destination="kHp-X3-HNo" eventType="touchUpInside" id="qp8-JT-Bre"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 200ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AK6-po-RCa">
-                                                        <rect key="frame" x="0.0" y="52" width="52" height="16"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="AK6-po-RCa" secondAttribute="trailing" id="6Xf-W3-Mbh"/>
-                                                    <constraint firstAttribute="bottom" secondItem="AK6-po-RCa" secondAttribute="bottom" id="7il-YB-3Vw"/>
-                                                    <constraint firstItem="AK6-po-RCa" firstAttribute="leading" secondItem="ECo-vu-e7c" secondAttribute="leading" id="7rd-xa-Wbt"/>
-                                                    <constraint firstAttribute="width" constant="52" id="D07-D6-ZLa"/>
-                                                    <constraint firstAttribute="trailing" secondItem="6vs-16-8up" secondAttribute="trailing" id="K7D-fu-NQt"/>
-                                                    <constraint firstItem="6vs-16-8up" firstAttribute="top" secondItem="ECo-vu-e7c" secondAttribute="top" id="PZN-sk-HVr"/>
-                                                    <constraint firstItem="6vs-16-8up" firstAttribute="leading" secondItem="ECo-vu-e7c" secondAttribute="leading" id="cdI-i6-GsQ"/>
-                                                    <constraint firstItem="AK6-po-RCa" firstAttribute="top" secondItem="6vs-16-8up" secondAttribute="bottom" id="iKk-dn-wCO"/>
-                                                    <constraint firstAttribute="height" constant="68" id="wTK-vS-qGA"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9z-f6-Jg1">
-                                                <rect key="frame" x="176" y="0.0" width="52" height="68"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wG6-Mm-Jxj">
-                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="wG6-Mm-Jxj" secondAttribute="height" id="Ak0-yX-TNp"/>
-                                                            <constraint firstAttribute="width" constant="52" id="EwM-1C-giI"/>
-                                                        </constraints>
-                                                        <state key="normal" image="glass300ml"/>
-                                                        <connections>
-                                                            <action selector="onTapToDrinkButton:" destination="kHp-X3-HNo" eventType="touchUpInside" id="VDz-eR-1OF"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 300ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdt-ct-gjS">
-                                                        <rect key="frame" x="0.0" y="52" width="52" height="16"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="wG6-Mm-Jxj" firstAttribute="leading" secondItem="b9z-f6-Jg1" secondAttribute="leading" id="7bU-tM-tzU"/>
-                                                    <constraint firstAttribute="width" constant="52" id="D3u-Mh-Vvw"/>
-                                                    <constraint firstAttribute="bottom" secondItem="hdt-ct-gjS" secondAttribute="bottom" id="LVk-bY-MUS"/>
-                                                    <constraint firstItem="wG6-Mm-Jxj" firstAttribute="top" secondItem="b9z-f6-Jg1" secondAttribute="top" id="OFX-51-iY2"/>
-                                                    <constraint firstAttribute="height" constant="68" id="S5m-88-I5Y"/>
-                                                    <constraint firstItem="hdt-ct-gjS" firstAttribute="top" secondItem="wG6-Mm-Jxj" secondAttribute="bottom" id="g92-l4-JHM"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hdt-ct-gjS" secondAttribute="trailing" id="nD0-U3-FCr"/>
-                                                    <constraint firstAttribute="trailing" secondItem="wG6-Mm-Jxj" secondAttribute="trailing" id="ofa-I3-rj2"/>
-                                                    <constraint firstItem="hdt-ct-gjS" firstAttribute="leading" secondItem="b9z-f6-Jg1" secondAttribute="leading" id="xbm-wt-Nzf"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmx-WF-6CN" customClass="FloatingButton" customModule="UIComponents">
-                                        <rect key="frame" x="305" y="230" width="32" height="32"/>
+                                        <rect key="frame" x="146.5" y="194" width="52" height="68"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="MhZ-Sn-a6K"/>
-                                            <constraint firstAttribute="width" secondItem="jmx-WF-6CN" secondAttribute="height" id="S2s-j1-fNP"/>
+                                            <constraint firstAttribute="width" constant="52" placeholder="YES" id="Smx-2w-1Uf"/>
+                                            <constraint firstAttribute="height" constant="68" id="wXr-db-tDX"/>
                                         </constraints>
-                                        <state key="normal" image="plus"/>
-                                        <connections>
-                                            <action selector="onTapToAddDrunkVolumeButton" destination="kHp-X3-HNo" eventType="touchUpInside" id="1VC-bG-3Cg"/>
-                                        </connections>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -232,8 +121,6 @@
                                     <constraint firstItem="bER-xs-kbI" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" constant="8" id="agl-s0-AmD"/>
                                     <constraint firstAttribute="trailing" secondItem="CJ2-Oi-gpi" secondAttribute="trailing" constant="20" id="jVL-Pz-WHR"/>
                                     <constraint firstItem="CJ2-Oi-gpi" firstAttribute="leading" secondItem="nRP-1r-c7X" secondAttribute="leading" constant="20" id="pPH-eP-eVE"/>
-                                    <constraint firstAttribute="bottom" secondItem="jmx-WF-6CN" secondAttribute="bottom" constant="8" id="tJH-Ye-X6F"/>
-                                    <constraint firstAttribute="trailing" secondItem="jmx-WF-6CN" secondAttribute="trailing" constant="8" id="zpy-jQ-U2u"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -249,14 +136,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="288"/>
                     <connections>
-                        <outlet property="addDrunkVolumeButton" destination="jmx-WF-6CN" id="XaG-ge-Pc4"/>
                         <outlet property="containerView" destination="nRP-1r-c7X" id="E2X-wq-s81"/>
-                        <outlet property="drink100mlButton" destination="FMi-gn-4DE" id="hof-X3-8rY"/>
-                        <outlet property="drink100mlLabel" destination="24a-Ge-Zcn" id="1w5-2d-qvr"/>
-                        <outlet property="drink200mlButton" destination="6vs-16-8up" id="B59-aS-fX2"/>
-                        <outlet property="drink200mlLabel" destination="AK6-po-RCa" id="bky-YR-rgp"/>
-                        <outlet property="drink300mlButton" destination="wG6-Mm-Jxj" id="VNy-L8-fej"/>
-                        <outlet property="drink300mlLabel" destination="hdt-ct-gjS" id="c2e-vH-VZX"/>
                         <outlet property="drinkButtonsContainer" destination="AaS-X5-gy2" id="XD5-z8-mXy"/>
                         <outlet property="drunkVolumeLabel" destination="Mo3-RA-usd" id="1u5-lC-4UM"/>
                         <outlet property="placeholderContainer" destination="91A-b7-5gR" id="wse-Ak-Cha"/>
@@ -397,12 +277,8 @@
     <resources>
         <image name="bad" width="102" height="100"/>
         <image name="cogwheel" width="20" height="20"/>
-        <image name="glass100ml" width="52" height="52"/>
-        <image name="glass200ml" width="52" height="52"/>
-        <image name="glass300ml" width="52" height="52"/>
         <image name="good" width="102" height="100"/>
         <image name="normal" width="102" height="100"/>
-        <image name="plus" width="20" height="20"/>
         <image name="veryBad" width="100" height="100"/>
         <image name="veryGood" width="102" height="100"/>
     </resources>

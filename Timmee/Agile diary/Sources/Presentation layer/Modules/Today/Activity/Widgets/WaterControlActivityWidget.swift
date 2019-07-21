@@ -18,31 +18,17 @@ final class WaterControlActivityWidget: UIViewController {
     
     @IBOutlet private var drunkVolumeLabel: UILabel!
     
-    @IBOutlet private var waterLevelView: WaterLevelView!
+    @IBOutlet private var waterLevelView: WaterLevelView! {
+        didSet {
+            waterLevelView.backgroundColor = AppTheme.current.colors.decorationElementColor
+            waterLevelView.waterColor = AppTheme.current.colors.mainElementColor.withAlphaComponent(0.35)
+        }
+    }
     
-    @IBOutlet private var drinkButtonsContainer: UIView!
-    @IBOutlet private var drink100mlButton: UIButton!
-    @IBOutlet private var drink100mlLabel: UILabel!
-    @IBOutlet private var drink200mlButton: UIButton!
-    @IBOutlet private var drink200mlLabel: UILabel!
-    @IBOutlet private var drink300mlButton: UIButton!
-    @IBOutlet private var drink300mlLabel: UILabel!
-    
-    @IBOutlet private var addDrunkVolumeButton: FloatingButton!
-    
-    private lazy var addDrunkVolumeMenu: FloatingMenu = {
-        return FloatingMenu(items: [
-                                FloatingMenu.Item(title: "+100ml".localized,
-                                                  action: { [unowned self] in self.addDrunkVolume(milliliters: 100) }),
-                                FloatingMenu.Item(title: "+200ml".localized,
-                                                  action: { [unowned self] in self.addDrunkVolume(milliliters: 200) }),
-                                FloatingMenu.Item(title: "+300ml".localized,
-                                                  action: { [unowned self] in self.addDrunkVolume(milliliters: 300) })
-                            ],
-                            colors: FloatingMenu.Colors(tintColor: .white,
-                                                        backgroundColor: AppTheme.current.colors.mainElementColor,
-                                                        secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor))
-    }()
+    @IBOutlet private var drinkButtonsContainer: UIStackView!
+    private let drink100mlButton = AddWaterView(title: "+100ml".localized, image: UIImage(imageLiteralResourceName: "glass100ml"))
+    private let drink200mlButton = AddWaterView(title: "+200ml".localized, image: UIImage(imageLiteralResourceName: "glass200ml"))
+    private let drink300mlButton = AddWaterView(title: "+300ml".localized, image: UIImage(imageLiteralResourceName: "glass300ml"))
     
     @IBOutlet private var placeholderContainer: UIView!
     @IBOutlet private var waterControlConfigurationButton: UIButton!
@@ -62,7 +48,7 @@ final class WaterControlActivityWidget: UIViewController {
         }
     }
     
-    @IBAction private func onTapToDrinkButton(_ button: UIButton) {
+    @IBAction private func onTapToDrinkButton(_ button: UIControl) {
         switch button {
         case drink100mlButton: addDrunkVolume(milliliters: 100)
         case drink200mlButton: addDrunkVolume(milliliters: 200)
@@ -71,25 +57,17 @@ final class WaterControlActivityWidget: UIViewController {
         }
     }
     
-    @IBAction private func onTapToAddDrunkVolumeButton() {
-        addDrunkVolumeMenu.show(animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitialState()
         setupPlaceholder()
         titleLabel.text = "water_control_widget_title".localized
-        drink100mlLabel.text = "+100ml".localized
-        drink200mlLabel.text = "+200ml".localized
-        drink300mlLabel.text = "+300ml".localized
-        
-        addDrunkVolumeButton.colors = FloatingButton.Colors(tintColor: .white,
-                                                            backgroundColor: AppTheme.current.colors.mainElementColor,
-                                                            secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor)
-        
-        addDrunkVolumeMenu.add(to: view)
-        addDrunkVolumeMenu.pin(to: addDrunkVolumeButton, offset: 10)
+        drinkButtonsContainer.addArrangedSubview(drink100mlButton)
+        drinkButtonsContainer.addArrangedSubview(drink200mlButton)
+        drinkButtonsContainer.addArrangedSubview(drink300mlButton)
+        drink100mlButton.addTarget(self, action: #selector(onTapToDrinkButton(_:)), for: .touchUpInside)
+        drink200mlButton.addTarget(self, action: #selector(onTapToDrinkButton(_:)), for: .touchUpInside)
+        drink300mlButton.addTarget(self, action: #selector(onTapToDrinkButton(_:)), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,9 +102,8 @@ final class WaterControlActivityWidget: UIViewController {
         placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
         drunkVolumeLabel.font = AppTheme.current.fonts.bold(32)
         drunkVolumeLabel.textColor = AppTheme.current.colors.activeElementColor
-        [drink100mlLabel, drink200mlLabel, drink300mlLabel].forEach {
-            $0?.textColor = AppTheme.current.colors.activeElementColor
-            $0?.font = AppTheme.current.fonts.medium(12)
+        [drink100mlButton, drink200mlButton, drink300mlButton].forEach {
+            $0?.setupAppearance()
         }
     }
     
@@ -266,3 +243,45 @@ class WaterControlLoader {
     
 }
 
+private extension WaterControlActivityWidget {
+    
+    final class AddWaterView: UIControl {
+        
+        private let imageView: UIImageView
+        private let volumeLabel: UILabel
+        
+        init(title: String, image: UIImage) {
+            imageView = UIImageView(image: image)
+            volumeLabel = UILabel(frame: .zero)
+            volumeLabel.text = title
+            volumeLabel.textAlignment = .center
+            
+            super.init(frame: .zero)
+            
+            addSubview(imageView)
+            addSubview(volumeLabel)
+        }
+        
+        required init?(coder aDecoder: NSCoder) { fatalError() }
+        
+        override func didMoveToSuperview() {
+            super.didMoveToSuperview()
+            setupConstraints()
+        }
+        
+        func setupAppearance() {
+            volumeLabel.textColor = AppTheme.current.colors.activeElementColor
+            volumeLabel.font = AppTheme.current.fonts.medium(12)
+        }
+        
+        private func setupConstraints() {
+            [imageView.leading(), imageView.trailing(), imageView.top()].toSuperview()
+            [volumeLabel.leading(), volumeLabel.trailing(), volumeLabel.bottom()].toSuperview()
+            
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
+            imageView.bottomToTop(-2).to(volumeLabel, addTo: self)
+        }
+        
+    }
+    
+}

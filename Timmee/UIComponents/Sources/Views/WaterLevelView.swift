@@ -8,11 +8,13 @@
 
 import UIKit
 
-final class WaterLevelView: UIView {
+public final class WaterLevelView: UIView {
     
-    var animationHasStoped: Bool = true
+    public var waterColor: UIColor = .blue
     
-    var waterLevel: CGFloat = 0
+    public var animationHasStoped: Bool = true
+    
+    public var waterLevel: CGFloat = 0
     private var currentWaterLevel: CGFloat = 0
     
     private var currentWaveHeight: CGFloat = 0
@@ -20,19 +22,21 @@ final class WaterLevelView: UIView {
     private var currentWaveStep: CGFloat = waveStep
     
     private static let waveStep: CGFloat = 1
-    private static let waterLevelStep: CGFloat = 0.005
+    private static let waterLevelStep: CGFloat = 0.01
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
-        animateWave()
-        backgroundColor = AppTheme.current.colors.decorationElementColor
+        if #available(iOSApplicationExtension 10.0, *) {
+            animateWave()
+        }
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.height / 2
     }
     
+    @available(iOSApplicationExtension 10.0, *)
     private func animateWave() {
         Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { [weak self] _ in
             guard let `self` = self else { return }
@@ -62,14 +66,14 @@ final class WaterLevelView: UIView {
         }
     }
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         guard waterLevel > 0 else { return }
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
-        context.setFillColor(AppTheme.current.colors.mainElementColor.withAlphaComponent(0.35).cgColor)
+        context.setFillColor(waterColor.cgColor)
         
         let waterRect = CGRect(x: 0, y: bounds.height - currentWaterLevel * bounds.height, width: bounds.width, height: currentWaterLevel * bounds.height)
         
