@@ -361,3 +361,5 @@
 "average_water_volume" = "В среднем в день";
 
 "water_control_widget_title" = "Вода";
+
+"weekly_chart_title" = "Прогресс за последние 7 дней";

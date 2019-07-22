@@ -41,7 +41,7 @@ public final class DetailView: UIView {
         detailContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         [detailContainerView.leading(), detailContainerView.trailing(), detailContainerView.bottom()].toSuperview()
-        detailContainerView.topToBottom().to(titleLabel, addTo: self)
+        detailContainerView.topToBottom(4).to(titleLabel, addTo: self)
     }
     
     private func setupDetailView(_ detailView: UIView) {

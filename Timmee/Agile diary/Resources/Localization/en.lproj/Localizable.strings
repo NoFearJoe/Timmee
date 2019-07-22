@@ -361,3 +361,5 @@
 "average_water_volume" = "Average water volume";
 
 "water_control_widget_title" = "Water";
+
+"weekly_chart_title" = "Progress over the last 7 days";

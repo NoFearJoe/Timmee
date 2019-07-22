@@ -8,15 +8,17 @@
 
 import UIComponents
 
-final class HabitDetailsProvider: DetailModuleProvider {
+final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
     
     var onEdit: (() -> Void)?
     
     weak var holderViewController: UIViewController?
     
     private let habit: Habit
+    private lazy var sprint = getCurrentSprint()
     
     private let habitsService = ServicesAssembly.shared.habitsService
+    let sprintsService = ServicesAssembly.shared.sprintsService
     
     init(habit: Habit) {
         self.habit = habit
@@ -34,7 +36,7 @@ final class HabitDetailsProvider: DetailModuleProvider {
         if let value = habit.value {
             let emptyView0 = UIView()
             emptyView0.backgroundColor = AppTheme.current.colors.foregroundColor
-            emptyView0.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            emptyView0.height(20)
             contentView.addView(emptyView0)
             
             let amountLabel = UILabel()
@@ -49,7 +51,7 @@ final class HabitDetailsProvider: DetailModuleProvider {
         
         let emptyView1 = UIView()
         emptyView1.backgroundColor = AppTheme.current.colors.foregroundColor
-        emptyView1.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emptyView1.height(20)
         contentView.addView(emptyView1)
         
         let dayTimeLabel = UILabel()
@@ -82,7 +84,7 @@ final class HabitDetailsProvider: DetailModuleProvider {
         
         let emptyView3 = UIView()
         emptyView3.backgroundColor = AppTheme.current.colors.foregroundColor
-        emptyView3.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emptyView3.height(20)
         contentView.addView(emptyView3)
         
         let daysContainerView = UIStackView()
@@ -123,7 +125,7 @@ final class HabitDetailsProvider: DetailModuleProvider {
         if !habit.link.trimmed.isEmpty {
             let emptyView4 = UIView()
             emptyView4.backgroundColor = AppTheme.current.colors.foregroundColor
-            emptyView4.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            emptyView4.height(20)
             contentView.addView(emptyView4)
             
             let linkLabel = UILabel()
@@ -145,7 +147,7 @@ final class HabitDetailsProvider: DetailModuleProvider {
         // Buttons
         let emptyView5 = UIView()
         emptyView5.backgroundColor = AppTheme.current.colors.foregroundColor
-        emptyView5.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emptyView5.height(20)
         contentView.addView(emptyView5)
         
         let buttonsContainer = UIStackView()
@@ -187,9 +189,39 @@ final class HabitDetailsProvider: DetailModuleProvider {
         }
         contentView.addView(buttonsContainer)
         
+        // Weekly chart
+        
+        if let sprint = sprint {
+            let emptyView6 = UIView()
+            emptyView6.backgroundColor = AppTheme.current.colors.foregroundColor
+            emptyView6.height(20)
+            contentView.addView(emptyView6)
+            
+            var chartModels: [HabitWeeklyChartView.Model] = []
+            let startDate: Date = sprint.endDate.isGreater(than: Date.now) ? Date.now : sprint.endDate
+            let daysFromSprintStart = min(sprint.startDate.days(before: startDate), 6)
+            for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
+                let date = (startDate - i.asDays).startOfDay
+                let repeatDay = DayUnit(weekday: date.weekday)
+                let isDone = habit.isDone(at: date)
+                let model = HabitWeeklyChartView.Model(weekday: repeatDay.localizedShort,
+                                                       status: isDone ? .done : .notDone,
+                                                       date: date.asShortDayMonth)
+                chartModels.append(model)
+            }
+            
+            let weeklyChartView = HabitWeeklyChartView(frame: .zero)
+            weeklyChartView.configure(models: chartModels)
+            weeklyChartView.height(HabitWeeklyChartView.requiredHeight)
+            let weeklyChartContainer = DetailView(title: "weekly_chart_title".localized, detailView: weeklyChartView)
+            weeklyChartContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
+            weeklyChartContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            contentView.addView(weeklyChartContainer)
+        }
+        
         let emptyViewLast = UIView()
         emptyViewLast.backgroundColor = AppTheme.current.colors.foregroundColor
-        emptyViewLast.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emptyViewLast.height(20)
         contentView.addView(emptyViewLast)
     }
     
