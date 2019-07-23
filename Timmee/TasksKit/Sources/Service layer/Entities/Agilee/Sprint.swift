@@ -28,7 +28,7 @@ public class Sprint {
     }
     
     public init(sprintEntity: SprintEntity) {
-        id = sprintEntity.id!
+        id = sprintEntity.id ?? ""
         number = Int(sprintEntity.number)
         startDate = sprintEntity.startDate! as Date
         endDate = sprintEntity.endDate! as Date

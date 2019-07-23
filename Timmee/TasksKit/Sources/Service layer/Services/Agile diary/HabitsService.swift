@@ -9,7 +9,6 @@
 import Workset
 
 public protocol HabitsProvider: class {
-    func createHabit() -> HabitEntity?
     func fetchHabit(id: String) -> Habit?
     func fetchHabits(sprintID: String) -> [Habit]
 }
@@ -51,13 +50,13 @@ public final class HabitsService {
         self.sprintsProvider = sprintsProvider
     }
     
+    private func createHabit() -> HabitEntity {
+        return HabitEntity(context: Database.localStorage.writeContext)
+    }
+    
 }
 
 extension HabitsService: HabitsProvider {
-    
-    public func createHabit() -> HabitEntity? {
-        return try? Database.localStorage.writeContext.create()
-    }
     
     public func fetchHabit(id: String) -> Habit? {
         guard let entity = fetchHabitEntity(id: id) else { return nil }
@@ -81,10 +80,9 @@ extension HabitsService: HabitsManager {
                 return
             }
             
-            if let newHabit = self.createHabit() {
-                newHabit.map(from: habit)
-                newHabit.sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID, context: context)
-            }
+            let newHabit = self.createHabit()
+            newHabit.map(from: habit)
+            newHabit.sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID, context: context)
             
             save()
         }) { isSuccess in
@@ -112,7 +110,7 @@ extension HabitsService: HabitsManager {
         
         Database.localStorage.write({ (context, save) in
             habits.forEach { habit in
-                guard let habitEntity = self.fetchHabitEntityInBackground(id: habit.id) ?? self.createHabit() else { return }
+                let habitEntity = self.fetchHabitEntityInBackground(id: habit.id) ?? self.createHabit()
                 
                 habitEntity.map(from: habit)
                 
@@ -239,9 +237,9 @@ extension HabitsService: HabitsObserverProvider {
         let context = Database.localStorage.readContext
         
         let observer = CachedEntitiesObserver<HabitEntity, Habit>(context: context,
-                                              baseRequest: request,
-                                              grouping: { $0.calculatedDayTime.sortID },
-                                              mapping: { Habit(habit: $0) })
+                                                                  baseRequest: request,
+                                                                  grouping: { $0.calculatedDayTime.sortID },
+                                                                  mapping: { Habit(habit: $0) })
         
         return observer
     }

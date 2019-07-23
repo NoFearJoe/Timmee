@@ -58,6 +58,8 @@
 		0C3DA5322154CCAF00CAE635 /* WaterControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */; };
 		0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */; };
 		0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */; };
+		0C4082DF22E6DF0F00D899A9 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */; };
+		0C4082E022E6DF0F00D899A9 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */; };
 		0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */; };
 		0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */; };
 		0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C52A0DA2243792700D50D1B /* MoodChartView.swift */; };
@@ -456,6 +458,7 @@
 		0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlConfigurationViewController.swift; sourceTree = "<group>"; };
 		0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WaterControl.storyboard; sourceTree = "<group>"; };
 		0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitWeeklyChartView.swift; sourceTree = "<group>"; };
+		0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintDurationPicker.swift; sourceTree = "<group>"; };
 		0C52A0DA2243792700D50D1B /* MoodChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartView.swift; sourceTree = "<group>"; };
 		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
@@ -746,6 +749,7 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0C4082DC22E6DEE200D899A9 /* Diary */,
 				96B73BF422BDFE0C00043765 /* PreInitialScreen */,
 				0CC4BB5F21BA8DE90066C213 /* Authorization */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
@@ -966,6 +970,22 @@
 				0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0C4082DC22E6DEE200D899A9 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				0C4082DD22E6DEF600D899A9 /* Main */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		0C4082DD22E6DEF600D899A9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		0C47EE73223A6F1700593AA3 /* Pickers */ = {
@@ -1857,6 +1877,7 @@
 				0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
+				0C4082DF22E6DF0F00D899A9 /* DiaryViewController.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
@@ -1923,6 +1944,7 @@
 				0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
+				0C4082E022E6DF0F00D899A9 /* DiaryViewController.swift in Sources */,
 				0C86E4F622DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,

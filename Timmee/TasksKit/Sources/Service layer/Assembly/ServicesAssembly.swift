@@ -36,6 +36,8 @@ public final class ServicesAssembly {
     
     public lazy var moodServce: MoodProvider & MoodManager = PrivateServicesAssembly.shared.moodService
     
+    public lazy var diaryService: DiaryProvider & DiaryManager & DiaryObserverProvider = DiaryService()
+    
 }
 
 public final class EntityServicesAssembly {
@@ -51,6 +53,8 @@ public final class EntityServicesAssembly {
     public lazy var waterControlService: WaterControlEntityBackgroundProvider = PrivateServicesAssembly.shared.waterControlService
     
     public lazy var moodService: MoodEntityBackgroundProvider = PrivateServicesAssembly.shared.moodService
+    
+    public lazy var diaryService: DiaryEntitiesBackgroundProvider = PrivateServicesAssembly.shared.diaryService
     
 }
 
@@ -149,5 +153,13 @@ final class PrivateServicesAssembly {
         MoodEntityBackgroundProvider &
         MoodManager
         = MoodService()
+    
+    lazy var diaryService:
+        DiaryProvider &
+        DiaryManager &
+        DiaryObserverProvider &
+        DiaryEntitiesProvider &
+        DiaryEntitiesBackgroundProvider
+        = DiaryService()
     
 }

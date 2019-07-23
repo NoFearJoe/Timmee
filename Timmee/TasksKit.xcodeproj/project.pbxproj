@@ -12,6 +12,9 @@
 		0C3DA5342154D73700CAE635 /* WaterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5332154D73700CAE635 /* WaterControl.swift */; };
 		0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */; };
 		0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5372154D8D200CAE635 /* WaterControlService.swift */; };
+		0C4082E222E6DFBE00D899A9 /* DiaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082E122E6DFBE00D899A9 /* DiaryService.swift */; };
+		0C4082E422E6E30600D899A9 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082E322E6E30600D899A9 /* DiaryEntry.swift */; };
+		0C4082E822E6E87000D899A9 /* DiaryEntryEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082E722E6E87000D899A9 /* DiaryEntryEntity+Mapping.swift */; };
 		0C86E4DD22DC550200DA7B15 /* CacheObserverProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4DB22DC550200DA7B15 /* CacheObserverProtocols.swift */; };
 		0C86E4DE22DC550200DA7B15 /* CoreDataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4DC22DC550200DA7B15 /* CoreDataChange.swift */; };
 		0C86E4DF22DC552200DA7B15 /* CacheObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018222077B2BD00633EFF /* CacheObserver.swift */; };
@@ -74,6 +77,10 @@
 		0C3DA5332154D73700CAE635 /* WaterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControl.swift; sourceTree = "<group>"; };
 		0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Mapping.swift"; sourceTree = "<group>"; };
 		0C3DA5372154D8D200CAE635 /* WaterControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlService.swift; sourceTree = "<group>"; };
+		0C4082E122E6DFBE00D899A9 /* DiaryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryService.swift; sourceTree = "<group>"; };
+		0C4082E322E6E30600D899A9 /* DiaryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
+		0C4082E622E6E76A00D899A9 /* Timmee6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee6.xcdatamodel; sourceTree = "<group>"; };
+		0C4082E722E6E87000D899A9 /* DiaryEntryEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryEntryEntity+Mapping.swift"; sourceTree = "<group>"; };
 		0C86E4DB22DC550200DA7B15 /* CacheObserverProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheObserverProtocols.swift; sourceTree = "<group>"; };
 		0C86E4DC22DC550200DA7B15 /* CoreDataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataChange.swift; sourceTree = "<group>"; };
 		0C90018B21F98FB700D6C15F /* ModifiableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiableEntity.swift; sourceTree = "<group>"; };
@@ -164,6 +171,19 @@
 				0CE018102077B2BD00633EFF /* FilesService.swift */,
 				961656052095FDD9001A8387 /* AudioRecordService.swift */,
 				9606627A20A353D000B23EDF /* AudioPlayerService.swift */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		0C4082E522E6E31400D899A9 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				0CE018162077B2BD00633EFF /* List.swift */,
+				0CE018172077B2BD00633EFF /* SmartList.swift */,
+				0CE018182077B2BD00633EFF /* Task.swift */,
+				0CE018152077B2BD00633EFF /* Subtask.swift */,
+				0CE018192077B2BD00633EFF /* Tag.swift */,
+				0CE0181A2077B2BD00633EFF /* TimeTemplate.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -285,6 +305,7 @@
 				0CE0180A2077B2BD00633EFF /* Assembly */,
 				0CE0180C2077B2BD00633EFF /* Services */,
 				0CE018142077B2BD00633EFF /* Entities */,
+				0C9B2429207CDBA5009EF6DE /* Mappers */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -309,13 +330,8 @@
 		0CE018142077B2BD00633EFF /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				0C4082E522E6E31400D899A9 /* Todo */,
 				96BE838C217511C500CDECAF /* Agilee */,
-				0CE018162077B2BD00633EFF /* List.swift */,
-				0CE018172077B2BD00633EFF /* SmartList.swift */,
-				0CE018182077B2BD00633EFF /* Task.swift */,
-				0CE018152077B2BD00633EFF /* Subtask.swift */,
-				0CE018192077B2BD00633EFF /* Tag.swift */,
-				0CE0181A2077B2BD00633EFF /* TimeTemplate.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -335,7 +351,6 @@
 				0C9B242D207E228F009EF6DE /* CacheObserver */,
 				0CE018212077B2BD00633EFF /* Database.swift */,
 				0CE0181D2077B2BD00633EFF /* FetchRequest.swift */,
-				0C9B2429207CDBA5009EF6DE /* Mappers */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -361,6 +376,7 @@
 				0CE4755C2175DA1E005FD8CC /* GoalsService.swift */,
 				0C3DA5372154D8D200CAE635 /* WaterControlService.swift */,
 				0CD8F81B2240B79E00061B58 /* MoodService.swift */,
+				0C4082E122E6DFBE00D899A9 /* DiaryService.swift */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -368,6 +384,7 @@
 		96BE838C217511C500CDECAF /* Agilee */ = {
 			isa = PBXGroup;
 			children = (
+				0C4082E322E6E30600D899A9 /* DiaryEntry.swift */,
 				96BE8391217511F400CDECAF /* Sprint.swift */,
 				96BE838F217511E500CDECAF /* Habit.swift */,
 				96BE838D217511D700CDECAF /* Goal.swift */,
@@ -385,6 +402,7 @@
 				96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */,
 				0C3DA5352154D81F00CAE635 /* WaterControlEntity+Mapping.swift */,
 				0CD8F81D2240BE5A00061B58 /* MoodEntity+Mapping.swift */,
+				0C4082E722E6E87000D899A9 /* DiaryEntryEntity+Mapping.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";
@@ -404,7 +422,6 @@
 				96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */,
 				39F78E4BBF3044E283A0A1D0 /* Pods-TasksKit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -531,6 +548,7 @@
 				0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */,
 				96BE838E217511D700CDECAF /* Goal.swift in Sources */,
 				0C3DA5362154D81F00CAE635 /* WaterControlEntity+Mapping.swift in Sources */,
+				0C4082E222E6DFBE00D899A9 /* DiaryService.swift in Sources */,
 				0C9B2431207E2457009EF6DE /* CollectionViewCacheAdapter.swift in Sources */,
 				0C3DA5382154D8D200CAE635 /* WaterControlService.swift in Sources */,
 				0CE0186A2077B2BD00633EFF /* ListSorting.swift in Sources */,
@@ -540,12 +558,14 @@
 				0CE018672077B2BD00633EFF /* ListEntity+Mapping.swift in Sources */,
 				9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */,
 				0CE0186D2077B2BD00633EFF /* RepeatMask.swift in Sources */,
+				0C4082E422E6E30600D899A9 /* DiaryEntry.swift in Sources */,
 				0CE018602077B2BD00633EFF /* TimeTemplate.swift in Sources */,
 				0CE018622077B2BD00633EFF /* SubtaskEntity+Mapping.swift in Sources */,
 				0CE0185D2077B2BD00633EFF /* SmartList.swift in Sources */,
 				0CE475542175AFBE005FD8CC /* SprintsService.swift in Sources */,
 				0C86E4DE22DC550200DA7B15 /* CoreDataChange.swift in Sources */,
 				0C90019021F9C49800D6C15F /* SyncableEntity.swift in Sources */,
+				0C4082E822E6E87000D899A9 /* DiaryEntryEntity+Mapping.swift in Sources */,
 				0CE4755D2175DA1E005FD8CC /* GoalsService.swift in Sources */,
 				0CE018642077B2BD00633EFF /* TagEntity+Mapping.swift in Sources */,
 				0C90018C21F98FB700D6C15F /* ModifiableEntity.swift in Sources */,
@@ -709,7 +729,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -738,7 +758,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -780,13 +800,14 @@
 		0CE018032077B24200633EFF /* Timmee.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0C4082E622E6E76A00D899A9 /* Timmee6.xcdatamodel */,
 				9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */,
 				960164952228676700E30580 /* Timmee4.xcdatamodel */,
 				0CC4063721F0B1DC0069C6C5 /* Timmee3.xcdatamodel */,
 				0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */,
 				0CE018042077B24200633EFF /* Timmee.xcdatamodel */,
 			);
-			currentVersion = 9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */;
+			currentVersion = 0C4082E622E6E76A00D899A9 /* Timmee6.xcdatamodel */;
 			path = Timmee.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
