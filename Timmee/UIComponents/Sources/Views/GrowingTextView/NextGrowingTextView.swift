@@ -160,6 +160,9 @@ open class GrowingTextView: UIScrollView {
     addSubview(_textView)
     _minHeight = simulateHeight(1)
     maxNumberOfLines = 3
+    if #available(iOSApplicationExtension 11.0, *) {
+        contentInsetAdjustmentBehavior = .never
+    }
 
     _textView.didChange = { [weak self] in
       self?.fitToScrollView()

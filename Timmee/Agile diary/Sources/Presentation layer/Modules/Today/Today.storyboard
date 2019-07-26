@@ -91,9 +91,22 @@
                                                     <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="UBz-uK-QFO"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5e-xZ-MeZ">
+                                                <rect key="frame" x="224" y="8" width="28" height="28"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="28" id="AAG-Vl-zQg"/>
+                                                    <constraint firstAttribute="height" constant="28" id="rOf-Oj-02d"/>
+                                                </constraints>
+                                                <state key="normal" image="charts"/>
+                                                <connections>
+                                                    <action selector="onTapToDiaryButton" destination="YFK-lV-GWC" eventType="touchUpInside" id="lB1-XV-He8"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Ogh-lU-sPL" firstAttribute="centerY" secondItem="L5e-xZ-MeZ" secondAttribute="centerY" id="6mc-Uy-6XP"/>
                                             <constraint firstItem="Jpe-6U-L3n" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="7pt-5D-lJD"/>
                                             <constraint firstItem="fjR-Bh-1q4" firstAttribute="centerY" secondItem="Ogh-lU-sPL" secondAttribute="centerY" id="7rt-tK-05l"/>
                                             <constraint firstItem="fjR-Bh-1q4" firstAttribute="leading" secondItem="Ogh-lU-sPL" secondAttribute="trailing" constant="20" id="BWC-BA-ECj"/>
@@ -104,6 +117,7 @@
                                             <constraint firstItem="fjR-Bh-1q4" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="Xwb-TS-3HG"/>
                                             <constraint firstAttribute="bottom" secondItem="flB-a1-GhC" secondAttribute="bottom" constant="8" id="ZRH-v5-V45"/>
                                             <constraint firstAttribute="trailing" secondItem="fjR-Bh-1q4" secondAttribute="trailing" constant="15" id="bHY-m8-YFQ"/>
+                                            <constraint firstItem="Ogh-lU-sPL" firstAttribute="leading" secondItem="L5e-xZ-MeZ" secondAttribute="trailing" constant="20" id="fnf-Sa-VTA"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-og-p5R" customClass="ProgressBar" customModule="UIComponents">
@@ -194,6 +208,7 @@
                         <outlet property="chartsButton" destination="Ogh-lU-sPL" id="ZdK-FO-mIb"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
                         <outlet property="createSprintButton" destination="Wcp-ev-KnK" id="daE-Gb-K8C"/>
+                        <outlet property="diaryButton" destination="L5e-xZ-MeZ" id="iAP-U4-KBb"/>
                         <outlet property="headerView" destination="Rfn-qH-ddK" id="zts-nc-UUT"/>
                         <outlet property="placeholderContainer" destination="MG5-iM-CHH" id="N37-uL-dWc"/>
                         <outlet property="progressBar" destination="n2E-og-p5R" id="qiV-v9-HZL"/>

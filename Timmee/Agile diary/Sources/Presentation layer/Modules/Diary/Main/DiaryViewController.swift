@@ -12,16 +12,226 @@ import UIComponents
 
 final class DiaryViewController: BaseViewController {
     
+    private let headerView = LargeHeaderView(frame: .zero)
+    
+    private let diaryEntriesListView = DiaryEntriesListView()
+    
+    private let bottomViewsContainer = UIStackView(frame: .zero)
+    private let diaryEntryCreationView = DiaryEntryCreationView()
+    private let diaryEntryAttachmentView = DiaryEntryAttachmentView()
+    private let bottomStretchableView = UIView()
+    
+    private var bottomViewBottomConstraint: NSLayoutConstraint!
+    
+    private let keyboardManager = KeyboardManager()
+    
+    private let diaryService = ServicesAssembly.shared.diaryService
+    
+    private lazy var cacheSubscriber = TableViewCacheAdapter(tableView: diaryEntriesListView)
+    private lazy var diaryObserver: CachedEntitiesObserver<DiaryEntryEntity, DiaryEntry> = {
+        let observer = diaryService.diaryEntriesObserver()
+        observer.setSubscriber(cacheSubscriber)
+        observer.setDelegate(
+            CachedEntitiesObserverDelegate<DiaryEntry>(onEntitiesCountChange: { count in
+                print(count)
+            })
+        )
+        return observer
+    }()
+    
+    private var attachmentState = AttachmentState()
+    
     override func prepare() {
         super.prepare()
+        
+        setupHeaderView()
+        setupBottomViewsContainer()
+        setupDiaryEntryCreationView()
+        setupDiaryEntryAttachmentView()
+        setupBottomStretchableView()
+        setupDiaryEntriesListView()
+
+        setupKeyboardManager()
     }
     
     override func refresh() {
         super.refresh()
+        
+        diaryObserver.fetch()
+        
+        let subject: String?
+        switch attachmentState.attachedEntity {
+        case let sprint as Sprint: subject = sprint.title
+        case let habit as Habit: subject = habit.title
+        case let goal as Goal: subject = goal.title
+        default: subject = nil
+        }
+        diaryEntryAttachmentView.configure(attachment: attachmentState.attachment,
+                                           subject: subject)
     }
     
     override func setupAppearance() {
         super.setupAppearance()
+        diaryEntriesListView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        diaryEntryCreationView.backgroundColor = AppTheme.current.colors.foregroundColor
+        diaryEntryAttachmentView.backgroundColor = AppTheme.current.colors.foregroundColor
+        bottomStretchableView.backgroundColor = AppTheme.current.colors.foregroundColor
+    }
+    
+    private func setupHeaderView() {
+        view.addSubview(headerView)
+        
+        let titleLabel = UILabel(frame: .zero)
+        titleLabel.font = AppTheme.current.fonts.bold(34)
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        titleLabel.text = "diary".localized
+        
+        let subtitleLabel = UILabel(frame: .zero)
+        subtitleLabel.font = AppTheme.current.fonts.regular(14)
+        subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        
+        let labelsContainerView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        labelsContainerView.axis = .vertical
+        labelsContainerView.distribution = .equalSpacing
+        labelsContainerView.spacing = 8
+        
+        let closeButton = UIButton(type: .custom)
+        closeButton.setImage(UIImage(named: "cross"), for: .normal)
+        closeButton.addTarget(self, action: #selector(onTapToCloseButton), for: .touchUpInside)
+        
+        headerView.titleLabel = titleLabel
+        headerView.subtitleLabel = subtitleLabel
+        headerView.leftButton = closeButton
+        
+        headerView.addSubview(closeButton)
+        headerView.addSubview(labelsContainerView)
+        
+        [headerView.leading(), headerView.top(), headerView.trailing()].toSuperview()
+        
+        closeButton.leading(8).toSuperview()
+        closeButton.width(36)
+        closeButton.height(36)
+        if #available(iOS 11.0, *) {
+            closeButton.topAnchor.constraint(equalTo: headerView.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        } else {
+            closeButton.topAnchor.constraint(equalTo: headerView.layoutMarginsGuide.topAnchor, constant: 8).isActive = true
+        }
+        [labelsContainerView.leading(15), labelsContainerView.bottom(8), labelsContainerView.trailing(15)].toSuperview()
+        labelsContainerView.topToBottom(8).to(closeButton, addTo: headerView)
+    }
+    
+    private func setupDiaryEntriesListView() {
+        view.addSubview(diaryEntriesListView)
+        
+        diaryEntriesListView.delegate = self
+        diaryEntriesListView.dataSource = self
+        
+        [diaryEntriesListView.leading(), diaryEntriesListView.trailing()].toSuperview()
+        diaryEntriesListView.topToBottom().to(headerView, addTo: view)
+        diaryEntriesListView.bottomToTop().to(bottomViewsContainer, addTo: view)
+    }
+    
+    private func setupBottomViewsContainer() {
+        view.addSubview(bottomViewsContainer)
+        
+        bottomViewsContainer.axis = .vertical
+        bottomViewsContainer.distribution = .equalSpacing
+        
+        [bottomViewsContainer.leading(), bottomViewsContainer.trailing()].toSuperview()
+        if #available(iOS 11.0, *) {
+            bottomViewBottomConstraint = bottomViewsContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        } else {
+            bottomViewBottomConstraint = bottomViewsContainer.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+        }
+        bottomViewBottomConstraint.isActive = true
+    }
+    
+    private func setupDiaryEntryCreationView() {
+        bottomViewsContainer.addArrangedSubview(diaryEntryCreationView)
+        diaryEntryCreationView.onCreate = { [unowned self] text in
+            let entity = DiaryEntry(id: RandomStringGenerator.randomString(length: 24),
+                                    text: text,
+                                    date: Date.now,
+                                    attachment: self.attachmentState.attachment)
+            self.diaryService.createOrUpdateDiaryEntry(entity, completion: { success in
+                self.attachmentState.clear()
+                self.diaryEntryAttachmentView.configure(attachment: .none, subject: nil)
+                self.diaryEntryCreationView.clear()
+            })
+        }
+        diaryEntryCreationView.onAttachment = { [unowned self] in
+            let sourceView = self.diaryEntryCreationView.attachmentButton
+            let attachmentController = DiaryEntryAttachmentTypePickerViewController(sourceView: sourceView)
+            self.present(attachmentController, animated: true, completion: nil)
+        }
+    }
+    
+    private func setupDiaryEntryAttachmentView() {
+        bottomViewsContainer.addArrangedSubview(diaryEntryAttachmentView)
+        diaryEntryAttachmentView.onClear = { [unowned self] in
+            self.attachmentState.clear()
+        }
+    }
+    
+    private func setupBottomStretchableView() {
+        view.addSubview(bottomStretchableView)
+        
+        [bottomStretchableView.leading(), bottomStretchableView.trailing(), bottomStretchableView.bottom()].toSuperview()
+        bottomStretchableView.topToBottom().to(bottomViewsContainer, addTo: view)
+    }
+    
+    private func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            if #available(iOS 11.0, *) {
+                self.bottomViewBottomConstraint.constant = -frame.height + self.view.safeAreaInsets.bottom
+            } else {
+                self.bottomViewBottomConstraint.constant = -frame.height
+            }
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.view.layoutIfNeeded()
+            self.bottomViewBottomConstraint.constant = 0
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc private func onTapToCloseButton() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension DiaryViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return diaryObserver.numberOfSections()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return diaryObserver.numberOfItems(in: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: DiaryEntryCell.identifier, for: indexPath) as! DiaryEntryCell
+        if let diaryEntry = diaryObserver.item(at: indexPath) {
+            cell.configure(model: diaryEntry)
+        }
+        return cell
+    }
+    
+}
+
+extension DiaryViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
 }

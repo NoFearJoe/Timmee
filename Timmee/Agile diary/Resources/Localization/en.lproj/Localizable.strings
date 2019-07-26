@@ -363,3 +363,11 @@
 "water_control_widget_title" = "Water";
 
 "weekly_chart_title" = "Progress over the last 7 days";
+
+"diary_entry_creation_placeholder" = "Write something...";
+"attached" = "Attached";
+"diary" = "Diary";
+"diary_entry_attachment_type_picker_title" = "Choose what to attach";
+"diary_attachment_sprint" = "Sprint";
+"diary_attachment_habit" = "Habit";
+"diary_attachment_goal" = "Goal";

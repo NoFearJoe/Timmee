@@ -19,6 +19,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var chartsButton: UIButton!
     @IBOutlet private var sprintsButton: UIButton!
+    @IBOutlet private var diaryButton: UIButton!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
@@ -90,6 +91,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         chartsButton?.tintColor = AppTheme.current.colors.mainElementColor
         sprintsButton?.tintColor = AppTheme.current.colors.mainElementColor
+        diaryButton?.tintColor = AppTheme.current.colors.mainElementColor
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
         headerView.backgroundColor = AppTheme.current.colors.foregroundColor
         sectionSwitcher.setupAppearance()
@@ -135,7 +137,12 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             progressBar.setProgress(0, animated: true)
             setSectionContainersVisible(content: false, activity: true)
         }
-    }   
+    }
+    
+    @IBAction private func onTapToDiaryButton() {
+        let diaryViewController = DiaryViewController()
+        present(diaryViewController, animated: true, completion: nil)
+    }
     
     private func updateHeaderSubtitle(sprint: Sprint) {
         let daysRemaining = Date.now.days(before: sprint.endDate)

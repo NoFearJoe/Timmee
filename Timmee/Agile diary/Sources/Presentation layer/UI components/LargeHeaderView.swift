@@ -10,24 +10,24 @@ import UIKit
 
 class LargeHeaderView: UIView {
     
-    @IBOutlet private(set) var titleLabel: UILabel! {
+    @IBOutlet var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = AppTheme.current.colors.activeElementColor
             titleLabel.font = AppTheme.current.fonts.bold(34)
         }
     }
-    @IBOutlet private(set) var subtitleLabel: UILabel! {
+    @IBOutlet var subtitleLabel: UILabel! {
         didSet {
             subtitleLabel.textColor = AppTheme.current.colors.activeElementColor
             subtitleLabel.font = AppTheme.current.fonts.regular(14)
         }
     }
-    @IBOutlet private(set) var leftButton: UIButton? {
+    @IBOutlet var leftButton: UIButton? {
         didSet {
             leftButton?.tintColor = AppTheme.current.colors.activeElementColor
         }
     }
-    @IBOutlet private(set) var rightButton: UIButton? {
+    @IBOutlet var rightButton: UIButton? {
         didSet {
             rightButton?.tintColor = AppTheme.current.colors.activeElementColor
         }

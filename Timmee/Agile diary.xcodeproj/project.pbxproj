@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C06E94422E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94322E9C1590099DD3A /* DiaryEntryCreationView.swift */; };
+		0C06E94522E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94322E9C1590099DD3A /* DiaryEntryCreationView.swift */; };
+		0C06E94722EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94622EAD0040099DD3A /* DiaryEntryAttachmentView.swift */; };
+		0C06E94822EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94622EAD0040099DD3A /* DiaryEntryAttachmentView.swift */; };
+		0C06E94B22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94A22EAD6C50099DD3A /* DiaryEntriesListView.swift */; };
+		0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94A22EAD6C50099DD3A /* DiaryEntriesListView.swift */; };
+		0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94D22EAD8EA0099DD3A /* DiaryEntryCell.swift */; };
+		0C06E94F22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E94D22EAD8EA0099DD3A /* DiaryEntryCell.swift */; };
+		0C06E95122EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95022EAF8C90099DD3A /* DiaryViewController+State.swift */; };
+		0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95022EAF8C90099DD3A /* DiaryViewController+State.swift */; };
+		0C06E95422EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95322EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift */; };
+		0C06E95522EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95322EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift */; };
 		0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
 		0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
 		0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
@@ -410,6 +422,12 @@
 
 /* Begin PBXFileReference section */
 		08CF652D448924A7008B5207 /* Pods_Agile_diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agile_diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C06E94322E9C1590099DD3A /* DiaryEntryCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryCreationView.swift; sourceTree = "<group>"; };
+		0C06E94622EAD0040099DD3A /* DiaryEntryAttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryAttachmentView.swift; sourceTree = "<group>"; };
+		0C06E94A22EAD6C50099DD3A /* DiaryEntriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesListView.swift; sourceTree = "<group>"; };
+		0C06E94D22EAD8EA0099DD3A /* DiaryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryCell.swift; sourceTree = "<group>"; };
+		0C06E95022EAF8C90099DD3A /* DiaryViewController+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryViewController+State.swift"; sourceTree = "<group>"; };
+		0C06E95322EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryAttachmentTypePickerViewController.swift; sourceTree = "<group>"; };
 		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -646,6 +664,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C06E94922EAD6A40099DD3A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0C06E94322E9C1590099DD3A /* DiaryEntryCreationView.swift */,
+				0C06E94622EAD0040099DD3A /* DiaryEntryAttachmentView.swift */,
+				0C06E94A22EAD6C50099DD3A /* DiaryEntriesListView.swift */,
+				0C06E94D22EAD8EA0099DD3A /* DiaryEntryCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0C14D469211C55D9004C0559 = {
 			isa = PBXGroup;
 			children = (
@@ -983,7 +1012,10 @@
 		0C4082DD22E6DEF600D899A9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C06E94922EAD6A40099DD3A /* Views */,
 				0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */,
+				0C06E95022EAF8C90099DD3A /* DiaryViewController+State.swift */,
+				0C06E95322EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1782,6 +1814,7 @@
 				969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
+				0C06E94722EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */,
 				961063232242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
@@ -1794,6 +1827,7 @@
 				0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
 				0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
+				0C06E95422EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift in Sources */,
 				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
@@ -1850,11 +1884,15 @@
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */,
+				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
 				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
 				0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
+				0C06E95122EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
+				0C06E94B22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
+				0C06E94422E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */,
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */,
@@ -1888,6 +1926,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C06E94822EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */,
 				0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */,
 				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
 				0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */,
@@ -1896,6 +1935,7 @@
 				0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */,
 				0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */,
 				0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */,
+				0C06E94522E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */,
 				0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */,
 				96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */,
 				0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */,
@@ -1912,12 +1952,14 @@
 				0CB6737B21A52C3900178EB1 /* SettingsViewController.swift in Sources */,
 				0CB6737C21A52C3900178EB1 /* NotificationsConfigurator.swift in Sources */,
 				0CB6737D21A52C3900178EB1 /* SwipeCellActionsProviders.swift in Sources */,
+				0C06E95522EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift in Sources */,
 				0CB6737E21A52C3900178EB1 /* Task+Habit.swift in Sources */,
 				0CB6737F21A52C3900178EB1 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
 				0CB6738021A52C3900178EB1 /* TodayHabitCell.swift in Sources */,
 				0CB6738121A52C3900178EB1 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0CB6738221A52C3900178EB1 /* Checkbox.swift in Sources */,
 				0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */,
+				0C06E94F22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
 				0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */,
 				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
 				96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */,
@@ -1929,6 +1971,7 @@
 				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
 				0CACF2D422241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
+				0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
 				0C52A0DC2243792700D50D1B /* MoodChartView.swift in Sources */,
@@ -1999,6 +2042,7 @@
 				0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */,
 				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
+				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
 				0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */,
 			);

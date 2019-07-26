@@ -363,3 +363,11 @@
 "water_control_widget_title" = "Вода";
 
 "weekly_chart_title" = "Прогресс за последние 7 дней";
+
+"diary_entry_creation_placeholder" = "Поделитесь чем-нибудь...";
+"attached" = "Прикреплено";
+"diary" = "Дневник";
+"diary_entry_attachment_type_picker_title" = "Выберите к чему прикрепить запись";
+"diary_attachment_sprint" = "Спринт";
+"diary_attachment_habit" = "Привычка";
+"diary_attachment_goal" = "Цель";
