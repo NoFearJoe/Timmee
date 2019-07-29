@@ -17,9 +17,7 @@ protocol TodayViewSectionProgressListener: class {
 final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
-    @IBOutlet private var chartsButton: UIButton!
-    @IBOutlet private var sprintsButton: UIButton!
-    @IBOutlet private var diaryButton: UIButton!
+    @IBOutlet private var actionsButton: UIButton!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
@@ -89,9 +87,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
         headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
-        chartsButton?.tintColor = AppTheme.current.colors.mainElementColor
-        sprintsButton?.tintColor = AppTheme.current.colors.mainElementColor
-        diaryButton?.tintColor = AppTheme.current.colors.mainElementColor
+        actionsButton?.tintColor = AppTheme.current.colors.mainElementColor
         progressBar.fillColor = AppTheme.current.colors.mainElementColor
         headerView.backgroundColor = AppTheme.current.colors.foregroundColor
         sectionSwitcher.setupAppearance()
@@ -139,9 +135,20 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         }
     }
     
-    @IBAction private func onTapToDiaryButton() {
-        let diaryViewController = DiaryViewController()
-        present(diaryViewController, animated: true, completion: nil)
+    @IBAction private func onTapToActionsButton() {
+        let actionPickerViewController = TodayActionPickerViewController(sourceView: actionsButton)
+        actionPickerViewController.onSelectAction = { [unowned self] action in
+            switch action {
+            case .diary:
+                let diaryViewController = DiaryViewController()
+                self.present(diaryViewController, animated: true, completion: nil)
+            case .charts:
+                self.performSegue(withIdentifier: "ShowCharts", sender: nil)
+            case .sprints:
+                self.performSegue(withIdentifier: "ShowSprints", sender: nil)
+            }
+        }
+        present(actionPickerViewController, animated: true, completion: nil)
     }
     
     private func updateHeaderSubtitle(sprint: Sprint) {

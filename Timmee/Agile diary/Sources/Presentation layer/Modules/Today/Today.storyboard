@@ -62,7 +62,7 @@
                                                     <constraint firstAttribute="width" constant="28" id="lTJ-It-M97"/>
                                                     <constraint firstAttribute="height" constant="28" id="mJv-2C-qnC"/>
                                                 </constraints>
-                                                <state key="normal" image="settings"/>
+                                                <state key="normal" image="cogwheel"/>
                                                 <connections>
                                                     <segue destination="nsd-BC-zjE" kind="presentation" identifier="ShowSettings" modalTransitionStyle="coverVertical" id="2sr-ex-LEz"/>
                                                 </connections>
@@ -74,42 +74,15 @@
                                                     <constraint firstAttribute="width" constant="28" id="Ovm-bi-eIV"/>
                                                     <constraint firstAttribute="height" constant="28" id="mZN-Kc-kx4"/>
                                                 </constraints>
-                                                <state key="normal" image="chart"/>
+                                                <state key="normal" image="settings"/>
                                                 <connections>
-                                                    <segue destination="0dA-DY-rZL" kind="presentation" modalTransitionStyle="coverVertical" id="pxB-Ht-i35"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogh-lU-sPL">
-                                                <rect key="frame" x="284" y="8" width="28" height="28"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="2h7-qy-rkw"/>
-                                                    <constraint firstAttribute="width" constant="28" id="jyj-i0-jhB"/>
-                                                </constraints>
-                                                <state key="normal" image="charts"/>
-                                                <connections>
-                                                    <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" modalTransitionStyle="coverVertical" id="UBz-uK-QFO"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5e-xZ-MeZ">
-                                                <rect key="frame" x="224" y="8" width="28" height="28"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="28" id="AAG-Vl-zQg"/>
-                                                    <constraint firstAttribute="height" constant="28" id="rOf-Oj-02d"/>
-                                                </constraints>
-                                                <state key="normal" image="charts"/>
-                                                <connections>
-                                                    <action selector="onTapToDiaryButton" destination="YFK-lV-GWC" eventType="touchUpInside" id="lB1-XV-He8"/>
+                                                    <action selector="onTapToActionsButton" destination="YFK-lV-GWC" eventType="touchUpInside" id="vZS-D1-jF5"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Ogh-lU-sPL" firstAttribute="centerY" secondItem="L5e-xZ-MeZ" secondAttribute="centerY" id="6mc-Uy-6XP"/>
                                             <constraint firstItem="Jpe-6U-L3n" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="7pt-5D-lJD"/>
-                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="centerY" secondItem="Ogh-lU-sPL" secondAttribute="centerY" id="7rt-tK-05l"/>
-                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="leading" secondItem="Ogh-lU-sPL" secondAttribute="trailing" constant="20" id="BWC-BA-ECj"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="top" secondItem="Jpe-6U-L3n" secondAttribute="bottom" constant="8" id="FRi-ly-r6K"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="GKQ-CW-JC5"/>
                                             <constraint firstItem="Jpe-6U-L3n" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="GXE-mr-Pli"/>
@@ -117,7 +90,6 @@
                                             <constraint firstItem="fjR-Bh-1q4" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="8" id="Xwb-TS-3HG"/>
                                             <constraint firstAttribute="bottom" secondItem="flB-a1-GhC" secondAttribute="bottom" constant="8" id="ZRH-v5-V45"/>
                                             <constraint firstAttribute="trailing" secondItem="fjR-Bh-1q4" secondAttribute="trailing" constant="15" id="bHY-m8-YFQ"/>
-                                            <constraint firstItem="Ogh-lU-sPL" firstAttribute="leading" secondItem="L5e-xZ-MeZ" secondAttribute="trailing" constant="20" id="fnf-Sa-VTA"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2E-og-p5R" customClass="ProgressBar" customModule="UIComponents">
@@ -203,20 +175,20 @@
                         <viewLayoutGuide key="safeArea" id="ibh-Jp-ctc"/>
                     </view>
                     <connections>
+                        <outlet property="actionsButton" destination="fjR-Bh-1q4" id="v4w-FU-XWE"/>
                         <outlet property="activityViewContainer" destination="nTA-3z-kRg" id="Na0-SO-zdg"/>
                         <outlet property="backgroundImageView" destination="kq5-QA-Okj" id="bpo-P0-sYV"/>
-                        <outlet property="chartsButton" destination="Ogh-lU-sPL" id="ZdK-FO-mIb"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
                         <outlet property="createSprintButton" destination="Wcp-ev-KnK" id="daE-Gb-K8C"/>
-                        <outlet property="diaryButton" destination="L5e-xZ-MeZ" id="iAP-U4-KBb"/>
                         <outlet property="headerView" destination="Rfn-qH-ddK" id="zts-nc-UUT"/>
                         <outlet property="placeholderContainer" destination="MG5-iM-CHH" id="N37-uL-dWc"/>
                         <outlet property="progressBar" destination="n2E-og-p5R" id="qiV-v9-HZL"/>
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
-                        <outlet property="sprintsButton" destination="fjR-Bh-1q4" id="gPh-hk-ARw"/>
                         <segue destination="m5L-p8-Gva" kind="presentation" identifier="ShowHabitEditor" modalTransitionStyle="coverVertical" id="c90-3s-KUG"/>
                         <segue destination="3ji-X3-ILJ" kind="presentation" identifier="ShowTargetEditor" modalTransitionStyle="coverVertical" id="xpM-BJ-OZs"/>
                         <segue destination="TMl-nw-iAI" kind="presentation" identifier="ShowProVersionPurchase" id="yvH-YU-0eo"/>
+                        <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" id="7Ha-qJ-Ig6"/>
+                        <segue destination="0dA-DY-rZL" kind="presentation" identifier="ShowSprints" id="BbP-Fh-quH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YL-zk-Dkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -526,8 +498,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chart" width="28" height="28"/>
-        <image name="charts" width="20" height="20"/>
+        <image name="cogwheel" width="20" height="20"/>
         <image name="note" width="20" height="20"/>
         <image name="settings" width="20" height="20"/>
     </resources>

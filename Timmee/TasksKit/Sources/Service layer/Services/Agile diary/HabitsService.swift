@@ -11,6 +11,8 @@ import Workset
 public protocol HabitsProvider: class {
     func fetchHabit(id: String) -> Habit?
     func fetchHabits(sprintID: String) -> [Habit]
+    
+    func searchHabits(searchText: String) -> [Habit]
 }
 
 public protocol HabitsManager: class {
@@ -67,6 +69,18 @@ extension HabitsService: HabitsProvider {
         return HabitsService.habitsFetchRequest(sprintID: sprintID)
             .execute()
             .map { Habit(habit: $0) }
+    }
+    
+    public func searchHabits(searchText: String) -> [Habit] {
+        return HabitsService.allHabitsFetchRequest()
+            .execute()
+            .map { Habit(habit: $0) }
+            .filter {
+                guard !searchText.isEmpty else {
+                    return true
+                }
+                return $0.title.lowercased().contains(searchText.lowercased())
+            }
     }
     
 }

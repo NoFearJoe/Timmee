@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C06E96122EECC570099DD3A /* UISearchBar+barBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E96022EECC570099DD3A /* UISearchBar+barBackgroundColor.swift */; };
 		0C14D4E621218F82004C0559 /* UserPropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */; };
 		0C86E4EB22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4EA22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift */; };
 		0C86E4ED22DC8FA600DA7B15 /* UIView+roundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C86E4EC22DC8FA600DA7B15 /* UIView+roundCorners.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C06E96022EECC570099DD3A /* UISearchBar+barBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+barBackgroundColor.swift"; sourceTree = "<group>"; };
 		0C14D4E521218F82004C0559 /* UserPropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertyProtocol.swift; sourceTree = "<group>"; };
 		0C86E4EA22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+firstAvailableUIViewController.swift"; sourceTree = "<group>"; };
 		0C86E4EC22DC8FA600DA7B15 /* UIView+roundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+roundCorners.swift"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				0C86E4EC22DC8FA600DA7B15 /* UIView+roundCorners.swift */,
 				0C86E4EE22DCB2FF00DA7B15 /* UIWindow+Snapshot.swift */,
 				0C86E4F022DCB41C00DA7B15 /* UIApplicationExtensions.swift */,
+				0C06E96022EECC570099DD3A /* UISearchBar+barBackgroundColor.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				0C86E4EB22DC7D0600DA7B15 /* UIView+firstAvailableUIViewController.swift in Sources */,
 				0C86E4F122DCB41C00DA7B15 /* UIApplicationExtensions.swift in Sources */,
 				0C9B23EA2077B757009EF6DE /* Calendar.swift in Sources */,
+				0C06E96122EECC570099DD3A /* UISearchBar+barBackgroundColor.swift in Sources */,
 				0C9B23F82077B757009EF6DE /* String+Localized.swift in Sources */,
 				0C9B23EF2077B757009EF6DE /* UIColor+Interpolate.swift in Sources */,
 				9606627F20A359FF00B23EDF /* Sound.swift in Sources */,

@@ -8,7 +8,13 @@
 
 import UIKit
 
+enum DiaryEntryAttachmentType {
+    case habit, goal, sprint
+}
+
 final class DiaryEntryAttachmentTypePickerViewController: UIAlertController {
+    
+    var onSelectType: ((DiaryEntryAttachmentType) -> Void)?
     
     convenience init(sourceView: UIView) {
         self.init(title: "diary_entry_attachment_type_picker_title".localized,
@@ -24,16 +30,16 @@ final class DiaryEntryAttachmentTypePickerViewController: UIAlertController {
     }
     
     private func addActions() {
-        let sprintAction = UIAlertAction(title: "diary_attachment_sprint".localized, style: .default) { _ in
-            
+        let sprintAction = UIAlertAction(title: "diary_attachment_sprint".localized, style: .default) { [unowned self] _ in
+            self.onSelectType?(.sprint)
         }
         
-        let habitAction = UIAlertAction(title: "diary_attachment_habit".localized, style: .default) { _ in
-            
+        let habitAction = UIAlertAction(title: "diary_attachment_habit".localized, style: .default) { [unowned self] _ in
+            self.onSelectType?(.habit)
         }
         
-        let goalAction = UIAlertAction(title: "diary_attachment_goal".localized, style: .default) { _ in
-            
+        let goalAction = UIAlertAction(title: "diary_attachment_goal".localized, style: .default) { [unowned self] _ in
+            self.onSelectType?(.goal)
         }
         
         let closeAction = UIAlertAction(title: "close".localized, style: .cancel, handler: nil)

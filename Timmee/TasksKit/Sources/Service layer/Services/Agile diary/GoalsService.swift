@@ -13,6 +13,8 @@ public protocol GoalsProvider: class {
     func createGoal() -> GoalEntity?
     func fetchGoal(id: String) -> Goal?
     func fetchGoals(sprintID: String) -> [Goal]
+    
+    func searchGoals(searchText: String) -> [Goal]
 }
 
 public protocol GoalsManager: class {
@@ -67,6 +69,18 @@ extension GoalsService: GoalsProvider {
         return GoalsService.goalsFetchRequest(sprintID: sprintID)
             .execute()
             .map { Goal(goal: $0) }
+    }
+    
+    public func searchGoals(searchText: String) -> [Goal] {
+        return GoalsService.allGoalsFetchRequest()
+            .execute()
+            .map { Goal(goal: $0) }
+            .filter {
+                guard !searchText.isEmpty else {
+                    return true
+                }
+                return $0.title.lowercased().contains(searchText.lowercased())
+        }
     }
     
 }

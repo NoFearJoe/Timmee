@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C06E95F22EEC25D0099DD3A /* CompressibleSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95E22EEC25D0099DD3A /* CompressibleSearchBarView.swift */; };
+		0C06E96322EEDDC40099DD3A /* AutoSizingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E96222EEDDC40099DD3A /* AutoSizingTableView.swift */; };
 		0C14D3E3211C18AE004C0559 /* UIComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C14D3E1211C18AE004C0559 /* UIComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C14D3F2211C1B56004C0559 /* Customizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D3F0211C1B56004C0559 /* Customizable.swift */; };
 		0C14D3F3211C1B56004C0559 /* AlertInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D3F1211C1B56004C0559 /* AlertInput.swift */; };
@@ -78,6 +80,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C06E95E22EEC25D0099DD3A /* CompressibleSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressibleSearchBarView.swift; sourceTree = "<group>"; };
+		0C06E96222EEDDC40099DD3A /* AutoSizingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizingTableView.swift; sourceTree = "<group>"; };
 		0C14D3DE211C18AE004C0559 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D3E1211C18AE004C0559 /* UIComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIComponents.h; sourceTree = "<group>"; };
 		0C14D3E2211C18AE004C0559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C06E95D22EEC2450099DD3A /* CompressibleSearchBarView */ = {
+			isa = PBXGroup;
+			children = (
+				0C06E95E22EEC25D0099DD3A /* CompressibleSearchBarView.swift */,
+			);
+			path = CompressibleSearchBarView;
+			sourceTree = "<group>";
+		};
 		0C14D3D4211C18AE004C0559 = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +253,7 @@
 				0C4082A922E1EFB300D899A9 /* FloatingMenu.swift */,
 				0C4082A822E1EFB300D899A9 /* FloatingButton.swift */,
 				96CDC72722E38F54009395B9 /* WaterLevelView.swift */,
+				0C06E96222EEDDC40099DD3A /* AutoSizingTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,6 +388,7 @@
 				9667C6DF22C3F71F0010CC00 /* CompressibleActionsView */,
 				9667C6E422C3F71F0010CC00 /* CompressibleEmptyView */,
 				9667C6E622C3F71F0010CC00 /* CompressibleTitleView */,
+				0C06E95D22EEC2450099DD3A /* CompressibleSearchBarView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -706,6 +720,8 @@
 				9667C71322C3F71F0010CC00 /* CompressibleEmptyView.swift in Sources */,
 				9667C71222C3F71F0010CC00 /* CompressibleActionsView.swift in Sources */,
 				9667C71922C3F71F0010CC00 /* TouchGestureRecognizer.swift in Sources */,
+				0C06E95F22EEC25D0099DD3A /* CompressibleSearchBarView.swift in Sources */,
+				0C06E96322EEDDC40099DD3A /* AutoSizingTableView.swift in Sources */,
 				9667C71722C3F71F0010CC00 /* IDynamicSizeChangeHelper.swift in Sources */,
 				9667C71E22C3F71F0010CC00 /* DetailsContentPlaceholderDefault.swift in Sources */,
 				9667C70722C3F71F0010CC00 /* CompressibleViewContainerController.swift in Sources */,

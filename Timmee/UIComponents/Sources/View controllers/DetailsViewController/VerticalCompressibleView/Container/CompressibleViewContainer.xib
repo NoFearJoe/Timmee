@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJM-Ao-EPS">
-                    <rect key="frame" x="0.0" y="12" width="362" height="214"/>
+                    <rect key="frame" x="0.0" y="0.0" width="362" height="226"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0Qb-iu-klK">
@@ -31,7 +31,7 @@
                 <constraint firstAttribute="trailing" secondItem="sJM-Ao-EPS" secondAttribute="trailing" id="vuq-iP-N2b"/>
                 <constraint firstItem="sJM-Ao-EPS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w23-Vh-wpN"/>
                 <constraint firstAttribute="bottom" secondItem="sJM-Ao-EPS" secondAttribute="bottom" id="ycB-o2-Ewg"/>
-                <constraint firstItem="sJM-Ao-EPS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="750" constant="12" id="zEe-yW-jlR"/>
+                <constraint firstItem="sJM-Ao-EPS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zEe-yW-jlR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

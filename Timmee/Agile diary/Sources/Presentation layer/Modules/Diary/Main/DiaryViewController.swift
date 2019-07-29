@@ -59,15 +59,7 @@ final class DiaryViewController: BaseViewController {
         
         diaryObserver.fetch()
         
-        let subject: String?
-        switch attachmentState.attachedEntity {
-        case let sprint as Sprint: subject = sprint.title
-        case let habit as Habit: subject = habit.title
-        case let goal as Goal: subject = goal.title
-        default: subject = nil
-        }
-        diaryEntryAttachmentView.configure(attachment: attachmentState.attachment,
-                                           subject: subject)
+        reloadAttachmentView()
     }
     
     override func setupAppearance() {
@@ -162,6 +154,9 @@ final class DiaryViewController: BaseViewController {
         diaryEntryCreationView.onAttachment = { [unowned self] in
             let sourceView = self.diaryEntryCreationView.attachmentButton
             let attachmentController = DiaryEntryAttachmentTypePickerViewController(sourceView: sourceView)
+            attachmentController.onSelectType = { [unowned self] type in
+                self.presentAttachmentPicker(type: type)
+            }
             self.present(attachmentController, animated: true, completion: nil)
         }
     }
@@ -170,7 +165,20 @@ final class DiaryViewController: BaseViewController {
         bottomViewsContainer.addArrangedSubview(diaryEntryAttachmentView)
         diaryEntryAttachmentView.onClear = { [unowned self] in
             self.attachmentState.clear()
+            self.reloadAttachmentView()
         }
+    }
+    
+    private func reloadAttachmentView() {
+        let subject: String?
+        switch attachmentState.attachedEntity {
+        case let sprint as Sprint: subject = sprint.title
+        case let habit as Habit: subject = habit.title
+        case let goal as Goal: subject = goal.title
+        default: subject = nil
+        }
+        diaryEntryAttachmentView.configure(attachment: attachmentState.attachment,
+                                           subject: subject)
     }
     
     private func setupBottomStretchableView() {
@@ -200,6 +208,36 @@ final class DiaryViewController: BaseViewController {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    private func presentAttachmentPicker(type: DiaryEntryAttachmentType) {
+        let attachmentPickerProvider = DiaryEntryAttachmentPickerProvider(type: type)
+        
+        let detailsViewController = DetailsBaseViewController(content: attachmentPickerProvider)
+        let navigationController = UINavigationController(rootViewController: detailsViewController)
+        navigationController.isNavigationBarHidden = true
+        navigationController.modalPresentationStyle = .formSheet
+        if UIDevice.current.isPhone {
+            navigationController.transitioningDelegate = detailsViewController
+        }
+        
+        attachmentPickerProvider.onSelectAttachment = { [unowned self, unowned navigationController] entity in
+            self.attachmentState.attachedEntity = entity
+            switch entity {
+            case let habit as Habit:
+                self.attachmentState.attachment = .habit(id: habit.id)
+            case let goal as Goal:
+                self.attachmentState.attachment = .goal(id: goal.id)
+            case let sprint as Sprint:
+                self.attachmentState.attachment = .sprint(id: sprint.id)
+            default: break
+            }
+            self.reloadAttachmentView()
+            
+            navigationController.dismiss(animated: true, completion: nil)
+        }
+        
+        present(navigationController, animated: true, completion: nil)
     }
     
     @objc private func onTapToCloseButton() {
