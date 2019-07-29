@@ -54,9 +54,8 @@ final class DiaryEntryAttachmentView: UIView {
         
         addSubview(clearButton)
         clearButton.clipsToBounds = true
-        clearButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.decorationElementColor), for: .normal)
         clearButton.tintColor = AppTheme.current.colors.inactiveElementColor
-        clearButton.setImage(UIImage(named: "cross"), for: .normal) // TODO: make 2 images for both themes and remove background color
+        clearButton.setImage(AppTheme.current.clearImage, for: .normal)
         clearButton.adjustsImageWhenHighlighted = false
         clearButton.addTarget(self, action: #selector(onTapToClearButton), for: .touchUpInside)
     }

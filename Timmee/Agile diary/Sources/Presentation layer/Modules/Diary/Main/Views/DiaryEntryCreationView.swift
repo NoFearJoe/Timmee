@@ -45,7 +45,7 @@ final class DiaryEntryCreationView: UIView {
         attachmentButton.addTarget(self, action: #selector(onTapToAttachmentButton), for: .touchUpInside)
         
         addSubview(createButton)
-        createButton.isEnabled = false
+        createButton.isHidden = true
         createButton.setImage(UIImage(named: "plus"), for: .normal)
         createButton.addTarget(self, action: #selector(onTapToCreateButton), for: .touchUpInside)
         createButton.colors = FloatingButton.Colors(tintColor: .white,
@@ -95,7 +95,7 @@ final class DiaryEntryCreationView: UIView {
     }
     
     @objc private func textDidChange(notification: Notification) {
-        createButton.isEnabled = !textView.textView.text.isEmpty
+        createButton.isHidden = textView.textView.text.isEmpty
     }
     
     @objc private func onTapToCreateButton() {

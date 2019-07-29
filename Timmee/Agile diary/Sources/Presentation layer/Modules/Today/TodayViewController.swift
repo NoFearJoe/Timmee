@@ -146,6 +146,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
                 self.performSegue(withIdentifier: "ShowCharts", sender: nil)
             case .sprints:
                 self.performSegue(withIdentifier: "ShowSprints", sender: nil)
+            case .settings:
+                self.performSegue(withIdentifier: "ShowSettings", sender: nil)
             }
         }
         present(actionPickerViewController, animated: true, completion: nil)

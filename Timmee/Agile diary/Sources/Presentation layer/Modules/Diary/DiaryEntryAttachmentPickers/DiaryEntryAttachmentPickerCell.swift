@@ -22,6 +22,8 @@ final class DiaryEntryAttachmentPickerCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
         
         setupSubviews()
         setupConstraints()

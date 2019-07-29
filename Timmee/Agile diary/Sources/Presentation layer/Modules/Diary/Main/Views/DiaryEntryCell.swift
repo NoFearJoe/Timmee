@@ -14,8 +14,9 @@ final class DiaryEntryCell: UITableViewCell {
     
     private let dateLabel = UILabel(frame: .zero)
     private let bubbleView = BarView(frame: .zero)
+    private lazy var bubbleContentView = UIStackView(arrangedSubviews: [bubbleTextLabel, attachmentView])
     private let bubbleTextLabel = UILabel(frame: .zero)
-    private let attachmentView = UIView(frame: .zero)
+    private let attachmentView = AttachmentView(frame: .zero)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,6 +36,21 @@ final class DiaryEntryCell: UITableViewCell {
     func configure(model: DiaryEntry) {
         dateLabel.text = model.date.asDayMonthTime
         bubbleTextLabel.text = model.text
+        
+        switch model.attachment {
+        case .none:
+            attachmentView.isHidden = true
+        case let .habit(id):
+            guard let habit = ServicesAssembly.shared.habitsService.fetchHabit(id: id) else { return }
+            attachmentView.isHidden = false
+            attachmentView.configure(title: habit.title)
+        case let .goal(id):
+            attachmentView.isHidden = false
+            attachmentView.configure(title: id)
+        case let .sprint(id):
+            attachmentView.isHidden = false
+            attachmentView.configure(title: id)
+        }
     }
     
     private func setupSubviews() {
@@ -49,7 +65,11 @@ final class DiaryEntryCell: UITableViewCell {
         bubbleView.showShadow = true
         bubbleView.layer.shadowOpacity = 0.05
         
-        bubbleView.addSubview(bubbleTextLabel)
+        bubbleContentView.axis = .vertical
+        bubbleContentView.distribution = .equalSpacing
+        bubbleContentView.spacing = 4
+        bubbleView.addSubview(bubbleContentView)
+        
         bubbleTextLabel.font = AppTheme.current.fonts.regular(16)
         bubbleTextLabel.textColor = AppTheme.current.colors.activeElementColor
         bubbleTextLabel.numberOfLines = 0
@@ -59,8 +79,45 @@ final class DiaryEntryCell: UITableViewCell {
         [dateLabel.leading(16), dateLabel.top(8), dateLabel.trailing(16)].toSuperview()
         [bubbleView.leading(16), bubbleView.bottom(4)].toSuperview()
         bubbleView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16).isActive = true
+        bubbleContentView.allEdges(6).toSuperview()
         dateLabel.bottomToTop(-4).to(bubbleView, addTo: contentView)
-        bubbleTextLabel.allEdges(6).toSuperview()
+    }
+    
+}
+
+extension DiaryEntryCell {
+    
+    class AttachmentView: UIView {
+        
+        private let titleLabel = UILabel(frame: .zero)
+        
+        override init(frame: CGRect) {
+            super.init(frame: .zero)
+            
+            backgroundColor = AppTheme.current.colors.decorationElementColor
+            clipsToBounds = true
+            layer.cornerRadius = 6
+            
+            setupSubviews()
+            setupConstraints()
+        }
+        
+        required init?(coder aDecoder: NSCoder) { fatalError() }
+        
+        func configure(title: String) {
+            titleLabel.text = title
+        }
+        
+        private func setupSubviews() {
+            addSubview(titleLabel)
+            titleLabel.font = AppTheme.current.fonts.regular(16)
+            titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        }
+        
+        private func setupConstraints() {
+            [titleLabel.leading(8), titleLabel.trailing(8), titleLabel.top(8), titleLabel.bottom(8)].toSuperview()
+        }
+        
     }
     
 }

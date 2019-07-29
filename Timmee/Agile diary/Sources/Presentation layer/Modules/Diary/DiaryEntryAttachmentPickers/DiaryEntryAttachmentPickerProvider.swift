@@ -131,6 +131,7 @@ final class DiaryEntryAttachmentPickerProvider: NSObject, DetailModuleProvider {
         contentView.keyboardDismissMode = .onDrag
         contentView.showsVerticalScrollIndicator = false
         contentView.isScrollEnabled = false
+        contentView.backgroundColor = .clear
     }
     
 }

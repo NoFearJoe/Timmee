@@ -121,6 +121,15 @@ extension AppTheme {
         }
     }
     
+    var clearImage: UIImage? {
+        switch AppThemeType.current {
+        case .light:
+            return UIImage(named: "clear_light")
+        case .dark:
+            return UIImage(named: "clear_dark")
+        }
+    }
+    
 }
 
 extension AppTheme {

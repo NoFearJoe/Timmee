@@ -9,7 +9,7 @@
 import UIKit
 
 enum TodayAction {
-    case sprints, charts, diary
+    case charts, sprints, diary, settings
 }
 
 final class TodayActionPickerViewController: UIAlertController {
@@ -42,11 +42,16 @@ final class TodayActionPickerViewController: UIAlertController {
             self.onSelectAction?(.diary)
         }
         
+        let settingsAction = UIAlertAction(title: "settings".localized, style: .default) { [unowned self] _ in
+            self.onSelectAction?(.settings)
+        }
+        
         let closeAction = UIAlertAction(title: "close".localized, style: .cancel, handler: nil)
         
         addAction(chartsAction)
         addAction(sprintsAction)
         addAction(diaryAction)
+        addAction(settingsAction)
         addAction(closeAction)
     }
     
