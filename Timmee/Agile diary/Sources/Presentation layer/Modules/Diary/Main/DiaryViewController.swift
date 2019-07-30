@@ -25,6 +25,8 @@ final class DiaryViewController: BaseViewController {
     
     private let keyboardManager = KeyboardManager()
     
+    private let swipeActionsProvider = DiaryEntryCellSwipeActionsProvider()
+    
     private let diaryService = ServicesAssembly.shared.diaryService
     
     private lazy var cacheSubscriber = TableViewCacheAdapter(tableView: diaryEntriesListView)
@@ -52,6 +54,7 @@ final class DiaryViewController: BaseViewController {
         setupDiaryEntriesListView()
 
         setupKeyboardManager()
+        setupSwipeActionsProvider()
     }
     
     override func refresh() {
@@ -210,6 +213,19 @@ final class DiaryViewController: BaseViewController {
         }
     }
     
+    private func setupSwipeActionsProvider() {
+        swipeActionsProvider.shouldShowDeleteAction = { indexPath in
+            return true
+        }
+        
+        swipeActionsProvider.onDelete = { [unowned self] indexPath in
+            guard let diaryEntry = self.diaryObserver.item(at: indexPath) else { return }
+            self.diaryService.removeDiaryEntry(diaryEntry, completion: { success in
+                print(success)
+            })
+        }
+    }
+    
     private func presentAttachmentPicker(type: DiaryEntryAttachmentType) {
         let attachmentPickerProvider = DiaryEntryAttachmentPickerProvider(type: type)
         
@@ -260,6 +276,7 @@ extension DiaryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DiaryEntryCell.identifier, for: indexPath) as! DiaryEntryCell
         if let diaryEntry = diaryObserver.item(at: indexPath) {
             cell.configure(model: diaryEntry)
+            cell.delegate = swipeActionsProvider
         }
         return cell
     }

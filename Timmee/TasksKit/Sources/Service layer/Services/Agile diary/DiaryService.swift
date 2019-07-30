@@ -23,6 +23,7 @@ public protocol DiaryEntitiesProvider: AnyObject {
 
 public protocol DiaryEntitiesBackgroundProvider: AnyObject {
     func fetchDiaryEntryEntityInBackground(id: String) -> DiaryEntryEntity?
+    func fetchAllDiaryEntryEntitiesInBackground() -> [DiaryEntryEntity]
 }
 
 public protocol DiaryObserverProvider: AnyObject {
@@ -99,6 +100,10 @@ extension DiaryService: DiaryEntitiesBackgroundProvider {
             .limited(value: 1)
             .executeInBackground()
             .first
+    }
+    
+    public func fetchAllDiaryEntryEntitiesInBackground() -> [DiaryEntryEntity] {
+        return DiaryEntryEntity.request().executeInBackground()
     }
     
 }

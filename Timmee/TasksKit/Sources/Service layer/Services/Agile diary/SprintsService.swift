@@ -15,6 +15,7 @@ import class CoreData.NSManagedObjectContext
 import class CoreData.NSCompoundPredicate
 
 public protocol SprintsProvider: class {
+    func fetchSprint(id: String) -> Sprint?
     func fetchSprints() -> [Sprint]
 }
 
@@ -39,8 +40,12 @@ public final class SprintsService {}
 
 extension SprintsService: SprintsProvider {
     
+    public func fetchSprint(id: String) -> Sprint? {
+        return fetchSprintEntity(id: id).map { Sprint(sprintEntity: $0) }
+    }
+    
     public func fetchSprints() -> [Sprint] {
-        return fetchSprintEntities().map({ Sprint(sprintEntity: $0) })
+        return fetchSprintEntities().map { Sprint(sprintEntity: $0) }
     }
     
 }

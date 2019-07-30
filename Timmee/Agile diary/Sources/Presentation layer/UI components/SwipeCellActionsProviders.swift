@@ -277,3 +277,84 @@ extension TodayGoalCellSwipeActionsProvider: SwipeTableViewCellDelegate {
     }
     
 }
+
+// MARK: - Diary
+
+final class DiaryEntryCellSwipeActionsProvider {
+    
+//    var shouldShowEditAction: ((IndexPath) -> Bool)?
+    var shouldShowDeleteAction: ((IndexPath) -> Bool)?
+    
+//    var onEdit: ((IndexPath) -> Void)?
+    var onDelete: ((IndexPath) -> Void)?
+    
+    static var backgroundColor: UIColor {
+        return .clear
+    }
+    
+    private lazy var swipeTableOptions: SwipeTableOptions = {
+        var options = SwipeTableOptions()
+        options.expansionStyle = nil
+        options.transitionStyle = SwipeTransitionStyle.drag
+        options.backgroundColor = DiaryEntryCellSwipeActionsProvider.backgroundColor
+        return options
+    }()
+    
+//    private lazy var swipeEditAction: SwipeAction = {
+//        let action = SwipeAction(style: .default,
+//                                 title: "edit".localized,
+//                                 handler:
+//            { [weak self] (action, indexPath) in
+//                self?.onEdit?(indexPath)
+//                action.fulfill(with: .reset)
+//        })
+//        action.image = #imageLiteral(resourceName: "edit")
+//        action.title = nil
+//        action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
+//        action.transitionDelegate = nil
+//        return action
+//    }()
+    
+    private lazy var swipeDeleteAction: SwipeAction = {
+        let action = SwipeAction(style: .default,
+                                 title: "remove".localized,
+                                 handler:
+            { [weak self] action, indexPath in
+                self?.onDelete?(indexPath)
+                action.fulfill(with: .reset)
+        })
+        action.image = UIImage(named: "trash")
+        action.title = nil
+        action.textColor = AppTheme.current.colors.wrongElementColor
+        action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
+        action.transitionDelegate = nil
+        return action
+    }()
+    
+}
+
+extension DiaryEntryCellSwipeActionsProvider: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        switch orientation {
+        case .left: return nil
+        case .right:
+            var actions: [SwipeAction] = []
+            if shouldShowDeleteAction?(indexPath) == true {
+                actions.append(swipeDeleteAction)
+            }
+//            if shouldShowEditAction?(indexPath) == true {
+//                swipeEditAction.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+//                actions.append(swipeEditAction)
+//            }
+            return actions
+        }
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   editActionsOptionsForRowAt indexPath: IndexPath,
+                   for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        return swipeTableOptions
+    }
+    
+}

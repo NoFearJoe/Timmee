@@ -35,6 +35,7 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let goalsService = EntityServicesAssembly.shared.goalsService
     private let waterControlService = EntityServicesAssembly.shared.waterControlService
     private let moodService = EntityServicesAssembly.shared.moodService
+    private let diaryService = EntityServicesAssembly.shared.diaryService
     
     private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
     private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
@@ -180,6 +181,8 @@ private extension AgileeSynchronizationService {
                     dispatchGroup.leave() // Leave sprint document
                 })
                 
+                // Mood
+                
                 let moodCollection = userDocument.collection("mood")
                 dispatchGroup.enter() // Enter moods collection
                 moodCollection.getDocuments(completion: { [weak self] moodsSnapshot, error in
@@ -192,6 +195,22 @@ private extension AgileeSynchronizationService {
                                             parentEntityID: nil)
                     })
                     dispatchGroup.leave() // Leave moods collection
+                })
+                
+                // Diary
+                
+                let diaryEntriesCollection = userDocument.collection("diary")
+                dispatchGroup.enter() // Enter diary collection
+                diaryEntriesCollection.getDocuments(completion: { [weak self] diaryEntriesSnapshot, error in
+                    guard let self = self else { return }
+                    synchronizationActions.append({ context in
+                        self.collectionSynchronizationManager
+                            .syncCollection(context: context,
+                                            data: diaryEntriesSnapshot?.documents.map { $0.data() } ?? [],
+                                            entityType: DiaryEntryEntity.self,
+                                            parentEntityID: nil)
+                    })
+                    dispatchGroup.leave() // Leave diary collection
                 })
                 
                 dispatchGroup.leave() // Leave user document
@@ -225,6 +244,8 @@ private extension AgileeSynchronizationService {
             
         let batch = Firestore.firestore().batch()
 
+        // Sprints
+        
         let sprints = self.sprintsService.fetchSprintEntitiesInBackground()
         
         sprints.forEach { sprint in
@@ -268,11 +289,23 @@ private extension AgileeSynchronizationService {
             }
         }
         
+        // Mood
+        
         let moodEntities = moodService.fetchAllMoodEntitiesInBackground()
         moodEntities.forEach { mood in
             guard let date = mood.date else { return }
             let moodDocument = userDocument.collection("mood").document(date.asDateTimeString)
             batch.setData(mood.encode(), forDocument: moodDocument)
+        }
+        
+        // Diary
+        
+        let diaryEntryEntities = diaryService.fetchAllDiaryEntryEntitiesInBackground()
+        let diaryEntriesCollection = userDocument.collection("diary")
+        diaryEntryEntities.forEach { diaryEntry in
+            guard let id = diaryEntry.id else { return }
+            let diaryEntryDocument = diaryEntriesCollection.document(id)
+            batch.setData(diaryEntry.encode(), forDocument: diaryEntryDocument)
         }
         
         pushDeletedEntities(deletedEntities, batch: batch, userDocument: userDocument)

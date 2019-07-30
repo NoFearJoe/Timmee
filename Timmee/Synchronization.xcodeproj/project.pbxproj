@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C06E97422F0792B0099DD3A /* DiaryEntryEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97322F0792B0099DD3A /* DiaryEntryEntity+Codable.swift */; };
 		0C47ED53222FDC2200593AA3 /* SynchronizationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */; };
 		0C47ED56222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */; };
 		0C47ED58222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C06E97322F0792B0099DD3A /* DiaryEntryEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryEntryEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationServiceProtocol.swift; sourceTree = "<group>"; };
 		0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgileeHabitsSynchronizationService.swift; sourceTree = "<group>"; };
 		0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionSynchronizationManager.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */,
 				0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */,
 				0CD8F81F2240C88500061B58 /* Mood+Codable.swift */,
+				0C06E97322F0792B0099DD3A /* DiaryEntryEntity+Codable.swift */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				0C47ED53222FDC2200593AA3 /* SynchronizationServiceProtocol.swift in Sources */,
 				0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */,
 				0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */,
+				0C06E97422F0792B0099DD3A /* DiaryEntryEntity+Codable.swift in Sources */,
 				0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */,
 				0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */,
 				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,

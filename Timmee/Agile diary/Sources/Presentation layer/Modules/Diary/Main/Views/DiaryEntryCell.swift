@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-final class DiaryEntryCell: UITableViewCell {
+final class DiaryEntryCell: SwipeTableViewCell {
     
     static let identifier: String = String(describing: DiaryEntryCell.self)
     
@@ -21,7 +22,7 @@ final class DiaryEntryCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        transform = CGAffineTransform(scaleX: 1, y: -1)
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear
@@ -45,11 +46,13 @@ final class DiaryEntryCell: UITableViewCell {
             attachmentView.isHidden = false
             attachmentView.configure(title: habit.title)
         case let .goal(id):
+            guard let goal = ServicesAssembly.shared.goalsService.fetchGoal(id: id) else { return }
             attachmentView.isHidden = false
-            attachmentView.configure(title: id)
+            attachmentView.configure(title: goal.title)
         case let .sprint(id):
+            guard let sprint = ServicesAssembly.shared.sprintsService.fetchSprint(id: id) else { return }
             attachmentView.isHidden = false
-            attachmentView.configure(title: id)
+            attachmentView.configure(title: sprint.title)
         }
     }
     

@@ -26,7 +26,7 @@ final class DiaryEntryAttachmentPickerProvider: NSObject, DetailModuleProvider {
     private let habitsService = ServicesAssembly.shared.habitsService
     private let goalsService = ServicesAssembly.shared.goalsService
     private let sprintsService = ServicesAssembly.shared.sprintsService
-    
+        
     init(type: DiaryEntryAttachmentType) {
         self.attachmentType = type
         
