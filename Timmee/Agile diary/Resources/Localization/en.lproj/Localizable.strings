@@ -371,3 +371,6 @@
 "diary_attachment_sprint" = "Sprint";
 "diary_attachment_habit" = "Habit";
 "diary_attachment_goal" = "Goal";
+"diary_placeholder_title" = "No diary entries";
+"diary_placeholder_subtitle" = "A diary is a place where you can keep records of habits, goals, sprints, or just about what is happening in life. Keeping a diary helps to understand how your goals correspond to reality and whether you are moving towards their implementation. Almost every outstanding person kept a diary, is there no reason for you to start right now?";
+"add_diary_entry" = "New diary entry";

@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initialScreenPresenter.presentPreInitialScreen(in: self.window)
         performPreparingActions {
             self.initialScreenPresenter.presentInitialScreen(in: self.window) {
-                self.synchronizationRunner.run(interval: 10, delay: 10)
+                self.synchronizationRunner.run(interval: 30, delay: 30)
             }
         }
         

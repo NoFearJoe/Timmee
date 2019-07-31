@@ -87,12 +87,12 @@ public extension DiaryEntry {
             switch self {
             case .none:
                 return NSPredicate(format: "attachment == %@", "none")
-            case .habit:
-                return NSPredicate(format: "attachment CONTAINS[cd] %@", "habit")
-            case .goal:
-                return NSPredicate(format: "attachment CONTAINS[cd] %@", "goal")
-            case .sprint:
-                return NSPredicate(format: "attachment CONTAINS[cd] %@", "sprint")
+            case let .habit(id):
+                return NSPredicate(format: "attachment CONTAINS[cd] %@ AND attachment CONTAINS[cd] %@", "habit", id)
+            case let .goal(id):
+                return NSPredicate(format: "attachment CONTAINS[cd] %@ AND attachment CONTAINS[cd] %@", "goal", id)
+            case let .sprint(id):
+                return NSPredicate(format: "attachment CONTAINS[cd] %@ AND attachment CONTAINS[cd] %@", "sprint", id)
             }
         }
     }

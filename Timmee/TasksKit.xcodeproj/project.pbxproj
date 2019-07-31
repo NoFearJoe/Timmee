@@ -384,12 +384,12 @@
 		96BE838C217511C500CDECAF /* Agilee */ = {
 			isa = PBXGroup;
 			children = (
-				0C4082E322E6E30600D899A9 /* DiaryEntry.swift */,
 				96BE8391217511F400CDECAF /* Sprint.swift */,
 				96BE838F217511E500CDECAF /* Habit.swift */,
 				96BE838D217511D700CDECAF /* Goal.swift */,
 				0C3DA5332154D73700CAE635 /* WaterControl.swift */,
 				0CD8F8192240B6A500061B58 /* Mood.swift */,
+				0C4082E322E6E30600D899A9 /* DiaryEntry.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";

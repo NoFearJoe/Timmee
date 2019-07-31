@@ -19,6 +19,7 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
     
     private let habitsService = ServicesAssembly.shared.habitsService
     let sprintsService = ServicesAssembly.shared.sprintsService
+    private let diaryService = ServicesAssembly.shared.diaryService
     
     init(habit: Habit) {
         self.habit = habit
@@ -218,6 +219,22 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
             weeklyChartContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
             contentView.addView(weeklyChartContainer)
         }
+        
+        // Diary
+        let emptyView7 = UIView()
+        emptyView7.backgroundColor = AppTheme.current.colors.foregroundColor
+        emptyView7.height(20)
+        contentView.addView(emptyView7)
+        
+        let diaryView = DiaryEntriesSubmoduleView(maxEntriesCount: 5)
+        diaryView.configure(attachmentType: .habit, entity: habit)
+        let diaryContainer = DetailView(title: "diary".localized, detailView: diaryView)
+        diaryContainer.clipsToBounds = false
+        diaryContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
+        diaryContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        contentView.addView(diaryContainer)
+        
+        // Last empty view
         
         let emptyViewLast = UIView()
         emptyViewLast.backgroundColor = AppTheme.current.colors.foregroundColor

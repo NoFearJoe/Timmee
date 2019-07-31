@@ -12,6 +12,8 @@ import UIComponents
 
 final class DiaryViewController: BaseViewController {
     
+    // MARK: UI
+    
     private let headerView = LargeHeaderView(frame: .zero)
     
     private let diaryEntriesListView = DiaryEntriesListView()
@@ -22,6 +24,11 @@ final class DiaryViewController: BaseViewController {
     private let bottomStretchableView = UIView()
     
     private var bottomViewBottomConstraint: NSLayoutConstraint!
+    
+    private let placeholderContainer = UIView()
+    private let placeholderView = PlaceholderView.loadedFromNib()
+    
+    // MARK: Services
     
     private let keyboardManager = KeyboardManager()
     
@@ -34,14 +41,18 @@ final class DiaryViewController: BaseViewController {
         let observer = diaryService.diaryEntriesObserver()
         observer.setSubscriber(cacheSubscriber)
         observer.setDelegate(
-            CachedEntitiesObserverDelegate<DiaryEntry>(onEntitiesCountChange: { count in
-                print(count)
+            CachedEntitiesObserverDelegate<DiaryEntry>(onEntitiesCountChange: { [weak self] count in
+                self?.placeholderContainer.isHidden = count > 0
             })
         )
         return observer
     }()
     
+    // MARK: State
+    
     private var attachmentState = AttachmentState()
+    
+    // MARK: Lifecycle
     
     override func prepare() {
         super.prepare()
@@ -52,6 +63,9 @@ final class DiaryViewController: BaseViewController {
         setupDiaryEntryAttachmentView()
         setupBottomStretchableView()
         setupDiaryEntriesListView()
+        setupPlaceholder()
+        
+        setupLayout()
 
         setupKeyboardManager()
         setupSwipeActionsProvider()
@@ -71,7 +85,10 @@ final class DiaryViewController: BaseViewController {
         diaryEntryCreationView.backgroundColor = AppTheme.current.colors.foregroundColor
         diaryEntryAttachmentView.backgroundColor = AppTheme.current.colors.foregroundColor
         bottomStretchableView.backgroundColor = AppTheme.current.colors.foregroundColor
+        setupPlaceholderAppearance()
     }
+    
+    // MARK: Private methods
     
     private func setupHeaderView() {
         view.addSubview(headerView)
@@ -189,6 +206,33 @@ final class DiaryViewController: BaseViewController {
         
         [bottomStretchableView.leading(), bottomStretchableView.trailing(), bottomStretchableView.bottom()].toSuperview()
         bottomStretchableView.topToBottom().to(bottomViewsContainer, addTo: view)
+    }
+    
+    private func setupPlaceholder() {
+        view.addSubview(placeholderContainer)
+        placeholderContainer.backgroundColor = .clear
+        [placeholderContainer.leading(), placeholderContainer.trailing()].toSuperview()
+        placeholderContainer.topToBottom().to(headerView, addTo: view)
+        placeholderContainer.bottomToTop().to(bottomViewsContainer, addTo: view)
+        
+        placeholderView.icon = UIImage(imageLiteralResourceName: "history")
+        placeholderView.title = "diary_placeholder_title".localized
+        placeholderView.subtitle = "diary_placeholder_subtitle".localized
+        placeholderView.setup(into: placeholderContainer)
+        placeholderContainer.isHidden = true
+    }
+    
+    private func setupPlaceholderAppearance() {
+        placeholderView.backgroundColor = .clear
+        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
+        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
+        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+    }
+    
+    private func setupLayout() {
+        view.bringSubviewToFront(bottomViewsContainer)
+        view.bringSubviewToFront(headerView)
     }
     
     private func setupKeyboardManager() {

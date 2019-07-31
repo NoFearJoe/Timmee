@@ -385,6 +385,11 @@ private extension AgileeSynchronizationService {
             }
         }
         
+        deletedEntities.diaryEntries.forEach { diaryEntryID in
+            let diaryEntryDocument = userDocument.collection("diary").document(diaryEntryID)
+            batch.deleteDocument(diaryEntryDocument)
+        }
+        
         dispatchGroup.wait()
     }
     
@@ -396,8 +401,14 @@ struct DeletedEntities {
     var goals: [(String, [String])] = []
     var stages: [(String, String, [String])] = []
     var waterControls: [(String, [String])] = []
+    var diaryEntries: [String] = []
     
     var isEmpty: Bool {
-        return sprints.isEmpty && habits.isEmpty && goals.isEmpty && stages.isEmpty && waterControls.isEmpty
+        return sprints.isEmpty
+            && habits.isEmpty
+            && goals.isEmpty
+            && stages.isEmpty
+            && waterControls.isEmpty
+            && diaryEntries.isEmpty
     }
 }
