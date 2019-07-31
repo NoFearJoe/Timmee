@@ -34,6 +34,7 @@ final class DiaryEntriesSubmoduleListView: AutoSizingTableView {
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
         isScrollEnabled = false
+        backgroundColor = .clear
         if #available(iOS 11.0, *) {
             contentInsetAdjustmentBehavior = .never
         }        

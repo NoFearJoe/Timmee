@@ -88,6 +88,16 @@ final class DiaryViewController: BaseViewController {
         setupPlaceholderAppearance()
     }
     
+    // MARK: Public methods
+    
+    func forceEntryCreation(text: String, attachment: DiaryEntry.Attachment, attachedEntity: Any?) {
+        diaryEntryCreationView.setText(text)
+        attachmentState.attachment = attachment
+        attachmentState.attachedEntity = attachedEntity
+        reloadAttachmentView()
+        diaryEntryCreationView.forceEditing()
+    }
+    
     // MARK: Private methods
     
     private func setupHeaderView() {

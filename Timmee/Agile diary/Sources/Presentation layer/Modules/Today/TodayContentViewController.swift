@@ -193,6 +193,16 @@ extension TodayContentViewController: UITableViewDelegate {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
                 })
             }
+            habitDetailsProvider.onAddDiaryEntry = { [unowned self, unowned navigationController] in
+                navigationController.dismiss(animated: true, completion: {
+                    let diaryViewController = DiaryViewController()
+                    self.transitionHandler?.present(diaryViewController, animated: true) {
+                        diaryViewController.forceEntryCreation(text: "",
+                                                               attachment: .habit(id: habit.id),
+                                                               attachedEntity: habit)
+                    }
+                })
+            }
             
             self.transitionHandler?.present(navigationController, animated: true, completion: nil)
         case .goal:
@@ -211,6 +221,16 @@ extension TodayContentViewController: UITableViewDelegate {
             goalDetailsProvider.onEdit = { [unowned self, unowned navigationController] in
                 navigationController.dismiss(animated: true, completion: {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+                })
+            }
+            goalDetailsProvider.onAddDiaryEntry = { [unowned self, unowned navigationController] in
+                navigationController.dismiss(animated: true, completion: {
+                    let diaryViewController = DiaryViewController()
+                    self.transitionHandler?.present(diaryViewController, animated: true) {
+                        diaryViewController.forceEntryCreation(text: "",
+                                                               attachment: .goal(id: goal.id),
+                                                               attachedEntity: goal)
+                    }
                 })
             }
             

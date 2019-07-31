@@ -11,6 +11,7 @@ import UIComponents
 final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
     
     var onEdit: (() -> Void)?
+    var onAddDiaryEntry: (() -> Void)?
     
     weak var holderViewController: UIViewController?
     
@@ -221,12 +222,16 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
         }
         
         // Diary
+        
         let emptyView7 = UIView()
         emptyView7.backgroundColor = AppTheme.current.colors.foregroundColor
         emptyView7.height(20)
         contentView.addView(emptyView7)
         
         let diaryView = DiaryEntriesSubmoduleView(maxEntriesCount: 5)
+        diaryView.onAddEntry = { [unowned self] in
+            self.onAddDiaryEntry?()
+        }
         diaryView.configure(attachmentType: .habit, entity: habit)
         let diaryContainer = DetailView(title: "diary".localized, detailView: diaryView)
         diaryContainer.clipsToBounds = false

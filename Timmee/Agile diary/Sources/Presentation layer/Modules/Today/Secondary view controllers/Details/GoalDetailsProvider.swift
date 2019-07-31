@@ -11,6 +11,7 @@ import UIComponents
 final class GoalDetailsProvider: DetailModuleProvider {
     
     var onEdit: (() -> Void)?
+    var onAddDiaryEntry: (() -> Void)?
     
     weak var holderViewController: UIViewController?
     
@@ -113,6 +114,26 @@ final class GoalDetailsProvider: DetailModuleProvider {
             buttonsContainer.addArrangedSubview(completeButton)
         }
         contentView.addView(buttonsContainer)
+        
+        // Diary
+        
+        let emptyView6 = UIView()
+        emptyView6.backgroundColor = AppTheme.current.colors.foregroundColor
+        emptyView6.height(20)
+        contentView.addView(emptyView6)
+        
+        let diaryView = DiaryEntriesSubmoduleView(maxEntriesCount: 5)
+        diaryView.onAddEntry = { [unowned self] in
+            self.onAddDiaryEntry?()
+        }
+        diaryView.configure(attachmentType: .goal, entity: goal)
+        let diaryContainer = DetailView(title: "diary".localized, detailView: diaryView)
+        diaryContainer.clipsToBounds = false
+        diaryContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
+        diaryContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        contentView.addView(diaryContainer)
+        
+        // Last empty view
         
         let emptyViewLast = UIView()
         emptyViewLast.backgroundColor = AppTheme.current.colors.foregroundColor

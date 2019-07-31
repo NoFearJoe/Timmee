@@ -31,6 +31,14 @@ final class DiaryEntryCreationView: UIView {
     
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
+    func setText(_ text: String) {
+        textView.textView.text = text
+    }
+    
+    func forceEditing() {
+        textView.becomeFirstResponder()
+    }
+    
     func clear() {
         textView.textView.text = nil
     }

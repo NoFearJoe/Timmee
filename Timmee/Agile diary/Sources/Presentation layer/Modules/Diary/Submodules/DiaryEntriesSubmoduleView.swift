@@ -13,6 +13,8 @@ import UIComponents
 
 final class DiaryEntriesSubmoduleView: UIView {
     
+    var onAddEntry: (() -> Void)?
+    
     private let diaryEntriesListView = DiaryEntriesSubmoduleListView()
     private let addEntryButton = UIButton(type: .custom)
     
@@ -63,6 +65,7 @@ final class DiaryEntriesSubmoduleView: UIView {
         addSubview(addEntryButton)
         addEntryButton.setTitle("add_diary_entry".localized, for: .normal)
         addEntryButton.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
+        addEntryButton.addTarget(self, action: #selector(onTapToAddEntryButton), for: .touchUpInside)
     }
     
     private func setupConstraints() {
@@ -72,6 +75,10 @@ final class DiaryEntriesSubmoduleView: UIView {
         addEntryButton.height(36)
         
         addEntryButton.topToBottom().to(diaryEntriesListView, addTo: self)
+    }
+    
+    @objc private func onTapToAddEntryButton() {
+        onAddEntry?()
     }
     
 }
