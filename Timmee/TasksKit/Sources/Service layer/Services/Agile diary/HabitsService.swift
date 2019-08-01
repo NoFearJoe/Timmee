@@ -17,6 +17,7 @@ public protocol HabitsProvider: class {
 
 public protocol HabitsManager: class {
     func addHabit(_ habit: Habit, sprintID: String, completion: @escaping (Bool) -> Void)
+    func addHabits(_ habits: [Habit], sprintID: String, completion: @escaping (Bool) -> Void)
     func updateHabit(_ habit: Habit, completion: @escaping (Bool) -> Void)
     func updateHabit(_ habit: Habit, sprintID: String?, completion: @escaping (Bool) -> Void)
     func updateHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void)
@@ -88,15 +89,23 @@ extension HabitsService: HabitsProvider {
 extension HabitsService: HabitsManager {
     
     public func addHabit(_ habit: Habit, sprintID: String, completion: @escaping (Bool) -> Void) {
+        addHabits([habit], sprintID: sprintID, completion: completion)
+    }
+    
+    public func addHabits(_ habits: [Habit], sprintID: String, completion: @escaping (Bool) -> Void) {
         Database.localStorage.write({ (context, save) in
-            guard self.fetchHabitEntityInBackground(id: habit.id) == nil else {
-                DispatchQueue.main.async { completion(false) }
-                return
+            let sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID, context: context)
+
+            for habit in habits {
+                guard self.fetchHabitEntityInBackground(id: habit.id) == nil else {
+                    DispatchQueue.main.async { completion(false) }
+                    continue
+                }
+                
+                let newHabit = self.createHabit()
+                newHabit.map(from: habit)
+                newHabit.sprint = sprint
             }
-            
-            let newHabit = self.createHabit()
-            newHabit.map(from: habit)
-            newHabit.sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID, context: context)
             
             save()
         }) { isSuccess in

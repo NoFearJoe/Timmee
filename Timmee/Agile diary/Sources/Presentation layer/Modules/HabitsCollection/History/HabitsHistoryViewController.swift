@@ -12,6 +12,8 @@ final class HabitsHistoryViewController: BaseViewController {
     
     var sprintID: String!
     
+    unowned var pickedHabitsState: PickedHabitsState!
+    
     @IBOutlet private var tableView: UITableView!
     
     @IBOutlet private var placeholderContainer: UIView!
@@ -20,8 +22,6 @@ final class HabitsHistoryViewController: BaseViewController {
     private let habitsService = ServicesAssembly.shared.habitsService
     private lazy var cacheObserver = habitsService.habitsBySprintObserver(excludingSprintWithID: sprintID)
     private lazy var cacheSubscriber = TableViewCacheAdapter(tableView: tableView)
-    
-    private var pickedHabbitIDs: [(original: String, new: String)] = []
     
     override func prepare() {
         super.prepare()
@@ -41,6 +41,10 @@ final class HabitsHistoryViewController: BaseViewController {
         tableView.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
+    func changeBottomContentInset(by value: CGFloat) {
+        tableView.contentInset.bottom = value
+    }
+    
 }
 
 extension HabitsHistoryViewController: UITableViewDataSource {
@@ -56,7 +60,7 @@ extension HabitsHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HabitsHistoryCell", for: indexPath) as! HabitsHistoryCell
         let habit = cacheObserver.item(at: indexPath)
-        let isPicked = pickedHabbitIDs.contains(where: { $0.original == habit.id })
+        let isPicked = pickedHabitsState.pickedHabits.contains(habit)
         cell.configure(habit: habit, isPicked: isPicked)
         return cell
     }
@@ -67,24 +71,13 @@ extension HabitsHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let habit = cacheObserver.item(at: indexPath)
-        if let pickedHabitID = pickedHabbitIDs.first(where: { $0.original == habit.id })?.new {
-            let pickedHabit = habit.copy
-            pickedHabit.id = pickedHabitID
-            habitsService.removeHabit(pickedHabit) { [weak self] success in
-                guard let self = self, success else { return }
-                self.pickedHabbitIDs.removeAll(where: { $0.original == habit.id })
-                self.tableView.reloadData()
-            }
+        let isPicked = pickedHabitsState.pickedHabits.contains(habit)
+        if isPicked {
+            pickedHabitsState.pickedHabits.remove(object: habit)
         } else {
-            let newHabit = habit.copy
-            newHabit.doneDates = []
-            newHabit.id = RandomStringGenerator.randomString(length: 24)
-            habitsService.addHabit(newHabit, sprintID: sprintID) { [weak self] success in
-                guard let self = self, success else { return }
-                self.pickedHabbitIDs.append((original: habit.id, new: newHabit.id))
-                self.tableView.reloadData()
-            }
+            pickedHabitsState.pickedHabits.append(habit)
         }
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

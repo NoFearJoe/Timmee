@@ -31,6 +31,8 @@
 		0C06E97B22F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97922F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift */; };
 		0C06E97D22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97C22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift */; };
 		0C06E97E22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97C22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift */; };
+		0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E98522F2C0C40099DD3A /* PluralStringLocalization.swift */; };
+		0C06E98722F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E98522F2C0C40099DD3A /* PluralStringLocalization.swift */; };
 		0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
 		0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
 		0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
@@ -446,6 +448,7 @@
 		0C06E97622F17E910099DD3A /* DiaryEntriesSubmoduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleView.swift; sourceTree = "<group>"; };
 		0C06E97922F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleListView.swift; sourceTree = "<group>"; };
 		0C06E97C22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleListCell.swift; sourceTree = "<group>"; };
+		0C06E98522F2C0C40099DD3A /* PluralStringLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralStringLocalization.swift; sourceTree = "<group>"; };
 		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1413,6 +1416,7 @@
 			isa = PBXGroup;
 			children = (
 				96888C232217EDF400479667 /* BackgroundImagesLoader.swift */,
+				0C06E98522F2C0C40099DD3A /* PluralStringLocalization.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1899,6 +1903,7 @@
 				96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
+				0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
@@ -2083,6 +2088,7 @@
 				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
 				0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */,
+				0C06E98722F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,

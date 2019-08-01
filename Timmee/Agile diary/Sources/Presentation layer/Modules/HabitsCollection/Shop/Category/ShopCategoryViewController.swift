@@ -13,6 +13,8 @@ final class ShopCategoryViewController: BaseViewController {
     var collection: HabitsCollection?
     var sprintID: String?
     
+    unowned var pickedHabitsState: PickedHabitsState!
+    
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var tableView: UITableView!
     
@@ -20,8 +22,6 @@ final class ShopCategoryViewController: BaseViewController {
     let placeholderView = PlaceholderView.loadedFromNib()
     
     private let habitsService = ServicesAssembly.shared.habitsService
-    
-    private var pickedHabbitIDs: [(original: String, new: String)] = []
     
     @IBAction private func onTapToBackButton() {
         if let navigationController = navigationController {
@@ -60,7 +60,7 @@ extension ShopCategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCategoryHabitCell", for: indexPath) as! ShopCategoryHabitCell
         if let habit = collection?.habits.item(at: indexPath.row) {
-            let isPicked = pickedHabbitIDs.contains(where: { $0.original == habit.id })
+            let isPicked = pickedHabitsState.pickedHabits.contains(habit)
             cell.configure(habit: habit, isPicked: isPicked)
         }
         return cell
@@ -72,24 +72,13 @@ extension ShopCategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let habit = collection?.habits.item(at: indexPath.row) else { return }
-        if let pickedHabitID = pickedHabbitIDs.first(where: { $0.original == habit.id })?.new {
-            let pickedHabit = habit.copy
-            pickedHabit.id = pickedHabitID
-            habitsService.removeHabit(pickedHabit) { [weak self] success in
-                guard let self = self, success else { return }
-                self.pickedHabbitIDs.removeAll(where: { $0.original == habit.id })
-                self.tableView.reloadData()
-            }
+        let isPicked = pickedHabitsState.pickedHabits.contains(habit)
+        if isPicked {
+            pickedHabitsState.pickedHabits.remove(object: habit)
         } else {
-            guard let sprintID = sprintID else { return }
-            let newHabit = habit.copy
-            newHabit.id = RandomStringGenerator.randomString(length: 24)
-            habitsService.addHabit(newHabit, sprintID: sprintID) { [weak self] success in
-                guard let self = self, success else { return }
-                self.pickedHabbitIDs.append((original: habit.id, new: newHabit.id))
-                self.tableView.reloadData()
-            }
+            pickedHabitsState.pickedHabits.append(habit)
         }
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

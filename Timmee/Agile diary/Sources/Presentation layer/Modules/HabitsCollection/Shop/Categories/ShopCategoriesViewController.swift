@@ -13,6 +13,8 @@ final class ShopCategoriesViewController: BaseViewController {
     
     var sprintID: String?
     
+    unowned var pickedHabitsState: PickedHabitsState!
+    
     @IBOutlet private var collectionView: UICollectionView!
     
     @IBOutlet private var placeholderContainer: UIView!
@@ -51,9 +53,14 @@ final class ShopCategoriesViewController: BaseViewController {
         if let categoryViewController = segue.destination as? ShopCategoryViewController {
             categoryViewController.sprintID = sprintID
             categoryViewController.collection = sender as? HabitsCollection
+            categoryViewController.pickedHabitsState = pickedHabitsState
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+    
+    func changeBottomContentInset(by value: CGFloat) {
+        collectionView.contentInset.bottom = value
     }
     
 }
