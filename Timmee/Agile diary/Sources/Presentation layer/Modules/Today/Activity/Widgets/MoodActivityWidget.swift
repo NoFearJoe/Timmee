@@ -35,6 +35,10 @@ final class MoodActivityWidget: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupAppearance()
+    }
+    
+    func setupAppearance() {
         titleLabel.font = AppTheme.current.fonts.medium(20)
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         containerView.setupAppearance()

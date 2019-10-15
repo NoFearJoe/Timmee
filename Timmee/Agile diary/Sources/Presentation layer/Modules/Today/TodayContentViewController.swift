@@ -86,6 +86,10 @@ final class TodayContentViewController: UIViewController, AlertInput {
         setupCurrentCacheObserver()
     }
     
+    func updateAppearance() {
+        contentView.reloadData()
+    }
+    
     @objc private func onBecameActive() {
         setupCurrentCacheObserver()
     }

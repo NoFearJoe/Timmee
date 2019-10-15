@@ -199,7 +199,7 @@ fileprivate extension SettingsViewController {
         let currentTheme = AppThemeType.current
         let themeAction = { [unowned self] in
             UserProperty.appTheme.setInt(currentTheme.next.rawValue)
-            self.setupAppearance()
+            NotificationCenter.default.post(name: AppTheme.themeChanged, object: nil)
             self.reloadSettings()
         }
         let themeItem = SettingsItem(title: "theme".localized,

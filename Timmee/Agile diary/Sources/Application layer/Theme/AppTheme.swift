@@ -33,6 +33,8 @@ enum AppThemeType: Int {
 
 struct AppTheme {
     
+    static let themeChanged = NSNotification.Name(rawValue: "app_theme_changed")
+    
     struct Colors {
         let inactiveElementColor: UIColor
         let activeElementColor: UIColor

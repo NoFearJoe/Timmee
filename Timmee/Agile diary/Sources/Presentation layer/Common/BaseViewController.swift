@@ -19,7 +19,11 @@ public protocol Screen: class {
 class BaseViewController: UIViewController, Screen {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return AppThemeType.current == .dark ? .lightContent : .default
+        if #available(iOS 13.0, *) {
+            return AppThemeType.current == .dark ? .lightContent : .darkContent
+        } else {
+            return AppThemeType.current == .dark ? .lightContent : .default
+        }
     }
     
     final override func viewDidLoad() {
@@ -35,11 +39,23 @@ class BaseViewController: UIViewController, Screen {
     }
     
     private func subscribeToAppBecomeActive() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onThemeChanged),
+                                               name: AppTheme.themeChanged,
+                                               object: nil)
     }
     
     @objc private func onBecomeActive() {
         refresh()
+    }
+    
+    @objc private func onThemeChanged() {
+        setupAppearance()
     }
     
     // MARK: - Screen
@@ -51,6 +67,16 @@ class BaseViewController: UIViewController, Screen {
     func prepare() {}
     
     func setupAppearance() {
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.backgroundColor = AppTheme.current.colors.foregroundColor
+            navBarAppearance.titleTextAttributes = [.foregroundColor: AppTheme.current.colors.activeElementColor]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: AppTheme.current.colors.activeElementColor]
+            
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            navigationController?.navigationBar.compactAppearance = navBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = AppThemeType.current == .dark ? .black : .default
         navigationController?.navigationBar.barTintColor = AppTheme.current.colors.foregroundColor

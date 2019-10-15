@@ -84,6 +84,10 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     override func prepare() {
         super.prepare()
         
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
+        
         setupDoneButton()
         setupTitleField()
         setupLinkField()

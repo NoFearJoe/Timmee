@@ -38,6 +38,9 @@ final class ActivityViewController: BaseViewController {
         view.backgroundColor = .clear
         stackViewController.view.backgroundColor = .clear
         stackViewController.scrollView.backgroundColor = .clear
+        
+        waterControlWidget.setupAppearance()
+        moodWidget.setupAppearance()
     }
     
 }

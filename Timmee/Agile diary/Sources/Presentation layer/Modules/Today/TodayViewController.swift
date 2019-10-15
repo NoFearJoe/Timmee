@@ -94,6 +94,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupPlaceholderAppearance()
         setupCreateSprintButton()
         sprint.flatMap { updateHeaderSubtitle(sprint: $0) }
+        
+        contentViewController.updateAppearance()
     }
     
     override func viewDidAppear(_ animated: Bool) {
