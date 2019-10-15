@@ -159,6 +159,13 @@ fileprivate extension EducationViewController {
             educationScreenInput.setupOutput(self)
         }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if #available(iOS 11.0, *) {
+                print(viewController.view.safeAreaInsets)
+                print(viewController.view.safeAreaLayoutGuide)
+            }
+        }
+        
         return viewController
     }
     
@@ -168,14 +175,17 @@ private extension EducationViewController {
     
     func subscribeToSynchronizationCompletion() {
         let notificationName = NSNotification.Name(rawValue: PeriodicallySynchronizationRunner.didFinishSynchronizationNotificationName)
-        synchronizationDidFinishObservation = NotificationCenter.default.addObserver(forName: notificationName,
-                                                                                     object: nil,
-                                                                                     queue: .main) { [weak self] _ in
-                                                                                        guard let self = self else { return }
-                                                                                        self.isSynchronized = true
-                                                                                        guard self.shouldShowAppropriateScreenAfterSynchronization else { return }
-                                                                                        self.showAppropriateScreenAfterEducation()
-        }
+        synchronizationDidFinishObservation = NotificationCenter.default
+            .addObserver(
+                forName: notificationName,
+                object: nil,
+                queue: .main)
+            { [weak self] _ in
+                guard let self = self else { return }
+                self.isSynchronized = true
+                guard self.shouldShowAppropriateScreenAfterSynchronization else { return }
+                self.showAppropriateScreenAfterEducation()
+            }
     }
     
 }

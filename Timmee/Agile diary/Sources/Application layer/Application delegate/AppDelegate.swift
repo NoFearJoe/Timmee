@@ -35,8 +35,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
     
     private lazy var synchronizationStatusBar: SynchronizationStatusBar = {
-        let statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
-        statusBar.statusBarFrame = { UIApplication.shared.statusBarFrame }
+        let statusBar: SynchronizationStatusBar
+        
+        if #available(iOS 13, *) {
+            let scene = UIApplication.shared
+                .connectedScenes
+                .first(where: { $0.activationState == .foregroundActive })
+                as? UIWindowScene
+            
+            if let scene = scene {
+                statusBar = SynchronizationStatusBar(windowScene: scene)
+            } else {
+                statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
+            }
+        } else {
+            statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
+        }
+        
+        statusBar.statusBarFrame = {
+            if #available(iOS 13, *) {
+                return UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
+            } else {
+                return UIApplication.shared.statusBarFrame
+            }
+        }
+        
         statusBar.icon = UIImage(named: "sync")
         statusBar.tintColor = .white
         statusBar.backgroundColor = AppTheme.current.colors.mainElementColor
@@ -82,11 +105,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: PeriodicallySynchronizationRunnerDelegate {
     
     func willStartSynchronization() {
+//        synchronizationStatusBar.makeKeyAndVisible()
         synchronizationStatusBar.show()
     }
     
     func didFinishSynchronization() {
         synchronizationStatusBar.hide()
+//        window?.makeKeyAndVisible()
     }
     
 }

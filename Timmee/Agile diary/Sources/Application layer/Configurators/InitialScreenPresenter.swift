@@ -61,9 +61,13 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         }
         
         if let rootViewController = window.rootViewController {
-            initialViewController.loadViewIfNeeded()
-            UIView.transition(from: rootViewController.view, to: initialViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
+            if #available(iOS 13, *) {
                 window.rootViewController = initialViewController
+            } else {
+                initialViewController.loadViewIfNeeded()
+                UIView.transition(from: rootViewController.view, to: initialViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
+                    window.rootViewController = initialViewController
+                }
             }
         } else {
             window.rootViewController = initialViewController

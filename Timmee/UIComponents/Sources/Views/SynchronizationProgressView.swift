@@ -104,6 +104,15 @@ public class SynchronizationStatusBar: ModalWindow {
         }
     }
     
+    @available(iOSApplicationExtension 13.0, *)
+    public override init(windowScene: UIWindowScene) {
+        super.init(windowScene: windowScene)
+        
+        self.backgroundColor = .clear
+        self.windowLevel = UIWindow.Level.statusBar + 1
+        self.rootViewController = controller
+    }
+    
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -124,7 +133,10 @@ public class SynchronizationStatusBar: ModalWindow {
         guard self.statusBarFrameChangesObserver == nil else { return }
         
         self.statusBarFrameChangesObserver = NotificationCenter.default.addObserver(forName: UIApplication.willChangeStatusBarFrameNotification, object: nil, queue: nil, using: { [weak self] notification in
-            guard let `self` = self, let frame = (notification.userInfo?[UIApplication.statusBarFrameUserInfoKey] as? NSValue)?.cgRectValue else { return }
+            guard
+                let self = self,
+                let frame = (notification.userInfo?[UIApplication.statusBarFrameUserInfoKey] as? NSValue)?.cgRectValue
+            else { return }
             
             self.windowFrame = frame
         })
@@ -140,8 +152,14 @@ public class SynchronizationStatusBar: ModalWindow {
     
     public func show() {
         guard !isShown else { return }
+        
         let size: CGSize = statusBarFrame?().size ?? .zero
-        let height = size.height > 20 ? size.height + 6 : size.height
+        let height: CGFloat
+        if #available(iOS 13, *) {
+            height = (size.height > 20 ? size.height : size.height) + 20
+        } else {
+            height = size.height > 20 ? size.height + 6 : size.height
+        }
         windowFrame = CGRect(x: 0, y: -height, width: size.width, height: height)
         isHidden = false
         isShown = true

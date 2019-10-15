@@ -178,17 +178,26 @@ extension TodayContentViewController: UITableViewDataSource {
 extension TodayContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        func makeNavigationController(root: UIViewController & UIViewControllerTransitioningDelegate) -> UINavigationController {
+            let navigationController = UINavigationController(rootViewController: root)
+            navigationController.isNavigationBarHidden = true
+            if #available(iOS 13, *) {
+                navigationController.modalPresentationStyle = .fullScreen
+            } else {
+                navigationController.modalPresentationStyle = .formSheet
+            }
+            if UIDevice.current.isPhone {
+                navigationController.transitioningDelegate = root
+            }
+            return navigationController
+        }
+        
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
             let habitDetailsProvider = HabitDetailsProvider(habit: habit)
             let habitDetailsViewController = DetailsBaseViewController(content: habitDetailsProvider)
-            let navigationController = UINavigationController(rootViewController: habitDetailsViewController)
-            navigationController.isNavigationBarHidden = true
-            navigationController.modalPresentationStyle = .formSheet
-            if UIDevice.current.isPhone {
-                navigationController.transitioningDelegate = habitDetailsViewController
-            }
+            let navigationController = makeNavigationController(root: habitDetailsViewController)
             
             habitDetailsProvider.holderViewController = navigationController
             
@@ -213,12 +222,7 @@ extension TodayContentViewController: UITableViewDelegate {
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             let goalDetailsProvider = GoalDetailsProvider(goal: goal)
             let goalDetailsViewController = DetailsBaseViewController(content: goalDetailsProvider)
-            let navigationController = UINavigationController(rootViewController: goalDetailsViewController)
-            navigationController.isNavigationBarHidden = true
-            navigationController.modalPresentationStyle = .formSheet
-            if UIDevice.current.isPhone {
-                navigationController.transitioningDelegate = goalDetailsViewController
-            }
+            let navigationController = makeNavigationController(root: goalDetailsViewController)
             
             goalDetailsProvider.holderViewController = navigationController
             
