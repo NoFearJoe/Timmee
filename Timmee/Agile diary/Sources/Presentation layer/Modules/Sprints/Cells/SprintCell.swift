@@ -47,8 +47,11 @@ final class SprintCell: SwipableCollectionViewCell {
     
     func configure(sprint: Sprint) {
         titleLabel.text = sprint.title
+        
         switch sprint.tense {
         case .past:
+            backgroundColor = AppTheme.current.colors.foregroundColor.withAlphaComponent(0.7)
+            
             subtitleLabel.text = sprint.startDate.asString(format: "dd.MM.yyyy") + " - " + sprint.endDate.asString(format: "dd.MM.yyyy")
             habitsProgressLabel.isHidden = false
             goalsProgressLabel.isHidden = false
@@ -63,10 +66,14 @@ final class SprintCell: SwipableCollectionViewCell {
             goalsProgressLabel.text = "\(Int(goalsProgress * 100))%"
             goalsProgressLabel.textColor = progressLabelColor(progress: goalsProgress)
         case .current:
+            backgroundColor = AppTheme.current.colors.foregroundColor
+            
             subtitleLabel.text = "remains_n_days".localized(with: Date.now.days(before: sprint.endDate))
             habitsProgressLabel.isHidden = true
             goalsProgressLabel.isHidden = true
         case .future:
+            backgroundColor = AppTheme.current.colors.foregroundColor
+            
             subtitleLabel.text = "starts".localized + " " + sprint.startDate.asNearestShortDateString.lowercased()
             habitsProgressLabel.isHidden = true
             goalsProgressLabel.isHidden = true
@@ -76,13 +83,12 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
         
         alertButton.isHidden = sprint.isReady
-        chartsButton.isHidden = sprint.tense == .future
-        
-        alpha = sprint.tense == .past ? 0.75 : 1
+        chartsButton.isHidden = sprint.tense == .future        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         tenseLabel.text = nil
         habitsProgressLabel.isHidden = true
         goalsProgressLabel.isHidden = true

@@ -40,9 +40,14 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     
     override func prepare() {
         super.prepare()
+        
         title = "my_sprints".localized
+        
         sprintsCacheAdapter = CollectionViewCacheAdapter(collectionView: sprintsView)
+        
+        sprintsView.contentInset.bottom = 20 + 64 + 8
         sprintsView.register(UINib(nibName: "SprintCell", bundle: nil), forCellWithReuseIdentifier: "SprintCell")
+        
         setupPlaceholder()
         setupSprintsObserver()
         
@@ -53,11 +58,13 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     
     override func refresh() {
         super.refresh()
+        
         sprintsObserver.fetchInitialEntities()
     }
     
     override func setupAppearance() {
         super.setupAppearance()
+        
         setupPlaceholderAppearance()
         setupCreateSprintButton()
     }
@@ -77,6 +84,7 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        
         self.updateHintPopover()
     }
     
@@ -88,6 +96,7 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
                                    onItemChange: nil,
                                    onBatchUpdatesStarted: nil,
                                    onBatchUpdatesCompleted: nil)
+        
         sprintsObserver.setMapping { entity in
             let entity = entity as! SprintEntity
             return Sprint(sprintEntity: entity)
