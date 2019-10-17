@@ -11,6 +11,8 @@ import UIKit
 public final class HintPopoverView: UIView {
     
     public var textLabel: UILabel?
+    public var roundedView: UIView!
+    public var triangleView: UIImageView!
     
     // Change leftInset and rightInset only before calling `show` method
     public var leftInset: CGFloat = 15.0 {
@@ -56,8 +58,6 @@ public final class HintPopoverView: UIView {
     
     private static var roundedViewCornerRadius: CGFloat = 6.0
     
-    private var roundedView: UIView!
-    private var triangleView: UIImageView!
     private var contentView: UIView?
     private weak var holderView: UIView?
     private weak var assignedView: UIView?

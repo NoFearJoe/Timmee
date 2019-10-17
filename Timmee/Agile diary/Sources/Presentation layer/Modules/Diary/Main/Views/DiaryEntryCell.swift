@@ -34,6 +34,12 @@ final class DiaryEntryCell: SwipeTableViewCell {
     
     required init?(coder aDecoder: NSCoder) { fatalError() }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        attachmentView.isHidden = true
+    }
+    
     func configure(model: DiaryEntry) {
         dateLabel.text = model.date.asDayMonthTime
         bubbleTextLabel.text = model.text
@@ -76,6 +82,8 @@ final class DiaryEntryCell: SwipeTableViewCell {
         bubbleTextLabel.font = AppTheme.current.fonts.regular(16)
         bubbleTextLabel.textColor = AppTheme.current.colors.activeElementColor
         bubbleTextLabel.numberOfLines = 0
+        
+        attachmentView.isHidden = true
     }
     
     private func setupConstraints() {

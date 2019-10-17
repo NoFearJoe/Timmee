@@ -45,6 +45,9 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     var hintPopover: HintPopoverView? {
         didSet {
+            hintPopover?.roundedView.backgroundColor = AppTheme.current.colors.backgroundColor
+            hintPopover?.textLabel?.textColor = AppTheme.current.colors.activeElementColor
+            hintPopover?.triangleView.tintColor = AppTheme.current.colors.backgroundColor
             hintPopover?.willCloseBlock = {
                 self.linkHintButton.isSelected = false
                 self.linkHintButton.isUserInteractionEnabled = false

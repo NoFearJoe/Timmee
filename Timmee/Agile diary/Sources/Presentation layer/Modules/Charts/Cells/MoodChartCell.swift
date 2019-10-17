@@ -14,6 +14,7 @@ final class MoodChartCell: BaseChartCell {
         didSet {
             titleLabel.text = "average_mood".localized
             titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            titleLabel.font = AppTheme.current.fonts.medium(15)
         }
     }
     

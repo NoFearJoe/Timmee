@@ -115,10 +115,27 @@ struct AppTheme {
                                               backgroundColor: UIColor(rgba: "0A0A0A")),
                                fonts: Fonts())
     
+    @available(iOS 13.0, *)
+    static let adaptive = AppTheme(colors: Colors(inactiveElementColor: .secondaryLabel,
+                                                  activeElementColor: .label,
+                                                  mainElementColor: .systemBlue,
+                                                  wrongElementColor: .systemRed,
+                                                  selectedElementColor: .systemGreen,
+                                                  incompleteElementColor: .systemOrange,
+                                                  decorationElementColor: .tertiarySystemFill,
+                                                  foregroundColor: .tertiarySystemBackground,
+                                                  middlegroundColor: .secondarySystemBackground,
+                                                  backgroundColor: .systemBackground),
+                                   fonts: Fonts())
+    
     static var current: AppTheme {
-        switch AppThemeType.current {
-        case .light: return .light
-        case .dark: return .dark
+        if #available(iOS 13, *) {
+            return .adaptive
+        } else {
+            switch AppThemeType.current {
+            case .light: return .light
+            case .dark: return .dark
+            }
         }
     }
     

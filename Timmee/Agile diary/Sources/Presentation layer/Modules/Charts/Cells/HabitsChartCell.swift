@@ -17,6 +17,7 @@ final class HabitsChartCell: BaseChartCell {
         didSet {
             titleLabel.text = "habits".localized
             titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            titleLabel.font = AppTheme.current.fonts.medium(15)
         }
     }
     @IBOutlet private var chartView: LineChartView! {

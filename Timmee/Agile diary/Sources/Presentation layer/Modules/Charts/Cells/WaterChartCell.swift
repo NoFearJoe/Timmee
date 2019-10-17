@@ -17,6 +17,7 @@ final class WaterChartCell: BaseChartCell {
         didSet {
             titleLabel.text = "water".localized
             titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            titleLabel.font = AppTheme.current.fonts.medium(15)
         }
     }
     

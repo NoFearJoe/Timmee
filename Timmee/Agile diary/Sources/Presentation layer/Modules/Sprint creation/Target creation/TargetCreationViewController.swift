@@ -47,6 +47,9 @@ final class TargetCreationViewController: BaseViewController, GoalProvider, Hint
     
     var hintPopover: HintPopoverView? {
         didSet {
+            hintPopover?.roundedView.backgroundColor = AppTheme.current.colors.backgroundColor
+            hintPopover?.textLabel?.textColor = AppTheme.current.colors.activeElementColor
+            hintPopover?.triangleView.tintColor = AppTheme.current.colors.backgroundColor
             hintPopover?.willCloseBlock = {
                 self.stagesHintButton.isSelected = false
                 self.stagesHintButton.isUserInteractionEnabled = false

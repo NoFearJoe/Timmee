@@ -286,9 +286,13 @@ final class DiaryViewController: BaseViewController {
         let detailsViewController = DetailsBaseViewController(content: attachmentPickerProvider)
         let navigationController = UINavigationController(rootViewController: detailsViewController)
         navigationController.isNavigationBarHidden = true
-        navigationController.modalPresentationStyle = .formSheet
-        if UIDevice.current.isPhone {
-            navigationController.transitioningDelegate = detailsViewController
+        if #available(iOS 13, *) {
+            navigationController.modalPresentationStyle = .automatic
+        } else {
+            navigationController.modalPresentationStyle = .formSheet
+            if UIDevice.current.isPhone {
+                navigationController.transitioningDelegate = detailsViewController
+            }
         }
         
         attachmentPickerProvider.onSelectAttachment = { [unowned self, unowned navigationController] entity in

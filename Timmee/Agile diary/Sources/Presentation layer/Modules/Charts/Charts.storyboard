@@ -50,18 +50,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привычки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-kA-E4m">
-                                                    <rect key="frame" x="8" y="8" width="267" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <rect key="frame" x="8" y="8" width="264" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzu-CN-XWl" customClass="LineChartView" customModule="Charts">
-                                                    <rect key="frame" x="8" y="40" width="329" height="208"/>
+                                                    <rect key="frame" x="8" y="34" width="329" height="214"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSC-j5-z76">
-                                                    <rect key="frame" x="283" y="5.5" width="54" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="280" y="2" width="57" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="Show all">
                                                         <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
@@ -96,18 +96,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вода" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-dE-Nnr">
-                                                    <rect key="frame" x="8" y="8" width="267" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <rect key="frame" x="8" y="8" width="264" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LG-j9-diP" customClass="BarChartView" customModule="Charts">
-                                                    <rect key="frame" x="8" y="40" width="329" height="208"/>
+                                                    <rect key="frame" x="8" y="34" width="329" height="214"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIw-4u-tS5">
-                                                    <rect key="frame" x="283" y="5.5" width="54" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="280" y="2" width="57" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="Show all">
                                                         <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
@@ -141,12 +141,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Лучшая привычка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPW-Ub-rTL">
-                                                    <rect key="frame" x="8" y="8" width="329" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="2YS-b3-TPU"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="Лучшая привычка" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPW-Ub-rTL">
+                                                    <rect key="frame" x="8" y="8" width="329" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -179,7 +176,7 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="ZFW-Ul-SeO" firstAttribute="top" secondItem="DPW-Ub-rTL" secondAttribute="bottom" constant="8" id="ORy-YU-Gja"/>
+                                            <constraint firstItem="ZFW-Ul-SeO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DPW-Ub-rTL" secondAttribute="bottom" constant="8" id="ORy-YU-Gja"/>
                                             <constraint firstItem="DPW-Ub-rTL" firstAttribute="top" secondItem="p6y-4Y-HN2" secondAttribute="top" constant="8" id="Oyn-PS-6dP"/>
                                             <constraint firstAttribute="trailing" secondItem="DPW-Ub-rTL" secondAttribute="trailing" constant="8" id="WRS-Er-fc0"/>
                                             <constraint firstAttribute="trailing" secondItem="ZFW-Ul-SeO" secondAttribute="trailing" constant="8" id="iJ1-k4-LjE"/>
@@ -201,12 +198,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Худшая привычка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plE-j2-MzK">
-                                                    <rect key="frame" x="8" y="8" width="329" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="bMU-Hn-uCj"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="Худшая привычка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plE-j2-MzK">
+                                                    <rect key="frame" x="8" y="8" width="329" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -244,7 +238,7 @@
                                             <constraint firstItem="plE-j2-MzK" firstAttribute="leading" secondItem="wOY-TV-gy8" secondAttribute="leading" constant="8" id="Q6L-wZ-u2i"/>
                                             <constraint firstItem="plE-j2-MzK" firstAttribute="top" secondItem="wOY-TV-gy8" secondAttribute="top" constant="8" id="Tvr-xM-10b"/>
                                             <constraint firstAttribute="trailing" secondItem="plE-j2-MzK" secondAttribute="trailing" constant="8" id="vQW-Rm-p5j"/>
-                                            <constraint firstItem="g5f-VX-MP5" firstAttribute="top" secondItem="plE-j2-MzK" secondAttribute="bottom" constant="8" id="vUa-ZM-oOr"/>
+                                            <constraint firstItem="g5f-VX-MP5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="plE-j2-MzK" secondAttribute="bottom" constant="8" id="vUa-ZM-oOr"/>
                                             <constraint firstAttribute="bottom" secondItem="g5f-VX-MP5" secondAttribute="bottom" constant="8" id="xWx-mi-VWa"/>
                                         </constraints>
                                         <size key="customSize" width="345" height="72"/>
@@ -262,17 +256,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Среднее настроение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-2k-B2y">
-                                                    <rect key="frame" x="8" y="8" width="199" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="Cyf-FC-OMo"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <rect key="frame" x="8" y="8" width="154.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZy-rX-qKF">
-                                                    <rect key="frame" x="283" y="6" width="54" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="280" y="0.0" width="57" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="Show all">
                                                         <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>

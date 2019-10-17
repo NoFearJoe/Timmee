@@ -22,6 +22,9 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     private var selectedHintButton: UIButton?
     var hintPopover: HintPopoverView? {
         didSet {
+            hintPopover?.roundedView.backgroundColor = AppTheme.current.colors.backgroundColor
+            hintPopover?.textLabel?.textColor = AppTheme.current.colors.activeElementColor
+            hintPopover?.triangleView.tintColor = AppTheme.current.colors.backgroundColor
             hintPopover?.willCloseBlock = {
                 self.selectedHintButton?.isSelected = false
                 self.selectedHintButton?.isUserInteractionEnabled = false

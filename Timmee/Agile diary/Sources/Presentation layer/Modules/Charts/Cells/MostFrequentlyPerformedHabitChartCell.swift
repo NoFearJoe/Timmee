@@ -19,6 +19,7 @@ final class MostFrequentlyPerformedHabitChartCell: BaseChartCell {
         didSet {
             titleLabel.text = "most_frequently_performed_habit".localized
             titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            titleLabel.font = AppTheme.current.fonts.medium(15)
         }
     }
     
@@ -75,7 +76,7 @@ final class MostFrequentlyPerformedHabitChartCell: BaseChartCell {
     }
     
     override static func size(for collectionViewSize: CGSize) -> CGSize {
-        return CGSize(width: collectionViewSize.width - 30, height: 72)
+        return CGSize(width: collectionViewSize.width - 30, height: 64)
     }
     
 }
