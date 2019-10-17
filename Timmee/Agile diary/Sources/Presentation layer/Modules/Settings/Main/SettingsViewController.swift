@@ -154,6 +154,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard !settingsItems[section].1.isEmpty else { return nil }
         return settingsItems[section].0.title
     }
     
@@ -210,8 +211,9 @@ fileprivate extension SettingsViewController {
                                      style: .titleWithSubtitle,
                                      action: themeAction)
         
-        
-        generalSectionItems.append(themeItem)
+        if #available(iOS 13, *) {} else {
+            generalSectionItems.append(themeItem)
+        }
         
         if ProVersionPurchase.shared.isPurchased() {
             // MARK: Background image

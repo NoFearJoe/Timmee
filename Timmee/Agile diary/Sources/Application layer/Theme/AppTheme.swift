@@ -27,7 +27,18 @@ enum AppThemeType: Int {
     }
     
     static var current: AppThemeType {
-        return AppThemeType(rawValue: UserProperty.appTheme.int()) ?? .light
+        if #available(iOS 13.0, *) {
+            switch UITraitCollection.current.userInterfaceStyle {
+            case .dark:
+                return .dark
+            case .light, .unspecified:
+                return .light
+            @unknown default:
+                return .light
+            }
+        } else {
+            return AppThemeType(rawValue: UserProperty.appTheme.int()) ?? .light
+        }
     }
 }
 
