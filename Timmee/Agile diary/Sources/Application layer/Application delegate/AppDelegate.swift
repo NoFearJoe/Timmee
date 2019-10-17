@@ -33,41 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let appLinkHandler = AppLinkHandler()
     
     private lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
-    
-    private lazy var synchronizationStatusBar: SynchronizationStatusBar = {
-        let statusBar: SynchronizationStatusBar
-        
-        if #available(iOS 13, *) {
-            let scene = UIApplication.shared
-                .connectedScenes
-                .first(where: { $0.activationState == .foregroundActive })
-                as? UIWindowScene
-            
-            if let scene = scene {
-                statusBar = SynchronizationStatusBar(windowScene: scene)
-            } else {
-                statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
-            }
-        } else {
-            statusBar = SynchronizationStatusBar(frame: UIApplication.shared.statusBarFrame)
-        }
-        
-        statusBar.statusBarFrame = {
-            if #available(iOS 13, *) {
-                return UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
-            } else {
-                return UIApplication.shared.statusBarFrame
-            }
-        }
-        
-        statusBar.icon = UIImage(named: "sync")
-        statusBar.tintColor = .white
-        statusBar.backgroundColor = AppTheme.current.colors.mainElementColor
-        return statusBar
-    }()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FBSDKApplicationDelegate.sharedInstance()?.application(application,
+                                                               didFinishLaunchingWithOptions: launchOptions)
 
         Fabric.with([Crashlytics.self])
         
@@ -79,9 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         ProVersionPurchase.shared.loadStore()
-        
-        synchronizationRunner.delegate = self
-        
+                
         initialScreenPresenter.presentPreInitialScreen(in: self.window)
         performPreparingActions {
             self.initialScreenPresenter.presentInitialScreen(in: self.window) {
@@ -100,20 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return canOpenWithFacebook
     }
 
-}
-
-extension AppDelegate: PeriodicallySynchronizationRunnerDelegate {
-    
-    func willStartSynchronization() {
-//        synchronizationStatusBar.makeKeyAndVisible()
-        synchronizationStatusBar.show()
-    }
-    
-    func didFinishSynchronization() {
-        synchronizationStatusBar.hide()
-//        window?.makeKeyAndVisible()
-    }
-    
 }
 
 private extension AppDelegate {
