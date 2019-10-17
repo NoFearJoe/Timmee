@@ -21,21 +21,32 @@ class ExtendedWaterChartViewController: BaseViewController, AnyExtendedChart {
     
     override func prepare() {
         super.prepare()
+        
         title = "water".localized
+        
+        chartPlaceholderLabel.text = "water_chart_no_data".localized
+        
         averageWaterView.isHidden = true
         chartView.drawValues = true
+        chartView.isHidden = true
     }
     
     override func refresh() {
         super.refresh()
+        
         guard let sprintID = sprint?.id else { return }
         guard let waterControl = waterControlService.fetchWaterControl(sprintID: sprintID) else { return }
+        
         refreshWaterControlProgress(waterControl: waterControl)
         refreshAverageWaterVolume(waterControl: waterControl)
     }
     
     override func setupAppearance() {
         super.setupAppearance()
+        
+        chartPlaceholderLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        chartPlaceholderLabel.font = AppTheme.current.fonts.regular(16)
+        
         chartView.backgroundColor = AppTheme.current.colors.middlegroundColor
         chartView.underlyingBarColor = AppTheme.current.colors.decorationElementColor
     }
@@ -63,6 +74,7 @@ private extension ExtendedWaterChartViewController {
         
         chartView.entries = entries
         chartPlaceholderLabel.isHidden = !entries.isEmpty
+        chartView.isHidden = entries.isEmpty
     }
     
     func refreshAverageWaterVolume(waterControl: WaterControl) {
