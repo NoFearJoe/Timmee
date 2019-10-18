@@ -112,13 +112,17 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         } else if segue.identifier == "Activity" {
             activityViewController = segue.destination as? ActivityViewController
         } else if segue.identifier == "ShowTargetEditor" {
+            segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? TargetCreationViewController else { return }
             controller.setGoal(sender as? Goal, sprintID: sprint.id)
             controller.setEditingMode(.short)
         } else if segue.identifier == "ShowHabitEditor" {
+            segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? HabitCreationViewController else { return }
             controller.setHabit(sender as? Habit, sprintID: sprint.id)
             controller.setEditingMode(.short)
+        } else if segue.identifier == "ShowSettings" {
+            segue.destination.presentationController?.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -180,6 +184,15 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     private func setSectionContainersVisible(content: Bool, activity: Bool) {
         contentViewController.performAppearanceTransition(isAppearing: content) { contentViewContainer.isHidden = !content }
         activityViewController.performAppearanceTransition(isAppearing: activity) { activityViewContainer.isHidden = !activity }
+    }
+    
+}
+
+extension TodayViewController: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        refresh()
+        setupAppearance()
     }
     
 }

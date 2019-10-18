@@ -449,7 +449,7 @@
 		0C06E97922F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleListView.swift; sourceTree = "<group>"; };
 		0C06E97C22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleListCell.swift; sourceTree = "<group>"; };
 		0C06E98522F2C0C40099DD3A /* PluralStringLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralStringLocalization.swift; sourceTree = "<group>"; };
-		0C14D472211C55D9004C0559 /* Agile diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C14D472211C55D9004C0559 /* BeBetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeBetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C14D47C211C55DA004C0559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C14D47F211C55DA004C0559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C14D481211C55DA004C0559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -739,7 +739,7 @@
 		0C14D473211C55D9004C0559 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0C14D472211C55D9004C0559 /* Agile diary.app */,
+				0C14D472211C55D9004C0559 /* BeBetter.app */,
 				0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */,
 				0CB673DF21A52C3900178EB1 /* Agile diary debug.app */,
 				96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */,
@@ -1479,7 +1479,7 @@
 			);
 			name = "Agile diary";
 			productName = "Agile diary";
-			productReference = 0C14D472211C55D9004C0559 /* Agile diary.app */;
+			productReference = 0C14D472211C55D9004C0559 /* BeBetter.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0CB6736921A52C3900178EB1 /* Agile diary debug */ = {
@@ -2377,7 +2377,7 @@
 				);
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BeBetter;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
@@ -2407,7 +2407,7 @@
 				);
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BeBetter;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";

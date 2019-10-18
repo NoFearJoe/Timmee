@@ -342,7 +342,7 @@ private extension TodayContentViewController {
             return !habit.link.trimmed.isEmpty
         }
         habitCellActionsProvider.shouldShowEditAction = { _ in false }
-        habitCellActionsProvider.shouldShowDeleteAction = { _ in true }
+        habitCellActionsProvider.shouldShowDeleteAction = { _ in false }
         
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }

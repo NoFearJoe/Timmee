@@ -84,6 +84,7 @@ final class WaterControlActivityWidget: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowWaterControlConfiguration" {
+            segue.destination.presentationController?.delegate = self
             guard let navigationController = segue.destination as? UINavigationController, let viewController = navigationController.viewControllers.first as? WaterControlConfigurationViewController else { return }
             viewController.sprint = sprint
         } else {
@@ -121,6 +122,14 @@ extension WaterControlActivityWidget: StaticHeightStackChidController {
     
     var height: CGFloat {
         return 288
+    }
+    
+}
+
+extension WaterControlActivityWidget: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        refresh()
     }
     
 }
