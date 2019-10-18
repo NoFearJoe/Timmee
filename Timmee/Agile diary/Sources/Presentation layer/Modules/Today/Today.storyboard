@@ -28,15 +28,40 @@
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="flB-a1-GhC">
                                                 <rect key="frame" x="15" y="24" width="345" height="102"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сегодня" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePM-y5-lDE">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OW-SU-QHC">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="41"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сегодня" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePM-y5-lDE">
+                                                                <rect key="frame" x="0.0" y="0.0" width="141" height="41"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="41" id="xt5-Vu-ZvL"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-kI-KNI" customClass="PickDayButton" customModule="Agile_diary_debug" customModuleProvider="target">
+                                                                <rect key="frame" x="139" y="9" width="66" height="22"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="24" id="eQ3-an-wTj"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="qEK-6o-KxS"/>
+                                                                </constraints>
+                                                                <state key="normal" image="pickDayIcon"/>
+                                                                <connections>
+                                                                    <action selector="onTapToPickDayButton" destination="YFK-lV-GWC" eventType="touchUpInside" id="cc0-xh-3p8"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="41" id="xt5-Vu-ZvL"/>
+                                                            <constraint firstItem="ePM-y5-lDE" firstAttribute="top" secondItem="9OW-SU-QHC" secondAttribute="top" id="Eea-xl-A6S"/>
+                                                            <constraint firstItem="ePM-y5-lDE" firstAttribute="leading" secondItem="9OW-SU-QHC" secondAttribute="leading" id="FEx-yH-xCh"/>
+                                                            <constraint firstItem="YFn-kI-KNI" firstAttribute="centerY" secondItem="ePM-y5-lDE" secondAttribute="centerY" id="OdG-Wm-HGo"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ePM-y5-lDE" secondAttribute="bottom" id="gAa-OI-SMT"/>
+                                                            <constraint firstItem="YFn-kI-KNI" firstAttribute="leading" secondItem="ePM-y5-lDE" secondAttribute="trailing" constant="12" id="o5N-cr-Ka7"/>
+                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YFn-kI-KNI" secondAttribute="trailing" id="v9a-ga-ZeM"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    </view>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Спринт #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBf-PW-p5z">
                                                         <rect key="frame" x="0.0" y="49" width="345" height="17"/>
                                                         <gestureRecognizers/>
@@ -164,6 +189,7 @@
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
                         <outlet property="createSprintButton" destination="Wcp-ev-KnK" id="daE-Gb-K8C"/>
                         <outlet property="headerView" destination="Rfn-qH-ddK" id="zts-nc-UUT"/>
+                        <outlet property="pickDayButton" destination="YFn-kI-KNI" id="DKV-IE-69z"/>
                         <outlet property="placeholderContainer" destination="MG5-iM-CHH" id="N37-uL-dWc"/>
                         <outlet property="progressBar" destination="n2E-og-p5R" id="qiV-v9-HZL"/>
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
@@ -248,15 +274,15 @@
             <objects>
                 <viewController storyboardIdentifier="TodayContentViewController" automaticallyAdjustsScrollViewInsets="NO" id="3rx-bc-jDa" customClass="TodayContentViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L1I-dJ-39k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HoB-oY-pys">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="449"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Me0-Vd-6eW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="rP5-UP-6AA">
                                     <rect key="frame" x="0.0" y="254" width="375" height="0.0"/>
@@ -483,6 +509,7 @@
     </scenes>
     <resources>
         <image name="note" width="20" height="20"/>
+        <image name="pickDayIcon" width="12" height="8"/>
         <image name="settings" width="20" height="20"/>
     </resources>
 </document>

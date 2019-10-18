@@ -41,6 +41,11 @@ final class WaterControlActivityWidget: UIViewController {
     private lazy var waterControlLoader = WaterControlLoader(provider: waterControlService)
     
     var sprint: Sprint?
+    var currentDate: Date = Date.now.startOfDay() {
+        didSet {
+            updateWaterControlUI()
+        }
+    }
     
     private var waterControl: WaterControl? {
         didSet {
@@ -162,7 +167,7 @@ private extension WaterControlActivityWidget {
     
     func updateWaterControlUI() {
         guard let waterControl = waterControl else { return }
-        let todayDrunkVolume = waterControl.drunkVolume[Date.now.startOfDay] ?? 0
+        let todayDrunkVolume = waterControl.drunkVolume[currentDate.startOfDay] ?? 0
         let todayDrunkVolumeInLiters = WaterVolumeCalculator.roundWaterWolume(volume: todayDrunkVolume)
         let neededVolume = WaterVolumeCalculator.roundWaterWolume(volume: waterControl.neededVolume)
         drunkVolumeLabel.text =
@@ -180,8 +185,8 @@ private extension WaterControlActivityWidget {
     
     func addDrunkVolume(milliliters: Int) {
         guard let waterControl = waterControl else { return }
-        let todayDrunkVolume = waterControl.drunkVolume[Date.now.startOfDay] ?? 0
-        waterControl.drunkVolume[Date.now.startOfDay] = todayDrunkVolume + milliliters
+        let todayDrunkVolume = waterControl.drunkVolume[currentDate.startOfDay] ?? 0
+        waterControl.drunkVolume[currentDate.startOfDay] = todayDrunkVolume + milliliters
         waterControlService.createOrUpdateWaterControl(waterControl) { [weak self] in
             self?.updateWaterControlUI()
         }

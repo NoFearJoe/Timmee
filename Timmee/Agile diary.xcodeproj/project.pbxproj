@@ -272,6 +272,8 @@
 		0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
 		0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
 		0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
+		0CE3CA412359CF50008C2DA5 /* PickDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */; };
+		0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */; };
 		0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
 		0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */; };
 		0CE883CF2150F6EC00637BD9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE883CD2150F6EC00637BD9 /* MainInterface.storyboard */; };
@@ -560,6 +562,7 @@
 		0CDF8D852125B8AB001A2F70 /* Task+Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Target.swift"; sourceTree = "<group>"; };
 		0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePicker.swift; sourceTree = "<group>"; };
+		0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDayButton.swift; sourceTree = "<group>"; };
 		0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HabitsTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayExtensionViewController.swift; sourceTree = "<group>"; };
@@ -1282,6 +1285,14 @@
 			path = NotificationTimePicker;
 			sourceTree = "<group>";
 		};
+		0CE3CA3F2359CF37008C2DA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,11 +1329,12 @@
 		0CF7E51B214669520071DABD /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				0CF7E51E21466A830071DABD /* Today.storyboard */,
 				0C06E96422EF051E0099DD3A /* Secondary view controllers */,
 				0CD8F800223F778D00061B58 /* Activity */,
-				0CF7E51E21466A830071DABD /* Today.storyboard */,
 				0C3DA52C2154CA0000CAE635 /* Water control */,
 				0CF7E5252146878C0071DABD /* Cells */,
+				0CE3CA3F2359CF37008C2DA5 /* Views */,
 				0CF7E51C2146697C0071DABD /* TodayViewController.swift */,
 				0CF7E5222146833A0071DABD /* TodayContentViewController.swift */,
 			);
@@ -1885,6 +1897,7 @@
 				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0C06E97A22F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift in Sources */,
+				0CE3CA412359CF50008C2DA5 /* PickDayButton.swift in Sources */,
 				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
 				96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */,
 				0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
@@ -1989,6 +2002,7 @@
 				0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */,
 				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
 				0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */,
+				0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */,
 				961063242242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
 				0C06E95C22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,

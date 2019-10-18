@@ -41,6 +41,13 @@ final class TodayContentViewController: UIViewController, AlertInput {
         }
     }
     
+    var currentDate: Date = Date.now.startOfDay() {
+        didSet {
+            guard isViewLoaded else { return }
+            setupCurrentCacheObserver()
+        }
+    }
+    
     weak var transitionHandler: UIViewController?
     weak var progressListener: TodayViewSectionProgressListener?
     
@@ -132,7 +139,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.configure(habit: habit)
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
-                    habit.setDone(isChecked, at: Date.now)
+                    habit.setDone(isChecked, at: self.currentDate)
                     self.habitsService.updateHabit(habit, sprintID: self.sprintID, completion: { _ in })/*{ [weak self] _ in
                         guard let self = self else { return }
                         self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
@@ -262,11 +269,18 @@ private extension TodayContentViewController {
     
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
         goalsCacheObserver = nil
-        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(sprintID: sprintID, day: DayUnit(weekday: Date.now.weekday))
+        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(sprintID: sprintID, day: DayUnit(weekday: currentDate.weekday))
         let delegate = CachedEntitiesObserverDelegate<Habit>(
-            onInitialFetch: { [unowned self] _ in self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? []) },
-            onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
-            onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? []) })
+            onInitialFetch: { [unowned self] _ in
+                self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? [])
+            },
+            onEntitiesCountChange: { [unowned self] count in
+                self.state = count == 0 ? .empty : .content
+            },
+            onBatchUpdatesCompleted: { [unowned self] in
+                self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? [])
+            }
+        )
         habitsCacheObserver?.setDelegate(delegate)
         habitsCacheObserver?.setSubscriber(cacheAdapter)
         habitsCacheObserver?.fetch()
@@ -276,9 +290,16 @@ private extension TodayContentViewController {
         habitsCacheObserver = nil
         goalsCacheObserver = ServicesAssembly.shared.goalsService.goalsScope(sprintID: sprintID)
         let delegate = CachedEntitiesObserverDelegate<Goal>(
-            onInitialFetch: { [unowned self] _ in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) },
-            onEntitiesCountChange: { [unowned self] count in self.state = count == 0 ? .empty : .content },
-            onBatchUpdatesCompleted: { [unowned self] in self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? []) })
+            onInitialFetch: { [unowned self] _ in
+                self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? [])
+            },
+            onEntitiesCountChange: { [unowned self] count in
+                self.state = count == 0 ? .empty : .content
+            },
+            onBatchUpdatesCompleted: { [unowned self] in
+                self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? [])
+            }
+        )
         goalsCacheObserver?.setDelegate(delegate)
         goalsCacheObserver?.setSubscriber(cacheAdapter)
         goalsCacheObserver?.fetch()
@@ -289,7 +310,7 @@ private extension TodayContentViewController {
 private extension TodayContentViewController {
     
     private func updateSprintProgress(habits: [Habit]) {
-        let progress = CGFloat(habits.filter { $0.isDone(at: Date.now) }.count).safeDivide(by: CGFloat(habits.count))
+        let progress = CGFloat(habits.filter { $0.isDone(at: currentDate) }.count).safeDivide(by: CGFloat(habits.count))
         progressListener?.didChangeProgress(for: section, to: progress)
     }
     

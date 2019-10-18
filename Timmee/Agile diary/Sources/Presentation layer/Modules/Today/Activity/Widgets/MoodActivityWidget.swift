@@ -11,6 +11,12 @@ import TasksKit
 
 final class MoodActivityWidget: UIViewController {
     
+    var currentDate: Date = Date.now.startOfDay() {
+        didSet {
+            refresh()
+        }
+    }
+    
     private let moodService = ServicesAssembly.shared.moodServce
     
     @IBOutlet private var containerView: CardView!
@@ -19,7 +25,7 @@ final class MoodActivityWidget: UIViewController {
     
     @IBAction private func onTapToMoodButton(_ button: MoodButton) {
         guard let selectedMoodKind = Mood.Kind.allCases.item(at: button.tag) else { return }
-        let mood = Mood(kind: selectedMoodKind, date: Date.now.startOfDay)
+        let mood = Mood(kind: selectedMoodKind, date: currentDate.startOfDay)
         view.isUserInteractionEnabled = false
         moodService.createOrUpdateMood(mood, completion: { [weak self] in
             self?.view.isUserInteractionEnabled = true
@@ -69,7 +75,7 @@ extension MoodActivityWidget: StaticHeightStackChidController {
 private extension MoodActivityWidget {
     
     func getTodayMood() -> Mood? {
-        return moodService.fetchMood(date: Date.now.startOfDay)
+        return moodService.fetchMood(date: currentDate.startOfDay)
     }
     
     func selectMoodButton(mood: Mood) {

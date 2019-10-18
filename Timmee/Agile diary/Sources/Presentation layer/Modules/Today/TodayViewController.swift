@@ -17,6 +17,7 @@ protocol TodayViewSectionProgressListener: class {
 final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
+    @IBOutlet private var pickDayButton: PickDayButton!
     @IBOutlet private var actionsButton: UIButton!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
@@ -32,15 +33,25 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     private var contentViewController: TodayContentViewController!
     private var activityViewController: ActivityViewController!
     
-    private var currentSection = SprintSection.habits
-        
     private var synchronizationDidFinishObservation: Any?
+    
+    // MARK: - State
+    
+    private var currentSection = SprintSection.habits
+    
+    var currentDate: Date = Date.now.startOfDay() {
+        didSet {
+            contentViewController?.currentDate = currentDate
+        }
+    }
     
     var sprint: Sprint! {
         didSet {
             hidePlaceholder()
             contentViewController.sprintID = sprint.id
+            contentViewController.currentDate = currentDate
             activityViewController.sprint = sprint
+            activityViewController.currentDate = currentDate
             updateHeaderSubtitle(sprint: sprint)
         }
     }
@@ -141,6 +152,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         }
     }
     
+    @IBAction private func onTapToPickDayButton() {
+        
+    }
+    
     @IBAction private func onTapToActionsButton() {
         let actionSheetViewController = ActionSheetViewController(items: [
             ActionSheetItem(
@@ -232,10 +247,12 @@ private extension TodayViewController {
     
     func loadSprint() {
         if let currentSprint = getCurrentSprint() {
+            pickDayButton.isHidden = false
             createSprintButton.isHidden = true
             setSwitcherEnabled(true)
             sprint = currentSprint
         } else if let nextSprint = getNextSprint() {
+            pickDayButton.isHidden = true
             createSprintButton.isHidden = true
             setSwitcherEnabled(false)
             headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.startDate.asNearestShortDateString.lowercased()
@@ -243,6 +260,7 @@ private extension TodayViewController {
             showNextSprintPlaceholder(sprintNumber: nextSprint.number, startDate: nextSprint.startDate)
             setSectionContainersVisible(content: false, activity: false)
         } else {
+            pickDayButton.isHidden = true
             createSprintButton.isHidden = false
             setSwitcherEnabled(false)
             headerView.subtitleLabel.text = nil

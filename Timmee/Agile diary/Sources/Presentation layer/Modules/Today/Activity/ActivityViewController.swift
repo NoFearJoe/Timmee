@@ -16,6 +16,13 @@ final class ActivityViewController: BaseViewController {
         }
     }
     
+    var currentDate: Date = Date.now.startOfDay() {
+        didSet {
+            waterControlWidget.currentDate = currentDate
+            moodWidget.currentDate = currentDate
+        }
+    }
+    
     private let stackViewController = StackViewController()
     
     private lazy var waterControlWidget = ViewControllersFactory.waterControlActivityWidget
