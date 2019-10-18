@@ -181,7 +181,7 @@ extension TodayContentViewController: UITableViewDelegate {
         func makeNavigationController(root: UIViewController & UIViewControllerTransitioningDelegate) -> UINavigationController {
             let navigationController = UINavigationController(rootViewController: root)
             navigationController.isNavigationBarHidden = true
-            if #available(iOS 13, *) {
+            if #available(iOS 13, *), UIDevice.current.isPhone {
                 navigationController.modalPresentationStyle = .fullScreen
             } else {
                 navigationController.modalPresentationStyle = .formSheet

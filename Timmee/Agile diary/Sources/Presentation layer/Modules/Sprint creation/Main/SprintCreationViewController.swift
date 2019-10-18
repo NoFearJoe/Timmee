@@ -73,6 +73,10 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     override func prepare() {
         super.prepare()
         
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
+        
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
         headerView.rightButton?.setTitle("done".localized, for: .normal)

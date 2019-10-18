@@ -142,21 +142,52 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     @IBAction private func onTapToActionsButton() {
-        let actionPickerViewController = TodayActionPickerViewController(sourceView: actionsButton)
-        actionPickerViewController.onSelectAction = { [unowned self] action in
-            switch action {
-            case .diary:
-                let diaryViewController = DiaryViewController()
-                self.present(diaryViewController, animated: true, completion: nil)
-            case .charts:
-                self.performSegue(withIdentifier: "ShowCharts", sender: nil)
-            case .sprints:
-                self.performSegue(withIdentifier: "ShowSprints", sender: nil)
-            case .settings:
-                self.performSegue(withIdentifier: "ShowSettings", sender: nil)
-            }
-        }
-        present(actionPickerViewController, animated: true, completion: nil)
+        let actionSheetViewController = ActionSheetViewController(items: [
+            ActionSheetItem(
+                icon: UIImage(imageLiteralResourceName: "charts"),
+                title: "my_progress".localized,
+                action: { [unowned self] in
+                    self.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "ShowCharts", sender: nil)
+                    }
+                }
+            ),
+            ActionSheetItem(
+                icon: UIImage(imageLiteralResourceName: "chart"),
+                title: "my_sprints".localized,
+                action: { [unowned self] in
+                    self.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "ShowSprints", sender: nil)
+                    }
+                }
+            ),
+            ActionSheetItem(
+                icon: UIImage(imageLiteralResourceName: "diary"),
+                title: "diary".localized,
+                action: { [unowned self] in
+                    let diaryViewController = DiaryViewController()
+                    
+                    self.dismiss(animated: true) {
+                        self.present(diaryViewController, animated: true, completion: nil)
+                    }
+                }
+            ),
+            ActionSheetItem(
+                icon: UIImage(imageLiteralResourceName: "cogwheel"),
+                title: "settings".localized,
+                action: { [unowned self] in
+                    self.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "ShowSettings", sender: nil)
+                    }
+                }
+            )
+        ])
+        
+        actionSheetViewController.backgroundColor = AppTheme.current.colors.foregroundColor
+        actionSheetViewController.tintColor = AppTheme.current.colors.activeElementColor
+        actionSheetViewController.separatorColor = AppTheme.current.colors.decorationElementColor
+        
+        present(actionSheetViewController, animated: true, completion: nil)
     }
     
     private func updateHeaderSubtitle(sprint: Sprint) {

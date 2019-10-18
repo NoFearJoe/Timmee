@@ -43,6 +43,8 @@
 		0C9364F52155333100B4EB48 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9364F42155333100B4EB48 /* UIView+Extensions.swift */; };
 		0CD8F810223F7A9900061B58 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F80F223F7A9900061B58 /* StackViewController.swift */; };
 		0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */; };
+		0CE3CA3D2359921C008C2DA5 /* ActionSheetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA3C2359921C008C2DA5 /* ActionSheetItemView.swift */; };
+		0CE3CA3E23599285008C2DA5 /* ActionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA39235990E5008C2DA5 /* ActionSheetViewController.swift */; };
 		0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52A2146AAC50071DABD /* ProgressBar.swift */; };
 		31F05AA9E6FC47073498C41E /* Pods_UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8C666689D344752C217FA4 /* Pods_UIComponents.framework */; };
 		9667C70522C3F71F0010CC00 /* VerticalCompressibleViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667C6D122C3F71F0010CC00 /* VerticalCompressibleViewContainer.swift */; };
@@ -117,6 +119,8 @@
 		0C9364F42155333100B4EB48 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		0CD8F80F223F7A9900061B58 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		0CDF8D8721269B2F001A2F70 /* SelectableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableButton.swift; sourceTree = "<group>"; };
+		0CE3CA39235990E5008C2DA5 /* ActionSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewController.swift; sourceTree = "<group>"; };
+		0CE3CA3C2359921C008C2DA5 /* ActionSheetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetItemView.swift; sourceTree = "<group>"; };
 		0CF7E52A2146AAC50071DABD /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		2F76CCAF755BBCE24CC70279 /* Pods-UIComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.release.xcconfig"; path = "Target Support Files/Pods-UIComponents/Pods-UIComponents.release.xcconfig"; sourceTree = "<group>"; };
 		9667C6D122C3F71F0010CC00 /* VerticalCompressibleViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalCompressibleViewContainer.swift; sourceTree = "<group>"; };
@@ -323,10 +327,20 @@
 		0CD8F80E223F7A7700061B58 /* View controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0CE3CA3B23599207008C2DA5 /* ActionSheetViewController */,
 				9685BDEF22C3F6DA005E5126 /* DetailsViewController */,
 				0CD8F80F223F7A9900061B58 /* StackViewController.swift */,
 			);
 			path = "View controllers";
+			sourceTree = "<group>";
+		};
+		0CE3CA3B23599207008C2DA5 /* ActionSheetViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0CE3CA3C2359921C008C2DA5 /* ActionSheetItemView.swift */,
+				0CE3CA39235990E5008C2DA5 /* ActionSheetViewController.swift */,
+			);
+			path = ActionSheetViewController;
 			sourceTree = "<group>";
 		};
 		3D6DC59FAD022C4B62F12083 /* Pods */ = {
@@ -692,6 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CE3CA3D2359921C008C2DA5 /* ActionSheetItemView.swift in Sources */,
 				96956C31221019C400DD6855 /* BaseRoundedCollectionViewCell.swift in Sources */,
 				9667C70C22C3F71F0010CC00 /* LightOrDarkColorResolver.swift in Sources */,
 				0C14D41F211C1B65004C0559 /* BarView.swift in Sources */,
@@ -739,6 +754,7 @@
 				9667C70622C3F71F0010CC00 /* VerticalCompressibleView.swift in Sources */,
 				0C14D42E211C1B6C004C0559 /* FlipDismissInteractor.swift in Sources */,
 				0C14D3F3211C1B56004C0559 /* AlertInput.swift in Sources */,
+				0CE3CA3E23599285008C2DA5 /* ActionSheetViewController.swift in Sources */,
 				0C14D414211C1B65004C0559 /* NextGrowingTextView.swift in Sources */,
 				0CDF8D8821269B2F001A2F70 /* SelectableButton.swift in Sources */,
 				9667C72122C3F71F0010CC00 /* DetailsFullPlaceholderDefault.swift in Sources */,

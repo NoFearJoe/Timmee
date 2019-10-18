@@ -481,9 +481,11 @@ extension DetailsBaseViewController: UIScrollViewDelegate {
         
         let isWideDesign = UIDevice.current.isIpad
         if isWideDesign, reversedContentOffset >= maxHeaderHeight {
-            scrollView.setContentOffset(CGPoint(x: 0, y: -maxHeaderHeight), animated: false)
-            headerViewControllerBottomConstraint?.constant = maxHeaderHeight
-            self.content.header.changeCompression(to: .maximizedState)
+            if #available(iOS 13, *) {} else {
+                scrollView.setContentOffset(CGPoint(x: 0, y: -maxHeaderHeight), animated: false)
+                headerViewControllerBottomConstraint?.constant = maxHeaderHeight
+                self.content.header.changeCompression(to: .maximizedState)
+            }
             return
         }
         
@@ -548,7 +550,9 @@ extension DetailsBaseViewController: UIScrollViewDelegate {
                 yOffset += 1.0
             }
             
-            stackViewContainer.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+            if #available(iOS 13, *), UIDevice.current.isIpad {} else {
+                stackViewContainer.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+            }
         }
     }
     
