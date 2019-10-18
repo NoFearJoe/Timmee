@@ -153,7 +153,35 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     @IBAction private func onTapToPickDayButton() {
+        let appColors = AppTheme.current.colors
+        let calendarDesign = CalendarDesign(
+            defaultBackgroundColor: appColors.foregroundColor,
+            defaultTintColor: appColors.activeElementColor,
+            selectedBackgroundColor: appColors.mainElementColor,
+            selectedTintColor: appColors.activeElementColor,
+            disabledBackgroundColor: appColors.middlegroundColor,
+            disabledTintColor: appColors.inactiveElementColor,
+            weekdaysColor: appColors.wrongElementColor,
+            badgeBackgroundColor: appColors.incompleteElementColor,
+            badgeTintColor: appColors.activeElementColor
+        )
+        let calendar = CalendarViewController(design: calendarDesign)
+        calendar.configure(selectedDate: currentDate, minimumDate: sprint.startDate)
+        calendar.onSelectDate = { [unowned self] date in
+            print(date)
+        }
         
+        addChild(calendar)
+        calendar.didMove(toParent: self)
+        view.insertSubview(calendar.view, belowSubview: headerView)
+        
+        calendar.view.translatesAutoresizingMaskIntoConstraints = false
+        calendar.view.layoutSubviews()
+        calendar.view.frame.origin.y = headerView.frame.maxY - calendar.maximumHeight
+        
+        UIView.animate(withDuration: 1) {
+            calendar.view.transform = CGAffineTransform(translationX: 0, y: calendar.maximumHeight)
+        }
     }
     
     @IBAction private func onTapToActionsButton() {
