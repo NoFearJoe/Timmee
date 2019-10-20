@@ -33,6 +33,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     private var contentViewController: TodayContentViewController!
     private var activityViewController: ActivityViewController!
     
+    @IBOutlet private var contentViewTopConstraint: NSLayoutConstraint!
+    
     private var synchronizationDidFinishObservation: Any?
     
     // MARK: - State
@@ -41,6 +43,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     var currentDate: Date = Date.now.startOfDay() {
         didSet {
+            updateCurrentDateLabel()
             contentViewController?.currentDate = currentDate
         }
     }
@@ -61,7 +64,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     override func prepare() {
         super.prepare()
         
-        headerView.titleLabel.text = "today".localized
         headerView.subtitleLabel.text = nil
         headerView.subtitleLabel.isHidden = true
         setupSections()
@@ -85,6 +87,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     override func refresh() {
         super.refresh()
         
+        updateCurrentDateLabel()
         setupSections()
         setupBackgroundImage()
         
@@ -166,22 +169,36 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             badgeTintColor: appColors.activeElementColor
         )
         let calendar = CalendarViewController(design: calendarDesign)
+        calendar.view.backgroundColor = AppTheme.current.colors.middlegroundColor
         calendar.configure(selectedDate: currentDate, minimumDate: sprint.startDate)
         calendar.onSelectDate = { [unowned self] date in
-            print(date)
+            guard let date = date else { return }
+            self.currentDate = date
+            calendar.dismiss(animated: true, completion: nil)
         }
         
-        addChild(calendar)
-        calendar.didMove(toParent: self)
-        view.insertSubview(calendar.view, belowSubview: headerView)
+        let transitionHandler = CalendarTransitionHandler(sourceView: pickDayButton)
+        calendar.modalPresentationStyle = .custom
+        calendar.transitioningDelegate = transitionHandler
         
-        calendar.view.translatesAutoresizingMaskIntoConstraints = false
-        calendar.view.layoutSubviews()
-        calendar.view.frame.origin.y = headerView.frame.maxY - calendar.maximumHeight
+        present(calendar, animated: true, completion: nil)
         
-        UIView.animate(withDuration: 1) {
-            calendar.view.transform = CGAffineTransform(translationX: 0, y: calendar.maximumHeight)
-        }
+//        addChild(calendar)
+//        calendar.didMove(toParent: self)
+//        view.insertSubview(calendar.view, belowSubview: headerView)
+        
+//        calendar.view.translatesAutoresizingMaskIntoConstraints = false
+//        calendar.view.layoutSubviews()
+//        calendar.view.frame.origin.y = headerView.frame.maxY - calendar.maximumHeight
+//
+//        view.layoutIfNeeded()
+//
+//        contentViewTopConstraint.constant = calendar.maximumHeight
+//
+//        UIView.animate(withDuration: 1) {
+//            calendar.view.transform = CGAffineTransform(translationX: 0, y: calendar.maximumHeight)
+//            self.view.layoutIfNeeded()
+//        }
     }
     
     @IBAction private func onTapToActionsButton() {
@@ -310,6 +327,10 @@ extension TodayViewController: TodayViewSectionProgressListener {
 }
 
 private extension TodayViewController {
+    
+    func updateCurrentDateLabel() {
+        headerView.titleLabel.text = currentDate.asNearestShortDateString
+    }
     
     func setupSections() {
         if ProVersionPurchase.shared.isPurchased() {

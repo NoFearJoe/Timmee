@@ -141,7 +141,7 @@ DEPENDENCIES:
   - SwipeCellKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Bolts
     - BoringSSL
     - Charts
@@ -199,4 +199,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 865505d0bc5b7851356d5a83817822680cfec61e
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.8.4
