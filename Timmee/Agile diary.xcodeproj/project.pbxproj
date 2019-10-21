@@ -2383,6 +2383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = BeBetter;
@@ -2413,6 +2414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = BeBetter;
@@ -2499,6 +2501,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2527,6 +2530,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2550,6 +2554,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.WaterControlTodayExtension;
@@ -2573,6 +2578,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.WaterControlTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
