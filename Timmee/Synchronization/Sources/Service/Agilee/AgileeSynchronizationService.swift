@@ -83,154 +83,202 @@ private extension AgileeSynchronizationService {
         
         dispatchGroup.enter() // Enter user document
         userDocument.getDocument { snapshot, error in
-            if error != nil {
-                completion(false, deletedEntities)
-            } else {
-                let sprintsCollection = userDocument.collection("sprints")
-                dispatchGroup.enter() // Enter sprint document
-                sprintsCollection.getDocuments(completion: { sprintSnapshot, error in
-                    // Sprints save
-                    synchronizationActions.append({ context in
-                        deletedEntities.sprints = self.collectionSynchronizationManager
-                            .syncCollection(context: context,
-                                            data: sprintSnapshot?.documents.map { $0.data() } ?? [],
-                                            entityType: SprintEntity.self,
-                                            parentEntityID: nil)
-                    })
+            defer { dispatchGroup.leave() }
+            
+            guard error == nil else { return }
+            
+            let sprintsCollection = userDocument.collection("sprints")
+            
+            dispatchGroup.enter() // Enter sprint document
+            sprintsCollection.getDocuments(completion: { [weak self] sprintSnapshot, error in
+                defer { dispatchGroup.leave() }
+                
+                guard
+                    let self = self,
+                    error == nil,
+                    let data = sprintSnapshot?.documents.map({ $0.data() })
+                else { return }
+                
+                // Sprints save
+                synchronizationActions.append({ context in
+                    deletedEntities.sprints = self.collectionSynchronizationManager
+                        .syncCollection(context: context,
+                                        data: data,
+                                        entityType: SprintEntity.self,
+                                        parentEntityID: nil)
+                })
+                
+                sprintSnapshot?.documents.forEach { sprintSnapshot in
+                    guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
                     
-                    sprintSnapshot?.documents.forEach { sprintSnapshot in
-                        guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
+                    // Habits
+                    let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
+                    
+                    dispatchGroup.enter() // Enter habits document
+                    habitsCollection.getDocuments(completion: { [weak self] habitsSnapshot, error in
+                        defer { dispatchGroup.leave() }
                         
-                        // Habits
-                        let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
-                        dispatchGroup.enter() // Enter habits document
-                        habitsCollection.getDocuments(completion: { habitsSnapshot, error in
-                            // Habits save
-                            synchronizationActions.append({ context in
-                                let deletedHabitIDs = self.collectionSynchronizationManager
-                                    .syncCollection(context: context,
-                                                    data: habitsSnapshot?.documents.map { $0.data() } ?? [],
-                                                    entityType: HabitEntity.self,
-                                                    parentEntityID: sprintID)
-                                if !deletedHabitIDs.isEmpty {
-                                    deletedEntities.habits.append((sprintID, deletedHabitIDs))
-                                }
-                            })
-                            dispatchGroup.leave() // Leave habits document
-                        })
+                        guard
+                            let self = self,
+                            error == nil,
+                            let data = habitsSnapshot?.documents.map({ $0.data() })
+                        else { return }
                         
-                        // Goals
-                        let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
-                        dispatchGroup.enter() // Enter goals document
-                        
-                        goalsCollection.getDocuments(completion: { goalsSnapshot, error in
-                            // Goals save
-                            synchronizationActions.append({ context in
-                                let deletedGoalIDs = self.collectionSynchronizationManager
-                                    .syncCollection(context: context,
-                                                    data: goalsSnapshot?.documents.map { $0.data() } ?? [],
-                                                    entityType: GoalEntity.self,
-                                                    parentEntityID: sprintID)
-                                if !deletedGoalIDs.isEmpty {
-                                    deletedEntities.goals.append((sprintID, deletedGoalIDs))
-                                }
-                            })
-                            
-                            goalsSnapshot?.documents.forEach { goalSnapshot in
-                                guard let goalID = goalSnapshot.data()["id"] as? String else { return }
-                                let stagesCollection = goalsCollection.document(goalID).collection("stages")
-                                dispatchGroup.enter() // Enter stages document
-                                stagesCollection.getDocuments(completion: { stagesSnapshot, error in
-                                    // Stages save
-                                    synchronizationActions.append({ context in
-                                        let deletedStageIDs = self.collectionSynchronizationManager
-                                            .syncCollection(context: context,
-                                                            data: stagesSnapshot?.documents.map { $0.data() } ?? [],
-                                                            entityType: SubtaskEntity.self,
-                                                            parentEntityID: goalID)
-                                        if !deletedStageIDs.isEmpty {
-                                            deletedEntities.stages.append((sprintID, goalID, deletedStageIDs))
-                                        }
-                                    })
-                                    dispatchGroup.leave() // Leave stages document
-                                })
+                        // Habits save
+                        synchronizationActions.append({ context in
+                            let deletedHabitIDs = self.collectionSynchronizationManager
+                                .syncCollection(context: context,
+                                                data: data,
+                                                entityType: HabitEntity.self,
+                                                parentEntityID: sprintID)
+                            if !deletedHabitIDs.isEmpty {
+                                deletedEntities.habits.append((sprintID, deletedHabitIDs))
                             }
-                            
-                            dispatchGroup.leave() // Leave goals document
                         })
-                        
-                        // Water controls
-                        let waterControlCollection = sprintsCollection.document(sprintID).collection("water_control")
-                        dispatchGroup.enter() // Enter water control document
-                        
-                        waterControlCollection.getDocuments(completion: { waterControlsSnapshot, error in
-                            synchronizationActions.append({ context in
-                                let deletedWaterControlIDs = self.collectionSynchronizationManager
-                                    .syncCollection(context: context,
-                                                    data: waterControlsSnapshot?.documents.map { $0.data() } ?? [],
-                                                    entityType: WaterControlEntity.self,
-                                                    parentEntityID: sprintID)
-                                if !deletedWaterControlIDs.isEmpty {
-                                    deletedEntities.waterControls.append((sprintID, deletedWaterControlIDs))
-                                }
-                            })
-                            dispatchGroup.leave() // Leave water control document
-                        })
-                    }
+                    })
                     
-                    dispatchGroup.leave() // Leave sprint document
-                })
-                
-                // Mood
-                
-                let moodCollection = userDocument.collection("mood")
-                dispatchGroup.enter() // Enter moods collection
-                moodCollection.getDocuments(completion: { [weak self] moodsSnapshot, error in
-                    guard let self = self else { return }
-                    synchronizationActions.append({ context in
-                        self.collectionSynchronizationManager
-                            .syncCollection(context: context,
-                                            data: moodsSnapshot?.documents.map { $0.data() } ?? [],
-                                            entityType: MoodEntity.self,
-                                            parentEntityID: nil)
+                    // Goals
+                    let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
+                    
+                    dispatchGroup.enter() // Enter goals document
+                    goalsCollection.getDocuments(completion: { [weak self] goalsSnapshot, error in
+                        defer { dispatchGroup.leave() }
+                        
+                        guard
+                            let self = self,
+                            error == nil,
+                            let data = goalsSnapshot?.documents.map({ $0.data() })
+                        else { return }
+                        
+                        // Goals save
+                        synchronizationActions.append({ context in
+                            let deletedGoalIDs = self.collectionSynchronizationManager
+                                .syncCollection(context: context,
+                                                data: data,
+                                                entityType: GoalEntity.self,
+                                                parentEntityID: sprintID)
+                            if !deletedGoalIDs.isEmpty {
+                                deletedEntities.goals.append((sprintID, deletedGoalIDs))
+                            }
+                        })
+                        
+                        goalsSnapshot?.documents.forEach { goalSnapshot in
+                            guard let goalID = goalSnapshot.data()["id"] as? String else { return }
+                            
+                            let stagesCollection = goalsCollection.document(goalID).collection("stages")
+                            
+                            dispatchGroup.enter() // Enter stages document
+                            stagesCollection.getDocuments(completion: { [weak self] stagesSnapshot, error in
+                                defer { dispatchGroup.leave() }
+                                
+                                guard
+                                    let self = self,
+                                    error == nil,
+                                    let data = stagesSnapshot?.documents.map({ $0.data() })
+                                else { return }
+                                
+                                // Stages save
+                                synchronizationActions.append({ context in
+                                    let deletedStageIDs = self.collectionSynchronizationManager
+                                        .syncCollection(context: context,
+                                                        data: data,
+                                                        entityType: SubtaskEntity.self,
+                                                        parentEntityID: goalID)
+                                    if !deletedStageIDs.isEmpty {
+                                        deletedEntities.stages.append((sprintID, goalID, deletedStageIDs))
+                                    }
+                                })
+                            })
+                        }
                     })
-                    dispatchGroup.leave() // Leave moods collection
-                })
-                
-                // Diary
-                
-                let diaryEntriesCollection = userDocument.collection("diary")
-                dispatchGroup.enter() // Enter diary collection
-                diaryEntriesCollection.getDocuments(completion: { [weak self] diaryEntriesSnapshot, error in
-                    guard let self = self else { return }
-                    synchronizationActions.append({ context in
-                        self.collectionSynchronizationManager
-                            .syncCollection(context: context,
-                                            data: diaryEntriesSnapshot?.documents.map { $0.data() } ?? [],
-                                            entityType: DiaryEntryEntity.self,
-                                            parentEntityID: nil)
+                    
+                    // Water controls
+                    let waterControlCollection = sprintsCollection.document(sprintID).collection("water_control")
+                    
+                    dispatchGroup.enter() // Enter water control document
+                    waterControlCollection.getDocuments(completion: { [weak self] waterControlsSnapshot, error in
+                        defer { dispatchGroup.leave() }
+                        
+                        guard
+                            let self = self,
+                            error == nil,
+                            let data = waterControlsSnapshot?.documents.map({ $0.data() })
+                        else { return }
+                        
+                        synchronizationActions.append({ context in
+                            let deletedWaterControlIDs = self.collectionSynchronizationManager
+                                .syncCollection(context: context,
+                                                data: data,
+                                                entityType: WaterControlEntity.self,
+                                                parentEntityID: sprintID)
+                            if !deletedWaterControlIDs.isEmpty {
+                                deletedEntities.waterControls.append((sprintID, deletedWaterControlIDs))
+                            }
+                        })
                     })
-                    dispatchGroup.leave() // Leave diary collection
-                })
+                }
+            })
+            
+            // Mood
+            
+            let moodCollection = userDocument.collection("mood")
+            dispatchGroup.enter() // Enter moods collection
+            moodCollection.getDocuments(completion: { [weak self] moodsSnapshot, error in
+                defer { dispatchGroup.leave() }
                 
-                dispatchGroup.leave() // Leave user document
+                guard
+                    let self = self,
+                    error == nil,
+                    let data = moodsSnapshot?.documents.map({ $0.data() })
+                else { return }
+                
+                synchronizationActions.append({ context in
+                    self.collectionSynchronizationManager
+                        .syncCollection(context: context,
+                                        data: data,
+                                        entityType: MoodEntity.self,
+                                        parentEntityID: nil)
+                })
+            })
+            
+            // Diary
+            
+            let diaryEntriesCollection = userDocument.collection("diary")
+            
+            dispatchGroup.enter() // Enter diary collection
+            diaryEntriesCollection.getDocuments(completion: { [weak self] diaryEntriesSnapshot, error in
+                defer { dispatchGroup.leave() }
+                
+                guard
+                    let self = self,
+                    error == nil,
+                    let data = diaryEntriesSnapshot?.documents.map({ $0.data() })
+                else { return }
+                
+                synchronizationActions.append({ context in
+                    self.collectionSynchronizationManager
+                        .syncCollection(context: context,
+                                        data: data,
+                                        entityType: DiaryEntryEntity.self,
+                                        parentEntityID: nil)
+                })
+            })
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            guard !synchronizationActions.isEmpty else {
+                completion(true, deletedEntities)
+                return
             }
             
-            dispatchGroup.notify(queue: .main) {
-                guard !synchronizationActions.isEmpty else {
-                    completion(true, deletedEntities)
-                    return
+            Database.localStorage.synchronize({ context, save in
+                synchronizationActions.forEach { action in
+                    action(context)
                 }
-                
-                Database.localStorage.synchronize({ context, save in
-                    synchronizationActions.forEach { action in
-                        action(context)
-                    }
-                    save()
-                }, completion: { success in
-                    completion(success, deletedEntities)
-                })
-            }
+                save()
+            }, completion: { success in
+                completion(success, deletedEntities)
+            })
         }
     }
     
