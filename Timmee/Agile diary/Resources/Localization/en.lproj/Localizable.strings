@@ -74,6 +74,7 @@
 "back" = "Back";
 "continue" = "Continue";
 "complete" = "Complete";
+"completed" = "Completed";
 "restore" = "Restore";
 "move" = "Move";
 "cancel" = "Cancel";

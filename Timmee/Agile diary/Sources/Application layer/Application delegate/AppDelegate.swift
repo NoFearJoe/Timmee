@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
         
+        NotificationsConfigurator.removeAppIconBadge()
         
         ProVersionPurchase.shared.loadStore()
                 

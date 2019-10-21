@@ -35,9 +35,9 @@ public final class CalendarPresentationController: UIPresentationController {
     public override var frameOfPresentedViewInContainerView: CGRect {
         let containerSize = containerView?.frame.size ?? .zero
         
-        let sourceViewRect = sourceView.convert(sourceView.frame, to: containerView)
+        let sourceViewRect = sourceView.convert(sourceView.bounds, to: containerView)
         
-        let y: CGFloat = sourceViewRect.maxY + 20
+        let y: CGFloat = sourceViewRect.maxY + 8
         
         if UIDevice.current.isPhone {
             calendarViewController.view.frame.size.width = containerSize.width - 40
@@ -46,11 +46,16 @@ public final class CalendarPresentationController: UIPresentationController {
             
             return CGRect(x: 20, y: y, width: containerSize.width - 40, height: calendarViewController.maximumHeight)
         } else {
-            calendarViewController.view.frame.size.width = 375
+            let width: CGFloat = 375
+            let offset: CGFloat = 20
+            
+            calendarViewController.view.frame.size.width = width
             
             calendarViewController.view.layoutIfNeeded()
             
-            return CGRect(x: (containerSize.width - 375) / 2, y: y, width: 375, height: calendarViewController.maximumHeight)
+            let x = min(sourceViewRect.minX - offset, containerSize.width - width - offset)
+            
+            return CGRect(x: x, y: y, width: width, height: calendarViewController.maximumHeight)
         }
     }
     

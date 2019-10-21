@@ -25,6 +25,7 @@ public final class CalendarViewController: UIPageViewController {
     private var selectedDate: Date?
     private var currentDate: Date = Date()
     private var minimumDate: Date = Date()
+    private var maximumDate: Date?
     
     private let design: CalendarDesign
     
@@ -46,7 +47,7 @@ public final class CalendarViewController: UIPageViewController {
     
     private var isConfigured: Bool = false
     
-    public func configure(selectedDate: Date?, minimumDate: Date?) {
+    public func configure(selectedDate: Date?, minimumDate: Date?, maximumDate: Date? = nil) {
         isConfigured = true
         
         self.selectedDate = selectedDate
@@ -56,12 +57,14 @@ public final class CalendarViewController: UIPageViewController {
             self.currentDate = selectedDate?.startOfMonth ?? Date().startOfMonth
         }
         self.minimumDate = minimumDate ?? Date(timeIntervalSince1970: 0)
+        self.maximumDate = maximumDate
         
         setupFirstPage()
     }
     
     private func createPage(state: CalendarState) -> CalendarPage {
         let page = CalendarPage(state: state, design: design)
+        
         page.onSelectDate = { [unowned self] date in
             self.selectedDate = date
             self.onSelectDate?(date)
@@ -69,13 +72,17 @@ public final class CalendarViewController: UIPageViewController {
         page.badgeValue = { [unowned self] date in
             return self.badgeValue?(date)
         }
+        
         return page
     }
     
     private func setupFirstPage() {
         guard isConfigured else { return }
         
-        let state = CalendarState(currentDate: currentDate, minimumDate: minimumDate, selectedDate: selectedDate)
+        let state = CalendarState(currentDate: currentDate,
+                                  minimumDate: minimumDate,
+                                  maximumDate: maximumDate,
+                                  selectedDate: selectedDate)
         let page = createPage(state: state)
         
         setViewControllers([page],
@@ -95,7 +102,10 @@ extension CalendarViewController: UIPageViewControllerDataSource {
         guard let currentPage = viewController as? CalendarPage else { return nil }
         let currentDate = currentPage.state.currentDate
         let nextDate = currentDate + 1.asMonths
-        let nextState = CalendarState(currentDate: nextDate, minimumDate: minimumDate, selectedDate: selectedDate)
+        let nextState = CalendarState(currentDate: nextDate,
+                                      minimumDate: minimumDate,
+                                      maximumDate: maximumDate,
+                                      selectedDate: selectedDate)
         let nextPage = createPage(state: nextState)
         nextPage.reload()
         return nextPage
@@ -106,7 +116,10 @@ extension CalendarViewController: UIPageViewControllerDataSource {
         guard let currentPage = viewController as? CalendarPage else { return nil }
         let currentDate = currentPage.state.currentDate
         let previousDate = currentDate - 1.asMonths
-        let previousState = CalendarState(currentDate: previousDate, minimumDate: minimumDate, selectedDate: selectedDate)
+        let previousState = CalendarState(currentDate: previousDate,
+                                          minimumDate: minimumDate,
+                                          maximumDate: maximumDate,
+                                          selectedDate: selectedDate)
         let previousPage = createPage(state: previousState)
         previousPage.reload()
         return previousPage

@@ -16,14 +16,16 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
     weak var holderViewController: UIViewController?
     
     private let habit: Habit
+    private let currentDate: Date
     private lazy var sprint = getCurrentSprint()
     
     private let habitsService = ServicesAssembly.shared.habitsService
     let sprintsService = ServicesAssembly.shared.sprintsService
     private let diaryService = ServicesAssembly.shared.diaryService
     
-    init(habit: Habit) {
+    init(habit: Habit, currentDate: Date) {
         self.habit = habit
+        self.currentDate = currentDate
     }
     
     func loadContent(completion: @escaping (Error?) -> Void) {
@@ -168,7 +170,7 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
         editButton.layer.cornerRadius = 6
         buttonsContainer.addArrangedSubview(editButton)
         
-        if habit.isDone(at: Date.now) {
+        if habit.isDone(at: currentDate) {
             let restoreButton = UIButton(type: .custom)
             restoreButton.addTarget(self, action: #selector(onTapToRestoreButton), for: .touchUpInside)
             restoreButton.setTitle("restore".localized, for: .normal)
@@ -258,10 +260,10 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
                                                               reversed: false))
         container.add(compressibleView: topSpacer)
         
-        if habit.isDone(at: Date.now) {
+        if habit.isDone(at: currentDate) {
             let statusView = CompressibleTitleView.loadedFromNib()
             statusView.backgroundColor = AppTheme.current.colors.foregroundColor
-            let attributedStatus = NSAttributedString(string: "complete".localized,
+            let attributedStatus = NSAttributedString(string: "completed".localized,
                                                       attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor])
             statusView.configure(with: CompressibleTitleView.Model(attributedText: attributedStatus,
                                                                    transparentDisappearing: false,
@@ -350,14 +352,14 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
     }
     
     @objc private func onTapToCompleteButton() {
-        habit.setDone(true, at: Date.now)
+        habit.setDone(true, at: currentDate)
         habitsService.updateHabit(habit, completion: { [weak self] _ in
             self?.holderViewController?.dismiss(animated: true, completion: nil)
         })
     }
     
     @objc private func onTapToRestoreButton() {
-        habit.setDone(false, at: Date.now)
+        habit.setDone(false, at: currentDate)
         habitsService.updateHabit(habit, completion: { [weak self] _ in
             self?.holderViewController?.dismiss(animated: true, completion: nil)
         })

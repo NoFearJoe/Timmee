@@ -157,7 +157,7 @@ final class GoalDetailsProvider: DetailModuleProvider {
         if goal.isDone {
             let statusView = CompressibleTitleView.loadedFromNib()
             statusView.backgroundColor = AppTheme.current.colors.foregroundColor
-            let attributedStatus = NSAttributedString(string: "complete".localized,
+            let attributedStatus = NSAttributedString(string: "completed".localized,
                                                       attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor])
             statusView.configure(with: CompressibleTitleView.Model(attributedText: attributedStatus,
                                                                    transparentDisappearing: false,

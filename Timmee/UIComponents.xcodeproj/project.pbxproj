@@ -60,6 +60,7 @@
 		0CE3CA632359D616008C2DA5 /* NumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA5F2359D615008C2DA5 /* NumberPickerView.swift */; };
 		0CE3CA642359D616008C2DA5 /* TimePickerDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA602359D615008C2DA5 /* TimePickerDesign.swift */; };
 		0CE3CA652359D616008C2DA5 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA612359D616008C2DA5 /* BadgeView.swift */; };
+		0CE3CA6E235D81D0008C2DA5 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA6D235D81D0008C2DA5 /* FadeTransition.swift */; };
 		0CF7E52B2146AAC50071DABD /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52A2146AAC50071DABD /* ProgressBar.swift */; };
 		31F05AA9E6FC47073498C41E /* Pods_UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8C666689D344752C217FA4 /* Pods_UIComponents.framework */; };
 		9635032E235CCE2E007B08C0 /* CalendarPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635032D235CCE2E007B08C0 /* CalendarPresentationController.swift */; };
@@ -153,6 +154,7 @@
 		0CE3CA5F2359D615008C2DA5 /* NumberPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPickerView.swift; sourceTree = "<group>"; };
 		0CE3CA602359D615008C2DA5 /* TimePickerDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerDesign.swift; sourceTree = "<group>"; };
 		0CE3CA612359D616008C2DA5 /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		0CE3CA6D235D81D0008C2DA5 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		0CF7E52A2146AAC50071DABD /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		2F76CCAF755BBCE24CC70279 /* Pods-UIComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.release.xcconfig"; path = "Target Support Files/Pods-UIComponents/Pods-UIComponents.release.xcconfig"; sourceTree = "<group>"; };
 		9635032D235CCE2E007B08C0 /* CalendarPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresentationController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				0C14D42D211C1B6C004C0559 /* DismissAnimator.swift */,
 				0C14D42B211C1B6C004C0559 /* FlipDismissInteractor.swift */,
 				0C14D42C211C1B6C004C0559 /* InteractiveDismissTransition.swift */,
+				0CE3CA6D235D81D0008C2DA5 /* FadeTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				9667C71622C3F71F0010CC00 /* DynamicSizeChangeHelper.swift in Sources */,
 				9667C71D22C3F71F0010CC00 /* SkeletonAnimatableView.swift in Sources */,
 				96CDC72822E38F54009395B9 /* WaterLevelView.swift in Sources */,
+				0CE3CA6E235D81D0008C2DA5 /* FadeTransition.swift in Sources */,
 				0C14D41B211C1B65004C0559 /* ReorderableTableView.swift in Sources */,
 				0C86E4E822DC7C1000DA7B15 /* TCSStackViewContainer.swift in Sources */,
 				0CE3CA652359D616008C2DA5 /* BadgeView.swift in Sources */,

@@ -38,6 +38,7 @@ final class CalendarPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         calendarView.onSelectDate = { [unowned self] date in
             self.onSelectDate?(date)
         }

@@ -42,7 +42,7 @@ final class TodayGoalCell: SwipeTableViewCell {
     func configure(goal: Goal) {
         setupAppearance()
         containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
-        statusLabel.text = goal.isDone ? "complete".localized : nil
+        statusLabel.text = goal.isDone ? "completed".localized : nil
         statusLabelBottomConstraint.constant = goal.isDone ? 0 : 6
         titleLabel.text = goal.title
         noteExistanceIconView.isHidden = goal.note.isEmpty

@@ -13,10 +13,13 @@ final class CalendarState {
     var currentDate: Date
     // Минимальная дата, которую можно выбрать
     var minimumDate: Date
+    // Максимальная дата, которую можно выбрать
+    var maximumDate: Date?
     
-    init(currentDate: Date, minimumDate: Date, selectedDate: Date? = nil) {
+    init(currentDate: Date, minimumDate: Date, maximumDate: Date?, selectedDate: Date? = nil) {
         self.currentDate = currentDate
         self.minimumDate = minimumDate
+        self.maximumDate = maximumDate
         self.selectedDate = selectedDate
     }
 }

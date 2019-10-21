@@ -37,6 +37,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     private var synchronizationDidFinishObservation: Any?
     
+    lazy var calendarTransitionHandler = CalendarTransitionHandler(sourceView: pickDayButton)
+    
     // MARK: - State
     
     private var currentSection = SprintSection.habits
@@ -45,6 +47,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         didSet {
             updateCurrentDateLabel()
             contentViewController?.currentDate = currentDate
+            activityViewController?.currentDate = currentDate
         }
     }
     
@@ -170,35 +173,19 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         )
         let calendar = CalendarViewController(design: calendarDesign)
         calendar.view.backgroundColor = AppTheme.current.colors.middlegroundColor
-        calendar.configure(selectedDate: currentDate, minimumDate: sprint.startDate)
-        calendar.onSelectDate = { [unowned self] date in
+        calendar.configure(selectedDate: currentDate,
+                           minimumDate: sprint.startDate,
+                           maximumDate: Date.now)
+        calendar.onSelectDate = { [unowned self, unowned calendar] date in
             guard let date = date else { return }
             self.currentDate = date
             calendar.dismiss(animated: true, completion: nil)
         }
         
-        let transitionHandler = CalendarTransitionHandler(sourceView: pickDayButton)
         calendar.modalPresentationStyle = .custom
-        calendar.transitioningDelegate = transitionHandler
+        calendar.transitioningDelegate = calendarTransitionHandler
         
         present(calendar, animated: true, completion: nil)
-        
-//        addChild(calendar)
-//        calendar.didMove(toParent: self)
-//        view.insertSubview(calendar.view, belowSubview: headerView)
-        
-//        calendar.view.translatesAutoresizingMaskIntoConstraints = false
-//        calendar.view.layoutSubviews()
-//        calendar.view.frame.origin.y = headerView.frame.maxY - calendar.maximumHeight
-//
-//        view.layoutIfNeeded()
-//
-//        contentViewTopConstraint.constant = calendar.maximumHeight
-//
-//        UIView.animate(withDuration: 1) {
-//            calendar.view.transform = CGAffineTransform(translationX: 0, y: calendar.maximumHeight)
-//            self.view.layoutIfNeeded()
-//        }
     }
     
     @IBAction private func onTapToActionsButton() {

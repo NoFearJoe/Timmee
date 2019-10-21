@@ -72,11 +72,14 @@ final class CalendarDaysView: UIView {
         let daysInMonth = startOfMonth.daysInMonth
         let days = (0..<daysInMonth).map { day -> CalendarDayEntity in
             let currentDate = startOfMonth + day.asDays
+            let isDisabled =
+                currentDate.isLower(than: state.minimumDate) ||
+                state.maximumDate.map { currentDate.isGreater(than: $0) } ?? false
             return CalendarDayEntity(number: day + 1,
                                      weekday: currentDate.weekday - 1,
                                      isSelected: state.selectedDate.map { currentDate.isWithinSameDay(of: $0) } ?? false,
                                      isCurrent: currentDate.isWithinSameDay(of: Date()),
-                                     isDisabled: currentDate.isLower(than: state.minimumDate),
+                                     isDisabled: isDisabled,
                                      tasksCount: 0)
         }
         adapter.days = days

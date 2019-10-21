@@ -16,8 +16,21 @@ public final class CalendarTransitionHandler: NSObject, UIViewControllerTransiti
         self.sourceView = sourceView
     }
     
-    public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+    public func animationController(forPresented presented: UIViewController,
+                                    presenting: UIViewController,
+                                    source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeInTransition()
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeOutTransition()
+    }
+    
+    public func presentationController(forPresented presented: UIViewController,
+                                       presenting: UIViewController?,
+                                       source: UIViewController) -> UIPresentationController? {
         guard let calendar = presented as? CalendarViewController else { return nil }
+        
         return CalendarPresentationController(calendarViewController: calendar,
                                               presentingViewController: presenting,
                                               sourceView: sourceView)

@@ -136,7 +136,7 @@ extension TodayContentViewController: UITableViewDataSource {
         case .habit:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TodayHabitCell", for: indexPath) as! TodayHabitCell
             if let habit = habitsCacheObserver?.item(at: indexPath) {
-                cell.configure(habit: habit)
+                cell.configure(habit: habit, currentDate: currentDate)
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     habit.setDone(isChecked, at: self.currentDate)
@@ -202,7 +202,7 @@ extension TodayContentViewController: UITableViewDelegate {
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
-            let habitDetailsProvider = HabitDetailsProvider(habit: habit)
+            let habitDetailsProvider = HabitDetailsProvider(habit: habit, currentDate: currentDate)
             let habitDetailsViewController = DetailsBaseViewController(content: habitDetailsProvider)
             let navigationController = makeNavigationController(root: habitDetailsViewController)
             

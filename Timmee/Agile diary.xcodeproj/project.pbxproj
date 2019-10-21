@@ -23,8 +23,6 @@
 		0C06E95922EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95722EEBBC60099DD3A /* DiaryEntryAttachmentPickerCell.swift */; };
 		0C06E95B22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95A22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift */; };
 		0C06E95C22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E95A22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift */; };
-		0C06E96622EF06160099DD3A /* TodayActionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E96522EF06160099DD3A /* TodayActionPickerViewController.swift */; };
-		0C06E96722EF06160099DD3A /* TodayActionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E96522EF06160099DD3A /* TodayActionPickerViewController.swift */; };
 		0C06E97722F17E910099DD3A /* DiaryEntriesSubmoduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97622F17E910099DD3A /* DiaryEntriesSubmoduleView.swift */; };
 		0C06E97822F17E910099DD3A /* DiaryEntriesSubmoduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97622F17E910099DD3A /* DiaryEntriesSubmoduleView.swift */; };
 		0C06E97A22F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97922F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift */; };
@@ -446,7 +444,6 @@
 		0C06E95322EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryAttachmentTypePickerViewController.swift; sourceTree = "<group>"; };
 		0C06E95722EEBBC60099DD3A /* DiaryEntryAttachmentPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryAttachmentPickerCell.swift; sourceTree = "<group>"; };
 		0C06E95A22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntryAttachmentPickerProvider.swift; sourceTree = "<group>"; };
-		0C06E96522EF06160099DD3A /* TodayActionPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayActionPickerViewController.swift; sourceTree = "<group>"; };
 		0C06E97622F17E910099DD3A /* DiaryEntriesSubmoduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleView.swift; sourceTree = "<group>"; };
 		0C06E97922F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleListView.swift; sourceTree = "<group>"; };
 		0C06E97C22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEntriesSubmoduleListCell.swift; sourceTree = "<group>"; };
@@ -712,7 +709,6 @@
 			isa = PBXGroup;
 			children = (
 				9667C72322C536D30010CC00 /* Details */,
-				0C06E96522EF06160099DD3A /* TodayActionPickerViewController.swift */,
 			);
 			path = "Secondary view controllers";
 			sourceTree = "<group>";
@@ -1933,7 +1929,6 @@
 				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
-				0C06E96622EF06160099DD3A /* TodayActionPickerViewController.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				0C06E95B22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
@@ -2071,7 +2066,6 @@
 				0CF2F933224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */,
 				0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */,
 				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
-				0C06E96722EF06160099DD3A /* TodayActionPickerViewController.swift in Sources */,
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
 				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
 				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,

@@ -112,10 +112,20 @@ final class MoodButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         adjustsImageWhenHighlighted = false
+        
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = .zero
         layer.shadowRadius = 4
+        
+        layer.borderColor = AppTheme.current.colors.activeElementColor.cgColor
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layer.cornerRadius = min(bounds.width, bounds.height) / 2
     }
     
     override var isSelected: Bool {
@@ -123,6 +133,7 @@ final class MoodButton: UIButton {
             transform = isSelected ? CGAffineTransform(scaleX: 1.2, y: 1.2) : .identity
             layer.shadowOpacity = isSelected ? 0.2 : 0
             alpha = isSelected ? 1 : 0.75
+            layer.borderWidth = isSelected ? 1 : 0
         }
     }
     

@@ -31,10 +31,12 @@ final class TodayHabitCell: SwipeTableViewCell {
         subtitleLabel.font = AppTheme.current.fonts.regular(14)
     }
     
-    func configure(habit: Habit) {
+    func configure(habit: Habit, currentDate: Date) {
         setupAppearance()
-        checkbox.isChecked = habit.isDone(at: Date.now)
-        containerView.alpha = habit.isDone(at: Date.now) ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
+        checkbox.isChecked = habit.isDone(at: currentDate)
+        containerView.alpha = habit.isDone(at: currentDate) ?
+            AppTheme.current.style.alpha.inactive :
+            AppTheme.current.style.alpha.enabled
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()
