@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ProVersionEducationScreen: UIViewController, AlertInput {
+final class ProVersionEducationScreen: BaseViewController, AlertInput {
     
     private var output: EducationScreenOutput!
     
@@ -61,8 +61,8 @@ final class ProVersionEducationScreen: UIViewController, AlertInput {
         output.didAskToSkipEducation(screen: .proVersion)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         titleLabel.text = "education_pro_version_title".localized
         textLabel.text = "education_pro_version_text".localized
@@ -72,8 +72,8 @@ final class ProVersionEducationScreen: UIViewController, AlertInput {
         skipButton.setTitle("education_pro_version_skip".localized, for: .normal)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func setupAppearance() {
+        super.setupAppearance()
         
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         textLabel.textColor = AppTheme.current.colors.inactiveElementColor

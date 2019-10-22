@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NotificationsSetupSuggestionScreen: UIViewController {
+final class NotificationsSetupSuggestionScreen: BaseViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
@@ -28,8 +28,8 @@ final class NotificationsSetupSuggestionScreen: UIViewController {
     
     private var output: EducationScreenOutput!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         titleLabel.text = "education_notifications_setup_title".localized
         textLabel.text = "education_notifications_setup_text".localized
@@ -40,7 +40,9 @@ final class NotificationsSetupSuggestionScreen: UIViewController {
         setupAppearance()
     }
     
-    private func setupAppearance() {
+    override func setupAppearance() {
+        super.setupAppearance()
+        
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         textLabel.textColor = AppTheme.current.colors.inactiveElementColor
         

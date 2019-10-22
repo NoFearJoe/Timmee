@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ImmutableSprintsEducationScreen: UIViewController {
+final class ImmutableSprintsEducationScreen: BaseViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
@@ -21,8 +21,8 @@ final class ImmutableSprintsEducationScreen: UIViewController {
     
     private var output: EducationScreenOutput!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         titleLabel.text = "education_immutable_sprints_title".localized
         textLabel.text = "education_immutable_sprints_text".localized
@@ -32,7 +32,9 @@ final class ImmutableSprintsEducationScreen: UIViewController {
         setupAppearance()
     }
     
-    private func setupAppearance() {
+    override func setupAppearance() {
+        super.setupAppearance()
+        
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         textLabel.textColor = AppTheme.current.colors.inactiveElementColor
         

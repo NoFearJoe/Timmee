@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InitialEducationScreen: UIViewController {
+final class InitialEducationScreen: BaseViewController {
     
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
@@ -21,8 +21,8 @@ final class InitialEducationScreen: UIViewController {
     
     private var output: EducationScreenOutput!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func prepare() {
+        super.prepare()
         
         titleLabel.text = "education_initial_title".localized
         textLabel.text = "education_initial_text".localized
@@ -32,7 +32,9 @@ final class InitialEducationScreen: UIViewController {
         setupAppearance()
     }
     
-    private func setupAppearance() {
+    override func setupAppearance() {
+        super.setupAppearance()
+        
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         textLabel.textColor = AppTheme.current.colors.inactiveElementColor
         
