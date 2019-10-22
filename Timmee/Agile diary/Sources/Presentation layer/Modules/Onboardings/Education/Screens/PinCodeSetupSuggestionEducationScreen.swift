@@ -33,9 +33,7 @@ final class PinCodeSetupSuggestionEducationScreen: BaseViewController {
         textLabel.text = "education_pin_setup_text".localized
         
         continueButton.setTitle("education_pin_setup_continue".localized, for: .normal)
-        skipButton.setTitle("education_pin_setup_skip".localized, for: .normal)
-        
-        setupAppearance()
+        skipButton.setTitle("education_pin_setup_skip".localized, for: .normal)        
     }
     
     override func setupAppearance() {

@@ -27,9 +27,7 @@ final class ImmutableSprintsEducationScreen: BaseViewController {
         titleLabel.text = "education_immutable_sprints_title".localized
         textLabel.text = "education_immutable_sprints_text".localized
         
-        continueButton.setTitle("education_immutable_sprints_continue".localized, for: .normal)
-        
-        setupAppearance()
+        continueButton.setTitle("education_immutable_sprints_continue".localized, for: .normal)        
     }
     
     override func setupAppearance() {

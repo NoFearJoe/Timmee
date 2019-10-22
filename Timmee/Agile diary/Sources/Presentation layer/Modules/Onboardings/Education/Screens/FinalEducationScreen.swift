@@ -27,9 +27,7 @@ final class FinalEducationScreen: BaseViewController {
         titleLabel.text = "education_final_title".localized
         textLabel.text = "education_final_text".localized
         
-        continueButton.setTitle("education_final_continue".localized, for: .normal)
-        
-        setupAppearance()
+        continueButton.setTitle("education_final_continue".localized, for: .normal)        
     }
     
     override func setupAppearance() {

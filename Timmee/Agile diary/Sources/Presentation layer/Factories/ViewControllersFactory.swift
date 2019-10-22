@@ -107,6 +107,10 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "ProVersionEducationScreen") as! ProVersionEducationScreen
     }
     
+    static var synchronizationEducationScreen: SynchronizationEducationScreen {
+        return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "SynchronizationEducationScreen") as! SynchronizationEducationScreen
+    }
+    
     static var finalEducationScreen: FinalEducationScreen {
         return UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "FinalEducationScreen") as! FinalEducationScreen
     }

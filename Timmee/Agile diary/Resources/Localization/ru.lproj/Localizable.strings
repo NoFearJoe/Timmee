@@ -240,6 +240,8 @@
 "education_pro_version_buy" = "Купить";
 "education_pro_version_restore" = "Восстановить";
 "education_pro_version_skip" = "Пропустить";
+"education_sync_title" = "Синхронизация";
+"education_sync_text" = "Дождитесь окончания синхронизации";
 "education_final_title" = "🚀";
 "education_final_text" = "Настало время создать первый спринт!";
 "education_final_continue" = "Создать";

@@ -84,7 +84,9 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
         
         subscribeToChangesInContext()
         
-        processingQueue.async {
+        processingQueue.async { [weak self] in
+            guard let self = self else { return }
+            
             var entities: [Entity] = []
             self.context.performAndWait {
                 entities = fetchResult.compactMap(self.mapping)

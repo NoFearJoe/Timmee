@@ -36,8 +36,6 @@ final class NotificationsSetupSuggestionScreen: BaseViewController {
         
         continueButton.setTitle("education_notifications_setup_continue".localized, for: .normal)
         skipButton.setTitle("education_notifications_setup_skip".localized, for: .normal)
-        
-        setupAppearance()
     }
     
     override func setupAppearance() {

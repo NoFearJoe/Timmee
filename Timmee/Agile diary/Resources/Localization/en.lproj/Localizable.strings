@@ -240,6 +240,8 @@
 "education_pro_version_buy" = "Buy";
 "education_pro_version_restore" = "Restore";
 "education_pro_version_skip" = "Skip";
+"education_sync_title" = "Synchronization";
+"education_sync_text" = "Wait for the end of the synchronization";
 "education_final_title" = "🚀";
 "education_final_text" = "It's time to create the first sprint!";
 "education_final_continue" = "Create";

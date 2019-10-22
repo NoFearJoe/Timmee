@@ -55,10 +55,11 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     private func showAppropriateScreenAfterEducation() {
         if SynchronizationAvailabilityChecker.shared.synchronizationEnabled && !isSynchronized {
             shouldShowAppropriateScreenAfterSynchronization = true
-            showAlert(title: "attention".localized,
-                      message: "wait_until_sync_is_complete".localized,
-                      actions: [.ok("Ok")],
-                      completion: nil)
+//            showAlert(title: "attention".localized,
+//                      message: "wait_until_sync_is_complete".localized,
+//                      actions: [.ok("Ok")],
+//                      completion: nil)
+            pushViewController(viewController(forScreen: .sync), animated: true)
             return
         }
         if shouldShowSprintCreationAfterEducation {
@@ -151,19 +152,14 @@ fileprivate extension EducationViewController {
             viewController = pinCreationViewController
         case .proVersion:
             viewController = ViewControllersFactory.proVersionEducationScreen
+        case .sync:
+            viewController = ViewControllersFactory.synchronizationEducationScreen
         case .final:
             viewController = ViewControllersFactory.finalEducationScreen
         }
         
         if let educationScreenInput = viewController as? EducationScreenInput {
             educationScreenInput.setupOutput(self)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            if #available(iOS 11.0, *) {
-                print(viewController.view.safeAreaInsets)
-                print(viewController.view.safeAreaLayoutGuide)
-            }
         }
         
         return viewController

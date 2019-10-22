@@ -28,8 +28,6 @@ final class InitialEducationScreen: BaseViewController {
         textLabel.text = "education_initial_text".localized
         
         continueButton.setTitle("education_initial_continue".localized, for: .normal)
-        
-        setupAppearance()
     }
     
     override func setupAppearance() {
