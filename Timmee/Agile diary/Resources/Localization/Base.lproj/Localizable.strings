@@ -381,3 +381,7 @@
 "add_one_habit" = "Add one habit";
 "add_few_habits" = "Add %lu habits";
 "add_many_habits" = "Add %lu habits";
+
+"goal_specific_screen_title" = "What result do you want to achieve?";
+"goal_specific_input_placeholder" = "Learn Franch";
+"goal_specific_hint" = "Hint";
