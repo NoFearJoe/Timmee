@@ -64,21 +64,49 @@ public extension Constraint {
         return to(superview)
     }
     
+    @discardableResult
+    func to(_ guide: UILayoutGuide, addTo containerView: UIView? = nil) -> NSLayoutConstraint? {
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        let constraint = NSLayoutConstraint(item: view,
+                                            attribute: attribute1,
+                                            relatedBy: .equal,
+                                            toItem: guide,
+                                            attribute: attribute2,
+                                            multiplier: multiplier,
+                                            constant: constant)
+
+        if let containerView = containerView {
+            containerView.addConstraint(constraint)
+        } else {
+            view.superview?.addConstraint(constraint)
+        }
+
+        return constraint
+    }
+    
 }
 
 public extension Array where Element == Constraint {
     
     @discardableResult
     func to(_ view: UIView, addTo containerView: UIView? = nil) -> [NSLayoutConstraint] {
-        return self.map { constraint in
-            return constraint.to(view, addTo: containerView)
+        map { constraint in
+            constraint.to(view, addTo: containerView)
         }
     }
     
     @discardableResult
     func toSuperview() -> [NSLayoutConstraint] {
-        return self.compactMap { constraint in
-            return constraint.toSuperview()
+        compactMap { constraint in
+            constraint.toSuperview()
+        }
+    }
+    
+    @discardableResult
+    func to(_ guide: UILayoutGuide, addTo containerView: UIView? = nil) -> [NSLayoutConstraint] {
+        compactMap {
+            $0.to(guide, addTo: containerView)
         }
     }
     

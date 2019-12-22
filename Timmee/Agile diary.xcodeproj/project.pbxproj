@@ -310,20 +310,16 @@
 		961063242242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
 		9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; };
 		9615FAE9226C79AB00E285DE /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		961AF5B223AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
+		961AF5B323AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
+		961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
+		961AF5B723AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
 		963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		964152E6239397440068F07F /* GoalCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152E5239397440068F07F /* GoalCreationViewController.swift */; };
-		964152E7239397440068F07F /* GoalCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152E5239397440068F07F /* GoalCreationViewController.swift */; };
-		964152EA2393C70F0068F07F /* GoalSpecificViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152E92393C70F0068F07F /* GoalSpecificViewController.swift */; };
-		964152EB2393C70F0068F07F /* GoalSpecificViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152E92393C70F0068F07F /* GoalSpecificViewController.swift */; };
-		964152ED239402040068F07F /* GoalMeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152EC239402040068F07F /* GoalMeasurementViewController.swift */; };
-		964152EE239402040068F07F /* GoalMeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152EC239402040068F07F /* GoalMeasurementViewController.swift */; };
-		964152F0239404EA0068F07F /* GoalStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152EF239404EA0068F07F /* GoalStepsViewController.swift */; };
-		964152F1239404EA0068F07F /* GoalStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964152EF239404EA0068F07F /* GoalStepsViewController.swift */; };
 		964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */; };
 		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
 		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
@@ -595,14 +591,12 @@
 		7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		961063222242B26000E1446E /* MoodChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartCell.swift; sourceTree = "<group>"; };
+		961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationOnboardingViewController.swift; sourceTree = "<group>"; };
+		961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationOnboardingViewController.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		964152E5239397440068F07F /* GoalCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationViewController.swift; sourceTree = "<group>"; };
-		964152E92393C70F0068F07F /* GoalSpecificViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSpecificViewController.swift; sourceTree = "<group>"; };
-		964152EC239402040068F07F /* GoalMeasurementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalMeasurementViewController.swift; sourceTree = "<group>"; };
-		964152EF239404EA0068F07F /* GoalStepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalStepsViewController.swift; sourceTree = "<group>"; };
 		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
 		967C328221517DC500B9201A /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
 		967C328721517E4100B9201A /* SettingsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCells.swift; sourceTree = "<group>"; };
@@ -923,24 +917,25 @@
 				0C14D4ED21219669004C0559 /* SprintCreation.storyboard */,
 				0C14D4EA2121961E004C0559 /* Main */,
 				0C14D4E921219611004C0559 /* Habit creation */,
-				0C14D4E8212195FE004C0559 /* Target creation */,
-				964152E42393970E0068F07F /* SMART Goal creation */,
+				0C14D4E8212195FE004C0559 /* Goal creation */,
 			);
 			path = "Sprint creation";
 			sourceTree = "<group>";
 		};
-		0C14D4E8212195FE004C0559 /* Target creation */ = {
+		0C14D4E8212195FE004C0559 /* Goal creation */ = {
 			isa = PBXGroup;
 			children = (
+				961AF5B423AF8EFB00DCD5B9 /* Onboardings */,
 				0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */,
 				0C14D5362123F826004C0559 /* TargetCreationViewController.swift */,
 			);
-			path = "Target creation";
+			path = "Goal creation";
 			sourceTree = "<group>";
 		};
 		0C14D4E921219611004C0559 /* Habit creation */ = {
 			isa = PBXGroup;
 			children = (
+				961AF5B023AF8B1600DCD5B9 /* Onboardings */,
 				0CACF33B2229263D00EE97E4 /* Submodules */,
 				0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */,
 				0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */,
@@ -1396,23 +1391,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		964152E42393970E0068F07F /* SMART Goal creation */ = {
+		961AF5B023AF8B1600DCD5B9 /* Onboardings */ = {
 			isa = PBXGroup;
 			children = (
-				964152E5239397440068F07F /* GoalCreationViewController.swift */,
-				964152E8239397670068F07F /* Steps */,
+				961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */,
 			);
-			path = "SMART Goal creation";
+			path = Onboardings;
 			sourceTree = "<group>";
 		};
-		964152E8239397670068F07F /* Steps */ = {
+		961AF5B423AF8EFB00DCD5B9 /* Onboardings */ = {
 			isa = PBXGroup;
 			children = (
-				964152E92393C70F0068F07F /* GoalSpecificViewController.swift */,
-				964152EC239402040068F07F /* GoalMeasurementViewController.swift */,
-				964152EF239404EA0068F07F /* GoalStepsViewController.swift */,
+				961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */,
 			);
-			path = Steps;
+			path = Onboardings;
 			sourceTree = "<group>";
 		};
 		9667C72322C536D30010CC00 /* Details */ = {
@@ -1922,7 +1914,6 @@
 				96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */,
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
-				964152F0239404EA0068F07F /* GoalStepsViewController.swift in Sources */,
 				0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
 				0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
@@ -1968,13 +1959,11 @@
 				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				0C06E95B22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
-				964152EA2393C70F0068F07F /* GoalSpecificViewController.swift in Sources */,
 				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
 				0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */,
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */,
-				964152E6239397440068F07F /* GoalCreationViewController.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
 				0C06E95822EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
 				0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
@@ -1986,10 +1975,10 @@
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */,
 				0CF7E5392147B21F0071DABD /* TodayGoalCell.swift in Sources */,
+				961AF5B223AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */,
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
-				964152ED239402040068F07F /* GoalMeasurementViewController.swift in Sources */,
 				0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
 				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
@@ -2027,6 +2016,7 @@
 				0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
+				961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2071,7 +2061,6 @@
 				0CB6738221A52C3900178EB1 /* Checkbox.swift in Sources */,
 				0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */,
 				0C06E94F22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
-				964152F1239404EA0068F07F /* GoalStepsViewController.swift in Sources */,
 				0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */,
 				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
 				96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */,
@@ -2108,10 +2097,10 @@
 				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,
 				0CF2F933224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */,
 				0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */,
+				961AF5B723AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */,
 				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
 				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
-				964152EE239402040068F07F /* GoalMeasurementViewController.swift in Sources */,
 				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				0C06E95922EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
@@ -2136,8 +2125,8 @@
 				0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0CB673A521A52C3900178EB1 /* TodayGoalCell.swift in Sources */,
 				0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */,
-				964152E7239397440068F07F /* GoalCreationViewController.swift in Sources */,
 				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
+				961AF5B323AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */,
 				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
 				0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */,
@@ -2145,7 +2134,6 @@
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
-				964152EB2393C70F0068F07F /* GoalSpecificViewController.swift in Sources */,
 				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,

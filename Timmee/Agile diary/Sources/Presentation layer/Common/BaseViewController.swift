@@ -8,15 +8,7 @@
 
 import UIKit
 
-public protocol Screen: class {
-    var isVisible: Bool { get }
-    
-    func prepare()
-    func setupAppearance()
-    func refresh()
-}
-
-class BaseViewController: UIViewController, Screen {
+class BaseViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {

@@ -235,9 +235,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @IBAction private func onAdd() {
         switch currentSection {
-        case .goals: //performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
-            let controller = GoalCreationViewController()
-            present(controller, animated: true, completion: nil)
+        case .goals: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
         case .habits: toggleAddHabitMenu()
         case .activity: break
         }

@@ -382,6 +382,5 @@
 "add_few_habits" = "Add %lu habits";
 "add_many_habits" = "Add %lu habits";
 
-"goal_specific_screen_title" = "What result do you want to achieve?";
-"goal_specific_input_placeholder" = "Learn Franch";
-"goal_specific_hint" = "Hint";
+"goal_creation_onboarding_title" = "How to set goals correctly?";
+"goal_creation_onboarding_text" = "There is no definite answer to this question, but there are techniques to make this process better.\n\nFor example, the SMART technique. Its essence is that when setting a goal, you need to take 5 criteria as the basis:\n\n\n    - Specific: the goal should have one precisely defined result. This will increase the guarantee of its achievement and help to understand progress.\n\n    - Measurable: the goal should contain a quantitative or qualitative indicator for measuring the implementation process.\n\n    - Achievable: the goal must be achievable, otherwise its probability execution will tend to zero.\n\n    - Relevant: the goal must be useful after it is achieved, otherwise it will be a wasted time.\n\n    - Time bound (Time bound): the term must be determined , the excess of which indicates its failure. This will motivate you to achieve it and not stretch the process indefinitely.\n\n\nThe following are examples of goals for SMART:\n\n    - Read the book 'Ulisses' till the end of the month\n\n    - Save $20 to buy a pan until the next week\n\n    - Start setting goals for SMART right now";

@@ -129,6 +129,18 @@ final class TargetCreationViewController: BaseViewController, GoalProvider, Hint
         addStageButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .disabled)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !UserProperty.isGoalCreationOnboardingShown.bool() {
+            UserProperty.isGoalCreationOnboardingShown.setBool(true)
+            
+            let onboardingController = GoalCreationOnboardingViewController()
+            
+            present(onboardingController, animated: true, completion: nil)
+        }
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.updateHintPopover()
