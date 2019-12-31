@@ -21,6 +21,44 @@ public protocol StackViewControllerDelegate: AnyObject {
                              didChangeContentOffsetTo contentOffset: CGPoint)
 }
 
+public protocol StackViewControllerChild {
+    var asViewController: UIViewController { get }
+}
+
+extension UIViewController: StackViewControllerChild {
+    public var asViewController: UIViewController { self }
+}
+
+extension UIView: StackViewControllerChild {
+    public var asViewController: UIViewController {
+        if next as? UIViewController == nil {
+            return WrapperViewController(view: self)
+        } else {
+            return next as! UIViewController
+        }
+    }
+}
+
+final class WrapperViewController: UIViewController {
+    
+    private let wrappedView: UIView
+    
+    init(view: UIView) {
+        wrappedView = view
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        view = wrappedView
+    }
+    
+}
+
 open class StackViewController: UIViewController {
     
     public weak var delegate: StackViewControllerDelegate?
@@ -45,19 +83,20 @@ open class StackViewController: UIViewController {
     
     // MARK: - General methods
     
-    public final func setChild(_ childController: UIViewController, at index: Int) {
+    public final func setChild(_ child: StackViewControllerChild, at index: Int) {
         self.removeChild(at: index)
         
-        self.addChild(childController)
+        self.addChild(child.asViewController)
         
         let insertIndex = self.findInsertIndex(in: self.arrangedViewControllers, for: index)
         
         arrangedViewControllers.insert(ArrangedViewController(index: index,
-                                                              viewController: childController), at: insertIndex)
+                                                              viewController: child.asViewController),
+                                       at: insertIndex)
         
-        self.stackView.insertArrangedSubview(childController.view, at: insertIndex)
-        self.addHeightConstraint(toChild: childController)
-        childController.didMove(toParent: self)
+        self.stackView.insertArrangedSubview(child.asViewController.view, at: insertIndex)
+        self.addHeightConstraint(toChild: child.asViewController)
+        child.asViewController.didMove(toParent: self)
     }
     
     public final func removeChild(at index: Int) {

@@ -157,11 +157,11 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             waterControlConfigurationViewController = segue.destination as? WaterControlConfigurationViewController
             waterControlConfigurationViewController?.mode = .embed
         } else if segue.identifier == "ShowGoalCreation" {
-            guard let controller = segue.destination as? TargetCreationViewController else { return }
+            guard let controller = segue.destination as? GoalCreationViewController else { return }
             controller.setGoal(sender as? Goal, sprintID: sprint.id)
         } else if segue.identifier == "ShowHabitCreation" {
             guard let controller = segue.destination as? HabitCreationViewController else { return }
-            controller.setHabit(sender as? Habit, sprintID: sprint.id)
+            controller.setHabit(sender as? Habit, sprintID: sprint.id, goalID: nil)
         } else if segue.identifier == "ShowHabitsCollection" {
             guard let navigationController = segue.destination as? UINavigationController else { return }
             guard let controller = navigationController.topViewController as? HabitsCollectionViewController else { return }

@@ -125,7 +125,10 @@ final class PrivateServicesAssembly {
         HabitsManager &
         HabitsObserverProvider &
         HabitEntitiesProvider &
-        HabitEntitiesBackgroundProvider = HabitsService(sprintsProvider: sprintsService)
+        HabitEntitiesBackgroundProvider = HabitsService(
+            sprintsProvider: sprintsService,
+            goalsProvider: goalsService
+        )
     
     lazy var goalsService:
         GoalsProvider &

@@ -10,20 +10,20 @@ protocol GoalProvider: class {
     var goal: Goal! { get }
 }
 
-protocol TargetCreationInteractorOutput: class {
+protocol GoalCreationInteractorOutput: class {
     func stagesInserted(at indexes: [Int])
     func stagesRemoved(at indexes: [Int])
     func stagesUpdated(at indexes: [Int])
 }
 
-protocol TargetCreationDataSource: class {
+protocol GoalCreationDataSource: class {
     func stagesCount() -> Int
     func stage(at index: Int) -> Subtask?
 }
 
-final class TargetCreationInteractor {
+final class GoalCreationInteractor {
     
-    weak var output: TargetCreationInteractorOutput?
+    weak var output: GoalCreationInteractorOutput?
     weak var goalProvider: GoalProvider!
     
     let goalsService = ServicesAssembly.shared.goalsService
@@ -35,7 +35,7 @@ final class TargetCreationInteractor {
     
 }
 
-extension TargetCreationInteractor {
+extension GoalCreationInteractor {
     
     func createGoal() -> Goal {
         return Goal(goalID: RandomStringGenerator.randomString(length: 24))
@@ -43,7 +43,7 @@ extension TargetCreationInteractor {
     
 }
 
-extension TargetCreationInteractor {
+extension GoalCreationInteractor {
     
     func addStage(with title: String) {
         let stage = createStage(sortPosition: nextStageSortPosition())
@@ -105,7 +105,7 @@ extension TargetCreationInteractor {
     
 }
 
-extension TargetCreationInteractor: TargetCreationDataSource {
+extension GoalCreationInteractor: GoalCreationDataSource {
     
     func stagesCount() -> Int {
         return sortedStages.count
@@ -117,7 +117,7 @@ extension TargetCreationInteractor: TargetCreationDataSource {
     
 }
 
-fileprivate extension TargetCreationInteractor {
+fileprivate extension GoalCreationInteractor {
     
     func createStage(sortPosition: Int) -> Subtask {
         return Subtask(id: RandomStringGenerator.randomString(length: 24),
@@ -139,7 +139,7 @@ fileprivate extension TargetCreationInteractor {
     
 }
 
-fileprivate extension TargetCreationInteractor {
+fileprivate extension GoalCreationInteractor {
     
     func nextStageSortPosition() -> Int {
         return (sortedStages.last?.sortPosition ?? 0) + 1

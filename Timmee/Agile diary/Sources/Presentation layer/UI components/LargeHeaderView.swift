@@ -53,7 +53,7 @@ class LargeHeaderView: UIView {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
         context.setLineWidth(0.5)
-        context.setStrokeColor(AppTheme.current.colors.backgroundColor.cgColor)
+        context.setStrokeColor(AppTheme.current.colors.mainElementColor.cgColor)
         context.move(to: CGPoint(x: 0, y: rect.maxY - 0.5))
         context.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - 0.5))
         context.strokePath()

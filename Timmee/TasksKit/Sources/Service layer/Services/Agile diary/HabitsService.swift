@@ -16,12 +16,12 @@ public protocol HabitsProvider: class {
 }
 
 public protocol HabitsManager: class {
-    func addHabit(_ habit: Habit, sprintID: String, completion: @escaping (Bool) -> Void)
-    func addHabits(_ habits: [Habit], sprintID: String, completion: @escaping (Bool) -> Void)
+    func addHabit(_ habit: Habit, sprintID: String, goalID: String?, completion: @escaping (Bool) -> Void)
+    func addHabits(_ habits: [Habit], sprintID: String, goalID: String?, completion: @escaping (Bool) -> Void)
     func updateHabit(_ habit: Habit, completion: @escaping (Bool) -> Void)
-    func updateHabit(_ habit: Habit, sprintID: String?, completion: @escaping (Bool) -> Void)
+    func updateHabit(_ habit: Habit, sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void)
     func updateHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void)
-    func updateHabits(_ habits: [Habit], sprintID: String?, completion: @escaping (Bool) -> Void)
+    func updateHabits(_ habits: [Habit], sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void)
     func removeHabit(_ habit: Habit, completion: @escaping (Bool) -> Void)
     func removeHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void)
     func updateHabitsNotificationDates(completion: @escaping () -> Void)
@@ -31,6 +31,7 @@ public protocol HabitsManager: class {
 public protocol HabitsObserverProvider: class {
     func habitsObserver(sprintID: String, day: DayUnit?) -> CacheObserver<Habit>
     func habitsBySprintObserver(excludingSprintWithID sprintID: String) -> CacheObserver<Habit>
+    func habitsByGoalObserver(sprintID: String, goalID: String) -> CacheObserver<Habit>
     func habitsScope(sprintID: String, day: DayUnit?) -> CachedEntitiesObserver<HabitEntity, Habit>
 }
 
@@ -48,9 +49,11 @@ public protocol HabitEntitiesBackgroundProvider: class {
 public final class HabitsService {
     
     private let sprintsProvider: SprintEntitiesProvider
+    private let goalsProvider: GoalEntitiesProvider
     
-    init(sprintsProvider: SprintEntitiesProvider) {
+    init(sprintsProvider: SprintEntitiesProvider, goalsProvider: GoalEntitiesProvider) {
         self.sprintsProvider = sprintsProvider
+        self.goalsProvider = goalsProvider
     }
     
     private func createHabit() -> HabitEntity {
@@ -88,13 +91,14 @@ extension HabitsService: HabitsProvider {
 
 extension HabitsService: HabitsManager {
     
-    public func addHabit(_ habit: Habit, sprintID: String, completion: @escaping (Bool) -> Void) {
-        addHabits([habit], sprintID: sprintID, completion: completion)
+    public func addHabit(_ habit: Habit, sprintID: String, goalID: String?, completion: @escaping (Bool) -> Void) {
+        addHabits([habit], sprintID: sprintID, goalID: goalID, completion: completion)
     }
     
-    public func addHabits(_ habits: [Habit], sprintID: String, completion: @escaping (Bool) -> Void) {
+    public func addHabits(_ habits: [Habit], sprintID: String, goalID: String?, completion: @escaping (Bool) -> Void) {
         Database.localStorage.write({ (context, save) in
             let sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID, context: context)
+            let goal = goalID.flatMap { self.goalsProvider.fetchGoalEntity(id: $0) }
 
             for habit in habits {
                 guard self.fetchHabitEntityInBackground(id: habit.id) == nil else {
@@ -105,6 +109,7 @@ extension HabitsService: HabitsManager {
                 let newHabit = self.createHabit()
                 newHabit.map(from: habit)
                 newHabit.sprint = sprint
+                newHabit.goal = goal
             }
             
             save()
@@ -114,18 +119,18 @@ extension HabitsService: HabitsManager {
     }
     
     public func updateHabit(_ habit: Habit, completion: @escaping (Bool) -> Void) {
-        updateHabit(habit, sprintID: nil, completion: completion)
+        updateHabit(habit, sprintID: nil, goalID: nil, completion: completion)
     }
     
-    public func updateHabit(_ habit: Habit, sprintID: String?, completion: @escaping (Bool) -> Void) {
-        updateHabits([habit], sprintID: sprintID, completion: completion)
+    public func updateHabit(_ habit: Habit, sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void) {
+        updateHabits([habit], sprintID: sprintID, goalID: goalID, completion: completion)
     }
     
     public func updateHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void) {
-        updateHabits(habits, sprintID: nil, completion: completion)
+        updateHabits(habits, sprintID: nil, goalID: nil, completion: completion)
     }
     
-    public func updateHabits(_ habits: [Habit], sprintID: String?, completion: @escaping (Bool) -> Void) {
+    public func updateHabits(_ habits: [Habit], sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void) {
         guard !habits.isEmpty else {
             DispatchQueue.main.async { completion(false) }
             return
@@ -138,8 +143,17 @@ extension HabitsService: HabitsManager {
                 habitEntity.map(from: habit)
                 
                 if let sprintID = sprintID {
-                    habitEntity.sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID,
-                                                                                context: context)
+                    habitEntity.sprint = self.sprintsProvider.fetchSprintEntity(
+                        id: sprintID,
+                        context: context
+                    )
+                }
+                
+                if let goalID = goalID {
+                    habitEntity.goal = self.goalsProvider.fetchGoalEntity(
+                        id: goalID,
+                        context: context
+                    )
                 }
             }
             
@@ -238,6 +252,23 @@ extension HabitsService: HabitsObserverProvider {
         
         let habitsObserver = CacheObserver<Habit>(request: request,
                                                   section: "sprint.number",
+                                                  cacheName: nil,
+                                                  context: context)
+        
+        habitsObserver.setMapping { entity in
+            let entity = entity as! HabitEntity
+            return Habit(habit: entity)
+        }
+        
+        return habitsObserver
+    }
+    
+    public func habitsByGoalObserver(sprintID: String, goalID: String) -> CacheObserver<Habit> {
+        let predicate = NSPredicate(format: "sprint.id = %@ AND goal.id = %@", sprintID, goalID)
+        let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
+        let context = Database.localStorage.readContext
+        let habitsObserver = CacheObserver<Habit>(request: request,
+                                                  section: nil,
                                                   cacheName: nil,
                                                   context: context)
         

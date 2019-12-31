@@ -67,20 +67,22 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     
     var habit: Habit!
     var sprintID: String!
+    var goalID: String!
     
-    var editingMode: TargetAndHabitEditingMode = .full
+    var editingMode: GoalAndHabitEditingMode = .full
     
     private var lastSelectedValue: Habit.Value?
     private var lastSelectedNotificationTime: Date?
     
-    func setHabit(_ habit: Habit?, sprintID: String) {
+    func setHabit(_ habit: Habit?, sprintID: String, goalID: String?) {
         self.habit = habit?.copy ?? interactor.createHabit()
         self.sprintID = sprintID
+        self.goalID = goalID
         self.lastSelectedValue = self.habit.value
         self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date.now
     }
     
-    func setEditingMode(_ mode: TargetAndHabitEditingMode) {
+    func setEditingMode(_ mode: GoalAndHabitEditingMode) {
         self.editingMode = mode
     }
     
@@ -159,7 +161,7 @@ final class HabitCreationViewController: BaseViewController, HintViewTrait {
     @IBAction private func onDone() {
         updateHabitTitle()
         updateHabitLink()
-        habitsService.updateHabit(habit, sprintID: sprintID, completion: { [weak self] success in
+        habitsService.updateHabit(habit, sprintID: sprintID, goalID: goalID, completion: { [weak self] success in
             guard let `self` = self, success else { return }
             if self.editingMode == .full {
                 self.dismiss(animated: true, completion: nil)

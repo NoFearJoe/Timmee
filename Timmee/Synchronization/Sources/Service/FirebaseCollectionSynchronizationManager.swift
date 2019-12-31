@@ -62,6 +62,10 @@ final class FirebaseCollectionSynchronizationManager {
                 (entity as? DictionaryDecodable)?.decode(entityData)
                 addRelationToParent(entity: entity, parentEntityID: parentEntityID, context: context)
                 
+                if let habit = entity as? HabitEntity {
+                    addRelation(habit: habit, goalID: entityData["goalID"] as? String, context: context)
+                }
+                
                 scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
             }
             updatedEntitiesIDs.forEach { id in
@@ -71,6 +75,11 @@ final class FirebaseCollectionSynchronizationManager {
                 let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
                 if cachedEntity.modificationDate < remoteModificationDate {
                     (cachedEntity as? DictionaryDecodable)?.decode(remoteEntityData)
+                    
+                    if let habit = cachedEntity as? HabitEntity {
+                        addRelation(habit: habit, goalID: remoteEntityData["goalID"] as? String, context: context)
+                    }
+                    
                     scheduleNotificationsForInsertedOrUpdatedEntity(entity: cachedEntity)
                 }
             }
@@ -110,6 +119,7 @@ final class FirebaseCollectionSynchronizationManager {
     
     private func addRelationToParent(entity: NSManagedObject?, parentEntityID: String?, context: NSManagedObjectContext) {
         guard let entity = entity, let parentEntityID = parentEntityID else { return }
+        
         switch entity {
         case let subtask as SubtaskEntity:
             subtask.goal = GoalEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
@@ -121,6 +131,12 @@ final class FirebaseCollectionSynchronizationManager {
             waterControl.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
         default: return
         }
+    }
+    
+    private func addRelation(habit: HabitEntity, goalID: String?, context: NSManagedObjectContext) {
+        guard let goalID = goalID else { return }
+        
+        habit.goal = GoalEntity.request().execute(context: context).first(where: { $0.id == goalID })
     }
     
     private func scheduleNotificationsForInsertedOrUpdatedEntity<T: NSManagedObject>(entity: T?) {

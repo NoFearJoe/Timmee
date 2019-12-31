@@ -45,7 +45,7 @@ final class SprintContentViewController: UIViewController {
     weak var transitionHandler: UIViewController?
     weak var delegate: SprintContentViewControllerDelegate?
     
-    @IBOutlet private var contentView: UITableView!
+    private var contentView: UITableView!
     
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
@@ -62,12 +62,11 @@ final class SprintContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.contentInset.top = 10
-        contentView.contentInset.bottom = 64 + 16
-        contentView.estimatedRowHeight = 56
-        contentView.rowHeight = UITableView.automaticDimension
+        
+        setupContentView()
         setupPlaceholder()
         setupCurrentCacheObserver()
+        
         targetCellActionsProvider.onDelete = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             self.goalsService.removeGoal(goal, completion: { _ in })
@@ -76,6 +75,11 @@ final class SprintContentViewController: UIViewController {
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
             self.habitsService.removeHabit(habit, completion: { _ in })
             HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
+        }
+        
+        cacheAdapter.onReloadFail = { [weak self] in
+            self?.setupContentView()
+            self?.contentView.reloadData()
         }
     }
     
@@ -157,6 +161,7 @@ private extension SprintContentViewController {
     }
     
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
+        goalsCacheObserver = nil
         habitsCacheObserver = habitsService.habitsObserver(sprintID: sprintID, day: nil)
         habitsCacheObserver?.setActions(
             onInitialFetch: nil,
@@ -173,6 +178,7 @@ private extension SprintContentViewController {
     }
     
     func setupGoalsCacheObserver(forSection section: SprintSection, sprintID: String) {
+        habitsCacheObserver = nil
         goalsCacheObserver = goalsService.goalsObserver(sprintID: sprintID)
         goalsCacheObserver?.setActions(
             onInitialFetch: nil,
@@ -186,6 +192,50 @@ private extension SprintContentViewController {
             onBatchUpdatesCompleted: nil)
         goalsCacheObserver?.setSubscriber(cacheAdapter)
         goalsCacheObserver?.fetchInitialEntities()
+    }
+    
+}
+
+private extension SprintContentViewController {
+    
+    func setupContentView() {
+        let contentView = UITableView()
+        
+        self.contentView?.removeFromSuperview()
+        
+        view.addSubview(contentView)
+        
+        if #available(iOS 11.0, *) {
+            contentView.allEdges().to(view)
+        } else {
+            contentView.allEdges().to(view)
+        }
+        
+        contentView.delegate = self
+        contentView.dataSource = self
+        
+        contentView.contentInset.top = 10
+        contentView.contentInset.bottom = 64 + 16
+        contentView.estimatedRowHeight = 56
+        contentView.rowHeight = UITableView.automaticDimension
+        contentView.showsVerticalScrollIndicator = false
+        contentView.tableFooterView = UIView()
+        contentView.separatorStyle = .none
+        
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        
+        contentView.register(
+            SprintCreationHabitCell.self,
+            forCellReuseIdentifier: SprintCreationHabitCell.reuseIdentifier
+        )
+        contentView.register(
+            SprintCreationTargetCell.self,
+            forCellReuseIdentifier: SprintCreationTargetCell.reuseIdentifier
+        )
+        
+        self.contentView = contentView
+        
+        cacheAdapter.tableView = contentView
     }
     
 }

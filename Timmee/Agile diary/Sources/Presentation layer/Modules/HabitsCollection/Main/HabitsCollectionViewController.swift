@@ -167,7 +167,11 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
             return newHabit
         }
         
-        ServicesAssembly.shared.habitsService.addHabits(newHabits, sprintID: sprintID) { [weak self] _ in
+        ServicesAssembly.shared.habitsService.addHabits(
+            newHabits,
+            sprintID: sprintID,
+            goalID: nil
+        ) { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         }
     }

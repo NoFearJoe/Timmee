@@ -34,6 +34,7 @@ public protocol GoalsObserverProvider: class {
 
 public protocol GoalEntitiesProvider: class {
     func fetchGoalEntity(id: String) -> GoalEntity?
+    func fetchGoalEntity(id: String, context: NSManagedObjectContext) -> GoalEntity?
 }
 
 public protocol GoalEntitiesBackgroundProvider: class {
@@ -173,7 +174,7 @@ extension GoalsService: GoalsManager {
 extension GoalsService: GoalsObserverProvider {
     
     public func goalsObserver(sprintID: String) -> CacheObserver<Goal> {
-        let predicate = NSPredicate(format: "sprint.id = %@", sprintID)
+        let predicate = NSPredicate(format: "sprint.id = %@ AND title != nil AND title != \"\"", sprintID)
         let request = GoalsService.allGoalsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequestWithResult
         let context = Database.localStorage.readContext
         let goalsObserver = CacheObserver<Goal>(request: request,
@@ -190,7 +191,7 @@ extension GoalsService: GoalsObserverProvider {
     }
     
     public func goalsScope(sprintID: String) -> CachedEntitiesObserver<GoalEntity, Goal> {
-        let predicate = NSPredicate(format: "sprint.id = %@", sprintID)
+        let predicate = NSPredicate(format: "sprint.id = %@ AND title != nil AND title != \"\"", sprintID)
         let request = GoalsService.allGoalsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
         let context = Database.localStorage.readContext
         
@@ -207,6 +208,10 @@ extension GoalsService: GoalEntitiesProvider {
     
     public func fetchGoalEntity(id: String) -> GoalEntity? {
         return GoalsService.goalFetchRequest(id: id).execute().first
+    }
+    
+    public func fetchGoalEntity(id: String, context: NSManagedObjectContext) -> GoalEntity? {
+        GoalsService.goalFetchRequest(id: id).execute(context: context).first
     }
     
 }

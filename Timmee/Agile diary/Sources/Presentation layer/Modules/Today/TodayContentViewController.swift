@@ -140,7 +140,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     habit.setDone(isChecked, at: self.currentDate)
-                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, completion: { _ in })/*{ [weak self] _ in
+                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, goalID: nil, completion: { _ in })/*{ [weak self] _ in
                         guard let self = self else { return }
                         self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
                     })*/

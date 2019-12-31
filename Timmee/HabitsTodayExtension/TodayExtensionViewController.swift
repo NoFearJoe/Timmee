@@ -72,7 +72,7 @@ extension TodayExtensionViewController: UITableViewDataSource, UITableViewDelega
             cell.onChangeCheckedState = { [unowned self] isChecked in
                 habit.setDone(isChecked, at: Date.now)
                 guard let sprint = self.sprint else { return }
-                self.habitsService.updateHabit(habit, sprintID: sprint.id, completion: { [weak self] _ in
+                self.habitsService.updateHabit(habit, sprintID: sprint.id, goalID: nil, completion: { [weak self] _ in
                     self?.reloadHabits()
                 })
             }

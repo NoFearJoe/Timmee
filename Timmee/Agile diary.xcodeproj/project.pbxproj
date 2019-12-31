@@ -56,8 +56,8 @@
 		0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
 		0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
 		0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
-		0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
-		0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0C14D5372123F826004C0559 /* GoalCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* GoalCreationViewController.swift */; };
+		0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */; };
 		0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */; };
 		0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */; };
 		0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
@@ -134,7 +134,7 @@
 		0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */; };
 		0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
 		0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
-		0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */; };
+		0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */; };
 		0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E3212183A9004C0559 /* AppDelegate.swift */; };
 		0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */; };
 		0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */; };
@@ -196,7 +196,7 @@
 		0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
 		0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */; };
 		0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328D2157709900B9201A /* BaseChartCell.swift */; };
-		0CB673AF21A52C3900178EB1 /* TargetCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* TargetCreationViewController.swift */; };
+		0CB673AF21A52C3900178EB1 /* GoalCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* GoalCreationViewController.swift */; };
 		0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */; };
@@ -346,6 +346,8 @@
 		96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */; };
 		96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
 		96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
+		96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */; };
+		96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
 		96CDC72E22E39095009395B9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
 		96CDC73122E39095009395B9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CDC73022E39095009395B9 /* TodayViewController.swift */; };
@@ -363,6 +365,10 @@
 		96CDC74B22E450CC009395B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
 		96CDC74C22E450D0009395B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
 		96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
+		96DDBDB123BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
+		96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
+		96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */; };
+		96DDBDB523BB4915007AB33B /* GoalCreationStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */; };
 		96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
@@ -483,8 +489,8 @@
 		0C14D5072122B1A4004C0559 /* SprintSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintSection.swift; sourceTree = "<group>"; };
 		0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TasksKitConfiguration.plist; sourceTree = "<group>"; };
 		0C14D50C2122E232004C0559 /* List+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Sprint.swift"; sourceTree = "<group>"; };
-		0C14D5362123F826004C0559 /* TargetCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationViewController.swift; sourceTree = "<group>"; };
-		0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCreationInteractor.swift; sourceTree = "<group>"; };
+		0C14D5362123F826004C0559 /* GoalCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationViewController.swift; sourceTree = "<group>"; };
+		0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationInteractor.swift; sourceTree = "<group>"; };
 		0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersConfigurator.swift; sourceTree = "<group>"; };
 		0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationConfigurator.swift; sourceTree = "<group>"; };
 		0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsViewController.swift; sourceTree = "<group>"; };
@@ -618,6 +624,7 @@
 		96BE83D5217C9C8D00CDECAF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreInitialScreenViewController.swift; sourceTree = "<group>"; };
 		96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreInitialScreenViewController.xib; sourceTree = "<group>"; };
+		96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionContainer+AppTheme.swift"; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
 		96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterControlTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CDC73022E39095009395B9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -628,6 +635,8 @@
 		96CDC74022E390E0009395B9 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CDC74922E39982009395B9 /* WaterControlTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterControlTodayExtension.entitlements; sourceTree = "<group>"; };
 		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
+		96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationStageCell.swift; sourceTree = "<group>"; };
+		96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationStagesView.swift; sourceTree = "<group>"; };
 		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
@@ -925,9 +934,10 @@
 		0C14D4E8212195FE004C0559 /* Goal creation */ = {
 			isa = PBXGroup;
 			children = (
+				96C55A2B23BB3FF00091DC19 /* Views */,
 				961AF5B423AF8EFB00DCD5B9 /* Onboardings */,
-				0C14D55D2124423A004C0559 /* TargetCreationInteractor.swift */,
-				0C14D5362123F826004C0559 /* TargetCreationViewController.swift */,
+				0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */,
+				0C14D5362123F826004C0559 /* GoalCreationViewController.swift */,
 			);
 			path = "Goal creation";
 			sourceTree = "<group>";
@@ -958,6 +968,7 @@
 		0C14D4EF21219696004C0559 /* UI components */ = {
 			isa = PBXGroup;
 			children = (
+				96C55A2723BB3DEC0091DC19 /* Extensions */,
 				0C14D4F02121974E004C0559 /* LargeHeaderView.swift */,
 				0C14D4F221219FF4004C0559 /* Switcher.swift */,
 				0C8D075F212BE5B5008122A6 /* Checkbox.swift */,
@@ -1466,6 +1477,23 @@
 			path = PreInitialScreen;
 			sourceTree = "<group>";
 		};
+		96C55A2723BB3DEC0091DC19 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		96C55A2B23BB3FF00091DC19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */,
+				96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		96CAD81A216D39A4005D707C /* Extended charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1891,7 +1919,7 @@
 			files = (
 				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
-				0C14D55E2124423A004C0559 /* TargetCreationInteractor.swift in Sources */,
+				0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */,
 				96888C1D2217DFE800479667 /* AddButton.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
 				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
@@ -1899,6 +1927,7 @@
 				967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */,
 				0C86E4F522DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
+				96DDBDB123BB474B007AB33B /* GoalCreationStageCell.swift in Sources */,
 				969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
@@ -1940,6 +1969,7 @@
 				96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
+				96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
@@ -1997,7 +2027,7 @@
 				0CC405E321EE027D0069C6C5 /* EmailValidator.swift in Sources */,
 				0CB2EDF2214F971700AA4FB8 /* PinAuthenticationViewController.swift in Sources */,
 				967C328E2157709900B9201A /* BaseChartCell.swift in Sources */,
-				0C14D5372123F826004C0559 /* TargetCreationViewController.swift in Sources */,
+				0C14D5372123F826004C0559 /* GoalCreationViewController.swift in Sources */,
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
 				0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
 				0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */,
@@ -2007,6 +2037,7 @@
 				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
+				96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
 				0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */,
 				0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */,
@@ -2027,7 +2058,7 @@
 				0C06E94822EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */,
 				0CB6736E21A52C3900178EB1 /* CalendarDayCell.swift in Sources */,
 				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
-				0CB6737021A52C3900178EB1 /* TargetCreationInteractor.swift in Sources */,
+				0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */,
 				0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */,
 				961063242242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
@@ -2072,6 +2103,7 @@
 				0CB6738821A52C3900178EB1 /* ExtendedBarChartView.swift in Sources */,
 				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
 				0CACF2D422241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
+				96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */,
 				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
 				0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
@@ -2085,6 +2117,7 @@
 				0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
+				96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
 				0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
@@ -2138,7 +2171,7 @@
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
 				0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */,
-				0CB673AF21A52C3900178EB1 /* TargetCreationViewController.swift in Sources */,
+				0CB673AF21A52C3900178EB1 /* GoalCreationViewController.swift in Sources */,
 				0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */,
 				0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,
@@ -2151,6 +2184,7 @@
 				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
+				96DDBDB523BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */,
 				0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */,
 			);

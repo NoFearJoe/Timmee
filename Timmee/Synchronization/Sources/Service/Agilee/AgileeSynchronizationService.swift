@@ -111,32 +111,6 @@ private extension AgileeSynchronizationService {
                 sprintSnapshot?.documents.forEach { sprintSnapshot in
                     guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
                     
-                    // Habits
-                    let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
-                    
-                    dispatchGroup.enter() // Enter habits document
-                    habitsCollection.getDocuments(completion: { [weak self] habitsSnapshot, error in
-                        defer { dispatchGroup.leave() }
-                        
-                        guard
-                            let self = self,
-                            error == nil,
-                            let data = habitsSnapshot?.documents.map({ $0.data() })
-                        else { return }
-                        
-                        // Habits save
-                        synchronizationActions.append({ context in
-                            let deletedHabitIDs = self.collectionSynchronizationManager
-                                .syncCollection(context: context,
-                                                data: data,
-                                                entityType: HabitEntity.self,
-                                                parentEntityID: sprintID)
-                            if !deletedHabitIDs.isEmpty {
-                                deletedEntities.habits.append((sprintID, deletedHabitIDs))
-                            }
-                        })
-                    })
-                    
                     // Goals
                     let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
                     
@@ -190,6 +164,32 @@ private extension AgileeSynchronizationService {
                                 })
                             })
                         }
+                    })
+                    
+                    // Habits
+                    let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
+                    
+                    dispatchGroup.enter() // Enter habits document
+                    habitsCollection.getDocuments(completion: { [weak self] habitsSnapshot, error in
+                        defer { dispatchGroup.leave() }
+                        
+                        guard
+                            let self = self,
+                            error == nil,
+                            let data = habitsSnapshot?.documents.map({ $0.data() })
+                        else { return }
+                        
+                        // Habits save
+                        synchronizationActions.append({ context in
+                            let deletedHabitIDs = self.collectionSynchronizationManager
+                                .syncCollection(context: context,
+                                                data: data,
+                                                entityType: HabitEntity.self,
+                                                parentEntityID: sprintID)
+                            if !deletedHabitIDs.isEmpty {
+                                deletedEntities.habits.append((sprintID, deletedHabitIDs))
+                            }
+                        })
                     })
                     
                     // Water controls

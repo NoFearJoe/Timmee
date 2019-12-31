@@ -145,6 +145,7 @@
 		96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE8398217519A600CDECAF /* SprintEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Mapping.swift"; sourceTree = "<group>"; };
+		96C55A2123B7429F0091DC19 /* Timmee7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee7.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -800,6 +801,7 @@
 		0CE018032077B24200633EFF /* Timmee.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				96C55A2123B7429F0091DC19 /* Timmee7.xcdatamodel */,
 				0C4082E622E6E76A00D899A9 /* Timmee6.xcdatamodel */,
 				9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */,
 				960164952228676700E30580 /* Timmee4.xcdatamodel */,
@@ -807,7 +809,7 @@
 				0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */,
 				0CE018042077B24200633EFF /* Timmee.xcdatamodel */,
 			);
-			currentVersion = 0C4082E622E6E76A00D899A9 /* Timmee6.xcdatamodel */;
+			currentVersion = 96C55A2123B7429F0091DC19 /* Timmee7.xcdatamodel */;
 			path = Timmee.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

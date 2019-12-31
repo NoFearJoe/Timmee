@@ -29,6 +29,7 @@ open class AddButton: UIButton {
     open func setupAppearance() {
         tintColor = .white
         adjustsImageWhenHighlighted = false
+        backgroundColor = nil
         setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
         setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .highlighted)
         setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .selected)

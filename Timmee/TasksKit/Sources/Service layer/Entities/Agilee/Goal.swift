@@ -21,8 +21,10 @@ public class Goal: Copyable {
     public var isDone: Bool
     public let creationDate: Date
     
+    public var habits: [Habit] = []
+
     public var stages: [Subtask] = []
-    
+        
     public init(goal: GoalEntity) {
         id = goal.id ?? ""
         title = goal.title ?? ""
@@ -31,6 +33,7 @@ public class Goal: Copyable {
         creationDate = goal.creationDate! as Date
         
         stages = (Array(goal.stages as? Set<SubtaskEntity> ?? Set())).map { Subtask(entity: $0) }
+        habits = (Array(goal.habits as? Set<HabitEntity> ?? Set())).map { Habit(habit: $0) }
     }
     
     public init(id: String,
@@ -61,6 +64,7 @@ public class Goal: Copyable {
                         isDone: isDone,
                         creationDate: creationDate)
         goal.stages = stages
+        goal.habits = habits
         return goal
     }
     
@@ -85,7 +89,8 @@ extension Goal: CustomEquatable {
             title == item.title &&
             note == item.note &&
             isDone == item.isDone &&
-            stages == item.stages
+            stages == item.stages &&
+            habits == item.habits
     }
     
 }

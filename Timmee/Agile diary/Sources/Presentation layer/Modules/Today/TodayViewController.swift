@@ -130,13 +130,13 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             activityViewController = segue.destination as? ActivityViewController
         } else if segue.identifier == "ShowTargetEditor" {
             segue.destination.presentationController?.delegate = self
-            guard let controller = segue.destination as? TargetCreationViewController else { return }
+            guard let controller = segue.destination as? GoalCreationViewController else { return }
             controller.setGoal(sender as? Goal, sprintID: sprint.id)
             controller.setEditingMode(.short)
         } else if segue.identifier == "ShowHabitEditor" {
             segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? HabitCreationViewController else { return }
-            controller.setHabit(sender as? Habit, sprintID: sprint.id)
+            controller.setHabit(sender as? Habit, sprintID: sprint.id, goalID: nil)
             controller.setEditingMode(.short)
         } else if segue.identifier == "ShowSettings" {
             segue.destination.presentationController?.delegate = self
