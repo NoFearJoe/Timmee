@@ -35,6 +35,7 @@ final class StageView: UIView {
     
     func setupAppearance() {
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        titleLabel.font = AppTheme.current.fonts.regular(16)
         checkbox.setNeedsDisplay()
     }
     

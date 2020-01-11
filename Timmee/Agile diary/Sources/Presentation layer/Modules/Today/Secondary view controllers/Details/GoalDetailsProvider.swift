@@ -8,20 +8,26 @@
 
 import UIComponents
 
-final class GoalDetailsProvider: DetailModuleProvider {
+final class GoalDetailsProvider: NSObject, DetailModuleProvider {
     
     var onEdit: (() -> Void)?
+    var onSelectHabit: ((Habit) -> Void)?
     var onAddDiaryEntry: (() -> Void)?
     
     weak var holderViewController: UIViewController?
     
     private let goal: Goal
+    private let currentDate: Date
     
     private let goalsService = ServicesAssembly.shared.goalsService
+    private let habitsService = ServicesAssembly.shared.habitsService
     private let stagesService = ServicesAssembly.shared.subtasksService
     
-    init(goal: Goal) {
+    init(goal: Goal, currentDate: Date) {
         self.goal = goal
+        self.currentDate = currentDate
+        
+        super.init()
     }
     
     func loadContent(completion: @escaping (Error?) -> Void) {
@@ -30,6 +36,29 @@ final class GoalDetailsProvider: DetailModuleProvider {
     
     func reloadContent() {
         let contentView = stackViewContainer
+        
+        // Habits
+        if !goal.habits.isEmpty {
+            let emptyView = UIView()
+            emptyView.backgroundColor = AppTheme.current.colors.foregroundColor
+            emptyView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            contentView.addView(emptyView)
+            
+            let habitsTableView = AutoSizingTableView(frame: .zero, style: .plain)
+            habitsTableView.clipsToBounds = false
+            habitsTableView.separatorStyle = .none
+            habitsTableView.showsVerticalScrollIndicator = false
+            habitsTableView.delegate = self
+            habitsTableView.dataSource = self
+            habitsTableView.register(TodayHabitCell.self, forCellReuseIdentifier: TodayHabitCell.identifier)
+            habitsTableView.estimatedRowHeight = 56
+            habitsTableView.rowHeight = UITableView.automaticDimension
+            
+            let habitsContainer = DetailView(title: "habits".localized, detailView: habitsTableView)
+            habitsContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
+            habitsContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+            contentView.addView(habitsContainer)
+        }
         
         // Stages
         let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition })
@@ -280,6 +309,35 @@ final class GoalDetailsProvider: DetailModuleProvider {
         goalsService.updateGoal(goal, completion: { [weak self] _ in
             self?.holderViewController?.dismiss(animated: true, completion: nil)
         })
+    }
+    
+}
+
+extension GoalDetailsProvider: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return goal.habits.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TodayHabitCell.identifier, for: indexPath) as! TodayHabitCell
+        
+        let habit = goal.habits[indexPath.row]
+        cell.configure(habit: habit, currentDate: currentDate)
+        cell.setFlat(true)
+        cell.setHoriznotalInsets(0)
+        cell.onChangeCheckedState = { [unowned self] isChecked in
+            habit.setDone(isChecked, at: self.currentDate)
+            self.habitsService.updateHabit(habit, completion: { _ in })
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let habit = goal.habits[indexPath.row]
+        
+        onSelectHabit?(habit)
     }
     
 }

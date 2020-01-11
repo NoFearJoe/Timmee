@@ -29,7 +29,7 @@ extension HabitEntity: DictionaryEncodable {
         value.map { optionalFields["value"] = $0 }
         note.map { optionalFields["note"] = $0 }
         dayTime.map { optionalFields["dayTime"] = $0 }
-        goal.map { optionalFields["goalID"] = $0 }
+        goal?.id.map { optionalFields["goalID"] = $0 }
         
         return requiredFields.merging(optionalFields, uniquingKeysWith: { old, new in new })
     }

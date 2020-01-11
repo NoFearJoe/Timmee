@@ -12,46 +12,54 @@ import UIComponents
 
 final class TodayGoalCell: SwipeTableViewCell {
     
-    var onChangeCheckedState: ((Bool, Subtask) -> Void)?
+    static let identifier = "TodayGoalCell"
     
-    @IBOutlet private var containerView: UIView!
-    @IBOutlet private var statusLabel: UILabel!
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var noteExistanceIconView: UIImageView!
-    @IBOutlet private var stagesTitleLabel: UILabel!
-    @IBOutlet private var stagesContainer: UIView!
+    var onChangeHabitCheckedState: ((Bool, Habit) -> Void)?
+    var onChangeStageCheckedState: ((Bool, Subtask) -> Void)?
     
-    @IBOutlet private var noteExistanceIconViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet private var noteExistanceIconViewLeadingConstraint: NSLayoutConstraint!
+    private let containerView = UIView()
+    private let contentStackView = UIStackView()
     
-    @IBOutlet private var statusLabelBottomConstraint: NSLayoutConstraint!
+    private let statusLabel = UILabel()
     
-    @IBOutlet private var stagesTitleLabelHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private var stagesTitleLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet private var stagesTitleLabelBottomConstraint: NSLayoutConstraint!
+    private let titleLabel = UILabel()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        containerView.layer.cornerRadius = 8
-        containerView.configureShadow(radius: 4, opacity: 0.1)
-        titleLabel.font = AppTheme.current.fonts.medium(18)
-        stagesTitleLabel.text = "stages".localized
-        stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
+    private let habitsTitleLabel = UILabel()
+    private let habitsContainer = UIStackView()
+    
+    private let stagesTitleLabel = UILabel()
+    private let stagesContainer = UIView()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupViews()
+        setupLayout()
     }
     
-    func configure(goal: Goal) {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(goal: Goal, currentDate: Date) {
         setupAppearance()
+                
         containerView.alpha = goal.isDone ? AppTheme.current.style.alpha.inactive : AppTheme.current.style.alpha.enabled
+                
         statusLabel.text = goal.isDone ? "completed".localized : nil
-        statusLabelBottomConstraint.constant = goal.isDone ? 0 : 6
+        statusLabel.isHidden = !goal.isDone
+        
         titleLabel.text = goal.title
-        noteExistanceIconView.isHidden = goal.note.isEmpty
-        noteExistanceIconViewWidthConstraint.constant = goal.note.isEmpty ? 0 : 20
-        noteExistanceIconViewLeadingConstraint.constant = goal.note.isEmpty ? 0 : 8
+        
+        habitsTitleLabel.isHidden = goal.habits.isEmpty
+        habitsContainer.isHidden = goal.habits.isEmpty
+        
+        addHabitViews(habits: goal.habits, currentDate: currentDate)
+        
+        stagesTitleLabel.isHidden = goal.stages.isEmpty
+        stagesContainer.isHidden = goal.stages.isEmpty
+        
         addStageViews(goal: goal)
-        stagesTitleLabelHeightConstraint.constant = goal.stages.isEmpty ? 0 : 16
-        stagesTitleLabelTopConstraint.constant = goal.stages.isEmpty ? 0 : 8
-        stagesTitleLabelBottomConstraint.constant = goal.stages.isEmpty ? 0 : 4
     }
     
     private func addStageViews(goal: Goal) {
@@ -64,7 +72,7 @@ final class TodayGoalCell: SwipeTableViewCell {
             stageView.isChecked = stage.isDone
             stageView.setupAppearance()
             stageView.onChangeCheckedState = { [unowned self] isChecked in
-                self.onChangeCheckedState?(isChecked, stage)
+                self.onChangeStageCheckedState?(isChecked, stage)
             }
             stagesContainer.addSubview(stageView)
             if stages.count == 1 {
@@ -83,15 +91,83 @@ final class TodayGoalCell: SwipeTableViewCell {
         }
     }
     
+    private func addHabitViews(habits: [Habit], currentDate: Date) {
+        habitsContainer.arrangedSubviews.forEach {
+            habitsContainer.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+        
+        habits
+            .sorted { !$0.isDone(at: currentDate) && $1.isDone(at: currentDate) }
+            .prefix(3)
+            .forEach { habit in
+            let stageView = StageView.loadedFromNib()
+            
+            stageView.title = habit.title
+            stageView.isChecked = habit.isDone(at: currentDate)
+            
+            stageView.setupAppearance()
+            
+            stageView.onChangeCheckedState = { [unowned self] isChecked in
+                self.onChangeHabitCheckedState?(isChecked, habit)
+            }
+                        
+            habitsContainer.addArrangedSubview(stageView)
+        }
+    }
+    
     private func setupAppearance() {
         containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         statusLabel.textColor = AppTheme.current.colors.mainElementColor
         statusLabel.font = AppTheme.current.fonts.medium(13)
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
         titleLabel.font = AppTheme.current.fonts.medium(18)
+        habitsTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
+        habitsTitleLabel.font = AppTheme.current.fonts.regular(14)
         stagesTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
-        noteExistanceIconView.tintColor = AppTheme.current.colors.inactiveElementColor
+    }
+    
+}
+
+private extension TodayGoalCell {
+    
+    func setupViews() {
+        contentView.addSubview(containerView)
+        containerView.addSubview(contentStackView)
+        
+        contentStackView.addArrangedSubview(statusLabel)
+        contentStackView.addArrangedSubview(titleLabel)
+        contentStackView.addArrangedSubview(habitsTitleLabel)
+        contentStackView.addArrangedSubview(habitsContainer)
+        contentStackView.addArrangedSubview(stagesTitleLabel)
+        contentStackView.addArrangedSubview(stagesContainer)
+        
+        contentStackView.axis = .vertical
+        contentStackView.spacing = 4
+        if #available(iOS 11.0, *) {
+            contentStackView.setCustomSpacing(6, after: statusLabel)
+        }
+        
+        backgroundColor = .clear
+        selectionStyle = .none
+        
+        containerView.layer.cornerRadius = 8
+        containerView.configureShadow(radius: 4, opacity: 0.05)
+        
+        titleLabel.font = AppTheme.current.fonts.medium(18)
+        
+        habitsTitleLabel.text = "habits".localized
+        
+        habitsContainer.axis = .vertical
+        habitsContainer.spacing = 2
+        
+        stagesTitleLabel.text = "stages".localized
+    }
+    
+    func setupLayout() {
+        [containerView.leading(15), containerView.trailing(15), containerView.top(6), containerView.bottom(6)].toSuperview()
+        contentStackView.allEdges(8).toSuperview()
     }
     
 }

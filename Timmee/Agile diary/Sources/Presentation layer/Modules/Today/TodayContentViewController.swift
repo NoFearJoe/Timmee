@@ -74,6 +74,8 @@ final class TodayContentViewController: UIViewController, AlertInput {
         contentView.contentInset.bottom = 64 + 16
         contentView.estimatedRowHeight = 56
         contentView.rowHeight = UITableView.automaticDimension
+        contentView.register(TodayHabitCell.self, forCellReuseIdentifier: TodayHabitCell.identifier)
+        contentView.register(TodayGoalCell.self, forCellReuseIdentifier: TodayGoalCell.identifier)
         contentView.register(TableHeaderViewWithTitle.self, forHeaderFooterViewReuseIdentifier: "Header")
         
         setupPlaceholder()
@@ -134,9 +136,11 @@ extension TodayContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch section.itemsKind {
         case .habit:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayHabitCell", for: indexPath) as! TodayHabitCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: TodayHabitCell.identifier, for: indexPath) as! TodayHabitCell
             if let habit = habitsCacheObserver?.item(at: indexPath) {
                 cell.configure(habit: habit, currentDate: currentDate)
+                cell.setFlat(false)
+                cell.setHoriznotalInsets(15)
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     habit.setDone(isChecked, at: self.currentDate)
@@ -148,11 +152,17 @@ extension TodayContentViewController: UITableViewDataSource {
             }
             return cell
         case .goal:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TodayGoalCell", for: indexPath) as! TodayGoalCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: TodayGoalCell.identifier, for: indexPath) as! TodayGoalCell
             if let goal = goalsCacheObserver?.item(at: indexPath) {
-                cell.configure(goal: goal)
+                cell.configure(goal: goal, currentDate: self.currentDate)
                 cell.delegate = targetCellActionsProvider
-                cell.onChangeCheckedState = { [unowned self] isChecked, stage in
+                
+                cell.onChangeHabitCheckedState = { [unowned self] isChecked, habit in
+                    habit.setDone(isChecked, at: self.currentDate)
+                    self.habitsService.updateHabit(habit, completion: { _ in })
+                }
+                
+                cell.onChangeStageCheckedState = { [unowned self] isChecked, stage in
                     stage.isDone = isChecked
                     self.stagesService.updateSubtask(stage, completion: nil)
                 }
@@ -227,7 +237,7 @@ extension TodayContentViewController: UITableViewDelegate {
             self.transitionHandler?.present(navigationController, animated: true, completion: nil)
         case .goal:
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
-            let goalDetailsProvider = GoalDetailsProvider(goal: goal)
+            let goalDetailsProvider = GoalDetailsProvider(goal: goal, currentDate: currentDate)
             let goalDetailsViewController = DetailsBaseViewController(content: goalDetailsProvider)
             let navigationController = makeNavigationController(root: goalDetailsViewController)
             
@@ -236,6 +246,11 @@ extension TodayContentViewController: UITableViewDelegate {
             goalDetailsProvider.onEdit = { [unowned self, unowned navigationController] in
                 navigationController.dismiss(animated: true, completion: {
                     self.transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: goal)
+                })
+            }
+            goalDetailsProvider.onSelectHabit = { [unowned self, unowned navigationController] habit in
+                navigationController.dismiss(animated: true, completion: {
+                    self.transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: habit)
                 })
             }
             goalDetailsProvider.onAddDiaryEntry = { [unowned self, unowned navigationController] in

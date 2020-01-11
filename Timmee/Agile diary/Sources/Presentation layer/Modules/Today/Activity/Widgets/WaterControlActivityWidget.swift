@@ -26,7 +26,7 @@ final class WaterControlActivityWidget: UIViewController {
     }
     
     @IBOutlet private var drinkButtonsContainer: UIStackView!
-    private let drink100mlButton = AddWaterView(title: "+100ml".localized, image: UIImage(imageLiteralResourceName: "glass100ml"))
+    private let drink100mlButton = AddWaterView(title: "+100m789l".localized, image: UIImage(imageLiteralResourceName: "glass100ml"))
     private let drink200mlButton = AddWaterView(title: "+200ml".localized, image: UIImage(imageLiteralResourceName: "glass200ml"))
     private let drink300mlButton = AddWaterView(title: "+300ml".localized, image: UIImage(imageLiteralResourceName: "glass300ml"))
     
