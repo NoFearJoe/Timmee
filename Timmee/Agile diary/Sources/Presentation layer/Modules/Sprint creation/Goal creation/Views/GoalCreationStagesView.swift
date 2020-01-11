@@ -31,6 +31,20 @@ final class GoalCreationStagesView: UIView {
         fatalError()
     }
     
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        guard keyPath == "contentSize" else { return }
+        guard let contentSize = change?[.newKey] as? CGSize else { return }
+        
+        stagesTableView.contentInset.top = contentSize.height > 0 ? 8 : 0
+    }
+    
+    deinit {
+        stagesTableView.removeObserver(self, forKeyPath: "contentSize")
+    }
+    
     func setupAppearance() {
         stageTextField.font = AppTheme.current.fonts.medium(17)
         stageTextField.textColor = AppTheme.current.colors.activeElementColor
@@ -71,10 +85,16 @@ private extension GoalCreationStagesView {
         stagesTableView.tableFooterView = UIView()
         stagesTableView.longPressReorderDelegate = self
         
+        if #available(iOS 11.0, *) {
+            stagesTableView.contentInsetAdjustmentBehavior = .never
+        }
+        
         stagesTableView.register(
             GoalCreationStageCell.self,
             forCellReuseIdentifier: GoalCreationStageCell.reuseIdentifier
         )
+        
+        stagesTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
     
     func setupStageTextField() {

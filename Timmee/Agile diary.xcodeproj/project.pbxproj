@@ -369,6 +369,8 @@
 		96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
 		96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */; };
 		96DDBDB523BB4915007AB33B /* GoalCreationStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */; };
+		96DDBDB923BB77C1007AB33B /* ShortHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB823BB77C1007AB33B /* ShortHabitCell.swift */; };
+		96DDBDBA23BB77C1007AB33B /* ShortHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB823BB77C1007AB33B /* ShortHabitCell.swift */; };
 		96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
@@ -637,6 +639,7 @@
 		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
 		96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationStageCell.swift; sourceTree = "<group>"; };
 		96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationStagesView.swift; sourceTree = "<group>"; };
+		96DDBDB823BB77C1007AB33B /* ShortHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortHabitCell.swift; sourceTree = "<group>"; };
 		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
@@ -979,6 +982,7 @@
 				96888C1C2217DFE800479667 /* AddButton.swift */,
 				96888C1F2217E1BD00479667 /* AddMenuButton.swift */,
 				0C52A0DA2243792700D50D1B /* MoodChartView.swift */,
+				96DDBDB823BB77C1007AB33B /* ShortHabitCell.swift */,
 			);
 			path = "UI components";
 			sourceTree = "<group>";
@@ -2016,6 +2020,7 @@
 				0CE81611235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
+				96DDBDB923BB77C1007AB33B /* ShortHabitCell.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				0C06E95122EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
 				0C06E94B22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
@@ -2125,6 +2130,7 @@
 				0C4082E022E6DF0F00D899A9 /* DiaryViewController.swift in Sources */,
 				0C86E4F622DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0C06E97822F17E910099DD3A /* DiaryEntriesSubmoduleView.swift in Sources */,
+				96DDBDBA23BB77C1007AB33B /* ShortHabitCell.swift in Sources */,
 				0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */,
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
 				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,

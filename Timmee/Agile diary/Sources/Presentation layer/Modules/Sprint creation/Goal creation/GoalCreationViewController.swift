@@ -103,9 +103,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
             self.habitsService.removeHabit(habit, completion: { _ in })
             HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
         }
-        
-        // new ui
-        
+                
         addChild(stackViewController)
         view.addSubview(stackViewController.view)
         [stackViewController.view.leading(), stackViewController.view.trailing(), stackViewController.view.bottom()].toSuperview()
@@ -122,8 +120,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
         noteSectionContainer.contentContainer.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         noteSectionContainer.configure(
             title: "note".localized,
-            content: noteField,
-            disclaimer: "Some disclaimer"
+            content: noteField
         )
         
         stackViewController.setChild(habitsSectionContainer, at: 1)
@@ -140,14 +137,17 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
         
         habitsTableView.delegate = self
         habitsTableView.dataSource = self
-        habitsTableView.separatorStyle = .none
+        habitsTableView.separatorStyle = .singleLine
+        habitsTableView.separatorColor = AppTheme.current.colors.decorationElementColor
+        habitsTableView.separatorInset.left = 8
+        habitsTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         habitsTableView.showsVerticalScrollIndicator = false
         if #available(iOS 11.0, *) {
             habitsTableView.contentInsetAdjustmentBehavior = .never
         }
         habitsTableView.register(
-            SprintCreationHabitCell.self,
-            forCellReuseIdentifier: SprintCreationHabitCell.reuseIdentifier
+            ShortHabitCell.self,
+            forCellReuseIdentifier: ShortHabitCell.reuseIdentifier
         )
         
         stackViewController.setChild(stagesSectionContainer, at: 2)
@@ -321,9 +321,9 @@ extension GoalCreationViewController: UITableViewDataSource {
         switch tableView {
         case habitsTableView:
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: SprintCreationHabitCell.reuseIdentifier,
+                withIdentifier: ShortHabitCell.reuseIdentifier,
                 for: indexPath
-            ) as! SprintCreationHabitCell
+            ) as! ShortHabitCell
             
             if let habit = habitsCacheObserver?.item(at: indexPath) {
                 cell.configure(habit: habit)

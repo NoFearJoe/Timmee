@@ -33,12 +33,12 @@ final class SprintCreationTargetCell: SwipeTableViewCell {
         containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         containerView.layer.cornerRadius = 8
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
-        titleLabel.font = AppTheme.current.fonts.medium(20)
-        habitsCountLabel.font = AppTheme.current.fonts.regular(14)
+        titleLabel.font = AppTheme.current.fonts.medium(18)
+        habitsCountLabel.font = AppTheme.current.fonts.regular(13)
         habitsCountLabel.textColor = AppTheme.current.colors.inactiveElementColor
         stagesSeparator.backgroundColor = AppTheme.current.colors.decorationElementColor
         stagesTitleLabel.text = "stages".localized
-        stagesTitleLabel.font = AppTheme.current.fonts.regular(14)
+        stagesTitleLabel.font = AppTheme.current.fonts.regular(13)
         stagesTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
     }
     
