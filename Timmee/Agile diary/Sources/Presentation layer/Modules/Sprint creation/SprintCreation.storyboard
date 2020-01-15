@@ -509,428 +509,20 @@
                                     <outlet property="rightButton" destination="T16-Ul-2uW" id="DZV-nB-4cL"/>
                                 </connections>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGb-hB-jir">
-                                <rect key="frame" x="0.0" y="92" width="375" height="688"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-0Q-2oz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vz7-A8-IFy" customClass="CardView" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="15" width="345" height="74"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дни выполнения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lM-7I-P7A">
-                                                        <rect key="frame" x="8" y="8" width="329" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="5kc-kZ-9xe"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="deviceRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4F-vk-wGd">
-                                                        <rect key="frame" x="8" y="34" width="329" height="32"/>
-                                                        <subviews>
-                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-MM-CdD" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="TkQ-MM-CdD" secondAttribute="height" id="tis-KO-k4M"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="ПН"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="4iT-C3-2HA"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34c-Lw-yHS" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="40" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="34c-Lw-yHS" secondAttribute="height" id="CIz-3z-8uc"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="ВТ"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="1hq-hf-Hrf"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-pm-Mgd" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="80" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="KFT-pm-Mgd" secondAttribute="height" id="jIu-ih-Hs0"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="СР"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="yEy-AM-dbD"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35W-4Y-vVA" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="120" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="35W-4Y-vVA" secondAttribute="height" id="SZE-wt-izg"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="ЧТ"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="FUD-zM-6Tr"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQH-5O-ql2" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="160" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="iQH-5O-ql2" secondAttribute="height" id="vQN-GX-yjI"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="ПТ"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="V32-KC-NWN"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-tF-H2A" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="200" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.74509803919999995" green="0.34509803919999998" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="UJh-tF-H2A" secondAttribute="height" id="GAW-mk-UIq"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="СБ"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="VrN-il-wTw"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uo-mu-aG9" customClass="SelectableButton" customModule="UIComponents">
-                                                                <rect key="frame" x="240" y="0.0" width="32" height="32"/>
-                                                                <color key="backgroundColor" red="0.74509803919999995" green="0.34509803919999998" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="6Uo-mu-aG9" secondAttribute="height" id="6TM-CJ-HPV"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                                <state key="normal" title="ВС"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="16"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="XOf-lH-bsb"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="34c-Lw-yHS" firstAttribute="leading" secondItem="TkQ-MM-CdD" secondAttribute="trailing" constant="8" id="0QJ-m3-0BS"/>
-                                                            <constraint firstAttribute="bottom" secondItem="UJh-tF-H2A" secondAttribute="bottom" id="3ph-dt-ewq"/>
-                                                            <constraint firstItem="34c-Lw-yHS" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="9Y4-H5-wWU"/>
-                                                            <constraint firstItem="UJh-tF-H2A" firstAttribute="leading" secondItem="iQH-5O-ql2" secondAttribute="trailing" constant="8" id="9Yq-30-bx3"/>
-                                                            <constraint firstAttribute="bottom" secondItem="6Uo-mu-aG9" secondAttribute="bottom" id="GD2-rt-Puu"/>
-                                                            <constraint firstAttribute="height" constant="32" id="K16-iJ-Lis">
-                                                                <variation key="widthClass=regular" constant="44"/>
-                                                            </constraint>
-                                                            <constraint firstItem="TkQ-MM-CdD" firstAttribute="leading" secondItem="O4F-vk-wGd" secondAttribute="leading" id="Pld-tl-5yr"/>
-                                                            <constraint firstAttribute="bottom" secondItem="TkQ-MM-CdD" secondAttribute="bottom" id="QUM-Ll-YiU"/>
-                                                            <constraint firstAttribute="bottom" secondItem="34c-Lw-yHS" secondAttribute="bottom" id="UtR-xr-EHP"/>
-                                                            <constraint firstItem="iQH-5O-ql2" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="bNc-uF-fuq"/>
-                                                            <constraint firstItem="KFT-pm-Mgd" firstAttribute="leading" secondItem="34c-Lw-yHS" secondAttribute="trailing" constant="8" id="fqd-tB-t4F"/>
-                                                            <constraint firstAttribute="bottom" secondItem="35W-4Y-vVA" secondAttribute="bottom" id="g8W-Vd-rJE"/>
-                                                            <constraint firstItem="35W-4Y-vVA" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="hUw-Dx-mb3"/>
-                                                            <constraint firstItem="UJh-tF-H2A" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="hk3-1W-ZdV"/>
-                                                            <constraint firstItem="KFT-pm-Mgd" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="hq4-6F-Ui6"/>
-                                                            <constraint firstItem="6Uo-mu-aG9" firstAttribute="leading" secondItem="UJh-tF-H2A" secondAttribute="trailing" constant="8" id="npx-Ur-EhT"/>
-                                                            <constraint firstItem="iQH-5O-ql2" firstAttribute="leading" secondItem="35W-4Y-vVA" secondAttribute="trailing" constant="8" id="oIa-AK-Wna"/>
-                                                            <constraint firstAttribute="bottom" secondItem="KFT-pm-Mgd" secondAttribute="bottom" id="q7U-gN-2xa"/>
-                                                            <constraint firstAttribute="bottom" secondItem="iQH-5O-ql2" secondAttribute="bottom" id="qMI-gP-rWc"/>
-                                                            <constraint firstItem="TkQ-MM-CdD" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="tQR-ft-BIs"/>
-                                                            <constraint firstItem="6Uo-mu-aG9" firstAttribute="top" secondItem="O4F-vk-wGd" secondAttribute="top" id="tv2-R9-spj"/>
-                                                            <constraint firstItem="35W-4Y-vVA" firstAttribute="leading" secondItem="KFT-pm-Mgd" secondAttribute="trailing" constant="8" id="v63-Tm-v2C"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="O4F-vk-wGd" secondAttribute="bottom" constant="8" id="H70-Mw-Ntt"/>
-                                                    <constraint firstItem="O4F-vk-wGd" firstAttribute="top" secondItem="1lM-7I-P7A" secondAttribute="bottom" constant="8" id="J5v-Uh-OHI"/>
-                                                    <constraint firstItem="1lM-7I-P7A" firstAttribute="top" secondItem="Vz7-A8-IFy" secondAttribute="top" constant="8" id="Sbs-4r-xhQ"/>
-                                                    <constraint firstItem="O4F-vk-wGd" firstAttribute="leading" secondItem="Vz7-A8-IFy" secondAttribute="leading" constant="8" id="bnx-uL-dy8"/>
-                                                    <constraint firstItem="1lM-7I-P7A" firstAttribute="leading" secondItem="Vz7-A8-IFy" secondAttribute="leading" constant="8" id="cyQ-xH-Uv0"/>
-                                                    <constraint firstAttribute="trailing" secondItem="1lM-7I-P7A" secondAttribute="trailing" constant="8" id="iJA-Ax-30G"/>
-                                                    <constraint firstAttribute="trailing" secondItem="O4F-vk-wGd" secondAttribute="trailing" constant="8" id="vOf-xZ-C5f"/>
-                                                </constraints>
-                                            </view>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0p-24-Lxq" customClass="CardView" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="104" width="345" height="162"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJN-yS-zcH">
-                                                        <rect key="frame" x="8" y="8" width="89.5" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="bL4-6Z-lfQ"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="deviceRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="1 раз" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqG-TH-3s6">
-                                                        <rect key="frame" x="129.5" y="8" width="207.5" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="2Ad-rZ-Exy"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ji6-8r-FmJ">
-                                                        <rect key="frame" x="0.0" y="34" width="345" height="128"/>
-                                                        <subviews>
-                                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfY-IL-y1l">
-                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="128"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <connections>
-                                                                    <outlet property="dataSource" destination="aS1-37-JFS" id="E0e-v4-pvt"/>
-                                                                    <outlet property="delegate" destination="aS1-37-JFS" id="GPV-YI-FDt"/>
-                                                                </connections>
-                                                            </pickerView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="128" id="2W4-yP-cBR"/>
-                                                            <constraint firstAttribute="bottom" secondItem="LfY-IL-y1l" secondAttribute="bottom" id="R2U-X9-hVe"/>
-                                                            <constraint firstItem="LfY-IL-y1l" firstAttribute="leading" secondItem="ji6-8r-FmJ" secondAttribute="leading" id="kQl-1E-7Hk"/>
-                                                            <constraint firstAttribute="trailing" secondItem="LfY-IL-y1l" secondAttribute="trailing" id="qtY-C0-vP3"/>
-                                                            <constraint firstItem="LfY-IL-y1l" firstAttribute="top" secondItem="ji6-8r-FmJ" secondAttribute="top" id="vsS-6g-St8"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9q-Ab-5CS" customClass="Checkbox" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                        <rect key="frame" x="101.5" y="5" width="24" height="24"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="O9q-Ab-5CS" secondAttribute="height" multiplier="1:1" id="6WD-2E-zMZ"/>
-                                                            <constraint firstAttribute="width" constant="24" id="bRB-UU-uib"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="FJN-yS-zcH" firstAttribute="leading" secondItem="X0p-24-Lxq" secondAttribute="leading" constant="8" id="CNs-fG-2y1"/>
-                                                    <constraint firstItem="WnT-PR-7Xx" firstAttribute="trailing" secondItem="ji6-8r-FmJ" secondAttribute="trailing" id="FK5-Gw-HN0"/>
-                                                    <constraint firstItem="ji6-8r-FmJ" firstAttribute="leading" secondItem="WnT-PR-7Xx" secondAttribute="leading" id="Hor-ch-gmw"/>
-                                                    <constraint firstItem="WnT-PR-7Xx" firstAttribute="trailing" secondItem="QqG-TH-3s6" secondAttribute="trailing" constant="8" id="NeU-Xe-Etm"/>
-                                                    <constraint firstAttribute="height" constant="162" id="ZrO-7U-fYQ"/>
-                                                    <constraint firstItem="ji6-8r-FmJ" firstAttribute="top" secondItem="FJN-yS-zcH" secondAttribute="bottom" constant="8" id="b97-GQ-XCs"/>
-                                                    <constraint firstItem="QqG-TH-3s6" firstAttribute="top" secondItem="WnT-PR-7Xx" secondAttribute="top" constant="8" id="gU5-FJ-7VB"/>
-                                                    <constraint firstItem="O9q-Ab-5CS" firstAttribute="centerY" secondItem="FJN-yS-zcH" secondAttribute="centerY" id="iRM-NA-v00"/>
-                                                    <constraint firstItem="O9q-Ab-5CS" firstAttribute="leading" secondItem="FJN-yS-zcH" secondAttribute="trailing" constant="4" id="ksx-P8-EyK"/>
-                                                    <constraint firstItem="FJN-yS-zcH" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="top" constant="8" id="sFU-Lg-BUS"/>
-                                                    <constraint firstItem="QqG-TH-3s6" firstAttribute="leading" secondItem="O9q-Ab-5CS" secondAttribute="trailing" constant="4" id="zoI-4a-r9g"/>
-                                                </constraints>
-                                                <viewLayoutGuide key="safeArea" id="WnT-PR-7Xx"/>
-                                            </view>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlX-ix-Zmh" customClass="CardView" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="281" width="345" height="70"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="D7N-d8-zrV"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="C2e-Rt-zYq" kind="embed" identifier="EmbedDayTimePicker" id="2zE-c3-ZS6"/>
-                                                </connections>
-                                            </containerView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-cu-MoF" customClass="CardView" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="366" width="345" height="138"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbN-vX-SrP">
-                                                        <rect key="frame" x="8" y="8" width="105.5" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="xJD-q8-kOm"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="deviceRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPd-ov-u1p" customClass="Checkbox" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                        <rect key="frame" x="117.5" y="5" width="24" height="24"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="24" id="CF4-NU-zph"/>
-                                                            <constraint firstAttribute="width" secondItem="bPd-ov-u1p" secondAttribute="height" multiplier="1:1" id="CdG-vr-ATD"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vFW-DL-GjC">
-                                                        <rect key="frame" x="8" y="34" width="104" height="96"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="96" id="UpK-Sg-qaY"/>
-                                                            <constraint firstAttribute="width" constant="104" id="gbf-9d-gXj"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <segue destination="C6p-rs-pXo" kind="embed" identifier="EmbedNotificationTimePicker" id="u3C-xu-46P"/>
-                                                        </connections>
-                                                    </containerView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="bPd-ov-u1p" firstAttribute="leading" secondItem="NbN-vX-SrP" secondAttribute="trailing" constant="4" id="0uh-Ii-6mR"/>
-                                                    <constraint firstItem="bPd-ov-u1p" firstAttribute="centerY" secondItem="NbN-vX-SrP" secondAttribute="centerY" id="4rQ-1l-Ahw"/>
-                                                    <constraint firstItem="vFW-DL-GjC" firstAttribute="leading" secondItem="1Ww-cu-MoF" secondAttribute="leading" constant="8" id="8ET-VC-4Cb"/>
-                                                    <constraint firstItem="vFW-DL-GjC" firstAttribute="top" secondItem="NbN-vX-SrP" secondAttribute="bottom" constant="8" id="9Jr-i6-E4p"/>
-                                                    <constraint firstItem="NbN-vX-SrP" firstAttribute="top" secondItem="1Ww-cu-MoF" secondAttribute="top" constant="8" id="Gb6-6V-1Fm"/>
-                                                    <constraint firstAttribute="bottom" secondItem="vFW-DL-GjC" secondAttribute="bottom" constant="8" id="heW-jr-KYU"/>
-                                                    <constraint firstItem="NbN-vX-SrP" firstAttribute="leading" secondItem="1Ww-cu-MoF" secondAttribute="leading" constant="8" id="y4e-fk-dTU"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-LA-xlj" customClass="CardView" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="519" width="345" height="65"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ссылка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKL-lt-1Kb">
-                                                        <rect key="frame" x="8" y="8" width="55.5" height="18"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="ztj-db-zdE"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="deviceRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3p-G7-aBU">
-                                                        <rect key="frame" x="67.5" y="7" width="20" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="Y3p-G7-aBU" secondAttribute="height" id="8eX-99-RbU"/>
-                                                            <constraint firstAttribute="width" constant="20" id="bfz-zZ-zcj"/>
-                                                        </constraints>
-                                                        <state key="normal" title="?" image="hintInactive"/>
-                                                        <state key="disabled" image="trash"/>
-                                                        <state key="selected" image="hintActive"/>
-                                                        <connections>
-                                                            <action selector="onTapToHint:" destination="aS1-37-JFS" eventType="touchUpInside" id="n3c-4w-Ckh"/>
-                                                        </connections>
-                                                    </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="https://google.com" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDK-LX-8kL">
-                                                        <rect key="frame" x="8" y="35" width="329" height="22"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="done"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="aS1-37-JFS" id="YQ7-Km-SHw"/>
-                                                        </connections>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="bDK-LX-8kL" secondAttribute="trailing" constant="8" id="GT5-Fz-glN"/>
-                                                    <constraint firstAttribute="bottom" secondItem="bDK-LX-8kL" secondAttribute="bottom" constant="8" id="Ny9-Ni-3Zh"/>
-                                                    <constraint firstItem="qKL-lt-1Kb" firstAttribute="top" secondItem="p4G-LA-xlj" secondAttribute="top" constant="8" id="Rjt-dm-qTR"/>
-                                                    <constraint firstItem="Y3p-G7-aBU" firstAttribute="leading" secondItem="qKL-lt-1Kb" secondAttribute="trailing" constant="4" id="TD9-i4-Rtt"/>
-                                                    <constraint firstItem="qKL-lt-1Kb" firstAttribute="leading" secondItem="p4G-LA-xlj" secondAttribute="leading" constant="8" id="WGr-tg-9KJ"/>
-                                                    <constraint firstItem="Y3p-G7-aBU" firstAttribute="centerY" secondItem="qKL-lt-1Kb" secondAttribute="centerY" id="bfU-Er-Ak6"/>
-                                                    <constraint firstItem="bDK-LX-8kL" firstAttribute="top" secondItem="Y3p-G7-aBU" secondAttribute="bottom" constant="8" id="kck-RR-jsl"/>
-                                                    <constraint firstItem="bDK-LX-8kL" firstAttribute="leading" secondItem="p4G-LA-xlj" secondAttribute="leading" constant="8" id="xMT-Jo-JaL"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Vz7-A8-IFy" secondAttribute="trailing" constant="15" id="0nU-SZ-JzF"/>
-                                            <constraint firstItem="1Ww-cu-MoF" firstAttribute="top" secondItem="qlX-ix-Zmh" secondAttribute="bottom" constant="15" id="8gc-Ds-MfR"/>
-                                            <constraint firstItem="X0p-24-Lxq" firstAttribute="top" secondItem="Vz7-A8-IFy" secondAttribute="bottom" constant="15" id="GHx-TJ-mEC"/>
-                                            <constraint firstAttribute="bottom" secondItem="p4G-LA-xlj" secondAttribute="bottom" constant="15" id="Ib7-LY-vkq"/>
-                                            <constraint firstItem="qlX-ix-Zmh" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="NFI-Ia-p42"/>
-                                            <constraint firstItem="p4G-LA-xlj" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="OMN-yD-JRN"/>
-                                            <constraint firstAttribute="trailing" secondItem="qlX-ix-Zmh" secondAttribute="trailing" constant="15" id="RUf-IZ-oh7"/>
-                                            <constraint firstAttribute="trailing" secondItem="1Ww-cu-MoF" secondAttribute="trailing" constant="15" id="bip-oD-kdN"/>
-                                            <constraint firstItem="Vz7-A8-IFy" firstAttribute="top" secondItem="4Pt-0Q-2oz" secondAttribute="top" constant="15" id="cfO-74-aoB"/>
-                                            <constraint firstItem="Vz7-A8-IFy" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="fhn-3R-FPn"/>
-                                            <constraint firstItem="p4G-LA-xlj" firstAttribute="top" secondItem="1Ww-cu-MoF" secondAttribute="bottom" constant="15" id="gGB-N6-gq9"/>
-                                            <constraint firstAttribute="trailing" secondItem="X0p-24-Lxq" secondAttribute="trailing" constant="15" id="lzd-EV-SGS"/>
-                                            <constraint firstItem="qlX-ix-Zmh" firstAttribute="top" secondItem="X0p-24-Lxq" secondAttribute="bottom" constant="15" id="qhv-rT-4MS"/>
-                                            <constraint firstItem="1Ww-cu-MoF" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="sOf-wP-Hwy"/>
-                                            <constraint firstItem="X0p-24-Lxq" firstAttribute="leading" secondItem="4Pt-0Q-2oz" secondAttribute="leading" constant="15" id="tSm-pm-UZP"/>
-                                            <constraint firstAttribute="trailing" secondItem="p4G-LA-xlj" secondAttribute="trailing" constant="15" id="ycf-zg-cDn"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="4Pt-0Q-2oz" firstAttribute="width" secondItem="YGb-hB-jir" secondAttribute="width" id="3Yf-RW-fnI"/>
-                                    <constraint firstItem="4Pt-0Q-2oz" firstAttribute="leading" secondItem="YGb-hB-jir" secondAttribute="leading" id="ARi-8v-xOk"/>
-                                    <constraint firstAttribute="bottom" secondItem="4Pt-0Q-2oz" secondAttribute="bottom" id="KEU-aA-Frr"/>
-                                    <constraint firstItem="4Pt-0Q-2oz" firstAttribute="top" secondItem="YGb-hB-jir" secondAttribute="top" id="Thi-nl-ZsZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="4Pt-0Q-2oz" secondAttribute="trailing" id="g3N-YH-ucc"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="HYa-Mz-T9e" appends="YES" id="mUo-Y6-YJP"/>
-                                    <outletCollection property="gestureRecognizers" destination="DM0-dJ-Zul" appends="YES" id="aE1-8L-cYG"/>
-                                </connections>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ZnJ-sB-7Bl" firstAttribute="trailing" secondItem="0zP-as-NhU" secondAttribute="trailing" id="FRi-ZO-TWg"/>
-                            <constraint firstAttribute="trailing" secondItem="YGb-hB-jir" secondAttribute="trailing" id="PV5-Kg-sIh"/>
-                            <constraint firstAttribute="bottom" secondItem="YGb-hB-jir" secondAttribute="bottom" id="R4K-vK-eBt"/>
                             <constraint firstItem="0zP-as-NhU" firstAttribute="leading" secondItem="1pQ-PA-3ce" secondAttribute="leading" id="Wp4-g3-IW7"/>
                             <constraint firstItem="0zP-as-NhU" firstAttribute="top" secondItem="1pQ-PA-3ce" secondAttribute="top" id="lYO-CH-m3P"/>
-                            <constraint firstItem="YGb-hB-jir" firstAttribute="top" secondItem="0zP-as-NhU" secondAttribute="bottom" id="rjc-Kg-Kh4"/>
-                            <constraint firstItem="YGb-hB-jir" firstAttribute="leading" secondItem="ZnJ-sB-7Bl" secondAttribute="leading" id="z0G-Or-KMQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZnJ-sB-7Bl"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
-                        <outlet property="contentScrollView" destination="YGb-hB-jir" id="c10-Ez-CK6"/>
-                        <outlet property="contentView" destination="4Pt-0Q-2oz" id="8MD-Fk-YV4"/>
-                        <outlet property="dueDaysTitleLabel" destination="1lM-7I-P7A" id="xZu-Af-ydB"/>
                         <outlet property="headerView" destination="0zP-as-NhU" id="j8r-qn-opS"/>
-                        <outlet property="linkField" destination="bDK-LX-8kL" id="FIc-gY-xWc"/>
-                        <outlet property="linkHintButton" destination="Y3p-G7-aBU" id="sbM-MX-SFu"/>
-                        <outlet property="linkTitleLabel" destination="qKL-lt-1Kb" id="WJF-kR-wyw"/>
-                        <outlet property="notificationTimeCheckbox" destination="bPd-ov-u1p" id="wa4-ta-DIk"/>
-                        <outlet property="notificationTimePickerContainer" destination="vFW-DL-GjC" id="Vct-XM-0Oa"/>
-                        <outlet property="notificationTimePickerContainerHeightConstraint" destination="UpK-Sg-qaY" id="hHV-iN-QU8"/>
-                        <outlet property="notificationTimePickerContainerTopConstraint" destination="9Jr-i6-E4p" id="c7k-UK-Jki"/>
-                        <outlet property="notificationTimeTitleLabel" destination="NbN-vX-SrP" id="nDs-TW-b7r"/>
                         <outlet property="titleField" destination="Or0-jc-799" id="7An-cm-5Mq"/>
-                        <outlet property="valueCheckbox" destination="O9q-Ab-5CS" id="uan-VW-8TC"/>
-                        <outlet property="valueContainerHeightConstraint" destination="ZrO-7U-fYQ" id="wHs-zh-ILI"/>
-                        <outlet property="valueLabel" destination="QqG-TH-3s6" id="6MY-Vm-yX6"/>
-                        <outlet property="valuePicker" destination="LfY-IL-y1l" id="f47-5P-9xC"/>
-                        <outlet property="valuePickerContainer" destination="ji6-8r-FmJ" id="1aW-0J-HzN"/>
-                        <outlet property="valueTitleLabel" destination="FJN-yS-zcH" id="u4T-wI-dOG"/>
-                        <outletCollection property="dayButtons" destination="34c-Lw-yHS" collectionClass="NSMutableArray" id="Wbd-06-RMi"/>
-                        <outletCollection property="dayButtons" destination="iQH-5O-ql2" collectionClass="NSMutableArray" id="Rz3-Rc-lcy"/>
-                        <outletCollection property="dayButtons" destination="UJh-tF-H2A" collectionClass="NSMutableArray" id="ju8-NA-aoj"/>
-                        <outletCollection property="dayButtons" destination="6Uo-mu-aG9" collectionClass="NSMutableArray" id="2pK-wa-HNb"/>
-                        <outletCollection property="dayButtons" destination="KFT-pm-Mgd" collectionClass="NSMutableArray" id="ITt-GU-bRX"/>
-                        <outletCollection property="dayButtons" destination="35W-4Y-vVA" collectionClass="NSMutableArray" id="47w-AC-QQG"/>
-                        <outletCollection property="dayButtons" destination="TkQ-MM-CdD" collectionClass="NSMutableArray" id="XTf-rc-875"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGy-4c-Z85" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1218,58 +810,6 @@
             </objects>
             <point key="canvasLocation" x="1188" y="881"/>
         </scene>
-        <!--Day Time Picker Submodule-->
-        <scene sceneID="M42-lp-KHg">
-            <objects>
-                <viewController id="C2e-Rt-zYq" customClass="DayTimePickerSubmodule" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OwS-Ui-dLs">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="70"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrM-JR-xfo" customClass="Switcher" customModule="Agile_diary_debug" customModuleProvider="target">
-                                <rect key="frame" x="8" y="34" width="329" height="28"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="H9M-Cw-Y9o"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onDayTimeSwitcherValueChanged" destination="C2e-Rt-zYq" eventType="touchUpInside" id="bp0-dI-j9O"/>
-                                    <action selector="onDayTimeSwitcherValueChanged" destination="C2e-Rt-zYq" eventType="valueChanged" id="jHC-Lx-nku"/>
-                                </connections>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bij-Rp-bW2">
-                                <rect key="frame" x="8" y="8" width="329" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="ABE-OY-6tE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="HrM-JR-xfo" firstAttribute="leading" secondItem="i5X-Pf-gu0" secondAttribute="leading" constant="8" id="8Dc-0M-haZ"/>
-                            <constraint firstItem="i5X-Pf-gu0" firstAttribute="bottom" secondItem="HrM-JR-xfo" secondAttribute="bottom" constant="8" id="982-oJ-ttj"/>
-                            <constraint firstItem="Bij-Rp-bW2" firstAttribute="top" secondItem="OwS-Ui-dLs" secondAttribute="top" constant="8" id="FNy-og-DFL"/>
-                            <constraint firstItem="i5X-Pf-gu0" firstAttribute="trailing" secondItem="Bij-Rp-bW2" secondAttribute="trailing" constant="8" id="WbS-Qe-N4G"/>
-                            <constraint firstItem="Bij-Rp-bW2" firstAttribute="leading" secondItem="i5X-Pf-gu0" secondAttribute="leading" constant="8" id="ebh-MM-9xb"/>
-                            <constraint firstAttribute="trailing" secondItem="HrM-JR-xfo" secondAttribute="trailing" constant="8" id="koZ-Ie-YLB"/>
-                            <constraint firstItem="HrM-JR-xfo" firstAttribute="top" secondItem="Bij-Rp-bW2" secondAttribute="bottom" constant="8" id="l2i-kS-bwf"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="i5X-Pf-gu0"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="345" height="70"/>
-                    <connections>
-                        <outlet property="dayTimeSwitcher" destination="HrM-JR-xfo" id="la3-ws-kr0"/>
-                        <outlet property="titleLabel" destination="Bij-Rp-bW2" id="JCP-jG-BZH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FWQ-56-uKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1380" y="1020"/>
-        </scene>
         <!--Due Date Picker-->
         <scene sceneID="Twm-PP-WKS">
             <objects>
@@ -1507,7 +1047,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="7t5-xg-8Hi"/>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="g7g-8z-chw"/>
                                                 </connections>
                                             </button>
@@ -1526,7 +1065,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="jN2-TT-w14"/>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="wv1-pL-fOo"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCF-8H-Sl4" customClass="SelectableButton" customModule="UIComponents">
@@ -1543,7 +1081,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="Eer-Qb-bc5"/>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="sNt-JZ-iIJ"/>
                                                 </connections>
                                             </button>
@@ -1562,7 +1099,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="Iqz-Sc-6ZX"/>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="bIh-TM-2pF"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOf-Ih-STl" customClass="SelectableButton" customModule="UIComponents">
@@ -1580,7 +1116,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="6en-1h-UK2"/>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="TFd-dJ-qkE"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTd-um-lV9" customClass="SelectableButton" customModule="UIComponents">
@@ -1598,7 +1133,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="l9w-Nc-7ZP"/>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="vT8-6s-RCP"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzc-rl-SQL" customClass="SelectableButton" customModule="UIComponents">
@@ -1616,7 +1150,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onSelectDay:" destination="kZp-La-OY0" eventType="touchUpInside" id="Ex0-iq-o0b"/>
-                                                    <action selector="onSelectDay:" destination="aS1-37-JFS" eventType="touchUpInside" id="ZFq-wo-xnc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1843,14 +1376,10 @@
         <image name="checkmark" width="20" height="20"/>
         <image name="clockFilled" width="20" height="20"/>
         <image name="cross" width="20" height="20"/>
-        <image name="hintActive" width="20" height="20"/>
-        <image name="hintInactive" width="20" height="20"/>
         <image name="plus" width="20" height="20"/>
         <image name="sandClock" width="20" height="20"/>
-        <image name="trash" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u3C-xu-46P"/>
         <segue reference="2kc-PQ-3Tm"/>
     </inferredMetricsTieBreakers>
 </document>

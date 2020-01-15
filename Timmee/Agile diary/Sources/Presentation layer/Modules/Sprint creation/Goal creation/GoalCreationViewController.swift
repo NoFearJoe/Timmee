@@ -128,7 +128,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
         habitsSectionContainer.configure(
             title: "habits".localized,
             content: habitsTableView,
-            actionButton: addHabitButton
+            actionView: addHabitButton
         )
         
         addHabitButton.height(28)

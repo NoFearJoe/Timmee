@@ -29,15 +29,15 @@ public final class SectionContainer: UIView {
         fatalError()
     }
     
-    public func configure(title: String?, content: UIView, actionButton: UIButton? = nil, disclaimer: String? = nil) {
+    public func configure(title: String?, content: UIView, actionView: UIView? = nil, disclaimer: String? = nil) {
         titleLabel.text = title
         disclaimerLabel.text = disclaimer
         
         contentContainer.addSubview(content)
         content.allEdges().to(contentContainer.layoutMarginsGuide)
         
-        if let actionButton = actionButton {
-            titleStackView.addArrangedSubview(actionButton)
+        if let actionView = actionView {
+            titleStackView.addArrangedSubview(actionView)
         }
     }
     
@@ -68,7 +68,7 @@ private extension SectionContainer {
         
         titleStackView.addArrangedSubview(titleGap)
         
-        contentContainer.configureShadow(radius: 12, opacity: 0.15)
+        contentContainer.configureShadow(radius: 8, opacity: 0.1)
         contentContainer.layer.cornerRadius = 12
         contentContainer.layoutMargins.left = 0
         contentContainer.layoutMargins.right = 0
