@@ -82,6 +82,11 @@ final class TodayContentViewController: UIViewController, AlertInput {
         
         setupCurrentCacheObserver()
         
+        cacheAdapter.onReloadFail = { [weak self] in
+            self?.setupContentView()
+            self?.contentView.reloadData()
+        }
+        
         setupHabitCellActionsProvider()
         setupTargetCellActionsProvider()
         
@@ -436,6 +441,50 @@ private extension TodayContentViewController {
                                })
                            })
         }
+    }
+    
+}
+
+private extension TodayContentViewController {
+    
+    func setupContentView() {
+        let contentView = UITableView()
+        
+        self.contentView?.removeFromSuperview()
+        
+        view.addSubview(contentView)
+        
+        if #available(iOS 11.0, *) {
+            contentView.allEdges().to(view)
+        } else {
+            contentView.allEdges().to(view)
+        }
+        
+        contentView.delegate = self
+        contentView.dataSource = self
+        
+        contentView.contentInset.top = 10
+        contentView.contentInset.bottom = 64 + 16
+        contentView.estimatedRowHeight = 56
+        contentView.rowHeight = UITableView.automaticDimension
+        contentView.showsVerticalScrollIndicator = false
+        contentView.tableFooterView = UIView()
+        contentView.separatorStyle = .none
+        
+        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        
+        contentView.register(
+            SprintCreationHabitCell.self,
+            forCellReuseIdentifier: SprintCreationHabitCell.reuseIdentifier
+        )
+        contentView.register(
+            SprintCreationTargetCell.self,
+            forCellReuseIdentifier: SprintCreationTargetCell.reuseIdentifier
+        )
+        
+        self.contentView = contentView
+        
+        cacheAdapter.tableView = contentView
     }
     
 }
