@@ -32,7 +32,7 @@ public protocol HabitsObserverProvider: class {
     func habitsObserver(sprintID: String, day: DayUnit?) -> CacheObserver<Habit>
     func habitsBySprintObserver(excludingSprintWithID sprintID: String) -> CacheObserver<Habit>
     func habitsByGoalObserver(sprintID: String, goalID: String) -> CacheObserver<Habit>
-    func habitsScope(sprintID: String, day: DayUnit?) -> CachedEntitiesObserver<HabitEntity, Habit>
+    func habitsScope(sprintID: String, day: DayUnit?, date: Date) -> CachedEntitiesObserver<HabitEntity, Habit>
 }
 
 public protocol HabitEntitiesProvider: class {
@@ -280,12 +280,12 @@ extension HabitsService: HabitsObserverProvider {
         return habitsObserver
     }
     
-    public func habitsScope(sprintID: String, day: DayUnit?) -> CachedEntitiesObserver<HabitEntity, Habit> {
+    public func habitsScope(sprintID: String, day: DayUnit?, date: Date) -> CachedEntitiesObserver<HabitEntity, Habit> {
         let predicate: NSPredicate
         if let day = day {
-            predicate = NSPredicate(format: "sprint.id = %@ AND dueDays CONTAINS[cd] %@", sprintID, day.string)
+            predicate = NSPredicate(format: "sprint.id = %@ AND dueDays CONTAINS[cd] %@ AND creationDate <= %@", sprintID, day.string, date as NSDate)
         } else {
-            predicate = NSPredicate(format: "sprint.id = %@", sprintID)
+            predicate = NSPredicate(format: "sprint.id = %@ AND creationDate <= %@", sprintID, date as NSDate)
         }
         let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
         let context = Database.localStorage.readContext

@@ -289,7 +289,11 @@ private extension TodayContentViewController {
     
     func setupHabitsCacheObserver(forSection section: SprintSection, sprintID: String) {
         goalsCacheObserver = nil
-        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(sprintID: sprintID, day: DayUnit(weekday: currentDate.weekday))
+        habitsCacheObserver = ServicesAssembly.shared.habitsService.habitsScope(
+            sprintID: sprintID,
+            day: DayUnit(weekday: currentDate.weekday),
+            date: currentDate.endOfDay() ?? currentDate.endOfDay
+        )
         let delegate = CachedEntitiesObserverDelegate<Habit>(
             onInitialFetch: { [unowned self] _ in
                 self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? [])
