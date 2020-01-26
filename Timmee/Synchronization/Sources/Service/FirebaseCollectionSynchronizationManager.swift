@@ -148,15 +148,24 @@ final class FirebaseCollectionSynchronizationManager {
             SprintSchedulerService().scheduleSprint(sprint)
         } else if let waterControlEntity = entity as? WaterControlEntity {
             let waterControl = WaterControl(entity: waterControlEntity)
+            
             let existingSprints = ServicesAssembly.shared.sprintsService.fetchSprints()
-            let currentSprint = existingSprints.first(where: { sprint in
-                sprint.startDate <= Date().startOfDay && sprint.endDate >= Date().endOfDay
-            })
-            if let currentSprint = currentSprint {
-                WaterControlSchedulerService().scheduleWaterControl(waterControl,
-                                                                    startDate: currentSprint.startDate,
-                                                                    endDate: currentSprint.endDate)
+            
+            guard
+                let currentSprint = existingSprints.first(where: { sprint in
+                    sprint.startDate <= Date().startOfDay && sprint.endDate >= Date().endOfDay
+                }),
+                waterControl.sprintID == currentSprint.id
+            else {
+                removeNotificationsForRemovedEntity(entity: waterControlEntity)
+                return
             }
+            
+            WaterControlSchedulerService().scheduleWaterControl(
+                waterControl,
+                startDate: currentSprint.startDate,
+                endDate: currentSprint.endDate
+            )
         }
     }
     
