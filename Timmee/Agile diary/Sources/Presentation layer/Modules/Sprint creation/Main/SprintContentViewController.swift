@@ -254,6 +254,7 @@ private extension SprintContentViewController {
     
     func showPlaceholder() {
         placeholderContainer.isHidden = false
+        view.bringSubviewToFront(placeholderContainer)
         placeholderView.icon = nil
         switch section {
         case .goals:

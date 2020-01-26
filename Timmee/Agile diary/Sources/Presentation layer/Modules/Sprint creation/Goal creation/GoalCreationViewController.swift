@@ -59,7 +59,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
     private let habitCellActionsProvider = CellDeleteSwipeActionProvider()
     
     private let keyboardManager = KeyboardManager()
-    private var contentScrollViewOffset: CGFloat = 0
+    private var contentScrollViewOffset: CGFloat?
     
     var goal: Goal!
     var sprintID: String!
@@ -168,6 +168,9 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
         
         stagesView.stagesTableView.delegate = self
         stagesView.stagesTableView.dataSource = self
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        stackViewController.stackView.addGestureRecognizer(tapRecognizer)
     }
     
     override func refresh() {
@@ -531,24 +534,41 @@ private extension GoalCreationViewController {
     func setupKeyboardManager() {
         keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
             UIView.animate(withDuration: duration) {
-                let offset = self.calculateTargetScrollViewYOffset(keyboardFrame: frame)
-                self.contentScrollViewOffset = offset
-                self.stackViewController.scrollView.contentOffset.y += offset
+                if let offset = self.calculateTargetScrollViewYOffset(keyboardFrame: frame) {
+                    self.contentScrollViewOffset = offset
+                    self.stackViewController.scrollView.contentOffset.y += offset
+                } else {
+                    self.contentScrollViewOffset = nil
+                }
+                self.stackViewController.scrollView.contentInset.bottom = frame.height
             }
         }
         
         keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
             UIView.animate(withDuration: duration) {
-                self.stackViewController.scrollView.contentOffset.y -= self.contentScrollViewOffset
-                self.contentScrollViewOffset = 0
+                if let contentScrollViewOffset = self.contentScrollViewOffset {
+                    self.stackViewController.scrollView.contentOffset.y -= contentScrollViewOffset
+                    self.contentScrollViewOffset = nil
+                }
+                self.stackViewController.scrollView.contentInset.bottom = 0
             }
         }
     }
     
-    func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat {
-        guard let focusedView = stackViewController.stackView.currentFirstResponder() as? UIView else { return 0 }
-        let convertedFocusedViewFrame = view.convert(focusedView.frame, from: focusedView)
-        return max(0, convertedFocusedViewFrame.maxY - keyboardFrame.minY)
+    func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat? {
+        guard let focusedView = stackViewController.stackView.currentFirstResponder() as? UIView else { return nil }
+        
+        let convertedFocusedViewFrame = focusedView.convert(focusedView.bounds, to: view)
+        
+        let visibleContentHeight = view.bounds.height - headerView.bounds.height - keyboardFrame.height
+        
+        let focusedViewMaxY = convertedFocusedViewFrame.maxY - headerView.bounds.height
+        
+        if visibleContentHeight > focusedViewMaxY {
+            return nil
+        } else {
+            return max(0, focusedViewMaxY - visibleContentHeight)
+        }
     }
     
 }
