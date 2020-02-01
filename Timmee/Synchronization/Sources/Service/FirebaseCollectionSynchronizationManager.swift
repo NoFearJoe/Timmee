@@ -24,22 +24,27 @@ final class FirebaseCollectionSynchronizationManager {
         let locallyDeletedEntities = (LocallyDeletedEntity.request() as FetchRequest<LocallyDeletedEntity>).execute(context: context)
         var deletedEntityIDs: [String] = []
         if T.self is IdentifiableEntity.Type {
-            let cachedEntitiesIDs = cachedEntities
+            let cachedEntitiesMap: [String: T] = cachedEntities
                 .filter {
                     if let childEntity = $0 as? ChildEntity {
                         return childEntity.parent?.id == parentEntityID
                     }
                     return true
                 }
-                .compactMap { ($0 as? IdentifiableEntity)?.id }
-            let remoteEntitiesIDs = data.map { $0["id"] as? String }
+            .dictionarised { entity -> String in
+                (entity as! IdentifiableEntity).id ?? ""
+            }
             
-            let removedEntitiesIDs = Array(Set(cachedEntitiesIDs).subtracting(remoteEntitiesIDs))
+            let cachedEntitiesIDs = Set(cachedEntitiesMap.keys)
+            
+            let remoteEntitiesIDs = data.compactMap { $0["id"] as? String }
+            
+            let removedEntitiesIDs = Array(cachedEntitiesIDs.subtracting(remoteEntitiesIDs))
             let insertedEntitiesIDs = Array(Set(remoteEntitiesIDs).subtracting(cachedEntitiesIDs))
-            let updatedEntitiesIDs = Array(Set(cachedEntitiesIDs).intersection(remoteEntitiesIDs))
+            let updatedEntitiesIDs = Array(cachedEntitiesIDs.intersection(remoteEntitiesIDs))
             
             removedEntitiesIDs.forEach { id in
-                guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
+                guard let cachedEntity = cachedEntitiesMap[id] else { return }
                 // Если сущность синхронизирована, значит ее удалили, иначе - добавили
                 if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
                     context.delete(deletedEntity)
@@ -54,7 +59,7 @@ final class FirebaseCollectionSynchronizationManager {
                 // Если существует сущность, помоченная как удаленная, то удаляем ее, а новую не добавляем
                 if let deletedEntity = locallyDeletedEntities.first(where: { $0.entityType == T.entityName && $0.entityID == id }) {
                     context.delete(deletedEntity)
-                    id.map { deletedEntityIDs.append($0) }
+                    deletedEntityIDs.append(id)
                     removeNotificationsForRemovedEntity(entity: deletedEntity)
                     return
                 }
@@ -69,7 +74,7 @@ final class FirebaseCollectionSynchronizationManager {
                 scheduleNotificationsForInsertedOrUpdatedEntity(entity: entity)
             }
             updatedEntitiesIDs.forEach { id in
-                guard let cachedEntity = cachedEntities.first(where: { ($0 as? IdentifiableEntity)?.id == id }) else { return }
+                guard let cachedEntity = cachedEntitiesMap[id] else { return }
                 guard let remoteEntityData = data.first(where: { ($0["id"] as? String) == id }) else { return }
                 
                 let remoteModificationDate = remoteEntityData["modificationDate"] as? TimeInterval ?? 0
