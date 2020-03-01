@@ -80,6 +80,8 @@ final class HabitCreationViewController: BaseViewController {
         setupKeyboardManager()
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapRecognizer.cancelsTouchesInView = false
+        tapRecognizer.delaysTouchesEnded = false
         stackViewController.stackView.addGestureRecognizer(tapRecognizer)
     }
     

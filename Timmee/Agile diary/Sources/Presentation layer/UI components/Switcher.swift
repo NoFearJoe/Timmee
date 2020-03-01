@@ -34,6 +34,7 @@ class Switcher: UIControl {
             view.roundedCorners = index == 0 ? .left : index >= items.count - 1 ? .right : .none
             view.isSelected = false
             view.setupAppearance()
+            view.isUserInteractionEnabled = false
             addSubview(view)
             itemViews.append(view)
         }
@@ -71,7 +72,7 @@ class Switcher: UIControl {
             touches.contains(where: { touch in
                 itemView.frame.contains(touch.location(in: self))
             })
-        }) else  { return }
+        }) else { return }
         selectedItemIndex = selectedViewIndex
     }
     
@@ -102,12 +103,14 @@ class SwitcherItemView: UIView {
         let label = UILabel(frame: .zero)
         label.font = AppTheme.current.fonts.medium(14)
         label.textAlignment = .center
+        label.isUserInteractionEnabled = false
         return label
     }()
     
     private let iconView: UIImageView = {
         let iconView = UIImageView(frame: .zero)
         iconView.contentMode = .scaleAspectFit
+        iconView.isUserInteractionEnabled = false
         return iconView
     }()
     
