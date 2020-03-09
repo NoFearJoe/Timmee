@@ -50,11 +50,7 @@ final class SprintCell: SwipableCollectionViewCell {
         
         switch sprint.tense {
         case .past:
-            backgroundColor = AppTheme.current.colors.foregroundColor.withAlphaComponent(0.7)
-            
             subtitleLabel.text = sprint.startDate.asString(format: "dd.MM.yyyy") + " - " + sprint.endDate.asString(format: "dd.MM.yyyy")
-            habitsProgressLabel.isHidden = false
-            goalsProgressLabel.isHidden = false
             
             let habits = habitsService.fetchHabits(sprintID: sprint.id)
             let habitsProgress = habits.reduce(0, { $0 + Double($1.doneDates.count).safeDivide(by: Double($1.dueDays.count * sprint.duration)) }).safeDivide(by: Double(habits.count))
@@ -65,19 +61,18 @@ final class SprintCell: SwipableCollectionViewCell {
             let goalsProgress = Double(goals.filter { $0.isDone }.count).safeDivide(by: Double(goals.count))
             goalsProgressLabel.text = "\(Int(goalsProgress * 100))%"
             goalsProgressLabel.textColor = progressLabelColor(progress: goalsProgress)
+            
+            configureAppearanceForPastStatus()
         case .current:
-            backgroundColor = AppTheme.current.colors.foregroundColor
-            
             subtitleLabel.text = "remains_n_days".localized(with: Date.now.days(before: sprint.endDate))
-            habitsProgressLabel.isHidden = true
-            goalsProgressLabel.isHidden = true
-        case .future:
-            backgroundColor = AppTheme.current.colors.foregroundColor
             
+            configureAppearanceForCurrentStatus()
+        case .future:
             subtitleLabel.text = "starts".localized + " " + sprint.startDate.asNearestShortDateString.lowercased()
-            habitsProgressLabel.isHidden = true
-            goalsProgressLabel.isHidden = true
+            
+            configureAppearanceForFutureStatus()
         }
+        
         tenseLabel.text = sprint.tense == .current ? sprint.tense.localized : nil
         habitsCountLabel.text = "n_habits".localized(with: sprint.habitsCount)
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
@@ -95,26 +90,19 @@ final class SprintCell: SwipableCollectionViewCell {
     }
     
     private func setupAppearance() {
-        layer.cornerRadius = 12
-        configureShadow(radius: 8, opacity: 0.1)
-        backgroundColor = AppTheme.current.colors.foregroundColor
-        separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
+        contentView.layer.cornerRadius = 12
+        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
+        
         titleLabel.font = AppTheme.current.fonts.medium(26)
-        titleLabel.textColor = AppTheme.current.colors.activeElementColor
         subtitleLabel.font = AppTheme.current.fonts.regular(14)
-        subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
-        tenseLabel.font = AppTheme.current.fonts.regular(14)
-        tenseLabel.textColor = AppTheme.current.colors.mainElementColor
+        tenseLabel.font = AppTheme.current.fonts.medium(14)
         habitsCountLabel.font = AppTheme.current.fonts.regular(16)
-        habitsCountLabel.textColor = AppTheme.current.colors.inactiveElementColor
         habitsProgressLabel.font = AppTheme.current.fonts.bold(40)
         habitsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor
         goalsCountLabel.font = AppTheme.current.fonts.regular(16)
-        goalsCountLabel.textColor = AppTheme.current.colors.inactiveElementColor
         goalsProgressLabel.font = AppTheme.current.fonts.bold(40)
         goalsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor
         alertButton.tintColor = AppTheme.current.colors.incompleteElementColor
-        chartsButton.tintColor = AppTheme.current.colors.mainElementColor
     }
     
     private func progressLabelColor(progress: Double) -> UIColor {
@@ -123,6 +111,68 @@ final class SprintCell: SwipableCollectionViewCell {
         case 0.33...0.66: return AppTheme.current.colors.incompleteElementColor
         default: return AppTheme.current.colors.selectedElementColor
         }
+    }
+    
+    private func configureAppearanceForFutureStatus() {
+        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
+        [titleLabel, subtitleLabel, tenseLabel].forEach {
+            $0?.alpha = 1
+        }
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        [subtitleLabel, habitsCountLabel, goalsCountLabel].forEach {
+            $0?.textColor = AppTheme.current.colors.inactiveElementColor
+        }
+        
+        chartsButton.tintColor = AppTheme.current.colors.mainElementColor
+        
+        separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
+        
+        habitsProgressLabel.isHidden = true
+        goalsProgressLabel.isHidden = true
+        
+        contentView.layer.shadowRadius = 0
+    }
+    
+    private func configureAppearanceForCurrentStatus() {
+        contentView.backgroundColor = AppTheme.current.colors.mainElementColor
+        [titleLabel, subtitleLabel, tenseLabel].forEach {
+            $0?.alpha = 1
+        }
+        titleLabel.textColor = AppTheme.dark.colors.activeElementColor
+        [subtitleLabel, habitsCountLabel, goalsCountLabel].forEach {
+            $0?.textColor = AppTheme.dark.colors.activeElementColor
+        }
+        
+        chartsButton.tintColor = AppTheme.dark.colors.activeElementColor
+        
+        tenseLabel.textColor = AppTheme.dark.colors.incompleteElementColor
+        
+        separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.5) }
+        
+        habitsProgressLabel.isHidden = true
+        goalsProgressLabel.isHidden = true
+        
+        contentView.configureShadow(radius: 8, opacity: 0.1)
+    }
+    
+    private func configureAppearanceForPastStatus() {
+        contentView.backgroundColor = AppTheme.current.colors.foregroundColor
+        [titleLabel, subtitleLabel, tenseLabel].forEach {
+            $0?.alpha = 0.5
+        }
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        [subtitleLabel, habitsCountLabel, goalsCountLabel].forEach {
+            $0?.textColor = AppTheme.current.colors.inactiveElementColor
+        }
+        
+        chartsButton.tintColor = AppTheme.current.colors.mainElementColor
+        
+        separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
+        
+        habitsProgressLabel.isHidden = false
+        goalsProgressLabel.isHidden = false
+        
+        contentView.layer.shadowRadius = 0
     }
     
 }
