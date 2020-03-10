@@ -135,10 +135,6 @@ extension SprintsViewController: UICollectionViewDataSource {
                 self.hideHintPopover()
             }
         }
-        cell.onTapToCharts = { [unowned self] in
-            self.sprintsView.hideSwipedCell()
-            self.performSegue(withIdentifier: "ShowCharts", sender: sprint)
-        }
         return cell
     }
     
@@ -180,23 +176,33 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
     func actions(forCellAt indexPath: IndexPath) -> [SwipeCollectionAction] {
         let sprint = sprintsObserver.item(at: indexPath)
 
-        let removeSprintAction = SwipeCollectionAction(icon: UIImage(named: "trash") ?? UIImage(),
-                                                       tintColor: AppTheme.current.colors.wrongElementColor)
-            { [unowned self] indexPath in
-                self.sprintsView.hideSwipedCell()
-                self.showRemoveSprintConfirmationAlert { confirmed in
-                    guard confirmed else { return }
-                    self.view.isUserInteractionEnabled = false
-                    self.sprintsService.removeSprint(sprint, completion: { _ in
-                        self.view.isUserInteractionEnabled = true
-                        SprintSchedulerService().removeSprintNotifications(sprint: sprint, completion: {})
-                    })
-                }
+        let removeSprintAction = SwipeCollectionAction(
+            icon: UIImage(named: "trash") ?? UIImage(),
+            tintColor: AppTheme.current.colors.wrongElementColor
+        ) { [unowned self] indexPath in
+            self.sprintsView.hideSwipedCell()
+            self.showRemoveSprintConfirmationAlert { confirmed in
+                guard confirmed else { return }
+                self.view.isUserInteractionEnabled = false
+                self.sprintsService.removeSprint(sprint, completion: { _ in
+                    self.view.isUserInteractionEnabled = true
+                    SprintSchedulerService().removeSprintNotifications(sprint: sprint, completion: {})
+                })
             }
+        }
+        
+        let progressSprintAction = SwipeCollectionAction(
+            icon: UIImage(named: "charts") ?? UIImage(),
+            tintColor: AppTheme.current.colors.mainElementColor
+        ) { [unowned self] indexPath in
+            self.sprintsView.hideSwipedCell()
+            self.performSegue(withIdentifier: "ShowCharts", sender: sprint)
+        }
         
         switch sprint.tense {
-        case .past: return []
-        case .current, .future: return [removeSprintAction]
+        case .past: return [progressSprintAction]
+        case .current: return [progressSprintAction, removeSprintAction]
+        case .future: return [removeSprintAction]
         }
     }
     

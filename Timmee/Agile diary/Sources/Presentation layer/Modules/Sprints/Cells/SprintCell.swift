@@ -13,7 +13,6 @@ import UIComponents
 final class SprintCell: SwipableCollectionViewCell {
     
     var onTapToAlert: ((UIButton) -> Void)?
-    var onTapToCharts: (() -> Void)?
     
     private let habitsService = ServicesAssembly.shared.habitsService
     private let goalsService = ServicesAssembly.shared.goalsService
@@ -28,16 +27,11 @@ final class SprintCell: SwipableCollectionViewCell {
     @IBOutlet private var goalsProgressLabel: UILabel!
     
     @IBOutlet private var alertButton: UIButton!
-    @IBOutlet private var chartsButton: UIButton!
     
     @IBOutlet private var separatorViews: [UIView]!
     
     @IBAction private func onTapToAlertButton() {
         onTapToAlert?(alertButton)
-    }
-    
-    @IBAction private func onTapToChartsButton() {
-        onTapToCharts?()
     }
     
     override func awakeFromNib() {
@@ -78,7 +72,6 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
         
         alertButton.isHidden = sprint.isReady
-        chartsButton.isHidden = sprint.tense == .future        
     }
     
     override func prepareForReuse() {
@@ -122,9 +115,7 @@ final class SprintCell: SwipableCollectionViewCell {
         [subtitleLabel, habitsCountLabel, goalsCountLabel].forEach {
             $0?.textColor = AppTheme.current.colors.inactiveElementColor
         }
-        
-        chartsButton.tintColor = AppTheme.current.colors.mainElementColor
-        
+                
         separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
         
         habitsProgressLabel.isHidden = true
@@ -142,9 +133,7 @@ final class SprintCell: SwipableCollectionViewCell {
         [subtitleLabel, habitsCountLabel, goalsCountLabel].forEach {
             $0?.textColor = AppTheme.dark.colors.activeElementColor
         }
-        
-        chartsButton.tintColor = AppTheme.dark.colors.activeElementColor
-        
+                
         tenseLabel.textColor = AppTheme.dark.colors.incompleteElementColor
         
         separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.5) }
@@ -164,9 +153,7 @@ final class SprintCell: SwipableCollectionViewCell {
         [subtitleLabel, habitsCountLabel, goalsCountLabel].forEach {
             $0?.textColor = AppTheme.current.colors.inactiveElementColor
         }
-        
-        chartsButton.tintColor = AppTheme.current.colors.mainElementColor
-        
+                
         separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
         
         habitsProgressLabel.isHidden = false

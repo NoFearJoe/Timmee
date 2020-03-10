@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SprintCell" id="7iC-BN-ZLJ" customClass="SprintCell" customModule="Agile_diary" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SprintCell" id="7iC-BN-ZLJ" customClass="SprintCell" customModule="Agile_diary_debug" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="381" height="170"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -110,21 +108,10 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3sd-lM-Ygg">
-                        <rect key="frame" x="301" y="2" width="72" height="32"/>
+                        <rect key="frame" x="341" y="2" width="32" height="32"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAV-P0-W2M">
-                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="UBx-Dg-lyP"/>
-                                    <constraint firstAttribute="width" secondItem="pAV-P0-W2M" secondAttribute="height" id="f1g-C0-EXR"/>
-                                </constraints>
-                                <state key="normal" image="charts"/>
-                                <connections>
-                                    <action selector="onTapToChartsButton" destination="7iC-BN-ZLJ" eventType="touchUpInside" id="ndH-NC-xE1"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjH-Nf-GVm">
-                                <rect key="frame" x="40" y="0.0" width="32" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FjH-Nf-GVm" secondAttribute="height" id="0yr-va-Nac"/>
                                     <constraint firstAttribute="width" constant="32" id="Kci-n0-a22"/>
@@ -170,7 +157,6 @@
             <size key="customSize" width="381" height="170"/>
             <connections>
                 <outlet property="alertButton" destination="FjH-Nf-GVm" id="q72-Jm-dhD"/>
-                <outlet property="chartsButton" destination="pAV-P0-W2M" id="FPu-nf-KOl"/>
                 <outlet property="goalsCountLabel" destination="9Fb-1j-Oje" id="iuH-eP-tHx"/>
                 <outlet property="goalsProgressLabel" destination="thH-kq-b1u" id="Jht-2l-Hmf"/>
                 <outlet property="habitsCountLabel" destination="kab-ts-Aef" id="iFI-rg-Igj"/>
@@ -186,6 +172,5 @@
     </objects>
     <resources>
         <image name="alert" width="20" height="20"/>
-        <image name="charts" width="20" height="20"/>
     </resources>
 </document>
