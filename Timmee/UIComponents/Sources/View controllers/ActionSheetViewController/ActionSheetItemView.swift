@@ -13,12 +13,11 @@ final class ActionSheetItemView: UIView {
     
     override var tintColor: UIColor? {
         didSet {
-            iconView.tintColor = tintColor
             titleLabel.tintColor = tintColor
         }
     }
     
-    private let iconView = UIImageView()
+    private let selectionView = UIView()
     private let titleLabel = UILabel()
     
     private let item: ActionSheetItem
@@ -31,7 +30,6 @@ final class ActionSheetItemView: UIView {
         setupViews()
         setupLayout()
         
-        iconView.image = item.icon
         titleLabel.text = item.title
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
@@ -44,6 +42,24 @@ final class ActionSheetItemView: UIView {
         item.action()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        selectionView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        selectionView.backgroundColor = .clear
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        
+        selectionView.backgroundColor = .clear
+    }
+    
 }
 
 private extension ActionSheetItemView {
@@ -51,24 +67,20 @@ private extension ActionSheetItemView {
     func setupViews() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        addSubview(iconView)
-        iconView.contentMode = .scaleAspectFit
-        iconView.clipsToBounds = true
-        iconView.isUserInteractionEnabled = false
-        iconView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(selectionView)
+        selectionView.isUserInteractionEnabled = false
+        selectionView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(titleLabel)
         titleLabel.isUserInteractionEnabled = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textAlignment = .center
     }
     
     func setupLayout() {
-        iconView.width(20)
-        iconView.height(20)
-        [iconView.leading(16), iconView.centerY()].toSuperview()
+        selectionView.allEdges().toSuperview()
         
-        [titleLabel.trailing(16), titleLabel.centerY()].toSuperview()
-        titleLabel.leadingToTrailing(12).to(iconView, addTo: self)
+        [titleLabel.trailing(16), titleLabel.centerY(), titleLabel.leading(16)].toSuperview()
     }
     
 }

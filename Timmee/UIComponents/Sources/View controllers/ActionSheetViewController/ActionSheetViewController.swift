@@ -62,7 +62,7 @@ public final class ActionSheetViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         modalPresentationStyle = .overFullScreen
-        modalTransitionStyle = .coverVertical
+        modalTransitionStyle = .crossDissolve
     }
     
     required init?(coder: NSCoder) { fatalError() }
@@ -83,6 +83,31 @@ public final class ActionSheetViewController: UIViewController {
             } else {
                 stackView.addArrangedSubview(separators[i / 2])
             }
+        }
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let height = CGFloat(itemViews.count * 52) + CGFloat(separators.count) * 0.5 + 16 + 52 + 16
+        
+        contentView.transform = CGAffineTransform(translationX: 0, y: height)
+        closeButton.transform = CGAffineTransform(translationX: 0, y: height)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.contentView.transform = .identity
+            self.closeButton.transform = .identity
+        }
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let height = CGFloat(itemViews.count * 52) + CGFloat(separators.count) * 0.5 + 16 + 52 + 16
+        
+        UIView.animate(withDuration: 0.15) {
+            self.contentView.transform = CGAffineTransform(translationX: 0, y: height)
+            self.closeButton.transform = CGAffineTransform(translationX: 0, y: height)
         }
     }
     
@@ -108,7 +133,7 @@ extension ActionSheetViewController: UIGestureRecognizerDelegate {
 private extension ActionSheetViewController {
     
     func setupViews() {
-        view.backgroundColor = .clear
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         view.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
