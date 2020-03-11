@@ -19,6 +19,10 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
     private let goal: Goal
     private let currentDate: Date
     
+    private lazy var habitsForCurrentDate: [Habit] = goal.habits.filter {
+        $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate
+    }
+    
     private let goalsService = ServicesAssembly.shared.goalsService
     private let habitsService = ServicesAssembly.shared.habitsService
     private let stagesService = ServicesAssembly.shared.subtasksService
@@ -38,7 +42,7 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
         let contentView = stackViewContainer
         
         // Habits
-        if !goal.habits.isEmpty {
+        if !habitsForCurrentDate.isEmpty {
             let emptyView = UIView()
             emptyView.backgroundColor = AppTheme.current.colors.foregroundColor
             emptyView.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -316,13 +320,13 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
 extension GoalDetailsProvider: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goal.habits.count
+        habitsForCurrentDate.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TodayHabitCell.identifier, for: indexPath) as! TodayHabitCell
         
-        let habit = goal.habits[indexPath.row]
+        let habit = habitsForCurrentDate[indexPath.row]
         cell.configure(habit: habit, currentDate: currentDate)
         cell.setFlat(true)
         cell.setHoriznotalInsets(0)
@@ -335,7 +339,7 @@ extension GoalDetailsProvider: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let habit = goal.habits[indexPath.row]
+        let habit = habitsForCurrentDate[indexPath.row]
         
         onSelectHabit?(habit)
     }

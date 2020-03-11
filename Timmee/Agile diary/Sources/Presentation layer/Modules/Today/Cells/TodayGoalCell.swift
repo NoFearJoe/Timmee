@@ -51,10 +51,14 @@ final class TodayGoalCell: SwipeTableViewCell {
         
         titleLabel.text = goal.title
         
-        habitsTitleLabel.isHidden = goal.habits.isEmpty
-        habitsContainer.isHidden = goal.habits.isEmpty
+        let habitsForCurrentDate = goal.habits.filter {
+            $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate
+        }
         
-        addHabitViews(habits: goal.habits, currentDate: currentDate)
+        habitsTitleLabel.isHidden = habitsForCurrentDate.isEmpty
+        habitsContainer.isHidden = habitsForCurrentDate.isEmpty
+        
+        addHabitViews(habits: habitsForCurrentDate, currentDate: currentDate)
         
         stagesTitleLabel.isHidden = goal.stages.isEmpty
         stagesContainer.isHidden = goal.stages.isEmpty

@@ -443,7 +443,7 @@ private extension GoalCreationViewController {
 private extension GoalCreationViewController {
     
     func setupHabitsCacheObserver(sprintID: String) {
-        habitsCacheObserver = habitsService.habitsByGoalObserver(sprintID: sprintID, goalID: goal.id)
+        habitsCacheObserver = habitsService.habitsByGoalObserver(sprintID: sprintID, goalID: goal.id, day: nil, date: nil)
         habitsCacheObserver?.setSubscriber(habitsCacheAdapter)
         habitsCacheObserver?.setActions(
             onInitialFetch: nil,
