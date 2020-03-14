@@ -364,9 +364,13 @@ extension SprintCreationViewController: SprintContentViewControllerDelegate {
 private extension SprintCreationViewController {
     
     func updateDoneButtonState() {
-        let isHabitsEnough = itemsCountBySection[.habits].flatMap { $0 >= 3 } ?? false
-        let isGoalsEnough = itemsCountBySection[.goals].flatMap { $0 >= 1 } ?? false
-        headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isGoalsEnough
+        if isFirstTimeSprintCreation {
+            let isHabitsEnough = itemsCountBySection[.habits].flatMap { $0 >= 3 } ?? false
+            let isGoalsEnough = itemsCountBySection[.goals].flatMap { $0 >= 1 } ?? false
+            headerView.rightButton?.isEnabled = Environment.isDebug ? true : isHabitsEnough && isGoalsEnough
+        } else {
+            headerView.rightButton?.isEnabled = true
+        }
     }
     
     func updateHeaderSubtitle(startDate: Date, duration: Int, sprintNotifications: Sprint.Notifications) {
