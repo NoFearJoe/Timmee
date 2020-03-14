@@ -298,6 +298,8 @@
 
 "recover_password_error_alert_title" = "Ошибка";
 "recover_password_error_alert_message" = "Введенный e-mail не зарегистрирован или отсутствует интернет-соединение";
+"successfull_recover_password_alert_title" = "Готово";
+"successfull_recover_password_alert_message" = "Инструкция по восстановлению отправлена на почту";
 "new_password_error_alert_title" = "Ошибка";
 "new_password_error_alert_message" = "Введен неправильный код проверки или отсутствует интернет-соединение";
 

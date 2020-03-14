@@ -298,6 +298,8 @@
 
 "recover_password_error_alert_title" = "Error";
 "recover_password_error_alert_message" = "The entered e-mail is not registered or no internet connection";
+"successfull_recover_password_alert_title" = "Done";
+"successfull_recover_password_alert_message" = "Password recovery instruction has been sent to your email";
 "new_password_error_alert_title" = "Error";
 "new_password_error_alert_message" = "Entered the wrong verification code or no internet connection";
 
