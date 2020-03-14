@@ -33,7 +33,10 @@ final class ShopCategoryViewController: BaseViewController {
     
     override func prepare() {
         super.prepare()
+        
         setupPlaceholder()
+        
+        tableView.register(HabitsHistoryCell.self, forCellReuseIdentifier: HabitsHistoryCell.reuseIdentifier)
     }
     
     override func refresh() {
@@ -58,7 +61,7 @@ extension ShopCategoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCategoryHabitCell", for: indexPath) as! ShopCategoryHabitCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HabitsHistoryCell.reuseIdentifier, for: indexPath) as! HabitsHistoryCell
         if let habit = collection?.habits.item(at: indexPath.row) {
             let isPicked = pickedHabitsState.pickedHabits.contains(habit)
             cell.configure(habit: habit, isPicked: isPicked)
@@ -108,17 +111,6 @@ private extension ShopCategoryViewController {
     func updatePlaceholderVisibility() {
         guard let collection = collection else { return }
         placeholderContainer.isHidden = !collection.habits.isEmpty
-    }
-    
-}
-
-final class ShopCategoryHabitCell: SprintCreationHabitCell {
-    
-    @IBOutlet private var checkbox: Checkbox!
-    
-    func configure(habit: Habit, isPicked: Bool) {
-        configure(habit: habit)
-        checkbox.isChecked = isPicked
     }
     
 }

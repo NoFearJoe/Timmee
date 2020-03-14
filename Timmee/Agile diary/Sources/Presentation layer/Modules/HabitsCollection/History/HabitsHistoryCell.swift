@@ -1,17 +1,17 @@
 //
-//  SprintCreationHabitCell.swift
+//  HabitsHistoryCell.swift
 //  Agile diary
 //
-//  Created by i.kharabet on 16.08.2018.
-//  Copyright © 2018 Mesterra. All rights reserved.
+//  Created by Илья Харабет on 14/03/2020.
+//  Copyright © 2020 Mesterra. All rights reserved.
 //
 
 import UIKit
 import SwipeCellKit
 
-class SprintCreationHabitCell: SwipeTableViewCell {
+final class HabitsHistoryCell: SwipeTableViewCell {
     
-    static let reuseIdentifier = "SprintCreationHabitCell"
+    static let reuseIdentifier = "HabitsHistoryCell"
     
     private let containerView = UIView()
     private let contentContainerView = UIStackView()
@@ -39,7 +39,7 @@ class SprintCreationHabitCell: SwipeTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(habit: Habit) {
+    func configure(habit: Habit, isPicked: Bool) {
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()
@@ -63,12 +63,15 @@ class SprintCreationHabitCell: SwipeTableViewCell {
                                                          attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         }
         subtitleLabel.attributedText = attributedSubtitle
+        
+        checkbox.isChecked = isPicked
     }
     
     private func setupViews() {
         contentView.addSubview(containerView)
         
         containerView.addSubview(contentContainerView)
+        containerView.addSubview(checkbox)
         
         contentContainerView.distribution = .fill
         contentContainerView.alignment = .fill
@@ -85,8 +88,11 @@ class SprintCreationHabitCell: SwipeTableViewCell {
     private func setupLayout() {
         [containerView.leading(15), containerView.trailing(15), containerView.top(6), containerView.bottom(6)].toSuperview()
         
-        [contentContainerView.leading(8), contentContainerView.trailing(8), contentContainerView.centerY()].toSuperview()
+        [contentContainerView.leading(8), contentContainerView.centerY()].toSuperview()
         contentContainerView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: 4).isActive = true
+        
+        [checkbox.centerY(), checkbox.trailing(8)].toSuperview()
+        checkbox.leadingToTrailing(4).to(contentContainerView, addTo: containerView)
     }
     
 }

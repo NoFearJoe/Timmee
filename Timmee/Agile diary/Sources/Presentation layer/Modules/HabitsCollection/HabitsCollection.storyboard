@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lpH-wg-VTa">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lpH-wg-VTa">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,16 +26,16 @@
         <!--Habits Collection View Controller-->
         <scene sceneID="7ad-pY-2NE">
             <objects>
-                <viewController id="a4L-60-P8J" customClass="HabitsCollectionViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="a4L-60-P8J" customClass="HabitsCollectionViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FCr-xk-ggX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXR-7k-mWa" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXR-7k-mWa" customClass="LargeHeaderView" customModule="Agile_diary_debug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AF0-uC-Dhj">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="129"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="igq-Sc-DBA">
                                                 <rect key="frame" x="15" y="44" width="345" height="77"/>
@@ -51,7 +49,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mp-Bf-xap" customClass="Switcher" customModule="Agile_diary" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mp-Bf-xap" customClass="Switcher" customModule="Agile_diary_debug" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="49" width="345" height="28"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -98,13 +96,13 @@
                                 </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU8-R8-ob1">
-                                <rect key="frame" x="0.0" y="149" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
                                 <connections>
                                     <segue destination="fYw-wf-Cue" kind="embed" identifier="History" id="5s5-ZD-bbF"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhC-lo-gfO">
-                                <rect key="frame" x="0.0" y="149" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
                                 <connections>
                                     <segue destination="dyi-op-cKi" kind="embed" identifier="Shop" id="Crl-4V-VUG"/>
                                 </connections>
@@ -141,105 +139,26 @@
         <!--Habits History View Controller-->
         <scene sceneID="Lek-yX-Rq7">
             <objects>
-                <viewController id="fYw-wf-Cue" customClass="HabitsHistoryViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fYw-wf-Cue" customClass="HabitsHistoryViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cXP-AR-bd1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IFa-VL-tIJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="8g5-Dc-lMY">
-                                    <rect key="frame" x="0.0" y="96" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HabitsHistoryCell" rowHeight="68" id="N7v-zd-ymv" customClass="HabitsHistoryCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="68"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N7v-zd-ymv" id="E4c-hU-F4n">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-0k-ZpK">
-                                                    <rect key="frame" x="15" y="6" width="309" height="56"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElX-Lw-rUa">
-                                                            <rect key="frame" x="8" y="6" width="293" height="44.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6R3-hL-92H">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="293" height="25"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-L4-SVk">
-                                                                    <rect key="frame" x="0.0" y="25" width="293" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="E0f-L4-SVk" firstAttribute="top" secondItem="6R3-hL-92H" secondAttribute="bottom" id="5jT-ht-T7X"/>
-                                                                <constraint firstItem="E0f-L4-SVk" firstAttribute="leading" secondItem="ElX-Lw-rUa" secondAttribute="leading" id="Spn-TT-xG2"/>
-                                                                <constraint firstAttribute="trailing" secondItem="E0f-L4-SVk" secondAttribute="trailing" id="YfG-gf-dAp"/>
-                                                                <constraint firstItem="6R3-hL-92H" firstAttribute="leading" secondItem="ElX-Lw-rUa" secondAttribute="leading" id="b4X-KI-0OF"/>
-                                                                <constraint firstItem="6R3-hL-92H" firstAttribute="top" secondItem="ElX-Lw-rUa" secondAttribute="top" id="cTW-wM-svQ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="E0f-L4-SVk" secondAttribute="bottom" id="jOj-OV-iFT"/>
-                                                                <constraint firstAttribute="trailing" secondItem="6R3-hL-92H" secondAttribute="trailing" id="ksR-yQ-ss1"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.91764705879999997" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="deviceRGB"/>
-                                                    <constraints>
-                                                        <constraint firstItem="ElX-Lw-rUa" firstAttribute="leading" secondItem="TSc-0k-ZpK" secondAttribute="leading" constant="8" id="CzY-5A-VZC"/>
-                                                        <constraint firstItem="ElX-Lw-rUa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TSc-0k-ZpK" secondAttribute="top" constant="4" id="Q5i-uR-4Ov"/>
-                                                        <constraint firstItem="ElX-Lw-rUa" firstAttribute="centerY" secondItem="TSc-0k-ZpK" secondAttribute="centerY" id="YKI-bF-iYZ"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ElX-Lw-rUa" secondAttribute="bottom" constant="-4" id="woP-6N-puD"/>
-                                                        <constraint firstAttribute="trailing" secondItem="ElX-Lw-rUa" secondAttribute="trailing" constant="8" id="zsL-Lg-C0w"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svk-CW-ubQ" customClass="Checkbox" customModule="Agile_diary" customModuleProvider="target">
-                                                    <rect key="frame" x="332" y="20" width="28" height="28"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="svk-CW-ubQ" secondAttribute="height" multiplier="1:1" id="Tb4-m0-cLz"/>
-                                                        <constraint firstAttribute="width" constant="28" id="loT-GH-sx9"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="svk-CW-ubQ" secondAttribute="trailing" constant="15" id="ALa-2N-I9h"/>
-                                                <constraint firstItem="svk-CW-ubQ" firstAttribute="leading" secondItem="TSc-0k-ZpK" secondAttribute="trailing" constant="8" id="Jyq-Bn-QvS"/>
-                                                <constraint firstAttribute="bottom" secondItem="TSc-0k-ZpK" secondAttribute="bottom" constant="6" id="OjH-ci-Wwm"/>
-                                                <constraint firstItem="TSc-0k-ZpK" firstAttribute="leading" secondItem="E4c-hU-F4n" secondAttribute="leading" constant="15" id="eqV-Zl-gOX"/>
-                                                <constraint firstItem="svk-CW-ubQ" firstAttribute="centerY" secondItem="E4c-hU-F4n" secondAttribute="centerY" id="vOk-1T-xON"/>
-                                                <constraint firstItem="TSc-0k-ZpK" firstAttribute="top" secondItem="E4c-hU-F4n" secondAttribute="top" constant="6" id="x1S-R1-Amp"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="checkbox" destination="svk-CW-ubQ" id="WvX-Nn-QYB"/>
-                                            <outlet property="containerView" destination="TSc-0k-ZpK" id="sNo-hq-9SI"/>
-                                            <outlet property="subtitleLabel" destination="E0f-L4-SVk" id="WAu-4g-hq7"/>
-                                            <outlet property="titleLabel" destination="6R3-hL-92H" id="LHZ-Xm-3rG"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="fYw-wf-Cue" id="Vuu-33-iDO"/>
                                     <outlet property="delegate" destination="fYw-wf-Cue" id="cRd-ui-1fR"/>
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O95-dy-Ma2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -268,13 +187,13 @@
         <!--Shop Categories View Controller-->
         <scene sceneID="Y36-yc-8bo">
             <objects>
-                <viewController id="dyi-op-cKi" customClass="ShopCategoriesViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dyi-op-cKi" customClass="ShopCategoriesViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pgU-jH-Tfj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wzB-ry-bCg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MeO-fn-5z5">
                                     <size key="itemSize" width="138" height="134"/>
@@ -283,7 +202,7 @@
                                     <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCategoryCell" id="SMz-lt-CYh" customClass="ShopCategoryCell" customModule="Agile_diary" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCategoryCell" id="SMz-lt-CYh" customClass="ShopCategoryCell" customModule="Agile_diary_debug" customModuleProvider="target">
                                         <rect key="frame" x="15" y="15" width="138" height="134"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -356,11 +275,11 @@
                                 </connections>
                             </collectionView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1k-oz-av2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-3g-IvX" customClass="LoadingView" customModule="UIComponents">
-                                <rect key="frame" x="155.5" y="227" width="64" height="64"/>
+                                <rect key="frame" x="155.5" y="237" width="64" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="XHt-mb-AAv"/>
@@ -397,16 +316,16 @@
         <!--Shop Category View Controller-->
         <scene sceneID="lpW-W0-Qge">
             <objects>
-                <viewController id="jCq-zW-J24" customClass="ShopCategoryViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jCq-zW-J24" customClass="ShopCategoryViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W1Y-75-s8n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujP-9R-Leg" customClass="LargeHeaderView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujP-9R-Leg" customClass="LargeHeaderView" customModule="Agile_diary_debug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rzn-F3-Ahm">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="15d-b7-2Md">
                                                 <rect key="frame" x="15" y="44" width="345" height="41"/>
@@ -460,99 +379,20 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="68" estimatedRowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s5x-58-BMw">
-                                <rect key="frame" x="0.0" y="113" width="375" height="405"/>
+                                <rect key="frame" x="0.0" y="93" width="375" height="425"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="j5W-eR-AgG">
-                                    <rect key="frame" x="0.0" y="96" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShopCategoryHabitCell" rowHeight="68" id="doc-M7-Ze7" customClass="ShopCategoryHabitCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="68"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="doc-M7-Ze7" id="iDn-LX-1bX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kgz-nV-p7E">
-                                                    <rect key="frame" x="15" y="6" width="309" height="56"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c26-Jc-wGa">
-                                                            <rect key="frame" x="8" y="6" width="293" height="44.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIr-a8-yGe">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="293" height="25"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCG-UD-GAm">
-                                                                    <rect key="frame" x="0.0" y="25" width="293" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="aIr-a8-yGe" firstAttribute="top" secondItem="c26-Jc-wGa" secondAttribute="top" id="3G7-2m-uN8"/>
-                                                                <constraint firstItem="oCG-UD-GAm" firstAttribute="leading" secondItem="c26-Jc-wGa" secondAttribute="leading" id="PUa-wx-reL"/>
-                                                                <constraint firstAttribute="trailing" secondItem="oCG-UD-GAm" secondAttribute="trailing" id="ZNn-N1-vzl"/>
-                                                                <constraint firstItem="aIr-a8-yGe" firstAttribute="leading" secondItem="c26-Jc-wGa" secondAttribute="leading" id="dss-mn-eoX"/>
-                                                                <constraint firstAttribute="bottom" secondItem="oCG-UD-GAm" secondAttribute="bottom" id="hke-lB-Fk0"/>
-                                                                <constraint firstAttribute="trailing" secondItem="aIr-a8-yGe" secondAttribute="trailing" id="kUP-eE-G4c"/>
-                                                                <constraint firstItem="oCG-UD-GAm" firstAttribute="top" secondItem="aIr-a8-yGe" secondAttribute="bottom" id="pTY-s1-JiF"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.91764705879999997" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="deviceRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="c26-Jc-wGa" secondAttribute="trailing" constant="8" id="9Q8-fJ-daZ"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="c26-Jc-wGa" secondAttribute="bottom" constant="-4" id="Bme-30-uOm"/>
-                                                        <constraint firstItem="c26-Jc-wGa" firstAttribute="leading" secondItem="Kgz-nV-p7E" secondAttribute="leading" constant="8" id="fp4-fh-bkZ"/>
-                                                        <constraint firstItem="c26-Jc-wGa" firstAttribute="centerY" secondItem="Kgz-nV-p7E" secondAttribute="centerY" id="l2X-NQ-V3q"/>
-                                                        <constraint firstItem="c26-Jc-wGa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Kgz-nV-p7E" secondAttribute="top" constant="4" id="oWi-9p-8us"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbT-1t-mwa" customClass="Checkbox" customModule="Agile_diary" customModuleProvider="target">
-                                                    <rect key="frame" x="332" y="20" width="28" height="28"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="28" id="PAG-lD-DDX"/>
-                                                        <constraint firstAttribute="width" secondItem="CbT-1t-mwa" secondAttribute="height" multiplier="1:1" id="hgx-CG-gbE"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="CbT-1t-mwa" firstAttribute="leading" secondItem="Kgz-nV-p7E" secondAttribute="trailing" constant="8" id="C9r-dN-Zq4"/>
-                                                <constraint firstItem="CbT-1t-mwa" firstAttribute="centerY" secondItem="iDn-LX-1bX" secondAttribute="centerY" id="F1j-rs-Ttl"/>
-                                                <constraint firstAttribute="bottom" secondItem="Kgz-nV-p7E" secondAttribute="bottom" constant="6" id="NOY-Im-CVX"/>
-                                                <constraint firstItem="Kgz-nV-p7E" firstAttribute="leading" secondItem="iDn-LX-1bX" secondAttribute="leading" constant="15" id="RvQ-5X-349"/>
-                                                <constraint firstAttribute="trailing" secondItem="CbT-1t-mwa" secondAttribute="trailing" constant="15" id="WbZ-Yq-Pag"/>
-                                                <constraint firstItem="Kgz-nV-p7E" firstAttribute="top" secondItem="iDn-LX-1bX" secondAttribute="top" constant="6" id="Y1X-Mn-2tx"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="checkbox" destination="CbT-1t-mwa" id="42e-Zs-kVT"/>
-                                            <outlet property="containerView" destination="Kgz-nV-p7E" id="lIf-Gl-S4Y"/>
-                                            <outlet property="subtitleLabel" destination="oCG-UD-GAm" id="bms-Qz-jwm"/>
-                                            <outlet property="titleLabel" destination="aIr-a8-yGe" id="4y7-p1-qYw"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="jCq-zW-J24" id="zVS-gV-DRS"/>
                                     <outlet property="delegate" destination="jCq-zW-J24" id="gbn-Cm-yAP"/>
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GH-E2-bos">
-                                <rect key="frame" x="0.0" y="113" width="375" height="405"/>
+                                <rect key="frame" x="0.0" y="93" width="375" height="425"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>

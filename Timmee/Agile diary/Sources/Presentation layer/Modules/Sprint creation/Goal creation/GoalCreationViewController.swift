@@ -103,7 +103,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
             self.habitsService.removeHabit(habit, completion: { _ in })
             HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
         }
-                
+        
         addChild(stackViewController)
         view.addSubview(stackViewController.view)
         [stackViewController.view.leading(), stackViewController.view.trailing(), stackViewController.view.bottom()].toSuperview()

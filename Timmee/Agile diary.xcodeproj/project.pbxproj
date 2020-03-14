@@ -314,6 +314,8 @@
 		961AF5B323AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
 		961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
 		961AF5B723AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
+		961B95D2241CC101003EC992 /* HabitsHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */; };
+		961B95D3241CC101003EC992 /* HabitsHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
@@ -607,6 +609,7 @@
 		961063222242B26000E1446E /* MoodChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartCell.swift; sourceTree = "<group>"; };
 		961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationOnboardingViewController.swift; sourceTree = "<group>"; };
 		961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationOnboardingViewController.swift; sourceTree = "<group>"; };
+		961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryCell.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
@@ -1201,6 +1204,7 @@
 			isa = PBXGroup;
 			children = (
 				0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */,
+				961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -2012,6 +2016,7 @@
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
 				0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
+				961B95D2241CC101003EC992 /* HabitsHistoryCell.swift in Sources */,
 				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				0C06E95B22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
@@ -2088,6 +2093,7 @@
 				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
 				0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */,
 				0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */,
+				961B95D3241CC101003EC992 /* HabitsHistoryCell.swift in Sources */,
 				961063242242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,

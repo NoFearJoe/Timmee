@@ -28,6 +28,7 @@ final class HabitsHistoryViewController: BaseViewController {
         setupPlaceholder()
         setupCacheObserver()
         tableView.register(TableHeaderViewWithTitle.self, forHeaderFooterViewReuseIdentifier: "Header")
+        tableView.register(HabitsHistoryCell.self, forCellReuseIdentifier: HabitsHistoryCell.reuseIdentifier)
     }
     
     override func refresh() {
@@ -58,7 +59,7 @@ extension HabitsHistoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HabitsHistoryCell", for: indexPath) as! HabitsHistoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HabitsHistoryCell.reuseIdentifier, for: indexPath) as! HabitsHistoryCell
         let habit = cacheObserver.item(at: indexPath)
         let isPicked = pickedHabitsState.pickedHabits.contains(habit)
         cell.configure(habit: habit, isPicked: isPicked)
@@ -128,17 +129,6 @@ private extension HabitsHistoryViewController {
     
     func updatePlaceholderVisibility() {
         placeholderContainer.isHidden = cacheObserver.numberOfSections() != 0
-    }
-    
-}
-
-final class HabitsHistoryCell: SprintCreationHabitCell {
-    
-    @IBOutlet private var checkbox: Checkbox!
-    
-    func configure(habit: Habit, isPicked: Bool) {
-        configure(habit: habit)
-        checkbox.isChecked = isPicked
     }
     
 }
