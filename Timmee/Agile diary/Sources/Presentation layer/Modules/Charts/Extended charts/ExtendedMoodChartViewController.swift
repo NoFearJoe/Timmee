@@ -75,7 +75,7 @@ private extension ExtendedMoodChartViewController {
         let entries = groupedMoods.map { kind, groupMoods -> PieChartDataEntry in
             PieChartDataEntry(value: Double(groupMoods.count), icon: UIImage(named: kind.icon)?.resize(to: CGSize(width: 28, height: 28)))
         }
-        let dataSet = PieChartDataSet(values: entries, label: nil)
+        let dataSet = PieChartDataSet(entries: entries, label: nil)
         dataSet.colors = groupedMoods.map { $0.0.color.withAlphaComponent(0.75) }
         dataSet.drawValuesEnabled = false
         pieChart.data = PieChartData(dataSet: dataSet)

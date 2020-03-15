@@ -7,7 +7,6 @@
 //
 
 import TasksKit
-import Firebase
 
 extension HabitEntity: DictionaryEncodable {
     
@@ -41,16 +40,16 @@ extension HabitEntity: DictionaryDecodable {
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
         title = dictionary["title"] as? String
-        creationDate = (dictionary["creationDate"] as? Timestamp)?.dateValue()
+        creationDate = (dictionary["creationDate"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         if let doneDatesArray = dictionary["doneDates"] as? [Any] {
-            doneDates = doneDatesArray.compactMap { ($0 as? Timestamp)?.dateValue() } as NSArray
+            doneDates = doneDatesArray.compactMap { ($0 as? FirebaseFirestoreTimestampProtocol)?.dateValue() } as NSArray
         }
         dueDays = dictionary["dueDays"] as? String
         link = dictionary["link"] as? String
         note = dictionary["note"] as? String
         dayTime = dictionary["dayTime"] as? String
-        notificationDate = (dictionary["notificationDate"] as? Timestamp)?.dateValue()
-        repeatEndingDate = (dictionary["repeatEndingDate"] as? Timestamp)?.dateValue()
+        notificationDate = (dictionary["notificationDate"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
+        repeatEndingDate = (dictionary["repeatEndingDate"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         value = dictionary["value"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
     }

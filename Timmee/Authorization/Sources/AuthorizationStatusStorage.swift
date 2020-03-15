@@ -7,18 +7,18 @@
 //
 
 import Workset
-import Firebase
-import Foundation
 
 final class AuthorizationStatusStorage {
     
     static let shared = AuthorizationStatusStorage()
     
+    var auth: FirebaseAuthProtocol!
+    
     private init() {}
     
     /// Возвращает true, если пользователь авторизован
     var userIsAuthorized: Bool {
-        return Firebase.Auth.auth().currentUser != nil
+        auth.user != nil
     }
     
     /// Возвращает true, если пользователь когда-то был авторизован

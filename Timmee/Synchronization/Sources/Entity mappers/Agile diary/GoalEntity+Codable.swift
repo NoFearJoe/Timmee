@@ -7,7 +7,6 @@
 //
 
 import TasksKit
-import Firebase
 
 extension GoalEntity: DictionaryEncodable {
     
@@ -33,7 +32,7 @@ extension GoalEntity: DictionaryDecodable {
     
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
-        creationDate = (dictionary["creationDate"] as? Timestamp)?.dateValue()
+        creationDate = (dictionary["creationDate"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         isDone = dictionary["isDone"] as? Bool ?? false
         title = dictionary["title"] as? String
         note = dictionary["note"] as? String

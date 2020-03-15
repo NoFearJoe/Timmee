@@ -6,7 +6,6 @@
 //  Copyright © 2018 Илья Харабет. All rights reserved.
 //
 
-import Firebase
 import FBSDKLoginKit
 
 public struct User {
@@ -43,13 +42,39 @@ public enum AuthorizationError: Equatable {
     }
 }
 
+public protocol FirebaseUserProtocol {
+    var uid: String { get }
+    var email: String? { get }
+    var displayName: String? { get }
+}
+
+public protocol FirebaseAuthProtocol {
+    var user: FirebaseUserProtocol? { get }
+
+    func signIn(withEmail email: String, password: String, completion: ((Bool, Error?) -> Void)?)
+    func signIn(withFacebookAccessToken token: String, completion: ((Bool, Error?) -> Void)?)
+    func createUser(withEmail email: String, password: String, completion: ((Bool, Error?) -> Void)?)
+    func sendPasswordReset(withEmail email: String, completion: ((Error?) -> Void)?)
+    func verifyPasswordResetCode(_ code: String, completion: ((String?, Error?) -> Void)?)
+    func confirmPasswordReset(withCode code: String, newPassword: String, completion: ((Error?) -> Void)?)
+    func signOut() throws
+}
+
 public final class AuthorizationService {
     
-    public static func initializeAuthorization() {}
+    public static func initializeAuthorization(auth: FirebaseAuthProtocol) {
+        Self.auth = auth
+    }
     
+    private static var auth: FirebaseAuthProtocol!
+    
+    private let auth: FirebaseAuthProtocol
     private let authorizationStatusStorage = AuthorizationStatusStorage.shared
     
-    public init() {}
+    public init() {
+        self.auth = Self.auth
+        authorizationStatusStorage.auth = auth
+    }
     
     public var isAuthorized: Bool {
         return authorizationStatusStorage.userIsAuthorized
@@ -60,7 +85,7 @@ public final class AuthorizationService {
     }
     
     public var authorizedUser: User? {
-        guard let currentUser = Firebase.Auth.auth().currentUser else { return nil }
+        guard let currentUser = auth.user else { return nil }
         return User(id: currentUser.uid, email: currentUser.email, name: currentUser.displayName)
     }
     
@@ -73,13 +98,15 @@ public final class AuthorizationService {
         }
         switch type {
         case let .emailAndPassword(email, password):
-            Firebase.Auth.auth().signIn(withEmail: email, password: password) { result, error in
-                let isSuccess = error == nil && result != nil
+            auth.signIn(withEmail: email, password: password) { [weak self] result, error in
+                guard let self = self else { return }
+                
+                let isSuccess = error == nil && result
                 let authorizationError = self.convertFirebaseErrorToAuthorizationError(error)
 
                 if !isSuccess, authorizationError == nil || authorizationError != .wrongPassword {
-                    Firebase.Auth.auth().createUser(withEmail: email, password: password, completion: { result, error in
-                        let isSuccess = error == nil && result != nil
+                    self.auth.createUser(withEmail: email, password: password, completion: { result, error in
+                        let isSuccess = error == nil && result
                         if isSuccess {
                             self.authorizationStatusStorage.commitAuthorization(type: type, userInfo: [:])
                         }
@@ -94,10 +121,9 @@ public final class AuthorizationService {
                 }
             }
         case .facebook:
-            guard let token = FBSDKAccessToken.current()?.tokenString else { completion(false, nil); return }
-            let credential = FacebookAuthProvider.credential(withAccessToken: token)
-            Firebase.Auth.auth().signInAndRetrieveData(with: credential) { result, error in
-                let isSuccess = error == nil && result != nil
+            guard let token = AccessToken.current?.tokenString else { completion(false, nil); return }
+            auth.signIn(withFacebookAccessToken: token) { result, error in
+                let isSuccess = error == nil && result
                 if isSuccess {
                     self.authorizationStatusStorage.commitAuthorization(type: type, userInfo: [:])
                 }
@@ -124,33 +150,35 @@ public final class AuthorizationService {
     // MARK: - Восстановление пароля
     
     public func initiatePasswordRecover(email: String, completion: @escaping (Bool) -> Void) {
-        Firebase.Auth.auth().sendPasswordReset(withEmail: email) { error in
+        auth.sendPasswordReset(withEmail: email) { error in
             completion(error == nil)
         }
     }
     
     public func recoverPassword(verificationCode: String, newPassword: String, completion: @escaping (Bool) -> Void) {
-        Firebase.Auth.auth().verifyPasswordResetCode(verificationCode) { email, error in
-            guard error == nil else {
+        auth.verifyPasswordResetCode(verificationCode) { [weak self] email, error in
+            guard let self = self, error == nil else {
                 completion(false)
                 return
             }
-            Firebase.Auth.auth().confirmPasswordReset(withCode: verificationCode,
-                                                      newPassword: newPassword,
-                                                      completion: { error in completion(error == nil) })
+            self.auth.confirmPasswordReset(
+                withCode: verificationCode,
+                newPassword: newPassword,
+                completion: { error in completion(error == nil) }
+            )
         }
     }
     
     // MARK: - Выход
     
     public func unauthorize(completion: @escaping () -> Void) {
-        try? Firebase.Auth.auth().signOut()
+        try? auth.signOut()
         authorizationStatusStorage.commitUnauthorization()
         completion()
     }
     
     public func performFacebookLogin(from viewController: UIViewController, completion: @escaping (Bool) -> Void) {
-        FBSDKLoginManager().logIn(withReadPermissions: [""], from: viewController) { result, error in
+        LoginManager().logIn(permissions: [""], from: viewController) { result, error in
             let isSuccess = result != nil && !result!.isCancelled && error == nil
             completion(isSuccess)
         }
@@ -159,9 +187,9 @@ public final class AuthorizationService {
     private func convertFirebaseErrorToAuthorizationError(_ error: Error?) -> AuthorizationError? {
         guard let error = error as NSError? else { return nil }
         switch error.code {
-        case Firebase.AuthErrorCode.wrongPassword.rawValue: return .wrongPassword
-        case Firebase.AuthErrorCode.invalidEmail.rawValue: return .invalidEmail
-        case Firebase.AuthErrorCode.weakPassword.rawValue:
+        case 17009: return .wrongPassword
+        case 17008: return .invalidEmail
+        case 17026:
             let errorMessage = error.userInfo[NSLocalizedFailureReasonErrorKey] as? String
             return .invalidPassword(errorMessage)
         default: return nil

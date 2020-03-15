@@ -52,7 +52,7 @@ final class HabitsChartCell: BaseChartCell {
             chartEntries.append(ChartDataEntry(x: Double(6 - i), y: Double(completedHabits)))
             xAxisTitles.append(date.asShortDayMonth)
         }
-        let dataSet = LineChartDataSet(values: chartEntries, label: nil)
+        let dataSet = LineChartDataSet(entries: chartEntries, label: nil)
         dataSet.label = nil
         dataSet.colors = [AppTheme.current.colors.mainElementColor]
         dataSet.valueColors = [AppTheme.current.colors.mainElementColor]

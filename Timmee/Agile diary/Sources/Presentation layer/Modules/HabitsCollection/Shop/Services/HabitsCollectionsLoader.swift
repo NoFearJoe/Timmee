@@ -33,10 +33,6 @@ final class HabitsCollectionsLoader {
     
     static let shared = HabitsCollectionsLoader()
     
-    static func initialize() {
-        FirebaseApp.configure()
-    }
-    
     private var cachedCollections: [HabitsCollection] = []
     
     func loadHabitsCollections(success: @escaping ([HabitsCollection]) -> Void, fail: @escaping (Error) -> Void) {

@@ -7,7 +7,6 @@
 //
 
 import TasksKit
-import Firebase
 
 extension WaterControlEntity: DictionaryEncodable {
     
@@ -47,8 +46,8 @@ extension WaterControlEntity: DictionaryDecodable {
         id = dictionary["id"] as? String ?? WaterControl.defaultID
         neededVolume = dictionary["neededVolume"] as? Int32 ?? 0
         notificationsEnabled = dictionary["notificationsEnabled"] as? Bool ?? false
-        notificationsStartTime = (dictionary["notificationsStartTime"] as? Timestamp)?.dateValue()
-        notificationsEndTime = (dictionary["notificationsEndTime"] as? Timestamp)?.dateValue()
+        notificationsStartTime = (dictionary["notificationsStartTime"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
+        notificationsEndTime = (dictionary["notificationsEndTime"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
         weight = dictionary["weight"] as? Double ?? 65
         gender = dictionary["gender"] as? Int16 ?? 0

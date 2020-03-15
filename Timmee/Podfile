@@ -30,9 +30,9 @@ target 'Agile diary debug' do
     pod 'Dwifft'
 
     pod 'Firebase/Core'
+    pod 'Firebase/Storage'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
-    pod 'Firebase/Storage'
     pod 'FBSDKLoginKit'
 
     pod 'Fabric'
@@ -50,16 +50,11 @@ end
 
 target 'Synchronization' do
     project 'Synchronization.xcodeproj'
-
-    pod 'Firebase/Core'
-    pod 'Firebase/Firestore'
 end
 
 target 'Authorization' do
     project 'Authorization.xcodeproj'
 
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
     pod 'FBSDKLoginKit'
 end
 

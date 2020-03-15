@@ -1561,7 +1561,6 @@
 				0CE883D72150F6EC00637BD9 /* Embed App Extensions */,
 				0C9999EA21E8A63D00DD2040 /* Fabric */,
 				00B3D60A46BA3F608E5373A0 /* [CP] Embed Pods Frameworks */,
-				4B649747ABF042CA76D092C1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1584,7 +1583,6 @@
 				0CB673C221A52C3900178EB1 /* Resources */,
 				0CB673D421A52C3900178EB1 /* Embed Frameworks */,
 				81F9CE4DFEC521E21B064B35 /* [CP] Embed Pods Frameworks */,
-				033BBCE261A30CE0F19CD815 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1825,23 +1823,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		033BBCE261A30CE0F19CD815 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary debug/Pods-Agile diary debug-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0C9999EA21E8A63D00DD2040 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1859,23 +1840,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30\n";
-		};
-		4B649747ABF042CA76D092C1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Agile diary/Pods-Agile diary-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		6FC6646D31CC03A8B3A04F14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

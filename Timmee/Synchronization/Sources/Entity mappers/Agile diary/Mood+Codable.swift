@@ -7,7 +7,6 @@
 //
 
 import TasksKit
-import Firebase
 
 extension MoodEntity: DictionaryEncodable {
     

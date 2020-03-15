@@ -51,7 +51,7 @@ final class WaterChartCell: BaseChartCell {
             chartEntries.append(BarChartDataEntry(x: Double(6 - i), y: drunkVolume))
             xAxisTitles.append(date.asShortDayMonth)
         }
-        let dataSet = BarChartDataSet(values: chartEntries, label: nil)
+        let dataSet = BarChartDataSet(entries: chartEntries, label: nil)
         dataSet.label = nil
         dataSet.colors = [AppTheme.current.colors.mainElementColor]
         dataSet.valueColors = [AppTheme.current.colors.mainElementColor]

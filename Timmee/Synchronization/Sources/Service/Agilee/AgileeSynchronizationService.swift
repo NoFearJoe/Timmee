@@ -10,8 +10,6 @@ import CoreData
 import TasksKit
 import NotificationsKit
 import Authorization
-import FirebaseCore
-import FirebaseFirestore
 
 // TODO: Обработать ситуацию, когда после синхронизации может появиться несколько одинаковых спринтов (с одинаковыми number или пересекающимися startDate-endDate). Надо в этом случае либо предлагать пользователю выбрать актуальный спринт или смержить их
 
@@ -19,15 +17,13 @@ public final class AgileeSynchronizationService: SynchronizationService {
     
     public static let shared = AgileeSynchronizationService()
     
-    public static func initializeSynchronization() {
-        FirebaseApp.configure()
-        
-        let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        settings.isPersistenceEnabled = false
-        db.settings = settings
+    public static func initializeSynchronization(firestore: FirebaseFirestoreProtocol) {
+        Self.firestore = firestore
     }
+    
+    private static var firestore: FirebaseFirestoreProtocol!
+    
+    private let firestore: FirebaseFirestoreProtocol = AgileeSynchronizationService.firestore
     
     private let authorizationService = AuthorizationService()
     private let sprintsService = EntityServicesAssembly.shared.sprintsService
@@ -41,11 +37,7 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
     
     
-    private var isSynchronizationInProgress = false {
-        didSet {
-            AgileeHabitsSynchronizationService.shared.setSynchronizationSuspended(isSynchronizationInProgress)
-        }
-    }
+    private var isSynchronizationInProgress = false
     
     private init() {}
     
@@ -73,7 +65,7 @@ private extension AgileeSynchronizationService {
             return
         }
         
-        let userDocument = Firestore.firestore().collection("user").document("\(user.id)")
+        let userDocument = firestore._collection("user")._document("\(user.id)")
         
         let dispatchGroup = DispatchGroup()
         
@@ -82,21 +74,21 @@ private extension AgileeSynchronizationService {
         var deletedEntities = DeletedEntities()
         
         dispatchGroup.enter() // Enter user document
-        userDocument.getDocument { snapshot, error in
+        userDocument._getDocument { snapshot, error in
             defer { dispatchGroup.leave() }
             
             guard error == nil else { return }
             
-            let sprintsCollection = userDocument.collection("sprints")
+            let sprintsCollection = userDocument._collection("sprints")
             
             dispatchGroup.enter() // Enter sprint document
-            sprintsCollection.getDocuments(completion: { [weak self] sprintSnapshot, error in
+            sprintsCollection._getDocuments(completion: { [weak self] sprintSnapshot, error in
                 defer { dispatchGroup.leave() }
                 
                 guard
                     let self = self,
                     error == nil,
-                    let data = sprintSnapshot?.documents.map({ $0.data() })
+                    let data = sprintSnapshot?._documents.compactMap({ $0._data() })
                 else { return }
                 
                 // Sprints save
@@ -108,20 +100,20 @@ private extension AgileeSynchronizationService {
                                         parentEntityID: nil)
                 })
                 
-                sprintSnapshot?.documents.forEach { sprintSnapshot in
-                    guard let sprintID = sprintSnapshot.data()["id"] as? String else { return }
+                sprintSnapshot?._documents.forEach { sprintSnapshot in
+                    guard let sprintID = sprintSnapshot._data()?["id"] as? String else { return }
                     
                     // Goals
-                    let goalsCollection = sprintsCollection.document(sprintID).collection("goals")
+                    let goalsCollection = sprintsCollection._document(sprintID)._collection("goals")
                     
                     dispatchGroup.enter() // Enter goals document
-                    goalsCollection.getDocuments(completion: { [weak self] goalsSnapshot, error in
+                    goalsCollection._getDocuments(completion: { [weak self] goalsSnapshot, error in
                         defer { dispatchGroup.leave() }
                         
                         guard
                             let self = self,
                             error == nil,
-                            let data = goalsSnapshot?.documents.map({ $0.data() })
+                            let data = goalsSnapshot?._documents.compactMap({ $0._data() })
                         else { return }
                         
                         // Goals save
@@ -136,19 +128,19 @@ private extension AgileeSynchronizationService {
                             }
                         })
                         
-                        goalsSnapshot?.documents.forEach { goalSnapshot in
-                            guard let goalID = goalSnapshot.data()["id"] as? String else { return }
+                        goalsSnapshot?._documents.forEach { goalSnapshot in
+                            guard let goalID = goalSnapshot._data()?["id"] as? String else { return }
                             
-                            let stagesCollection = goalsCollection.document(goalID).collection("stages")
+                            let stagesCollection = goalsCollection._document(goalID)._collection("stages")
                             
                             dispatchGroup.enter() // Enter stages document
-                            stagesCollection.getDocuments(completion: { [weak self] stagesSnapshot, error in
+                            stagesCollection._getDocuments(completion: { [weak self] stagesSnapshot, error in
                                 defer { dispatchGroup.leave() }
                                 
                                 guard
                                     let self = self,
                                     error == nil,
-                                    let data = stagesSnapshot?.documents.map({ $0.data() })
+                                    let data = stagesSnapshot?._documents.compactMap({ $0._data() })
                                 else { return }
                                 
                                 // Stages save
@@ -167,16 +159,16 @@ private extension AgileeSynchronizationService {
                     })
                     
                     // Habits
-                    let habitsCollection = sprintsCollection.document(sprintID).collection("habits")
+                    let habitsCollection = sprintsCollection._document(sprintID)._collection("habits")
                     
                     dispatchGroup.enter() // Enter habits document
-                    habitsCollection.getDocuments(completion: { [weak self] habitsSnapshot, error in
+                    habitsCollection._getDocuments(completion: { [weak self] habitsSnapshot, error in
                         defer { dispatchGroup.leave() }
                         
                         guard
                             let self = self,
                             error == nil,
-                            let data = habitsSnapshot?.documents.map({ $0.data() })
+                            let data = habitsSnapshot?._documents.compactMap({ $0._data() })
                         else { return }
                         
                         // Habits save
@@ -193,16 +185,16 @@ private extension AgileeSynchronizationService {
                     })
                     
                     // Water controls
-                    let waterControlCollection = sprintsCollection.document(sprintID).collection("water_control")
+                    let waterControlCollection = sprintsCollection._document(sprintID)._collection("water_control")
                     
                     dispatchGroup.enter() // Enter water control document
-                    waterControlCollection.getDocuments(completion: { [weak self] waterControlsSnapshot, error in
+                    waterControlCollection._getDocuments(completion: { [weak self] waterControlsSnapshot, error in
                         defer { dispatchGroup.leave() }
                         
                         guard
                             let self = self,
                             error == nil,
-                            let data = waterControlsSnapshot?.documents.map({ $0.data() })
+                            let data = waterControlsSnapshot?._documents.compactMap({ $0._data() })
                         else { return }
                         
                         synchronizationActions.append({ context in
@@ -221,15 +213,15 @@ private extension AgileeSynchronizationService {
             
             // Mood
             
-            let moodCollection = userDocument.collection("mood")
+            let moodCollection = userDocument._collection("mood")
             dispatchGroup.enter() // Enter moods collection
-            moodCollection.getDocuments(completion: { [weak self] moodsSnapshot, error in
+            moodCollection._getDocuments(completion: { [weak self] moodsSnapshot, error in
                 defer { dispatchGroup.leave() }
                 
                 guard
                     let self = self,
                     error == nil,
-                    let data = moodsSnapshot?.documents.map({ $0.data() })
+                    let data = moodsSnapshot?._documents.compactMap({ $0._data() })
                 else { return }
                 
                 synchronizationActions.append({ context in
@@ -243,16 +235,16 @@ private extension AgileeSynchronizationService {
             
             // Diary
             
-            let diaryEntriesCollection = userDocument.collection("diary")
+            let diaryEntriesCollection = userDocument._collection("diary")
             
             dispatchGroup.enter() // Enter diary collection
-            diaryEntriesCollection.getDocuments(completion: { [weak self] diaryEntriesSnapshot, error in
+            diaryEntriesCollection._getDocuments(completion: { [weak self] diaryEntriesSnapshot, error in
                 defer { dispatchGroup.leave() }
                 
                 guard
                     let self = self,
                     error == nil,
-                    let data = diaryEntriesSnapshot?.documents.map({ $0.data() })
+                    let data = diaryEntriesSnapshot?._documents.compactMap({ $0._data() })
                 else { return }
                 
                 synchronizationActions.append({ context in
@@ -288,9 +280,9 @@ private extension AgileeSynchronizationService {
             return
         }
         
-        let userDocument = Firestore.firestore().collection("user").document("\(user.id)")
+        let userDocument = firestore._collection("user")._document("\(user.id)")
             
-        let batch = Firestore.firestore().batch()
+        let batch = firestore._batch()
 
         // Sprints
         
@@ -299,41 +291,41 @@ private extension AgileeSynchronizationService {
         sprints.forEach { sprint in
             guard let sprintID = sprint.id else { return }
             
-            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            let sprintDocument = userDocument._collection("sprints")._document(sprintID)
             
-            batch.setData(sprint.encode(), forDocument: sprintDocument)
+            batch._setData(sprint.encode(), forDocument: sprintDocument)
             
             // Habits
-            let habitsCollection = sprintDocument.collection("habits")
+            let habitsCollection = sprintDocument._collection("habits")
             let habits = self.habitsService.fetchHabitEntitiesInBackground(sprintID: sprintID)
             habits.forEach { habit in
                 guard let habitID = habit.id else { return }
-                batch.setData(habit.encode(), forDocument: habitsCollection.document(habitID))
+                batch._setData(habit.encode(), forDocument: habitsCollection._document(habitID))
             }
             
             // Goals
-            let goalsCollection = sprintDocument.collection("goals")
+            let goalsCollection = sprintDocument._collection("goals")
             let goals = self.goalsService.fetchGoalEntitiesInBackground(sprintID: sprintID)
             goals.forEach { goal in
                 guard let goalID = goal.id else { return }
-                batch.setData(goal.encode(), forDocument: goalsCollection.document(goalID))
+                batch._setData(goal.encode(), forDocument: goalsCollection._document(goalID))
                 
-                let stagesCollection = goalsCollection.document(goalID).collection("stages")
+                let stagesCollection = goalsCollection._document(goalID)._collection("stages")
                 
                 if let stages = goal.stages.map({ Array($0) }) as? [SubtaskEntity] {
                     stages.forEach { stage in
                         guard let stageID = stage.id else { return }
-                        batch.setData(stage.encode(), forDocument: stagesCollection.document(stageID))
+                        batch._setData(stage.encode(), forDocument: stagesCollection._document(stageID))
                     }
                 }
             }
             
             // Water controls
-            let waterControlCollection = sprintDocument.collection("water_control")
+            let waterControlCollection = sprintDocument._collection("water_control")
             if let waterControl = self.waterControlService.fetchWaterControlEntityInBakground(sprintID: sprintID) {
-                let waterControlDocument = waterControlCollection.document(waterControl.id ?? WaterControl.defaultID)
+                let waterControlDocument = waterControlCollection._document(waterControl.id ?? WaterControl.defaultID)
                 
-                batch.setData(waterControl.encode(), forDocument: waterControlDocument)
+                batch._setData(waterControl.encode(), forDocument: waterControlDocument)
             }
         }
         
@@ -342,52 +334,54 @@ private extension AgileeSynchronizationService {
         let moodEntities = moodService.fetchAllMoodEntitiesInBackground()
         moodEntities.forEach { mood in
             guard let date = mood.date else { return }
-            let moodDocument = userDocument.collection("mood").document(date.asDateTimeString)
-            batch.setData(mood.encode(), forDocument: moodDocument)
+            let moodDocument = userDocument._collection("mood")._document(date.asDateTimeString)
+            batch._setData(mood.encode(), forDocument: moodDocument)
         }
         
         // Diary
         
         let diaryEntryEntities = diaryService.fetchAllDiaryEntryEntitiesInBackground()
-        let diaryEntriesCollection = userDocument.collection("diary")
+        let diaryEntriesCollection = userDocument._collection("diary")
         diaryEntryEntities.forEach { diaryEntry in
             guard let id = diaryEntry.id else { return }
-            let diaryEntryDocument = diaryEntriesCollection.document(id)
-            batch.setData(diaryEntry.encode(), forDocument: diaryEntryDocument)
+            let diaryEntryDocument = diaryEntriesCollection._document(id)
+            batch._setData(diaryEntry.encode(), forDocument: diaryEntryDocument)
         }
         
         pushDeletedEntities(deletedEntities, batch: batch, userDocument: userDocument)
         
-        batch.commit { error in
+        batch._commit { error in
             completion(error == nil)
         }
     }
     
-    private func pushDeletedEntities(_ deletedEntities: DeletedEntities, batch: WriteBatch, userDocument: DocumentReference) {
+    private func pushDeletedEntities(_ deletedEntities: DeletedEntities,
+                                     batch: FirebaseFirestoreBatchProtocol,
+                                     userDocument: FirebaseFirestoreDocumentProtocol) {
         guard !deletedEntities.isEmpty else { return }
         
         let dispatchGroup = DispatchGroup()
         
         deletedEntities.sprints.forEach { sprintID in
-            let sprintDocument = userDocument.collection("sprints").document(sprintID)
-            batch.deleteDocument(sprintDocument)
+            let sprintDocument = userDocument._collection("sprints")._document(sprintID)
+            batch._deleteDocument(sprintDocument)
             
             dispatchGroup.enter()
-            sprintDocument.collection("habits").getDocuments(completion: { documents, error in
-                documents?.documents.forEach {
-                    batch.deleteDocument($0.reference)
+            sprintDocument._collection("habits")._getDocuments(completion: { documents, error in
+                documents?._documents.forEach {
+                    batch._deleteDocument($0._reference)
                 }
                 dispatchGroup.leave()
             })
             dispatchGroup.enter()
-            sprintDocument.collection("goals").getDocuments(completion: { documents, error in
-                documents?.documents.forEach {
-                    batch.deleteDocument($0.reference)
+            sprintDocument._collection("goals")._getDocuments(completion: { documents, error in
+                documents?._documents.forEach {
+                    batch._deleteDocument($0._reference)
                     
                     dispatchGroup.enter()
-                    $0.reference.collection("stages").getDocuments(completion: { documents, error in
-                        documents?.documents.forEach {
-                            batch.deleteDocument($0.reference)
+                    $0._reference._collection("stages")._getDocuments(completion: { documents, error in
+                        documents?._documents.forEach {
+                            batch._deleteDocument($0._reference)
                         }
                         dispatchGroup.leave()
                     })
@@ -397,22 +391,22 @@ private extension AgileeSynchronizationService {
         }
         
         deletedEntities.habits.forEach { sprintID, habits in
-            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            let sprintDocument = userDocument._collection("sprints")._document(sprintID)
             habits.forEach { habitID in
-                batch.deleteDocument(sprintDocument.collection("habits").document(habitID))
+                batch._deleteDocument(sprintDocument._collection("habits")._document(habitID))
             }
         }
         
         deletedEntities.goals.forEach { sprintID, goals in
-            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            let sprintDocument = userDocument._collection("sprints")._document(sprintID)
             goals.forEach { goalID in
-                let goalDocument = sprintDocument.collection("goals").document(goalID)
-                batch.deleteDocument(goalDocument)
+                let goalDocument = sprintDocument._collection("goals")._document(goalID)
+                batch._deleteDocument(goalDocument)
                 
                 dispatchGroup.enter()
-                goalDocument.collection("stages").getDocuments(completion: { documents, error in
-                    documents?.documents.forEach {
-                        batch.deleteDocument($0.reference)
+                goalDocument._collection("stages")._getDocuments(completion: { documents, error in
+                    documents?._documents.forEach {
+                        batch._deleteDocument($0._reference)
                     }
                     dispatchGroup.leave()
                 })
@@ -420,22 +414,22 @@ private extension AgileeSynchronizationService {
         }
         
         deletedEntities.stages.forEach { sprintID, goalID, stages in
-            let goalDocument = userDocument.collection("sprints").document(sprintID).collection("goals").document(goalID)
+            let goalDocument = userDocument._collection("sprints")._document(sprintID)._collection("goals")._document(goalID)
             stages.forEach { stageID in
-                batch.deleteDocument(goalDocument.collection("stages").document(stageID))
+                batch._deleteDocument(goalDocument._collection("stages")._document(stageID))
             }
         }
         
         deletedEntities.waterControls.forEach { sprintID, waterControls in
-            let sprintDocument = userDocument.collection("sprints").document(sprintID)
+            let sprintDocument = userDocument._collection("sprints")._document(sprintID)
             waterControls.forEach { waterControlID in
-                batch.deleteDocument(sprintDocument.collection("water_control").document(waterControlID))
+                batch._deleteDocument(sprintDocument._collection("water_control")._document(waterControlID))
             }
         }
         
         deletedEntities.diaryEntries.forEach { diaryEntryID in
-            let diaryEntryDocument = userDocument.collection("diary").document(diaryEntryID)
-            batch.deleteDocument(diaryEntryDocument)
+            let diaryEntryDocument = userDocument._collection("diary")._document(diaryEntryID)
+            batch._deleteDocument(diaryEntryDocument)
         }
         
         dispatchGroup.wait()

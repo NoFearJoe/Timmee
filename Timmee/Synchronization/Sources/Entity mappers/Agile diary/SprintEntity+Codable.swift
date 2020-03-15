@@ -7,7 +7,6 @@
 //
 
 import TasksKit
-import Firebase
 
 extension SprintEntity: DictionaryEncodable {
     
@@ -41,10 +40,10 @@ extension SprintEntity: DictionaryDecodable {
         notificationsEnabled = dictionary["notificationsEnabled"] as? Bool ?? false
         number = dictionary["number"] as? Int32 ?? 0
         if startDate == nil {
-            startDate = (dictionary["startDate"] as? Timestamp)?.dateValue()
+            startDate = (dictionary["startDate"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         }
         if endDate == nil {
-            endDate = (dictionary["endDate"] as? Timestamp)?.dateValue()
+            endDate = (dictionary["endDate"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         }
         duration = Int16(dictionary["duration"] as? Int ?? 7)
         notificationsDays = dictionary["notificationsDays"] as? String

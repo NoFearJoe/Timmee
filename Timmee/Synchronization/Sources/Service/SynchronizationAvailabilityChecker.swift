@@ -7,8 +7,6 @@
 //
 
 import Authorization
-import FirebaseCore
-import FirebaseFirestore
 
 public final class SynchronizationAvailabilityChecker {
     

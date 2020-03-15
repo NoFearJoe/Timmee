@@ -7,7 +7,6 @@
 //
 
 import TasksKit
-import Firebase
 
 extension DiaryEntryEntity: DictionaryEncodable {
     
@@ -28,7 +27,7 @@ extension DiaryEntryEntity: DictionaryDecodable {
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
         text = dictionary["text"] as? String
-        date = (dictionary["date"] as? Timestamp)?.dateValue()
+        date = (dictionary["date"] as? FirebaseFirestoreTimestampProtocol)?.dateValue()
         attachment = dictionary["attachment"] as? String
         modificationDate = dictionary["modificationDate"] as? TimeInterval ?? 0
     }

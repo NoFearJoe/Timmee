@@ -59,9 +59,7 @@ final class TodayContentViewController: UIViewController, AlertInput {
     let habitsService = ServicesAssembly.shared.habitsService
     let goalsService = ServicesAssembly.shared.goalsService
     let stagesService = ServicesAssembly.shared.subtasksService
-    
-//    let habitsSynchronizationService = AgileeHabitsSynchronizationService.shared
-    
+        
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
     private var habitsCacheObserver: CachedEntitiesObserver<HabitEntity, Habit>?
     private var goalsCacheObserver: CachedEntitiesObserver<GoalEntity, Goal>?
@@ -149,10 +147,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     habit.setDone(isChecked, at: self.currentDate)
-                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, goalID: nil, completion: { _ in })/*{ [weak self] _ in
-                        guard let self = self else { return }
-                        self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
-                    })*/
+                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, goalID: nil, completion: { _ in })
                 }
             }
             return cell

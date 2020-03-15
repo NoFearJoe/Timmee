@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0C06E97422F0792B0099DD3A /* DiaryEntryEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C06E97322F0792B0099DD3A /* DiaryEntryEntity+Codable.swift */; };
 		0C47ED53222FDC2200593AA3 /* SynchronizationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */; };
-		0C47ED56222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */; };
 		0C47ED58222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */; };
 		0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47ED59222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift */; };
 		0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */; };
@@ -27,12 +26,12 @@
 		0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066821F1DF7D0069C6C5 /* Workset.framework */; };
 		0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81F2240C88500061B58 /* Mood+Codable.swift */; };
 		423A8836AF2C1866A9C53F0D /* Pods_Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D787229BFAA1817A24FCEA88 /* Pods_Synchronization.framework */; };
+		961B95D6241E5C75003EC992 /* FirebaseTypesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D5241E5C75003EC992 /* FirebaseTypesProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C06E97322F0792B0099DD3A /* DiaryEntryEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiaryEntryEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C47ED52222FDC2200593AA3 /* SynchronizationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationServiceProtocol.swift; sourceTree = "<group>"; };
-		0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgileeHabitsSynchronizationService.swift; sourceTree = "<group>"; };
 		0C47ED57222FDF4E00593AA3 /* FirebaseCollectionSynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionSynchronizationManager.swift; sourceTree = "<group>"; };
 		0C47ED59222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationAvailabilityChecker.swift; sourceTree = "<group>"; };
 		0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Codable.swift"; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		0CC4066821F1DF7D0069C6C5 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD8F81F2240C88500061B58 /* Mood+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+Codable.swift"; sourceTree = "<group>"; };
 		25998E8ECCD208AAEAB2DD3C /* Pods-Synchronization.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.debug.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.debug.xcconfig"; sourceTree = "<group>"; };
+		961B95D5241E5C75003EC992 /* FirebaseTypesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTypesProtocols.swift; sourceTree = "<group>"; };
 		CABECFD8DF299C216DC18247 /* Pods-Synchronization.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.release.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.release.xcconfig"; sourceTree = "<group>"; };
 		D787229BFAA1817A24FCEA88 /* Pods_Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -76,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				0C90017C21F8688B00D6C15F /* AgileeSynchronizationService.swift */,
-				0C47ED55222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";
@@ -147,6 +146,7 @@
 		0CC4065C21F1DF430069C6C5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				961B95D4241E5C4B003EC992 /* FirebaseBridging */,
 				0C90017B21F8687700D6C15F /* Service */,
 				0C90017121F856A900D6C15F /* Entity mappers */,
 			);
@@ -190,6 +190,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		961B95D4241E5C4B003EC992 /* FirebaseBridging */ = {
+			isa = PBXGroup;
+			children = (
+				961B95D5241E5C75003EC992 /* FirebaseTypesProtocols.swift */,
+			);
+			path = FirebaseBridging;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -213,7 +221,6 @@
 				0CC4064721F1DEDE0069C6C5 /* Sources */,
 				0CC4064821F1DEDE0069C6C5 /* Frameworks */,
 				0CC4064921F1DEDE0069C6C5 /* Resources */,
-				7BCF0BA389214AFC637F4233 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,23 +296,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7BCF0BA389214AFC637F4233 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Synchronization/Pods-Synchronization-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -313,7 +303,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C47ED56222FDC6500593AA3 /* AgileeHabitsSynchronizationService.swift in Sources */,
 				0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */,
 				0C90018121F88FC300D6C15F /* DictionaryCodable.swift in Sources */,
 				0C90017D21F8688B00D6C15F /* AgileeSynchronizationService.swift in Sources */,
@@ -326,6 +315,7 @@
 				0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */,
 				0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */,
 				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,
+				961B95D6241E5C75003EC992 /* FirebaseTypesProtocols.swift in Sources */,
 				0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

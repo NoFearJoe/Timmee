@@ -9,8 +9,6 @@
 import CoreData
 import TasksKit
 import NotificationsKit
-import FirebaseCore
-import FirebaseFirestore
 
 final class FirebaseCollectionSynchronizationManager {
     

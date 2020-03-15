@@ -36,13 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FBSDKApplicationDelegate.sharedInstance()?.application(application,
-                                                               didFinishLaunchingWithOptions: launchOptions)
-
-        Fabric.with([Crashlytics.self])
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        FirebaseApp.configure()
         
         SynchronizationConfigurator.configure()
-        HabitsCollectionsLoader.initialize()
+        
+        Fabric.with([Crashlytics.self])
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let canOpenWithFacebook = FBSDKApplicationDelegate.sharedInstance()?.application(app, open: url, options: options) ?? false
+        let canOpenWithFacebook = ApplicationDelegate.shared.application(app, open: url, options: options)
         appLinkHandler.handle(url: url)
         return canOpenWithFacebook
     }
