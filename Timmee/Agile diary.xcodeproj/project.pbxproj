@@ -77,17 +77,12 @@
 		0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */; };
 		0C3DA5282153BF7500CAE635 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */; };
 		0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */; };
-		0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */; };
-		0C3DA5302154CBCF00CAE635 /* WaterControlConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */; };
-		0C3DA5322154CCAF00CAE635 /* WaterControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */; };
 		0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */; };
 		0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */; };
 		0C4082DF22E6DF0F00D899A9 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */; };
 		0C4082E022E6DF0F00D899A9 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */; };
 		0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */; };
 		0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */; };
-		0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C52A0DA2243792700D50D1B /* MoodChartView.swift */; };
-		0C52A0DC2243792700D50D1B /* MoodChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C52A0DA2243792700D50D1B /* MoodChartView.swift */; };
 		0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46962140FDF900390F85 /* CalendarDayCell.swift */; };
 		0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
@@ -106,7 +101,6 @@
 		0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
 		0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */; };
 		0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
-		0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
 		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
@@ -170,7 +164,6 @@
 		0CB6739121A52C3900178EB1 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
 		0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
 		0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
-		0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
 		0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
 		0CB6739621A52C3900178EB1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E561214A7A280071DABD /* Environment.swift */; };
 		0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
@@ -183,14 +176,12 @@
 		0CB6739E21A52C3900178EB1 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46982140FDF900390F85 /* CalendarView.swift */; };
 		0CB6739F21A52C3900178EB1 /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		0CB673A021A52C3900178EB1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83D5217C9C8D00CDECAF /* CardView.swift */; };
-		0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */; };
 		0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C469C2141014000390F85 /* EditorContainer.swift */; };
 		0CB673A321A52C3900178EB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
 		0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
 		0CB673A521A52C3900178EB1 /* TodayGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E5382147B21E0071DABD /* TodayGoalCell.swift */; };
 		0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */; };
 		0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
-		0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9365192158F04F00B4EB48 /* WaterChartCell.swift */; };
 		0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
 		0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */; };
 		0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
@@ -204,7 +195,6 @@
 		0CB673B421A52C3900178EB1 /* SprintContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5022122AA31004C0559 /* SprintContentViewController.swift */; };
 		0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */; };
 		0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0745212AD14A008122A6 /* AppTheme.swift */; };
-		0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */; };
 		0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */; };
 		0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
@@ -220,7 +210,6 @@
 		0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */; };
 		0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
-		0CB673CB21A52C3900178EB1 /* WaterControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */; };
 		0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
 		0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
 		0CB673CF21A52C3900178EB1 /* StageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF7E53F2147E3CD0071DABD /* StageView.xib */; };
@@ -252,16 +241,6 @@
 		0CC4067021F1E0A30069C6C5 /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
-		0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F802223F77AB00061B58 /* ActivityViewController.swift */; };
-		0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F802223F77AB00061B58 /* ActivityViewController.swift */; };
-		0CD8F806223F780700061B58 /* WaterControlActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */; };
-		0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */; };
-		0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */; };
-		0CD8F80A223F783F00061B58 /* MoodActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */; };
-		0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F811223F7C4000061B58 /* ActivityWidget.swift */; };
-		0CD8F813223F7C4100061B58 /* ActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F811223F7C4000061B58 /* ActivityWidget.swift */; };
-		0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CD8F814223F7D3E00061B58 /* Activity.storyboard */; };
-		0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CD8F814223F7D3E00061B58 /* Activity.storyboard */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -306,8 +285,6 @@
 		5C1C57BD392E7E1D0CAACB7F /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */; };
 		9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
-		961063232242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
-		961063242242B26000E1446E /* MoodChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961063222242B26000E1446E /* MoodChartCell.swift */; };
 		9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; };
 		9615FAE9226C79AB00E285DE /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		961AF5B223AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
@@ -335,7 +312,6 @@
 		96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
 		96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
 		96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
-		969A9A2422E451200018188D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 969A9A2622E451200018188D /* InfoPlist.strings */; };
 		969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A9A2822E4E18A0018188D /* AppLinkHandler.swift */; };
 		969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A9A2822E4E18A0018188D /* AppLinkHandler.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
@@ -351,22 +327,6 @@
 		96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */; };
 		96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */; };
 		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
-		96CDC72E22E39095009395B9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
-		96CDC73122E39095009395B9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CDC73022E39095009395B9 /* TodayViewController.swift */; };
-		96CDC73422E39095009395B9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96CDC73222E39095009395B9 /* MainInterface.storyboard */; };
-		96CDC73822E39095009395B9 /* WaterControlTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		96CDC73D22E390E0009395B9 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CDC73C22E390E0009395B9 /* TasksKit.framework */; };
-		96CDC73F22E390E0009395B9 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CDC73E22E390E0009395B9 /* UIComponents.framework */; };
-		96CDC74122E390E0009395B9 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CDC74022E390E0009395B9 /* Workset.framework */; };
-		96CDC74222E39267009395B9 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
-		96CDC74322E392B7009395B9 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
-		96CDC74422E392C9009395B9 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
-		96CDC74522E39325009395B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
-		96CDC74822E39701009395B9 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
-		96CDC74A22E3A082009395B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
-		96CDC74B22E450CC009395B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
-		96CDC74C22E450D0009395B9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
-		96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */; };
 		96DDBDB123BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
 		96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
 		96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */; };
@@ -379,8 +339,6 @@
 		96DDBDC123CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDBF23CA2FA9007AB33B /* HabitCreationDayTimePicker.swift */; };
 		96DDBDC323CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */; };
 		96DDBDC423CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */; };
-		96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
-		96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */; };
 		96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
 		96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
 		96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
@@ -399,13 +357,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0CE883C62150F6EB00637BD9;
 			remoteInfo = HabitsTodayExtension;
-		};
-		96CDC73622E39095009395B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0C14D46A211C55D9004C0559 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96CDC72C22E39095009395B9;
-			remoteInfo = WaterControlTodayExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -448,7 +399,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				96CDC73822E39095009395B9 /* WaterControlTodayExtension.appex in Embed App Extensions */,
 				0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -514,13 +464,9 @@
 		0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagePickerViewController.swift; sourceTree = "<group>"; };
-		0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlViewController.swift; sourceTree = "<group>"; };
-		0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlConfigurationViewController.swift; sourceTree = "<group>"; };
-		0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WaterControl.storyboard; sourceTree = "<group>"; };
 		0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitWeeklyChartView.swift; sourceTree = "<group>"; };
 		0C4082DE22E6DF0F00D899A9 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		0C47EE85223A84B400593AA3 /* SprintDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintDurationPicker.swift; sourceTree = "<group>"; };
-		0C52A0DA2243792700D50D1B /* MoodChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartView.swift; sourceTree = "<group>"; };
 		0C5C46962140FDF900390F85 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		0C5C46972140FDF900390F85 /* DueDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDatePicker.swift; sourceTree = "<group>"; };
 		0C5C46982140FDF900390F85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -535,7 +481,6 @@
 		0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintInteractorTrait.swift; sourceTree = "<group>"; };
 		0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostFrequentlyPerformedHabitChartCell.swift; sourceTree = "<group>"; };
 		0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRarelyPerformedHabitChartCell.swift; sourceTree = "<group>"; };
-		0C9365192158F04F00B4EB48 /* WaterChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterChartCell.swift; sourceTree = "<group>"; };
 		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintNotificationTimePicker.swift; sourceTree = "<group>"; };
 		0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoryViewController.swift; sourceTree = "<group>"; };
@@ -568,11 +513,6 @@
 		0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		0CD8F802223F77AB00061B58 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlActivityWidget.swift; sourceTree = "<group>"; };
-		0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodActivityWidget.swift; sourceTree = "<group>"; };
-		0CD8F811223F7C4000061B58 /* ActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityWidget.swift; sourceTree = "<group>"; };
-		0CD8F814223F7D3E00061B58 /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -606,7 +546,6 @@
 		71E81C05CD8FAB58DC43C11A /* Pods-Agile diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agile diary.debug.xcconfig"; path = "Target Support Files/Pods-Agile diary/Pods-Agile diary.debug.xcconfig"; sourceTree = "<group>"; };
 		7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitsTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
-		961063222242B26000E1446E /* MoodChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodChartCell.swift; sourceTree = "<group>"; };
 		961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationOnboardingViewController.swift; sourceTree = "<group>"; };
 		961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationOnboardingViewController.swift; sourceTree = "<group>"; };
 		961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryCell.swift; sourceTree = "<group>"; };
@@ -624,8 +563,6 @@
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
-		969A9A2522E451200018188D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		969A9A2722E451210018188D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		969A9A2822E4E18A0018188D /* AppLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkHandler.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBarChartView.swift; sourceTree = "<group>"; };
@@ -637,22 +574,15 @@
 		96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreInitialScreenViewController.xib; sourceTree = "<group>"; };
 		96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionContainer+AppTheme.swift"; sourceTree = "<group>"; };
 		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
-		96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterControlTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		96CDC73022E39095009395B9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		96CDC73322E39095009395B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		96CDC73522E39095009395B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96CDC73C22E390E0009395B9 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CDC73E22E390E0009395B9 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CDC74022E390E0009395B9 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		96CDC74922E39982009395B9 /* WaterControlTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterControlTodayExtension.entitlements; sourceTree = "<group>"; };
-		96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWaterChartViewController.swift; sourceTree = "<group>"; };
 		96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationStageCell.swift; sourceTree = "<group>"; };
 		96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationStagesView.swift; sourceTree = "<group>"; };
 		96DDBDB823BB77C1007AB33B /* ShortHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortHabitCell.swift; sourceTree = "<group>"; };
 		96DDBDBB23C9EA2D007AB33B /* HabitCreationValuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationValuePickerView.swift; sourceTree = "<group>"; };
 		96DDBDBF23CA2FA9007AB33B /* HabitCreationDayTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationDayTimePicker.swift; sourceTree = "<group>"; };
 		96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationDueDaysView.swift; sourceTree = "<group>"; };
-		96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedMoodChartViewController.swift; sourceTree = "<group>"; };
 		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
 		96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionFeatureView.swift; sourceTree = "<group>"; };
@@ -704,17 +634,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96CDC72A22E39095009395B9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96CDC73D22E390E0009395B9 /* TasksKit.framework in Frameworks */,
-				96CDC73F22E390E0009395B9 /* UIComponents.framework in Frameworks */,
-				96CDC74122E390E0009395B9 /* Workset.framework in Frameworks */,
-				96CDC72E22E39095009395B9 /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -761,7 +680,6 @@
 			children = (
 				0C14D474211C55D9004C0559 /* Agile diary */,
 				0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */,
-				96CDC72F22E39095009395B9 /* WaterControlTodayExtension */,
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
 				60E6EBF9B112CF333C10E3FA /* Pods */,
@@ -774,7 +692,6 @@
 				0C14D472211C55D9004C0559 /* BeBetter.app */,
 				0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */,
 				0CB673DF21A52C3900178EB1 /* Agile diary debug.app */,
-				96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -994,7 +911,6 @@
 				0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */,
 				96888C1C2217DFE800479667 /* AddButton.swift */,
 				96888C1F2217E1BD00479667 /* AddMenuButton.swift */,
-				0C52A0DA2243792700D50D1B /* MoodChartView.swift */,
 				96DDBDB823BB77C1007AB33B /* ShortHabitCell.swift */,
 			);
 			path = "UI components";
@@ -1068,16 +984,6 @@
 				0C3DA52A2153C0D800CAE635 /* BackgroundImagePickerViewController.swift */,
 			);
 			path = "Backgrund image picker";
-			sourceTree = "<group>";
-		};
-		0C3DA52C2154CA0000CAE635 /* Water control */ = {
-			isa = PBXGroup;
-			children = (
-				0C3DA5312154CCAF00CAE635 /* WaterControl.storyboard */,
-				0C3DA52D2154CA1800CAE635 /* WaterControlViewController.swift */,
-				0C3DA52F2154CBCF00CAE635 /* WaterControlConfigurationViewController.swift */,
-			);
-			path = "Water control";
 			sourceTree = "<group>";
 		};
 		0C4082AC22E58A8D00D899A9 /* Views */ = {
@@ -1284,26 +1190,6 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		0CD8F800223F778D00061B58 /* Activity */ = {
-			isa = PBXGroup;
-			children = (
-				0CD8F801223F779A00061B58 /* Widgets */,
-				0CD8F802223F77AB00061B58 /* ActivityViewController.swift */,
-				0CD8F814223F7D3E00061B58 /* Activity.storyboard */,
-			);
-			path = Activity;
-			sourceTree = "<group>";
-		};
-		0CD8F801223F779A00061B58 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				0CD8F811223F7C4000061B58 /* ActivityWidget.swift */,
-				0CD8F805223F780700061B58 /* WaterControlActivityWidget.swift */,
-				0CD8F808223F783F00061B58 /* MoodActivityWidget.swift */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
 		0CDF8D802125B75A001A2F70 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1368,8 +1254,6 @@
 			children = (
 				0CF7E51E21466A830071DABD /* Today.storyboard */,
 				0C06E96422EF051E0099DD3A /* Secondary view controllers */,
-				0CD8F800223F778D00061B58 /* Activity */,
-				0C3DA52C2154CA0000CAE635 /* Water control */,
 				0CF7E5252146878C0071DABD /* Cells */,
 				0CE3CA3F2359CF37008C2DA5 /* Views */,
 				0CF7E51C2146697C0071DABD /* TodayViewController.swift */,
@@ -1469,10 +1353,8 @@
 			children = (
 				967C328D2157709900B9201A /* BaseChartCell.swift */,
 				967C32902157716500B9201A /* HabitsChartCell.swift */,
-				0C9365192158F04F00B4EB48 /* WaterChartCell.swift */,
 				0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */,
 				0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */,
-				961063222242B26000E1446E /* MoodChartCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1515,25 +1397,11 @@
 		96CAD81A216D39A4005D707C /* Extended charts */ = {
 			isa = PBXGroup;
 			children = (
-				96D67EE7216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift */,
 				96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */,
-				96ECB7B32242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift */,
 				96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */,
 				96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */,
 			);
 			path = "Extended charts";
-			sourceTree = "<group>";
-		};
-		96CDC72F22E39095009395B9 /* WaterControlTodayExtension */ = {
-			isa = PBXGroup;
-			children = (
-				96CDC74922E39982009395B9 /* WaterControlTodayExtension.entitlements */,
-				96CDC73022E39095009395B9 /* TodayViewController.swift */,
-				96CDC73222E39095009395B9 /* MainInterface.storyboard */,
-				96CDC73522E39095009395B9 /* Info.plist */,
-				969A9A2622E451200018188D /* InfoPlist.strings */,
-			);
-			path = WaterControlTodayExtension;
 			sourceTree = "<group>";
 		};
 		96DDBDBE23C9EC15007AB33B /* Views */ = {
@@ -1566,7 +1434,6 @@
 			);
 			dependencies = (
 				0CE883D22150F6EC00637BD9 /* PBXTargetDependency */,
-				96CDC73722E39095009395B9 /* PBXTargetDependency */,
 			);
 			name = "Agile diary";
 			productName = "Agile diary";
@@ -1611,23 +1478,6 @@
 			productReference = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		96CDC72C22E39095009395B9 /* WaterControlTodayExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96CDC73922E39095009395B9 /* Build configuration list for PBXNativeTarget "WaterControlTodayExtension" */;
-			buildPhases = (
-				96CDC72922E39095009395B9 /* Sources */,
-				96CDC72A22E39095009395B9 /* Frameworks */,
-				96CDC72B22E39095009395B9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WaterControlTodayExtension;
-			productName = WaterControlTodayExtension;
-			productReference = 96CDC72D22E39095009395B9 /* WaterControlTodayExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1660,14 +1510,6 @@
 							};
 						};
 					};
-					96CDC72C22E39095009395B9 = {
-						CreatedOnToolsVersion = 10.2.1;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
 				};
 			};
 			buildConfigurationList = 0C14D46D211C55D9004C0559 /* Build configuration list for PBXProject "Agile diary" */;
@@ -1687,7 +1529,6 @@
 				0C14D471211C55D9004C0559 /* Agile diary */,
 				0CB6736921A52C3900178EB1 /* Agile diary debug */,
 				0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */,
-				96CDC72C22E39095009395B9 /* WaterControlTodayExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1702,7 +1543,6 @@
 				96BE83882175034400CDECAF /* InfoPlist.strings in Resources */,
 				0C14D4CE21217390004C0559 /* Localizable.strings in Resources */,
 				96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
-				0CD8F815223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
@@ -1710,7 +1550,6 @@
 				963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */,
 				0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
-				0C3DA5322154CCAF00CAE635 /* WaterControl.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
 				0CC405E921EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */,
 				0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */,
@@ -1733,7 +1572,6 @@
 				0CB673C421A52C3900178EB1 /* InfoPlist.strings in Resources */,
 				0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */,
 				96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */,
-				0CD8F816223F7D3E00061B58 /* Activity.storyboard in Resources */,
 				96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
 				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
@@ -1741,7 +1579,6 @@
 				963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */,
 				0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */,
 				0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */,
-				0CB673CB21A52C3900178EB1 /* WaterControl.storyboard in Resources */,
 				0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */,
 				0CC405EA21EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */,
 				0CB673CE21A52C3900178EB1 /* TasksKitConfiguration.plist in Resources */,
@@ -1765,19 +1602,6 @@
 				0CE883E72151134700637BD9 /* Assets.xcassets in Resources */,
 				0CE883EB2151391500637BD9 /* Localizable.stringsdict in Resources */,
 				0CE883E421510C7F00637BD9 /* TasksKitConfiguration.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96CDC72B22E39095009395B9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96CDC73422E39095009395B9 /* MainInterface.storyboard in Resources */,
-				969A9A2422E451200018188D /* InfoPlist.strings in Resources */,
-				96CDC74B22E450CC009395B9 /* Localizable.strings in Resources */,
-				96CDC74A22E3A082009395B9 /* Assets.xcassets in Resources */,
-				96CDC74C22E450D0009395B9 /* Localizable.stringsdict in Resources */,
-				96CDC74822E39701009395B9 /* TasksKitConfiguration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1926,8 +1750,6 @@
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				0C06E94722EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */,
 				0C06E97722F17E910099DD3A /* DiaryEntriesSubmoduleView.swift in Sources */,
-				961063232242B26000E1446E /* MoodChartCell.swift in Sources */,
-				0CD8F812223F7C4000061B58 /* ActivityWidget.swift in Sources */,
 				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
@@ -1950,7 +1772,6 @@
 				0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
 				0CB2EDF3214F971700AA4FB8 /* BiometricsActivationController.swift in Sources */,
-				0CD8F806223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
 				96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */,
 				0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */,
@@ -1965,15 +1786,12 @@
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
-				0CD8F809223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
-				96ECB7B42242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */,
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CC405E521EE031E0069C6C5 /* PasswordValidator.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
-				96D67EE8216A1D0800AE23D0 /* ExtendedWaterChartViewController.swift in Sources */,
 				0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
@@ -1994,7 +1812,6 @@
 				0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
-				0C3DA5302154CBCF00CAE635 /* WaterControlConfigurationViewController.swift in Sources */,
 				0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
@@ -2004,9 +1821,7 @@
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
-				0C52A0DB2243792700D50D1B /* MoodChartView.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
-				0C93651A2158F04F00B4EB48 /* WaterChartCell.swift in Sources */,
 				0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0CE81611235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
@@ -2037,12 +1852,10 @@
 				96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
 				0C8D0746212AD14A008122A6 /* AppTheme.swift in Sources */,
-				0C3DA52E2154CA1800CAE635 /* WaterControlViewController.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
 				0C4082DF22E6DF0F00D899A9 /* DiaryViewController.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */,
-				0CD8F803223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
 				961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */,
 			);
@@ -2058,7 +1871,6 @@
 				0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */,
 				0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */,
 				961B95D3241CC101003EC992 /* HabitsHistoryCell.swift in Sources */,
-				961063242242B26000E1446E /* MoodChartCell.swift in Sources */,
 				0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
 				0C06E95C22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
@@ -2067,7 +1879,6 @@
 				0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */,
 				0C06E94522E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */,
 				0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */,
-				96ECB7B52242BFAD00ED42D7 /* ExtendedMoodChartViewController.swift in Sources */,
 				0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */,
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
 				0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
@@ -2106,7 +1917,6 @@
 				0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
-				0C52A0DC2243792700D50D1B /* MoodChartView.swift in Sources */,
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
@@ -2117,7 +1927,6 @@
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
 				0CB6738F21A52C3900178EB1 /* TodayContentViewController.swift in Sources */,
-				0CD8F807223F780700061B58 /* WaterControlActivityWidget.swift in Sources */,
 				96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0CB6739021A52C3900178EB1 /* FinalEducationScreen.swift in Sources */,
 				0C4082E022E6DF0F00D899A9 /* DiaryViewController.swift in Sources */,
@@ -2128,7 +1937,6 @@
 				0CB6739221A52C3900178EB1 /* SettingsCells.swift in Sources */,
 				0CB6739321A52C3900178EB1 /* HabitCreationViewController.swift in Sources */,
 				0CF2F933224CC2100042F3DC /* ProVersionPurchaseViewController.swift in Sources */,
-				0CB6739421A52C3900178EB1 /* ExtendedWaterChartViewController.swift in Sources */,
 				961AF5B723AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */,
 				0CB6739521A52C3900178EB1 /* SprintNotificationTimePicker.swift in Sources */,
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
@@ -2144,13 +1952,10 @@
 				96DDBDC423CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */,
 				0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */,
 				0CB6739D21A52C3900178EB1 /* TodayViewController.swift in Sources */,
-				0CD8F80A223F783F00061B58 /* MoodActivityWidget.swift in Sources */,
 				0C06E97B22F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift in Sources */,
 				0CB6739E21A52C3900178EB1 /* CalendarView.swift in Sources */,
 				0CB6739F21A52C3900178EB1 /* AppDelegate+Notifications.swift in Sources */,
 				0CB673A021A52C3900178EB1 /* CardView.swift in Sources */,
-				0CD8F813223F7C4100061B58 /* ActivityWidget.swift in Sources */,
-				0CB673A121A52C3900178EB1 /* WaterControlConfigurationViewController.swift in Sources */,
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
 				969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */,
@@ -2161,9 +1966,7 @@
 				0CB673A621A52C3900178EB1 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */,
 				961AF5B323AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */,
-				0CB673A821A52C3900178EB1 /* WaterChartCell.swift in Sources */,
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
-				0CD8F804223F77AB00061B58 /* ActivityViewController.swift in Sources */,
 				0C06E98722F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
@@ -2183,7 +1986,6 @@
 				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
 				0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CB673B621A52C3900178EB1 /* AppTheme.swift in Sources */,
-				0CB673B721A52C3900178EB1 /* WaterControlViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
 				96DDBDB523BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
@@ -2208,18 +2010,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96CDC72922E39095009395B9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96CDC74522E39325009395B9 /* Constants.swift in Sources */,
-				96CDC74322E392B7009395B9 /* Date+Today.swift in Sources */,
-				96CDC73122E39095009395B9 /* TodayViewController.swift in Sources */,
-				96CDC74222E39267009395B9 /* SprintInteractorTrait.swift in Sources */,
-				96CDC74422E392C9009395B9 /* List+Sprint.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2227,11 +2017,6 @@
 			isa = PBXTargetDependency;
 			target = 0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */;
 			targetProxy = 0CE883D12150F6EC00637BD9 /* PBXContainerItemProxy */;
-		};
-		96CDC73722E39095009395B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 96CDC72C22E39095009395B9 /* WaterControlTodayExtension */;
-			targetProxy = 96CDC73622E39095009395B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2289,15 +2074,6 @@
 			name = Info.plist;
 			sourceTree = "<group>";
 		};
-		969A9A2622E451200018188D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				969A9A2522E451200018188D /* en */,
-				969A9A2722E451210018188D /* ru */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		96BE838A2175034400CDECAF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2305,14 +2081,6 @@
 				96BE838B2175034500CDECAF /* ru */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		96CDC73222E39095009395B9 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96CDC73322E39095009395B9 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2442,7 +2210,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2454,7 +2222,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = BeBetter;
@@ -2474,7 +2242,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2486,7 +2254,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = BeBetter;
@@ -2506,7 +2274,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2518,7 +2286,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET MOCKS";
@@ -2536,7 +2304,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Agile diary/Agile diary.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2548,7 +2316,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiaryDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "MAIN_TARGET MOCKS";
@@ -2565,7 +2333,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2578,7 +2346,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2595,7 +2363,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = HabitsTodayExtension/HabitsTodayExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2608,62 +2376,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TODAY_EXTENSION;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		96CDC73A22E39095009395B9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = WaterControlTodayExtension/WaterControlTodayExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = WaterControlTodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.3;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.WaterControlTodayExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		96CDC73B22E39095009395B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = WaterControlTodayExtension/WaterControlTodayExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = WaterControlTodayExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.3;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.WaterControlTodayExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2703,15 +2422,6 @@
 			buildConfigurations = (
 				0CE883D42150F6EC00637BD9 /* Debug */,
 				0CE883D52150F6EC00637BD9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		96CDC73922E39095009395B9 /* Build configuration list for PBXNativeTarget "WaterControlTodayExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				96CDC73A22E39095009395B9 /* Debug */,
-				96CDC73B22E39095009395B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -49,8 +49,6 @@ final class RuMocksConfigurator: MocksConfigurator {
         let sg16 = Subtask(id: "05", title: "Принц полукровка", isDone: false, sortPosition: 5, creationDate: .now - 7.asDays)
         let sg17 = Subtask(id: "06", title: "Дары смерти", isDone: false, sortPosition: 6, creationDate: .now - 7.asDays)
         
-        let wc = WaterControl(id: "1", neededVolume: 2300, drunkVolume: [Date.now.startOfDay: 1800], sprintID: sprint.id, notificationsEnabled: true, notificationsInterval: 2, notificationsStartTime: .now, notificationsEndTime: .now)
-        
         var counter = 19
         let group = DispatchGroup()
         (0..<counter).forEach { _ in group.enter() }
@@ -83,7 +81,6 @@ final class RuMocksConfigurator: MocksConfigurator {
         ServicesAssembly.shared.subtasksService.addStage(sg21, to: g2, completion: c1)
         ServicesAssembly.shared.subtasksService.addStage(sg22, to: g2, completion: c1)
         ServicesAssembly.shared.subtasksService.addStage(sg23, to: g2, completion: c1)
-        ServicesAssembly.shared.waterControlService.createOrUpdateWaterControl(wc, completion: c1)
         
         group.notify(queue: .main) {
             completion()
@@ -125,9 +122,7 @@ final class EnMocksConfigurator: MocksConfigurator {
         let sg15 = Subtask(id: "04", title: "The Order of the Phoenix", isDone: false, sortPosition: 4, creationDate: .now - 7.asDays)
         let sg16 = Subtask(id: "05", title: "The Half-Blood Prince", isDone: false, sortPosition: 5, creationDate: .now - 7.asDays)
         let sg17 = Subtask(id: "06", title: "The Deathly Hallows", isDone: false, sortPosition: 6, creationDate: .now - 7.asDays)
-        
-        let wc = WaterControl(id: "1", neededVolume: 2300, drunkVolume: [Date.now.startOfDay: 1800], sprintID: sprint.id, notificationsEnabled: true, notificationsInterval: 2, notificationsStartTime: .now, notificationsEndTime: .now)
-        
+                
         var counter = 18
         let group = DispatchGroup()
         (0..<counter).forEach { _ in group.enter() }
@@ -159,7 +154,6 @@ final class EnMocksConfigurator: MocksConfigurator {
         ServicesAssembly.shared.subtasksService.addStage(sg21, to: g2, completion: c1)
         ServicesAssembly.shared.subtasksService.addStage(sg22, to: g2, completion: c1)
         ServicesAssembly.shared.subtasksService.addStage(sg23, to: g2, completion: c1)
-        ServicesAssembly.shared.waterControlService.createOrUpdateWaterControl(wc, completion: c1)
         
         group.notify(queue: .main) {
             completion()

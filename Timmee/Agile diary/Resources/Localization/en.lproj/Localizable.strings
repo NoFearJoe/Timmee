@@ -168,8 +168,7 @@
 "pro_version_description" = "By purchasing the PRO version, you open access to additional features, as well as help the development of the application.\n\nAdditional features:";
 "pro_version_feature_0" = "Synchronization";
 "pro_version_feature_1" = "Advanced progress view";
-"pro_version_feature_2" = "Water and mood control";
-"pro_version_feature_3" = "Background image";
+"pro_version_feature_2" = "Background image";
 "restore_error_try_again" = "Failed to restore the PRO version. Try again";
 "pro_version_section" = "PRO version";
 "version" = "Version";
@@ -184,26 +183,9 @@
 "goals" = "Goals";
 "habits" = "Habits";
 "habits_chart_no_data" = "Start fulfilling habits to see progress";
-"water" = "Water";
-"water_chart_no_data" = "Start control drunk water, to see progress";
-"+100ml" = "+ 100ml";
-"+200ml" = "+ 200ml";
-"+300ml" = "+ 300ml";
 "show_full_progress" = "More";
 "Progress_till_today" = "Progress till today";
 
-"configure_water_control" = "Set up water control";
-"water_control_not_initialized" = "You have not yet set up water control in this sprint";
-"male" = "Male";
-"female" = "Female";
-"activity_low" = "Low";
-"activity_medium" = "Medium";
-"activity_high" = "High";
-"l" = "l";
-"daily_water_volume" = "Your daily rate";
-"gender" = "Gender";
-"weight" = "Weight";
-"activity" = "Activity";
 "notifications" = "Reminders";
 "notifications_interval" = "Reminders interval";
 "notifications_enabled" = "Enabled";
@@ -214,11 +196,6 @@
 "2h" = "2h";
 "3h" = "3h";
 "4h" = "4h";
-"water_time_title" = "Water";
-"water_time_subtitle" = "Time to drink a glass of water";
-"drunk_water_100" = "Drank 100ml";
-"drunk_water_200" = "Drank 200ml";
-"drunk_water_300" = "Drank 300ml";
 "no_data" = "No data";
 
 "education_initial_title" = "What is an Agile diary?";
@@ -362,10 +339,6 @@
 "habits_chart_placeholder_text" = "No completed habits";
 
 "buy_for" = "Buy for";
-"most_frequently_mood" = "Most frequently mood";
-"average_water_volume" = "Average water volume";
-
-"water_control_widget_title" = "Water";
 
 "weekly_chart_title" = "Progress over the last 7 days";
 

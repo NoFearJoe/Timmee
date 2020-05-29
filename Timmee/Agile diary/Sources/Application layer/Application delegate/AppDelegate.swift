@@ -73,29 +73,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private extension AppDelegate {
     func performPreparingActions(completion: @escaping () -> Void) {
-        self.performMigrations {
-            print("Preparing: migrations are finished")
-            self.performOtherPreparingActions {
-                print("Preparing: other preparing actions are finished")
-                self.performInitialSynchronization {
-                    print("Preparing: Synchronization is finished")
-                    DispatchQueue.main.async {
-                        completion()
-                    }
+        self.performOtherPreparingActions {
+            print("Preparing: other preparing actions are finished")
+            self.performInitialSynchronization {
+                print("Preparing: Synchronization is finished")
+                DispatchQueue.main.async {
+                    completion()
                 }
             }
         }
-    }
-    
-    private func performMigrations(completion: @escaping () -> Void) {
-        let dispatchGroup = DispatchGroup()
-        
-        dispatchGroup.enter()
-        ServicesAssembly.shared.waterControlService.performMigration {
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.notify(queue: .main, execute: completion)
     }
     
     private func performOtherPreparingActions(completion: @escaping () -> Void) {

@@ -130,8 +130,6 @@ final class FirebaseCollectionSynchronizationManager {
             goal.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
         case let habit as HabitEntity:
             habit.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
-        case let waterControl as WaterControlEntity:
-            waterControl.sprint = SprintEntity.request().execute(context: context).first(where: { $0.id == parentEntityID })
         default: return
         }
     }
@@ -149,26 +147,6 @@ final class FirebaseCollectionSynchronizationManager {
         } else if let sprintEntity = entity as? SprintEntity {
             let sprint = Sprint(sprintEntity: sprintEntity)
             SprintSchedulerService().scheduleSprint(sprint)
-        } else if let waterControlEntity = entity as? WaterControlEntity {
-            let waterControl = WaterControl(entity: waterControlEntity)
-            
-            let existingSprints = ServicesAssembly.shared.sprintsService.fetchSprints()
-            
-            guard
-                let currentSprint = existingSprints.first(where: { sprint in
-                    sprint.startDate <= Date().startOfDay && sprint.endDate >= Date().endOfDay
-                }),
-                waterControl.sprintID == currentSprint.id
-            else {
-                removeNotificationsForRemovedEntity(entity: waterControlEntity)
-                return
-            }
-            
-            WaterControlSchedulerService().scheduleWaterControl(
-                waterControl,
-                startDate: currentSprint.startDate,
-                endDate: currentSprint.endDate
-            )
         }
     }
     
@@ -181,9 +159,6 @@ final class FirebaseCollectionSynchronizationManager {
             let sprint = Sprint(sprintEntity: sprintEntity)
             SprintSchedulerService().removeSprintNotifications(sprint: sprint) {}
             // TODO: Remove notifications for habits
-        } else if let waterControlEntity = entity as? WaterControlEntity {
-            let waterControl = WaterControl(entity: waterControlEntity)
-            WaterControlSchedulerService().removeWaterControlNotifications(waterControl) {}
         }
     }
     

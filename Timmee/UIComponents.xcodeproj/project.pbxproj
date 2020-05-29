@@ -96,7 +96,6 @@
 		96956C31221019C400DD6855 /* BaseRoundedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96956C2F221019C400DD6855 /* BaseRoundedCollectionViewCell.swift */; };
 		96956C32221019C400DD6855 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96956C30221019C400DD6855 /* SwipableCollectionViewCell.swift */; };
 		96C55A2323BB382C0091DC19 /* SectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2223BB382C0091DC19 /* SectionContainer.swift */; };
-		96CDC72822E38F54009395B9 /* WaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CDC72722E38F54009395B9 /* WaterLevelView.swift */; };
 		96DDBDB723BB542E007AB33B /* LabelWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB623BB542E007AB33B /* LabelWithInsets.swift */; };
 /* End PBXBuildFile section */
 
@@ -194,7 +193,6 @@
 		96956C2F221019C400DD6855 /* BaseRoundedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRoundedCollectionViewCell.swift; sourceTree = "<group>"; };
 		96956C30221019C400DD6855 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
 		96C55A2223BB382C0091DC19 /* SectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionContainer.swift; sourceTree = "<group>"; };
-		96CDC72722E38F54009395B9 /* WaterLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterLevelView.swift; sourceTree = "<group>"; };
 		96DDBDB623BB542E007AB33B /* LabelWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithInsets.swift; sourceTree = "<group>"; };
 		9706631A59BF24C459CFC81A /* Pods-UIComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.debug.xcconfig"; path = "Target Support Files/Pods-UIComponents/Pods-UIComponents.debug.xcconfig"; sourceTree = "<group>"; };
 		FA8C666689D344752C217FA4 /* Pods_UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,7 +294,6 @@
 				0C86E4F222DD912200DA7B15 /* DetailView.swift */,
 				0C4082A922E1EFB300D899A9 /* FloatingMenu.swift */,
 				0C4082A822E1EFB300D899A9 /* FloatingButton.swift */,
-				96CDC72722E38F54009395B9 /* WaterLevelView.swift */,
 				0C06E96222EEDDC40099DD3A /* AutoSizingTableView.swift */,
 				96C55A2223BB382C0091DC19 /* SectionContainer.swift */,
 				96DDBDB623BB542E007AB33B /* LabelWithInsets.swift */,
@@ -865,7 +862,6 @@
 				9667C70522C3F71F0010CC00 /* VerticalCompressibleViewContainer.swift in Sources */,
 				9667C71622C3F71F0010CC00 /* DynamicSizeChangeHelper.swift in Sources */,
 				9667C71D22C3F71F0010CC00 /* SkeletonAnimatableView.swift in Sources */,
-				96CDC72822E38F54009395B9 /* WaterLevelView.swift in Sources */,
 				0CE3CA6E235D81D0008C2DA5 /* FadeTransition.swift in Sources */,
 				0C14D41B211C1B65004C0559 /* ReorderableTableView.swift in Sources */,
 				0C86E4E822DC7C1000DA7B15 /* TCSStackViewContainer.swift in Sources */,

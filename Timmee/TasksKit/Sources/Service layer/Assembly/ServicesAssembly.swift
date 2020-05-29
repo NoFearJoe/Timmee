@@ -32,10 +32,6 @@ public final class ServicesAssembly {
     
     public lazy var goalsService: GoalsProvider & GoalsManager & GoalsObserverProvider = PrivateServicesAssembly.shared.goalsService
     
-    public lazy var waterControlService: WaterControlProvider & WaterControlManager & WaterControlMigrationManager = PrivateServicesAssembly.shared.waterControlService
-    
-    public lazy var moodServce: MoodProvider & MoodManager = PrivateServicesAssembly.shared.moodService
-    
     public lazy var diaryService: DiaryProvider & DiaryManager & DiaryObserverProvider = DiaryService()
     
 }
@@ -49,10 +45,6 @@ public final class EntityServicesAssembly {
     public lazy var habitsService: HabitEntitiesBackgroundProvider = PrivateServicesAssembly.shared.habitsService
     
     public lazy var goalsService: GoalEntitiesBackgroundProvider = PrivateServicesAssembly.shared.goalsService
-    
-    public lazy var waterControlService: WaterControlEntityBackgroundProvider = PrivateServicesAssembly.shared.waterControlService
-    
-    public lazy var moodService: MoodEntityBackgroundProvider = PrivateServicesAssembly.shared.moodService
     
     public lazy var diaryService: DiaryEntitiesBackgroundProvider = PrivateServicesAssembly.shared.diaryService
     
@@ -143,19 +135,6 @@ final class PrivateServicesAssembly {
             
             return service
         }()
-    
-    lazy var waterControlService:
-        WaterControlProvider &
-        WaterControlEntityBackgroundProvider &
-        WaterControlManager &
-        WaterControlMigrationManager
-        = WaterControlService(sprintsProvider: sprintsService)
-    
-    lazy var moodService:
-        MoodProvider &
-        MoodEntityBackgroundProvider &
-        MoodManager
-        = MoodService()
     
     lazy var diaryService:
         DiaryProvider &

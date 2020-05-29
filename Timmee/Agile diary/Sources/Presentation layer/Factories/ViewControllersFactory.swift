@@ -51,14 +51,6 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "Today", bundle: nil).instantiateInitialViewController() as! TodayViewController
     }
     
-    static var waterControlActivityWidget: WaterControlActivityWidget {
-        return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "WaterControl") as! WaterControlActivityWidget
-    }
-    
-    static var moodActivityWidget: MoodActivityWidget {
-        return UIStoryboard(name: "Activity", bundle: nil).instantiateViewController(withIdentifier: "Mood") as! MoodActivityWidget
-    }
-    
     // Authorization
     
     static var authorization: AuthorizationViewController {

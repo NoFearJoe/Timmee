@@ -124,7 +124,6 @@ extension TodayContentViewController: UITableViewDataSource {
         switch section {
         case .habits: return habitsCacheObserver?.numberOfSections() ?? 0
         case .goals: return goalsCacheObserver?.numberOfSections() ?? 0
-        case .activity: return 0
         }
     }
     
@@ -132,7 +131,6 @@ extension TodayContentViewController: UITableViewDataSource {
         switch self.section {
         case .habits: return habitsCacheObserver?.numberOfItems(in: section) ?? 0
         case .goals: return goalsCacheObserver?.numberOfItems(in: section) ?? 0
-        case .activity: return 0
         }
     }
     
@@ -168,7 +166,6 @@ extension TodayContentViewController: UITableViewDataSource {
                 }
             }
             return cell
-        case .activity: return UITableViewCell()
         }
     }
     
@@ -265,7 +262,6 @@ extension TodayContentViewController: UITableViewDelegate {
             }
             
             self.transitionHandler?.present(navigationController, animated: true, completion: nil)
-        case .activity: return
         }
     }
     
@@ -278,7 +274,6 @@ private extension TodayContentViewController {
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
         case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
-        case .activity: break
         }
     }
     
@@ -364,7 +359,6 @@ private extension TodayContentViewController {
         case .habits:
             placeholderView.title = "today_habits_section_placeholder_title".localized
             placeholderView.subtitle = nil
-        case .activity: break
         }
     }
     

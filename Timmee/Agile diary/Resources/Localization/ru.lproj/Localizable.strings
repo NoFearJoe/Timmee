@@ -167,8 +167,7 @@
 "pro_version_description" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\n\nВам будут доступны:";
 "pro_version_feature_0" = "Синхронизация";
 "pro_version_feature_1" = "Расширенный просмотр прогресса";
-"pro_version_feature_2" = "Контроль воды и настроения";
-"pro_version_feature_3" = "Выбор фонового изображения";
+"pro_version_feature_2" = "Выбор фонового изображения";
 "restore_pro_version" = "Восстановить PRO версию";
 "restore_error_try_again" = "Не удалось восстановить PRO версию. Попробуйте снова";
 "pro_version_section" = "PRO версия";
@@ -184,26 +183,9 @@
 "goals" = "Цели";
 "habits" = "Привычки";
 "habits_chart_no_data" = "Начните выполнять привычки, чтобы видеть прогресс";
-"water" = "Вода";
-"water_chart_no_data" = "Начните контролировать выпитую воду, чтобы видеть прогресс";
-"+100ml" = "+ 100мл";
-"+200ml" = "+ 200мл";
-"+300ml" = "+ 300мл";
 "show_full_progress" = "Подробнее";
 "Progress_till_today" = "Прогресс с начала спринта по сегодня";
 
-"configure_water_control" = "Настроить контроль воды";
-"water_control_not_initialized" = "Вы еще не настраивали контроль воды в этом спринте";
-"male" = "Мужской";
-"female" = "Женский";
-"activity_low" = "Низкая";
-"activity_medium" = "Средняя";
-"activity_high" = "Высокая";
-"l" = "л";
-"daily_water_volume" = "Ваша суточная норма";
-"gender" = "Пол";
-"weight" = "Вес";
-"activity" = "Активность";
 "notifications" = "Напоминания";
 "notifications_interval" = "Интервал напоминаний";
 "notifications_enabled" = "Включены";
@@ -214,11 +196,6 @@
 "2h" = "2ч";
 "3h" = "3ч";
 "4h" = "4ч";
-"water_time_title" = "Вода";
-"water_time_subtitle" = "Время выпить стакан воды";
-"drunk_water_100" = "Выпил 100мл";
-"drunk_water_200" = "Выпил 200мл";
-"drunk_water_300" = "Выпил 300мл";
 "no_data" = "Нет данных";
 
 "education_initial_title" = "Что такое Agile ежедневник?";
@@ -362,10 +339,6 @@
 "habits_chart_placeholder_text" = "Нет выполненных привычек";
 
 "buy_for" = "Купить за";
-"most_frequently_mood" = "Самое частое настроение";
-"average_water_volume" = "В среднем в день";
-
-"water_control_widget_title" = "Вода";
 
 "weekly_chart_title" = "Прогресс за последние 7 дней";
 

@@ -17,14 +17,12 @@
 		0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */; };
 		0C90018521F890EF00D6C15F /* GoalEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */; };
 		0C90018721F892A900D6C15F /* SubtaskEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */; };
-		0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */; };
 		0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */; };
 		0C9001B121FC220300D6C15F /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9001B021FC220300D6C15F /* NotificationsKit.framework */; };
 		0CC4066221F1DF440069C6C5 /* Synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC4066021F1DF440069C6C5 /* Synchronization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0CC4066521F1DF7D0069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066421F1DF7D0069C6C5 /* Authorization.framework */; };
 		0CC4066721F1DF7D0069C6C5 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */; };
 		0CC4066921F1DF7D0069C6C5 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066821F1DF7D0069C6C5 /* Workset.framework */; };
-		0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD8F81F2240C88500061B58 /* Mood+Codable.swift */; };
 		423A8836AF2C1866A9C53F0D /* Pods_Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D787229BFAA1817A24FCEA88 /* Pods_Synchronization.framework */; };
 		961B95D6241E5C75003EC992 /* FirebaseTypesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D5241E5C75003EC992 /* FirebaseTypesProtocols.swift */; };
 /* End PBXBuildFile section */
@@ -40,7 +38,6 @@
 		0C90018221F88FDD00D6C15F /* SprintEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubtaskEntity+Codable.swift"; sourceTree = "<group>"; };
-		0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WaterControlEntity+Codable.swift"; sourceTree = "<group>"; };
 		0C90019D21FB0B8800D6C15F /* PeriodicallySynchronizationRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicallySynchronizationRunner.swift; sourceTree = "<group>"; };
 		0C9001B021FC220300D6C15F /* NotificationsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NotificationsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4064B21F1DEDE0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +46,6 @@
 		0CC4066421F1DF7D0069C6C5 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4066621F1DF7D0069C6C5 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC4066821F1DF7D0069C6C5 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CD8F81F2240C88500061B58 /* Mood+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mood+Codable.swift"; sourceTree = "<group>"; };
 		25998E8ECCD208AAEAB2DD3C /* Pods-Synchronization.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.debug.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.debug.xcconfig"; sourceTree = "<group>"; };
 		961B95D5241E5C75003EC992 /* FirebaseTypesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTypesProtocols.swift; sourceTree = "<group>"; };
 		CABECFD8DF299C216DC18247 /* Pods-Synchronization.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Synchronization.release.xcconfig"; path = "Target Support Files/Pods-Synchronization/Pods-Synchronization.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,8 +92,6 @@
 				0C90017321F856F000D6C15F /* HabitEntity+Codable.swift */,
 				0C90018421F890EF00D6C15F /* GoalEntity+Codable.swift */,
 				0C90018621F892A900D6C15F /* SubtaskEntity+Codable.swift */,
-				0C90018821F8938000D6C15F /* WaterControlEntity+Codable.swift */,
-				0CD8F81F2240C88500061B58 /* Mood+Codable.swift */,
 				0C06E97322F0792B0099DD3A /* DiaryEntryEntity+Codable.swift */,
 			);
 			path = "Agile diary";
@@ -312,9 +306,7 @@
 				0C90017421F856F000D6C15F /* HabitEntity+Codable.swift in Sources */,
 				0C90018321F88FDD00D6C15F /* SprintEntity+Codable.swift in Sources */,
 				0C06E97422F0792B0099DD3A /* DiaryEntryEntity+Codable.swift in Sources */,
-				0CD8F8202240C88500061B58 /* Mood+Codable.swift in Sources */,
 				0C47ED5A222FF8A000593AA3 /* SynchronizationAvailabilityChecker.swift in Sources */,
-				0C90018921F8938000D6C15F /* WaterControlEntity+Codable.swift in Sources */,
 				961B95D6241E5C75003EC992 /* FirebaseTypesProtocols.swift in Sources */,
 				0C90019E21FB0B8900D6C15F /* PeriodicallySynchronizationRunner.swift in Sources */,
 			);

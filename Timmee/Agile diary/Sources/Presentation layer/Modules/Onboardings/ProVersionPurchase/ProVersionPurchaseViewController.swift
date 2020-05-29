@@ -92,7 +92,7 @@ final class ProVersionPurchaseViewController: BaseViewController, AlertInput {
             featuresStackView.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
-        for i in 0...3 {
+        for i in 0...2 {
             let featureIcon = UIImage(named: "pro_version_feature_icon_\(i)")
             let featureTitle = "pro_version_feature_\(i)".localized
             let view = ProVersionFeatureView.loadedFromNib()

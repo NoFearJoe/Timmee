@@ -31,8 +31,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         if notification.request.content.categoryIdentifier == NotificationCategories.habit.rawValue {
             completionHandler([.alert, .sound])
-        } else if notification.request.content.categoryIdentifier == NotificationCategories.waterControl.rawValue {
-            completionHandler([.alert, .sound])
         }
     }
     
@@ -57,16 +55,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                               habitID: habitID,
                               fireDate: response.notification.date,
                               completion: completionHandler)
-        } else if response.notification.request.content.categoryIdentifier == NotificationCategories.waterControl.rawValue {
-            guard let waterControlID = response.notification.request.content.userInfo["water_control_id"] as? String else {
-                completionHandler()
-                return
-            }
-            
-            handleWaterControlAction(withIdentifier: response.actionIdentifier,
-                                     waterControlID: waterControlID,
-                                     fireDate: response.notification.date,
-                                     completion: completionHandler)
         }
     }
     
@@ -87,25 +75,6 @@ private extension AppDelegate {
                 }
             case .remindAfter(let minutes):
                 deferNotification(ofHabitWithID: habitID, by: minutes, fireDate: fireDate, completion: completion)
-            default: completion()
-            }
-        } else {
-            completion()
-        }
-    }
-    
-    func handleWaterControlAction(withIdentifier identifier: String, waterControlID: String, fireDate: Date, completion: @escaping () -> Void) {
-        if let action = NotificationAction(rawValue: identifier), fireDate.isWithinSameDay(of: .now) {
-            switch action {
-            case let .drunkWater(milliliters):
-                guard let waterControl = ServicesAssembly.shared.waterControlService.fetchWaterControl(id: waterControlID) else { completion(); return }
-                if let todayDrunk = waterControl.drunkVolume[fireDate.startOfDay] {
-                    waterControl.drunkVolume[fireDate.startOfDay] = todayDrunk + milliliters
-                } else {
-                    waterControl.drunkVolume[fireDate.startOfDay] = milliliters
-                }
-                ServicesAssembly.shared.waterControlService.createOrUpdateWaterControl(waterControl, completion: completion)
-            default: completion()
             }
         } else {
             completion()

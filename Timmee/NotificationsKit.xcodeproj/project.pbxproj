@@ -14,7 +14,6 @@
 		96BE83C42176447A00CDECAF /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83C32176447A00CDECAF /* TasksKit.framework */; };
 		96BE83CE217645A000CDECAF /* BaseSchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83CD217645A000CDECAF /* BaseSchedulerService.swift */; };
 		96BE83D021764C6D00CDECAF /* HabitsSchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83CF21764C6D00CDECAF /* HabitsSchedulerService.swift */; };
-		96BE83D221764C9E00CDECAF /* WaterControlSchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83D121764C9E00CDECAF /* WaterControlSchedulerService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		96BE83C32176447A00CDECAF /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BE83CD217645A000CDECAF /* BaseSchedulerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSchedulerService.swift; sourceTree = "<group>"; };
 		96BE83CF21764C6D00CDECAF /* HabitsSchedulerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsSchedulerService.swift; sourceTree = "<group>"; };
-		96BE83D121764C9E00CDECAF /* WaterControlSchedulerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterControlSchedulerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +74,6 @@
 				96BE83CD217645A000CDECAF /* BaseSchedulerService.swift */,
 				96BE83BE2176442700CDECAF /* TaskSchedulerService.swift */,
 				96BE83CF21764C6D00CDECAF /* HabitsSchedulerService.swift */,
-				96BE83D121764C9E00CDECAF /* WaterControlSchedulerService.swift */,
 				0C97552921A2D5B70031CA2E /* SprintSchedulerService.swift */,
 			);
 			path = Sources;
@@ -172,7 +169,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				96BE83D021764C6D00CDECAF /* HabitsSchedulerService.swift in Sources */,
-				96BE83D221764C9E00CDECAF /* WaterControlSchedulerService.swift in Sources */,
 				96BE83CE217645A000CDECAF /* BaseSchedulerService.swift in Sources */,
 				0C97552A21A2D5B70031CA2E /* SprintSchedulerService.swift in Sources */,
 				96BE83BF2176442700CDECAF /* TaskSchedulerService.swift in Sources */,

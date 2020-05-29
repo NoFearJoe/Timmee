@@ -17,19 +17,6 @@ final class AppLinkHandler: SprintInteractorTrait {
     func handle(url: URL) {
         if url.scheme == "agilee" {
             switch url.host {
-            case "configure_water_control":
-                guard let waterControlConfigurationNavigationController = UIStoryboard(name: "WaterControl", bundle: nil).instantiateInitialViewController() as? UINavigationController
-                    else { return }
-                
-                guard let currentSprint = getCurrentSprint()
-                    else { return }
-                
-                guard let waterControlConfigurationViewController = waterControlConfigurationNavigationController.viewControllers.first as? WaterControlConfigurationViewController
-                    else { return }
-                
-                waterControlConfigurationViewController.sprint = currentSprint
-                
-                window?.rootViewController?.present(waterControlConfigurationNavigationController, animated: true, completion: nil)
             default: break
             }
         }

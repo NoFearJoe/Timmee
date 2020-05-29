@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFK-lV-GWC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFK-lV-GWC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,7 +40,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-kI-KNI" customClass="PickDayButton" customModule="Agile_diary_debug" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-kI-KNI" customClass="PickDayButton" customModule="Agile_diary_debug" customModuleProvider="target">
                                                                 <rect key="frame" x="139" y="9" width="66" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="eQ3-an-wTj"/>
@@ -132,13 +132,6 @@
                                     <segue destination="3rx-bc-jDa" kind="embed" identifier="SprintContent" id="afp-QC-2gL"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTA-3z-kRg">
-                                <rect key="frame" x="0.0" y="138" width="375" height="529"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="APQ-C6-bu2" kind="embed" identifier="Activity" id="WeR-EB-etE"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG5-iM-CHH">
                                 <rect key="frame" x="0.0" y="138" width="375" height="529"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -160,23 +153,19 @@
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="Wcp-ev-KnK" secondAttribute="trailing" constant="20" id="0Hf-BL-37g"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="kq5-QA-Okj" secondAttribute="trailing" id="0Qw-cc-ReC"/>
                             <constraint firstAttribute="bottom" secondItem="UQc-5J-Nm5" secondAttribute="bottom" id="0T8-Ui-Ya7"/>
-                            <constraint firstAttribute="bottom" secondItem="nTA-3z-kRg" secondAttribute="bottom" id="1ju-ac-Ltn"/>
                             <constraint firstAttribute="bottom" secondItem="kq5-QA-Okj" secondAttribute="bottom" id="4IG-qt-W4o"/>
                             <constraint firstItem="kq5-QA-Okj" firstAttribute="top" secondItem="nei-Q3-f4w" secondAttribute="top" id="5Pz-NY-mBf"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="bottom" secondItem="Wcp-ev-KnK" secondAttribute="bottom" constant="20" id="74b-9j-7nk"/>
                             <constraint firstItem="MG5-iM-CHH" firstAttribute="top" secondItem="Rfn-qH-ddK" secondAttribute="bottom" id="CJf-m8-Xu4"/>
                             <constraint firstItem="UQc-5J-Nm5" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="DD4-39-dv9"/>
-                            <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="nTA-3z-kRg" secondAttribute="trailing" id="DpN-GV-wMu"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="bottom" secondItem="MG5-iM-CHH" secondAttribute="bottom" id="FHl-UA-e4D"/>
                             <constraint firstItem="Wcp-ev-KnK" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" constant="20" id="IgT-GY-dx3"/>
                             <constraint firstItem="UQc-5J-Nm5" firstAttribute="top" secondItem="Rfn-qH-ddK" secondAttribute="bottom" id="KQk-Eq-3rE"/>
-                            <constraint firstItem="nTA-3z-kRg" firstAttribute="top" secondItem="Rfn-qH-ddK" secondAttribute="bottom" id="bcZ-e0-GE4"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="UQc-5J-Nm5" secondAttribute="trailing" id="cQH-s0-btn"/>
                             <constraint firstItem="MG5-iM-CHH" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="g9o-2E-03G"/>
                             <constraint firstItem="Rfn-qH-ddK" firstAttribute="top" secondItem="nei-Q3-f4w" secondAttribute="top" id="mDU-RN-Pye"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="MG5-iM-CHH" secondAttribute="trailing" id="o0t-D3-pi9"/>
                             <constraint firstItem="Rfn-qH-ddK" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="oUc-IV-h7T"/>
-                            <constraint firstItem="nTA-3z-kRg" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="rPF-RZ-Ehf"/>
                             <constraint firstItem="kq5-QA-Okj" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="sed-c1-mwq"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="Rfn-qH-ddK" secondAttribute="trailing" id="u6i-gf-n9k"/>
                         </constraints>
@@ -184,7 +173,6 @@
                     </view>
                     <connections>
                         <outlet property="actionsButton" destination="fjR-Bh-1q4" id="v4w-FU-XWE"/>
-                        <outlet property="activityViewContainer" destination="nTA-3z-kRg" id="Na0-SO-zdg"/>
                         <outlet property="backgroundImageView" destination="kq5-QA-Okj" id="bpo-P0-sYV"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
                         <outlet property="contentViewTopConstraint" destination="KQk-Eq-3rE" id="Rq4-1S-ukV"/>
@@ -261,14 +249,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrT-c7-zcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-323" y="648"/>
-        </scene>
-        <!--Activity-->
-        <scene sceneID="qbj-bi-7qr">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Activity" id="APQ-C6-bu2" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="heI-Oz-CSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="529" y="-154"/>
         </scene>
         <!--Today Content View Controller-->
         <scene sceneID="mzz-VX-Sgc">
@@ -383,13 +363,13 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Opd-dx-ajS">
                                                             <rect key="frame" x="8" y="10.5" width="329" height="97.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTq-wL-k87">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTq-wL-k87">
                                                                     <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Цель" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jR-07-7ng">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цель" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jR-07-7ng">
                                                                     <rect key="frame" x="0.0" y="24.5" width="301" height="25"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                     <nil key="textColor"/>

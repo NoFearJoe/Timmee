@@ -25,13 +25,11 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     @IBOutlet private var backgroundImageView: UIImageView!
     
     @IBOutlet private var contentViewContainer: UIView!
-    @IBOutlet private var activityViewContainer: UIView!
     
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     private var contentViewController: TodayContentViewController!
-    private var activityViewController: ActivityViewController!
     
     @IBOutlet private var contentViewTopConstraint: NSLayoutConstraint!
     
@@ -47,7 +45,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         didSet {
             updateCurrentDateLabel()
             contentViewController?.currentDate = currentDate
-            activityViewController?.currentDate = currentDate
         }
     }
     
@@ -56,8 +53,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             hidePlaceholder()
             contentViewController.sprintID = sprint.id
             contentViewController.currentDate = currentDate
-            activityViewController.sprint = sprint
-            activityViewController.currentDate = currentDate
             updateHeaderSubtitle(sprint: sprint)
         }
     }
@@ -72,7 +67,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupSections()
         progressBar.setProgress(0)
         contentViewContainer.isHidden = false
-        activityViewContainer.isHidden = true
         createSprintButton.isHidden = true
         
         setupPlaceholder()
@@ -126,8 +120,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
             contentViewController.progressListener = self
-        } else if segue.identifier == "Activity" {
-            activityViewController = segue.destination as? ActivityViewController
         } else if segue.identifier == "ShowTargetEditor" {
             segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? GoalCreationViewController else { return }
@@ -152,9 +144,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         case .habits, .goals:
             contentViewController.section = currentSection
             setSectionContainersVisible(content: true, activity: false)
-        case .activity:
-            progressBar.setProgress(0, animated: true)
-            setSectionContainersVisible(content: false, activity: true)
         }
     }
     
@@ -261,7 +250,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     private func setSectionContainersVisible(content: Bool, activity: Bool) {
         contentViewController.performAppearanceTransition(isAppearing: content) { contentViewContainer.isHidden = !content }
-        activityViewController.performAppearanceTransition(isAppearing: activity) { activityViewContainer.isHidden = !activity }
     }
     
 }
@@ -320,11 +308,7 @@ private extension TodayViewController {
     }
     
     func setupSections() {
-        if ProVersionPurchase.shared.isPurchased() {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, SprintSection.activity.title]
-        } else {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
-        }
+        sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         sectionSwitcher.selectedItemIndex = sectionSwitcher.selectedItemIndex
     }

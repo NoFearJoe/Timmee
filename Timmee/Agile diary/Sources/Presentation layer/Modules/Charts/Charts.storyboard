@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6si-Yr-Al4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +27,7 @@
         <!--Прогресс-->
         <scene sceneID="YYa-9A-nOD">
             <objects>
-                <viewController storyboardIdentifier="ChartsViewController" title="Прогресс" id="rC1-gM-x1M" customClass="ChartsViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChartsViewController" title="Прогресс" id="rC1-gM-x1M" customClass="ChartsViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sXN-Fl-dmU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,7 +42,7 @@
                                     <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HabitsChartCell" id="fQ8-cd-CZs" customClass="HabitsChartCell" customModule="Agile_diary" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HabitsChartCell" id="fQ8-cd-CZs" customClass="HabitsChartCell" customModule="Agile_diary_debug" customModuleProvider="target">
                                         <rect key="frame" x="15" y="15" width="345" height="256"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -88,54 +88,8 @@
                                             <outlet property="titleLabel" destination="Feg-kA-E4m" id="L3N-Qf-Tw7"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WaterChartCell" id="jiY-qN-YcQ" customClass="WaterChartCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="286" width="345" height="256"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="256"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вода" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-dE-Nnr">
-                                                    <rect key="frame" x="8" y="8" width="264" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LG-j9-diP" customClass="BarChartView" customModule="Charts">
-                                                    <rect key="frame" x="8" y="34" width="329" height="214"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIw-4u-tS5">
-                                                    <rect key="frame" x="280" y="2" width="57" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <state key="normal" title="Show all">
-                                                        <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="showFullProgress" destination="jiY-qN-YcQ" eventType="touchUpInside" id="QTs-Fe-Pul"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="HIw-4u-tS5" firstAttribute="centerY" secondItem="hVH-dE-Nnr" secondAttribute="centerY" id="F5u-JC-g3K"/>
-                                            <constraint firstItem="hVH-dE-Nnr" firstAttribute="leading" secondItem="jiY-qN-YcQ" secondAttribute="leading" constant="8" id="Mro-fb-lgJ"/>
-                                            <constraint firstItem="2LG-j9-diP" firstAttribute="leading" secondItem="jiY-qN-YcQ" secondAttribute="leading" constant="8" id="cSr-vl-Hqv"/>
-                                            <constraint firstAttribute="bottom" secondItem="2LG-j9-diP" secondAttribute="bottom" constant="8" id="gQJ-7C-KQ9"/>
-                                            <constraint firstItem="HIw-4u-tS5" firstAttribute="leading" secondItem="hVH-dE-Nnr" secondAttribute="trailing" constant="8" id="iTX-L3-yxx"/>
-                                            <constraint firstAttribute="trailing" secondItem="HIw-4u-tS5" secondAttribute="trailing" constant="8" id="kok-Us-QkZ"/>
-                                            <constraint firstItem="hVH-dE-Nnr" firstAttribute="top" secondItem="jiY-qN-YcQ" secondAttribute="top" constant="8" id="lWA-cf-k0X"/>
-                                            <constraint firstItem="2LG-j9-diP" firstAttribute="top" secondItem="hVH-dE-Nnr" secondAttribute="bottom" constant="8" id="pQo-sq-aPh"/>
-                                            <constraint firstAttribute="trailing" secondItem="2LG-j9-diP" secondAttribute="trailing" constant="8" id="zFZ-nA-9s2"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="chartView" destination="2LG-j9-diP" id="eQ8-HL-cp1"/>
-                                            <outlet property="fullProgressButton" destination="HIw-4u-tS5" id="KP4-Sk-o9h"/>
-                                            <outlet property="titleLabel" destination="hVH-dE-Nnr" id="ntz-lb-k0H"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MostFrequentlyPerformedHabitChartCell" id="p6y-4Y-HN2" customClass="MostFrequentlyPerformedHabitChartCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="557" width="345" height="72"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MostFrequentlyPerformedHabitChartCell" id="p6y-4Y-HN2" customClass="MostFrequentlyPerformedHabitChartCell" customModule="Agile_diary_debug" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="286" width="345" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="72"/>
@@ -191,8 +145,8 @@
                                             <outlet property="titleLabel" destination="DPW-Ub-rTL" id="iNJ-gF-De6"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MostRarelyPerformedHabitChartCell" id="wOY-TV-gy8" customClass="MostRarelyPerformedHabitChartCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="644" width="345" height="72"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MostRarelyPerformedHabitChartCell" id="wOY-TV-gy8" customClass="MostRarelyPerformedHabitChartCell" customModule="Agile_diary_debug" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="373" width="345" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="72"/>
@@ -248,64 +202,6 @@
                                             <outlet property="titleLabel" destination="plE-j2-MzK" id="agb-Gi-a4h"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MoodChartCell" id="apy-gf-ggz" customClass="MoodChartCell" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="731" width="345" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Среднее настроение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gS-2k-B2y">
-                                                    <rect key="frame" x="8" y="8" width="154.5" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZy-rX-qKF">
-                                                    <rect key="frame" x="280" y="0.0" width="57" height="34"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <state key="normal" title="Show all">
-                                                        <color key="titleColor" red="0.31445011760000002" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="showFullProgress" destination="apy-gf-ggz" eventType="touchUpInside" id="byv-nd-Xu8"/>
-                                                    </connections>
-                                                </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xQk-6D-PRQ">
-                                                    <rect key="frame" x="293" y="38" width="44" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="VKl-AK-7eI"/>
-                                                        <constraint firstAttribute="width" secondItem="xQk-6D-PRQ" secondAttribute="height" id="cpb-Nh-sil"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="xj7-YP-cdp">
-                                                    <rect key="frame" x="8" y="48" width="277" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="xQk-6D-PRQ" firstAttribute="leading" secondItem="xj7-YP-cdp" secondAttribute="trailing" constant="8" id="6PO-aq-Bzx"/>
-                                            <constraint firstItem="xQk-6D-PRQ" firstAttribute="top" secondItem="UZy-rX-qKF" secondAttribute="bottom" constant="4" id="8OL-iD-GhZ"/>
-                                            <constraint firstItem="xj7-YP-cdp" firstAttribute="leading" secondItem="apy-gf-ggz" secondAttribute="leading" constant="8" id="G9U-O4-qWn"/>
-                                            <constraint firstItem="UZy-rX-qKF" firstAttribute="centerY" secondItem="8gS-2k-B2y" secondAttribute="centerY" id="Kkl-C4-4Iv"/>
-                                            <constraint firstAttribute="trailing" secondItem="xQk-6D-PRQ" secondAttribute="trailing" constant="8" id="M1k-Mw-znH"/>
-                                            <constraint firstAttribute="trailing" secondItem="UZy-rX-qKF" secondAttribute="trailing" constant="8" id="NN6-vL-iTl"/>
-                                            <constraint firstItem="8gS-2k-B2y" firstAttribute="top" secondItem="apy-gf-ggz" secondAttribute="top" constant="8" id="OsP-xA-sMP"/>
-                                            <constraint firstAttribute="bottom" secondItem="xQk-6D-PRQ" secondAttribute="bottom" constant="8" id="bSp-DM-3I1"/>
-                                            <constraint firstItem="8gS-2k-B2y" firstAttribute="leading" secondItem="apy-gf-ggz" secondAttribute="leading" constant="8" id="r0R-iq-MZi"/>
-                                            <constraint firstItem="xQk-6D-PRQ" firstAttribute="centerY" secondItem="xj7-YP-cdp" secondAttribute="centerY" id="slm-AL-CFq"/>
-                                        </constraints>
-                                        <size key="customSize" width="345" height="90"/>
-                                        <connections>
-                                            <outlet property="fullProgressButton" destination="UZy-rX-qKF" id="y6c-zL-GCf"/>
-                                            <outlet property="moodIconView" destination="xQk-6D-PRQ" id="NGr-Cw-q1h"/>
-                                            <outlet property="moodLabel" destination="xj7-YP-cdp" id="fOg-Zo-vWJ"/>
-                                            <outlet property="titleLabel" destination="8gS-2k-B2y" id="egQ-O5-pyr"/>
-                                        </connections>
-                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="rC1-gM-x1M" id="Ld2-hG-Zg8"/>
@@ -335,117 +231,16 @@
                     <connections>
                         <outlet property="collectionView" destination="CIu-rc-FA7" id="hsH-T5-Cty"/>
                         <segue destination="Zn7-Z2-pN3" kind="show" identifier="ShowExtendedHabitsProgress" id="lEU-EC-pqc"/>
-                        <segue destination="6Je-kp-1Z8" kind="show" identifier="ShowExtendedMoodProgress" id="uIc-Hr-ep0"/>
-                        <segue destination="d2x-b8-oqC" kind="show" identifier="ShowExtendedWaterProgress" id="Tnb-F7-7vG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMl-m7-LyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="389.60000000000002" y="387.70614692653675"/>
         </scene>
-        <!--Extended Water Chart View Controller-->
-        <scene sceneID="Wgw-bO-YjW">
-            <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="d2x-b8-oqC" customClass="ExtendedWaterChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fVe-rb-8cq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKg-hc-w0b">
-                                <rect key="frame" x="0.0" y="96" width="375" height="256"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8U-Qq-oCC" customClass="ExtendedBarChartView" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="C8U-Qq-oCC" secondAttribute="trailing" id="82r-j2-KwM"/>
-                                    <constraint firstAttribute="height" constant="256" id="FTU-89-RjT"/>
-                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="centerY" secondItem="UKg-hc-w0b" secondAttribute="centerY" id="NiZ-IO-ybw"/>
-                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="leading" secondItem="UKg-hc-w0b" secondAttribute="leading" id="QaP-tN-1GJ"/>
-                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="top" secondItem="UKg-hc-w0b" secondAttribute="top" id="RZL-hM-tP0"/>
-                                    <constraint firstItem="C8U-Qq-oCC" firstAttribute="centerX" secondItem="UKg-hc-w0b" secondAttribute="centerX" placeholder="YES" id="Vc1-qF-GO2"/>
-                                    <constraint firstAttribute="bottom" secondItem="C8U-Qq-oCC" secondAttribute="bottom" id="i77-tL-fNk"/>
-                                </constraints>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySk-ij-zc1" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
-                                <rect key="frame" x="15" y="372" width="345" height="44"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A1k-cH-ovN">
-                                        <rect key="frame" x="0.0" y="2" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="A1k-cH-ovN" secondAttribute="height" id="B5X-qY-Vu3"/>
-                                            <constraint firstAttribute="width" constant="40" id="jH3-KP-689"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HX8-Ka-sNe">
-                                        <rect key="frame" x="48" y="19.5" width="297" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygn-aO-nn6">
-                                        <rect key="frame" x="48" y="-1" width="297" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="A1k-cH-ovN" firstAttribute="leading" secondItem="ySk-ij-zc1" secondAttribute="leading" id="2o6-Sa-diF"/>
-                                    <constraint firstItem="HX8-Ka-sNe" firstAttribute="top" secondItem="Ygn-aO-nn6" secondAttribute="bottom" id="3z1-dl-UBO"/>
-                                    <constraint firstItem="Ygn-aO-nn6" firstAttribute="leading" secondItem="A1k-cH-ovN" secondAttribute="trailing" constant="8" id="Bxw-xc-aBk"/>
-                                    <constraint firstItem="HX8-Ka-sNe" firstAttribute="centerY" secondItem="ySk-ij-zc1" secondAttribute="centerY" constant="8" id="Clm-7C-maP"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ygn-aO-nn6" secondAttribute="trailing" id="FWy-Xk-DfC"/>
-                                    <constraint firstItem="A1k-cH-ovN" firstAttribute="centerY" secondItem="ySk-ij-zc1" secondAttribute="centerY" id="Qvk-6K-ssc"/>
-                                    <constraint firstItem="HX8-Ka-sNe" firstAttribute="leading" secondItem="A1k-cH-ovN" secondAttribute="trailing" constant="8" id="TzV-9c-Nw3"/>
-                                    <constraint firstAttribute="height" constant="44" id="aGm-xi-rXj"/>
-                                    <constraint firstAttribute="trailing" secondItem="HX8-Ka-sNe" secondAttribute="trailing" id="qCL-6o-hRv"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="bH5-AX-Sec"/>
-                                <connections>
-                                    <outlet property="moodIconView" destination="A1k-cH-ovN" id="ntN-ng-vG3"/>
-                                    <outlet property="moodLabel" destination="HX8-Ka-sNe" id="W2e-mL-Zag"/>
-                                    <outlet property="titleLabel" destination="Ygn-aO-nn6" id="fWH-ME-Ifa"/>
-                                </connections>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0U-A0-I7D">
-                                <rect key="frame" x="166.5" y="323.5" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="r0U-A0-I7D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ge6-rY-SCG" secondAttribute="leading" constant="20" id="45Z-ke-7Ka"/>
-                            <constraint firstItem="UKg-hc-w0b" firstAttribute="top" secondItem="ge6-rY-SCG" secondAttribute="top" id="Ioq-8W-aD9"/>
-                            <constraint firstItem="r0U-A0-I7D" firstAttribute="centerX" secondItem="fVe-rb-8cq" secondAttribute="centerX" id="M7X-hr-TnR"/>
-                            <constraint firstItem="ySk-ij-zc1" firstAttribute="top" secondItem="UKg-hc-w0b" secondAttribute="bottom" constant="20" id="XiH-ri-lZR"/>
-                            <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="ySk-ij-zc1" secondAttribute="trailing" constant="15" id="etD-Si-nuJ"/>
-                            <constraint firstItem="UKg-hc-w0b" firstAttribute="leading" secondItem="fVe-rb-8cq" secondAttribute="leading" id="ghb-gZ-Po1"/>
-                            <constraint firstItem="r0U-A0-I7D" firstAttribute="centerY" secondItem="fVe-rb-8cq" secondAttribute="centerY" id="hNj-l8-hIQ"/>
-                            <constraint firstItem="ySk-ij-zc1" firstAttribute="leading" secondItem="ge6-rY-SCG" secondAttribute="leading" constant="15" id="mwk-Gd-bEW"/>
-                            <constraint firstItem="ge6-rY-SCG" firstAttribute="trailing" secondItem="UKg-hc-w0b" secondAttribute="trailing" id="xa3-Jw-iwM"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="ge6-rY-SCG"/>
-                    </view>
-                    <connections>
-                        <outlet property="averageWaterView" destination="ySk-ij-zc1" id="zgo-s5-oUW"/>
-                        <outlet property="chartPlaceholderLabel" destination="r0U-A0-I7D" id="ebG-Yr-wJz"/>
-                        <outlet property="chartView" destination="C8U-Qq-oCC" id="Dl2-ZK-484"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BdN-hN-BfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1238" y="819"/>
-        </scene>
         <!--Привычки-->
         <scene sceneID="eRI-FJ-EqS">
             <objects>
-                <viewController title="Привычки" id="Zn7-Z2-pN3" customClass="ExtendedHabitsChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Привычки" id="Zn7-Z2-pN3" customClass="ExtendedHabitsChartViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOp-sM-R5k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -457,7 +252,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-dR-8Im" customClass="ExtendedBarChartView" customModule="Agile_diary" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-dR-8Im" customClass="ExtendedBarChartView" customModule="Agile_diary_debug" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
@@ -485,7 +280,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HabitProgressCell" rowHeight="52" id="Q0G-uH-fV2" customClass="HabitProgressCell" customModule="Agile_diary" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HabitProgressCell" rowHeight="52" id="Q0G-uH-fV2" customClass="HabitProgressCell" customModule="Agile_diary_debug" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="284" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q0G-uH-fV2" id="Ilv-Ib-eb3">
@@ -557,181 +352,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHg-0G-8Fn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="148"/>
-        </scene>
-        <!--Настроение-->
-        <scene sceneID="agG-lf-gAI">
-            <objects>
-                <viewController title="Настроение" extendedLayoutIncludesOpaqueBars="YES" id="6Je-kp-1Z8" customClass="ExtendedMoodChartViewController" customModule="Agile_diary" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Rij-rO-P3j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zA-M7-aGS">
-                                <rect key="frame" x="0.0" y="96" width="375" height="704"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-9y-Lyq" customClass="PieChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="256" id="v40-Zg-98U"/>
-                                        </constraints>
-                                    </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0V-Tf-5N9">
-                                        <rect key="frame" x="0.0" y="256" width="375" height="256"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gu7-Ke-gqO" customClass="MoodChartView" customModule="Agile_diary" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="0.0" width="345" height="256"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9a-0b-FL2">
-                                                        <rect key="frame" x="151.5" y="117.5" width="42" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="J9a-0b-FL2" firstAttribute="centerY" secondItem="gu7-Ke-gqO" secondAttribute="centerY" id="3be-tb-ovx"/>
-                                                    <constraint firstItem="J9a-0b-FL2" firstAttribute="centerX" secondItem="gu7-Ke-gqO" secondAttribute="centerX" id="Qv1-Lw-Sl5"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="gu7-Ke-gqO" secondAttribute="bottom" id="Bew-j7-ugJ"/>
-                                            <constraint firstItem="gu7-Ke-gqO" firstAttribute="leading" secondItem="A0V-Tf-5N9" secondAttribute="leading" constant="15" id="JAv-lT-q1E"/>
-                                            <constraint firstAttribute="trailing" secondItem="gu7-Ke-gqO" secondAttribute="trailing" constant="15" id="YZl-k8-Ckx"/>
-                                            <constraint firstItem="gu7-Ke-gqO" firstAttribute="centerY" secondItem="A0V-Tf-5N9" secondAttribute="centerY" id="alN-oX-UOP"/>
-                                            <constraint firstAttribute="height" constant="256" id="cbm-by-m7Q"/>
-                                            <constraint firstItem="gu7-Ke-gqO" firstAttribute="centerX" secondItem="A0V-Tf-5N9" secondAttribute="centerX" placeholder="YES" id="dwE-J8-Ynv"/>
-                                            <constraint firstItem="gu7-Ke-gqO" firstAttribute="top" secondItem="A0V-Tf-5N9" secondAttribute="top" id="nyG-sj-2PD"/>
-                                        </constraints>
-                                    </scrollView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaG-im-d5k" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="527" width="345" height="44"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="th5-2D-g6d">
-                                                <rect key="frame" x="0.0" y="2" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="th5-2D-g6d" secondAttribute="height" id="ZkP-pB-qXG"/>
-                                                    <constraint firstAttribute="width" constant="40" id="dKl-ba-IGg"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEe-UL-F6W">
-                                                <rect key="frame" x="48" y="19.5" width="297" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUn-tI-M6G">
-                                                <rect key="frame" x="48" y="-1" width="297" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="lEe-UL-F6W" firstAttribute="centerY" secondItem="GaG-im-d5k" secondAttribute="centerY" constant="8" id="0S1-P4-aGP"/>
-                                            <constraint firstAttribute="height" constant="44" id="FH8-9O-k2T"/>
-                                            <constraint firstItem="th5-2D-g6d" firstAttribute="centerY" secondItem="GaG-im-d5k" secondAttribute="centerY" id="PSO-ov-7MR"/>
-                                            <constraint firstAttribute="trailing" secondItem="eUn-tI-M6G" secondAttribute="trailing" id="WOL-G6-CQA"/>
-                                            <constraint firstItem="lEe-UL-F6W" firstAttribute="leading" secondItem="th5-2D-g6d" secondAttribute="trailing" constant="8" id="YmQ-di-jGw"/>
-                                            <constraint firstAttribute="trailing" secondItem="lEe-UL-F6W" secondAttribute="trailing" id="gtn-To-U8a"/>
-                                            <constraint firstItem="eUn-tI-M6G" firstAttribute="leading" secondItem="th5-2D-g6d" secondAttribute="trailing" constant="8" id="kQz-0F-POP"/>
-                                            <constraint firstItem="th5-2D-g6d" firstAttribute="leading" secondItem="GaG-im-d5k" secondAttribute="leading" id="seT-BR-uPP"/>
-                                            <constraint firstItem="lEe-UL-F6W" firstAttribute="top" secondItem="eUn-tI-M6G" secondAttribute="bottom" id="xqd-be-8um"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="moodIconView" destination="th5-2D-g6d" id="TL2-x6-quH"/>
-                                            <outlet property="moodLabel" destination="lEe-UL-F6W" id="sKV-oR-efC"/>
-                                            <outlet property="titleLabel" destination="eUn-tI-M6G" id="NeN-Mh-dC9"/>
-                                        </connections>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glh-Dv-NkH" customClass="AverageMoodView" customModule="Agile_diary" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="583" width="345" height="44"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tO8-M1-VxX">
-                                                <rect key="frame" x="0.0" y="2" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="TnI-xy-lNM"/>
-                                                    <constraint firstAttribute="width" secondItem="tO8-M1-VxX" secondAttribute="height" id="zRp-ga-3Ud"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGv-uB-UlL">
-                                                <rect key="frame" x="48" y="19.5" width="297" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9z-ng-PZR">
-                                                <rect key="frame" x="48" y="-1" width="297" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="V9z-ng-PZR" firstAttribute="leading" secondItem="tO8-M1-VxX" secondAttribute="trailing" constant="8" id="86g-0t-tmV"/>
-                                            <constraint firstItem="tO8-M1-VxX" firstAttribute="centerY" secondItem="glh-Dv-NkH" secondAttribute="centerY" id="Jbl-Ne-jpO"/>
-                                            <constraint firstItem="kGv-uB-UlL" firstAttribute="top" secondItem="V9z-ng-PZR" secondAttribute="bottom" id="Kgi-yf-OdU"/>
-                                            <constraint firstAttribute="trailing" secondItem="V9z-ng-PZR" secondAttribute="trailing" id="RHc-v6-WOx"/>
-                                            <constraint firstItem="tO8-M1-VxX" firstAttribute="leading" secondItem="glh-Dv-NkH" secondAttribute="leading" id="YdO-V3-BdJ"/>
-                                            <constraint firstItem="kGv-uB-UlL" firstAttribute="leading" secondItem="tO8-M1-VxX" secondAttribute="trailing" constant="8" id="hz6-1J-wZU"/>
-                                            <constraint firstAttribute="height" constant="44" id="l7u-5x-u0u"/>
-                                            <constraint firstItem="kGv-uB-UlL" firstAttribute="centerY" secondItem="glh-Dv-NkH" secondAttribute="centerY" constant="8" id="xou-Bo-A57"/>
-                                            <constraint firstAttribute="trailing" secondItem="kGv-uB-UlL" secondAttribute="trailing" id="zpl-1n-9Sd"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="safeArea" id="pVo-95-aZp"/>
-                                        <connections>
-                                            <outlet property="moodIconView" destination="tO8-M1-VxX" id="KsC-r5-HFm"/>
-                                            <outlet property="moodLabel" destination="kGv-uB-UlL" id="r6c-Fe-0sM"/>
-                                            <outlet property="titleLabel" destination="V9z-ng-PZR" id="WHY-Yk-gHj"/>
-                                        </connections>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="glh-Dv-NkH" firstAttribute="top" secondItem="GaG-im-d5k" secondAttribute="bottom" constant="12" id="0sO-Ki-Cx7"/>
-                                    <constraint firstItem="glh-Dv-NkH" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" constant="15" id="1Bw-gW-Sal"/>
-                                    <constraint firstAttribute="trailing" secondItem="GaG-im-d5k" secondAttribute="trailing" constant="15" id="9Ig-em-gme"/>
-                                    <constraint firstAttribute="trailing" secondItem="glh-Dv-NkH" secondAttribute="trailing" constant="15" id="9dW-E1-eAr"/>
-                                    <constraint firstItem="IUK-9y-Lyq" firstAttribute="top" secondItem="2zA-M7-aGS" secondAttribute="top" id="DjW-BX-UVB"/>
-                                    <constraint firstItem="GaG-im-d5k" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" constant="15" id="Ktz-oT-Lwu"/>
-                                    <constraint firstItem="A0V-Tf-5N9" firstAttribute="centerX" secondItem="2zA-M7-aGS" secondAttribute="centerX" id="MZC-EX-rQL"/>
-                                    <constraint firstAttribute="trailing" secondItem="IUK-9y-Lyq" secondAttribute="trailing" id="U35-4e-onx"/>
-                                    <constraint firstItem="IUK-9y-Lyq" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="UmQ-80-xlY"/>
-                                    <constraint firstItem="A0V-Tf-5N9" firstAttribute="top" secondItem="IUK-9y-Lyq" secondAttribute="bottom" id="ZaG-vz-T1t"/>
-                                    <constraint firstAttribute="trailing" secondItem="IUK-9y-Lyq" secondAttribute="trailing" id="fX2-gI-DS9"/>
-                                    <constraint firstItem="A0V-Tf-5N9" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="gXB-u5-uEb"/>
-                                    <constraint firstItem="GaG-im-d5k" firstAttribute="top" secondItem="A0V-Tf-5N9" secondAttribute="bottom" constant="15" id="oIo-o8-k99"/>
-                                    <constraint firstAttribute="trailing" secondItem="A0V-Tf-5N9" secondAttribute="trailing" id="qdl-KN-vmg"/>
-                                    <constraint firstItem="IUK-9y-Lyq" firstAttribute="leading" secondItem="2zA-M7-aGS" secondAttribute="leading" id="y07-kX-hwO"/>
-                                    <constraint firstAttribute="bottom" secondItem="glh-Dv-NkH" secondAttribute="bottom" constant="20" id="zAC-RX-Wdh"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2zA-M7-aGS" secondAttribute="bottom" id="FBN-uh-OA2"/>
-                            <constraint firstItem="1Er-YR-RPB" firstAttribute="trailing" secondItem="2zA-M7-aGS" secondAttribute="trailing" id="J2m-kH-2rb"/>
-                            <constraint firstItem="2zA-M7-aGS" firstAttribute="leading" secondItem="1Er-YR-RPB" secondAttribute="leading" id="RAp-tZ-mJO"/>
-                            <constraint firstItem="2zA-M7-aGS" firstAttribute="top" secondItem="1Er-YR-RPB" secondAttribute="top" id="k3Z-gL-idi"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="1Er-YR-RPB"/>
-                    </view>
-                    <size key="freeformSize" width="375" height="800"/>
-                    <connections>
-                        <outlet property="averageMoodView" destination="GaG-im-d5k" id="Zf0-kR-TIC"/>
-                        <outlet property="lineChart" destination="gu7-Ke-gqO" id="4RD-TX-wYP"/>
-                        <outlet property="lineChartPlaceholderLabel" destination="J9a-0b-FL2" id="jRa-X3-783"/>
-                        <outlet property="mostFrequentlyMoodView" destination="glh-Dv-NkH" id="5BI-z3-py3"/>
-                        <outlet property="pieChart" destination="IUK-9y-Lyq" id="MXY-xP-icM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ADE-QP-1UM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1992.8" y="147.52623688155924"/>
         </scene>
     </scenes>
     <resources>

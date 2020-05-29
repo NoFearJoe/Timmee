@@ -29,8 +29,6 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let sprintsService = EntityServicesAssembly.shared.sprintsService
     private let habitsService = EntityServicesAssembly.shared.habitsService
     private let goalsService = EntityServicesAssembly.shared.goalsService
-    private let waterControlService = EntityServicesAssembly.shared.waterControlService
-    private let moodService = EntityServicesAssembly.shared.moodService
     private let diaryService = EntityServicesAssembly.shared.diaryService
     
     private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
@@ -183,54 +181,7 @@ private extension AgileeSynchronizationService {
                             }
                         })
                     })
-                    
-                    // Water controls
-                    let waterControlCollection = sprintsCollection._document(sprintID)._collection("water_control")
-                    
-                    dispatchGroup.enter() // Enter water control document
-                    waterControlCollection._getDocuments(completion: { [weak self] waterControlsSnapshot, error in
-                        defer { dispatchGroup.leave() }
-                        
-                        guard
-                            let self = self,
-                            error == nil,
-                            let data = waterControlsSnapshot?._documents.compactMap({ $0._data() })
-                        else { return }
-                        
-                        synchronizationActions.append({ context in
-                            let deletedWaterControlIDs = self.collectionSynchronizationManager
-                                .syncCollection(context: context,
-                                                data: data,
-                                                entityType: WaterControlEntity.self,
-                                                parentEntityID: sprintID)
-                            if !deletedWaterControlIDs.isEmpty {
-                                deletedEntities.waterControls.append((sprintID, deletedWaterControlIDs))
-                            }
-                        })
-                    })
                 }
-            })
-            
-            // Mood
-            
-            let moodCollection = userDocument._collection("mood")
-            dispatchGroup.enter() // Enter moods collection
-            moodCollection._getDocuments(completion: { [weak self] moodsSnapshot, error in
-                defer { dispatchGroup.leave() }
-                
-                guard
-                    let self = self,
-                    error == nil,
-                    let data = moodsSnapshot?._documents.compactMap({ $0._data() })
-                else { return }
-                
-                synchronizationActions.append({ context in
-                    self.collectionSynchronizationManager
-                        .syncCollection(context: context,
-                                        data: data,
-                                        entityType: MoodEntity.self,
-                                        parentEntityID: nil)
-                })
             })
             
             // Diary
@@ -319,23 +270,6 @@ private extension AgileeSynchronizationService {
                     }
                 }
             }
-            
-            // Water controls
-            let waterControlCollection = sprintDocument._collection("water_control")
-            if let waterControl = self.waterControlService.fetchWaterControlEntityInBakground(sprintID: sprintID) {
-                let waterControlDocument = waterControlCollection._document(waterControl.id ?? WaterControl.defaultID)
-                
-                batch._setData(waterControl.encode(), forDocument: waterControlDocument)
-            }
-        }
-        
-        // Mood
-        
-        let moodEntities = moodService.fetchAllMoodEntitiesInBackground()
-        moodEntities.forEach { mood in
-            guard let date = mood.date else { return }
-            let moodDocument = userDocument._collection("mood")._document(date.asDateTimeString)
-            batch._setData(mood.encode(), forDocument: moodDocument)
         }
         
         // Diary
@@ -420,13 +354,6 @@ private extension AgileeSynchronizationService {
             }
         }
         
-        deletedEntities.waterControls.forEach { sprintID, waterControls in
-            let sprintDocument = userDocument._collection("sprints")._document(sprintID)
-            waterControls.forEach { waterControlID in
-                batch._deleteDocument(sprintDocument._collection("water_control")._document(waterControlID))
-            }
-        }
-        
         deletedEntities.diaryEntries.forEach { diaryEntryID in
             let diaryEntryDocument = userDocument._collection("diary")._document(diaryEntryID)
             batch._deleteDocument(diaryEntryDocument)
@@ -442,7 +369,6 @@ struct DeletedEntities {
     var habits: [(String, [String])] = []
     var goals: [(String, [String])] = []
     var stages: [(String, String, [String])] = []
-    var waterControls: [(String, [String])] = []
     var diaryEntries: [String] = []
     
     var isEmpty: Bool {
@@ -450,7 +376,6 @@ struct DeletedEntities {
             && habits.isEmpty
             && goals.isEmpty
             && stages.isEmpty
-            && waterControls.isEmpty
             && diaryEntries.isEmpty
     }
 }

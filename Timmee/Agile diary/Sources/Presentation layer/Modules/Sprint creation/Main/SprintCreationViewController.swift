@@ -26,7 +26,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     @IBOutlet private var sectionSwitcher: Switcher!
     
     @IBOutlet private var contentContainerView: UIView!
-    @IBOutlet private var waterControlConfigurationContainerView: UIView!
     
     @IBOutlet private var startDateButton: UIButton!
     @IBOutlet private var notificationsButton: UIButton!
@@ -39,7 +38,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     @IBOutlet private var dimmedBackgroundView: UIView!
     
     private var contentViewController: SprintContentViewController!
-    private var waterControlConfigurationViewController: WaterControlConfigurationViewController!
     
     private var currentSection = SprintSection.habits
     
@@ -52,7 +50,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             guard sprint != nil else { return }
             minimumStartDate = sprint.startDate
             contentViewController.sprintID = sprint.id
-            waterControlConfigurationViewController.sprint = sprint
             headerView.titleLabel.text = sprint.title
             headerView?.leftButton?.isHidden = !(canClose || sprint.isReady)
             updateHeaderSubtitle(startDate: sprint.startDate, duration: sprint.duration, sprintNotifications: sprint.notifications)
@@ -80,11 +77,8 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
         headerView.rightButton?.setTitle("done".localized, for: .normal)
-        if ProVersionPurchase.shared.isPurchased() {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title, "water".localized]
-        } else {
-            sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
-        }
+        
+        sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         
@@ -119,7 +113,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         super.setupAppearance()
         
         contentContainerView.backgroundColor = AppTheme.current.colors.middlegroundColor
-        waterControlConfigurationContainerView.backgroundColor = AppTheme.current.colors.middlegroundColor
         headerView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
         headerView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         headerView.leftButton?.tintColor = AppTheme.current.colors.activeElementColor
@@ -153,9 +146,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
             contentViewController.section = currentSection
             contentViewController.transitionHandler = self
             contentViewController.delegate = self
-        } else if segue.identifier == "WaterControlConfiguration" {
-            waterControlConfigurationViewController = segue.destination as? WaterControlConfigurationViewController
-            waterControlConfigurationViewController?.mode = .embed
         } else if segue.identifier == "ShowGoalCreation" {
             guard let controller = segue.destination as? GoalCreationViewController else { return }
             controller.setEditingMode(sender == nil ? .full : .short)
@@ -175,12 +165,8 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     
     @objc private func onSwitchSection() {
         currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
-        if currentSection == .activity {
-            setSectionsVisible(content: false, waterConfiguration: true)
-        } else {
-            setSectionsVisible(content: true, waterConfiguration: false)
-            contentViewController.section = currentSection
-        }
+        setSectionsVisible(content: true, waterConfiguration: false)
+        contentViewController.section = currentSection
     }
     
     @IBAction private func onTapToSprintStartDate() {
@@ -239,7 +225,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         switch currentSection {
         case .goals: performSegue(withIdentifier: "ShowGoalCreation", sender: nil)
         case .habits: toggleAddHabitMenu()
-        case .activity: break
         }
     }
     
@@ -305,7 +290,6 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
     }
     
     private func setSectionsVisible(content: Bool, waterConfiguration: Bool) {
-        waterControlConfigurationContainerView.isHidden = !waterConfiguration
         contentContainerView.isHidden = !content
         updateSprintSettingsButtons()
     }
@@ -423,10 +407,10 @@ private extension SprintCreationViewController {
     
     func updateSprintSettingsButtons() {
         guard let sprint = sprint else { return }
-        addButton.isHidden = sprint.isReady && sprint.tense == .past || currentSection == .activity
-        startDateButton.isHidden = sprint.isReady && sprint.tense != .future  || currentSection == .activity
-        sprintDurationButton.isHidden = sprint.isReady && sprint.tense != .future  || currentSection == .activity
-        notificationsButton.isHidden = sprint.isReady && sprint.tense == .past  || currentSection == .activity
+        addButton.isHidden = sprint.isReady && sprint.tense == .past
+        startDateButton.isHidden = sprint.isReady && sprint.tense != .future
+        sprintDurationButton.isHidden = sprint.isReady && sprint.tense != .future
+        notificationsButton.isHidden = sprint.isReady && sprint.tense == .past
     }
     
     func showAddHabitMenu(animated: Bool = false) {
