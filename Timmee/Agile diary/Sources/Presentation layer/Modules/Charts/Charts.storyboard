@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-rc-FA7">
-                                <rect key="frame" x="0.0" y="44" width="375" height="1156"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="cDR-ZJ-bPG">
                                     <size key="itemSize" width="345" height="256"/>
@@ -212,8 +212,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="CIu-rc-FA7" secondAttribute="bottom" id="Cjz-cH-u7U"/>
+                            <constraint firstItem="CIu-rc-FA7" firstAttribute="top" secondItem="sXN-Fl-dmU" secondAttribute="top" id="Gi5-A0-j2g"/>
                             <constraint firstItem="CIu-rc-FA7" firstAttribute="leading" secondItem="qsr-ad-LLS" secondAttribute="leading" id="Olp-Wx-EbW"/>
-                            <constraint firstItem="CIu-rc-FA7" firstAttribute="top" secondItem="qsr-ad-LLS" secondAttribute="top" id="RdQ-ZK-oRr"/>
                             <constraint firstItem="qsr-ad-LLS" firstAttribute="trailing" secondItem="CIu-rc-FA7" secondAttribute="trailing" id="s9t-fj-588"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qsr-ad-LLS"/>

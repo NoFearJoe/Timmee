@@ -50,6 +50,8 @@ final class ChartsViewController: BaseViewController, SprintInteractorTrait {
         super.prepare()
         
         title = "my_progress".localized
+        
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     override func refresh() {

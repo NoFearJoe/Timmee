@@ -46,6 +46,8 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
         
         title = "my_sprints".localized
         
+        extendedLayoutIncludesOpaqueBars = true
+        
         sprintsCacheAdapter = CollectionViewCacheAdapter(collectionView: sprintsView)
         
         sprintsView.contentInset.bottom = 20 + 64 + 8
