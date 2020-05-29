@@ -323,19 +323,6 @@
 
 "in_weeks" = "в неделях";
 
-"mood" = "Настроение";
-"mood_widget_title" = "Настроение";
-
-"activity" = "Активность";
-
-"average_mood" = "Среднее настроение";
-"very_bad_mood" = "Очень плохое";
-"bad_mood" = "Плохое";
-"normal_mood" = "Нормальное";
-"good_mood" = "Хорошее";
-"very_good_mood" = "Отличное";
-
-"mood_chart_placeholder_text" = "Нет данных о настроении";
 "habits_chart_placeholder_text" = "Нет выполненных привычек";
 
 "buy_for" = "Купить за";

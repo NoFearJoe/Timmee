@@ -323,19 +323,6 @@
 
 "in_weeks" = "in weeks";
 
-"mood" = "Mood";
-"mood_widget_title" = "Mood";
-
-"activity" = "Activity";
-
-"average_mood" = "Average mood";
-"very_bad_mood" = "Very bad";
-"bad_mood" = "Bad";
-"normal_mood" = "Normal";
-"good_mood" = "Good";
-"very_good_mood" = "Very good";
-
-"mood_chart_placeholder_text" = "No mood data";
 "habits_chart_placeholder_text" = "No completed habits";
 
 "buy_for" = "Buy for";
