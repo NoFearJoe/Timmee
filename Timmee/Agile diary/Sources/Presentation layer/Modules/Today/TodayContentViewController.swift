@@ -18,13 +18,6 @@ final class TodayContentViewController: UIViewController, AlertInput {
         case content
     }
     
-    var section = SprintSection.habits {
-        didSet {
-            guard isViewLoaded else { return }
-            setupCurrentCacheObserver()
-        }
-    }
-    
     var state = State.empty {
         didSet {
             switch state {
@@ -51,9 +44,8 @@ final class TodayContentViewController: UIViewController, AlertInput {
     weak var transitionHandler: UIViewController?
     weak var progressListener: TodayViewSectionProgressListener?
     
-    @IBOutlet private var contentView: UITableView!
+    private var contentView: UITableView!
     
-    @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
     let habitsService = ServicesAssembly.shared.habitsService
@@ -67,14 +59,22 @@ final class TodayContentViewController: UIViewController, AlertInput {
     private let targetCellActionsProvider = TodayGoalCellSwipeActionsProvider()
     private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
     
+    private let section: SprintSection
+    
+    init(section: SprintSection) {
+        self.section = section
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        setupCurrentCacheObserver()
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.contentInset.bottom = 64 + 16
-        contentView.estimatedRowHeight = 56
-        contentView.rowHeight = UITableView.automaticDimension
-        contentView.register(TodayHabitCell.self, forCellReuseIdentifier: TodayHabitCell.identifier)
-        contentView.register(TodayGoalCell.self, forCellReuseIdentifier: TodayGoalCell.identifier)
-        contentView.register(TableHeaderViewWithTitle.self, forHeaderFooterViewReuseIdentifier: "Header")
+        
+        setupContentView()
         
         setupPlaceholder()
         
@@ -338,8 +338,8 @@ private extension TodayContentViewController {
 private extension TodayContentViewController {
     
     func setupPlaceholder() {
-        placeholderView.setup(into: placeholderContainer)
-        placeholderContainer.isHidden = true
+        placeholderView.setup(into: view)
+        placeholderView.isHidden = true
     }
     
     func setupPlaceholderAppearance() {
@@ -350,7 +350,7 @@ private extension TodayContentViewController {
     }
     
     func showPlaceholder() {
-        placeholderContainer.isHidden = false
+        placeholderView.isHidden = false
         placeholderView.icon = nil
         switch section {
         case .goals:
@@ -363,7 +363,7 @@ private extension TodayContentViewController {
     }
     
     func hidePlaceholder() {
-        placeholderContainer.isHidden = true
+        placeholderView.isHidden = true
     }
     
 }
@@ -467,12 +467,16 @@ private extension TodayContentViewController {
         contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
         
         contentView.register(
-            SprintCreationHabitCell.self,
-            forCellReuseIdentifier: SprintCreationHabitCell.reuseIdentifier
+            TodayHabitCell.self,
+            forCellReuseIdentifier: TodayHabitCell.identifier
         )
         contentView.register(
-            SprintCreationTargetCell.self,
-            forCellReuseIdentifier: SprintCreationTargetCell.reuseIdentifier
+            TodayGoalCell.self,
+            forCellReuseIdentifier: TodayGoalCell.identifier
+        )
+        contentView.register(
+            TableHeaderViewWithTitle.self,
+            forHeaderFooterViewReuseIdentifier: "Header"
         )
         
         self.contentView = contentView

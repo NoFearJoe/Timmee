@@ -23,15 +23,14 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
     @IBOutlet private var backgroundImageView: UIImageView!
-    
-    @IBOutlet private var contentViewContainer: UIView!
-    
+        
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
-    private var contentViewController: TodayContentViewController!
+    @IBOutlet private var contentViewContainer: UIView!
     
-    @IBOutlet private var contentViewTopConstraint: NSLayoutConstraint!
+    private let habitsViewController = TodayContentViewController(section: .habits)
+    private let goalsViewController = TodayContentViewController(section: .goals)
     
     private var synchronizationDidFinishObservation: Any?
     
@@ -44,15 +43,18 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     var currentDate: Date = Date.now.startOfDay() {
         didSet {
             updateCurrentDateLabel()
-            contentViewController?.currentDate = currentDate
+            habitsViewController.currentDate = currentDate
+            goalsViewController.currentDate = currentDate
         }
     }
     
     var sprint: Sprint! {
         didSet {
             hidePlaceholder()
-            contentViewController.sprintID = sprint.id
-            contentViewController.currentDate = currentDate
+            habitsViewController.sprintID = sprint.id
+            habitsViewController.currentDate = currentDate
+            goalsViewController.sprintID = sprint.id
+            goalsViewController.currentDate = currentDate
             updateHeaderSubtitle(sprint: sprint)
         }
     }
@@ -62,17 +64,29 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     override func prepare() {
         super.prepare()
         
+        contentViewContainer.addSubview(habitsViewController.view)
+        habitsViewController.view.allEdges().toSuperview()
+        
+        contentViewContainer.addSubview(goalsViewController.view)
+        goalsViewController.view.allEdges().toSuperview()
+        
         headerView.subtitleLabel.text = nil
         headerView.subtitleLabel.isHidden = true
         setupSections()
         progressBar.setProgress(0)
-        contentViewContainer.isHidden = false
         createSprintButton.isHidden = true
+        
+        habitsViewController.transitionHandler = self
+        habitsViewController.progressListener = self
+        goalsViewController.transitionHandler = self
+        goalsViewController.progressListener = self
         
         setupPlaceholder()
         
         subscribeToSynchronizationCompletion()
         setupShowProVersionTracker()
+        
+        setSectionContainersVisible(section: currentSection)
         
         BackgroundImagesLoader.shared.onLoad = { [weak self] in
             DispatchQueue.main.async {
@@ -106,7 +120,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setupCreateSprintButton()
         sprint.flatMap { updateHeaderSubtitle(sprint: $0) }
         
-        contentViewController.updateAppearance()
+        habitsViewController.updateAppearance()
+        goalsViewController.updateAppearance()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -115,12 +130,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SprintContent" {
-            contentViewController = segue.destination as? TodayContentViewController
-            contentViewController.section = currentSection
-            contentViewController.transitionHandler = self
-            contentViewController.progressListener = self
-        } else if segue.identifier == "ShowTargetEditor" {
+        if segue.identifier == "ShowTargetEditor" {
             segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? GoalCreationViewController else { return }
             controller.setGoal(sender as? Goal, sprintID: sprint.id)
@@ -139,12 +149,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     @objc private func onSwitchSection() {
         currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
+        
         guard sprint != nil else { return }
-        switch currentSection {
-        case .habits, .goals:
-            contentViewController.section = currentSection
-            setSectionContainersVisible(content: true, activity: false)
-        }
+
+        setSectionContainersVisible(section: currentSection)
     }
     
     @IBAction private func onTapToPickDayButton() {
@@ -248,8 +256,9 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         sectionSwitcher.isHidden = !isEnabled
     }
     
-    private func setSectionContainersVisible(content: Bool, activity: Bool) {
-        contentViewController.performAppearanceTransition(isAppearing: content) { contentViewContainer.isHidden = !content }
+    private func setSectionContainersVisible(section: SprintSection?) {
+        habitsViewController.performAppearanceTransition(isAppearing: section == .habits) { habitsViewController.view.isHidden = section == .goals }
+        goalsViewController.performAppearanceTransition(isAppearing: section == .goals) { goalsViewController.view.isHidden = section == .habits }
     }
     
 }
@@ -283,7 +292,7 @@ private extension TodayViewController {
             headerView.subtitleLabel.text = "next_sprint_starts".localized + " " + nextSprint.startDate.asNearestShortDateString.lowercased()
             headerView.subtitleLabel.isHidden = false
             showNextSprintPlaceholder(sprintNumber: nextSprint.number, startDate: nextSprint.startDate)
-            setSectionContainersVisible(content: false, activity: false)
+            setSectionContainersVisible(section: nil)
         } else {
             pickDayButton.isHidden = true
             createSprintButton.isHidden = false
@@ -291,7 +300,7 @@ private extension TodayViewController {
             headerView.subtitleLabel.text = nil
             headerView.subtitleLabel.isHidden = true
             showCreateSprintPlaceholder()
-            setSectionContainersVisible(content: false, activity: false)
+            setSectionContainersVisible(section: nil)
         }
     }
     
