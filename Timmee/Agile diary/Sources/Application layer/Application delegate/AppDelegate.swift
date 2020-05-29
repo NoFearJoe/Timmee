@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
         appLinkHandler.window = window
+        AppWindowRouter.shared.window = window
         return window
     }()
     
@@ -50,10 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationsConfigurator.removeAppIconBadge()
         
         ProVersionPurchase.shared.loadStore()
+        
+        _ = window
                 
-        initialScreenPresenter.presentPreInitialScreen(in: self.window)
+        initialScreenPresenter.presentPreInitialScreen()
         performPreparingActions {
-            self.initialScreenPresenter.presentInitialScreen(in: self.window) {
+            self.initialScreenPresenter.presentInitialScreen() {
                 self.synchronizationRunner.run(interval: 30, delay: 30)
             }
         }

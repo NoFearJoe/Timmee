@@ -72,20 +72,11 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     }
     
     private func showSprintCreation() {
-        let sprintCreationViewController = ViewControllersFactory.sprintCreation
-        sprintCreationViewController.loadViewIfNeeded()
-        UIView.transition(with: self.view, duration: 0.25, options: .transitionCrossDissolve, animations: {
-            AppDelegate.shared.window?.rootViewController = sprintCreationViewController
-        }, completion: nil)
+        AppWindowRouter.shared.show(screen: ViewControllersFactory.sprintCreation)
     }
     
     private func showToday() {
-        guard let rootView = AppDelegate.shared.window?.rootViewController?.view else { return }
-        let todayViewController = ViewControllersFactory.today
-        todayViewController.loadViewIfNeeded()
-        UIView.transition(with: rootView, duration: 0.25, options: .transitionCrossDissolve, animations: {
-            AppDelegate.shared.window?.rootViewController = todayViewController
-        }, completion: nil)
+        AppWindowRouter.shared.show(screen: ViewControllersFactory.today)
     }
     
 }

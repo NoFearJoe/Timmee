@@ -10,12 +10,11 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     
     let sprintsService = ServicesAssembly.shared.sprintsService
     
-    func presentPreInitialScreen(in window: UIWindow?) {
-        window?.rootViewController = ViewControllersFactory.preInitialScreen
+    func presentPreInitialScreen() {
+        AppWindowRouter.shared.show(screen: ViewControllersFactory.preInitialScreen)
     }
     
-    func presentInitialScreen(in window: UIWindow?, completion: @escaping () -> Void) {
-        guard let window = window else { return }
+    func presentInitialScreen(completion: @escaping () -> Void) {
         #if MOCKS
 //        PastSprintMocksConfigurator.prepareMocks { [weak self] in
 //            UserProperty.isEducationShown.setBool(true)
@@ -24,16 +23,16 @@ final class InitialScreenPresenter: SprintInteractorTrait {
 //            self?.presentMockInitialScreen(in: window)
 //        }
         #else
-        presentRealInitialScreen(in: window)
+        presentRealInitialScreen()
         completion()
         #endif
     }
     
-    private func presentMockInitialScreen(in window: UIWindow) {
-        showToday(in: window)
+    private func presentMockInitialScreen() {
+        showToday()
     }
     
-    private func presentRealInitialScreen(in window: UIWindow) {
+    private func presentRealInitialScreen() {
         // Сначала надо показать обучение, если оно не было показано
         // Потом пароль, если установлен
         // Потом создание первого спринта, если он не был создан
@@ -47,9 +46,9 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             let pinAuthenticationViewController = ViewControllersFactory.pinAuthentication
             pinAuthenticationViewController.onComplete = { [unowned self] in
                 if self.getCurrentSprint() == nil, self.getNextSprint() == nil {
-                    self.showSprintCreation(in: window)
+                    self.showSprintCreation()
                 } else {
-                    self.showToday(in: window)
+                    self.showToday()
                 }
             }
 
@@ -60,35 +59,47 @@ final class InitialScreenPresenter: SprintInteractorTrait {
             initialViewController = ViewControllersFactory.today
         }
         
-        if let rootViewController = window.rootViewController {
-            if #available(iOS 13, *) {
-                window.rootViewController = initialViewController
-            } else {
-                initialViewController.loadViewIfNeeded()
-                UIView.transition(from: rootViewController.view, to: initialViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
-                    window.rootViewController = initialViewController
-                }
-            }
+        AppWindowRouter.shared.show(screen: initialViewController)
+    }
+    
+    private func showSprintCreation() {
+        AppWindowRouter.shared.show(screen: ViewControllersFactory.sprintCreation)
+    }
+    
+    private func showToday() {
+        AppWindowRouter.shared.show(screen: ViewControllersFactory.today)
+    }
+    
+}
+
+final class AppWindowRouter {
+    
+    static let shared = AppWindowRouter()
+    
+    unowned var window: UIWindow?
+    
+    func show(screen: UIViewController) {
+        guard let window = window else { return }
+        
+        screen.loadViewIfNeeded()
+        screen.view.frame = window.bounds
+        screen.view.setNeedsLayout()
+        screen.view.layoutIfNeeded()
+        
+        if window.rootViewController != nil {
+            window.subviews.forEach { $0.removeFromSuperview() }
+            
+            window.rootViewController = screen
+            
+            UIView.transition(
+                with: window,
+                duration: 0.35,
+                options: .transitionCrossDissolve,
+                animations: nil,
+                completion: nil
+            )
         } else {
-            window.rootViewController = initialViewController
-        }
-    }
-    
-    private func showSprintCreation(in window: UIWindow) {
-        guard let rootView = window.rootViewController?.view else { return }
-        let sprintCreationViewController = ViewControllersFactory.sprintCreation
-        sprintCreationViewController.loadViewIfNeeded()
-        UIView.transition(from: rootView, to: sprintCreationViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
-            window.rootViewController = sprintCreationViewController
-        }
-    }
-    
-    private func showToday(in window: UIWindow) {
-        guard let rootView = window.rootViewController?.view else { return }
-        let todayViewController = ViewControllersFactory.today
-        todayViewController.loadViewIfNeeded()
-        UIView.transition(from: rootView, to: todayViewController.view, duration: 0.25, options: .transitionCrossDissolve) { _ in
-            window.rootViewController = todayViewController
+            window.rootViewController = screen
         }
     }
     
