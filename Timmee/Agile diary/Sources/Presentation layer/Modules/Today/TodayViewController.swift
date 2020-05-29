@@ -261,6 +261,11 @@ extension TodayViewController: UIAdaptivePresentationControllerDelegate {
         setupAppearance()
     }
     
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        refresh()
+        setupAppearance()
+    }
+    
 }
 
 private extension TodayViewController {

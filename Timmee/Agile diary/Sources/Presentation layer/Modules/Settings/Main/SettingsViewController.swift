@@ -87,6 +87,11 @@ final class SettingsViewController: BaseViewController {
     private let authorizationService = AuthorizationService()
     
     @IBAction func close() {
+        if #available(iOS 13, *) {
+            (presentingViewController as? BaseViewController)?.refresh()
+            (presentingViewController as? BaseViewController)?.setupAppearance()
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
