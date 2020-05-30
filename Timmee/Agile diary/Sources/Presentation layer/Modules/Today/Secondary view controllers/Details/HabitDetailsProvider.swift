@@ -206,6 +206,9 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
             let daysFromSprintStart = min(sprint.startDate.days(before: startDate), 6)
             for i in stride(from: daysFromSprintStart, through: 0, by: -1) {
                 let date = (startDate - i.asDays).startOfDay
+                
+                guard habit.creationDate.startOfDay <= date else { continue }
+                
                 let repeatDay = DayUnit(weekday: date.weekday)
                 let isDone = habit.isDone(at: date)
                 let model = HabitWeeklyChartView.Model(weekday: repeatDay.localizedShort,
