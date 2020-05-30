@@ -86,6 +86,7 @@
 "continue" = "Continue";
 "add" = "Add";
 "no" = "No";
+"create" = "Create";
 
 "of" = "of";
 
@@ -226,7 +227,8 @@
 "most_frequently_performed_habit" = "Best habit";
 "most_rarely_performed_habit" = "Worst habit";
 
-"create_habit" = "Create habit";
+"create_habit" = "Create a habit";
+"create_goal" = "Create a goal";
 "choose_habits_from_collection" = "Choose from collection";
 
 "Collection" = "Collection";

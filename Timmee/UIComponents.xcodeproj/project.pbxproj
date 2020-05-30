@@ -95,6 +95,7 @@
 		9667C72222C3F71F0010CC00 /* DetailsBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667C70422C3F71F0010CC00 /* DetailsBaseView.swift */; };
 		96956C31221019C400DD6855 /* BaseRoundedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96956C2F221019C400DD6855 /* BaseRoundedCollectionViewCell.swift */; };
 		96956C32221019C400DD6855 /* SwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96956C30221019C400DD6855 /* SwipableCollectionViewCell.swift */; };
+		96A0669C248152EC00111BA2 /* ScreenPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A0669B248152EC00111BA2 /* ScreenPlaceholderView.swift */; };
 		96C55A2323BB382C0091DC19 /* SectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2223BB382C0091DC19 /* SectionContainer.swift */; };
 		96DDBDB723BB542E007AB33B /* LabelWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB623BB542E007AB33B /* LabelWithInsets.swift */; };
 /* End PBXBuildFile section */
@@ -192,6 +193,7 @@
 		9667C70422C3F71F0010CC00 /* DetailsBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsBaseView.swift; sourceTree = "<group>"; };
 		96956C2F221019C400DD6855 /* BaseRoundedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRoundedCollectionViewCell.swift; sourceTree = "<group>"; };
 		96956C30221019C400DD6855 /* SwipableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipableCollectionViewCell.swift; sourceTree = "<group>"; };
+		96A0669B248152EC00111BA2 /* ScreenPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPlaceholderView.swift; sourceTree = "<group>"; };
 		96C55A2223BB382C0091DC19 /* SectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionContainer.swift; sourceTree = "<group>"; };
 		96DDBDB623BB542E007AB33B /* LabelWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithInsets.swift; sourceTree = "<group>"; };
 		9706631A59BF24C459CFC81A /* Pods-UIComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIComponents.debug.xcconfig"; path = "Target Support Files/Pods-UIComponents/Pods-UIComponents.debug.xcconfig"; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				0C06E96222EEDDC40099DD3A /* AutoSizingTableView.swift */,
 				96C55A2223BB382C0091DC19 /* SectionContainer.swift */,
 				96DDBDB623BB542E007AB33B /* LabelWithInsets.swift */,
+				96A0669B248152EC00111BA2 /* ScreenPlaceholderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				0C86E4E822DC7C1000DA7B15 /* TCSStackViewContainer.swift in Sources */,
 				0CE3CA652359D616008C2DA5 /* BadgeView.swift in Sources */,
 				9667C71822C3F71F0010CC00 /* ConfigurableView.swift in Sources */,
+				96A0669C248152EC00111BA2 /* ScreenPlaceholderView.swift in Sources */,
 				9667C71A22C3F71F0010CC00 /* PresentingAnimator.swift in Sources */,
 				0CE3CA5A2359D53C008C2DA5 /* CalendarDateComponentView.swift in Sources */,
 				0C5C468A213E9DA500390F85 /* HintViewTrait.swift in Sources */,

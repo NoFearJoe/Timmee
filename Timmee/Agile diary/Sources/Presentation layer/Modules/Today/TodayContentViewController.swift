@@ -46,7 +46,17 @@ final class TodayContentViewController: UIViewController, AlertInput {
     
     private var contentView: UITableView!
     
-    private lazy var placeholderView = PlaceholderView.loadedFromNib()
+    // MARK: Add button
+    
+    private let createButton = FloatingButton()
+    private let addHabitMenu = UIStackView()
+    private let createHabitMenuButton = AddMenuButton()
+    private let habitsCollectionMenuButton = AddMenuButton()
+    private let dimmedBackgroundView = UIView()
+    
+    // MARK: Placeholder
+    
+    private let placeholderView = ScreenPlaceholderView()
     
     let habitsService = ServicesAssembly.shared.habitsService
     let goalsService = ServicesAssembly.shared.goalsService
@@ -75,6 +85,9 @@ final class TodayContentViewController: UIViewController, AlertInput {
         super.viewDidLoad()
         
         setupContentView()
+        
+        setupCreateButton()
+        setupAddHabitMenu()
         
         setupPlaceholder()
         
@@ -337,33 +350,48 @@ private extension TodayContentViewController {
 
 private extension TodayContentViewController {
     
-    func setupPlaceholder() {
-        placeholderView.setup(into: view)
-        placeholderView.isHidden = true
-    }
-    
-    func setupPlaceholderAppearance() {
-        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
-        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
-        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-    }
-    
-    func showPlaceholder() {
-        placeholderView.isHidden = false
-        placeholderView.icon = nil
+    @objc func showTaskEditor() {
         switch section {
-        case .goals:
-            placeholderView.title = "today_targets_section_placeholder_title".localized
-            placeholderView.subtitle = nil
         case .habits:
-            placeholderView.title = "today_habits_section_placeholder_title".localized
-            placeholderView.subtitle = nil
+            hideAddHabitMenu()
+            transitionHandler?.performSegue(withIdentifier: "ShowHabitEditor", sender: nil)
+        case .goals:
+            transitionHandler?.performSegue(withIdentifier: "ShowTargetEditor", sender: nil)
         }
     }
     
+}
+
+private extension TodayContentViewController {
+    
+    func setupPlaceholder() {
+        placeholderView.setup(into: view)
+        placeholderView.setVisible(false, animated: false)
+        
+        placeholderView.configure(
+            title: section == .habits
+                ? "today_habits_section_placeholder_title".localized
+                : "today_targets_section_placeholder_title".localized,
+            message: nil,
+            action: "create".localized
+        ) { [unowned self] in
+            self.showTaskEditor()
+        }
+    }
+    
+    func setupPlaceholderAppearance() {
+        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.messageLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+    }
+    
+    func showPlaceholder() {
+        contentView.isHidden = true
+        placeholderView.setVisible(true, animated: false)
+    }
+    
     func hidePlaceholder() {
-        placeholderView.isHidden = true
+        contentView.isHidden = false
+        placeholderView.setVisible(false, animated: false)
     }
     
 }
@@ -463,6 +491,7 @@ private extension TodayContentViewController {
         contentView.showsVerticalScrollIndicator = false
         contentView.tableFooterView = UIView()
         contentView.separatorStyle = .none
+        contentView.delaysContentTouches = false
         
         contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
         
@@ -482,6 +511,129 @@ private extension TodayContentViewController {
         self.contentView = contentView
         
         cacheAdapter.tableView = contentView
+    }
+    
+    func setupCreateButton() {
+        view.addSubview(createButton)
+        createButton.setImage(UIImage(named: "plus"), for: .normal)
+        createButton.addTarget(self, action: #selector(onTapCreateButton), for: .touchUpInside)
+        createButton.translatesAutoresizingMaskIntoConstraints = false
+        createButton.colors = FloatingButton.Colors(tintColor: .white,
+                                                    backgroundColor: AppTheme.current.colors.mainElementColor,
+                                                    secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor)
+        createButton.width(48)
+        createButton.height(48)
+        createButton.centerX().toSuperview()
+        if #available(iOS 11.0, *) {
+            createButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+        } else {
+            createButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8).isActive = true
+        }
+    }
+    
+    @objc func onTapCreateButton() {
+        switch section {
+        case .habits:
+            toggleAddHabitMenu()
+        case .goals:
+            showTaskEditor()
+        }
+    }
+    
+}
+
+// MARK: - Add habit
+
+extension TodayContentViewController {
+    
+    @objc func toggleAddHabitMenu() {
+        if addHabitMenu.isHidden {
+            showAddHabitMenu(animated: true)
+        } else {
+            hideAddHabitMenu(animated: true)
+        }
+    }
+    
+    @objc func onTapAddHabitFromCollectionButton() {
+        toggleAddHabitMenu()
+        
+        let screen = ViewControllersFactory.habitsCollectionViewController
+        screen.sprintID = sprintID
+        let navigation = UINavigationController(rootViewController: screen)
+        navigation.isNavigationBarHidden = true
+        
+        transitionHandler?.present(navigation, animated: true, completion: nil)
+    }
+    
+    @objc func onTapDimmedBackground() {
+        toggleAddHabitMenu()
+    }
+    
+    func showAddHabitMenu(animated: Bool = false) {
+        addHabitMenu.transform = makeAddHabitMenuInitialTransform()
+        addHabitMenu.isHidden = false
+        
+        dimmedBackgroundView.alpha = 0
+        dimmedBackgroundView.isHidden = false
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
+            self.createButton.setState(.active)
+            self.addHabitMenu.alpha = 1
+            self.dimmedBackgroundView.alpha = 1
+            self.addHabitMenu.transform = .identity
+            self.createButton.isSelected = true
+        }
+    }
+    
+    func hideAddHabitMenu(animated: Bool = false) {
+        UIView.animate(withDuration: animated ? 0.2 : 0,
+                       animations: {
+                        self.createButton.setState(.default)
+                        self.addHabitMenu.alpha = 0
+                        self.dimmedBackgroundView.alpha = 0
+                        self.addHabitMenu.transform = self.makeAddHabitMenuInitialTransform()
+                        self.createButton.isSelected = false
+        }) { _ in
+            self.addHabitMenu.isHidden = true
+            self.dimmedBackgroundView.isHidden = true
+        }
+    }
+    
+    func makeAddHabitMenuInitialTransform() -> CGAffineTransform {
+        let translation = CGAffineTransform(translationX: 0, y: 64)
+        let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        return scale.concatenating(translation)
+    }
+    
+    func setupAddHabitMenu() {
+        view.insertSubview(addHabitMenu, belowSubview: createButton)
+        addHabitMenu.axis = .vertical
+        addHabitMenu.spacing = 12
+        addHabitMenu.translatesAutoresizingMaskIntoConstraints = false
+        addHabitMenu.width(196)
+        [addHabitMenu.centerX(), addHabitMenu.bottomToTop(-12)].to(createButton, addTo: view)
+        
+        [createHabitMenuButton, habitsCollectionMenuButton].forEach {
+            $0.setupAppearance()
+            $0.height(36)
+            $0.titleLabel?.font = AppTheme.current.fonts.medium(15)
+            $0.layer.cornerRadius = 16
+            $0.clipsToBounds = true
+            addHabitMenu.addArrangedSubview($0)
+        }
+        
+        createHabitMenuButton.setTitle("create_habit".localized, for: .normal)
+        habitsCollectionMenuButton.setTitle("choose_habits_from_collection".localized, for: .normal)
+        
+        createHabitMenuButton.addTarget(self, action: #selector(showTaskEditor), for: .touchUpInside)
+        habitsCollectionMenuButton.addTarget(self, action: #selector(onTapAddHabitFromCollectionButton), for: .touchUpInside)
+        
+        hideAddHabitMenu()
+        
+        view.insertSubview(dimmedBackgroundView, belowSubview: addHabitMenu)
+        dimmedBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        dimmedBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        dimmedBackgroundView.allEdges().toSuperview()
+        dimmedBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapDimmedBackground)))
     }
     
 }

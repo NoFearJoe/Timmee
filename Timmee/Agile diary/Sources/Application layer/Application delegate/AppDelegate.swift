@@ -52,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ProVersionPurchase.shared.loadStore()
         
+        AppThemeApplier.applyTheme()
+        
         _ = window
                 
         initialScreenPresenter.presentPreInitialScreen()
@@ -62,6 +64,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         BackgroundImagesLoader.shared.load()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onThemeChanged),
+            name: AppTheme.themeChanged,
+            object: nil
+        )
         
         return true
     }
@@ -107,6 +116,10 @@ private extension AppDelegate {
         } else {
             completion()
         }
+    }
+    
+    @objc func onThemeChanged() {
+        AppThemeApplier.applyTheme()
     }
 }
 

@@ -86,6 +86,7 @@
 "continue" = "Продолжить";
 "add" = "Добавить";
 "no" = "Нет";
+"create" = "Создать";
 
 "of" = "из";
 
@@ -227,6 +228,7 @@
 "most_rarely_performed_habit" = "Худшая привычка";
 
 "create_habit" = "Создать привычку";
+"create_goal" = "Создать цель";
 "choose_habits_from_collection" = "Выбрать из коллекции";
 
 "Collection" = "Коллекция";

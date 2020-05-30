@@ -45,6 +45,10 @@ final class ViewControllersFactory {
         return UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "TargetCreationViewController") as! GoalCreationViewController
     }
     
+    static var habitsCollectionViewController: HabitsCollectionViewController {
+        UIStoryboard(name: "HabitsCollection", bundle: nil).instantiateViewController(withIdentifier: "HabitsCollection") as! HabitsCollectionViewController
+    }
+    
     // Today
     
     static var today: TodayViewController {

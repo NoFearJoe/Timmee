@@ -76,7 +76,7 @@ final class SprintCreationViewController: BaseViewController, SprintInteractorTr
         
         setupDoneButton()
         headerView.leftButton?.isHidden = sprint == nil
-        headerView.rightButton?.setTitle("done".localized, for: .normal)
+        headerView.rightButton?.setTitle("create".localized, for: .normal)
         
         sectionSwitcher.items = [SprintSection.habits.title, SprintSection.goals.title]
         sectionSwitcher.selectedItemIndex = 0

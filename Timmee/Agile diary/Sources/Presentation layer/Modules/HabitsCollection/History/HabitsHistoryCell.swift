@@ -83,6 +83,8 @@ final class HabitsHistoryCell: SwipeTableViewCell {
         
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         subtitleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        
+        checkbox.backgroundColor = .clear
     }
     
     private func setupLayout() {
@@ -91,6 +93,8 @@ final class HabitsHistoryCell: SwipeTableViewCell {
         [contentContainerView.leading(8), contentContainerView.centerY()].toSuperview()
         contentContainerView.topAnchor.constraint(greaterThanOrEqualTo: containerView.topAnchor, constant: 4).isActive = true
         
+        checkbox.height(24)
+        checkbox.width(24)
         [checkbox.centerY(), checkbox.trailing(8)].toSuperview()
         checkbox.leadingToTrailing(4).to(contentContainerView, addTo: containerView)
     }
