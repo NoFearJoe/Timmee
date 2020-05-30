@@ -246,6 +246,7 @@
 "sprint_notification_message" = "It's time to make records in the diary";
 
 "sprint_notifications" = "Reminder";
+"sprint_notifications_disclaimer" = "Choose days and time when you want to receive notifications that will help you remember to record progress";
 
 "authorization" = "Authorization";
 "authorize" = "Log in";

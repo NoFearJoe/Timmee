@@ -60,3 +60,73 @@ class LargeHeaderView: UIView {
     }
     
 }
+
+final class DefaultLargeHeaderView: LargeHeaderView {
+    
+    var onTapLeftButton: (() -> Void)?
+    var onTapRightButton: (() -> Void)?
+    
+    private let stackView = UIStackView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) { fatalError() }
+    
+    func configure(title: String, subtitle: NSAttributedString?, onTapLeftButton: (() -> Void)?, onTapRightButton: (() -> Void)?) {
+        titleLabel.text = title
+        subtitleLabel.attributedText = subtitle
+        subtitleLabel.isHidden = subtitle == nil
+        self.onTapLeftButton = onTapLeftButton
+        self.onTapRightButton = onTapRightButton
+    }
+    
+    func setupViews() {
+        leftButton = UIButton()
+        leftButton?.setImage(UIImage(named: "cross"), for: .normal)
+        leftButton?.addTarget(self, action: #selector(didTapLeftButton), for: .touchUpInside)
+        addSubview(leftButton!)
+        leftButton!.leading(15).toSuperview()
+        if #available(iOS 11.0, *) {
+            leftButton?.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
+        } else {
+            leftButton?.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+        }
+        
+        rightButton = UIButton()
+        rightButton?.setTitle("done".localized, for: .normal)
+        rightButton?.addTarget(self, action: #selector(didTapRightButton), for: .touchUpInside)
+        addSubview(rightButton!)
+        rightButton!.trailing(15).toSuperview()
+        if #available(iOS 11.0, *) {
+            rightButton?.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
+        } else {
+            rightButton?.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+        }
+        
+        stackView.axis = .vertical
+        stackView.spacing = 2
+        addSubview(stackView)
+        stackView.topToBottom(6).to(leftButton!, addTo: self)
+        [stackView.leading(15), stackView.trailing(15), stackView.bottom(8)].toSuperview()
+        
+        titleLabel = UILabel()
+        subtitleLabel = UILabel()
+        subtitleLabel.numberOfLines = 0
+        
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(subtitleLabel)
+    }
+    
+    @objc private func didTapLeftButton() {
+        onTapLeftButton?()
+    }
+    
+    @objc private func didTapRightButton() {
+        onTapRightButton?()
+    }
+    
+}

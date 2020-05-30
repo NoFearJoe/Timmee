@@ -54,7 +54,7 @@ final class InitialScreenPresenter: SprintInteractorTrait {
 
             initialViewController = pinAuthenticationViewController
         } else if getCurrentSprint() == nil, getNextSprint() == nil {
-            initialViewController = ViewControllersFactory.sprintCreation
+            initialViewController = NewSprintCreationViewController(sprint: nil, canBeClosed: false)
         } else {
             initialViewController = ViewControllersFactory.today
         }
@@ -63,7 +63,7 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     }
     
     private func showSprintCreation() {
-        AppWindowRouter.shared.show(screen: ViewControllersFactory.sprintCreation)
+        AppWindowRouter.shared.show(screen: NewSprintCreationViewController(sprint: nil, canBeClosed: false))
     }
     
     private func showToday() {

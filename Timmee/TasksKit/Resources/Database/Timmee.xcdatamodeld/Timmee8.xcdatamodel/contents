@@ -70,7 +70,6 @@
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="7" usesScalarValueType="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="isReady" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
         <attribute name="notificationsDays" optional="YES" attributeType="String"/>
@@ -175,7 +174,7 @@
         <element name="ListEntity" positionX="0" positionY="0" width="128" height="165"/>
         <element name="LocallyDeletedEntity" positionX="9" positionY="153" width="128" height="75"/>
         <element name="SmartListEntity" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="SprintEntity" positionX="0" positionY="0" width="128" height="238"/>
+        <element name="SprintEntity" positionX="0" positionY="0" width="128" height="223"/>
         <element name="SubtaskEntity" positionX="0" positionY="0" width="128" height="180"/>
         <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
         <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>

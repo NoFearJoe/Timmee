@@ -9,13 +9,11 @@
 import UIKit
 
 protocol SprintNotificationTimePickerInput: class {
-    func setNotificationsEnabled(_ isEnabled: Bool)
     func setNotificationsDays(_ days: [DayUnit])
     func setNotificationsTime(_ time: (Int, Int))
 }
 
 protocol SprintNotificationTimePickerOutput: class {
-    func didSetNotificationsEnabled(_ isEnabled: Bool)
     func didChangeNotificationsDays(_ days: [DayUnit])
     func didChangeNotificationsTime(_ time: (Int, Int))
 }
@@ -24,8 +22,6 @@ final class SprintNotificationTimePicker: UIViewController {
     
     weak var output: SprintNotificationTimePickerOutput?
     
-    @IBOutlet private var enableNotificationLabel: UILabel!
-    @IBOutlet private var enableNotificationCheckbox: Checkbox!
     @IBOutlet private var notificationsDaysTitleLabel: UILabel!
     @IBOutlet private var notificationsDaysButtons: [SelectableButton]!
     @IBOutlet private var notificationTimeLabel: UILabel!
@@ -58,21 +54,13 @@ final class SprintNotificationTimePicker: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        enableNotificationLabel.text = "reminder".localized
         notificationsDaysTitleLabel.text = "sprint_notification_days_title".localized
         notificationTimeLabel.text = "sprint_notification_time_title".localized
-        enableNotificationCheckbox.didChangeCkeckedState = { [unowned self] isChecked in
-            self.setNotificationsEnabled(isChecked)
-            self.output?.didSetNotificationsEnabled(isChecked)
-            self.output?.didChangeNotificationsDays(self.days)
-        }
         notificationsDaysButtons.forEach { $0.isSelected = false }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        enableNotificationLabel.font = AppTheme.current.fonts.regular(17)
-        enableNotificationLabel.textColor = AppTheme.current.colors.inactiveElementColor
         notificationsDaysTitleLabel.font = AppTheme.current.fonts.regular(17)
         notificationsDaysTitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
         notificationTimeLabel.font = AppTheme.current.fonts.regular(17)
@@ -94,14 +82,6 @@ final class SprintNotificationTimePicker: UIViewController {
 }
 
 extension SprintNotificationTimePicker: SprintNotificationTimePickerInput {
-    
-    func setNotificationsEnabled(_ isEnabled: Bool) {
-        isNotificationsEnabled = isEnabled
-        if isEnabled, days.isEmpty {
-            setNotificationsDays([.monday])
-        }
-        updateUIForNotificationsEnabledState(isEnabled)
-    }
     
     func setNotificationsDays(_ days: [DayUnit]) {
         self.days = days
@@ -133,21 +113,7 @@ extension SprintNotificationTimePicker: NotificationTimePickerOutput {
 extension SprintNotificationTimePicker: EditorInput {
     
     var requiredHeight: CGFloat {
-        return 252
-    }
-    
-}
-
-private extension SprintNotificationTimePicker {
-    
-    func updateUIForNotificationsEnabledState(_ isEnabled: Bool) {
-        enableNotificationCheckbox.isChecked = isEnabled
-        notificationTimePickerContainer.isUserInteractionEnabled = isEnabled
-        notificationTimePickerContainer.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
-        notificationsDaysButtons.forEach {
-            $0.isUserInteractionEnabled = isEnabled
-            $0.alpha = isEnabled ? AppTheme.current.style.alpha.enabled : AppTheme.current.style.alpha.disabled
-        }
+        return 234
     }
     
 }

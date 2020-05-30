@@ -25,14 +25,9 @@ final class SprintCell: SwipableCollectionViewCell {
     @IBOutlet private var habitsProgressLabel: UILabel!
     @IBOutlet private var goalsCountLabel: UILabel!
     @IBOutlet private var goalsProgressLabel: UILabel!
-    
-    @IBOutlet private var alertButton: UIButton!
-    
+    @IBOutlet private var countersContainerVerticalConstraints: [NSLayoutConstraint]!
+        
     @IBOutlet private var separatorViews: [UIView]!
-    
-    @IBAction private func onTapToAlertButton() {
-        onTapToAlert?(alertButton)
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,8 +65,6 @@ final class SprintCell: SwipableCollectionViewCell {
         tenseLabel.text = sprint.tense == .current ? sprint.tense.localized : nil
         habitsCountLabel.text = "n_habits".localized(with: sprint.habitsCount)
         goalsCountLabel.text = "n_goals".localized(with: sprint.goalsCount)
-        
-        alertButton.isHidden = sprint.isReady
     }
     
     override func prepareForReuse() {
@@ -95,7 +88,6 @@ final class SprintCell: SwipableCollectionViewCell {
         goalsCountLabel.font = AppTheme.current.fonts.regular(16)
         goalsProgressLabel.font = AppTheme.current.fonts.bold(40)
         goalsProgressLabel.textColor = AppTheme.current.colors.selectedElementColor
-        alertButton.tintColor = AppTheme.current.colors.incompleteElementColor
     }
     
     private func progressLabelColor(progress: Double) -> UIColor {
@@ -116,8 +108,12 @@ final class SprintCell: SwipableCollectionViewCell {
             $0?.textColor = AppTheme.current.colors.inactiveElementColor
         }
                 
-        separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
+        separatorViews.forEach { $0.backgroundColor = .clear }
         
+        countersContainerVerticalConstraints.forEach { $0.constant = 0 }
+        
+        habitsCountLabel.isHidden = true
+        goalsCountLabel.isHidden = true
         habitsProgressLabel.isHidden = true
         goalsProgressLabel.isHidden = true
         
@@ -138,6 +134,8 @@ final class SprintCell: SwipableCollectionViewCell {
         
         separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.5) }
         
+        countersContainerVerticalConstraints.forEach { $0.constant = 8 }
+        
         habitsProgressLabel.isHidden = true
         goalsProgressLabel.isHidden = true
         
@@ -155,6 +153,8 @@ final class SprintCell: SwipableCollectionViewCell {
         }
                 
         separatorViews.forEach { $0.backgroundColor = AppTheme.current.colors.decorationElementColor }
+        
+        countersContainerVerticalConstraints.forEach { $0.constant = 8 }
         
         habitsProgressLabel.isHidden = false
         goalsProgressLabel.isHidden = false

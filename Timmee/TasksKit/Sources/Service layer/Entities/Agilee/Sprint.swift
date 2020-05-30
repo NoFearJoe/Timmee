@@ -18,7 +18,6 @@ public class Sprint {
     public var startDate: Date
     public var endDate: Date
     public var duration: Int
-    public var isReady: Bool
     public var notifications: Notifications
     public var habitsCount: Int
     public var goalsCount: Int
@@ -33,7 +32,6 @@ public class Sprint {
         startDate = sprintEntity.startDate! as Date
         endDate = sprintEntity.endDate! as Date
         duration = Int(sprintEntity.duration)
-        isReady = sprintEntity.isReady
         notifications = Notifications(sprint: sprintEntity)
         habitsCount = sprintEntity.habits?.count ?? 0
         goalsCount = sprintEntity.goals?.count ?? 0
@@ -44,14 +42,12 @@ public class Sprint {
                 startDate: Date,
                 endDate: Date,
                 duration: Int,
-                isReady: Bool,
                 notifications: Notifications) {
         self.id = id
         self.number = number
         self.startDate = startDate
         self.endDate = endDate
         self.duration = duration
-        self.isReady = isReady
         self.notifications = notifications
         self.habitsCount = 0
         self.goalsCount = 0
@@ -63,7 +59,6 @@ public class Sprint {
                       startDate: startDate,
                       endDate: endDate,
                       duration: duration,
-                      isReady: isReady,
                       notifications: notifications)
     }
 

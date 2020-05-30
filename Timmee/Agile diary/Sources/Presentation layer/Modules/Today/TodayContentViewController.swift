@@ -373,10 +373,9 @@ private extension TodayContentViewController {
                 ? "today_habits_section_placeholder_title".localized
                 : "today_targets_section_placeholder_title".localized,
             message: nil,
-            action: "create".localized
-        ) { [unowned self] in
-            self.showTaskEditor()
-        }
+            action: nil,
+            onTapButton: nil
+        )
     }
     
     func setupPlaceholderAppearance() {

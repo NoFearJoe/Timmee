@@ -41,6 +41,10 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func createNewSprint() {
+        showNewSprintCreation(sprint: nil)
+    }
+    
     override func prepare() {
         super.prepare()
         
@@ -55,10 +59,6 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
         
         setupPlaceholder()
         setupSprintsObserver()
-        
-        if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: sprintsView)
-        }
     }
     
     override func refresh() {
@@ -77,11 +77,6 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chartsViewController = (segue.destination as? UINavigationController)?.topViewController as? ChartsViewController {
             chartsViewController.sprint = sender as? Sprint
-        } else if let sprintCreationViewController = segue.destination as? SprintCreationViewController {
-            sprintCreationViewController.loadViewIfNeeded()
-            sprintCreationViewController.canClose = true
-            sprintCreationViewController.isFirstTimeSprintCreation = (sender as? Sprint) == nil
-            sprintCreationViewController.sprint = sender as? Sprint
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -108,6 +103,13 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
         }
         
         sprintsObserver.setSubscriber(sprintsCacheAdapter)
+    }
+    
+    private func showNewSprintCreation(sprint: Sprint?) {
+        let screen = NewSprintCreationViewController(sprint: sprint)
+        let navigation = UINavigationController(rootViewController: screen)
+        navigation.isNavigationBarHidden = true
+        present(navigation, animated: true, completion: nil)
     }
     
 }
@@ -147,8 +149,10 @@ extension SprintsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedSprint = sprintsObserver.item(at: indexPath)
         
-        if selectedSprint.tense != .past {
-            performSegue(withIdentifier: "ShowSprintCreation", sender: selectedSprint)
+        if selectedSprint.tense == .future {
+            showNewSprintCreation(sprint: selectedSprint)
+        } else if selectedSprint.tense == .current {
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -166,8 +170,10 @@ extension SprintsViewController: UICollectionViewDelegateFlowLayout {
         switch sprint.tense {
         case .past:
             return CGSize(width: width, height: 156)
-        case .current, .future:
+        case .current:
             return CGSize(width: width, height: 100)
+        case .future:
+            return CGSize(width: width, height: 66)
         }
     }
     
@@ -217,28 +223,6 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
                       case .ok: completion(true)
                       }
                   }
-    }
-    
-}
-
-extension SprintsViewController: UIViewControllerPreviewingDelegate {
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let touchedCellIndexPath = sprintsView.indexPathForItem(at: location) else { return nil }
-        let sprint = sprintsObserver.item(at: touchedCellIndexPath)
-        guard sprint.tense != .past else { return nil }
-        let sprintCreationViewController = ViewControllersFactory.sprintCreation
-        sprintCreationViewController.loadViewIfNeeded()
-        sprintCreationViewController.canClose = true
-        sprintCreationViewController.isFirstTimeSprintCreation = false
-        sprintCreationViewController.sprint = sprint
-        return sprintCreationViewController
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        guard let sprintCreationViewController = viewControllerToCommit as? SprintCreationViewController else { return }
-        let sprint = sprintCreationViewController.sprint
-        performSegue(withIdentifier: "ShowSprintCreation", sender: sprint)
     }
     
 }

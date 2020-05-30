@@ -246,6 +246,7 @@
 "sprint_notification_message" = "Время сделать записи в ежедневнике";
 
 "sprint_notifications" = "Напоминание";
+"sprint_notifications_disclaimer" = "Выберите дни и время, когда вы хотите получать уведомления, которые помогут вам не забыть записать прогресс";
 
 "authorization" = "Авторизация";
 "authorize" = "Войти";

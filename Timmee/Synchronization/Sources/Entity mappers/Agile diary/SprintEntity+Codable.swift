@@ -14,7 +14,6 @@ extension SprintEntity: DictionaryEncodable {
         let requiredFields = [
             "id": id as Any,
             "endDate": endDate as Any,
-            "isReady": isReady,
             "notificationsEnabled": notificationsEnabled,
             "number": number,
             "startDate": startDate as Any,
@@ -36,7 +35,6 @@ extension SprintEntity: DictionaryDecodable {
 
     func decode(_ dictionary: [String : Any]) {
         id = dictionary["id"] as? String
-        isReady = dictionary["isReady"] as? Bool ?? false
         notificationsEnabled = dictionary["notificationsEnabled"] as? Bool ?? false
         number = dictionary["number"] as? Int32 ?? 0
         if startDate == nil {

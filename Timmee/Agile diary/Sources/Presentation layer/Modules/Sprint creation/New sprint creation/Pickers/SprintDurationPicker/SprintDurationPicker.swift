@@ -67,7 +67,7 @@ final class SprintDurationPicker: UIViewController, SprintDurationPickerInput {
 extension SprintDurationPicker: EditorInput {
     
     var requiredHeight: CGFloat {
-        return 72
+        return 48
     }
     
 }

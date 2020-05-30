@@ -15,6 +15,7 @@ protocol SprintInteractorTrait: class {
     func getCurrentSprint() -> Sprint?
     func getNextSprint() -> Sprint?
     func getOrCreateSprint(completion: @escaping (Sprint) -> Void)
+    func createNewSprint() -> Sprint
     func saveSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void)
     func removeSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void)
 }
@@ -24,36 +25,41 @@ extension SprintInteractorTrait {
     func getCurrentSprint() -> Sprint? {
         let existingSprints = sprintsService.fetchSprints()
         return existingSprints.first(where: { sprint in
-            sprint.startDate <= Date.now.startOfDay && sprint.endDate >= Date.now.endOfDay && sprint.isReady
+            sprint.startDate <= Date.now.startOfDay && sprint.endDate >= Date.now.endOfDay
         })
     }
     
     func getNextSprint() -> Sprint? {
         let existingSprints = sprintsService.fetchSprints()
         return existingSprints.first(where: { sprint in
-            sprint.startDate >= Date.now.endOfDay && sprint.isReady
+            sprint.startDate >= Date.now.endOfDay
         })
     }
     
     func getOrCreateSprint(completion: @escaping (Sprint) -> Void) {
-        let existingSprints = sprintsService.fetchSprints()
-        if let temporarySprint = existingSprints.first(where: { !$0.isReady }) {
-            completion(temporarySprint)
-        } else {
-            let latestSprint = existingSprints.max(by: { $0.number < $1.number })
-            let nextSprintNumber = (latestSprint?.number ?? 0) + 1
-            let sprint = Sprint(number: nextSprintNumber)
-            let estimatedStartDate = (latestSprint?.endDate + 1.asDays)?.startOfDay ?? Date.now.startOfDay
-            if estimatedStartDate.isLower(than: Date.now.startOfDay) {
-                sprint.startDate = Date.now.startOfDay
-            } else {
-                sprint.startDate = estimatedStartDate
-            }
-            sprint.endDate = sprint.startDate.endOfDay + sprint.duration.asWeeks
-            sprintsService.createOrUpdateSprint(sprint) { _ in
-                completion(sprint)
-            }
+        let sprint = createNewSprint()
+        sprintsService.createOrUpdateSprint(sprint) { _ in
+            completion(sprint)
         }
+    }
+    
+    func createNewSprint() -> Sprint {
+        let existingSprints = sprintsService.fetchSprints()
+        
+        let latestSprint = existingSprints.max(by: { $0.number < $1.number })
+        let nextSprintNumber = (latestSprint?.number ?? 0) + 1
+        
+        let sprint = Sprint(number: nextSprintNumber)
+        
+        let estimatedStartDate = (latestSprint?.endDate + 1.asDays)?.startOfDay ?? Date.now.startOfDay
+        if estimatedStartDate.isLower(than: Date.now.startOfDay) {
+            sprint.startDate = Date.now.startOfDay
+        } else {
+            sprint.startDate = estimatedStartDate
+        }
+        sprint.endDate = sprint.startDate.endOfDay + sprint.duration.asWeeks
+        
+        return sprint
     }
     
     func saveSprint(_ sprint: Sprint, completion: @escaping (Bool) -> Void) {

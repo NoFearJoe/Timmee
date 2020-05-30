@@ -72,7 +72,7 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     }
     
     private func showSprintCreation() {
-        AppWindowRouter.shared.show(screen: ViewControllersFactory.sprintCreation)
+        AppWindowRouter.shared.show(screen: NewSprintCreationViewController(sprint: nil, canBeClosed: false))
     }
     
     private func showToday() {

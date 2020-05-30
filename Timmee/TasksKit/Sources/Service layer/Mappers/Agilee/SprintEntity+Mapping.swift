@@ -14,7 +14,6 @@ public extension SprintEntity {
         startDate = entity.startDate
         endDate = entity.endDate
         duration = Int16(entity.duration)
-        isReady = entity.isReady
         notificationsEnabled = entity.notifications.isEnabled
         notificationsDays = entity.notifications.days?.map { $0.string }.joined(separator: ",")
         notificationsTime = entity.notifications.time.flatMap { "\($0.0):\($0.1)" }

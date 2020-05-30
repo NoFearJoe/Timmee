@@ -47,11 +47,9 @@
 		0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
 		0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
 		0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E3212183A9004C0559 /* AppDelegate.swift */; };
-		0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */; };
 		0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4ED21219669004C0559 /* SprintCreation.storyboard */; };
 		0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
 		0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
-		0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5022122AA31004C0559 /* SprintContentViewController.swift */; };
 		0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5052122B067004C0559 /* UIFont+Avenir.swift */; };
 		0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
 		0C14D50B2122C04D004C0559 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
@@ -129,13 +127,11 @@
 		0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */; };
 		0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E3212183A9004C0559 /* AppDelegate.swift */; };
-		0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */; };
 		0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */; };
 		0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
 		0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */; };
 		0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEF214F971700AA4FB8 /* PinCreationViewController.swift */; };
 		0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5052122B067004C0559 /* UIFont+Avenir.swift */; };
-		0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */; };
 		0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
 		0CB6737A21A52C3900178EB1 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
 		0CB6737B21A52C3900178EB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328921517F3C00B9201A /* SettingsViewController.swift */; };
@@ -191,11 +187,9 @@
 		0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */; };
 		0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */; };
-		0CB673B421A52C3900178EB1 /* SprintContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5022122AA31004C0559 /* SprintContentViewController.swift */; };
 		0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */; };
 		0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */; };
-		0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
 		0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
 		0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
 		0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
@@ -242,8 +236,6 @@
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
-		0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */; };
-		0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */; };
 		0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
 		0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */; };
 		0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
@@ -316,6 +308,8 @@
 		96A066A3248153E900111BA2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A1248153E900111BA2 /* AppTheme.swift */; };
 		96A066A524815E9900111BA2 /* AppThemeApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A424815E9900111BA2 /* AppThemeApplier.swift */; };
 		96A066A624815E9900111BA2 /* AppThemeApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A424815E9900111BA2 /* AppThemeApplier.swift */; };
+		96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
+		96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
@@ -442,11 +436,9 @@
 		0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenPresenter.swift; sourceTree = "<group>"; };
 		0C14D4E1212182B2004C0559 /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
 		0C14D4E3212183A9004C0559 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D4ED21219669004C0559 /* SprintCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SprintCreation.storyboard; sourceTree = "<group>"; };
 		0C14D4F02121974E004C0559 /* LargeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeHeaderView.swift; sourceTree = "<group>"; };
 		0C14D4F221219FF4004C0559 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
-		0C14D5022122AA31004C0559 /* SprintContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintContentViewController.swift; sourceTree = "<group>"; };
 		0C14D5052122B067004C0559 /* UIFont+Avenir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Avenir.swift"; sourceTree = "<group>"; };
 		0C14D5072122B1A4004C0559 /* SprintSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintSection.swift; sourceTree = "<group>"; };
 		0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TasksKitConfiguration.plist; sourceTree = "<group>"; };
@@ -517,8 +509,6 @@
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
-		0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationHabitCell.swift; sourceTree = "<group>"; };
-		0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationTargetCell.swift; sourceTree = "<group>"; };
 		0CDF8D852125B8AB001A2F70 /* Task+Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Target.swift"; sourceTree = "<group>"; };
 		0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePicker.swift; sourceTree = "<group>"; };
@@ -567,6 +557,7 @@
 		969A9A2822E4E18A0018188D /* AppLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkHandler.swift; sourceTree = "<group>"; };
 		96A066A1248153E900111BA2 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		96A066A424815E9900111BA2 /* AppThemeApplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeApplier.swift; sourceTree = "<group>"; };
+		96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSprintCreationViewController.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBarChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -860,7 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D4ED21219669004C0559 /* SprintCreation.storyboard */,
-				0C14D4EA2121961E004C0559 /* Main */,
+				96A066AA2482769F00111BA2 /* New sprint creation */,
 				0C14D4E921219611004C0559 /* Habit creation */,
 				0C14D4E8212195FE004C0559 /* Goal creation */,
 			);
@@ -888,18 +879,6 @@
 				0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */,
 			);
 			path = "Habit creation";
-			sourceTree = "<group>";
-		};
-		0C14D4EA2121961E004C0559 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				0C47EE73223A6F1700593AA3 /* Pickers */,
-				0C8D0793212ECC63008122A6 /* Interactors */,
-				0CDF8D802125B75A001A2F70 /* Cells */,
-				0C14D4EB21219656004C0559 /* SprintCreationViewController.swift */,
-				0C14D5022122AA31004C0559 /* SprintContentViewController.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		0C14D4EF21219696004C0559 /* UI components */ = {
@@ -1186,15 +1165,6 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		0CDF8D802125B75A001A2F70 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				0CDF8D812125B772001A2F70 /* SprintCreationHabitCell.swift */,
-				0CDF8D832125B859001A2F70 /* SprintCreationTargetCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		0CDF8D97212A8D24001A2F70 /* NotificationTimePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1372,6 +1342,16 @@
 			name = Theme;
 			path = "Agile diary/Sources/Application layer/Theme";
 			sourceTree = SOURCE_ROOT;
+		};
+		96A066AA2482769F00111BA2 /* New sprint creation */ = {
+			isa = PBXGroup;
+			children = (
+				0C47EE73223A6F1700593AA3 /* Pickers */,
+				0C8D0793212ECC63008122A6 /* Interactors */,
+				96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */,
+			);
+			path = "New sprint creation";
+			sourceTree = "<group>";
 		};
 		96B73BF422BDFE0C00043765 /* PreInitialScreen */ = {
 			isa = PBXGroup;
@@ -1743,7 +1723,6 @@
 				0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */,
 				96888C1D2217DFE800479667 /* AddButton.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
-				0CDF8D822125B772001A2F70 /* SprintCreationHabitCell.swift in Sources */,
 				0C3DA5282153BF7500CAE635 /* BackgroundImage.swift in Sources */,
 				967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */,
 				0C86E4F522DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
@@ -1755,7 +1734,6 @@
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
 				0C06E94722EAD0040099DD3A /* DiaryEntryAttachmentView.swift in Sources */,
 				0C06E97722F17E910099DD3A /* DiaryEntriesSubmoduleView.swift in Sources */,
-				0C14D4EC21219656004C0559 /* SprintCreationViewController.swift in Sources */,
 				0C14D4F321219FF4004C0559 /* Switcher.swift in Sources */,
 				0CDF8D99212A8D3B001A2F70 /* NumberPicker.swift in Sources */,
 				967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */,
@@ -1845,6 +1823,7 @@
 				0CB2EDF2214F971700AA4FB8 /* PinAuthenticationViewController.swift in Sources */,
 				967C328E2157709900B9201A /* BaseChartCell.swift in Sources */,
 				96DDBDC323CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */,
+				96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
 				0C14D5372123F826004C0559 /* GoalCreationViewController.swift in Sources */,
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
 				0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
@@ -1855,14 +1834,12 @@
 				96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
-				0C14D5032122AA31004C0559 /* SprintContentViewController.swift in Sources */,
 				96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
 				0C14D50D2122E232004C0559 /* List+Sprint.swift in Sources */,
 				0C2B9D1E220DAD250038F11D /* SprintCell.swift in Sources */,
 				0C4082DF22E6DF0F00D899A9 /* DiaryViewController.swift in Sources */,
 				0CB2EDE0214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift in Sources */,
-				0CDF8D842125B859001A2F70 /* SprintCreationTargetCell.swift in Sources */,
 				961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1880,7 +1857,6 @@
 				0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
 				0C06E95C22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
-				0CB6737221A52C3900178EB1 /* SprintCreationHabitCell.swift in Sources */,
 				0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */,
 				0CB6737421A52C3900178EB1 /* ProVersionPurchase.swift in Sources */,
 				96A066A3248153E900111BA2 /* AppTheme.swift in Sources */,
@@ -1893,7 +1869,6 @@
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
-				0CB6737821A52C3900178EB1 /* SprintCreationViewController.swift in Sources */,
 				0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
 				0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */,
 				0CB6737A21A52C3900178EB1 /* NumberPicker.swift in Sources */,
@@ -1965,6 +1940,7 @@
 				0CB673A021A52C3900178EB1 /* CardView.swift in Sources */,
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
+				96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
 				969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
@@ -1990,14 +1966,12 @@
 				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,
 				0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */,
 				0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
-				0CB673B421A52C3900178EB1 /* SprintContentViewController.swift in Sources */,
 				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
 				0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
 				96DDBDB523BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */,
-				0CB673BB21A52C3900178EB1 /* SprintCreationTargetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

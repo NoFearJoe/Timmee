@@ -12,13 +12,14 @@ import Workset
 extension Sprint {
     
     convenience init(number: Int) {
-        self.init(id: RandomStringGenerator.randomString(length: 24),
-                  number: number,
-                  startDate: Date.now.startOfDay,
-                  endDate: Date.now.startOfDay + Constants.defaultSprintDuration.asWeeks,
-                  duration: Constants.defaultSprintDuration,
-                  isReady: false,
-                  notifications: Notifications())
+        self.init(
+            id: RandomStringGenerator.randomString(length: 24),
+            number: number,
+            startDate: Date.now.startOfDay,
+            endDate: Date.now.startOfDay + Constants.defaultSprintDuration.asWeeks,
+            duration: Constants.defaultSprintDuration,
+            notifications: Notifications()
+        )
     }
     
 }
