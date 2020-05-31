@@ -34,22 +34,31 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private let collectionSynchronizationManager = FirebaseCollectionSynchronizationManager()
     private let synchronizationAvailabilityChecker = SynchronizationAvailabilityChecker.shared
     
+    private let syncQueue = DispatchQueue(label: "bebetter_sync_queue")
     
     private var isSynchronizationInProgress = false
     
     private init() {}
     
     public func sync(completion: ((Bool) -> Void)?) {
-        guard synchronizationAvailabilityChecker.synchronizationEnabled else { completion?(false); return }
-        guard !isSynchronizationInProgress else { completion?(false); return }
-        isSynchronizationInProgress = true
-        
-        pull { [weak self] success, deletedEntities in
-            guard let self = self, success else { completion?(false); return }
-            self.push(deletedEntities: deletedEntities, completion: { success in
-                self.isSynchronizationInProgress = false
-                completion?(success)
-            })
+        syncQueue.async {
+            let completionOnMain: (Bool) -> Void = { success in
+                DispatchQueue.main.async {
+                    completion?(success)
+                }
+            }
+            
+            guard self.synchronizationAvailabilityChecker.synchronizationEnabled else { return completionOnMain(false) }
+            guard !self.isSynchronizationInProgress else { return completionOnMain(false) }
+            self.isSynchronizationInProgress = true
+            
+            self.pull { [weak self] success, deletedEntities in
+                guard let self = self, success else { return completionOnMain(false) }
+                self.push(deletedEntities: deletedEntities, completion: { success in
+                    self.isSynchronizationInProgress = false
+                    completionOnMain(success)
+                })
+            }
         }
     }
     
@@ -208,7 +217,7 @@ private extension AgileeSynchronizationService {
             })
         }
         
-        dispatchGroup.notify(queue: .main) {
+        dispatchGroup.notify(queue: syncQueue) {
             guard !synchronizationActions.isEmpty else {
                 completion(true, deletedEntities)
                 return

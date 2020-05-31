@@ -142,7 +142,7 @@ private extension TodayHabitCell {
         topInsetConstraint = containerView.top(6).toSuperview()
         bottomInsetConstraint = containerView.bottom(6).toSuperview()
         
-        contentStackView.allEdges(8).toSuperview()
+        [contentStackView.leading(8), contentStackView.trailing(8), contentStackView.top(12), contentStackView.bottom(12)].toSuperview()
     }
     
 }

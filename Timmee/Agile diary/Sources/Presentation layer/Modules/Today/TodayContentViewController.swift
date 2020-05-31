@@ -205,6 +205,8 @@ extension TodayContentViewController: UITableViewDataSource {
 extension TodayContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
         func makeNavigationController(root: UIViewController & UIViewControllerTransitioningDelegate) -> UINavigationController {
             let navigationController = UINavigationController(rootViewController: root)
             navigationController.isNavigationBarHidden = true
@@ -222,6 +224,7 @@ extension TodayContentViewController: UITableViewDelegate {
         switch section.itemsKind {
         case .habit:
             guard let habit = habitsCacheObserver?.item(at: indexPath) else { return }
+            
             let habitDetailsProvider = HabitDetailsProvider(habit: habit, currentDate: currentDate)
             let habitDetailsViewController = DetailsBaseViewController(content: habitDetailsProvider)
             let navigationController = makeNavigationController(root: habitDetailsViewController)
@@ -520,8 +523,8 @@ private extension TodayContentViewController {
         createButton.colors = FloatingButton.Colors(tintColor: .white,
                                                     backgroundColor: AppTheme.current.colors.mainElementColor,
                                                     secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor)
-        createButton.width(48)
-        createButton.height(48)
+        createButton.width(52)
+        createButton.height(52)
         createButton.centerX().toSuperview()
         if #available(iOS 11.0, *) {
             createButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true

@@ -171,7 +171,7 @@ private extension TodayGoalCell {
     
     func setupLayout() {
         [containerView.leading(15), containerView.trailing(15), containerView.top(6), containerView.bottom(6)].toSuperview()
-        contentStackView.allEdges(8).toSuperview()
+        [contentStackView.leading(8), contentStackView.trailing(8), contentStackView.top(12), contentStackView.bottom(12)].toSuperview()
     }
     
 }

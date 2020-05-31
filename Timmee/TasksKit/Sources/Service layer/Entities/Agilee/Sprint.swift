@@ -19,22 +19,29 @@ public class Sprint {
     public var endDate: Date
     public var duration: Int
     public var notifications: Notifications
-    public var habitsCount: Int
-    public var goalsCount: Int
+    
+    public lazy var habitsCount: Int = {
+        entity?.habits?.count ?? 0
+    }()
+    public lazy var goalsCount: Int = {
+        entity?.goals?.count ?? 0
+    }()
     
     public var title: String {
         return "Sprint".localized + " #\(number)"
     }
     
+    private let entity: SprintEntity?
+    
     public init(sprintEntity: SprintEntity) {
+        self.entity = sprintEntity
+        
         id = sprintEntity.id ?? ""
         number = Int(sprintEntity.number)
         startDate = sprintEntity.startDate! as Date
         endDate = sprintEntity.endDate! as Date
         duration = Int(sprintEntity.duration)
         notifications = Notifications(sprint: sprintEntity)
-        habitsCount = sprintEntity.habits?.count ?? 0
-        goalsCount = sprintEntity.goals?.count ?? 0
     }
     
     public init(id: String,
@@ -43,14 +50,14 @@ public class Sprint {
                 endDate: Date,
                 duration: Int,
                 notifications: Notifications) {
+        self.entity = nil
+        
         self.id = id
         self.number = number
         self.startDate = startDate
         self.endDate = endDate
         self.duration = duration
         self.notifications = notifications
-        self.habitsCount = 0
-        self.goalsCount = 0
     }
     
     public var copy: Sprint {
