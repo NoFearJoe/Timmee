@@ -240,13 +240,13 @@
         <!--Привычки-->
         <scene sceneID="eRI-FJ-EqS">
             <objects>
-                <viewController title="Привычки" id="Zn7-Z2-pN3" customClass="ExtendedHabitsChartViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Привычки" extendedLayoutIncludesOpaqueBars="YES" id="Zn7-Z2-pN3" customClass="ExtendedHabitsChartViewController" customModule="Agile_diary_debug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nOp-sM-R5k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-fs-vZI">
-                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="BQI-23-pnz">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
@@ -337,9 +337,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="KOK-fs-vZI" secondAttribute="bottom" id="7xn-Hc-Yuf"/>
-                            <constraint firstItem="KOK-fs-vZI" firstAttribute="top" secondItem="Gco-hr-DAm" secondAttribute="top" id="A6Z-jS-hbe"/>
                             <constraint firstItem="Gco-hr-DAm" firstAttribute="trailing" secondItem="KOK-fs-vZI" secondAttribute="trailing" id="IE8-yx-4NR"/>
                             <constraint firstItem="KOK-fs-vZI" firstAttribute="leading" secondItem="Gco-hr-DAm" secondAttribute="leading" id="edG-mC-HMS"/>
+                            <constraint firstItem="KOK-fs-vZI" firstAttribute="top" secondItem="nOp-sM-R5k" secondAttribute="top" id="waE-uQ-MR6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gco-hr-DAm"/>
                     </view>
