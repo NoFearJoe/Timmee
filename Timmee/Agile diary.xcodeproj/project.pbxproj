@@ -285,6 +285,16 @@
 		961B95D3241CC101003EC992 /* HabitsHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
+		96346EF2248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */; };
+		96346EF3248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */; };
+		96346EF62484DC3D00A815F2 /* AchievementsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */; };
+		96346EF72484DC3D00A815F2 /* AchievementsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */; };
+		96346EF92484DED300A815F2 /* AchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF82484DED300A815F2 /* AchievementCell.swift */; };
+		96346EFA2484DED300A815F2 /* AchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF82484DED300A815F2 /* AchievementCell.swift */; };
+		96346EFC2484DFC100A815F2 /* AchievementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */; };
+		96346EFD2484DFC100A815F2 /* AchievementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */; };
+		96346EFF2484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */; };
+		96346F002484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */; };
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
@@ -310,6 +320,10 @@
 		96A066A624815E9900111BA2 /* AppThemeApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A424815E9900111BA2 /* AppThemeApplier.swift */; };
 		96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
 		96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
+		96A066B12483B76A00111BA2 /* AchievementsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B02483B76A00111BA2 /* AchievementsManager.swift */; };
+		96A066B22483B76A00111BA2 /* AchievementsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B02483B76A00111BA2 /* AchievementsManager.swift */; };
+		96A066B42483B78900111BA2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B32483B78900111BA2 /* Achievement.swift */; };
+		96A066B52483B78900111BA2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B32483B78900111BA2 /* Achievement.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
@@ -542,6 +556,11 @@
 		961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryCell.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
+		96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAchievementsButtonController.swift; sourceTree = "<group>"; };
+		96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsScreen.swift; sourceTree = "<group>"; };
+		96346EF82484DED300A815F2 /* AchievementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCell.swift; sourceTree = "<group>"; };
+		96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModel.swift; sourceTree = "<group>"; };
+		96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModelsMapper.swift; sourceTree = "<group>"; };
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
@@ -558,6 +577,8 @@
 		96A066A1248153E900111BA2 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		96A066A424815E9900111BA2 /* AppThemeApplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeApplier.swift; sourceTree = "<group>"; };
 		96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSprintCreationViewController.swift; sourceTree = "<group>"; };
+		96A066B02483B76A00111BA2 /* AchievementsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsManager.swift; sourceTree = "<group>"; };
+		96A066B32483B78900111BA2 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBarChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -738,6 +759,7 @@
 			children = (
 				96888C222217EDE400479667 /* Utils */,
 				0C14D5042122B052004C0559 /* Extensions */,
+				96A066AE2483B73800111BA2 /* Services */,
 				0C14D4A421216059004C0559 /* Application layer */,
 				0C14D4A321216058004C0559 /* Presentation layer */,
 			);
@@ -770,17 +792,18 @@
 		0C14D4A521216085004C0559 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				0C4082DC22E6DEE200D899A9 /* Diary */,
 				96B73BF422BDFE0C00043765 /* PreInitialScreen */,
+				0CF2F92F224CC1C90042F3DC /* Onboardings */,
 				0CC4BB5F21BA8DE90066C213 /* Authorization */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
-				0CB02FF42192D619006C5146 /* HabitsCollection */,
-				0C3DA4DB21525EAA00CAE635 /* Charts */,
-				967C328421517DF400B9201A /* Settings */,
-				0CF7E51B214669520071DABD /* Today */,
-				0C2B9D15220DA9900038F11D /* Sprints */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
-				0CF2F92F224CC1C90042F3DC /* Onboardings */,
+				0CB02FF42192D619006C5146 /* HabitsCollection */,
+				0CF7E51B214669520071DABD /* Today */,
+				0C3DA4DB21525EAA00CAE635 /* Charts */,
+				96346EF42484DBDB00A815F2 /* Achievements */,
+				0C2B9D15220DA9900038F11D /* Sprints */,
+				0C4082DC22E6DEE200D899A9 /* Diary */,
+				967C328421517DF400B9201A /* Settings */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1222,6 +1245,7 @@
 				0C06E96422EF051E0099DD3A /* Secondary view controllers */,
 				0CF7E5252146878C0071DABD /* Cells */,
 				0CE3CA3F2359CF37008C2DA5 /* Views */,
+				96346EF02484379100A815F2 /* Sub controllers */,
 				0CF7E51C2146697C0071DABD /* TodayViewController.swift */,
 				0CF7E5222146833A0071DABD /* TodayContentViewController.swift */,
 			);
@@ -1284,6 +1308,25 @@
 				961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */,
 			);
 			path = Onboardings;
+			sourceTree = "<group>";
+		};
+		96346EF02484379100A815F2 /* Sub controllers */ = {
+			isa = PBXGroup;
+			children = (
+				96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */,
+			);
+			path = "Sub controllers";
+			sourceTree = "<group>";
+		};
+		96346EF42484DBDB00A815F2 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */,
+				96346EF82484DED300A815F2 /* AchievementCell.swift */,
+				96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */,
+				96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */,
+			);
+			path = Achievements;
 			sourceTree = "<group>";
 		};
 		9667C72322C536D30010CC00 /* Details */ = {
@@ -1351,6 +1394,23 @@
 				96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */,
 			);
 			path = "New sprint creation";
+			sourceTree = "<group>";
+		};
+		96A066AE2483B73800111BA2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				96A066AF2483B74400111BA2 /* Achievements */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		96A066AF2483B74400111BA2 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				96A066B02483B76A00111BA2 /* AchievementsManager.swift */,
+				96A066B32483B78900111BA2 /* Achievement.swift */,
+			);
+			path = Achievements;
 			sourceTree = "<group>";
 		};
 		96B73BF422BDFE0C00043765 /* PreInitialScreen */ = {
@@ -1719,6 +1779,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
+				96346EFF2484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
 				0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */,
 				96888C1D2217DFE800479667 /* AddButton.swift in Sources */,
@@ -1762,6 +1823,7 @@
 				0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */,
 				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
 				96DDBDBC23C9EA2D007AB33B /* HabitCreationValuePickerView.swift in Sources */,
+				96346EF62484DC3D00A815F2 /* AchievementsScreen.swift in Sources */,
 				0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
@@ -1770,6 +1832,7 @@
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
+				96346EFC2484DFC100A815F2 /* AchievementViewModel.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
@@ -1781,6 +1844,7 @@
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
+				96A066B12483B76A00111BA2 /* AchievementsManager.swift in Sources */,
 				0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				961B95D2241CC101003EC992 /* HabitsHistoryCell.swift in Sources */,
 				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
@@ -1792,10 +1856,12 @@
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
+				96346EF2248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */,
 				0C06E95822EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
 				0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
+				96A066B42483B78900111BA2 /* Achievement.swift in Sources */,
 				0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
@@ -1803,6 +1869,7 @@
 				0CF7E5392147B21F0071DABD /* TodayGoalCell.swift in Sources */,
 				961AF5B223AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */,
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
+				96346EF92484DED300A815F2 /* AchievementCell.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
@@ -1895,16 +1962,19 @@
 				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
 				0CACF2D422241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */,
+				96346EF72484DC3D00A815F2 /* AchievementsScreen.swift in Sources */,
 				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
 				0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
+				96346EFD2484DFC100A815F2 /* AchievementViewModel.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
 				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
+				96346EF3248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
@@ -1924,6 +1994,7 @@
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
 				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
 				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,
+				96A066B22483B76A00111BA2 /* AchievementsManager.swift in Sources */,
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				96DDBDC123CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */,
 				0C06E95922EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
@@ -1952,8 +2023,11 @@
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
 				0C06E98722F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
+				96346F002484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
+				96346EFA2484DED300A815F2 /* AchievementCell.swift in Sources */,
+				96A066B52483B78900111BA2 /* Achievement.swift in Sources */,
 				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,

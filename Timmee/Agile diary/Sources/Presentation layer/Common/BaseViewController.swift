@@ -50,6 +50,10 @@ class BaseViewController: UIViewController {
         setupAppearance()
     }
     
+    @objc private func onTapDefaultCloseButton() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Screen
     
     var isVisible: Bool {
@@ -82,5 +86,16 @@ class BaseViewController: UIViewController {
     }
     
     func refresh() {}
+    
+    func setupCloseButton() {
+        let closeButton = UIBarButtonItem(
+            image: UIImage(named: "cross"),
+            style: .plain,
+            target: self,
+            action: #selector(onTapDefaultCloseButton)
+        )
+        
+        navigationItem.leftBarButtonItem = closeButton
+    }
     
 }

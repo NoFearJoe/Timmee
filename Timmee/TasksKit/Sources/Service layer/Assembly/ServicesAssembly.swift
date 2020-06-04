@@ -32,7 +32,9 @@ public final class ServicesAssembly {
     
     public lazy var goalsService: GoalsProvider & GoalsManager & GoalsObserverProvider = PrivateServicesAssembly.shared.goalsService
     
-    public lazy var diaryService: DiaryProvider & DiaryManager & DiaryObserverProvider = DiaryService()
+    public lazy var diaryService: DiaryProvider & DiaryManager & DiaryObserverProvider = PrivateServicesAssembly.shared.diaryService
+    
+    public lazy var achievementsService: AchievemntEntitiesManager & AchievementObserverProvider = PrivateServicesAssembly.shared.achievementsService
     
 }
 
@@ -47,6 +49,8 @@ public final class EntityServicesAssembly {
     public lazy var goalsService: GoalEntitiesBackgroundProvider = PrivateServicesAssembly.shared.goalsService
     
     public lazy var diaryService: DiaryEntitiesBackgroundProvider = PrivateServicesAssembly.shared.diaryService
+    
+    public lazy var achievementsService: AchievementEntitiesProvider = PrivateServicesAssembly.shared.achievementsService
     
 }
 
@@ -143,5 +147,11 @@ final class PrivateServicesAssembly {
         DiaryEntitiesProvider &
         DiaryEntitiesBackgroundProvider
         = DiaryService()
+    
+    lazy var achievementsService:
+        AchievemntEntitiesManager &
+        AchievementEntitiesProvider &
+        AchievementObserverProvider
+        = AchievementsService()
     
 }

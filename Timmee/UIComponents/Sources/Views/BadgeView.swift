@@ -30,31 +30,32 @@ open class BadgeView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupView()
-        self.setupBadgeLabel()
+        setupView()
+        setupBadgeLabel()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setupView()
-        self.setupBadgeLabel()
+        setupView()
+        setupBadgeLabel()
     }
     
     private func setupView() {
-        self.clipsToBounds = false
-        self.backgroundColor = .red
-        self.autoresizingMask = [.flexibleLeftMargin, .flexibleBottomMargin]
+        clipsToBounds = false
+        backgroundColor = .red
+        translatesAutoresizingMaskIntoConstraints = false
         configureShadow(radius: 4, opacity: 0.25, color: .black, offset: CGSize(width: 0, height: 2))
     }
     
     private func setupBadgeLabel() {
-        self.badgeLabel.frame = self.bounds
-        self.badgeLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        self.badgeLabel.clipsToBounds = true
-        self.badgeLabel.textAlignment = .center
-        self.badgeLabel.font = self.font
-        self.badgeLabel.textColor = self.titleColor
-        self.addSubview(self.badgeLabel)
+        badgeLabel.frame = bounds
+        badgeLabel.clipsToBounds = true
+        badgeLabel.textAlignment = .center
+        badgeLabel.font = font
+        badgeLabel.textColor = titleColor
+        badgeLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(badgeLabel)
+        [badgeLabel.top(), badgeLabel.bottom(), badgeLabel.leading(4), badgeLabel.trailing(4)].toSuperview()
     }
     
     open override func layoutSubviews() {

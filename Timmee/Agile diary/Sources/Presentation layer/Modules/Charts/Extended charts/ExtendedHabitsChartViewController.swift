@@ -96,7 +96,7 @@ private extension ExtendedHabitsChartViewController {
             let date = (startDate - i.asDays).startOfDay
             let repeatDay = DayUnit(weekday: date.weekday)
             let allHabits = habits.filter { $0.creationDate.startOfDay <= date && $0.dueDays.contains(repeatDay) }
-            let completedHabits = allHabits.filter { $0.doneDates.contains(where: { $0.isWithinSameDay(of: date) }) }.count
+            let completedHabits = allHabits.filter { $0.isDone(at: date) }.count
 
             let color: UIColor
             if completedHabits >= allHabits.count {

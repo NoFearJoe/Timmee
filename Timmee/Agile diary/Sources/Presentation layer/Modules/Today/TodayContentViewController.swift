@@ -307,6 +307,11 @@ private extension TodayContentViewController {
             onEntitiesCountChange: { [unowned self] count in
                 self.state = count == 0 ? .empty : .content
             },
+            onChanges: { changes in
+                guard !changes.isEmpty else { return }
+                
+                AchievementsManager.shared.updateAchievements()
+            },
             onBatchUpdatesCompleted: { [unowned self] in
                 self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? [])
             }
@@ -325,6 +330,11 @@ private extension TodayContentViewController {
             },
             onEntitiesCountChange: { [unowned self] count in
                 self.state = count == 0 ? .empty : .content
+            },
+            onChanges: { changes in
+                guard !changes.isEmpty else { return }
+                
+                AchievementsManager.shared.updateAchievements()
             },
             onBatchUpdatesCompleted: { [unowned self] in
                 self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? [])

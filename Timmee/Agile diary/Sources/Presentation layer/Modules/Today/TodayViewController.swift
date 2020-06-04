@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TasksKit
 import UIComponents
 import Synchronization
 
@@ -18,11 +19,14 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var pickDayButton: PickDayButton!
+    @IBOutlet private var achievementsButton: UIButton!
     @IBOutlet private var actionsButton: UIButton!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
     @IBOutlet private var backgroundImageView: UIImageView!
+    
+    private lazy var achievementsButtonController = TodayAchievementsButtonController(parent: self)
         
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
@@ -76,6 +80,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         progressBar.setProgress(0)
         createSprintButton.isHidden = true
         
+        achievementsButtonController.achievementsButton = achievementsButton
+        achievementsButtonController.achievementsButtonContainer = headerView
+        achievementsButtonController.setup()
+        
         habitsViewController.transitionHandler = self
         habitsViewController.progressListener = self
         goalsViewController.transitionHandler = self
@@ -85,6 +93,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         
         subscribeToSynchronizationCompletion()
         setupShowProVersionTracker()
+        achievementsButtonController.subscribeOnAchievementsUpdate()
         
         setSectionContainersVisible(section: currentSection)
         
@@ -127,6 +136,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         TrackersConfigurator.shared.showProVersionTracker?.commit()
+        
+        AchievementsManager.shared.updateAchievements()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

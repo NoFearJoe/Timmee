@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="8">
+    <entity name="AchievementEntity" representedClassName="AchievementEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="goalID" optional="YES" attributeType="String"/>
+        <attribute name="habitID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="receivingDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sprintID" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="DiaryEntryEntity" representedClassName="DiaryEntryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="attachment" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -157,6 +170,7 @@
         <memberEntity name="SubtaskEntity"/>
         <memberEntity name="LocallyDeletedEntity"/>
         <memberEntity name="DiaryEntryEntity"/>
+        <memberEntity name="AchievementEntity"/>
     </configuration>
     <configuration name="Scope">
         <memberEntity name="ListEntity"/>
@@ -179,5 +193,6 @@
         <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
         <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>
         <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="AchievementEntity" positionX="9" positionY="153" width="128" height="133"/>
     </elements>
 </model>

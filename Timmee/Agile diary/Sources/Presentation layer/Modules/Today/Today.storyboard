@@ -41,7 +41,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFn-kI-KNI" customClass="PickDayButton" customModule="Agile_diary_debug" customModuleProvider="target">
-                                                                <rect key="frame" x="139" y="9" width="66" height="22"/>
+                                                                <rect key="frame" x="153" y="8.5" width="24" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="24" id="eQ3-an-wTj"/>
                                                                     <constraint firstAttribute="width" constant="24" id="qEK-6o-KxS"/>
@@ -59,7 +59,6 @@
                                                             <constraint firstItem="YFn-kI-KNI" firstAttribute="centerY" secondItem="ePM-y5-lDE" secondAttribute="centerY" id="OdG-Wm-HGo"/>
                                                             <constraint firstAttribute="bottom" secondItem="ePM-y5-lDE" secondAttribute="bottom" id="gAa-OI-SMT"/>
                                                             <constraint firstItem="YFn-kI-KNI" firstAttribute="leading" secondItem="ePM-y5-lDE" secondAttribute="trailing" constant="12" id="o5N-cr-Ka7"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YFn-kI-KNI" secondAttribute="trailing" id="v9a-ga-ZeM"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Спринт #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBf-PW-p5z">
@@ -78,6 +77,17 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLB-lM-yd8">
+                                                <rect key="frame" x="283" y="24" width="40" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="1Ia-rz-RSi"/>
+                                                    <constraint firstAttribute="height" constant="40" id="9Jz-lN-eKV"/>
+                                                </constraints>
+                                                <state key="normal" image="achievements">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjR-Bh-1q4">
                                                 <rect key="frame" x="327" y="24" width="40" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,10 +104,13 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="fjR-Bh-1q4" firstAttribute="top" secondItem="flB-a1-GhC" secondAttribute="top" id="0lS-dK-WGd"/>
+                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="centerY" secondItem="xLB-lM-yd8" secondAttribute="centerY" id="GCj-Xt-iPD"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="GKQ-CW-JC5"/>
+                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="leading" secondItem="xLB-lM-yd8" secondAttribute="trailing" constant="4" id="VSg-xS-AWh"/>
                                             <constraint firstAttribute="trailing" secondItem="flB-a1-GhC" secondAttribute="trailing" constant="15" id="WHn-7I-pP6"/>
                                             <constraint firstAttribute="bottom" secondItem="flB-a1-GhC" secondAttribute="bottom" constant="8" id="ZRH-v5-V45"/>
                                             <constraint firstAttribute="trailing" secondItem="fjR-Bh-1q4" secondAttribute="trailing" constant="8" id="bHY-m8-YFQ"/>
+                                            <constraint firstItem="xLB-lM-yd8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YFn-kI-KNI" secondAttribute="trailing" constant="4" id="fNb-NK-InW"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="24" id="od8-Io-JHc"/>
                                         </constraints>
                                     </view>
@@ -169,6 +182,7 @@
                         <viewLayoutGuide key="safeArea" id="ibh-Jp-ctc"/>
                     </view>
                     <connections>
+                        <outlet property="achievementsButton" destination="xLB-lM-yd8" id="wFc-D8-baW"/>
                         <outlet property="actionsButton" destination="fjR-Bh-1q4" id="v4w-FU-XWE"/>
                         <outlet property="backgroundImageView" destination="kq5-QA-Okj" id="bpo-P0-sYV"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
@@ -248,6 +262,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="achievements" width="28" height="28"/>
         <image name="pickDayIcon" width="12" height="8"/>
         <image name="settings" width="20" height="20"/>
     </resources>
