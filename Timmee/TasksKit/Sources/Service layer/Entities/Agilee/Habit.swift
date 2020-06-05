@@ -272,7 +272,16 @@ extension Habit.Value: Equatable {
 extension Habit: Hashable {
     
     public static func ==(lhs: Habit, rhs: Habit) -> Bool {
-        return lhs.isEqual(to: rhs)
+        return lhs.id == rhs.id &&
+        lhs.title == rhs.title &&
+        lhs.note == rhs.note &&
+        lhs.link == rhs.link &&
+        lhs.value == rhs.value &&
+        lhs.dayTime == rhs.dayTime &&
+        lhs.notificationDate == rhs.notificationDate &&
+        lhs.repeatEndingDate == rhs.repeatEndingDate &&
+        lhs.dueDays == rhs.dueDays &&
+        lhs.doneDates == rhs.doneDates
     }
     
     public func hash(into hasher: inout Hasher) {
@@ -286,16 +295,7 @@ extension Habit: Hashable {
 extension Habit: CustomEquatable {
     
     public func isEqual(to item: Habit) -> Bool {
-        return id == item.id &&
-            title == item.title &&
-            note == item.note &&
-            link == item.link &&
-            value == item.value &&
-            dayTime == item.dayTime &&
-            notificationDate == item.notificationDate &&
-            repeatEndingDate == item.repeatEndingDate &&
-            dueDays == item.dueDays &&
-            doneDates == item.doneDates
+        id == item.id
     }
     
 }

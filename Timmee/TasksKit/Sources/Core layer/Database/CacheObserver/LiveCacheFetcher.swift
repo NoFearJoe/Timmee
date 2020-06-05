@@ -113,8 +113,8 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                 }
             } else {
                 let diff = Dwifft.diff(lhs: self.currentSectionedValues, rhs: sectionedValues)
-                let coreDataChanges = diff.map(self.mapDwifftStepToCoreDataChange)
-//                let coreDataChanges = self.mapStepsToChanges(from: diff)
+//                let coreDataChanges = diff.map(self.mapDwifftStepToCoreDataChange)
+                let coreDataChanges = self.mapStepsToChanges(from: diff)
                 DispatchQueue.main.async {
                     self.subscriber?.prepareToProcessChanges()
                     self.currentSectionedEntities = sectionedEntities

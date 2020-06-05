@@ -73,7 +73,12 @@ public class Goal: Copyable {
 extension Goal: Hashable {
     
     public static func ==(lhs: Goal, rhs: Goal) -> Bool {
-        return lhs.isEqual(to: rhs)
+        lhs.id == rhs.id &&
+            lhs.title == rhs.title &&
+            lhs.note == rhs.note &&
+            lhs.isDone == rhs.isDone &&
+            lhs.stages == rhs.stages &&
+            lhs.habits == rhs.habits
     }
     
     public func hash(into hasher: inout Hasher) {
@@ -85,12 +90,7 @@ extension Goal: Hashable {
 extension Goal: CustomEquatable {
     
     public func isEqual(to item: Goal) -> Bool {
-        return id == item.id &&
-            title == item.title &&
-            note == item.note &&
-            isDone == item.isDone &&
-            stages == item.stages &&
-            habits == item.habits
+        id == item.id
     }
     
 }

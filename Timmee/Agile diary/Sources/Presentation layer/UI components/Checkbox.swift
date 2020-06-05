@@ -15,6 +15,7 @@ class Checkbox: UIView {
     var isChecked: Bool = false {
         didSet {
             setNeedsDisplay()
+            
             if !isUserInteractionEnabled {
                 didChangeCkeckedState?(isChecked)
             }
@@ -46,6 +47,11 @@ class Checkbox: UIView {
         addTapGestureRecognizer()
     }
     
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let area = bounds.insetBy(dx: -8, dy: -8)
+        return area.contains(point)
+    }
+    
     fileprivate func addTapGestureRecognizer() {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
         addGestureRecognizer(recognizer)
@@ -58,7 +64,7 @@ class Checkbox: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+                
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
         if isChecked {
@@ -79,12 +85,6 @@ class Checkbox: UIView {
             context.strokeEllipse(in: rect.insetBy(dx: 1, dy: 1))
             
             context.setFillColor(uncheckedColor.cgColor)
-            
-//            let image = UIImage(named: "checkmark")!
-//            let imageInset = rect.width * 0.25
-//            image.draw(in: rect.insetBy(dx: imageInset, dy: imageInset),
-//                       blendMode: CGBlendMode.normal,
-//                       alpha: 1)
         }
     }
     

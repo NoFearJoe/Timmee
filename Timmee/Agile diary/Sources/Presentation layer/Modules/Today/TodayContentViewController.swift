@@ -69,6 +69,14 @@ final class TodayContentViewController: UIViewController, AlertInput {
     private let targetCellActionsProvider = TodayGoalCellSwipeActionsProvider()
     private let habitCellActionsProvider = TodayHabitCellSwipeActionsProvider()
     
+    private let feedbackGenerator: UIImpactFeedbackGenerator = {
+        if #available(iOS 13.0, *) {
+            return UIImpactFeedbackGenerator(style: .soft)
+        } else {
+            return UIImpactFeedbackGenerator(style: .light)
+        }
+    }()
+    
     private let section: SprintSection
     
     init(section: SprintSection) {
@@ -77,6 +85,8 @@ final class TodayContentViewController: UIViewController, AlertInput {
         super.init(nibName: nil, bundle: nil)
         
         setupCurrentCacheObserver()
+        
+        feedbackGenerator.prepare()
     }
     
     required init?(coder: NSCoder) { fatalError() }
@@ -157,6 +167,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.setHoriznotalInsets(15)
                 cell.delegate = habitCellActionsProvider
                 cell.onChangeCheckedState = { [unowned self] isChecked in
+                    self.feedbackGenerator.impactOccurred()
                     habit.setDone(isChecked, at: self.currentDate)
                     self.habitsService.updateHabit(habit, sprintID: self.sprintID, goalID: nil, completion: { _ in })
                 }
@@ -169,6 +180,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.delegate = targetCellActionsProvider
                 
                 cell.onChangeHabitCheckedState = { [unowned self] isChecked, habit in
+                    self.feedbackGenerator.impactOccurred()
                     habit.setDone(isChecked, at: self.currentDate)
                     self.habitsService.updateHabit(habit, completion: { _ in })
                 }
@@ -456,6 +468,8 @@ private extension TodayContentViewController {
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
             goal.isDone = !goal.isDone
             self.goalsService.updateGoal(goal, sprintID: self.sprintID, completion: { _ in })
+            
+            self.feedbackGenerator.impactOccurred()
         }
         targetCellActionsProvider.onEdit = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }

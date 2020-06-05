@@ -43,27 +43,31 @@ public final class TableViewCacheAdapter: TableViewManageble, CacheSubscriber {
     public func processChanges(_ changes: [CoreDataChange], completion: @escaping () -> Void) {
         guard let tableView = tableView else { return }
         
+        func performChange(_ change: CoreDataChange) {
+            switch change {
+            case let .sectionInsertion(index):
+                tableView.insertSections(IndexSet(integer: index), with: .fade)
+            case let .sectionDeletion(index):
+                tableView.deleteSections(IndexSet(integer: index), with: .fade)
+            case let .insertion(indexPath):
+                tableView.insertRows(at: [indexPath], with: .fade)
+            case let .deletion(indexPath):
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            case let .update(indexPath):
+                tableView.reloadRows(at: [indexPath], with: .none)
+            case let .move(fromIndexPath, toIndexPath):
+                if tableView.numberOfSections - 1 < toIndexPath.section {
+                    tableView.deleteRows(at: [fromIndexPath], with: .fade)
+                } else {
+                    tableView.deleteRows(at: [fromIndexPath], with: .fade)
+                    tableView.insertRows(at: [toIndexPath], with: .fade)
+                }
+            }
+        }
+        
         func performChanges() {
             changes.forEach { change in
-                switch change {
-                case let .sectionInsertion(index):
-                    tableView.insertSections(IndexSet(integer: index), with: .fade)
-                case let .sectionDeletion(index):
-                    tableView.deleteSections(IndexSet(integer: index), with: .fade)
-                case let .insertion(indexPath):
-                    tableView.insertRows(at: [indexPath], with: .fade)
-                case let .deletion(indexPath):
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                case let .update(indexPath):
-                    tableView.reloadRows(at: [indexPath], with: .none)
-                case let .move(fromIndexPath, toIndexPath):
-                    if tableView.numberOfSections - 1 < toIndexPath.section {
-                        tableView.deleteRows(at: [fromIndexPath], with: .fade)
-                    } else {
-                        tableView.deleteRows(at: [fromIndexPath], with: .fade)
-                        tableView.insertRows(at: [toIndexPath], with: .fade)
-                    }
-                }
+                performChange(change)
             }
         }
         
