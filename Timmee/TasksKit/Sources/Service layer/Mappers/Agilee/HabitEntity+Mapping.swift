@@ -17,7 +17,7 @@ public extension HabitEntity {
         link = entity.link
         value = entity.value?.asString
         dayTime = entity.dayTime?.rawValue
-        notificationDate = entity.notificationDate
+        notificationsTime = entity.notificationsTime.map { $0.string }.joined(separator: ",")
         repeatEndingDate = entity.repeatEndingDate
         dueDays = entity.dueDays.map { $0.string }.joined(separator: ",")
         doneDates = entity.doneDates as NSArray

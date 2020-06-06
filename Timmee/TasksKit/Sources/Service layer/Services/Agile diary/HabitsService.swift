@@ -24,7 +24,6 @@ public protocol HabitsManager: class {
     func updateHabits(_ habits: [Habit], sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void)
     func removeHabit(_ habit: Habit, completion: @escaping (Bool) -> Void)
     func removeHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void)
-    func updateHabitsNotificationDates(completion: @escaping () -> Void)
     func setRepeatEndingDateForAllHabitsIfNeeded(completion: @escaping () -> Void)
 }
 
@@ -182,20 +181,6 @@ extension HabitsService: HabitsManager {
             save()
         }) { isSuccess in
             DispatchQueue.main.async { completion(isSuccess) }
-        }
-    }
-    
-    public func updateHabitsNotificationDates(completion: @escaping () -> Void) {
-        DispatchQueue.global().async {
-            let habitsToUpdate = self.fetchHabitEntitiesToUpdateNotificationDateInBackground()
-            let updatedHabits = habitsToUpdate.map { entity -> Habit in
-                let habit = Habit(habit: entity)
-                habit.notificationDate = habit.nextNotificationDate
-                return habit
-            }
-            self.updateHabits(updatedHabits, completion: { _ in
-                completion()
-            })
         }
     }
     

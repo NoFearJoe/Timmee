@@ -26,7 +26,7 @@ final class NumberPicker: UIView {
     
     var shouldAddZero = true
     
-    private var currentNumber: Int = -1 {
+    var currentNumber: Int = -1 {
         didSet {
             collectionView.reloadData()
         }

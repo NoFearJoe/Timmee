@@ -21,11 +21,20 @@ public class Habit: Copyable {
     public var link: String
     public var value: Value?
     public var dayTime: DayTime?
-    public var notificationDate: Date?
     public var repeatEndingDate: Date?
     public var dueDays: [DayUnit]
     public var doneDates: [Date]
     public let creationDate: Date
+    
+    public var notificationsTime: [Time] {
+        get {
+            _notificationsTime
+        }
+        set {
+            _notificationsTime = newValue.unique.sorted()
+        }
+    }
+    private var _notificationsTime: [Time] = []
     
     public init(habit: HabitEntity) {
         id = habit.id!
@@ -34,11 +43,15 @@ public class Habit: Copyable {
         link = habit.link ?? ""
         value = habit.value.flatMap(Value.init(string:))
         dayTime = habit.dayTime.flatMap(DayTime.init(rawValue:))
-        notificationDate = habit.notificationDate
         repeatEndingDate = habit.repeatEndingDate as Date?
         dueDays = habit.dueDays?.split(separator: ",").map { DayUnit(string: String($0)) } ?? []
         doneDates = habit.doneDates as? [Date] ?? []
         creationDate = habit.creationDate! as Date
+        
+        let timeFromNotificationDate = (habit.notificationDate?.asTimeString).flatMap { Time(string: $0) }
+        notificationsTime = habit.notificationsTime?.split(separator: ",").compactMap { Time(string: String($0)) }
+            ?? timeFromNotificationDate.map { [$0] }
+            ?? []
     }
     
     public init(id: String,
@@ -47,7 +60,7 @@ public class Habit: Copyable {
                 link: String,
                 value: Value?,
                 dayTime: DayTime?,
-                notificationDate: Date?,
+                notificationsTime: [Time],
                 repeatEndingDate: Date?,
                 dueDays: [DayUnit],
                 doneDates: [Date],
@@ -58,11 +71,11 @@ public class Habit: Copyable {
         self.link = link
         self.value = value
         self.dayTime = dayTime
-        self.notificationDate = notificationDate
         self.repeatEndingDate = repeatEndingDate
         self.dueDays = dueDays
         self.doneDates = doneDates
         self.creationDate = creationDate
+        self.notificationsTime = notificationsTime
     }
     
     public convenience init(id: String,
@@ -73,7 +86,7 @@ public class Habit: Copyable {
                   link: "",
                   value: nil,
                   dayTime: .duringTheDay,
-                  notificationDate: nil,
+                  notificationsTime: [],
                   repeatEndingDate: nil,
                   dueDays: [],
                   doneDates: [],
@@ -99,7 +112,7 @@ public class Habit: Copyable {
                   link: link ?? "",
                   value: value,
                   dayTime: dayTime,
-                  notificationDate: nil,
+                  notificationsTime: [],
                   repeatEndingDate: nil,
                   dueDays: dueDays,
                   doneDates: [],
@@ -113,7 +126,7 @@ public class Habit: Copyable {
                      link: link,
                      value: value,
                      dayTime: dayTime,
-                     notificationDate: notificationDate,
+                     notificationsTime: notificationsTime,
                      repeatEndingDate: repeatEndingDate,
                      dueDays: dueDays,
                      doneDates: doneDates,
@@ -121,6 +134,15 @@ public class Habit: Copyable {
     }
     
     public var nextNotificationDate: Date? {
+        let now = Time(Date().hours, Date().minutes)
+        let closestTime = notificationsTime
+            .filter { $0 > now }
+            .min { $0 < $1 }
+        
+        var notificationDate = Date()
+        notificationDate => (closestTime?.hours ?? 0).asHours
+        notificationDate => (closestTime?.minutes ?? 0).asMinutes
+        
         return getNextRepeatDate(of: notificationDate)
     }
     
@@ -159,8 +181,6 @@ public class Habit: Copyable {
     public var calculatedDayTime: DayTime {
         if let dayTime = dayTime {
             return dayTime
-        } else if let notificationDate = notificationDate {
-            return DayTime(hours: notificationDate.hours)
         } else {
             return .duringTheDay
         }
@@ -278,7 +298,7 @@ extension Habit: Hashable {
         lhs.link == rhs.link &&
         lhs.value == rhs.value &&
         lhs.dayTime == rhs.dayTime &&
-        lhs.notificationDate == rhs.notificationDate &&
+        lhs.notificationsTime == rhs.notificationsTime &&
         lhs.repeatEndingDate == rhs.repeatEndingDate &&
         lhs.dueDays == rhs.dueDays &&
         lhs.doneDates == rhs.doneDates

@@ -20,6 +20,10 @@ protocol NotificationTimePickerOutput: class {
 
 final class NotificationTimePicker: UIViewController {
     
+    public var time: Time {
+        Time(hourPicker.currentNumber, minutePicker.currentNumber)
+    }
+    
     @IBOutlet fileprivate var hourPicker: NumberPicker!
     @IBOutlet fileprivate var minutePicker: NumberPicker!
     
@@ -67,10 +71,10 @@ extension NotificationTimePicker: NotificationTimePickerInput {
     
 }
 
-extension NotificationTimePicker {
+extension NotificationTimePicker: EditorInput {
     
     var requiredHeight: CGFloat {
-        return 112
+        96
     }
     
 }

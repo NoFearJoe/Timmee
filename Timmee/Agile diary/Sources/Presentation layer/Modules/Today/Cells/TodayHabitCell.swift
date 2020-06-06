@@ -64,12 +64,12 @@ final class TodayHabitCell: SwipeTableViewCell {
         }
         
         // в 5:00
-        if let notificationDate = habit.notificationDate {
-            attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString,
+        if !habit.notificationsTime.isEmpty {
+            attributedSubtitle.append(NSAttributedString(string: habit.notificationsTime.readableString,
                                                          attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         }
         if !habit.link.trimmed.isEmpty {
-            if habit.notificationDate != nil {
+            if !habit.notificationsTime.isEmpty {
                 attributedSubtitle.append(NSAttributedString(string: ", ",
                                                              attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
             }

@@ -68,7 +68,7 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
         contentView.addView(dayTimeContainer)
         
         // reminder
-        if let notificationDate = habit.notificationDate {
+        if !habit.notificationsTime.isEmpty {
             let emptyView2 = UIView()
             emptyView2.backgroundColor = AppTheme.current.colors.foregroundColor
             emptyView2.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -77,8 +77,8 @@ final class HabitDetailsProvider: DetailModuleProvider, SprintInteractorTrait {
             let reminderLabel = UILabel()
             reminderLabel.font = AppTheme.current.fonts.regular(24)
             reminderLabel.textColor = AppTheme.current.colors.activeElementColor
-            reminderLabel.text = notificationDate.asTimeString
-            let notificationContainer = DetailView(title: "reminder".localized, detailView: reminderLabel)
+            reminderLabel.text = habit.notificationsTime.readableString
+            let notificationContainer = DetailView(title: "reminders".localized, detailView: reminderLabel)
             notificationContainer.titleLabel.font = AppTheme.current.fonts.regular(14)
             notificationContainer.titleLabel.textColor = AppTheme.current.colors.inactiveElementColor
             contentView.addView(notificationContainer)

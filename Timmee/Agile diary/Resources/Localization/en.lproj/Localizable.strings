@@ -12,6 +12,7 @@
 "week" = "Week";
 
 "reminder" = "Reminder";
+"reminders" = "Reminders";
 "due_days" = "Due days";
 "link" = "Link";
 "link_hint" = "As a link, you can specify any online resource";

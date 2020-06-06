@@ -295,6 +295,8 @@
 		96346EFD2484DFC100A815F2 /* AchievementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */; };
 		96346EFF2484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */; };
 		96346F002484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */; };
+		96346F02248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */; };
+		96346F03248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */; };
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
 		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
@@ -561,6 +563,7 @@
 		96346EF82484DED300A815F2 /* AchievementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCell.swift; sourceTree = "<group>"; };
 		96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModel.swift; sourceTree = "<group>"; };
 		96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModelsMapper.swift; sourceTree = "<group>"; };
+		96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationNotificationsListView.swift; sourceTree = "<group>"; };
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
@@ -1455,6 +1458,7 @@
 				96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */,
 				96DDBDBB23C9EA2D007AB33B /* HabitCreationValuePickerView.swift */,
 				96DDBDBF23CA2FA9007AB33B /* HabitCreationDayTimePicker.swift */,
+				96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1779,6 +1783,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
+				96346F02248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */,
 				96346EFF2484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
 				0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */,
@@ -1932,6 +1937,7 @@
 				0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */,
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
 				0C8CA9DE21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
+				96346F03248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */,
 				0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,

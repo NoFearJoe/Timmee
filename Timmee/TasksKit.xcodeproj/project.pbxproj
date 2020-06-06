@@ -55,6 +55,7 @@
 		0CE4755D2175DA1E005FD8CC /* GoalsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE4755C2175DA1E005FD8CC /* GoalsService.swift */; };
 		9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627A20A353D000B23EDF /* AudioPlayerService.swift */; };
 		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
+		96346F06248AAB0200A815F2 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F05248AAB0200A815F2 /* Time.swift */; };
 		9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9686322021D91637004B13D1 /* LiveCacheFetcher.swift */; };
 		96A066B72483C8AF00111BA2 /* AchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B62483C8AF00111BA2 /* AchievementsService.swift */; };
 		96BE838E217511D700CDECAF /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838D217511D700CDECAF /* Goal.swift */; };
@@ -121,6 +122,7 @@
 		960164952228676700E30580 /* Timmee4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee4.xcdatamodel; sourceTree = "<group>"; };
 		9606627A20A353D000B23EDF /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		961656052095FDD9001A8387 /* AudioRecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordService.swift; sourceTree = "<group>"; };
+		96346F05248AAB0200A815F2 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		963972052481307800BF141D /* Timmee8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee8.xcdatamodel; sourceTree = "<group>"; };
 		96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
 		9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee5.xcdatamodel; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			children = (
 				0CE0181C2077B2BD00633EFF /* Database */,
 				0CE018262077B2BD00633EFF /* Enums */,
+				96346F04248AAAEF00A815F2 /* Types */,
 			);
 			path = "Core layer";
 			sourceTree = "<group>";
@@ -364,6 +367,14 @@
 				96A066B62483C8AF00111BA2 /* AchievementsService.swift */,
 			);
 			path = "Agile diary";
+			sourceTree = "<group>";
+		};
+		96346F04248AAAEF00A815F2 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				96346F05248AAB0200A815F2 /* Time.swift */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 		96BE838C217511C500CDECAF /* Agilee */ = {
@@ -552,6 +563,7 @@
 				0CE018632077B2BD00633EFF /* TaskEntity+Mapping.swift in Sources */,
 				0CE0185C2077B2BD00633EFF /* List.swift in Sources */,
 				0C86E4DF22DC552200DA7B15 /* CacheObserver.swift in Sources */,
+				96346F06248AAB0200A815F2 /* Time.swift in Sources */,
 				96BE8392217511F400CDECAF /* Sprint.swift in Sources */,
 				0CE0185E2077B2BD00633EFF /* Task.swift in Sources */,
 				0CE018552077B2BD00633EFF /* ListsService.swift in Sources */,

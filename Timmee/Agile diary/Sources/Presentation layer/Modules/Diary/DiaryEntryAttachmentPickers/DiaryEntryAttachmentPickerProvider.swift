@@ -49,7 +49,7 @@ final class DiaryEntryAttachmentPickerProvider: NSObject, DetailModuleProvider {
         case .habit:
             let habits = habitsService.searchHabits(searchText: searchText)
             entities = habits
-            dataSource = habits.map { ($0.title, $0.notificationDate?.asTimeString) }
+            dataSource = habits.map { ($0.title, $0.notificationsTime.readableString) }
         case .goal:
             let goals = goalsService.searchGoals(searchText: searchText)
             entities = goals

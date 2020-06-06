@@ -25,7 +25,9 @@ public struct TimeRounder {
             roundedMinutes += 5
         }
         
-        return min(60, max(0, roundedMinutes))
+        let minutes = min(60, max(0, roundedMinutes))
+        
+        return minutes == 60 ? 0 : minutes
     }
     
 }

@@ -56,10 +56,10 @@ final class HabitsHistoryCell: SwipeTableViewCell {
         attributedSubtitle.append(NSAttributedString(string: habit.calculatedDayTime.localizedAt.lowercased() + " ",
                                                      attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
         
-        if let notificationDate = habit.notificationDate {
+        if !habit.notificationsTime.isEmpty {
             attributedSubtitle.append(NSAttributedString(string: "at".localized + " ",
                                                          attributes: [.foregroundColor: AppTheme.current.colors.inactiveElementColor]))
-            attributedSubtitle.append(NSAttributedString(string: notificationDate.asTimeString,
+            attributedSubtitle.append(NSAttributedString(string: habit.notificationsTime.readableString,
                                                          attributes: [.foregroundColor: AppTheme.current.colors.mainElementColor]))
         }
         subtitleLabel.attributedText = attributedSubtitle

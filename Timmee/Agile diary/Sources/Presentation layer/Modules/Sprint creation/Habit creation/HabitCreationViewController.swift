@@ -28,10 +28,11 @@ final class HabitCreationViewController: BaseViewController {
     private let dayTimePicker = HabitCreationDayTimePicker()
     
     private let notificationContainer = SectionContainer()
-    private let notificationTimeCheckbox = Checkbox()
-    private let notificationTimePicker = UIStoryboard(name: "SprintCreation", bundle: nil)
-        .instantiateViewController(withIdentifier: "NotificationTimePicker")
-        as! NotificationTimePicker
+    private let notificationTimeAddButton = FloatingButton()
+    private let notificationsListView = HabitCreationNotificationsListView()
+    
+    private let notificationTimePickerContainer = ViewControllersFactory.editorContainer
+    private let notificationTimePicker = ViewControllersFactory.notificationTimePicker
     
     private let linkContainer = SectionContainer()
     private let linkField = UITextField()
@@ -50,14 +51,12 @@ final class HabitCreationViewController: BaseViewController {
     var editingMode: GoalAndHabitEditingMode = .full
     
     private var lastSelectedValue: Habit.Value?
-    private var lastSelectedNotificationTime: Date?
     
     func setHabit(_ habit: Habit?, sprintID: String, goalID: String?) {
         self.habit = habit?.copy ?? interactor.createHabit()
         self.sprintID = sprintID
         self.goalID = goalID
         self.lastSelectedValue = self.habit.value
-        self.lastSelectedNotificationTime = self.habit.notificationDate ?? Date.now
     }
     
     func setEditingMode(_ mode: GoalAndHabitEditingMode) {
@@ -111,6 +110,11 @@ final class HabitCreationViewController: BaseViewController {
         linkField.textColor = AppTheme.current.colors.activeElementColor
         linkField.font = AppTheme.current.fonts.medium(17)
         linkField.keyboardAppearance = AppTheme.current.keyboardStyleForTheme
+        notificationTimeAddButton.colors = FloatingButton.Colors(
+            tintColor: .white,
+            backgroundColor: AppTheme.current.colors.mainElementColor,
+            secondaryBackgroundColor: AppTheme.current.colors.inactiveElementColor
+        )
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -157,17 +161,17 @@ final class HabitCreationViewController: BaseViewController {
     
 }
 
-extension HabitCreationViewController: NotificationTimePickerOutput {
+extension HabitCreationViewController: EditorContainerOutput {
     
-    func didChangeHours(to hours: Int) {
-        habit.notificationDate => hours.asHours
-        lastSelectedNotificationTime => hours.asHours
-        dayTimePicker.setDayTime(habit.calculatedDayTime)
+    func editingCancelled(viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
     }
     
-    func didChangeMinutes(to minutes: Int) {
-        habit.notificationDate => minutes.asMinutes
-        lastSelectedNotificationTime => minutes.asMinutes
+    func editingFinished(viewController: UIViewController) {
+        habit.notificationsTime.append(notificationTimePicker.time)
+        updateNotificationTime()
+        
+        viewController.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -209,14 +213,13 @@ private extension HabitCreationViewController {
     
     func updateUI(habit: Habit) {
         titleField.textView.text = habit.title
-        notificationTimeCheckbox.isChecked = habit.notificationDate != nil
         valueCheckbox.isChecked = habit.value != nil
         updateValueLabel()
         updateNotificationTime()
         updateDayButtons()
         linkField.text = habit.link
         updateDoneButtonState()
-        setNotificationTimePickerVisible(habit.notificationDate != nil, animated: false)
+        setNotificationTimePickerVisible(!habit.notificationsTime.isEmpty, animated: false)
         setValuePickerVisible(habit.value != nil, animated: false)
         dayTimePicker.setDayTime(habit.calculatedDayTime)
     }
@@ -226,9 +229,8 @@ private extension HabitCreationViewController {
     }
     
     func updateNotificationTime() {
-        notificationTimePicker.setHours(habit.notificationDate?.hours ?? lastSelectedNotificationTime?.hours ?? 0)
-        notificationTimePicker.setMinutes(habit.notificationDate?.minutes ?? lastSelectedNotificationTime?.minutes ?? 0)
-        notificationTimePicker.view.isUserInteractionEnabled = habit.notificationDate != nil // TODO: ???
+        setNotificationTimePickerVisible(!habit.notificationsTime.isEmpty, animated: false)
+        notificationsListView.reload(with: habit.notificationsTime.map { $0.string })
     }
     
     func setupDoneButton() {
@@ -294,13 +296,15 @@ private extension HabitCreationViewController {
         stackViewController.setChild(dayTimeContainer, at: 2)
         
         //reminder
+        notificationsListView.onTapDeleteButton = { [unowned self] index in
+            self.habit.notificationsTime.remove(at: index)
+            self.updateNotificationTime()
+        }
         notificationContainer.configure(
-            title: "reminder".localized,
-            content: notificationTimePicker.view,
-            actionView: notificationTimeCheckbox
+            title: "reminders".localized,
+            content: notificationsListView,
+            actionView: notificationTimeAddButton
         )
-        notificationTimePicker.view.width(96)
-        notificationTimePicker.view.height(96)
         stackViewController.setChild(notificationContainer, at: 3)
         
         // link
@@ -314,17 +318,24 @@ private extension HabitCreationViewController {
     }
     
     func setupNotificationCheckbox() {
-        notificationTimeCheckbox.width(32)
-        notificationTimeCheckbox.height(32)
-        notificationTimeCheckbox.backgroundColor = .clear
-        notificationTimeCheckbox.didChangeCkeckedState = { [unowned self] isChecked in
-            self.habit.notificationDate = isChecked ? self.lastSelectedNotificationTime ?? Date.now : nil
-            if self.habit.notificationDate != nil {
-                self.lastSelectedNotificationTime = self.habit.notificationDate
-            }
-            self.updateNotificationTime()
-            self.setNotificationTimePickerVisible(isChecked, animated: true)
-        }
+        notificationTimeAddButton.setImage(UIImage(named: "plus"), for: .normal)
+        notificationTimeAddButton.width(32)
+        notificationTimeAddButton.height(32)
+        notificationTimeAddButton.addTarget(self, action: #selector(onTapNotificationTimeButton), for: .touchUpInside)
+    }
+    
+    @objc func onTapNotificationTimeButton() {
+        showNotificationTimePicker(time: Time(Date.now.hours, Date.now.minutes))
+    }
+    
+    func showNotificationTimePicker(time: Time) {
+        notificationTimePickerContainer.output = self
+        notificationTimePickerContainer.loadViewIfNeeded()
+        notificationTimePicker.loadViewIfNeeded()
+        notificationTimePickerContainer.setViewController(notificationTimePicker)
+        notificationTimePicker.setHours(time.hours)
+        notificationTimePicker.setMinutes(time.minutes)
+        present(notificationTimePickerContainer, animated: true)
     }
     
     func setupValueCheckbox() {

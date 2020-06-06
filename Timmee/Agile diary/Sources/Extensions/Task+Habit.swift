@@ -18,7 +18,7 @@ extension Habit {
                   link: "",
                   value: nil,
                   dayTime: .duringTheDay,
-                  notificationDate: nil,
+                  notificationsTime: [],
                   repeatEndingDate: nil,
                   dueDays: DayUnit.all,
                   doneDates: [],

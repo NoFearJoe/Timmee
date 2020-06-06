@@ -44,6 +44,7 @@
         <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notificationsTime" optional="YES" attributeType="String"/>
         <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="String"/>
@@ -182,9 +183,10 @@
         <memberEntity name="LocallyDeletedEntity"/>
     </configuration>
     <elements>
+        <element name="AchievementEntity" positionX="9" positionY="153" width="128" height="133"/>
         <element name="DiaryEntryEntity" positionX="9" positionY="153" width="128" height="135"/>
         <element name="GoalEntity" positionX="0" positionY="0" width="128" height="193"/>
-        <element name="HabitEntity" positionX="0" positionY="0" width="128" height="268"/>
+        <element name="HabitEntity" positionX="0" positionY="0" width="128" height="283"/>
         <element name="ListEntity" positionX="0" positionY="0" width="128" height="165"/>
         <element name="LocallyDeletedEntity" positionX="9" positionY="153" width="128" height="75"/>
         <element name="SmartListEntity" positionX="0" positionY="0" width="128" height="75"/>
@@ -193,6 +195,5 @@
         <element name="TagEntity" positionX="0" positionY="0" width="128" height="105"/>
         <element name="TaskEntity" positionX="0" positionY="0" width="128" height="405"/>
         <element name="TimeTemplateEntity" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="AchievementEntity" positionX="9" positionY="153" width="128" height="133"/>
     </elements>
 </model>
