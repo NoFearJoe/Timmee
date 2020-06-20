@@ -52,7 +52,7 @@ final class TodayGoalCell: SwipeTableViewCell {
         titleLabel.text = goal.title
         
         let habitsForCurrentDate = goal.habits.filter {
-            $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate
+            $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate && !$0.isDone(at: currentDate)
         }
         
         habitsTitleLabel.isHidden = habitsForCurrentDate.isEmpty
@@ -101,10 +101,7 @@ final class TodayGoalCell: SwipeTableViewCell {
             $0.removeFromSuperview()
         }
         
-        habits
-            .sorted { !$0.isDone(at: currentDate) && $1.isDone(at: currentDate) }
-            .prefix(3)
-            .forEach { habit in
+        habits.prefix(3).forEach { habit in
             let stageView = StageView.loadedFromNib()
             
             stageView.title = habit.title

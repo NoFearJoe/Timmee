@@ -117,8 +117,10 @@ final class TodayContentViewController: UIViewController, AlertInput {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         setupPlaceholderAppearance()
         setupCurrentCacheObserver()
+        view.bringSubviewToFront(createButton)
     }
     
     func updateAppearance() {
