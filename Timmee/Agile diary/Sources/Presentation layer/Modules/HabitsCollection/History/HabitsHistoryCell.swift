@@ -85,6 +85,7 @@ final class HabitsHistoryCell: SwipeTableViewCell {
         subtitleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         
         checkbox.backgroundColor = .clear
+        checkbox.isUserInteractionEnabled = false
     }
     
     private func setupLayout() {

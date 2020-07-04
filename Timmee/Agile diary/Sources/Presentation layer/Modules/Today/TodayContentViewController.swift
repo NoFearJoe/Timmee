@@ -521,7 +521,7 @@ private extension TodayContentViewController {
         contentView.separatorStyle = .none
         contentView.delaysContentTouches = false
         
-        contentView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        contentView.backgroundColor = .clear
         
         contentView.register(
             TodayHabitCell.self,
