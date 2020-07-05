@@ -11,10 +11,6 @@ import TasksKit
 import UIComponents
 import Synchronization
 
-protocol TodayViewSectionProgressListener: class {
-    func didChangeProgress(for section: SprintSection, to progress: CGFloat)
-}
-
 final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
     @IBOutlet private var headerView: LargeHeaderView!
@@ -102,6 +98,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
                 self?.setupBackgroundImage()
             }
         }
+        
+        SiriIntentsManager.shared.donateTodaysHabitsIntent()
     }
     
     override func refresh() {

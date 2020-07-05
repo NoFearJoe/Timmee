@@ -6,7 +6,7 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
-import Foundation
+import TasksKit
 
 // TODO: Отмена обновления ачивок при повторном запросе обновления
 

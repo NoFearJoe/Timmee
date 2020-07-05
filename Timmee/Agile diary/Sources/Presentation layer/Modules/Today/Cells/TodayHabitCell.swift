@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TasksKit
 import SwipeCellKit
 import UIComponents
 
@@ -15,6 +16,8 @@ final class TodayHabitCell: SwipeTableViewCell {
     static let identifier = "TodayHabitCell"
     
     private let checkbox = Checkbox()
+    
+    private var checkboxWidthConstraint: NSLayoutConstraint!
     
     private let containerView = UIView()
     private let contentStackView = UIStackView()
@@ -95,6 +98,13 @@ final class TodayHabitCell: SwipeTableViewCell {
         titleLabel.font = isFlat ? AppTheme.current.fonts.regular(16) : AppTheme.current.fonts.medium(18)
     }
     
+    func setCheckboxVisible(_ isVisible: Bool) {
+        checkbox.isHidden = !isVisible
+        
+        checkboxWidthConstraint.constant = isVisible ? 24 : 0
+        spacingBetweenCheckboxAndContentConstraint.constant = isVisible ? 8 : 0
+    }
+    
     private func setupAppearance() {
         containerView.backgroundColor = AppTheme.current.colors.foregroundColor
         
@@ -129,7 +139,7 @@ private extension TodayHabitCell {
     }
     
     func setupLayout() {
-        checkbox.width(24)
+        checkboxWidthConstraint = checkbox.width(24)
         checkbox.height(24)
         leadingInsetConstraint = checkbox.leading(15).toSuperview()
         [checkbox.centerY()].toSuperview()

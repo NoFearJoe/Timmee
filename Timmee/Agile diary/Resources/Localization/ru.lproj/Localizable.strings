@@ -368,3 +368,7 @@
 "achievement_done_all_goals" = "Достигнуты все цели в спринте";
 "achievement_done_all_tasks_in_a_sprint" = "Выполнены все привычки и цели в спринте";
 "achievement_done_first_sprint" = "Завершен первый спринт";
+
+// Shortcuts
+
+"todays_habits_suggestion" = "Привычки на сегодня";

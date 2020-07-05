@@ -14,6 +14,7 @@ import Authorization
 import Synchronization
 import Firebase
 import FBSDKCoreKit
+import Intents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -368,3 +368,7 @@
 "achievement_done_all_goals" = "Achieved all targets in a sprint";
 "achievement_done_all_tasks_in_a_sprint" = "All habits and goals in a sprint are fulfilled";
 "achievement_done_first_sprint" = "The first sprint is completed";
+
+// Shortcuts
+
+"todays_habits_suggestion" = "Habits for today";

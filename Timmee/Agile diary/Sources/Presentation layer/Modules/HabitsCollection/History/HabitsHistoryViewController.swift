@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import TasksKit
+import UIComponents
 
 final class HabitsHistoryViewController: BaseViewController {
     
@@ -129,50 +131,6 @@ private extension HabitsHistoryViewController {
     
     func updatePlaceholderVisibility() {
         placeholderContainer.isHidden = cacheObserver.numberOfSections() != 0
-    }
-    
-}
-
-final class TableHeaderViewWithTitle: UITableViewHeaderFooterView {
-    
-    let titleLabel: UILabel = UILabel(frame: .zero)
-    
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        setupBackgroundView()
-        setupTitleLabel()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupBackgroundView()
-        setupTitleLabel()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        backgroundView?.frame = bounds
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        backgroundView?.backgroundColor = AppTheme.current.colors.middlegroundColor
-        titleLabel.textColor = AppTheme.current.colors.activeElementColor
-    }
-    
-    private func setupBackgroundView() {
-        backgroundView = UIView(frame: .zero)
-        backgroundView?.backgroundColor = AppTheme.current.colors.middlegroundColor
-    }
-    
-    private func setupTitleLabel() {
-        addSubview(titleLabel)
-        titleLabel.font = AppTheme.current.fonts.medium(14)
-        titleLabel.textColor = AppTheme.current.colors.activeElementColor
-        titleLabel.clipsToBounds = true
-        titleLabel.layer.cornerRadius = 6
-        [titleLabel.leading(15), titleLabel.trailing(15), titleLabel.top(4)].toSuperview()
-        titleLabel.centerY().toSuperview()
     }
     
 }

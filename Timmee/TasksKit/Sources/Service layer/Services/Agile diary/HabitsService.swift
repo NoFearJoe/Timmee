@@ -11,6 +11,7 @@ import Workset
 public protocol HabitsProvider: class {
     func fetchHabit(id: String) -> Habit?
     func fetchHabits(sprintID: String) -> [Habit]
+    func fetchHabits(sprintID: String, day: DayUnit, date: Date) -> [Habit]
     
     func searchHabits(searchText: String) -> [Habit]
 }
@@ -69,13 +70,25 @@ extension HabitsService: HabitsProvider {
     }
     
     public func fetchHabits(sprintID: String) -> [Habit] {
-        return HabitsService.habitsFetchRequest(sprintID: sprintID)
+        HabitsService.habitsFetchRequest(sprintID: sprintID)
+            .execute()
+            .map { Habit(habit: $0) }
+    }
+    
+    public func fetchHabits(sprintID: String, day: DayUnit, date: Date) -> [Habit] {
+        (HabitEntity.request() as FetchRequest<HabitEntity>)
+            .filtered(predicate: NSPredicate(
+                format: "sprint.id  = %@ AND dueDays CONTAINS[cd] %@ AND creationDate <= %@",
+                sprintID,
+                day.string,
+                date as NSDate
+            ))
             .execute()
             .map { Habit(habit: $0) }
     }
     
     public func searchHabits(searchText: String) -> [Habit] {
-        return HabitsService.allHabitsFetchRequest()
+        HabitsService.allHabitsFetchRequest()
             .execute()
             .map { Habit(habit: $0) }
             .filter {

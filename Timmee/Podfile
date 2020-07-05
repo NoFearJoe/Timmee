@@ -21,45 +21,54 @@ target 'Agile diary' do
 end
 
 target 'Agile diary debug' do
-    workspace 'Agile diary.xcworkspace'
-    project 'Agile diary.xcodeproj'
+  workspace 'Agile diary.xcworkspace'
+  project 'Agile diary.xcodeproj'
 
-    pod 'SwipeCellKit'
-    pod 'Foto'
-    pod 'Charts'
-    pod 'Dwifft'
+  pod 'SwipeCellKit'
+  pod 'Foto'
+  pod 'Charts'
+  pod 'Dwifft'
 
-    pod 'Firebase/Core'
-    pod 'Firebase/Storage'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Firestore'
-    pod 'FBSDKLoginKit'
+  pod 'Firebase/Core'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FBSDKLoginKit'
 
-    pod 'Fabric'
-    pod 'Crashlytics'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 target 'HabitsTodayExtension' do
-    inherit! :search_paths
+  inherit! :search_paths
 
-    workspace 'Agile diary.xcworkspace'
-    project 'Agile diary.xcodeproj'
+  workspace 'Agile diary.xcworkspace'
+  project 'Agile diary.xcodeproj'
 
-    pod 'SwipeCellKit'
+  pod 'SwipeCellKit'
+end
+
+target 'Agilee diary Siri IntentUI' do
+  inherit! :search_paths
+
+  workspace 'Agile diary.xcworkspace'
+  project 'Agile diary.xcodeproj'
+
+  pod 'SwipeCellKit'
 end
 
 target 'Synchronization' do
-    project 'Synchronization.xcodeproj'
+  project 'Synchronization.xcodeproj'
 end
 
 target 'Authorization' do
-    project 'Authorization.xcodeproj'
+  project 'Authorization.xcodeproj'
 
-    pod 'FBSDKLoginKit'
+  pod 'FBSDKLoginKit'
 end
 
 target 'UIComponents' do
-    project 'UIComponents.xcodeproj'
+  project 'UIComponents.xcodeproj'
 end
 
 target 'TasksKit' do

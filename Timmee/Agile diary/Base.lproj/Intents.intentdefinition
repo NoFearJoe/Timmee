@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>INEnums</key>
+	<array/>
+	<key>INIntentDefinitionModelVersion</key>
+	<string>1.1</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>rzdONB</string>
+	<key>INIntentDefinitionSystemVersion</key>
+	<string>19F101</string>
+	<key>INIntentDefinitionToolsBuildVersion</key>
+	<string>11E608c</string>
+	<key>INIntentDefinitionToolsVersion</key>
+	<string>11.5</string>
+	<key>INIntents</key>
+	<array>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>information</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescription</key>
+			<string>Shows habits for today</string>
+			<key>INIntentDescriptionID</key>
+			<string>oth8Sa</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Today's habits</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>Qu8PjA</string>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>TodayHabitsIntent</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Today's habits</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>HjN6mM</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>You have ${habitsCount} habits for today</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>7DMuR2</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Could not obtain habits for today</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>24urZo</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>There are no habits for today</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>E6xWdh</string>
+						<key>INIntentResponseCodeName</key>
+						<string>noHabits</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>2</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Habits Count</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>eETS6b</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>habitsCount</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Today Habits Intent</string>
+			<key>INIntentTitleID</key>
+			<string>HcYyzX</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>View</string>
+		</dict>
+	</array>
+	<key>INTypes</key>
+	<array/>
+</dict>
+</plist>
