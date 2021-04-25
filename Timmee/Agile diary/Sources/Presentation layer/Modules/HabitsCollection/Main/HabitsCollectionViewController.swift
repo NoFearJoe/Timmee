@@ -12,6 +12,7 @@ import UIComponents
 
 protocol PickedHabitsState: AnyObject {
     var pickedHabits: [Habit] { get set }
+    func didCompletePicking(habits: [Habit])
 }
 
 final class HabitsCollectionViewController: BaseViewController, PickedHabitsState {
@@ -22,10 +23,9 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
     @IBOutlet private var sectionSwitcher: Switcher!
     
     @IBOutlet private var shopContainerView: UIView!
-    @IBOutlet private var historyContainerView: UIView!
     
     private var shopViewController: ShopCategoriesViewController!
-    private var historyViewController: HabitsHistoryViewController!
+    private lazy var historyViewController = HabitsPickerViewController(mode: .history(excludingSprintID: sprintID))
     
     private let addHabitsButton = UIButton(type: .custom)
     
@@ -42,6 +42,8 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
         }
     }
     
+    func didCompletePicking(habits: [Habit]) {}
+    
     private var isAddHabitsButtonVisible: Bool = true
     
     override func prepare() {
@@ -53,8 +55,9 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
         sectionSwitcher.selectedItemIndex = 0
         sectionSwitcher.addTarget(self, action: #selector(onSwitchSection), for: .touchUpInside)
         
+        setupHistoryViewController()
+        
         shopContainerView.isHidden = false
-        historyContainerView.isHidden = true
         
         setupAddHabitsButton()
         setAddHabitsButtonVisible(false, animated: false)
@@ -94,10 +97,6 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
             shopViewController = segue.destination as? ShopCategoriesViewController
             shopViewController?.sprintID = sprintID
             shopViewController?.pickedHabitsState = self
-        } else if segue.identifier == "History" {
-            historyViewController = segue.destination as? HabitsHistoryViewController
-            historyViewController?.sprintID = sprintID
-            historyViewController?.pickedHabitsState = self
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -105,7 +104,7 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
     
     private func setSectionContainersVisible(shop: Bool, history: Bool) {
         shopViewController.performAppearanceTransition(isAppearing: shop) { shopContainerView.isHidden = !shop }
-        historyViewController.performAppearanceTransition(isAppearing: history) { historyContainerView.isHidden = !history }
+        historyViewController.performAppearanceTransition(isAppearing: history) { historyViewController.view.isHidden = !history }
     }
     
     // MARK: Add habits button
@@ -145,7 +144,7 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
                 .identity :
                 CGAffineTransform(translationX: 0, y: insetFromSafeArea + 36)
             
-            self.historyViewController?.changeBottomContentInset(by: visible ? insetFromSafeArea : 0)
+            self.historyViewController.changeBottomContentInset(by: visible ? insetFromSafeArea : 0)
             self.shopViewController?.changeBottomContentInset(by: visible ? insetFromSafeArea : 0)
         }
         
@@ -173,6 +172,28 @@ final class HabitsCollectionViewController: BaseViewController, PickedHabitsStat
             goalID: nil
         ) { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+}
+
+private extension HabitsCollectionViewController {
+    
+    func setupHistoryViewController() {
+        historyViewController.pickedHabitsState = self
+        historyViewController.view.isHidden = true
+        historyViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(historyViewController)
+        view.addSubview(historyViewController.view)
+        historyViewController.didMove(toParent: self)
+        
+        historyViewController.view.topToBottom().to(headerView, addTo: view)
+        historyViewController.view.bottom().to(view)
+        if #available(iOS 11.0, *) {
+            [historyViewController.view.leading(), historyViewController.view.trailing()].to(view.safeAreaLayoutGuide)
+        } else {
+            [historyViewController.view.leading(), historyViewController.view.trailing()].to(view)
         }
     }
     

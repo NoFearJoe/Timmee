@@ -41,6 +41,8 @@ public final class AgileeSynchronizationService: SynchronizationService {
     private init() {}
     
     public func sync(completion: ((Bool) -> Void)?) {
+        completion?(true)
+        return
         syncQueue.async {
             let completionOnMain: (Bool) -> Void = { success in
                 DispatchQueue.main.async {

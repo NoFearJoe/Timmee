@@ -296,6 +296,7 @@ private extension HabitCreationViewController {
         stackViewController.setChild(dayTimeContainer, at: 2)
         
         //reminder
+        notificationsListView.backgroundColor = .clear
         notificationsListView.onTapDeleteButton = { [unowned self] index in
             self.habit.notificationsTime.remove(at: index)
             self.updateNotificationTime()

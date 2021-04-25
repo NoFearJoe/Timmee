@@ -59,6 +59,8 @@
 	<false/>
 	<key>FacebookDisplayName</key>
 	<string>Agilee</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

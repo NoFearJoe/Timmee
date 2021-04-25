@@ -152,7 +152,7 @@ private extension StackViewController {
 private extension StackViewController {
     
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
     }
     
 }

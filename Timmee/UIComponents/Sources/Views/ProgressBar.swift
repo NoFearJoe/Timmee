@@ -25,6 +25,8 @@ import UIKit
     }()
     
     open func setProgress(_ progress: CGFloat, animated: Bool = false) {
+        guard progress != self.progress else { return }
+        
         self.progress = progress
         updateProgress(animated: animated)
     }

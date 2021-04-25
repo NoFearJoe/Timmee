@@ -24,6 +24,7 @@ final class HabitCreationNotificationsListView: AutoSizingTableView {
         separatorStyle = .none
         delaysContentTouches = false
         showsVerticalScrollIndicator = false
+        backgroundColor = .clear
         
         register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
@@ -65,6 +66,7 @@ extension HabitCreationNotificationsListView: UITableViewDataSource {
         cell.accessoryView = button
         
         cell.selectionStyle = .none
+        cell.backgroundColor = .clear
                 
         return cell
     }

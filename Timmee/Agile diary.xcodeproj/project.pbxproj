@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -107,7 +107,7 @@
 		0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */; };
 		0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */; };
 		0CB030132195ADF3006C5146 /* HabitsCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */; };
-		0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */; };
+		0CB030B8219AC455006C5146 /* HabitsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsPickerViewController.swift */; };
 		0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */; };
 		0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
 		0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */; };
@@ -149,7 +149,7 @@
 		0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4A7212160B5004C0559 /* EducationViewController.swift */; };
 		0CB6738821A52C3900178EB1 /* ExtendedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */; };
 		0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */; };
-		0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */; };
+		0CB6738A21A52C3900178EB1 /* HabitsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030B7219AC455006C5146 /* HabitsPickerViewController.swift */; };
 		0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E53D2147E3C20071DABD /* StageView.swift */; };
 		0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEE214F971700AA4FB8 /* NumberPadCells.swift */; };
 		0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D852125B8AB001A2F70 /* Task+Target.swift */; };
@@ -246,7 +246,7 @@
 		0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
 		0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */; };
 		0CE883CF2150F6EC00637BD9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE883CD2150F6EC00637BD9 /* MainInterface.storyboard */; };
-		0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0CE883DB215105A400637BD9 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
 		0CE883DC215106EC00637BD9 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
 		0CE883DD215106F000637BD9 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
@@ -281,20 +281,10 @@
 		961AF5B323AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
 		961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
 		961AF5B723AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
-		961B95D2241CC101003EC992 /* HabitsHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */; };
-		961B95D3241CC101003EC992 /* HabitsHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */; };
+		961B95D2241CC101003EC992 /* HabitsPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsPickerCell.swift */; };
+		961B95D3241CC101003EC992 /* HabitsPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95D1241CC101003EC992 /* HabitsPickerCell.swift */; };
 		96234A18214D497300F2C6CC /* NotificationsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */; };
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
-		96346EF2248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */; };
-		96346EF3248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */; };
-		96346EF62484DC3D00A815F2 /* AchievementsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */; };
-		96346EF72484DC3D00A815F2 /* AchievementsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */; };
-		96346EF92484DED300A815F2 /* AchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF82484DED300A815F2 /* AchievementCell.swift */; };
-		96346EFA2484DED300A815F2 /* AchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EF82484DED300A815F2 /* AchievementCell.swift */; };
-		96346EFC2484DFC100A815F2 /* AchievementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */; };
-		96346EFD2484DFC100A815F2 /* AchievementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */; };
-		96346EFF2484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */; };
-		96346F002484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */; };
 		96346F02248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */; };
 		96346F03248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */; };
 		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
@@ -322,62 +312,10 @@
 		96A066A624815E9900111BA2 /* AppThemeApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A424815E9900111BA2 /* AppThemeApplier.swift */; };
 		96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
 		96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
-		96A066B12483B76A00111BA2 /* AchievementsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B02483B76A00111BA2 /* AchievementsManager.swift */; };
-		96A066B22483B76A00111BA2 /* AchievementsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B02483B76A00111BA2 /* AchievementsManager.swift */; };
-		96A066B42483B78900111BA2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B32483B78900111BA2 /* Achievement.swift */; };
-		96A066B52483B78900111BA2 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B32483B78900111BA2 /* Achievement.swift */; };
-		96A5604124B093DA008B3A34 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5604024B093DA008B3A34 /* IntentHandler.swift */; };
-		96A5604924B093DB008B3A34 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A5604824B093DB008B3A34 /* IntentsUI.framework */; };
-		96A5604C24B093DB008B3A34 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5604B24B093DB008B3A34 /* IntentViewController.swift */; };
-		96A5604F24B093DB008B3A34 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A5604D24B093DB008B3A34 /* MainInterface.storyboard */; };
-		96A5605324B093DB008B3A34 /* Agilee diary Siri IntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96A5604724B093DB008B3A34 /* Agilee diary Siri IntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		96A5605624B093DB008B3A34 /* Agilee diary Siri Intent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96A5603E24B093DA008B3A34 /* Agilee diary Siri Intent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		96A5606224B0A796008B3A34 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
-		96A5606324B0A796008B3A34 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
-		96A5606424B0A833008B3A34 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
-		96A5606524B0A833008B3A34 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
-		96A5606824B0A85C008B3A34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
-		96A5606924B0A85C008B3A34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E52021466EB10071DABD /* Constants.swift */; };
-		96A5606C24B0B210008B3A34 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
-		96A5606D24B0B210008B3A34 /* TasksKitConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D50A2122C04D004C0559 /* TasksKitConfiguration.plist */; };
-		96A5607024B0B29E008B3A34 /* SprintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5072122B1A4004C0559 /* SprintSection.swift */; };
-		96A5607124B0B2BA008B3A34 /* SwipeCellActionsProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E528214696120071DABD /* SwipeCellActionsProviders.swift */; };
-		96A5607224B0B352008B3A34 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A1248153E900111BA2 /* AppTheme.swift */; };
-		96A5607324B0B35B008B3A34 /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
-		96A5607424B0B364008B3A34 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */; };
-		96A5607524B0B372008B3A34 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
-		96A5607624B0B38C008B3A34 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */; };
-		96A5607724B0B39C008B3A34 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F221219FF4004C0559 /* Switcher.swift */; };
-		96A5607824B0B3AA008B3A34 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
 		96A5607A24B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */; };
 		96A5607B24B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */; };
-		96A5607D24B0B410008B3A34 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
-		96A5607E24B0B425008B3A34 /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
-		96A5608424B0B531008B3A34 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
 		96A5608824B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */; };
 		96A5608924B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */; };
-		96A5608A24B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */; };
-		96A5608B24B0C03D008B3A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
-		96A5608C24B0C4B8008B3A34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
-		96A5608D24B0C4B8008B3A34 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C821217390004C0559 /* Localizable.stringsdict */; };
-		96A5608E24B1EF2E008B3A34 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96A5609324B1EF2E008B3A34 /* Intents.intentdefinition */; };
-		96A5608F24B1EF2E008B3A34 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96A5609324B1EF2E008B3A34 /* Intents.intentdefinition */; };
-		96A5609024B1EF2E008B3A34 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96A5609324B1EF2E008B3A34 /* Intents.intentdefinition */; };
-		96A5609124B1EF2E008B3A34 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 96A5609324B1EF2E008B3A34 /* Intents.intentdefinition */; };
-		96A5609724B1F2D0008B3A34 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
-		96A5609824B1F2D0008B3A34 /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96A5609A24B1F2D8008B3A34 /* Workset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; };
-		96A5609B24B1F2D8008B3A34 /* Workset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48C211C564A004C0559 /* Workset.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96A5609D24B1F2DE008B3A34 /* UIComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; };
-		96A5609E24B1F2DE008B3A34 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96A5609F24B1F31D008B3A34 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
-		96A560A024B1F31D008B3A34 /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96A560A124B1F323008B3A34 /* TasksKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; };
-		96A560A224B1F323008B3A34 /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96A560A324B1F352008B3A34 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
-		96A560A424B1F352008B3A34 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
-		96A560A624B1F91A008B3A34 /* SiriIntentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A560A524B1F91A008B3A34 /* SiriIntentsManager.swift */; };
-		96A560A724B1F91A008B3A34 /* SiriIntentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A560A524B1F91A008B3A34 /* SiriIntentsManager.swift */; };
 		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
@@ -411,7 +349,6 @@
 		96F59432224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
 		96F59434224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
 		96F59435224E8B7F00F6D10A /* ProVersionFeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */; };
-		BA4E8DAA8A398EBDBB68C2BF /* Pods_Agilee_diary_Siri_IntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E6ABD40B1C0701F681AD8D /* Pods_Agilee_diary_Siri_IntentUI.framework */; };
 		F569A53D47918794978E9E58 /* Pods_Agile_diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CF652D448924A7008B5207 /* Pods_Agile_diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -422,20 +359,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0CE883C62150F6EB00637BD9;
 			remoteInfo = HabitsTodayExtension;
-		};
-		96A5605124B093DB008B3A34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0C14D46A211C55D9004C0559 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96A5604624B093DB008B3A34;
-			remoteInfo = "Agilee diary Siri IntentUI";
-		};
-		96A5605424B093DB008B3A34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0C14D46A211C55D9004C0559 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96A5603D24B093DA008B3A34;
-			remoteInfo = "Agilee diary Siri Intent";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -478,36 +401,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				96A5605324B093DB008B3A34 /* Agilee diary Siri IntentUI.appex in Embed App Extensions */,
-				96A5605624B093DB008B3A34 /* Agilee diary Siri Intent.appex in Embed App Extensions */,
 				0CE883D32150F6EC00637BD9 /* HabitsTodayExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96A5609924B1F2D0008B3A34 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				96A560A224B1F323008B3A34 /* TasksKit.framework in Embed Frameworks */,
-				96A5609824B1F2D0008B3A34 /* Workset.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96A5609C24B1F2D8008B3A34 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				96A5609E24B1F2DE008B3A34 /* UIComponents.framework in Embed Frameworks */,
-				96A5609B24B1F2D8008B3A34 /* Workset.framework in Embed Frameworks */,
-				96A560A024B1F31D008B3A34 /* TasksKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -591,7 +487,7 @@
 		0CACF33C2229265700EE97E4 /* DayTimePickerSubmodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimePickerSubmodule.swift; sourceTree = "<group>"; };
 		0CB030102195ABF2006C5146 /* HabitsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionViewController.swift; sourceTree = "<group>"; };
 		0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitsCollection.storyboard; sourceTree = "<group>"; };
-		0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryViewController.swift; sourceTree = "<group>"; };
+		0CB030B7219AC455006C5146 /* HabitsPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsPickerViewController.swift; sourceTree = "<group>"; };
 		0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoriesViewController.swift; sourceTree = "<group>"; };
 		0CB2EDD9214F8C3400AA4FB8 /* EducationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationState.swift; sourceTree = "<group>"; };
 		0CB2EDDD214F944800AA4FB8 /* InitialEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialEducationScreen.swift; sourceTree = "<group>"; };
@@ -652,14 +548,9 @@
 		9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FirebaseStorage.swift"; sourceTree = "<group>"; };
 		961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationOnboardingViewController.swift; sourceTree = "<group>"; };
 		961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationOnboardingViewController.swift; sourceTree = "<group>"; };
-		961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsHistoryCell.swift; sourceTree = "<group>"; };
+		961B95D1241CC101003EC992 /* HabitsPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsPickerCell.swift; sourceTree = "<group>"; };
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
-		96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAchievementsButtonController.swift; sourceTree = "<group>"; };
-		96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsScreen.swift; sourceTree = "<group>"; };
-		96346EF82484DED300A815F2 /* AchievementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCell.swift; sourceTree = "<group>"; };
-		96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModel.swift; sourceTree = "<group>"; };
-		96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewModelsMapper.swift; sourceTree = "<group>"; };
 		96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationNotificationsListView.swift; sourceTree = "<group>"; };
 		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -677,23 +568,9 @@
 		96A066A1248153E900111BA2 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		96A066A424815E9900111BA2 /* AppThemeApplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeApplier.swift; sourceTree = "<group>"; };
 		96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSprintCreationViewController.swift; sourceTree = "<group>"; };
-		96A066B02483B76A00111BA2 /* AchievementsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsManager.swift; sourceTree = "<group>"; };
-		96A066B32483B78900111BA2 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
-		96A5603E24B093DA008B3A34 /* Agilee diary Siri Intent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Agilee diary Siri Intent.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		96A5604024B093DA008B3A34 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
-		96A5604224B093DA008B3A34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96A5604724B093DB008B3A34 /* Agilee diary Siri IntentUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Agilee diary Siri IntentUI.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A5604824B093DB008B3A34 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		96A5604B24B093DB008B3A34 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
-		96A5604E24B093DB008B3A34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		96A5605024B093DB008B3A34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96A5606A24B0B1B1008B3A34 /* Agilee diary Siri Intent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Agilee diary Siri Intent.entitlements"; sourceTree = "<group>"; };
-		96A5606B24B0B1C0008B3A34 /* Agilee diary Siri IntentUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Agilee diary Siri IntentUI.entitlements"; sourceTree = "<group>"; };
 		96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewSectionProgressListener.swift; sourceTree = "<group>"; };
 		96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeaderViewWithTitle.swift; sourceTree = "<group>"; };
-		96A5609424B1EF32008B3A34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
-		96A5609624B1F13C008B3A34 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Intents.strings; sourceTree = "<group>"; };
-		96A560A524B1F91A008B3A34 /* SiriIntentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriIntentsManager.swift; sourceTree = "<group>"; };
 		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBarChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -764,27 +641,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96A5603B24B093DA008B3A34 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96A560A124B1F323008B3A34 /* TasksKit.framework in Frameworks */,
-				96A5609724B1F2D0008B3A34 /* Workset.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96A5604424B093DB008B3A34 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96A5609A24B1F2D8008B3A34 /* Workset.framework in Frameworks */,
-				96A5604924B093DB008B3A34 /* IntentsUI.framework in Frameworks */,
-				96A5609F24B1F31D008B3A34 /* TasksKit.framework in Frameworks */,
-				96A5609D24B1F2DE008B3A34 /* UIComponents.framework in Frameworks */,
-				BA4E8DAA8A398EBDBB68C2BF /* Pods_Agilee_diary_Siri_IntentUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -831,8 +687,6 @@
 			children = (
 				0C14D474211C55D9004C0559 /* Agile diary */,
 				0CE883CA2150F6EC00637BD9 /* HabitsTodayExtension */,
-				96A5603F24B093DA008B3A34 /* Agilee diary Siri Intent */,
-				96A5604A24B093DB008B3A34 /* Agilee diary Siri IntentUI */,
 				0C14D473211C55D9004C0559 /* Products */,
 				0C14D487211C564A004C0559 /* Frameworks */,
 				60E6EBF9B112CF333C10E3FA /* Pods */,
@@ -845,8 +699,6 @@
 				0C14D472211C55D9004C0559 /* BeBetter.app */,
 				0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */,
 				0CB673DF21A52C3900178EB1 /* Agile diary debug.app */,
-				96A5603E24B093DA008B3A34 /* Agilee diary Siri Intent.appex */,
-				96A5604724B093DB008B3A34 /* Agilee diary Siri IntentUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -861,7 +713,6 @@
 				0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */,
 				0C14D481211C55DA004C0559 /* Info.plist */,
 				0C14D4AE21216CAF004C0559 /* BridgingHeader.h */,
-				96A5609324B1EF2E008B3A34 /* Intents.intentdefinition */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -902,7 +753,6 @@
 			children = (
 				96888C222217EDE400479667 /* Utils */,
 				0C14D5042122B052004C0559 /* Extensions */,
-				96A066AE2483B73800111BA2 /* Services */,
 				0C14D4A421216059004C0559 /* Application layer */,
 				0C14D4A321216058004C0559 /* Presentation layer */,
 			);
@@ -941,9 +791,9 @@
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
 				0CB02FF42192D619006C5146 /* HabitsCollection */,
+				0CB02FF62192D62E006C5146 /* HabitsPicker */,
 				0CF7E51B214669520071DABD /* Today */,
 				0C3DA4DB21525EAA00CAE635 /* Charts */,
-				96346EF42484DBDB00A815F2 /* Achievements */,
 				0C2B9D15220DA9900038F11D /* Sprints */,
 				0C4082DC22E6DEE200D899A9 /* Diary */,
 				967C328421517DF400B9201A /* Settings */,
@@ -1233,7 +1083,6 @@
 				0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */,
 				0CB02FF72192D636006C5146 /* Main */,
 				0CB02FF52192D625006C5146 /* Shop */,
-				0CB02FF62192D62E006C5146 /* History */,
 			);
 			path = HabitsCollection;
 			sourceTree = "<group>";
@@ -1248,13 +1097,13 @@
 			path = Shop;
 			sourceTree = "<group>";
 		};
-		0CB02FF62192D62E006C5146 /* History */ = {
+		0CB02FF62192D62E006C5146 /* HabitsPicker */ = {
 			isa = PBXGroup;
 			children = (
-				0CB030B7219AC455006C5146 /* HabitsHistoryViewController.swift */,
-				961B95D1241CC101003EC992 /* HabitsHistoryCell.swift */,
+				0CB030B7219AC455006C5146 /* HabitsPickerViewController.swift */,
+				961B95D1241CC101003EC992 /* HabitsPickerCell.swift */,
 			);
-			path = History;
+			path = HabitsPicker;
 			sourceTree = "<group>";
 		};
 		0CB02FF72192D636006C5146 /* Main */ = {
@@ -1389,7 +1238,6 @@
 				0C06E96422EF051E0099DD3A /* Secondary view controllers */,
 				0CF7E5252146878C0071DABD /* Cells */,
 				0CE3CA3F2359CF37008C2DA5 /* Views */,
-				96346EF02484379100A815F2 /* Sub controllers */,
 				0CF7E51C2146697C0071DABD /* TodayViewController.swift */,
 				0CF7E5222146833A0071DABD /* TodayContentViewController.swift */,
 				96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */,
@@ -1457,25 +1305,6 @@
 			path = Onboardings;
 			sourceTree = "<group>";
 		};
-		96346EF02484379100A815F2 /* Sub controllers */ = {
-			isa = PBXGroup;
-			children = (
-				96346EF1248437BB00A815F2 /* TodayAchievementsButtonController.swift */,
-			);
-			path = "Sub controllers";
-			sourceTree = "<group>";
-		};
-		96346EF42484DBDB00A815F2 /* Achievements */ = {
-			isa = PBXGroup;
-			children = (
-				96346EF52484DC3D00A815F2 /* AchievementsScreen.swift */,
-				96346EF82484DED300A815F2 /* AchievementCell.swift */,
-				96346EFB2484DFC100A815F2 /* AchievementViewModel.swift */,
-				96346EFE2484E02B00A815F2 /* AchievementViewModelsMapper.swift */,
-			);
-			path = Achievements;
-			sourceTree = "<group>";
-		};
 		9667C72322C536D30010CC00 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -1520,7 +1349,6 @@
 			children = (
 				96888C232217EDF400479667 /* BackgroundImagesLoader.swift */,
 				0C06E98522F2C0C40099DD3A /* PluralStringLocalization.swift */,
-				96A560A524B1F91A008B3A34 /* SiriIntentsManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1542,44 +1370,6 @@
 				96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */,
 			);
 			path = "New sprint creation";
-			sourceTree = "<group>";
-		};
-		96A066AE2483B73800111BA2 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				96A066AF2483B74400111BA2 /* Achievements */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		96A066AF2483B74400111BA2 /* Achievements */ = {
-			isa = PBXGroup;
-			children = (
-				96A066B02483B76A00111BA2 /* AchievementsManager.swift */,
-				96A066B32483B78900111BA2 /* Achievement.swift */,
-			);
-			path = Achievements;
-			sourceTree = "<group>";
-		};
-		96A5603F24B093DA008B3A34 /* Agilee diary Siri Intent */ = {
-			isa = PBXGroup;
-			children = (
-				96A5606A24B0B1B1008B3A34 /* Agilee diary Siri Intent.entitlements */,
-				96A5604024B093DA008B3A34 /* IntentHandler.swift */,
-				96A5604224B093DA008B3A34 /* Info.plist */,
-			);
-			path = "Agilee diary Siri Intent";
-			sourceTree = "<group>";
-		};
-		96A5604A24B093DB008B3A34 /* Agilee diary Siri IntentUI */ = {
-			isa = PBXGroup;
-			children = (
-				96A5606B24B0B1C0008B3A34 /* Agilee diary Siri IntentUI.entitlements */,
-				96A5604B24B093DB008B3A34 /* IntentViewController.swift */,
-				96A5604D24B093DB008B3A34 /* MainInterface.storyboard */,
-				96A5605024B093DB008B3A34 /* Info.plist */,
-			);
-			path = "Agilee diary Siri IntentUI";
 			sourceTree = "<group>";
 		};
 		96B73BF422BDFE0C00043765 /* PreInitialScreen */ = {
@@ -1649,8 +1439,6 @@
 			);
 			dependencies = (
 				0CE883D22150F6EC00637BD9 /* PBXTargetDependency */,
-				96A5605224B093DB008B3A34 /* PBXTargetDependency */,
-				96A5605524B093DB008B3A34 /* PBXTargetDependency */,
 			);
 			name = "Agile diary";
 			productName = "Agile diary";
@@ -1695,43 +1483,6 @@
 			productReference = 0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		96A5603D24B093DA008B3A34 /* Agilee diary Siri Intent */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96A5605C24B093DB008B3A34 /* Build configuration list for PBXNativeTarget "Agilee diary Siri Intent" */;
-			buildPhases = (
-				96A5603A24B093DA008B3A34 /* Sources */,
-				96A5603B24B093DA008B3A34 /* Frameworks */,
-				96A5603C24B093DA008B3A34 /* Resources */,
-				96A5609924B1F2D0008B3A34 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Agilee diary Siri Intent";
-			productName = "Agilee diary Siri Intent";
-			productReference = 96A5603E24B093DA008B3A34 /* Agilee diary Siri Intent.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		96A5604624B093DB008B3A34 /* Agilee diary Siri IntentUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96A5605B24B093DB008B3A34 /* Build configuration list for PBXNativeTarget "Agilee diary Siri IntentUI" */;
-			buildPhases = (
-				1D59CF17F75BD02EDF88BA8C /* [CP] Check Pods Manifest.lock */,
-				96A5604324B093DB008B3A34 /* Sources */,
-				96A5604424B093DB008B3A34 /* Frameworks */,
-				96A5604524B093DB008B3A34 /* Resources */,
-				96A5609C24B1F2D8008B3A34 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Agilee diary Siri IntentUI";
-			productName = "Agilee diary Siri IntentUI";
-			productReference = 96A5604724B093DB008B3A34 /* Agilee diary Siri IntentUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1764,12 +1515,6 @@
 							};
 						};
 					};
-					96A5603D24B093DA008B3A34 = {
-						CreatedOnToolsVersion = 11.5;
-					};
-					96A5604624B093DB008B3A34 = {
-						CreatedOnToolsVersion = 11.5;
-					};
 				};
 			};
 			buildConfigurationList = 0C14D46D211C55D9004C0559 /* Build configuration list for PBXProject "Agile diary" */;
@@ -1789,8 +1534,6 @@
 				0C14D471211C55D9004C0559 /* Agile diary */,
 				0CB6736921A52C3900178EB1 /* Agile diary debug */,
 				0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */,
-				96A5603D24B093DA008B3A34 /* Agilee diary Siri Intent */,
-				96A5604624B093DB008B3A34 /* Agilee diary Siri IntentUI */,
 			);
 		};
 /* End PBXProject section */
@@ -1867,26 +1610,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96A5603C24B093DA008B3A34 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96A5606C24B0B210008B3A34 /* TasksKitConfiguration.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96A5604524B093DB008B3A34 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96A5604F24B093DB008B3A34 /* MainInterface.storyboard in Resources */,
-				96A5608C24B0C4B8008B3A34 /* Localizable.strings in Resources */,
-				96A5608B24B0C03D008B3A34 /* Assets.xcassets in Resources */,
-				96A5608D24B0C4B8008B3A34 /* Localizable.stringsdict in Resources */,
-				96A5606D24B0B210008B3A34 /* TasksKitConfiguration.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1946,28 +1669,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30\n";
-		};
-		1D59CF17F75BD02EDF88BA8C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Agilee diary Siri IntentUI-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		6FC6646D31CC03A8B3A04F14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2039,7 +1740,6 @@
 			files = (
 				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
 				96346F02248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */,
-				96346EFF2484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
 				0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */,
 				96888C1D2217DFE800479667 /* AddButton.swift in Sources */,
@@ -2073,7 +1773,6 @@
 				0C06E97A22F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift in Sources */,
 				0CE3CA412359CF50008C2DA5 /* PickDayButton.swift in Sources */,
 				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
-				96A560A624B1F91A008B3A34 /* SiriIntentsManager.swift in Sources */,
 				96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */,
 				0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
@@ -2082,10 +1781,9 @@
 				0C14D4A8212160B5004C0559 /* EducationViewController.swift in Sources */,
 				96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */,
 				0CB2EDDA214F8C3400AA4FB8 /* EducationState.swift in Sources */,
-				0CB030B8219AC455006C5146 /* HabitsHistoryViewController.swift in Sources */,
+				0CB030B8219AC455006C5146 /* HabitsPickerViewController.swift in Sources */,
 				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
 				96DDBDBC23C9EA2D007AB33B /* HabitCreationValuePickerView.swift in Sources */,
-				96346EF62484DC3D00A815F2 /* AchievementsScreen.swift in Sources */,
 				0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
@@ -2094,7 +1792,6 @@
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
-				96346EFC2484DFC100A815F2 /* AchievementViewModel.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
@@ -2106,9 +1803,8 @@
 				0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */,
 				0C14D4E2212182B2004C0559 /* UserProperties.swift in Sources */,
 				0C8CA9DD21FECFB200478A5D /* ProVersionEducationScreen.swift in Sources */,
-				96A066B12483B76A00111BA2 /* AchievementsManager.swift in Sources */,
 				0CACF33D2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
-				961B95D2241CC101003EC992 /* HabitsHistoryCell.swift in Sources */,
+				961B95D2241CC101003EC992 /* HabitsPickerCell.swift in Sources */,
 				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				0C06E95B22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
@@ -2118,12 +1814,10 @@
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
 				96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */,
 				0C5C469B2140FDF900390F85 /* CalendarView.swift in Sources */,
-				96346EF2248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */,
 				0C06E95822EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
 				0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
-				96A066B42483B78900111BA2 /* Achievement.swift in Sources */,
 				0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
@@ -2131,7 +1825,6 @@
 				0CF7E5392147B21F0071DABD /* TodayGoalCell.swift in Sources */,
 				961AF5B223AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */,
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
-				96346EF92484DED300A815F2 /* AchievementCell.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
@@ -2141,7 +1834,6 @@
 				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				96DDBDB923BB77C1007AB33B /* ShortHabitCell.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
-				96A5608E24B1EF2E008B3A34 /* Intents.intentdefinition in Sources */,
 				0C06E95122EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
 				0C06E94B22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0C06E94422E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */,
@@ -2184,7 +1876,7 @@
 				0CB6736F21A52C3900178EB1 /* HabitCreationInteractor.swift in Sources */,
 				0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */,
 				0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */,
-				961B95D3241CC101003EC992 /* HabitsHistoryCell.swift in Sources */,
+				961B95D3241CC101003EC992 /* HabitsPickerCell.swift in Sources */,
 				0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
 				0C06E95C22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
@@ -2227,19 +1919,16 @@
 				0CB6738921A52C3900178EB1 /* EducationState.swift in Sources */,
 				0CACF2D422241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */,
-				96346EF72484DC3D00A815F2 /* AchievementsScreen.swift in Sources */,
-				0CB6738A21A52C3900178EB1 /* HabitsHistoryViewController.swift in Sources */,
+				0CB6738A21A52C3900178EB1 /* HabitsPickerViewController.swift in Sources */,
 				0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
-				96346EFD2484DFC100A815F2 /* AchievementViewModel.swift in Sources */,
 				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
 				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
-				96346EF3248437BB00A815F2 /* TodayAchievementsButtonController.swift in Sources */,
 				0CB6738E21A52C3900178EB1 /* HabitsCollectionViewController.swift in Sources */,
 				0CACF33E2229265700EE97E4 /* DayTimePickerSubmodule.swift in Sources */,
 				96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
@@ -2259,7 +1948,6 @@
 				0CB6739621A52C3900178EB1 /* Environment.swift in Sources */,
 				0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */,
 				96888C1E2217DFE800479667 /* AddButton.swift in Sources */,
-				96A066B22483B76A00111BA2 /* AchievementsManager.swift in Sources */,
 				0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */,
 				96DDBDC123CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */,
 				0C06E95922EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
@@ -2279,7 +1967,6 @@
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
 				96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
-				96A5608F24B1EF2E008B3A34 /* Intents.intentdefinition in Sources */,
 				969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
@@ -2291,11 +1978,8 @@
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
 				0C06E98722F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
-				96346F002484E02B00A815F2 /* AchievementViewModelsMapper.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
-				96346EFA2484DED300A815F2 /* AchievementCell.swift in Sources */,
-				96A066B52483B78900111BA2 /* Achievement.swift in Sources */,
 				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
@@ -2309,7 +1993,6 @@
 				0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */,
 				0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
-				96A560A724B1F91A008B3A34 /* SiriIntentsManager.swift in Sources */,
 				0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
@@ -2334,62 +2017,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96A5603A24B093DA008B3A34 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96A5609024B1EF2E008B3A34 /* Intents.intentdefinition in Sources */,
-				96A5606424B0A833008B3A34 /* Date+Today.swift in Sources */,
-				96A5606224B0A796008B3A34 /* SprintInteractorTrait.swift in Sources */,
-				96A5604124B093DA008B3A34 /* IntentHandler.swift in Sources */,
-				96A5606824B0A85C008B3A34 /* Constants.swift in Sources */,
-				96A560A324B1F352008B3A34 /* List+Sprint.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96A5604324B093DB008B3A34 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96A5609124B1EF2E008B3A34 /* Intents.intentdefinition in Sources */,
-				96A5607224B0B352008B3A34 /* AppTheme.swift in Sources */,
-				96A5607724B0B39C008B3A34 /* Switcher.swift in Sources */,
-				96A5608424B0B531008B3A34 /* Checkbox.swift in Sources */,
-				96A5607E24B0B425008B3A34 /* TodayHabitCell.swift in Sources */,
-				96A5606524B0A833008B3A34 /* Date+Today.swift in Sources */,
-				96A5607624B0B38C008B3A34 /* BaseViewController.swift in Sources */,
-				96A5607324B0B35B008B3A34 /* ProVersionPurchase.swift in Sources */,
-				96A5607524B0B372008B3A34 /* UserProperties.swift in Sources */,
-				96A5606324B0A796008B3A34 /* SprintInteractorTrait.swift in Sources */,
-				96A5607424B0B364008B3A34 /* BackgroundImage.swift in Sources */,
-				96A5607024B0B29E008B3A34 /* SprintSection.swift in Sources */,
-				96A5608A24B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */,
-				96A5607824B0B3AA008B3A34 /* BackgroundImagesLoader.swift in Sources */,
-				96A5607D24B0B410008B3A34 /* AddMenuButton.swift in Sources */,
-				96A5604C24B093DB008B3A34 /* IntentViewController.swift in Sources */,
-				96A5606924B0A85C008B3A34 /* Constants.swift in Sources */,
-				96A560A424B1F352008B3A34 /* List+Sprint.swift in Sources */,
-				96A5607124B0B2BA008B3A34 /* SwipeCellActionsProviders.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		0CE883D22150F6EC00637BD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 0CE883C62150F6EB00637BD9 /* HabitsTodayExtension */;
 			targetProxy = 0CE883D12150F6EC00637BD9 /* PBXContainerItemProxy */;
-		};
-		96A5605224B093DB008B3A34 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 96A5604624B093DB008B3A34 /* Agilee diary Siri IntentUI */;
-			targetProxy = 96A5605124B093DB008B3A34 /* PBXContainerItemProxy */;
-		};
-		96A5605524B093DB008B3A34 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 96A5603D24B093DA008B3A34 /* Agilee diary Siri Intent */;
-			targetProxy = 96A5605424B093DB008B3A34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2445,23 +2080,6 @@
 				0CE883EC215139A400637BD9 /* Base */,
 			);
 			name = Info.plist;
-			sourceTree = "<group>";
-		};
-		96A5604D24B093DB008B3A34 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96A5604E24B093DB008B3A34 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		96A5609324B1EF2E008B3A34 /* Intents.intentdefinition */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96A5609424B1EF32008B3A34 /* Base */,
-				96A5609624B1F13C008B3A34 /* ru */,
-			);
-			name = Intents.intentdefinition;
 			sourceTree = "<group>";
 		};
 		96BE838A2175034400CDECAF /* InfoPlist.strings */ = {
@@ -2608,6 +2226,7 @@
 				);
 				INFOPLIST_FILE = "Agile diary/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2616,11 +2235,12 @@
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = BeBetter;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MAIN_TARGET";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -2640,6 +2260,7 @@
 				);
 				INFOPLIST_FILE = "Agile diary/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2648,12 +2269,13 @@
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = BackgroundImages;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary;
 				PRODUCT_NAME = BeBetter;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MAIN_TARGET;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Pods/Firebase/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "Agile diary/BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -2741,6 +2363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TODAY_EXTENSION";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2771,100 +2394,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.AgileDiary.HabitsTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TODAY_EXTENSION;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		96A5605724B093DB008B3A34 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Agilee diary Siri Intent/Agilee diary Siri Intent.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = "Agilee diary Siri Intent/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.AgileDiary.Agilee-diary-Siri-Intent";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		96A5605824B093DB008B3A34 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Agilee diary Siri Intent/Agilee diary Siri Intent.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = "Agilee diary Siri Intent/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.AgileDiary.Agilee-diary-Siri-Intent";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		96A5605924B093DB008B3A34 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D4325B7974A84643841F13D /* Pods-Agilee diary Siri IntentUI.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Agilee diary Siri IntentUI/Agilee diary Siri IntentUI.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = "Agilee diary Siri IntentUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.AgileDiary.Agilee-diary-Siri-IntentUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		96A5605A24B093DB008B3A34 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FC44A4F908FEA42FAFC0C1A /* Pods-Agilee diary Siri IntentUI.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Agilee diary Siri IntentUI/Agilee diary Siri IntentUI.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 485UNLA592;
-				INFOPLIST_FILE = "Agilee diary Siri IntentUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesterra.AgileDiary.Agilee-diary-Siri-IntentUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2904,24 +2436,6 @@
 			buildConfigurations = (
 				0CE883D42150F6EC00637BD9 /* Debug */,
 				0CE883D52150F6EC00637BD9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		96A5605B24B093DB008B3A34 /* Build configuration list for PBXNativeTarget "Agilee diary Siri IntentUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				96A5605924B093DB008B3A34 /* Debug */,
-				96A5605A24B093DB008B3A34 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		96A5605C24B093DB008B3A34 /* Build configuration list for PBXNativeTarget "Agilee diary Siri Intent" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				96A5605724B093DB008B3A34 /* Debug */,
-				96A5605824B093DB008B3A34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

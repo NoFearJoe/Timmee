@@ -61,6 +61,7 @@ final class GoalCreationStagesView: UIView {
         addStageButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor.withAlphaComponent(0.6)), for: .disabled)
         
         stagesTableView.separatorStyle = .none
+        stagesTableView.backgroundColor = .clear
     }
     
 }
@@ -79,6 +80,7 @@ private extension GoalCreationStagesView {
     }
     
     func setupStagesTableView() {
+        stagesTableView.backgroundColor = .clear
         stagesTableView.estimatedRowHeight = 36
         stagesTableView.rowHeight = UITableView.automaticDimension
         stagesTableView.showsVerticalScrollIndicator = false

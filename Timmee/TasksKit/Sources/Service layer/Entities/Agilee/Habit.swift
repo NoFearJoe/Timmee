@@ -319,3 +319,23 @@ extension Habit: CustomEquatable {
     }
     
 }
+
+// MARK: - Comparable
+
+extension Habit: Comparable {
+ 
+    public static func < (lhs: Habit, rhs: Habit) -> Bool {
+        if !lhs.notificationsTime.isEmpty, rhs.notificationsTime.isEmpty {
+            return true
+        } else if lhs.notificationsTime.isEmpty, !rhs.notificationsTime.isEmpty {
+            return false
+        }
+        
+        guard let lhsMinTime = lhs.notificationsTime.min(),
+              let rhsMinTime = rhs.notificationsTime.min()
+        else { return lhs.creationDate.isLower(than: rhs.creationDate) }
+        
+        return lhsMinTime < rhsMinTime && lhs.creationDate.isLower(than: rhs.creationDate)
+    }
+    
+}

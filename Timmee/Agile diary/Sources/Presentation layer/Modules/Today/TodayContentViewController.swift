@@ -171,7 +171,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 cell.onChangeCheckedState = { [unowned self] isChecked in
                     self.feedbackGenerator.impactOccurred()
                     habit.setDone(isChecked, at: self.currentDate)
-                    self.habitsService.updateHabit(habit, sprintID: self.sprintID, goalID: nil, completion: { _ in })
+                    self.habitsService.updateHabit(habit, completion: { _ in })
                 }
             }
             return cell
@@ -315,16 +315,11 @@ private extension TodayContentViewController {
             date: currentDate.endOfDay() ?? currentDate.endOfDay
         )
         let delegate = CachedEntitiesObserverDelegate<Habit>(
-            onInitialFetch: { [unowned self] _ in
-                self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? [])
+            onInitialFetch: { [unowned self] sectionedHabits in
+                self.updateSprintProgress(habits: sectionedHabits.flatMap { $0.value })
             },
             onEntitiesCountChange: { [unowned self] count in
                 self.state = count == 0 ? .empty : .content
-            },
-            onChanges: { changes in
-                guard !changes.isEmpty else { return }
-                
-                AchievementsManager.shared.updateAchievements()
             },
             onBatchUpdatesCompleted: { [unowned self] in
                 self.updateSprintProgress(habits: self.habitsCacheObserver?.allObjects() ?? [])
@@ -344,11 +339,6 @@ private extension TodayContentViewController {
             },
             onEntitiesCountChange: { [unowned self] count in
                 self.state = count == 0 ? .empty : .content
-            },
-            onChanges: { changes in
-                guard !changes.isEmpty else { return }
-                
-                AchievementsManager.shared.updateAchievements()
             },
             onBatchUpdatesCompleted: { [unowned self] in
                 self.updateSprintProgress(goals: self.goalsCacheObserver?.items(in: 0) ?? [])
@@ -430,7 +420,7 @@ private extension TodayContentViewController {
             return !habit.link.trimmed.isEmpty
         }
         habitCellActionsProvider.shouldShowEditAction = { _ in false }
-        habitCellActionsProvider.shouldShowDeleteAction = { _ in false }
+        habitCellActionsProvider.shouldShowDeleteAction = { _ in true }
         
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }

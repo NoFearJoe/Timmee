@@ -54,6 +54,8 @@ final class TodayGoalCell: SwipeTableViewCell {
         
         let habitsForCurrentDate = goal.habits.filter {
             $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate && !$0.isDone(at: currentDate)
+        }.sorted {
+            $0.title < $1.title
         }
         
         habitsTitleLabel.isHidden = habitsForCurrentDate.isEmpty

@@ -131,7 +131,7 @@ extension HabitsService: HabitsManager {
     }
     
     public func updateHabit(_ habit: Habit, completion: @escaping (Bool) -> Void) {
-        updateHabit(habit, sprintID: nil, goalID: nil, completion: completion)
+        updateHabits([habit], completion: completion)
     }
     
     public func updateHabit(_ habit: Habit, sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void) {
@@ -139,7 +139,22 @@ extension HabitsService: HabitsManager {
     }
     
     public func updateHabits(_ habits: [Habit], completion: @escaping (Bool) -> Void) {
-        updateHabits(habits, sprintID: nil, goalID: nil, completion: completion)
+        guard !habits.isEmpty else {
+            DispatchQueue.main.async { completion(false) }
+            return
+        }
+        
+        Database.localStorage.write({ (context, save) in
+            habits.forEach { habit in
+                let habitEntity = self.fetchHabitEntityInBackground(id: habit.id) ?? self.createHabit()
+                
+                habitEntity.map(from: habit)
+            }
+            
+            save()
+        }) { isSuccess in
+            DispatchQueue.main.async { completion(isSuccess) }
+        }
     }
     
     public func updateHabits(_ habits: [Habit], sprintID: String?, goalID: String?, completion: @escaping (Bool) -> Void) {
@@ -166,6 +181,8 @@ extension HabitsService: HabitsManager {
                         id: goalID,
                         context: context
                     )
+                } else {
+                    habitEntity.goal = nil
                 }
             }
             
@@ -294,10 +311,13 @@ extension HabitsService: HabitsObserverProvider {
         let request = HabitsService.allHabitsFetchRequest().filtered(predicate: predicate).batchSize(10).nsFetchRequest
         let context = Database.localStorage.readContext
         
-        let observer = CachedEntitiesObserver<HabitEntity, Habit>(context: context,
-                                                                  baseRequest: request,
-                                                                  grouping: { $0.calculatedDayTime.sortID },
-                                                                  mapping: { Habit(habit: $0) })
+        let observer = CachedEntitiesObserver<HabitEntity, Habit>(
+            context: context,
+            baseRequest: request,
+            grouping: { $0.calculatedDayTime.sortID },
+            mapping: { Habit(habit: $0) },
+            sorting: { $0 < $1 }
+        )
         
         return observer
     }

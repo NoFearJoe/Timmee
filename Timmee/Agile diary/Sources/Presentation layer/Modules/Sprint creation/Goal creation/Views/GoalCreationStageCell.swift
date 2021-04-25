@@ -107,6 +107,7 @@ private extension GoalCreationStageCell {
     
     func setupViews() {
         selectionStyle = .none
+        backgroundColor = .clear
         
         contentView.addSubview(titleView)
         contentView.addSubview(stageNumberLabel)

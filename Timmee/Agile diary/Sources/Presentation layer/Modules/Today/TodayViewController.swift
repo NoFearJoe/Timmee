@@ -15,15 +15,12 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var pickDayButton: PickDayButton!
-    @IBOutlet private var achievementsButton: UIButton!
     @IBOutlet private var actionsButton: UIButton!
     @IBOutlet private var sectionSwitcher: Switcher!
     @IBOutlet private var progressBar: ProgressBar!
     @IBOutlet private var createSprintButton: UIButton!
     @IBOutlet private var backgroundImageView: UIImageView!
-    
-    private lazy var achievementsButtonController = TodayAchievementsButtonController(parent: self)
-        
+            
     @IBOutlet private var placeholderContainer: UIView!
     private lazy var placeholderView = PlaceholderView.loadedFromNib()
     
@@ -40,8 +37,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     private var currentSection = SprintSection.habits
     
+    var currentDateIsToday = true
     var currentDate: Date = Date.now.startOfDay() {
         didSet {
+            currentDateIsToday = currentDate.isWithinSameDay(of: Date.now.startOfDay())
             updateCurrentDateLabel()
             habitsViewController.currentDate = currentDate
             goalsViewController.currentDate = currentDate
@@ -76,10 +75,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         progressBar.setProgress(0)
         createSprintButton.isHidden = true
         
-        achievementsButtonController.achievementsButton = achievementsButton
-        achievementsButtonController.achievementsButtonContainer = headerView
-        achievementsButtonController.setup()
-        
         habitsViewController.transitionHandler = self
         habitsViewController.progressListener = self
         goalsViewController.transitionHandler = self
@@ -89,7 +84,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         
         subscribeToSynchronizationCompletion()
         setupShowProVersionTracker()
-        achievementsButtonController.subscribeOnAchievementsUpdate()
         
         setSectionContainersVisible(section: currentSection)
         
@@ -98,14 +92,18 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
                 self?.setupBackgroundImage()
             }
         }
-        
-        SiriIntentsManager.shared.donateTodaysHabitsIntent()
     }
     
     override func refresh() {
         super.refresh()
         
-        updateCurrentDateLabel()
+        /// Ситуация, когда текущая дата - не сегодняшний день, но до этого был выбран сегодняшний день.
+        /// Это возникает, когда изменился день с момента последнего обновления экрана.
+        if currentDateIsToday, !currentDate.isWithinSameDay(of: Date.now.startOfDay()) {
+            currentDate = Date.now.startOfDay()
+        } else {
+            updateCurrentDateLabel()
+        }
         setupSections()
         setupBackgroundImage()
         
@@ -133,9 +131,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        TrackersConfigurator.shared.showProVersionTracker?.commit()
         
-        AchievementsManager.shared.updateAchievements()
+        TrackersConfigurator.shared.showProVersionTracker?.commit()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -159,9 +156,13 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     @objc private func onSwitchSection() {
-        currentSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
-        
         guard sprint != nil else { return }
+
+        let selectedSection = SprintSection(rawValue: sectionSwitcher.selectedItemIndex) ?? .habits
+        
+        guard selectedSection != currentSection else { return }
+                
+        currentSection = selectedSection
 
         setSectionContainersVisible(section: currentSection)
     }

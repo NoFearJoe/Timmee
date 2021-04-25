@@ -56,10 +56,12 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
     
     private lazy var habitsCacheAdapter = TableViewCacheAdapter(tableView: habitsTableView)
     private var habitsCacheObserver: CacheObserver<Habit>?
-    private let habitCellActionsProvider = CellDeleteSwipeActionProvider()
+    private let habitCellActionsProvider = HabitsInGoalSwipeActionProvider()
     
     private let keyboardManager = KeyboardManager()
     private var contentScrollViewOffset: CGFloat?
+    
+    private var pickedHabitsHandler: PickedHabitsHandler?
     
     var goal: Goal!
     var sprintID: String!
@@ -98,10 +100,9 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
         stageCellActionsProvider.onDelete = { [unowned self] indexPath in
             self.interactor.removeStage(at: indexPath.row)
         }
-        habitCellActionsProvider.onDelete = { [unowned self] indexPath in
+        habitCellActionsProvider.onUnlink = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
-            self.habitsService.removeHabit(habit, completion: { _ in })
-            HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
+            self.habitsService.updateHabit(habit, sprintID: self.sprintID, goalID: nil, completion: { _ in })
         }
         
         addChild(stackViewController)
@@ -137,6 +138,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
         
         habitsTableView.delegate = self
         habitsTableView.dataSource = self
+        habitsTableView.backgroundColor = .clear
         habitsTableView.separatorStyle = .singleLine
         habitsTableView.separatorColor = AppTheme.current.colors.decorationElementColor
         habitsTableView.separatorInset.left = 8
@@ -236,8 +238,45 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
     }
     
     @IBAction private func onAddHabit() {
-        performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
+        let actionSheetViewController = ActionSheetViewController(items: [
+            ActionSheetItem(
+                icon: UIImage(imageLiteralResourceName: "plus"),
+                title: "create_habit".localized,
+                action: { [unowned self] in
+                    self.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "ShowHabitCreation", sender: nil)
+                    }
+                }
+            ),
+            ActionSheetItem(
+                icon: UIImage(imageLiteralResourceName: "list_sort"),
+                title: "choose_habits_from_current_sprint".localized,
+                action: { [unowned self] in
+                    self.dismiss(animated: true) {
+                        self.pickedHabitsHandler = PickedHabitsHandler(
+                            sprintID: self.sprintID,
+                            goalID: self.goal.id,
+                            initialHabits: self.habitsCacheObserver?.items(in: 0) ?? []
+                        )
+                        
+                        let habitsPicker = HabitsPickerViewController(mode: .sprint(id: self.sprintID))
+                        habitsPicker.pickedHabitsState = self.pickedHabitsHandler
+                        
+                        let navigationController = UINavigationController(rootViewController: habitsPicker)
+                        
+                        self.present(navigationController, animated: true, completion: nil)
+                    }
+                }
+            )
+        ])
+        
+        actionSheetViewController.backgroundColor = AppTheme.current.colors.foregroundColor
+        actionSheetViewController.tintColor = AppTheme.current.colors.activeElementColor
+        actionSheetViewController.separatorColor = AppTheme.current.colors.decorationElementColor
+        
+        present(actionSheetViewController, animated: true, completion: nil)
     }
+    
     @IBAction private func onClose() {
         if isCreation {
             self.view.isUserInteractionEnabled = false
@@ -568,6 +607,36 @@ private extension GoalCreationViewController {
             return nil
         } else {
             return max(0, focusedViewMaxY - visibleContentHeight)
+        }
+    }
+    
+}
+
+private final class PickedHabitsHandler: PickedHabitsState {
+    
+    private let habitsService = ServicesAssembly.shared.habitsService
+    
+    let sprintID: String
+    let goalID: String
+    let initialHabits: [Habit]
+    var pickedHabits: [Habit]
+    
+    init(sprintID: String, goalID: String, initialHabits: [Habit]) {
+        self.sprintID = sprintID
+        self.goalID = goalID
+        self.initialHabits = initialHabits
+        self.pickedHabits = initialHabits
+    }
+    
+    func didCompletePicking(habits: [Habit]) {
+        let addedHabits = habits.filter { !initialHabits.contains($0) }
+        if !addedHabits.isEmpty {
+            habitsService.updateHabits(addedHabits, sprintID: sprintID, goalID: goalID, completion: { _ in })
+        }
+        
+        let removedHabits = initialHabits.filter { !habits.contains($0) }
+        if !removedHabits.isEmpty {
+            habitsService.updateHabits(removedHabits, sprintID: sprintID, goalID: nil, completion: { _ in })
         }
     }
     

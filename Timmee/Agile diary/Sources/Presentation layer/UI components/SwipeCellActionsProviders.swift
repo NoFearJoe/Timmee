@@ -358,3 +358,56 @@ extension DiaryEntryCellSwipeActionsProvider: SwipeTableViewCellDelegate {
     }
     
 }
+
+// Habits in goal
+
+final class HabitsInGoalSwipeActionProvider {
+    
+    var onUnlink: ((IndexPath) -> Void)?
+    
+    static var backgroundColor: UIColor {
+        return .clear
+    }
+    
+    fileprivate lazy var swipeTableOptions: SwipeTableOptions = {
+        var options = SwipeTableOptions()
+        options.expansionStyle = nil
+        options.transitionStyle = SwipeTransitionStyle.drag
+        options.backgroundColor = HabitsInGoalSwipeActionProvider.backgroundColor
+        return options
+    }()
+    
+    fileprivate lazy var swipeUnlinkAction: SwipeAction = {
+        let deleteAction = SwipeAction(style: .default,
+                                       title: "",
+                                       handler:
+            { [weak self] (action, indexPath) in
+                self?.onUnlink?(indexPath)
+                action.fulfill(with: .delete)
+        })
+        deleteAction.image = UIImage(imageLiteralResourceName: "broken_link")
+        deleteAction.textColor = AppTheme.current.colors.incompleteElementColor
+        deleteAction.title = nil
+        deleteAction.backgroundColor = HabitsInGoalSwipeActionProvider.backgroundColor
+        deleteAction.transitionDelegate = nil
+        return deleteAction
+    }()
+    
+}
+
+extension HabitsInGoalSwipeActionProvider: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        switch orientation {
+        case .left: return nil
+        case .right: return [swipeUnlinkAction]
+        }
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   editActionsOptionsForRowAt indexPath: IndexPath,
+                   for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        return swipeTableOptions
+    }
+    
+}

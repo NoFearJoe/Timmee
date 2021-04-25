@@ -36,7 +36,7 @@ final class ShopCategoryViewController: BaseViewController {
         
         setupPlaceholder()
         
-        tableView.register(HabitsHistoryCell.self, forCellReuseIdentifier: HabitsHistoryCell.reuseIdentifier)
+        tableView.register(HabitsPickerCell.self, forCellReuseIdentifier: HabitsPickerCell.reuseIdentifier)
     }
     
     override func refresh() {
@@ -61,7 +61,7 @@ extension ShopCategoryViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HabitsHistoryCell.reuseIdentifier, for: indexPath) as! HabitsHistoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HabitsPickerCell.reuseIdentifier, for: indexPath) as! HabitsPickerCell
         if let habit = collection?.habits.item(at: indexPath.row) {
             let isPicked = pickedHabitsState.pickedHabits.contains(habit)
             cell.configure(habit: habit, isPicked: isPicked)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFK-lV-GWC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YFK-lV-GWC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,17 +77,6 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLB-lM-yd8">
-                                                <rect key="frame" x="283" y="24" width="40" height="40"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="1Ia-rz-RSi"/>
-                                                    <constraint firstAttribute="height" constant="40" id="9Jz-lN-eKV"/>
-                                                </constraints>
-                                                <state key="normal" image="achievements">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjR-Bh-1q4">
                                                 <rect key="frame" x="327" y="24" width="40" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -104,13 +93,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="fjR-Bh-1q4" firstAttribute="top" secondItem="flB-a1-GhC" secondAttribute="top" id="0lS-dK-WGd"/>
-                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="centerY" secondItem="xLB-lM-yd8" secondAttribute="centerY" id="GCj-Xt-iPD"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="leading" secondItem="K8C-Jk-aYp" secondAttribute="leading" constant="15" id="GKQ-CW-JC5"/>
-                                            <constraint firstItem="fjR-Bh-1q4" firstAttribute="leading" secondItem="xLB-lM-yd8" secondAttribute="trailing" constant="4" id="VSg-xS-AWh"/>
                                             <constraint firstAttribute="trailing" secondItem="flB-a1-GhC" secondAttribute="trailing" constant="15" id="WHn-7I-pP6"/>
                                             <constraint firstAttribute="bottom" secondItem="flB-a1-GhC" secondAttribute="bottom" constant="8" id="ZRH-v5-V45"/>
                                             <constraint firstAttribute="trailing" secondItem="fjR-Bh-1q4" secondAttribute="trailing" constant="8" id="bHY-m8-YFQ"/>
-                                            <constraint firstItem="xLB-lM-yd8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YFn-kI-KNI" secondAttribute="trailing" constant="4" id="fNb-NK-InW"/>
                                             <constraint firstItem="flB-a1-GhC" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="top" constant="24" id="od8-Io-JHc"/>
                                         </constraints>
                                     </view>
@@ -122,6 +108,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="Loe-lt-MwF"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="n2E-og-p5R" firstAttribute="top" secondItem="K8C-Jk-aYp" secondAttribute="bottom" id="1Yt-Vf-lz8"/>
@@ -132,7 +119,6 @@
                                     <constraint firstAttribute="trailing" secondItem="K8C-Jk-aYp" secondAttribute="trailing" id="s5b-TG-6Mp"/>
                                     <constraint firstItem="K8C-Jk-aYp" firstAttribute="top" secondItem="Loe-lt-MwF" secondAttribute="top" id="ydl-PG-eJ6"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="Loe-lt-MwF"/>
                                 <connections>
                                     <outlet property="subtitleLabel" destination="aBf-PW-p5z" id="xA7-NM-mYX"/>
                                     <outlet property="titleLabel" destination="ePM-y5-lDE" id="CMa-7J-MyV"/>
@@ -146,7 +132,7 @@
                                 <rect key="frame" x="0.0" y="138" width="375" height="529"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-ev-KnK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-ev-KnK">
                                 <rect key="frame" x="20" y="595" width="335" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="Aol-cT-QB7"/>
@@ -158,6 +144,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ibh-Jp-ctc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="Wcp-ev-KnK" secondAttribute="trailing" constant="20" id="0Hf-BL-37g"/>
@@ -179,10 +166,8 @@
                             <constraint firstItem="kq5-QA-Okj" firstAttribute="leading" secondItem="ibh-Jp-ctc" secondAttribute="leading" id="sed-c1-mwq"/>
                             <constraint firstItem="ibh-Jp-ctc" firstAttribute="trailing" secondItem="Rfn-qH-ddK" secondAttribute="trailing" id="u6i-gf-n9k"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ibh-Jp-ctc"/>
                     </view>
                     <connections>
-                        <outlet property="achievementsButton" destination="xLB-lM-yd8" id="wFc-D8-baW"/>
                         <outlet property="actionsButton" destination="fjR-Bh-1q4" id="v4w-FU-XWE"/>
                         <outlet property="backgroundImageView" destination="kq5-QA-Okj" id="bpo-P0-sYV"/>
                         <outlet property="contentViewContainer" destination="UQc-5J-Nm5" id="v3S-lC-KIm"/>
@@ -262,7 +247,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="achievements" width="28" height="28"/>
         <image name="pickDayIcon" width="12" height="8"/>
         <image name="settings" width="20" height="20"/>
     </resources>

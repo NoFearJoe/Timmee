@@ -21,6 +21,8 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
     
     private lazy var habitsForCurrentDate: [Habit] = goal.habits.filter {
         $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate
+    }.sorted {
+        $0.title < $1.title
     }
     
     private let goalsService = ServicesAssembly.shared.goalsService
@@ -51,6 +53,7 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
             let habitsTableView = AutoSizingTableView(frame: .zero, style: .plain)
             habitsTableView.clipsToBounds = false
             habitsTableView.separatorStyle = .none
+            habitsTableView.backgroundColor = .clear
             habitsTableView.showsVerticalScrollIndicator = false
             habitsTableView.delegate = self
             habitsTableView.dataSource = self

@@ -57,7 +57,6 @@
 		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
 		96346F06248AAB0200A815F2 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F05248AAB0200A815F2 /* Time.swift */; };
 		9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9686322021D91637004B13D1 /* LiveCacheFetcher.swift */; };
-		96A066B72483C8AF00111BA2 /* AchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066B62483C8AF00111BA2 /* AchievementsService.swift */; };
 		96BE838E217511D700CDECAF /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838D217511D700CDECAF /* Goal.swift */; };
 		96BE8390217511E500CDECAF /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838F217511E500CDECAF /* Habit.swift */; };
 		96BE8392217511F400CDECAF /* Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8391217511F400CDECAF /* Sprint.swift */; };
@@ -127,7 +126,6 @@
 		96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
 		9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee5.xcdatamodel; sourceTree = "<group>"; };
 		9686322021D91637004B13D1 /* LiveCacheFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCacheFetcher.swift; sourceTree = "<group>"; };
-		96A066B62483C8AF00111BA2 /* AchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsService.swift; sourceTree = "<group>"; };
 		96BE838D217511D700CDECAF /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		96BE838F217511E500CDECAF /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		96BE8391217511F400CDECAF /* Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint.swift; sourceTree = "<group>"; };
@@ -135,6 +133,7 @@
 		96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE8398217519A600CDECAF /* SprintEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96C55A2123B7429F0091DC19 /* Timmee7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee7.xcdatamodel; sourceTree = "<group>"; };
+		96F4699F26357E6000D5751C /* Timmee9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee9.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,7 +363,6 @@
 				0CE475592175BAFF005FD8CC /* HabitsService.swift */,
 				0CE4755C2175DA1E005FD8CC /* GoalsService.swift */,
 				0C4082E122E6DFBE00D899A9 /* DiaryService.swift */,
-				96A066B62483C8AF00111BA2 /* AchievementsService.swift */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -523,7 +521,6 @@
 			files = (
 				0C90018E21F9912100D6C15F /* IdentifiableEntity.swift in Sources */,
 				0C9B240A2077B9EE009EF6DE /* NSManagedObject+entityName.swift in Sources */,
-				96A066B72483C8AF00111BA2 /* AchievementsService.swift in Sources */,
 				9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */,
 				0CE018612077B2BD00633EFF /* FetchRequest.swift in Sources */,
 				0CE0186C2077B2BD00633EFF /* NotificationMask.swift in Sources */,
@@ -786,6 +783,7 @@
 		0CE018032077B24200633EFF /* Timmee.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				96F4699F26357E6000D5751C /* Timmee9.xcdatamodel */,
 				963972052481307800BF141D /* Timmee8.xcdatamodel */,
 				96C55A2123B7429F0091DC19 /* Timmee7.xcdatamodel */,
 				0C4082E622E6E76A00D899A9 /* Timmee6.xcdatamodel */,
@@ -795,7 +793,7 @@
 				0C9999CE21E755D000DD2040 /* Timmee2.xcdatamodel */,
 				0CE018042077B24200633EFF /* Timmee.xcdatamodel */,
 			);
-			currentVersion = 963972052481307800BF141D /* Timmee8.xcdatamodel */;
+			currentVersion = 96F4699F26357E6000D5751C /* Timmee9.xcdatamodel */;
 			path = Timmee.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

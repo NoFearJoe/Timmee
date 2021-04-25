@@ -48,15 +48,6 @@ target 'HabitsTodayExtension' do
   pod 'SwipeCellKit'
 end
 
-target 'Agilee diary Siri IntentUI' do
-  inherit! :search_paths
-
-  workspace 'Agile diary.xcworkspace'
-  project 'Agile diary.xcodeproj'
-
-  pod 'SwipeCellKit'
-end
-
 target 'Synchronization' do
   project 'Synchronization.xcodeproj'
 end

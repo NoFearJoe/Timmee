@@ -35,6 +35,7 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
     let grouping: ((Entity) throws -> String)?
     let mapping: (ManagedObject) -> Entity
     let filter: ((Entity) -> Bool)?
+    let sorting: ((Entity, Entity) -> Bool)?
     let sectionsOffset: Int
     
     var delegate: CachedEntitiesObserverDelegate<Entity>!
@@ -52,12 +53,14 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                 grouping: ((Entity) throws -> String)? = nil,
                 mapping: @escaping (ManagedObject) -> Entity,
                 filter: ((Entity) -> Bool)? = nil,
+                sorting: ((Entity, Entity) -> Bool)? = nil,
                 sectionsOffset: Int = 0) {
         self.context = context
         self.baseRequest = baseRequest
         self.grouping = grouping
         self.mapping = mapping
         self.filter = filter
+        self.sorting = sorting
         self.sectionsOffset = sectionsOffset
     }
     
@@ -101,7 +104,18 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                 sectionedEntities = filteredEntities.isEmpty ? [:] : ["": filteredEntities]
             }
             
-            let sectionedValues = SectionedValues<String, Entity>(sectionedEntities.map({ ($0, $1) }).sorted(by: { $0.0 < $1.0 }))
+            let sectionedValues = SectionedValues<String, Entity>(
+                sectionedEntities.map {
+                    (
+                        $0,
+                        $1.sorted {
+                            self.sorting?($0, $1) ?? true
+                        }
+                    )
+                }.sorted {
+                    $0.0 < $1.0
+                }
+            )
             
             if self.currentSectionedValues.sectionsAndValues.isEmpty {
                 DispatchQueue.main.async {

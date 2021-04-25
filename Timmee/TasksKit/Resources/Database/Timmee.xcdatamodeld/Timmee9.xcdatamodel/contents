@@ -16,7 +16,7 @@
         <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="habits" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HabitEntity" inverseName="goal" inverseEntity="HabitEntity"/>
+        <relationship name="habits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HabitEntity" inverseName="goal" inverseEntity="HabitEntity"/>
         <relationship name="sprint" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SprintEntity" inverseName="goals" inverseEntity="SprintEntity"/>
         <relationship name="stages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubtaskEntity" inverseName="goal" inverseEntity="SubtaskEntity"/>
     </entity>
@@ -170,7 +170,7 @@
     </configuration>
     <elements>
         <element name="DiaryEntryEntity" positionX="9" positionY="153" width="128" height="135"/>
-        <element name="GoalEntity" positionX="0" positionY="0" width="128" height="193"/>
+        <element name="GoalEntity" positionX="0" positionY="0" width="128" height="179"/>
         <element name="HabitEntity" positionX="0" positionY="0" width="128" height="283"/>
         <element name="ListEntity" positionX="0" positionY="0" width="128" height="165"/>
         <element name="LocallyDeletedEntity" positionX="9" positionY="153" width="128" height="75"/>
