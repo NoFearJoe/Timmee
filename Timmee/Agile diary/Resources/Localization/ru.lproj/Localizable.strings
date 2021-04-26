@@ -184,9 +184,11 @@
 "my_progress" = "Мой прогресс";
 "goals" = "Цели";
 "habits" = "Привычки";
+"habits_chart_chart_title" = "График выполнения привычек по дням";
 "habits_chart_no_data" = "Начните выполнять привычки, чтобы видеть прогресс";
 "show_full_progress" = "Подробнее";
 "Progress_till_today" = "Прогресс с начала спринта по сегодня";
+"habits_chart_total_progress_title" = "Процент выполненых привычек";
 
 "notifications" = "Напоминания";
 "notifications_interval" = "Интервал напоминаний";

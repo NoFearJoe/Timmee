@@ -148,6 +148,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             let habit = sender as? Habit
             controller.setHabit(habit, sprintID: sprint.id, goalID: nil)
             controller.setEditingMode(habit == nil ? .full : .short)
+        } else if let viewController = (segue.destination as? UINavigationController)?.topViewController as? HabitsChartViewController {
+            viewController.sprint = sprint
         } else if segue.identifier == "ShowSettings" {
             segue.destination.presentationController?.delegate = self
         } else {

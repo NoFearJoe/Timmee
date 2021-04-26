@@ -173,7 +173,7 @@ private extension StackViewController {
         self.scrollView.minimumZoomScale = 1
         self.scrollView.maximumZoomScale = 1
         if #available(iOS 11.0, *) {
-            self.scrollView.contentInsetAdjustmentBehavior = .never
+            self.scrollView.contentInsetAdjustmentBehavior = .always
         }
         self.scrollView.delaysContentTouches = false
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false

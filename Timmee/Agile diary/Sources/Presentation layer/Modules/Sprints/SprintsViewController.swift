@@ -75,7 +75,7 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let chartsViewController = (segue.destination as? UINavigationController)?.topViewController as? ChartsViewController {
+        if let chartsViewController = (segue.destination as? UINavigationController)?.topViewController as? HabitsChartViewController {
             chartsViewController.sprint = sender as? Sprint
         } else {
             super.prepare(for: segue, sender: sender)

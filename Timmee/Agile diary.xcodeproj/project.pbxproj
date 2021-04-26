@@ -69,7 +69,6 @@
 		0C2B9D21220DAD420038F11D /* SprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D20220DAD420038F11D /* SprintCell.xib */; };
 		0C2B9D22220DAD420038F11D /* SprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D20220DAD420038F11D /* SprintCell.xib */; };
 		0C3DA4BA21513BB000CAE635 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4BC21513BB000CAE635 /* InfoPlist.strings */; };
-		0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
 		0C3DA4DF21525ECF00CAE635 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */; };
 		0C3DA5232153731600CAE635 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
 		0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */; };
@@ -96,8 +95,6 @@
 		0C8D073A212A95D1008122A6 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
 		0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
 		0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
-		0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */; };
-		0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
 		0C936544215A0B1A00B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C936545215A0C0700B4EB48 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */; };
@@ -142,8 +139,7 @@
 		0CB6738021A52C3900178EB1 /* TodayHabitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E526214687C40071DABD /* TodayHabitCell.swift */; };
 		0CB6738121A52C3900178EB1 /* NotificationsSetupSuggestionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */; };
 		0CB6738221A52C3900178EB1 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D075F212BE5B5008122A6 /* Checkbox.swift */; };
-		0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */; };
-		0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
+		0CB6738421A52C3900178EB1 /* HabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* HabitsChartViewController.swift */; };
 		0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
 		0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDED214F971700AA4FB8 /* BiometricsActivationController.swift */; };
 		0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4A7212160B5004C0559 /* EducationViewController.swift */; };
@@ -164,7 +160,6 @@
 		0CB6739721A52C3900178EB1 /* CustomOperatorsDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */; };
 		0CB6739821A52C3900178EB1 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4E1212182B2004C0559 /* UserProperties.swift */; };
 		0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB030C9219AF655006C5146 /* ShopCategoriesViewController.swift */; };
-		0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C32902157716500B9201A /* HabitsChartCell.swift */; };
 		0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */; };
 		0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */; };
 		0CB6739D21A52C3900178EB1 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7E51C2146697C0071DABD /* TodayViewController.swift */; };
@@ -179,14 +174,11 @@
 		0CB673A721A52C3900178EB1 /* InitialScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */; };
 		0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4F02121974E004C0559 /* LargeHeaderView.swift */; };
 		0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEA214F971600AA4FB8 /* NumberPadItem.swift */; };
-		0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */; };
 		0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEC214F971700AA4FB8 /* PinAuthenticationViewController.swift */; };
-		0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328D2157709900B9201A /* BaseChartCell.swift */; };
 		0CB673AF21A52C3900178EB1 /* GoalCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D5362123F826004C0559 /* GoalCreationViewController.swift */; };
 		0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C46972140FDF900390F85 /* DueDatePicker.swift */; };
 		0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C936543215A0B1A00B4EB48 /* Date+Today.swift */; };
 		0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDEB214F971600AA4FB8 /* NumberPadAdapter.swift */; };
-		0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */; };
 		0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D4AC212167EF004C0559 /* ViewControllersFactory.swift */; };
 		0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D50C2122E232004C0559 /* List+Sprint.swift */; };
 		0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2EDDF214F945500AA4FB8 /* ImmutableSprintsEducationScreen.swift */; };
@@ -199,7 +191,6 @@
 		0CB673C521A52C3900178EB1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4C621217390004C0559 /* Localizable.strings */; };
 		0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D4ED21219669004C0559 /* SprintCreation.storyboard */; };
 		0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C328B215181D700B9201A /* Settings.storyboard */; };
-		0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */; };
 		0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47E211C55DA004C0559 /* LaunchScreen.storyboard */; };
 		0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C14D47C211C55DA004C0559 /* Assets.xcassets */; };
@@ -296,8 +287,6 @@
 		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
 		967C328A21517F3C00B9201A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328921517F3C00B9201A /* SettingsViewController.swift */; };
 		967C328C215181D700B9201A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C328B215181D700B9201A /* Settings.storyboard */; };
-		967C328E2157709900B9201A /* BaseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328D2157709900B9201A /* BaseChartCell.swift */; };
-		967C32912157716500B9201A /* HabitsChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C32902157716500B9201A /* HabitsChartCell.swift */; };
 		96888C1D2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C1E2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
@@ -316,7 +305,6 @@
 		96A5607B24B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */; };
 		96A5608824B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */; };
 		96A5608924B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */; };
-		96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */; };
 		96A5A0E42171065C007511ED /* ExtendedBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */; };
 		96BE83882175034400CDECAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96BE838A2175034400CDECAF /* InfoPlist.strings */; };
 		96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BE83CB217644F400CDECAF /* NotificationsKit.framework */; };
@@ -328,7 +316,7 @@
 		96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */; };
 		96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */; };
 		96C55A2A23BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */; };
-		96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */; };
+		96CAD81C216D39C2005D707C /* HabitsChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CAD81B216D39C2005D707C /* HabitsChartViewController.swift */; };
 		96DDBDB123BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
 		96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB023BB474B007AB33B /* GoalCreationStageCell.swift */; };
 		96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */; };
@@ -341,8 +329,12 @@
 		96DDBDC123CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDBF23CA2FA9007AB33B /* HabitCreationDayTimePicker.swift */; };
 		96DDBDC323CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */; };
 		96DDBDC423CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */; };
-		96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
-		96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */; };
+		96F469A92636B64900D5751C /* HabitProgressHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469A82636B64900D5751C /* HabitProgressHeaderView.swift */; };
+		96F469AA2636B64900D5751C /* HabitProgressHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469A82636B64900D5751C /* HabitProgressHeaderView.swift */; };
+		96F469AF2636B68F00D5751C /* HabitProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469AE2636B68F00D5751C /* HabitProgressCell.swift */; };
+		96F469B02636B68F00D5751C /* HabitProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469AE2636B68F00D5751C /* HabitProgressCell.swift */; };
+		96F469B42637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */; };
+		96F469B52637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */; };
 		96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
 		96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
 		96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
@@ -460,7 +452,6 @@
 		0C2B9D20220DAD420038F11D /* SprintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintCell.xib; sourceTree = "<group>"; };
 		0C3DA4BB21513BB000CAE635 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3DA4BD21513BB200CAE635 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Charts.storyboard; sourceTree = "<group>"; };
 		0C3DA5252153B5CF00CAE635 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0C3DA5272153BF7500CAE635 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
@@ -479,8 +470,6 @@
 		0C8D0739212A95D1008122A6 /* CustomOperatorsDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperatorsDefinitions.swift; sourceTree = "<group>"; };
 		0C8D075F212BE5B5008122A6 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		0C8D0794212ECE65008122A6 /* SprintInteractorTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintInteractorTrait.swift; sourceTree = "<group>"; };
-		0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostFrequentlyPerformedHabitChartCell.swift; sourceTree = "<group>"; };
-		0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRarelyPerformedHabitChartCell.swift; sourceTree = "<group>"; };
 		0C936543215A0B1A00B4EB48 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
 		0C97552721A2A6DD0031CA2E /* SprintNotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintNotificationTimePicker.swift; sourceTree = "<group>"; };
 		0CACF2D222241FAF00EE97E4 /* ShopCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCategoryViewController.swift; sourceTree = "<group>"; };
@@ -559,8 +548,6 @@
 		967C328721517E4100B9201A /* SettingsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCells.swift; sourceTree = "<group>"; };
 		967C328921517F3C00B9201A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		967C328B215181D700B9201A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		967C328D2157709900B9201A /* BaseChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChartCell.swift; sourceTree = "<group>"; };
-		967C32902157716500B9201A /* HabitsChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartCell.swift; sourceTree = "<group>"; };
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
@@ -571,7 +558,6 @@
 		96A5604824B093DB008B3A34 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewSectionProgressListener.swift; sourceTree = "<group>"; };
 		96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeaderViewWithTitle.swift; sourceTree = "<group>"; };
-		96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HabitProgressHeaderView.xib; sourceTree = "<group>"; };
 		96A5A0E32171065C007511ED /* ExtendedBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedBarChartView.swift; sourceTree = "<group>"; };
 		96BE83892175034400CDECAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96BE838B2175034500CDECAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -580,7 +566,7 @@
 		96C35FF122BDFE74001980F1 /* PreInitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreInitialScreenViewController.swift; sourceTree = "<group>"; };
 		96C35FF422BDFF11001980F1 /* PreInitialScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreInitialScreenViewController.xib; sourceTree = "<group>"; };
 		96C55A2823BB3E040091DC19 /* SectionContainer+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SectionContainer+AppTheme.swift"; sourceTree = "<group>"; };
-		96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedHabitsChartViewController.swift; sourceTree = "<group>"; };
+		96CAD81B216D39C2005D707C /* HabitsChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartViewController.swift; sourceTree = "<group>"; };
 		96CDC73C22E390E0009395B9 /* TasksKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TasksKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CDC73E22E390E0009395B9 /* UIComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CDC74022E390E0009395B9 /* Workset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Workset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -590,7 +576,9 @@
 		96DDBDBB23C9EA2D007AB33B /* HabitCreationValuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationValuePickerView.swift; sourceTree = "<group>"; };
 		96DDBDBF23CA2FA9007AB33B /* HabitCreationDayTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationDayTimePicker.swift; sourceTree = "<group>"; };
 		96DDBDC223CB68FB007AB33B /* HabitCreationDueDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationDueDaysView.swift; sourceTree = "<group>"; };
-		96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyExtendedChart.swift; sourceTree = "<group>"; };
+		96F469A82636B64900D5751C /* HabitProgressHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitProgressHeaderView.swift; sourceTree = "<group>"; };
+		96F469AE2636B68F00D5751C /* HabitProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitProgressCell.swift; sourceTree = "<group>"; };
+		96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartTotalProgressView.swift; sourceTree = "<group>"; };
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
 		96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionFeatureView.swift; sourceTree = "<group>"; };
 		96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProVersionFeatureView.xib; sourceTree = "<group>"; };
@@ -962,10 +950,9 @@
 			isa = PBXGroup;
 			children = (
 				0C3DA4DE21525ECF00CAE635 /* Charts.storyboard */,
-				96CAD81A216D39A4005D707C /* Extended charts */,
+				96CAD81B216D39C2005D707C /* HabitsChartViewController.swift */,
 				967C328F2157714700B9201A /* Cells */,
 				0C4082AC22E58A8D00D899A9 /* Views */,
-				0C3DA4DC21525EC400CAE635 /* ChartsViewController.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -989,6 +976,8 @@
 		0C4082AC22E58A8D00D899A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */,
+				96F469A82636B64900D5751C /* HabitProgressHeaderView.swift */,
 				0C4082AD22E58AAE00D899A9 /* HabitWeeklyChartView.swift */,
 			);
 			path = Views;
@@ -1336,10 +1325,7 @@
 		967C328F2157714700B9201A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				967C328D2157709900B9201A /* BaseChartCell.swift */,
-				967C32902157716500B9201A /* HabitsChartCell.swift */,
-				0C8DD4FB217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift */,
-				0C8DD4FD217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift */,
+				96F469AE2636B68F00D5751C /* HabitProgressCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1396,16 +1382,6 @@
 				96DDBDB323BB4915007AB33B /* GoalCreationStagesView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		96CAD81A216D39A4005D707C /* Extended charts */ = {
-			isa = PBXGroup;
-			children = (
-				96CAD81B216D39C2005D707C /* ExtendedHabitsChartViewController.swift */,
-				96A5A0E12171042B007511ED /* HabitProgressHeaderView.xib */,
-				96ECB7B8224619CA00ED42D7 /* AnyExtendedChart.swift */,
-			);
-			path = "Extended charts";
 			sourceTree = "<group>";
 		};
 		96DDBDBE23C9EC15007AB33B /* Views */ = {
@@ -1551,7 +1527,6 @@
 				96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
-				96A5A0E22171042B007511ED /* HabitProgressHeaderView.xib in Resources */,
 				963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */,
 				0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
@@ -1580,7 +1555,6 @@
 				96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
 				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
-				0CB673C821A52C3900178EB1 /* HabitProgressHeaderView.xib in Resources */,
 				963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */,
 				0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */,
 				0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */,
@@ -1772,8 +1746,7 @@
 				0C8D0760212BE5B5008122A6 /* Checkbox.swift in Sources */,
 				0C06E97A22F17EDE0099DD3A /* DiaryEntriesSubmoduleListView.swift in Sources */,
 				0CE3CA412359CF50008C2DA5 /* PickDayButton.swift in Sources */,
-				0C3DA4DD21525EC400CAE635 /* ChartsViewController.swift in Sources */,
-				96CAD81C216D39C2005D707C /* ExtendedHabitsChartViewController.swift in Sources */,
+				96CAD81C216D39C2005D707C /* HabitsChartViewController.swift in Sources */,
 				0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
 				0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */,
@@ -1787,7 +1760,6 @@
 				0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
-				96ECB7B9224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
 				0CF7E5232146833A0071DABD /* TodayContentViewController.swift in Sources */,
 				96DDBDB423BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
@@ -1795,6 +1767,7 @@
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
 				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
+				96F469A92636B64900D5751C /* HabitProgressHeaderView.swift in Sources */,
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
 				0CC405E521EE031E0069C6C5 /* PasswordValidator.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
@@ -1808,7 +1781,7 @@
 				96C35FF222BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0CB030CA219AF655006C5146 /* ShopCategoriesViewController.swift in Sources */,
 				0C06E95B22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
-				967C32912157716500B9201A /* HabitsChartCell.swift in Sources */,
+				96F469AF2636B68F00D5751C /* HabitProgressCell.swift in Sources */,
 				0C8D0795212ECE65008122A6 /* SprintInteractorTrait.swift in Sources */,
 				0C3DA5262153B5CF00CAE635 /* BaseViewController.swift in Sources */,
 				0CF7E51D2146697C0071DABD /* TodayViewController.swift in Sources */,
@@ -1827,6 +1800,7 @@
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
+				96F469B42637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
 				0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
 				0CE81611235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
@@ -1839,11 +1813,9 @@
 				0C06E94422E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */,
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
-				0C8DD4FE217DAABC006B5F9F /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				0CC405E021EDFEBD0069C6C5 /* FocusableTextField.swift in Sources */,
 				0CC405E321EE027D0069C6C5 /* EmailValidator.swift in Sources */,
 				0CB2EDF2214F971700AA4FB8 /* PinAuthenticationViewController.swift in Sources */,
-				967C328E2157709900B9201A /* BaseChartCell.swift in Sources */,
 				96DDBDC323CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */,
 				96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
 				0C14D5372123F826004C0559 /* GoalCreationViewController.swift in Sources */,
@@ -1855,7 +1827,6 @@
 				96A066A524815E9900111BA2 /* AppThemeApplier.swift in Sources */,
 				96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */,
 				0C737A96221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
-				0C8DD4FC217DA9C7006B5F9F /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				96C55A2923BB3E040091DC19 /* SectionContainer+AppTheme.swift in Sources */,
 				96A5607A24B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift in Sources */,
 				0C14D4AD212167EF004C0559 /* ViewControllersFactory.swift in Sources */,
@@ -1905,9 +1876,8 @@
 				0CB6738021A52C3900178EB1 /* TodayHabitCell.swift in Sources */,
 				0CB6738121A52C3900178EB1 /* NotificationsSetupSuggestionScreen.swift in Sources */,
 				0CB6738221A52C3900178EB1 /* Checkbox.swift in Sources */,
-				0CB6738321A52C3900178EB1 /* ChartsViewController.swift in Sources */,
 				0C06E94F22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
-				0CB6738421A52C3900178EB1 /* ExtendedHabitsChartViewController.swift in Sources */,
+				0CB6738421A52C3900178EB1 /* HabitsChartViewController.swift in Sources */,
 				0CB6738521A52C3900178EB1 /* NotificationTimePicker.swift in Sources */,
 				96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */,
 				0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */,
@@ -1952,7 +1922,6 @@
 				96DDBDC123CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */,
 				0C06E95922EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
 				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
-				0CB6739A21A52C3900178EB1 /* HabitsChartCell.swift in Sources */,
 				0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */,
 				96DDBDC423CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */,
@@ -1967,8 +1936,8 @@
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
 				96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
+				96F469B52637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */,
 				969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */,
-				96ECB7BA224619CA00ED42D7 /* AnyExtendedChart.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
 				0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0CB673A521A52C3900178EB1 /* TodayGoalCell.swift in Sources */,
@@ -1980,10 +1949,8 @@
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
-				0CB673AC21A52C3900178EB1 /* MostRarelyPerformedHabitChartCell.swift in Sources */,
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
-				0CB673AE21A52C3900178EB1 /* BaseChartCell.swift in Sources */,
 				96A066A624815E9900111BA2 /* AppThemeApplier.swift in Sources */,
 				0CB673AF21A52C3900178EB1 /* GoalCreationViewController.swift in Sources */,
 				96DDBDBD23C9EA2D007AB33B /* HabitCreationValuePickerView.swift in Sources */,
@@ -1991,11 +1958,12 @@
 				0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,
 				0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */,
-				0CB673B321A52C3900178EB1 /* MostFrequentlyPerformedHabitChartCell.swift in Sources */,
 				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
 				0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
+				96F469AA2636B64900D5751C /* HabitProgressHeaderView.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
+				96F469B02636B68F00D5751C /* HabitProgressCell.swift in Sources */,
 				96DDBDB523BB4915007AB33B /* GoalCreationStagesView.swift in Sources */,
 				0CB673B921A52C3900178EB1 /* ImmutableSprintsEducationScreen.swift in Sources */,
 			);

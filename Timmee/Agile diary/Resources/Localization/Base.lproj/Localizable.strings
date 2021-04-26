@@ -184,9 +184,11 @@
 "my_progress" = "My progress";
 "goals" = "Goals";
 "habits" = "Habits";
+"habits_chart_chart_title" = "Daily habits completion chart";
 "habits_chart_no_data" = "Start fulfilling habits to see progress";
 "show_full_progress" = "More";
 "Progress_till_today" = "Progress till today";
+"habits_chart_total_progress_title" = "Completed habits percent";
 
 "notifications" = "Reminders";
 "notifications_interval" = "Reminders interval";
