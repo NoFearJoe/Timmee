@@ -80,6 +80,8 @@ final class DefaultLargeHeaderView: LargeHeaderView {
         titleLabel.text = title
         subtitleLabel.attributedText = subtitle
         subtitleLabel.isHidden = subtitle == nil
+        leftButton?.isHidden = onTapLeftButton == nil
+        rightButton?.isHidden = onTapRightButton == nil
         self.onTapLeftButton = onTapLeftButton
         self.onTapRightButton = onTapRightButton
     }

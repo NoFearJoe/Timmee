@@ -18,7 +18,7 @@ protocol GoalCreationInteractorOutput: class {
 
 protocol GoalCreationDataSource: class {
     func stagesCount() -> Int
-    func stage(at index: Int) -> Subtask?
+    func stage(at index: Int) -> Stage?
 }
 
 final class GoalCreationInteractor {
@@ -27,9 +27,9 @@ final class GoalCreationInteractor {
     weak var goalProvider: GoalProvider!
     
     let goalsService = ServicesAssembly.shared.goalsService
-    let stagesService = ServicesAssembly.shared.subtasksService
+    let stagesService = ServicesAssembly.shared.stagesService
     
-    var sortedStages: [Subtask] {
+    var sortedStages: [Stage] {
         return goalProvider.goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition })
     }
     
@@ -111,7 +111,7 @@ extension GoalCreationInteractor: GoalCreationDataSource {
         return sortedStages.count
     }
     
-    func stage(at index: Int) -> Subtask? {
+    func stage(at index: Int) -> Stage? {
         return sortedStages.item(at: index)
     }
     
@@ -119,22 +119,24 @@ extension GoalCreationInteractor: GoalCreationDataSource {
 
 fileprivate extension GoalCreationInteractor {
     
-    func createStage(sortPosition: Int) -> Subtask {
-        return Subtask(id: RandomStringGenerator.randomString(length: 24),
-                       title: "",
-                       sortPosition: sortPosition)
+    func createStage(sortPosition: Int) -> Stage {
+        Stage(
+            id: RandomStringGenerator.randomString(length: 24),
+            title: "",
+            sortPosition: sortPosition
+        )
     }
     
-    func addStage(_ stage: Subtask, goal: Goal, completion: (() -> Void)?) {
+    func addStage(_ stage: Stage, goal: Goal, completion: (() -> Void)?) {
         stagesService.addStage(stage, to: goal, completion: completion)
     }
     
-    func saveStage(_ stage: Subtask, completion: (() -> Void)?) {
-        stagesService.updateSubtask(stage, completion: completion)
+    func saveStage(_ stage: Stage, completion: (() -> Void)?) {
+        stagesService.updateStage(stage, completion: completion)
     }
     
-    func removeStage(_ stage: Subtask, completion: (() -> Void)?) {
-        stagesService.removeSubtask(stage, completion: completion)
+    func removeStage(_ stage: Stage, completion: (() -> Void)?) {
+        stagesService.removeStage(stage, completion: completion)
     }
     
 }

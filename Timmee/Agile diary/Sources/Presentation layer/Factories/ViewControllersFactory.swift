@@ -51,15 +51,7 @@ final class ViewControllersFactory {
         UIStoryboard(name: "Today", bundle: nil).instantiateInitialViewController() as! TodayViewController
     }
     
-    // Authorization
-    
-    static var authorization: AuthorizationViewController {
-        UIStoryboard(name: "Authorization", bundle: nil).instantiateInitialViewController() as! AuthorizationViewController
-    }
-    
-    static var recoverPassword: AuthorizationViewController {
-        UIStoryboard(name: "Authorization", bundle: nil).instantiateViewController(withIdentifier: "RecoverPassword") as! AuthorizationViewController
-    }
+    // Authentication
     
     static var pinCreation: PinCreationViewController {
         UIStoryboard(name: "Authentication", bundle: nil).instantiateViewController(withIdentifier: "PinCreation") as! PinCreationViewController
@@ -97,10 +89,6 @@ final class ViewControllersFactory {
     
     static var proVersionEducationScreen: ProVersionEducationScreen {
         UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "ProVersionEducationScreen") as! ProVersionEducationScreen
-    }
-    
-    static var synchronizationEducationScreen: SynchronizationEducationScreen {
-        UIStoryboard(name: "Education", bundle: nil).instantiateViewController(withIdentifier: "SynchronizationEducationScreen") as! SynchronizationEducationScreen
     }
     
     static var finalEducationScreen: FinalEducationScreen {

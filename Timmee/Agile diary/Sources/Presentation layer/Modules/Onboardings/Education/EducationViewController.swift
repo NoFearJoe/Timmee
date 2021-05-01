@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Synchronization
 
 protocol EducationScreenInput: class {
     func setupOutput(_ output: EducationScreenOutput)
@@ -23,20 +22,14 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     let sprintsService = ServicesAssembly.shared.sprintsService
     
     private let educationState = EducationState()
-    
-    private var synchronizationDidFinishObservation: Any?
-    private var isSynchronized = false
-    private var shouldShowAppropriateScreenAfterSynchronization = false
-    
+        
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return AppThemeType.current == .dark ? .lightContent : .default
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        subscribeToSynchronizationCompletion()
-        
+                
         if let initialScreen = educationState.screensToShow.first {
             setViewControllers([viewController(forScreen: initialScreen)], animated: false)
         }
@@ -53,15 +46,6 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     }
     
     private func showAppropriateScreenAfterEducation() {
-        if SynchronizationAvailabilityChecker.shared.synchronizationEnabled && !isSynchronized {
-            shouldShowAppropriateScreenAfterSynchronization = true
-//            showAlert(title: "attention".localized,
-//                      message: "wait_until_sync_is_complete".localized,
-//                      actions: [.ok("Ok")],
-//                      completion: nil)
-            pushViewController(viewController(forScreen: .sync), animated: true)
-            return
-        }
         if shouldShowSprintCreationAfterEducation {
             hideAlert(animated: false)
             showSprintCreation()
@@ -72,7 +56,7 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
     }
     
     private func showSprintCreation() {
-        AppWindowRouter.shared.show(screen: NewSprintCreationViewController(sprint: nil, canBeClosed: false))
+        AppWindowRouter.shared.show(screen: SprintCreationViewController(sprint: nil, canBeClosed: false))
     }
     
     private func showToday() {
@@ -143,8 +127,6 @@ fileprivate extension EducationViewController {
             viewController = pinCreationViewController
         case .proVersion:
             viewController = ViewControllersFactory.proVersionEducationScreen
-        case .sync:
-            viewController = ViewControllersFactory.synchronizationEducationScreen
         case .final:
             viewController = ViewControllersFactory.finalEducationScreen
         }
@@ -154,25 +136,6 @@ fileprivate extension EducationViewController {
         }
         
         return viewController
-    }
-    
-}
-
-private extension EducationViewController {
-    
-    func subscribeToSynchronizationCompletion() {
-        let notificationName = NSNotification.Name(rawValue: PeriodicallySynchronizationRunner.didFinishSynchronizationNotificationName)
-        synchronizationDidFinishObservation = NotificationCenter.default
-            .addObserver(
-                forName: notificationName,
-                object: nil,
-                queue: .main)
-            { [weak self] _ in
-                guard let self = self else { return }
-                self.isSynchronized = true
-                guard self.shouldShowAppropriateScreenAfterSynchronization else { return }
-                self.showAppropriateScreenAfterEducation()
-            }
     }
     
 }

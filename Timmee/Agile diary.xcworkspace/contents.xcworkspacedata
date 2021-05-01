@@ -5,12 +5,6 @@
       location = "group:Agile diary.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Synchronization.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Authorization.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:UIComponents.xcodeproj">
    </FileRef>
    <FileRef

@@ -27,7 +27,7 @@ final class ProVersionEducationScreen: BaseViewController, AlertInput {
             ProVersionPurchase.shared.purchase { [weak self] in
                 self?.loadingView.isHidden = true
                 if ProVersionPurchase.shared.isPurchased() {
-                    self?.showAuthorization()
+                    self?.output.didAskToContinueEducation(screen: .proVersion)
                     TrackersConfigurator.shared.showProVersionTracker?.disable()
                 } else {
                     self?.showAlert(title: "error".localized,
@@ -45,7 +45,7 @@ final class ProVersionEducationScreen: BaseViewController, AlertInput {
             ProVersionPurchase.shared.restore { [weak self] success in
                 self?.loadingView.isHidden = true
                 if success, ProVersionPurchase.shared.isPurchased() {
-                    self?.showAuthorization()
+                    self?.output.didAskToContinueEducation(screen: .proVersion)
                     TrackersConfigurator.shared.showProVersionTracker?.disable()
                 } else {
                     self?.showAlert(title: "error".localized,
@@ -93,24 +93,6 @@ extension ProVersionEducationScreen: EducationScreenInput {
     
     func setupOutput(_ output: EducationScreenOutput) {
         self.output = output
-    }
-    
-}
-
-extension ProVersionEducationScreen: AuthorizationViewControllerDelegate {
-    
-    func authorizationController(_ viewController: AuthorizationViewController, didCompleteAuthorization successfully: Bool) {
-        self.output.didAskToContinueEducation(screen: .proVersion)
-    }
-    
-}
-
-private extension ProVersionEducationScreen {
-
-    func showAuthorization() {
-        let authorizationViewController = ViewControllersFactory.authorization
-        authorizationViewController.delegate = self
-        present(authorizationViewController, animated: true, completion: nil)
     }
     
 }

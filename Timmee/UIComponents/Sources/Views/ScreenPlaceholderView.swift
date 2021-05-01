@@ -37,7 +37,7 @@ public final class ScreenPlaceholderView: UIView {
         view.addSubview(self)
         view.bringSubviewToFront(self)
         
-        [centerX(), centerY(), leading(20), trailing(20)].toSuperview()
+        allEdges().to(view.safeAreaLayoutGuide)
         
         (self as? Customizable)?.applyAppearance()
     }

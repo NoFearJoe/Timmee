@@ -8,5 +8,7 @@
 	<string>agile_diary</string>
 	<key>database_configuration</key>
 	<string>Agilee</string>
+	<key>database_model_name</key>
+	<string>AgileDiary</string>
 </dict>
 </plist>

@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CloudKit
 
 public final class Database {
     
@@ -21,39 +22,39 @@ public protocol Storage: class {
     func write(_ operation: @escaping (_ context: NSManagedObjectContext,
                                        _ save: @escaping () -> Void) -> Void,
                completion: ((Bool) -> Void)?)
-    func synchronize(_ operation: @escaping (_ context: NSManagedObjectContext,
-                                             _ save: @escaping () -> Void) -> Void,
-                     completion: ((Bool) -> Void)?)
-    
-    func deleteStorage()
 }
 
 private final class CoreDataStorage: Storage {
     
+    private lazy var persistentContainer = Self.makePersistentContainer(name: storeName, model: model)
+    
     lazy var readContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.parent = self.rootContext
+        context.parent = rootContext
         return context
     }()
     
     lazy var writeContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.parent = self.readContext
+        context.parent = readContext
         return context
     }()
     
     private lazy var rootContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.persistentStoreCoordinator = self.coordinator
-        context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+        let context = persistentContainer.newBackgroundContext()
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
     
-    lazy var synchronizationContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.parent = self.writeContext
-        return context
-    }()
+    init() {
+        guard let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) else { return }
+        
+        addPersistentStore(
+            at: sharedStoreURL,
+            configuration: storeConfiguration,
+            coordinator: persistentContainer.persistentStoreCoordinator
+        )
+    }
     
 }
 
@@ -69,14 +70,6 @@ extension CoreDataStorage {
         }
     }
     
-    func synchronize(_ operation: @escaping (NSManagedObjectContext, @escaping () -> Void) -> Void, completion: ((Bool) -> Void)?) {
-        synchronizationContext.perform {
-            operation(self.synchronizationContext, {
-                self.sync(completion: completion)
-            })
-        }
-    }
-    
 }
 
 // MARK: - Save
@@ -87,41 +80,10 @@ private extension CoreDataStorage {
         save(context: writeContext, completion: completion)
     }
     
-    private func sync(completion: ((Bool) -> Void)?) {
-        save(context: synchronizationContext, completion: completion)
-    }
-    
     private func save(context: NSManagedObjectContext, completion: ((Bool) -> Void)?) {
         guard context.hasChanges else {
             completion?(true)
             return
-        }
-        
-        // Обновление modificationDate и создание локально удаленных объектов
-        if context === writeContext {
-            let updateModificationDate = { (entity: NSManagedObject) -> Void in
-                guard let modifiableEntity = entity as? ModifiableEntity else { return }
-                modifiableEntity.updateModificationDate()
-            }
-            context.insertedObjects.forEach(updateModificationDate)
-            context.updatedObjects.forEach(updateModificationDate)
-            
-            let createLocallyRemovedEntity = { (entity: NSManagedObject) -> Void in
-                let entityName = type(of: entity).entityName
-                let entityID = (entity as? IdentifiableEntity)?.id
-                let locallyDeletedEntity = try? context.create() as LocallyDeletedEntity
-                locallyDeletedEntity?.entityType = entityName
-                locallyDeletedEntity?.entityID = entityID
-            }
-            context.deletedObjects.forEach(createLocallyRemovedEntity)
-        }
-        
-        if context === synchronizationContext {
-            let setSynced = { (entity: NSManagedObject) -> Void in
-                guard let syncableEntity = entity as? SyncableEntity else { return }
-                syncableEntity.isSynced = true
-            }
-            context.registeredObjects.forEach(setSynced)
         }
         
         do {
@@ -137,84 +99,81 @@ private extension CoreDataStorage {
             completion?(false)
         }
     }
-    
-}
-
-// MARK: - Delete storage
-
-extension CoreDataStorage {
-    
-    func deleteStorage() {
-        do {
-            if let group = self.sharedGroup, let sharedStoreURL = self.sharedStoreURL(group: group) {
-                try coordinator.destroyPersistentStore(at: sharedStoreURL, ofType: NSSQLiteStoreType, options: nil)
-            } else {
-                try coordinator.destroyPersistentStore(at: self.storeURL(name: storeName), ofType: NSSQLiteStoreType, options: nil)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
+      
 }
 
 private extension CoreDataStorage {
     
+    var modelName: String {
+        DatabaseConfiguration.shared.properties["database_model_name"] as! String
+    }
+    
     var storeName: String {
-        return DatabaseConfiguration.shared.properties["database_name"] as! String
+        DatabaseConfiguration.shared.properties["database_name"] as! String
     }
     
     var storeConfiguration: String? {
-        return DatabaseConfiguration.shared.properties["database_configuration"] as? String
+        DatabaseConfiguration.shared.properties["database_configuration"] as? String
     }
     
     var sharedGroup: String? {
-        return DatabaseConfiguration.shared.properties["database_shared_group"] as? String
+        DatabaseConfiguration.shared.properties["database_shared_group"] as? String
     }
     
     func storeURL(name: String) -> URL {
-        return FilesService.URLs.documents!.appendingPathComponent(name)
+        FilesService.URLs.documents!.appendingPathComponent(name)
     }
     
     func sharedStoreURL(group: String) -> URL? {
-        return FilesService.URLs.shared(group: group)?.appendingPathComponent(storeName)
+        FilesService.URLs.shared(group: group)?.appendingPathComponent(storeName)
     }
     
     var model: NSManagedObjectModel {
-        return NSManagedObjectModel.mergedModel(from: [Bundle(for: CoreDataStorage.self)])!
+        let url = Bundle(for: CoreDataStorage.self).url(forResource: modelName, withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: url)!
     }
     
-    var coordinator: NSPersistentStoreCoordinator {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.model)
-        if let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) {
-            migrateOldPersistentStore(to: sharedStoreURL, coordinator: coordinator)
-            addPersistentStore(at: sharedStoreURL, configuration: storeConfiguration, coordinator: coordinator)
-        } else {
-            addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator)
+    static func makePersistentContainer(name: String, model: NSManagedObjectModel) -> NSPersistentCloudKitContainer {
+        let container = NSPersistentCloudKitContainer(name: name, managedObjectModel: model)
+        container.loadPersistentStores { _, error in
+            if let error = error { assertionFailure(error.localizedDescription) }
         }
-        return coordinator
+        return container
     }
     
+//    var coordinator: NSPersistentStoreCoordinator {
+//        let coordinator = persistentContainer.persistentStoreCoordinator
+//        if let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) {
+//            migrateOldPersistentStore(to: sharedStoreURL, coordinator: coordinator)
+//            addPersistentStore(at: sharedStoreURL, configuration: storeConfiguration, coordinator: coordinator)
+//        } else {
+//            addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator)
+//        }
+//        return coordinator
+//    }
+//
     @discardableResult
     private func addPersistentStore(at url: URL, configuration: String?, coordinator: NSPersistentStoreCoordinator) -> NSPersistentStore? {
-        return try? coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                                   configurationName: configuration,
-                                                   at: url,
-                                                   options: makePersistentStoreOptions())
+        try? coordinator.addPersistentStore(
+            ofType: NSSQLiteStoreType,
+            configurationName: nil,
+            at: url,
+            options: makePersistentStoreOptions()
+        )
     }
-    
-    private func migrateOldPersistentStore(to url: URL, coordinator: NSPersistentStoreCoordinator) {
-        guard FileManager.default.fileExists(atPath: storeURL(name: storeName).path) else { return }
-        if let oldPersistentStore = addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator) {
-            let migratedPersistentStore = try? coordinator.migratePersistentStore(oldPersistentStore,
-                                                                                  to: url,
-                                                                                  options: makePersistentStoreOptions(),
-                                                                                  withType: NSSQLiteStoreType)
-            migratedPersistentStore.map { try? coordinator.remove($0) }
-            try? FileManager.default.removeItem(at: storeURL(name: storeName))
-        }
-    }
-    
+//
+//    private func migrateOldPersistentStore(to url: URL, coordinator: NSPersistentStoreCoordinator) {
+//        guard FileManager.default.fileExists(atPath: storeURL(name: storeName).path) else { return }
+//        if let oldPersistentStore = addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator) {
+//            let migratedPersistentStore = try? coordinator.migratePersistentStore(oldPersistentStore,
+//                                                                                  to: url,
+//                                                                                  options: makePersistentStoreOptions(),
+//                                                                                  withType: NSSQLiteStoreType)
+//            migratedPersistentStore.map { try? coordinator.remove($0) }
+//            try? FileManager.default.removeItem(at: storeURL(name: storeName))
+//        }
+//    }
+//
     private func makePersistentStoreOptions() -> [String: Any] {
         return [NSMigratePersistentStoresAutomaticallyOption: true,
                 NSInferMappingModelAutomaticallyOption: true,

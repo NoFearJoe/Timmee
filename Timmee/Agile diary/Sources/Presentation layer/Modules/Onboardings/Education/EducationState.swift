@@ -25,9 +25,6 @@ enum EducationScreen {
     // Экран покупки и восстановления PRO версии
     case proVersion
     
-    // Экран окончания синхронизации
-    case sync
-    
     // Последний экран обучения
     case final
 }

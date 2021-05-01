@@ -9,7 +9,6 @@
 import UIKit
 import TasksKit
 import UIComponents
-import Synchronization
 
 final class TodayViewController: BaseViewController, SprintInteractorTrait, AlertInput {
     
@@ -28,9 +27,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     
     private let habitsViewController = TodayContentViewController(section: .habits)
     private let goalsViewController = TodayContentViewController(section: .goals)
-    
-    private var synchronizationDidFinishObservation: Any?
-    
+        
     lazy var calendarTransitionHandler = CalendarTransitionHandler(sourceView: pickDayButton)
     
     // MARK: - State
@@ -82,7 +79,6 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         
         setupPlaceholder()
         
-        subscribeToSynchronizationCompletion()
         setupShowProVersionTracker()
         
         setSectionContainersVisible(section: currentSection)
@@ -271,8 +267,8 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
     }
     
     private func setSectionContainersVisible(section: SprintSection?) {
-        habitsViewController.performAppearanceTransition(isAppearing: section == .habits) { habitsViewController.view.isHidden = section == .goals }
-        goalsViewController.performAppearanceTransition(isAppearing: section == .goals) { goalsViewController.view.isHidden = section == .habits }
+        habitsViewController.performAppearanceTransition(isAppearing: section == .habits) { habitsViewController.view.isHidden = section != .habits }
+        goalsViewController.performAppearanceTransition(isAppearing: section == .goals) { goalsViewController.view.isHidden = section != .goals }
     }
     
 }
@@ -399,15 +395,6 @@ private extension TodayViewController {
 }
 
 private extension TodayViewController {
-    
-    func subscribeToSynchronizationCompletion() {
-        let notificationName = NSNotification.Name(rawValue: PeriodicallySynchronizationRunner.didFinishSynchronizationNotificationName)
-        synchronizationDidFinishObservation = NotificationCenter.default.addObserver(forName: notificationName,
-                                                                                     object: nil,
-                                                                                     queue: .main) { [weak self] _ in
-                                                                                        self?.loadSprint()
-        }
-    }
     
     func setupShowProVersionTracker() {
         guard !ProVersionPurchase.shared.isPurchased() else { return }

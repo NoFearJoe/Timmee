@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '13.0'
 use_frameworks!
 
 target 'Agile diary' do
@@ -11,13 +11,7 @@ target 'Agile diary' do
   pod 'Dwifft'
 
   pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
-  pod 'FBSDKLoginKit'
-
-  pod 'Fabric'
-  pod 'Crashlytics'
 end
 
 target 'Agile diary debug' do
@@ -31,12 +25,6 @@ target 'Agile diary debug' do
 
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'FBSDKLoginKit'
-
-  pod 'Fabric'
-  pod 'Crashlytics'
 end
 
 target 'HabitsTodayExtension' do
@@ -46,16 +34,6 @@ target 'HabitsTodayExtension' do
   project 'Agile diary.xcodeproj'
 
   pod 'SwipeCellKit'
-end
-
-target 'Synchronization' do
-  project 'Synchronization.xcodeproj'
-end
-
-target 'Authorization' do
-  project 'Authorization.xcodeproj'
-
-  pod 'FBSDKLoginKit'
 end
 
 target 'UIComponents' do
@@ -73,65 +51,4 @@ target 'Workset' do
 
   pod 'SwipeCellKit'
   pod 'Foto'
-end
-
-post_install do |installer|
-  application_targets = [
-    'Pods-Agile diary',
-    'Pods-Agile diary debug',
-  ]
-
-  library_targets = [
-    'Pods-Synchronization',
-    'Pods-Authorization',
-  ]
-
-  embedded_targets = installer.aggregate_targets.select { |aggregate_target|
-    library_targets.include? aggregate_target.name
-  }
-
-  embedded_pod_targets = embedded_targets.flat_map { |embedded_target| embedded_target.pod_targets }
-
-  host_targets = installer.aggregate_targets.select { |aggregate_target|
-    application_targets.include? aggregate_target.name
-  }
-
-  host_targets.each do |host_target|
-    host_target.xcconfigs.each do |config_name, config_file|
-      puts "====#{config_name}===="
-      host_target.pod_targets.each do |pod_target|
-        next unless embedded_pod_targets.include? pod_target
-
-        pod_target.specs.each do |spec|
-          attributes_hash = spec.attributes_hash['ios']
-
-          unless attributes_hash
-            attributes_hash = spec.attributes_hash
-          end
-
-          framework_paths = attributes_hash['vendored_frameworks']
-          is_static_framework = attributes_hash['static_framework']
-
-          framework_names = []
-
-          if framework_paths
-            framework_names = Array(framework_paths).map(&:to_s).map do |filename|
-              extension = File.extname(filename)
-              File.basename(filename, extension)
-            end
-          elsif is_static_framework
-            framework_names = [attributes_hash['name']]
-          end
-
-          framework_names.each do |name|
-            puts "Removing #{name} from OTHER_LDFLAGS of target #{host_target.name}"
-            config_file.frameworks.delete(name)
-          end
-        end
-      end
-
-      xcconfig_path = host_target.xcconfig_path(config_name)
-      config_file.save_as(xcconfig_path)
-    end
-  end
 end

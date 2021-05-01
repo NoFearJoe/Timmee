@@ -1,5 +1,5 @@
 //
-//  NewSprintCreationViewController.swift
+//  SprintCreationViewController.swift
 //  Agile diary
 //
 //  Created by Илья Харабет on 30/05/2020.
@@ -9,7 +9,7 @@
 import UIKit
 import UIComponents
 
-final class NewSprintCreationViewController: BaseViewController, SprintInteractorTrait {
+final class SprintCreationViewController: BaseViewController, SprintInteractorTrait {
     
     let sprintsService = ServicesAssembly.shared.sprintsService
     let sprintSchedulerService = SprintSchedulerService()
@@ -121,7 +121,7 @@ final class NewSprintCreationViewController: BaseViewController, SprintInteracto
     
 }
 
-extension NewSprintCreationViewController: DueDatePickerOutput {
+extension SprintCreationViewController: DueDatePickerOutput {
     
     func didChangeDueDate(to date: Date) {
         sprint.startDate = date
@@ -132,7 +132,7 @@ extension NewSprintCreationViewController: DueDatePickerOutput {
     
 }
 
-extension NewSprintCreationViewController: SprintDurationPickerDelegate {
+extension SprintCreationViewController: SprintDurationPickerDelegate {
     
     func sprintDurationPicker(_ picker: SprintDurationPicker, didSelectSprintDuration duration: Int) {
         sprint.duration = duration
@@ -143,7 +143,7 @@ extension NewSprintCreationViewController: SprintDurationPickerDelegate {
     
 }
 
-extension NewSprintCreationViewController: SprintNotificationTimePickerOutput {
+extension SprintCreationViewController: SprintNotificationTimePickerOutput {
     
     func didChangeNotificationsDays(_ days: [DayUnit]) {
         sprint.notifications.days = days
@@ -159,7 +159,7 @@ extension NewSprintCreationViewController: SprintNotificationTimePickerOutput {
     
 }
 
-private extension NewSprintCreationViewController {
+private extension SprintCreationViewController {
  
     func updateUI() {
         headerView.configure(
@@ -169,7 +169,7 @@ private extension NewSprintCreationViewController {
                 duration: sprint.duration,
                 sprintNotifications: sprint.notifications
             ),
-            onTapLeftButton: { [unowned self] in self.close() },
+            onTapLeftButton: canBeClosed ? { [unowned self] in self.close() } : nil,
             onTapRightButton: nil
         )
         
@@ -186,11 +186,9 @@ private extension NewSprintCreationViewController {
     
 }
 
-private extension NewSprintCreationViewController {
+private extension SprintCreationViewController {
     
     func setupViews() {
-        headerView.leftButton?.isHidden = !canBeClosed
-        
         view.addSubview(headerView)
         [headerView.leading(), headerView.trailing(), headerView.top()].toSuperview()
         
@@ -263,7 +261,7 @@ private extension NewSprintCreationViewController {
     
 }
 
-private extension NewSprintCreationViewController {
+private extension SprintCreationViewController {
     
     func updateHeaderSubtitle() {
         headerView.subtitleLabel.attributedText = makeHeaderSubtitle(

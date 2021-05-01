@@ -24,6 +24,8 @@ final class HabitsChartViewController: BaseViewController {
     
     private let detailedHabitsTableView = AutoSizingTableView(frame: .zero, style: .plain)
     
+    private let placeholderView = ScreenPlaceholderView()
+    
     private let habitsService = ServicesAssembly.shared.habitsService
     
     private var habitsProgress: [(Habit, Progress)] = []
@@ -42,7 +44,10 @@ final class HabitsChartViewController: BaseViewController {
     override func refresh() {
         super.refresh()
         
-        guard let sprint = sprint else { return }
+        guard let sprint = sprint else {
+            placeholderView.setVisible(true, animated: false)
+            return
+        }
         
         refreshHabitsProgress(sprint: sprint)
         refreshHabitsDetailsTableView(sprint: sprint)
@@ -167,7 +172,9 @@ private extension HabitsChartViewController {
                     $0.1.percent > $1.1.percent
             }
         
+        
         detailedHabitsTableView.reloadData()
+        detailedHabitsTableView.tableHeaderView?.isHidden = habitsProgress.isEmpty
     }
     
 }
@@ -217,6 +224,16 @@ private extension HabitsChartViewController {
         detailedHabitsTableView.register(HabitProgressCell.self, forCellReuseIdentifier: "HabitProgressCell")
         
         detailedHabitsTableView.tableHeaderView = HabitProgressHeaderView()
+        
+        placeholderView.setup(into: view)
+        placeholderView.configure(
+            title: "empty_progress_placeholder_title".localized,
+            message: nil,
+            action: nil,
+            onTapButton: nil
+        )
+        placeholderView.backgroundColor = AppTheme.current.colors.middlegroundColor
+        placeholderView.setVisible(false, animated: false)
     }
     
 }

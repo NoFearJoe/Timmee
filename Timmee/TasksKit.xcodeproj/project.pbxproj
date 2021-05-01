@@ -24,7 +24,6 @@
 		0C9B242F207E244B009EF6DE /* TableViewCacheAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B242E207E244B009EF6DE /* TableViewCacheAdapter.swift */; };
 		0C9B2431207E2457009EF6DE /* CollectionViewCacheAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B2430207E2457009EF6DE /* CollectionViewCacheAdapter.swift */; };
 		0CE017F42077B09200633EFF /* TasksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CE017F22077B09200633EFF /* TasksKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0CE018052077B24200633EFF /* Timmee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018032077B24200633EFF /* Timmee.xcdatamodeld */; };
 		0CE018532077B2BD00633EFF /* ServicesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0180B2077B2BD00633EFF /* ServicesAssembly.swift */; };
 		0CE018552077B2BD00633EFF /* ListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0180E2077B2BD00633EFF /* ListsService.swift */; };
 		0CE018562077B2BD00633EFF /* TagsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE0180F2077B2BD00633EFF /* TagsService.swift */; };
@@ -56,6 +55,11 @@
 		9606627B20A353D000B23EDF /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606627A20A353D000B23EDF /* AudioPlayerService.swift */; };
 		961656062095FDD9001A8387 /* AudioRecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961656052095FDD9001A8387 /* AudioRecordService.swift */; };
 		96346F06248AAB0200A815F2 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F05248AAB0200A815F2 /* Time.swift */; };
+		9672165626386B58001B6377 /* Timmee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0CE018032077B24200633EFF /* Timmee.xcdatamodeld */; };
+		96721659263873F4001B6377 /* StagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96721658263873F4001B6377 /* StagesService.swift */; };
+		9672165C2638745B001B6377 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672165B2638745B001B6377 /* Stage.swift */; };
+		9672165F2638758E001B6377 /* StageEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9672165E2638758E001B6377 /* StageEntity+Mapping.swift */; };
+		967216A12639E24F001B6377 /* NSArraySecureUnarchiveFromData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967216A02639E24F001B6377 /* NSArraySecureUnarchiveFromData.swift */; };
 		9686322121D91637004B13D1 /* LiveCacheFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9686322021D91637004B13D1 /* LiveCacheFetcher.swift */; };
 		96BE838E217511D700CDECAF /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838D217511D700CDECAF /* Goal.swift */; };
 		96BE8390217511E500CDECAF /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE838F217511E500CDECAF /* Habit.swift */; };
@@ -63,6 +67,7 @@
 		96BE8395217518AD00CDECAF /* GoalEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */; };
 		96BE83972175190E00CDECAF /* HabitEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */; };
 		96BE8399217519A600CDECAF /* SprintEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE8398217519A600CDECAF /* SprintEntity+Mapping.swift */; };
+		96C2A848263867EA00BD0ECD /* AgileDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96C2A846263867EA00BD0ECD /* AgileDiary.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +129,10 @@
 		96346F05248AAB0200A815F2 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		963972052481307800BF141D /* Timmee8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee8.xcdatamodel; sourceTree = "<group>"; };
 		96584ADFC27D1AFD9595A571 /* Pods-TasksKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasksKit.debug.xcconfig"; path = "Target Support Files/Pods-TasksKit/Pods-TasksKit.debug.xcconfig"; sourceTree = "<group>"; };
+		96721658263873F4001B6377 /* StagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StagesService.swift; sourceTree = "<group>"; };
+		9672165B2638745B001B6377 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		9672165E2638758E001B6377 /* StageEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StageEntity+Mapping.swift"; sourceTree = "<group>"; };
+		967216A02639E24F001B6377 /* NSArraySecureUnarchiveFromData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSArraySecureUnarchiveFromData.swift; sourceTree = "<group>"; };
 		9685BDE822BF7176005E5126 /* Timmee5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee5.xcdatamodel; sourceTree = "<group>"; };
 		9686322021D91637004B13D1 /* LiveCacheFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCacheFetcher.swift; sourceTree = "<group>"; };
 		96BE838D217511D700CDECAF /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
@@ -132,6 +141,7 @@
 		96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoalEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitEntity+Mapping.swift"; sourceTree = "<group>"; };
 		96BE8398217519A600CDECAF /* SprintEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SprintEntity+Mapping.swift"; sourceTree = "<group>"; };
+		96C2A847263867EA00BD0ECD /* AgileDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AgileDiary.xcdatamodel; sourceTree = "<group>"; };
 		96C55A2123B7429F0091DC19 /* Timmee7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee7.xcdatamodel; sourceTree = "<group>"; };
 		96F4699F26357E6000D5751C /* Timmee9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Timmee9.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -284,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				0CE018032077B24200633EFF /* Timmee.xcdatamodeld */,
+				96C2A846263867EA00BD0ECD /* AgileDiary.xcdatamodeld */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -363,6 +374,7 @@
 				0CE475592175BAFF005FD8CC /* HabitsService.swift */,
 				0CE4755C2175DA1E005FD8CC /* GoalsService.swift */,
 				0C4082E122E6DFBE00D899A9 /* DiaryService.swift */,
+				96721658263873F4001B6377 /* StagesService.swift */,
 			);
 			path = "Agile diary";
 			sourceTree = "<group>";
@@ -371,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				96346F05248AAB0200A815F2 /* Time.swift */,
+				967216A02639E24F001B6377 /* NSArraySecureUnarchiveFromData.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -382,6 +395,7 @@
 				96BE838F217511E500CDECAF /* Habit.swift */,
 				96BE838D217511D700CDECAF /* Goal.swift */,
 				0C4082E322E6E30600D899A9 /* DiaryEntry.swift */,
+				9672165B2638745B001B6377 /* Stage.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";
@@ -393,6 +407,7 @@
 				96BE83962175190E00CDECAF /* HabitEntity+Mapping.swift */,
 				96BE8394217518AD00CDECAF /* GoalEntity+Mapping.swift */,
 				0C4082E722E6E87000D899A9 /* DiaryEntryEntity+Mapping.swift */,
+				9672165E2638758E001B6377 /* StageEntity+Mapping.swift */,
 			);
 			path = Agilee;
 			sourceTree = "<group>";
@@ -528,9 +543,13 @@
 				0CE018682077B2BD00633EFF /* SmartListEntity+Mapping.swift in Sources */,
 				0CE018692077B2BD00633EFF /* TimeTemplateEntity+Mapping.swift in Sources */,
 				96BE8390217511E500CDECAF /* Habit.swift in Sources */,
+				967216A12639E24F001B6377 /* NSArraySecureUnarchiveFromData.swift in Sources */,
 				96BE8395217518AD00CDECAF /* GoalEntity+Mapping.swift in Sources */,
+				9672165C2638745B001B6377 /* Stage.swift in Sources */,
 				0CE018572077B2BD00633EFF /* FilesService.swift in Sources */,
 				0CE018562077B2BD00633EFF /* TagsService.swift in Sources */,
+				9672165626386B58001B6377 /* Timmee.xcdatamodeld in Sources */,
+				96C2A848263867EA00BD0ECD /* AgileDiary.xcdatamodeld in Sources */,
 				0CE018592077B2BD00633EFF /* TasksService.swift in Sources */,
 				0CE0186E2077B2BD00633EFF /* ListIcon.swift in Sources */,
 				96BE838E217511D700CDECAF /* Goal.swift in Sources */,
@@ -569,7 +588,8 @@
 				0C86E4DD22DC550200DA7B15 /* CacheObserverProtocols.swift in Sources */,
 				96BE8399217519A600CDECAF /* SprintEntity+Mapping.swift in Sources */,
 				0CE0185A2077B2BD00633EFF /* TimeTemplatesService.swift in Sources */,
-				0CE018052077B24200633EFF /* Timmee.xcdatamodeld in Sources */,
+				96721659263873F4001B6377 /* StagesService.swift in Sources */,
+				9672165F2638758E001B6377 /* StageEntity+Mapping.swift in Sources */,
 				0CE018652077B2BD00633EFF /* Database.swift in Sources */,
 				0CE018532077B2BD00633EFF /* ServicesAssembly.swift in Sources */,
 			);
@@ -712,7 +732,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,7 +762,8 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TasksKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -795,6 +817,16 @@
 			);
 			currentVersion = 96F4699F26357E6000D5751C /* Timmee9.xcdatamodel */;
 			path = Timmee.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		96C2A846263867EA00BD0ECD /* AgileDiary.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96C2A847263867EA00BD0ECD /* AgileDiary.xcdatamodel */,
+			);
+			currentVersion = 96C2A847263867EA00BD0ECD /* AgileDiary.xcdatamodel */;
+			path = AgileDiary.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

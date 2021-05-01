@@ -27,9 +27,7 @@ public struct CachedEntitiesObserverDelegate<Entity: Equatable> {
 
 /// Своя реализация NSFetchedResultsController, позволяющая более гибко разбивать сущности на секции и фильтровать их
 public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity: Equatable & CustomEquatable & Copyable>: CacheSubscribable where Entity.T == Entity {
-    
-    public typealias Observer = ([String: [Entity]]) -> Void
-    
+        
     let context: NSManagedObjectContext
     let baseRequest: NSFetchRequest<ManagedObject>
     let grouping: ((Entity) throws -> String)?
@@ -84,26 +82,26 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
             self.subscriber?.reloadData()
             return
         }
-        
+
         subscribeToChangesInContext()
-        
+
         processingQueue.async { [weak self] in
             guard let self = self else { return }
-            
+
             var entities: [Entity] = []
             self.context.performAndWait {
                 entities = fetchResult.compactMap(self.mapping)
             }
-            
+
             let filteredEntities = self.filter.flatMap { entities.filter($0) } ?? entities
-            
+
             let sectionedEntities: [String: [Entity]]
             if let grouping = self.grouping {
                 sectionedEntities = (try? Dictionary<String, [Entity]>(grouping: filteredEntities, by: grouping)) ?? [:]
             } else {
                 sectionedEntities = filteredEntities.isEmpty ? [:] : ["": filteredEntities]
             }
-            
+
             let sectionedValues = SectionedValues<String, Entity>(
                 sectionedEntities.map {
                     (
@@ -116,7 +114,7 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                     $0.0 < $1.0
                 }
             )
-            
+
             if self.currentSectionedValues.sectionsAndValues.isEmpty {
                 DispatchQueue.main.async {
                     self.currentSectionedEntities = sectionedEntities
@@ -127,7 +125,6 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
                 }
             } else {
                 let diff = Dwifft.diff(lhs: self.currentSectionedValues, rhs: sectionedValues)
-//                let coreDataChanges = diff.map(self.mapDwifftStepToCoreDataChange)
                 let coreDataChanges = self.mapStepsToChanges(from: diff)
                 DispatchQueue.main.async {
                     self.subscriber?.prepareToProcessChanges()
@@ -146,10 +143,13 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
     private func subscribeToChangesInContext() {
         guard !isSubscribedToChanges else { return }
         isSubscribedToChanges = true
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onChangeInContext(_:)),
-                                               name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-                                               object: context)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onChangeInContext(_:)),
+            name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
+            object: context
+        )
     }
     
     @objc private func onChangeInContext(_ notification: Notification) {
@@ -168,39 +168,6 @@ public final class CachedEntitiesObserver<ManagedObject: NSManagedObject, Entity
             return CoreDataChange.deletion(IndexPath(row: row, section: section + sectionsOffset))
         }
     }
-    
-//    private func mapStepsToChanges(from steps: [SectionedDiffStep<String, Entity>]) -> [CoreDataChange] {
-//        var result: [CoreDataChange] = []
-//        var temporaryUpdatesOrMoves: [CoreDataChange] = []
-//        steps.enumerated().forEach { index, step in
-//            switch step {
-//            case .sectionInsert, .sectionDelete:
-//                result.append(mapDwifftStepToCoreDataChange(step))
-//            case let .insert(section, row, _):
-//                let indexPath = IndexPath(row: row, section: section + sectionsOffset)
-//                if let temporaryChange = temporaryUpdatesOrMoves.first(where: { $0.isEqualByIndexPath(with: indexPath) }) {
-//                    result.append(temporaryChange)
-//                    temporaryUpdatesOrMoves.removeAll(where: { $0.isEqualByIndexPath(with: indexPath) })
-//                } else {
-//                    result.append(.insertion(indexPath))
-//                }
-//            case let .delete(section, row, value):
-//                let indexPath = IndexPath(row: row, section: section + sectionsOffset)
-//                if let inserted = steps.first(where: { $0.isInsertion && ($0.value == value || $0.value?.isEqual(to: value) == true) }),
-//                   !steps.contains(where: { $0.isSectionInsertion && $0.sectionIndex == section + sectionsOffset }) {
-//                    let insertedChange = mapDwifftStepToCoreDataChange(inserted)
-//                    if insertedChange.indexPath == indexPath {
-//                        temporaryUpdatesOrMoves.append(.update(indexPath))
-//                    } else {
-//                        temporaryUpdatesOrMoves.append(.move(indexPath, insertedChange.indexPath!))
-//                    }
-//                } else {
-//                    result.append(.deletion(indexPath))
-//                }
-//            }
-//        }
-//        return result
-//    }
     
     private func mapStepsToChanges(from steps: [SectionedDiffStep<String, Entity>]) -> [CoreDataChange] {
         func getIndex(array: [(Any, [CoreDataChange])], element: Any) -> Int? {
@@ -271,13 +238,6 @@ extension CachedEntitiesObserver {
     public func items(in section: Int) -> [Entity] {
         return currentSectionedValues.sectionsAndValues.item(at: section - sectionsOffset)?.1.map { $0.copy } ?? []
     }
-    
-//    public func entity(at indexPath: IndexPath) -> NSManagedObject {
-//        var indexPathWithOffset = indexPath
-//        indexPathWithOffset.section -= sectionOffset
-//
-//        return fetchedResultsController.object(at: indexPathWithOffset) as! NSManagedObject
-//    }
     
     public func indexPath(of item: Entity) -> IndexPath? {
         guard let section = currentSectionedValues.sectionsAndValues.firstIndex(where: { $0.1.contains(item) }) else { return nil }

@@ -58,8 +58,6 @@
 		0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */; };
 		0C1F6B452251E6F000519D59 /* TrackersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */; };
 		0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */; };
-		0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
-		0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */; };
 		0C2B9D17220DA9AC0038F11D /* SprintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */; };
 		0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */; };
 		0C2B9D1A220DA9CC0038F11D /* Sprints.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */; };
@@ -205,25 +203,9 @@
 		0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D48A211C564A004C0559 /* UIComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C14D488211C564A004C0559 /* TasksKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CC405E021EDFEBD0069C6C5 /* FocusableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */; };
-		0CC405E321EE027D0069C6C5 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E221EE027D0069C6C5 /* EmailValidator.swift */; };
-		0CC405E521EE031E0069C6C5 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E421EE031E0069C6C5 /* PasswordValidator.swift */; };
-		0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */; };
 		0CC405E921EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */; };
 		0CC405EA21EE0AC30069C6C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */; };
-		0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E421EE031E0069C6C5 /* PasswordValidator.swift */; };
-		0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E221EE027D0069C6C5 /* EmailValidator.swift */; };
-		0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */; };
 		0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */; };
-		0CC405F921EF28B90069C6C5 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
-		0CC405FA21EF28B90069C6C5 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */; };
-		0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */; };
-		0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */; };
-		0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */; };
-		0CC4066F21F1E0A30069C6C5 /* Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; };
-		0CC4067021F1E0A30069C6C5 /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
-		0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */; };
 		0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */; };
 		0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */; };
 		0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D7E21259271001A2F70 /* Task+Habit.swift */; };
@@ -232,8 +214,6 @@
 		0CDF8D9B212A8D57001A2F70 /* NotificationTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */; };
 		0CE3CA412359CF50008C2DA5 /* PickDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */; };
 		0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */; };
-		0CE81611235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE81610235F2C7A00908735 /* SynchronizationEducationScreen.swift */; };
-		0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE81610235F2C7A00908735 /* SynchronizationEducationScreen.swift */; };
 		0CE883C92150F6EC00637BD9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */; };
 		0CE883CC2150F6EC00637BD9 /* TodayExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */; };
 		0CE883CF2150F6EC00637BD9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE883CD2150F6EC00637BD9 /* MainInterface.storyboard */; };
@@ -266,8 +246,6 @@
 		5C1C57BD392E7E1D0CAACB7F /* Pods_HabitsTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7F5B2E89D327F0F4221AFC /* Pods_HabitsTodayExtension.framework */; };
 		9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
 		9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9601649222259EC900E30580 /* UIImageView+FirebaseStorage.swift */; };
-		9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; };
-		9615FAE9226C79AB00E285DE /* Synchronization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		961AF5B223AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
 		961AF5B323AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B123AF8B3300DCD5B9 /* HabitCreationOnboardingViewController.swift */; };
 		961AF5B623AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961AF5B523AF8F1300DCD5B9 /* GoalCreationOnboardingViewController.swift */; };
@@ -278,10 +256,6 @@
 		96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */; };
 		96346F02248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */; };
 		96346F03248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */; };
-		963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
-		963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963FD7E421BD11F9000817D4 /* Authorization.storyboard */; };
-		963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; };
-		963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 963FD80D21BD2D9E000817D4 /* Authorization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */; };
 		967C328321517DC500B9201A /* ProVersionPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328221517DC500B9201A /* ProVersionPurchase.swift */; };
 		967C328821517E4100B9201A /* SettingsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C328721517E4100B9201A /* SettingsCells.swift */; };
@@ -293,14 +267,12 @@
 		96888C212217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
 		96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
 		96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C232217EDF400479667 /* BackgroundImagesLoader.swift */; };
-		969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A9A2822E4E18A0018188D /* AppLinkHandler.swift */; };
-		969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A9A2822E4E18A0018188D /* AppLinkHandler.swift */; };
 		96A066A2248153E900111BA2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A1248153E900111BA2 /* AppTheme.swift */; };
 		96A066A3248153E900111BA2 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A1248153E900111BA2 /* AppTheme.swift */; };
 		96A066A524815E9900111BA2 /* AppThemeApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A424815E9900111BA2 /* AppThemeApplier.swift */; };
 		96A066A624815E9900111BA2 /* AppThemeApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066A424815E9900111BA2 /* AppThemeApplier.swift */; };
-		96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
-		96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */; };
+		96A066AC248276BA00111BA2 /* SprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* SprintCreationViewController.swift */; };
+		96A066AD248276BA00111BA2 /* SprintCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A066AB248276BA00111BA2 /* SprintCreationViewController.swift */; };
 		96A5607A24B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */; };
 		96A5607B24B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */; };
 		96A5608824B0B702008B3A34 /* TableHeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */; };
@@ -335,6 +307,7 @@
 		96F469B02636B68F00D5751C /* HabitProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469AE2636B68F00D5751C /* HabitProgressCell.swift */; };
 		96F469B42637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */; };
 		96F469B52637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */; };
+		96F469BB2637DA7A00D5751C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F469BA2637DA7A00D5751C /* CloudKit.framework */; };
 		96F5942E224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
 		96F5942F224E738700F6D10A /* ProVersionPurchase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */; };
 		96F59431224E8AE200F6D10A /* ProVersionFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */; };
@@ -364,8 +337,6 @@
 				96BE83D42176662000CDECAF /* NotificationsKit.framework in Embed Frameworks */,
 				0C14D493211C564F004C0559 /* Workset.framework in Embed Frameworks */,
 				0C14D491211C564F004C0559 /* UIComponents.framework in Embed Frameworks */,
-				0CC4067021F1E0A30069C6C5 /* Synchronization.framework in Embed Frameworks */,
-				963FD81021BD2DD7000817D4 /* Authorization.framework in Embed Frameworks */,
 				0C14D48F211C564E004C0559 /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -380,8 +351,6 @@
 				0CB673D521A52C3900178EB1 /* NotificationsKit.framework in Embed Frameworks */,
 				0CB673D621A52C3900178EB1 /* Workset.framework in Embed Frameworks */,
 				0CB673D721A52C3900178EB1 /* UIComponents.framework in Embed Frameworks */,
-				9615FAE9226C79AB00E285DE /* Synchronization.framework in Embed Frameworks */,
-				0CC405FA21EF28B90069C6C5 /* Authorization.framework in Embed Frameworks */,
 				0CB673D821A52C3900178EB1 /* TasksKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -445,7 +414,6 @@
 		0C14D5362123F826004C0559 /* GoalCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationViewController.swift; sourceTree = "<group>"; };
 		0C14D55D2124423A004C0559 /* GoalCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCreationInteractor.swift; sourceTree = "<group>"; };
 		0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersConfigurator.swift; sourceTree = "<group>"; };
-		0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationConfigurator.swift; sourceTree = "<group>"; };
 		0C2B9D16220DA9AC0038F11D /* SprintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintsViewController.swift; sourceTree = "<group>"; };
 		0C2B9D19220DA9CC0038F11D /* Sprints.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sprints.storyboard; sourceTree = "<group>"; };
 		0C2B9D1D220DAD250038F11D /* SprintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCell.swift; sourceTree = "<group>"; };
@@ -494,14 +462,8 @@
 		0CB2EDF8214F9AA800AA4FB8 /* ContinueEducationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueEducationButton.swift; sourceTree = "<group>"; };
 		0CB673DF21A52C3900178EB1 /* Agile diary debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile diary debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC405DF21EDFEBD0069C6C5 /* FocusableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableTextField.swift; sourceTree = "<group>"; };
-		0CC405E221EE027D0069C6C5 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
-		0CC405E421EE031E0069C6C5 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
-		0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordFieldsValidator.swift; sourceTree = "<group>"; };
 		0CC405E821EE0AC30069C6C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
-		0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		0CC4066D21F1E09E0069C6C5 /* Synchronization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Synchronization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D5E212464C6001A2F70 /* HabitCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationViewController.swift; sourceTree = "<group>"; };
 		0CDF8D6021246975001A2F70 /* HabitCreationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationInteractor.swift; sourceTree = "<group>"; };
 		0CDF8D7E21259271001A2F70 /* Task+Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Habit.swift"; sourceTree = "<group>"; };
@@ -509,7 +471,6 @@
 		0CDF8D98212A8D3B001A2F70 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		0CDF8D9A212A8D57001A2F70 /* NotificationTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePicker.swift; sourceTree = "<group>"; };
 		0CE3CA402359CF50008C2DA5 /* PickDayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDayButton.swift; sourceTree = "<group>"; };
-		0CE81610235F2C7A00908735 /* SynchronizationEducationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationEducationScreen.swift; sourceTree = "<group>"; };
 		0CE883C72150F6EC00637BD9 /* HabitsTodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HabitsTodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE883C82150F6EC00637BD9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		0CE883CB2150F6EC00637BD9 /* TodayExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayExtensionViewController.swift; sourceTree = "<group>"; };
@@ -541,7 +502,6 @@
 		96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsConfigurator.swift; sourceTree = "<group>"; };
 		96234A19214D49D200F2C6CC /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		96346F01248A972F00A815F2 /* HabitCreationNotificationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCreationNotificationsListView.swift; sourceTree = "<group>"; };
-		963FD7E421BD11F9000817D4 /* Authorization.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authorization.storyboard; sourceTree = "<group>"; };
 		963FD80D21BD2D9E000817D4 /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksConfigurator.swift; sourceTree = "<group>"; };
 		967C328221517DC500B9201A /* ProVersionPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionPurchase.swift; sourceTree = "<group>"; };
@@ -551,10 +511,9 @@
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
-		969A9A2822E4E18A0018188D /* AppLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinkHandler.swift; sourceTree = "<group>"; };
 		96A066A1248153E900111BA2 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		96A066A424815E9900111BA2 /* AppThemeApplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeApplier.swift; sourceTree = "<group>"; };
-		96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSprintCreationViewController.swift; sourceTree = "<group>"; };
+		96A066AB248276BA00111BA2 /* SprintCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintCreationViewController.swift; sourceTree = "<group>"; };
 		96A5604824B093DB008B3A34 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		96A5607924B0B3CF008B3A34 /* TodayViewSectionProgressListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewSectionProgressListener.swift; sourceTree = "<group>"; };
 		96A5608724B0B702008B3A34 /* TableHeaderViewWithTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeaderViewWithTitle.swift; sourceTree = "<group>"; };
@@ -579,6 +538,7 @@
 		96F469A82636B64900D5751C /* HabitProgressHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitProgressHeaderView.swift; sourceTree = "<group>"; };
 		96F469AE2636B68F00D5751C /* HabitProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitProgressCell.swift; sourceTree = "<group>"; };
 		96F469B32637078900D5751C /* HabitsChartTotalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsChartTotalProgressView.swift; sourceTree = "<group>"; };
+		96F469BA2637DA7A00D5751C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		96F5942D224E738700F6D10A /* ProVersionPurchase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProVersionPurchase.storyboard; sourceTree = "<group>"; };
 		96F59430224E8AE200F6D10A /* ProVersionFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionFeatureView.swift; sourceTree = "<group>"; };
 		96F59433224E8B7F00F6D10A /* ProVersionFeatureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProVersionFeatureView.xib; sourceTree = "<group>"; };
@@ -594,12 +554,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				963FD80E21BD2D9E000817D4 /* Authorization.framework in Frameworks */,
 				96BE83D32176662000CDECAF /* NotificationsKit.framework in Frameworks */,
 				0C14D492211C564F004C0559 /* Workset.framework in Frameworks */,
 				0C14D48E211C564E004C0559 /* TasksKit.framework in Frameworks */,
 				0C14D490211C564E004C0559 /* UIComponents.framework in Frameworks */,
-				0CC4066F21F1E0A30069C6C5 /* Synchronization.framework in Frameworks */,
+				96F469BB2637DA7A00D5751C /* CloudKit.framework in Frameworks */,
 				F569A53D47918794978E9E58 /* Pods_Agile_diary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,11 +568,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CB673BD21A52C3900178EB1 /* NotificationsKit.framework in Frameworks */,
-				0CC405F921EF28B90069C6C5 /* Authorization.framework in Frameworks */,
 				0CB673BE21A52C3900178EB1 /* Workset.framework in Frameworks */,
 				0CB673BF21A52C3900178EB1 /* TasksKit.framework in Frameworks */,
 				0CB673C021A52C3900178EB1 /* UIComponents.framework in Frameworks */,
-				9615FAE8226C79AB00E285DE /* Synchronization.framework in Frameworks */,
 				2E18754B8FAC018397FB4FCD /* Pods_Agile_diary_debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -708,6 +665,7 @@
 		0C14D487211C564A004C0559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96F469BA2637DA7A00D5751C /* CloudKit.framework */,
 				96CDC73C22E390E0009395B9 /* TasksKit.framework */,
 				96CDC73E22E390E0009395B9 /* UIComponents.framework */,
 				96CDC74022E390E0009395B9 /* Workset.framework */,
@@ -775,7 +733,6 @@
 			children = (
 				96B73BF422BDFE0C00043765 /* PreInitialScreen */,
 				0CF2F92F224CC1C90042F3DC /* Onboardings */,
-				0CC4BB5F21BA8DE90066C213 /* Authorization */,
 				0CB2EDE9214F970600AA4FB8 /* Authentication */,
 				0C14D4E7212195DE004C0559 /* Sprint creation */,
 				0CB02FF42192D619006C5146 /* HabitsCollection */,
@@ -824,9 +781,7 @@
 				0C14D4DB21218186004C0559 /* InitialScreenPresenter.swift */,
 				96234A17214D497300F2C6CC /* NotificationsConfigurator.swift */,
 				964C694721B3AB84000FBAD1 /* MocksConfigurator.swift */,
-				0C2B9D11220D5F930038F11D /* SynchronizationConfigurator.swift */,
 				0C1F6B442251E6F000519D59 /* TrackersConfigurator.swift */,
-				969A9A2822E4E18A0018188D /* AppLinkHandler.swift */,
 				96A066A424815E9900111BA2 /* AppThemeApplier.swift */,
 			);
 			path = Configurators;
@@ -855,7 +810,7 @@
 			isa = PBXGroup;
 			children = (
 				0C14D4ED21219669004C0559 /* SprintCreation.storyboard */,
-				96A066AA2482769F00111BA2 /* New sprint creation */,
+				96A066AA2482769F00111BA2 /* Sprint creation */,
 				0C14D4E921219611004C0559 /* Habit creation */,
 				0C14D4E8212195FE004C0559 /* Goal creation */,
 			);
@@ -1128,7 +1083,6 @@
 				0CB2EDE3214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift */,
 				0CB2EDE5214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift */,
 				0C8CA9DC21FECFB200478A5D /* ProVersionEducationScreen.swift */,
-				0CE81610235F2C7A00908735 /* SynchronizationEducationScreen.swift */,
 				0CB2EDE7214F948900AA4FB8 /* FinalEducationScreen.swift */,
 			);
 			path = Screens;
@@ -1146,28 +1100,6 @@
 				0CB2EDF6214F993400AA4FB8 /* Authentication.storyboard */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		0CC405E121EE026D0069C6C5 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				0CC405E221EE027D0069C6C5 /* EmailValidator.swift */,
-				0CC405E421EE031E0069C6C5 /* PasswordValidator.swift */,
-				0CC405E621EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		0CC4BB5F21BA8DE90066C213 /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				963FD7E421BD11F9000817D4 /* Authorization.storyboard */,
-				0CC405E121EE026D0069C6C5 /* Utils */,
-				0CC4BB6021BA8E3D0066C213 /* AuthorizationViewController.swift */,
-				0CC4060A21EF75130069C6C5 /* RecoverPasswordViewController.swift */,
-				0CC4061321F043A80069C6C5 /* NewPasswordViewController.swift */,
-			);
-			path = Authorization;
 			sourceTree = "<group>";
 		};
 		0CDF8D97212A8D24001A2F70 /* NotificationTimePicker */ = {
@@ -1348,14 +1280,14 @@
 			path = "Agile diary/Sources/Application layer/Theme";
 			sourceTree = SOURCE_ROOT;
 		};
-		96A066AA2482769F00111BA2 /* New sprint creation */ = {
+		96A066AA2482769F00111BA2 /* Sprint creation */ = {
 			isa = PBXGroup;
 			children = (
 				0C47EE73223A6F1700593AA3 /* Pickers */,
 				0C8D0793212ECC63008122A6 /* Interactors */,
-				96A066AB248276BA00111BA2 /* NewSprintCreationViewController.swift */,
+				96A066AB248276BA00111BA2 /* SprintCreationViewController.swift */,
 			);
-			path = "New sprint creation";
+			path = "Sprint creation";
 			sourceTree = "<group>";
 		};
 		96B73BF422BDFE0C00043765 /* PreInitialScreen */ = {
@@ -1408,7 +1340,6 @@
 				0C14D470211C55D9004C0559 /* Resources */,
 				0C14D494211C564F004C0559 /* Embed Frameworks */,
 				0CE883D72150F6EC00637BD9 /* Embed App Extensions */,
-				0C9999EA21E8A63D00DD2040 /* Fabric */,
 				00B3D60A46BA3F608E5373A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1527,7 +1458,6 @@
 				96C35FF522BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0C14D4EE21219669004C0559 /* SprintCreation.storyboard in Resources */,
 				967C328C215181D700B9201A /* Settings.storyboard in Resources */,
-				963FD7E521BD11F9000817D4 /* Authorization.storyboard in Resources */,
 				0CB2EDF7214F993400AA4FB8 /* Authentication.storyboard in Resources */,
 				0C14D480211C55DA004C0559 /* LaunchScreen.storyboard in Resources */,
 				0C14D47D211C55DA004C0559 /* Assets.xcassets in Resources */,
@@ -1555,7 +1485,6 @@
 				96C35FF622BDFF11001980F1 /* PreInitialScreenViewController.xib in Resources */,
 				0CB673C621A52C3900178EB1 /* SprintCreation.storyboard in Resources */,
 				0CB673C721A52C3900178EB1 /* Settings.storyboard in Resources */,
-				963FD7E621BD11F9000817D4 /* Authorization.storyboard in Resources */,
 				0CB673C921A52C3900178EB1 /* Authentication.storyboard in Resources */,
 				0CB673CA21A52C3900178EB1 /* LaunchScreen.storyboard in Resources */,
 				0CB673CC21A52C3900178EB1 /* Assets.xcassets in Resources */,
@@ -1625,24 +1554,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		0C9999EA21E8A63D00DD2040 /* Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 24bb0724eb7257a99899de59923bfbeeccec480e cb3c5641ac463f59c97990272faaf2d907e5faa965f7bd516bf33b7e94113d30\n";
 		};
 		6FC6646D31CC03A8B3A04F14 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1723,7 +1634,6 @@
 				0C86E4F522DD9B9600DA7B15 /* GoalDetailsProvider.swift in Sources */,
 				0CB2EDF9214F9AA800AA4FB8 /* ContinueEducationButton.swift in Sources */,
 				96DDBDB123BB474B007AB33B /* GoalCreationStageCell.swift in Sources */,
-				969A9A2922E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				96DDBDC023CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */,
 				0CB2EDF5214F971700AA4FB8 /* PinCreationViewController.swift in Sources */,
 				0C14D5062122B067004C0559 /* UIFont+Avenir.swift in Sources */,
@@ -1739,7 +1649,6 @@
 				0CF7E529214696120071DABD /* SwipeCellActionsProviders.swift in Sources */,
 				0CDF8D7F21259271001A2F70 /* Task+Habit.swift in Sources */,
 				0CB2EDE6214F947B00AA4FB8 /* PinCodeSetupSuggestionEducationScreen.swift in Sources */,
-				0CC4060B21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				0CF7E527214687C40071DABD /* TodayHabitCell.swift in Sources */,
 				0C06E95422EB20820099DD3A /* DiaryEntryAttachmentTypePickerViewController.swift in Sources */,
 				0CB2EDE4214F947100AA4FB8 /* NotificationsSetupSuggestionScreen.swift in Sources */,
@@ -1757,7 +1666,6 @@
 				0CB030B8219AC455006C5146 /* HabitsPickerViewController.swift in Sources */,
 				0CF7E53E2147E3C20071DABD /* StageView.swift in Sources */,
 				96DDBDBC23C9EA2D007AB33B /* HabitCreationValuePickerView.swift in Sources */,
-				0CC405E721EE059B0069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB2EDF4214F971700AA4FB8 /* NumberPadCells.swift in Sources */,
 				0CDF8D862125B8AB001A2F70 /* Task+Target.swift in Sources */,
 				0CB030112195ABF2006C5146 /* HabitsCollectionViewController.swift in Sources */,
@@ -1766,10 +1674,8 @@
 				0C06E98622F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0CB2EDE8214F948900AA4FB8 /* FinalEducationScreen.swift in Sources */,
 				0C14D5082122B1A5004C0559 /* SprintSection.swift in Sources */,
-				0CC4061421F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
 				96F469A92636B64900D5751C /* HabitProgressHeaderView.swift in Sources */,
 				967C328821517E4100B9201A /* SettingsCells.swift in Sources */,
-				0CC405E521EE031E0069C6C5 /* PasswordValidator.swift in Sources */,
 				0CDF8D5F212464C6001A2F70 /* HabitCreationViewController.swift in Sources */,
 				0C97552821A2A6DD0031CA2E /* SprintNotificationTimePicker.swift in Sources */,
 				0CF7E562214A7A280071DABD /* Environment.swift in Sources */,
@@ -1791,7 +1697,6 @@
 				0C4082AE22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
 				96234A1A214D49D200F2C6CC /* AppDelegate+Notifications.swift in Sources */,
 				96BE83D6217C9C8D00CDECAF /* CardView.swift in Sources */,
-				0C2B9D12220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0C5C469D2141014000390F85 /* EditorContainer.swift in Sources */,
 				0CF7E52121466EB10071DABD /* Constants.swift in Sources */,
 				0CB2EDDE214F944800AA4FB8 /* InitialEducationScreen.swift in Sources */,
@@ -1803,9 +1708,7 @@
 				96F469B42637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
 				0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
-				0CE81611235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0C14D4F12121974E004C0559 /* LargeHeaderView.swift in Sources */,
-				0CC4BB6121BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				96DDBDB923BB77C1007AB33B /* ShortHabitCell.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				0C06E95122EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
@@ -1814,10 +1717,9 @@
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				9601649322259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0CC405E021EDFEBD0069C6C5 /* FocusableTextField.swift in Sources */,
-				0CC405E321EE027D0069C6C5 /* EmailValidator.swift in Sources */,
 				0CB2EDF2214F971700AA4FB8 /* PinAuthenticationViewController.swift in Sources */,
 				96DDBDC323CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */,
-				96A066AC248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
+				96A066AC248276BA00111BA2 /* SprintCreationViewController.swift in Sources */,
 				0C14D5372123F826004C0559 /* GoalCreationViewController.swift in Sources */,
 				0C5C469A2140FDF900390F85 /* DueDatePicker.swift in Sources */,
 				0C47EE86223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
@@ -1848,7 +1750,6 @@
 				0CB6737021A52C3900178EB1 /* GoalCreationInteractor.swift in Sources */,
 				0CE3CA422359CF50008C2DA5 /* PickDayButton.swift in Sources */,
 				961B95D3241CC101003EC992 /* HabitsPickerCell.swift in Sources */,
-				0CE81612235F2C7A00908735 /* SynchronizationEducationScreen.swift in Sources */,
 				0CB6737121A52C3900178EB1 /* AppDelegate.swift in Sources */,
 				0C06E95C22EEBF2A0099DD3A /* DiaryEntryAttachmentPickerProvider.swift in Sources */,
 				0CB6737321A52C3900178EB1 /* BackgroundImage.swift in Sources */,
@@ -1864,7 +1765,6 @@
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
 				96C35FF322BDFE74001980F1 /* PreInitialScreenViewController.swift in Sources */,
 				0C2B9D18220DA9AC0038F11D /* SprintsViewController.swift in Sources */,
-				0CC4061521F043A80069C6C5 /* NewPasswordViewController.swift in Sources */,
 				0CB6737921A52C3900178EB1 /* Switcher.swift in Sources */,
 				0CB6737A21A52C3900178EB1 /* NumberPicker.swift in Sources */,
 				0CB6737B21A52C3900178EB1 /* SettingsViewController.swift in Sources */,
@@ -1891,11 +1791,9 @@
 				96DDBDB223BB474B007AB33B /* GoalCreationStageCell.swift in Sources */,
 				0CB6738A21A52C3900178EB1 /* HabitsPickerViewController.swift in Sources */,
 				0C06E94C22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
-				0CC405F721EF27790069C6C5 /* EmailAndPasswordFieldsValidator.swift in Sources */,
 				0CB6738B21A52C3900178EB1 /* StageView.swift in Sources */,
 				0CB6738C21A52C3900178EB1 /* NumberPadCells.swift in Sources */,
 				0CB6738D21A52C3900178EB1 /* Task+Target.swift in Sources */,
-				0CC405F621EF27770069C6C5 /* EmailValidator.swift in Sources */,
 				0C2B9D1F220DAD250038F11D /* SprintCell.swift in Sources */,
 				9601649422259EC900E30580 /* UIImageView+FirebaseStorage.swift in Sources */,
 				0C86E4E222DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
@@ -1922,7 +1820,6 @@
 				96DDBDC123CA2FA9007AB33B /* HabitCreationDayTimePicker.swift in Sources */,
 				0C06E95922EEBBC70099DD3A /* DiaryEntryAttachmentPickerCell.swift in Sources */,
 				0CB6739921A52C3900178EB1 /* ShopCategoriesViewController.swift in Sources */,
-				0C2B9D13220D5F930038F11D /* SynchronizationConfigurator.swift in Sources */,
 				0CB6739B21A52C3900178EB1 /* SprintInteractorTrait.swift in Sources */,
 				96DDBDC423CB68FB007AB33B /* HabitCreationDueDaysView.swift in Sources */,
 				0CB6739C21A52C3900178EB1 /* BaseViewController.swift in Sources */,
@@ -1935,9 +1832,8 @@
 				0CB673A021A52C3900178EB1 /* CardView.swift in Sources */,
 				0CB673A221A52C3900178EB1 /* EditorContainer.swift in Sources */,
 				0CB673A321A52C3900178EB1 /* Constants.swift in Sources */,
-				96A066AD248276BA00111BA2 /* NewSprintCreationViewController.swift in Sources */,
+				96A066AD248276BA00111BA2 /* SprintCreationViewController.swift in Sources */,
 				96F469B52637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */,
-				969A9A2A22E4E18A0018188D /* AppLinkHandler.swift in Sources */,
 				0CB673A421A52C3900178EB1 /* InitialEducationScreen.swift in Sources */,
 				0C1F6B462251E6F000519D59 /* TrackersConfigurator.swift in Sources */,
 				0CB673A521A52C3900178EB1 /* TodayGoalCell.swift in Sources */,
@@ -1947,7 +1843,6 @@
 				0CB673A921A52C3900178EB1 /* LargeHeaderView.swift in Sources */,
 				0C06E98722F2C0C40099DD3A /* PluralStringLocalization.swift in Sources */,
 				0C4082AF22E58AAE00D899A9 /* HabitWeeklyChartView.swift in Sources */,
-				0CC405F521EF27750069C6C5 /* PasswordValidator.swift in Sources */,
 				0CB673AB21A52C3900178EB1 /* NumberPadItem.swift in Sources */,
 				96888C252217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
@@ -1955,11 +1850,9 @@
 				0CB673AF21A52C3900178EB1 /* GoalCreationViewController.swift in Sources */,
 				96DDBDBD23C9EA2D007AB33B /* HabitCreationValuePickerView.swift in Sources */,
 				0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */,
-				0CC4BB6221BA8E3D0066C213 /* AuthorizationViewController.swift in Sources */,
 				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,
 				0CB673B221A52C3900178EB1 /* NumberPadAdapter.swift in Sources */,
 				0CB673B521A52C3900178EB1 /* ViewControllersFactory.swift in Sources */,
-				0CC4060C21EF75130069C6C5 /* RecoverPasswordViewController.swift in Sources */,
 				96F469AA2636B64900D5751C /* HabitProgressHeaderView.swift in Sources */,
 				0CB673B821A52C3900178EB1 /* List+Sprint.swift in Sources */,
 				0C06E95222EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
@@ -2114,7 +2007,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2169,7 +2062,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2193,7 +2086,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "Agile diary/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2227,7 +2120,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "Agile diary/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2261,7 +2154,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Agile diary/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2291,7 +2184,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Agile diary/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2320,7 +2213,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HabitsTodayExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2351,7 +2244,7 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/HabitsTodayExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

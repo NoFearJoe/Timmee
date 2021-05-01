@@ -189,6 +189,7 @@
 "show_full_progress" = "Подробнее";
 "Progress_till_today" = "Прогресс с начала спринта по сегодня";
 "habits_chart_total_progress_title" = "Процент выполненых привычек";
+"empty_progress_placeholder_title" = "Начните выполнять привычки, чтобы видеть прогресс";
 
 "notifications" = "Напоминания";
 "notifications_interval" = "Интервал напоминаний";

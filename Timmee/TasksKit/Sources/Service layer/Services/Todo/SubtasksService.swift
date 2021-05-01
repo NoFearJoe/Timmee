@@ -30,7 +30,6 @@ public protocol SubtaskEntitiesBackgroundProvider: class {
 
 public protocol SubtasksManager: class {
     func addSubtask(_ subtask: Subtask, to task: Task, completion: (() -> Void)?)
-    func addStage(_ stage: Subtask, to goal: Goal, completion: (() -> Void)?)
     func updateSubtask(_ subtask: Subtask, completion: (() -> Void)?)
     func removeSubtask(_ subtask: Subtask, completion: (() -> Void)?)
 }
@@ -55,25 +54,6 @@ extension SubtasksService: SubtasksManager {
                 let newSubtask = self.createSubtaskEntity() {
                 newSubtask.map(from: subtask)
                 newSubtask.task = task
-            }
-            
-            save()
-        }) { _ in
-            DispatchQueue.main.async { completion?() }
-        }
-    }
-    
-    public func addStage(_ stage: Subtask, to goal: Goal, completion: (() -> Void)?) {
-        Database.localStorage.write({ (context, save) in
-            guard self.fetchSubtaskEntityInBackground(id: stage.id) == nil else {
-                DispatchQueue.main.async { completion?() }
-                return
-            }
-            
-            if let goalEntity = self.goalsProvider.fetchGoalEntityInBackground(id: goal.id),
-                let newSubtask = self.createSubtaskEntity() {
-                newSubtask.map(from: stage)
-                newSubtask.goal = goalEntity
             }
             
             save()

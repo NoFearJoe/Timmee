@@ -16,7 +16,7 @@ final class TodayGoalCell: SwipeTableViewCell {
     static let identifier = "TodayGoalCell"
     
     var onChangeHabitCheckedState: ((Bool, Habit) -> Void)?
-    var onChangeStageCheckedState: ((Bool, Subtask) -> Void)?
+    var onChangeStageCheckedState: ((Bool, Stage) -> Void)?
     
     private let containerView = UIView()
     private let contentStackView = UIStackView()

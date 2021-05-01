@@ -8,15 +8,12 @@
 
 import UIKit
 import UIComponents
-import Authorization
-import Synchronization
 import enum MessageUI.MFMailComposeResult
 import class MessageUI.MFMailComposeViewController
 import protocol MessageUI.MFMailComposeViewControllerDelegate
 
 enum SettingsSection {
     case general
-    case synchronization
     case proVersion
     case security
     case about
@@ -24,7 +21,6 @@ enum SettingsSection {
     var title: String {
         switch self {
         case .general: return "general_section".localized
-        case .synchronization: return "synchronization_section".localized
         case .proVersion: return "pro_version_section".localized
         case .security: return "security_section".localized
         case .about: return "about_section".localized
@@ -83,9 +79,7 @@ final class SettingsViewController: BaseViewController {
     @IBOutlet private var loadingView: LoadingView!
     
     var settingsItems: [(SettingsSection, [SettingsItem])] = []
-    
-    private let authorizationService = AuthorizationService()
-    
+        
     @IBAction func close() {
         if #available(iOS 13, *) {
             (presentingViewController as? BaseViewController)?.refresh()
@@ -190,8 +184,6 @@ fileprivate extension SettingsViewController {
         
         if !ProVersionPurchase.shared.isPurchased() {
             settings.insert((.proVersion, makeProVersionSectionItems()), at: 1)
-        } else {
-            settings.insert((.synchronization, makeSynchronizationSectionItems()), at: 1)
         }
         
         return settings
@@ -242,61 +234,6 @@ fileprivate extension SettingsViewController {
         }
         
         return generalSectionItems
-    }
-    
-    // MARK: - Synchronization section
-    
-    func makeSynchronizationSectionItems() -> [SettingsItem] {
-        var synchronizationSectionItems: [SettingsItem] = []
-        
-        // MARK: Authorization
-        
-        if authorizationService.isAuthorized {
-            let title = authorizationService.authorizedUser?.nameOrEmail ?? "user".localized
-            let authorizedUserItem = SettingsItem(title: title,
-                                                  subtitle: "synchronization_enabled".localized,
-                                                  icon: UIImage(imageLiteralResourceName: "avatar"),
-                                                  isOn: false,
-                                                  isDetailed: false,
-                                                  isSelectable: false,
-                                                  style: .titleWithSubtitle,
-                                                  action: nil)
-            synchronizationSectionItems.append(authorizedUserItem)
-            
-            let unauthorizationAction = { [unowned self] in
-                self.showConfirmationAlert(title: "log_out_alert_title".localized,
-                                           message: "log_out_alert_message".localized,
-                                           onConfirm: {
-                                               self.authorizationService.unauthorize { [weak self] in
-                                                   self?.reloadSettings()
-                                               }
-                                           })
-            }
-            let unauthorizationItem = SettingsItem(title: "log_out".localized,
-                                                   subtitle: nil,
-                                                   icon: UIImage(imageLiteralResourceName: "exit"),
-                                                   isOn: false,
-                                                   isDetailed: false,
-                                                   isSelectable: true,
-                                                   style: .title,
-                                                   action: unauthorizationAction)
-            synchronizationSectionItems.append(unauthorizationItem)
-        } else {
-            let authorizationAction = { [unowned self] in
-                self.performSegue(withIdentifier: "ShowAuthorization", sender: nil)
-            }
-            let authorizationItem = SettingsItem(title: "enable_synchronization".localized,
-                                                 subtitle: nil,
-                                                 icon: UIImage(imageLiteralResourceName: "sync"),
-                                                 isOn: false,
-                                                 isDetailed: false,
-                                                 isSelectable: true,
-                                                 style: .title,
-                                                 action: authorizationAction)
-            synchronizationSectionItems.append(authorizationItem)
-        }
-        
-        return synchronizationSectionItems
     }
     
     // MARK: - PRO version section

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DiaryEntryEntity" representedClassName="DiaryEntryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attachment" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="habits" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="HabitEntity" inverseName="goal" inverseEntity="HabitEntity"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="SprintEntity" inverseName="goals" inverseEntity="SprintEntity"/>
+        <relationship name="stages" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="StageEntity" inverseName="goal" inverseEntity="StageEntity"/>
+    </entity>
+    <entity name="HabitEntity" representedClassName="HabitEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dayTime" optional="YES" attributeType="String"/>
+        <attribute name="doneDates" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="NSArray"/>
+        <attribute name="dueDays" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="link" optional="YES" attributeType="String"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notificationsTime" optional="YES" attributeType="String"/>
+        <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="String"/>
+        <relationship name="goal" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="GoalEntity" inverseName="habits" inverseEntity="GoalEntity"/>
+        <relationship name="sprint" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="SprintEntity" inverseName="habits" inverseEntity="SprintEntity"/>
+    </entity>
+    <entity name="SprintEntity" representedClassName="SprintEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="7" usesScalarValueType="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
+        <attribute name="notificationsDays" optional="YES" attributeType="String"/>
+        <attribute name="notificationsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="notificationsTime" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="goals" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="GoalEntity" inverseName="sprint" inverseEntity="GoalEntity"/>
+        <relationship name="habits" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="HabitEntity" inverseName="sprint" inverseEntity="HabitEntity"/>
+    </entity>
+    <entity name="StageEntity" representedClassName="StageEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="isDone" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
+        <attribute name="sortPosition" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <relationship name="goal" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="GoalEntity" inverseName="stages" inverseEntity="GoalEntity"/>
+    </entity>
+    <elements>
+        <element name="StageEntity" positionX="-27" positionY="18" width="128" height="149"/>
+        <element name="HabitEntity" positionX="18" positionY="63" width="128" height="269"/>
+        <element name="GoalEntity" positionX="54" positionY="99" width="128" height="179"/>
+        <element name="DiaryEntryEntity" positionX="18" positionY="63" width="128" height="119"/>
+        <element name="SprintEntity" positionX="27" positionY="72" width="128" height="209"/>
+    </elements>
+</model>

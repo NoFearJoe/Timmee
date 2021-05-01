@@ -9,7 +9,6 @@
 import UIKit
 import TasksKit
 import UIComponents
-import Synchronization
 
 final class TodayContentViewController: UIViewController, AlertInput {
     
@@ -29,14 +28,14 @@ final class TodayContentViewController: UIViewController, AlertInput {
     
     var sprintID: String = "" {
         didSet {
-            guard isViewLoaded, sprintID != oldValue else { return }
+            guard sprintID != oldValue else { return }
+            
             setupCurrentCacheObserver()
         }
     }
     
     var currentDate: Date = Date.now.startOfDay() {
         didSet {
-            guard isViewLoaded else { return }
             setupCurrentCacheObserver()
         }
     }
@@ -60,7 +59,7 @@ final class TodayContentViewController: UIViewController, AlertInput {
     
     let habitsService = ServicesAssembly.shared.habitsService
     let goalsService = ServicesAssembly.shared.goalsService
-    let stagesService = ServicesAssembly.shared.subtasksService
+    let stagesService = ServicesAssembly.shared.stagesService
         
     private lazy var cacheAdapter = TableViewCacheAdapter(tableView: contentView)
     private var habitsCacheObserver: CachedEntitiesObserver<HabitEntity, Habit>?
@@ -83,9 +82,7 @@ final class TodayContentViewController: UIViewController, AlertInput {
         self.section = section
         
         super.init(nibName: nil, bundle: nil)
-        
-        setupCurrentCacheObserver()
-        
+                
         feedbackGenerator.prepare()
     }
     
@@ -100,8 +97,6 @@ final class TodayContentViewController: UIViewController, AlertInput {
         setupAddHabitMenu()
         
         setupPlaceholder()
-        
-        setupCurrentCacheObserver()
         
         cacheAdapter.onReloadFail = { [weak self] in
             self?.setupContentView()
@@ -119,10 +114,24 @@ final class TodayContentViewController: UIViewController, AlertInput {
         super.viewWillAppear(animated)
         
         setupPlaceholderAppearance()
-        setupCurrentCacheObserver()
+        
         view.bringSubviewToFront(createButton)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setupCurrentCacheObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        habitsCacheObserver = nil
+        goalsCacheObserver = nil
+    }
+    
+    // TODO: Зачем это?
     func updateAppearance() {
         contentView.reloadData()
     }
@@ -189,7 +198,7 @@ extension TodayContentViewController: UITableViewDataSource {
                 
                 cell.onChangeStageCheckedState = { [unowned self] isChecked, stage in
                     stage.isDone = isChecked
-                    self.stagesService.updateSubtask(stage, completion: nil)
+                    self.stagesService.updateStage(stage, completion: nil)
                 }
             }
             return cell
@@ -300,7 +309,8 @@ extension TodayContentViewController: UITableViewDelegate {
 private extension TodayContentViewController {
     
     func setupCurrentCacheObserver() {
-        guard !sprintID.trimmed.isEmpty else { return }
+        guard isViewLoaded, view.window != nil, !view.isHidden, !sprintID.trimmed.isEmpty else { return }
+
         switch section {
         case .habits: setupHabitsCacheObserver(forSection: section, sprintID: sprintID)
         case .goals: setupGoalsCacheObserver(forSection: section, sprintID: sprintID)
@@ -403,6 +413,8 @@ private extension TodayContentViewController {
     func showPlaceholder() {
         contentView.isHidden = true
         placeholderView.setVisible(true, animated: false)
+        
+        view.bringSubviewToFront(createButton)
     }
     
     func hidePlaceholder() {
@@ -432,19 +444,20 @@ private extension TodayContentViewController {
         }
         habitCellActionsProvider.onDelete = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
-            self.showAlert(title: "attention".localized,
-                           message: "are_you_sure_you_want_to_remove_habit".localized,
-                           actions: [.cancel, .ok("remove".localized)],
-                           completion: { action in
-                               guard case .ok = action else { return }
-                               self.view.isUserInteractionEnabled = false
-                               self.habitsService.removeHabit(habit, completion: { [weak self] _ in
-                                   HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
-                                   guard let self = self else { return }
-                                   self.view.isUserInteractionEnabled = true
-//                                   self.habitsSynchronizationService.sync(habit: habit, sprintID: self.sprintID, completion: { _ in })
-                               })
-                           })
+            self.showAlert(
+                title: "attention".localized,
+                message: "are_you_sure_you_want_to_remove_habit".localized,
+                actions: [.cancel, .ok("remove".localized)],
+                completion: { action in
+                    guard case .ok = action else { return }
+                    self.view.isUserInteractionEnabled = false
+                    self.habitsService.removeHabit(habit, completion: { [weak self] _ in
+                        HabitsSchedulerService.shared.removeNotifications(for: habit, completion: {})
+                        guard let self = self else { return }
+                        self.view.isUserInteractionEnabled = true
+                    })
+                }
+            )
         }
     }
     
@@ -469,16 +482,18 @@ private extension TodayContentViewController {
         }
         targetCellActionsProvider.onDelete = { [unowned self] indexPath in
             guard let goal = self.goalsCacheObserver?.item(at: indexPath) else { return }
-            self.showAlert(title: "attention".localized,
-                           message: "are_you_sure_you_want_to_remove_goal".localized,
-                           actions: [.cancel, .ok("remove".localized)],
-                           completion: { action in
-                               guard case .ok = action else { return }
-                               self.view.isUserInteractionEnabled = false
-                               self.goalsService.removeGoal(goal, completion: { _ in
-                                   self.view.isUserInteractionEnabled = true
-                               })
-                           })
+            self.showAlert(
+                title: "attention".localized,
+                message: "are_you_sure_you_want_to_remove_goal".localized,
+                actions: [.cancel, .ok("remove".localized)],
+                completion: { action in
+                    guard case .ok = action else { return }
+                    self.view.isUserInteractionEnabled = false
+                    self.goalsService.removeGoal(goal, completion: { _ in
+                        self.view.isUserInteractionEnabled = true
+                    })
+                }
+            )
         }
     }
     
@@ -590,6 +605,7 @@ extension TodayContentViewController {
     func showAddHabitMenu(animated: Bool = false) {
         addHabitMenu.transform = makeAddHabitMenuInitialTransform()
         addHabitMenu.isHidden = false
+        view.bringSubviewToFront(addHabitMenu)
         
         dimmedBackgroundView.alpha = 0
         dimmedBackgroundView.isHidden = false

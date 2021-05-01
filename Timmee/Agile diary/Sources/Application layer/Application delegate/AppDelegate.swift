@@ -7,14 +7,10 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import UserNotifications
-import Authorization
-import Synchronization
 import Firebase
-import FBSDKCoreKit
 import Intents
+import TasksKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,25 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
-        appLinkHandler.window = window
         AppWindowRouter.shared.window = window
         return window
     }()
     
     private let initialScreenPresenter = InitialScreenPresenter()
-    private let appLinkHandler = AppLinkHandler()
     
-    private lazy var synchronizationRunner = PeriodicallySynchronizationRunner(synchronizationService: AgileeSynchronizationService.shared)
-
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         FirebaseApp.configure()
-        
-        SynchronizationConfigurator.configure()
-        
-        Fabric.with([Crashlytics.self])
         
         UNUserNotificationCenter.current().delegate = self
         NotificationsConfigurator.updateNotificationCategoriesIfPossible(application: application)
@@ -55,13 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppThemeApplier.applyTheme()
         
+        NSArraySecureUnarchiveFromData.registerTransformer()
+        _ = Database.localStorage
+        
         _ = window
-                
+        
         initialScreenPresenter.presentPreInitialScreen()
         performPreparingActions {
-            self.initialScreenPresenter.presentInitialScreen() {
-                self.synchronizationRunner.run(interval: 30, delay: 30)
-            }
+            self.initialScreenPresenter.presentInitialScreen {}
         }
         
         BackgroundImagesLoader.shared.load()
@@ -75,12 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let canOpenWithFacebook = ApplicationDelegate.shared.application(app, open: url, options: options)
-        appLinkHandler.handle(url: url)
-        return canOpenWithFacebook
-    }
 
 }
 
@@ -88,11 +69,8 @@ private extension AppDelegate {
     func performPreparingActions(completion: @escaping () -> Void) {
         self.performOtherPreparingActions {
             print("Preparing: other preparing actions are finished")
-            self.performInitialSynchronization {
-                print("Preparing: Synchronization is finished")
-                DispatchQueue.main.async {
-                    completion()
-                }
+            DispatchQueue.main.async {
+                completion()
             }
         }
     }
@@ -107,16 +85,6 @@ private extension AppDelegate {
         }
         
         dispatchGroup.notify(queue: .main, execute: completion)
-    }
-    
-    private func performInitialSynchronization(completion: @escaping () -> Void) {
-        if SynchronizationAvailabilityChecker.shared.synchronizationEnabled {
-            AgileeSynchronizationService.shared.sync { success in
-                completion()
-            }
-        } else {
-            completion()
-        }
     }
     
     @objc func onThemeChanged() {

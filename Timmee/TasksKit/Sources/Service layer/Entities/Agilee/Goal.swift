@@ -22,8 +22,7 @@ public class Goal: Copyable {
     public let creationDate: Date
     
     public var habits: [Habit] = []
-
-    public var stages: [Subtask] = []
+    public var stages: [Stage] = []
         
     public init(goal: GoalEntity) {
         id = goal.id ?? ""
@@ -32,7 +31,7 @@ public class Goal: Copyable {
         isDone = goal.isDone
         creationDate = goal.creationDate! as Date
         
-        stages = (Array(goal.stages as? Set<SubtaskEntity> ?? Set())).map { Subtask(entity: $0) }
+        stages = (Array(goal.stages as? Set<StageEntity> ?? Set())).map { Stage(entity: $0) }
         habits = (Array(goal.habits as? Set<HabitEntity> ?? Set())).map { Habit(habit: $0) }
     }
     

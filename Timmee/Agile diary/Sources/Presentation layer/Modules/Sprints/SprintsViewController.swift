@@ -106,7 +106,7 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     }
     
     private func showNewSprintCreation(sprint: Sprint?) {
-        let screen = NewSprintCreationViewController(sprint: sprint)
+        let screen = SprintCreationViewController(sprint: sprint)
         let navigation = UINavigationController(rootViewController: screen)
         navigation.isNavigationBarHidden = true
         present(navigation, animated: true, completion: nil)

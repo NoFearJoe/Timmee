@@ -189,6 +189,7 @@
 "show_full_progress" = "More";
 "Progress_till_today" = "Progress till today";
 "habits_chart_total_progress_title" = "Completed habits percent";
+"empty_progress_placeholder_title" = "Complete your first habit to see the progress";
 
 "notifications" = "Reminders";
 "notifications_interval" = "Reminders interval";

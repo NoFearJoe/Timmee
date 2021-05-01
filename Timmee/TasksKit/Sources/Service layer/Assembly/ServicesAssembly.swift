@@ -33,6 +33,8 @@ public final class ServicesAssembly {
     public lazy var goalsService: GoalsProvider & GoalsManager & GoalsObserverProvider = PrivateServicesAssembly.shared.goalsService
     
     public lazy var diaryService: DiaryProvider & DiaryManager & DiaryObserverProvider = PrivateServicesAssembly.shared.diaryService
+    
+    public lazy var stagesService: StagesProvider & StagesManager = PrivateServicesAssembly.shared.stagesService
         
 }
 
@@ -129,9 +131,9 @@ final class PrivateServicesAssembly {
         GoalEntitiesProvider &
         GoalEntitiesBackgroundProvider = {
             let service = GoalsService(sprintsProvider: sprintsService,
-                                       subtasksProvider: subtasksService)
+                                       stagesProvider: stagesService)
             
-            (subtasksService as! SubtasksService).goalsProvider = service
+            (stagesService as! StagesService).goalsProvider = service
             
             return service
         }()
@@ -143,5 +145,12 @@ final class PrivateServicesAssembly {
         DiaryEntitiesProvider &
         DiaryEntitiesBackgroundProvider
         = DiaryService()
+    
+    lazy var stagesService:
+        StagesProvider &
+        StageEntitiesProvider &
+        StageEntitiesBackgroundProvider &
+        StagesManager
+        = StagesService()
     
 }

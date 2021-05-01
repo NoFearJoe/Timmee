@@ -25,7 +25,7 @@ final class ProVersionPurchaseViewController: BaseViewController, AlertInput {
             ProVersionPurchase.shared.purchase { [weak self] in
                 self?.loadingView.isHidden = true
                 if ProVersionPurchase.shared.isPurchased() {
-                    self?.showAuthorization()
+                    self?.dismiss(animated: true, completion: nil)
                     TrackersConfigurator.shared.showProVersionTracker?.disable()
                 } else {
                     self?.showAlert(title: "error".localized,
@@ -43,7 +43,7 @@ final class ProVersionPurchaseViewController: BaseViewController, AlertInput {
             ProVersionPurchase.shared.restore { [weak self] success in
                 self?.loadingView.isHidden = true
                 if success, ProVersionPurchase.shared.isPurchased() {
-                    self?.showAuthorization()
+                    self?.dismiss(animated: true, completion: nil)
                     TrackersConfigurator.shared.showProVersionTracker?.disable()
                 } else {
                     self?.showAlert(title: "error".localized,
@@ -104,20 +104,6 @@ final class ProVersionPurchaseViewController: BaseViewController, AlertInput {
             }
             featuresStackView.addArrangedSubview(view)
         }
-    }
-    
-    func showAuthorization() {
-        let authorizationViewController = ViewControllersFactory.authorization
-        authorizationViewController.delegate = self
-        present(authorizationViewController, animated: true, completion: nil)
-    }
-    
-}
-
-extension ProVersionPurchaseViewController: AuthorizationViewControllerDelegate {
-    
-    func authorizationController(_ viewController: AuthorizationViewController, didCompleteAuthorization successfully: Bool) {
-        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -45,12 +45,12 @@ public protocol GoalEntitiesBackgroundProvider: class {
 public final class GoalsService {
     
     private let sprintsProvider: SprintEntitiesProvider
-    private let subtasksProvider: SubtaskEntitiesBackgroundProvider
+    private let stagesProvider: StageEntitiesBackgroundProvider
     
     init(sprintsProvider: SprintEntitiesProvider,
-         subtasksProvider: SubtaskEntitiesBackgroundProvider) {
+         stagesProvider: StageEntitiesBackgroundProvider) {
         self.sprintsProvider = sprintsProvider
-        self.subtasksProvider = subtasksProvider
+        self.stagesProvider = stagesProvider
     }
     
 }
@@ -98,7 +98,7 @@ extension GoalsService: GoalsManager {
             if let newGoal = self.createGoal() {
                 newGoal.map(from: goal)
                 newGoal.sprint = self.sprintsProvider.fetchSprintEntity(id: sprintID, context: context)
-                newGoal.stages = NSSet(array: self.retrieveSubtaskEntities(from: goal.stages,
+                newGoal.stages = NSSet(array: self.retrieveStageEntities(from: goal.stages,
                                                                            in: context))
             }
             
@@ -137,7 +137,7 @@ extension GoalsService: GoalsManager {
                                                                                 context: context)
                 }
                 
-                goalEntity.stages = NSSet(array: self.retrieveSubtaskEntities(from: goal.stages,
+                goalEntity.stages = NSSet(array: self.retrieveStageEntities(from: goal.stages,
                                                                               in: context))
             }
             
@@ -248,12 +248,12 @@ private extension GoalsService {
 
 private extension GoalsService {
     
-    func retrieveSubtaskEntities(from subtasks: [Subtask],
-                                 in context: NSManagedObjectContext) -> [SubtaskEntity] {
-        return subtasks.compactMap { subtask in
-            let entity = self.subtasksProvider.fetchSubtaskEntityInBackground(id: subtask.id)
-                ?? self.subtasksProvider.createSubtaskEntity()
-            entity?.map(from: subtask)
+    func retrieveStageEntities(from stages: [Stage],
+                                 in context: NSManagedObjectContext) -> [StageEntity] {
+        return stages.compactMap { stage in
+            let entity = self.stagesProvider.fetchStageEntityInBackground(id: stage.id)
+                ?? self.stagesProvider.createStageEntity()
+            entity?.map(from: stage)
             return entity
         }
     }

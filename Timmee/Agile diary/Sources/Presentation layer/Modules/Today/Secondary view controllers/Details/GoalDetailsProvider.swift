@@ -27,7 +27,7 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
     
     private let goalsService = ServicesAssembly.shared.goalsService
     private let habitsService = ServicesAssembly.shared.habitsService
-    private let stagesService = ServicesAssembly.shared.subtasksService
+    private let stagesService = ServicesAssembly.shared.stagesService
     
     init(goal: Goal, currentDate: Date) {
         self.goal = goal
@@ -83,7 +83,7 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
                 stageView.setupAppearance()
                 stageView.onChangeCheckedState = { [unowned self] isChecked in
                     stage.isDone = isChecked
-                    self.stagesService.updateSubtask(stage, completion: nil)
+                    self.stagesService.updateStage(stage, completion: nil)
                 }
                 stagesContainerView.addSubview(stageView)
                 if stages.count == 1 {
