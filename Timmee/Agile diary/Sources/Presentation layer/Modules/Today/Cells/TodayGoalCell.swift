@@ -53,9 +53,16 @@ final class TodayGoalCell: SwipeTableViewCell {
         titleLabel.text = goal.title
         
         let habitsForCurrentDate = goal.habits.filter {
-            $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate && !$0.isDone(at: currentDate)
+            $0.dueDays.contains(DayUnit(weekday: currentDate.weekday)) && $0.creationDate.startOfDay() <= currentDate
         }.sorted {
-            $0.title < $1.title
+            let lhsIsDone = $0.isDone(at: currentDate)
+            let rhsIsDone = $1.isDone(at: currentDate)
+            
+            if lhsIsDone == rhsIsDone {
+                return $0 < $1
+            } else {
+                return !lhsIsDone && rhsIsDone
+            }
         }
         
         habitsTitleLabel.isHidden = habitsForCurrentDate.isEmpty
@@ -72,7 +79,7 @@ final class TodayGoalCell: SwipeTableViewCell {
     private func addStageViews(goal: Goal) {
         stagesContainer.subviews.forEach { $0.removeFromSuperview() }
         
-        let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition }).prefix(3)
+        let stages = goal.stages.sorted(by: { $0.sortPosition < $1.sortPosition }).prefix(5)
         for (index, stage) in stages.enumerated() {
             let stageView = StageView.loadedFromNib()
             stageView.title = stage.title
@@ -104,7 +111,7 @@ final class TodayGoalCell: SwipeTableViewCell {
             $0.removeFromSuperview()
         }
         
-        habits.prefix(3).forEach { habit in
+        habits.prefix(5).forEach { habit in
             let stageView = StageView.loadedFromNib()
             
             stageView.title = habit.title
