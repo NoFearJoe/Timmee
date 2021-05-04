@@ -49,8 +49,15 @@ final class HabitsChartViewController: BaseViewController {
             return
         }
         
-        refreshHabitsProgress(sprint: sprint)
-        refreshHabitsDetailsTableView(sprint: sprint)
+        let habits = habitsService.fetchHabits(sprintID: sprint.id)
+        
+        guard !habits.isEmpty else {
+            placeholderView.setVisible(true, animated: false)
+            return
+        }
+        
+        refreshHabitsProgress(habits: habits, sprint: sprint)
+        refreshHabitsDetailsTableView(habits: habits, sprint: sprint)
     }
     
     override func setupAppearance() {
@@ -92,9 +99,7 @@ extension HabitsChartViewController: UITableViewDelegate {}
 
 private extension HabitsChartViewController {
     
-    func refreshHabitsProgress(sprint: Sprint) {
-        let habits = habitsService.fetchHabits(sprintID: sprint.id)
-
+    func refreshHabitsProgress(habits: [Habit], sprint: Sprint) {
         let startDate: Date = sprint.endDate.isGreater(than: Date.now) ? Date.now : sprint.endDate
         let daysFromSprintStart = sprint.startDate.days(before: startDate)
         var entries: [ExtendedBarChartEntry] = []
@@ -135,9 +140,7 @@ private extension HabitsChartViewController {
         totalProgressView.configure(percent: totalProgress.rounded(precision: 2))
     }
     
-    func refreshHabitsDetailsTableView(sprint: Sprint) {
-        let habits = habitsService.fetchHabits(sprintID: sprint.id)
-        
+    func refreshHabitsDetailsTableView(habits: [Habit], sprint: Sprint) {
         var progressForHabit: [Habit: Progress] = [:]
         
         habits.forEach {
@@ -182,7 +185,9 @@ private extension HabitsChartViewController {
 private extension HabitsChartViewController {
     
     func setupViews() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(onCloseScreen))
+        if modalPresentationStyle != .pageSheet {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(onCloseScreen))
+        }
         
         addChild(stack)
         view.addSubview(stack.view)

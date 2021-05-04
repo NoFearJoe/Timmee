@@ -17,7 +17,7 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     @IBOutlet private var createSprintButton: UIButton!
     
     @IBOutlet private var placeholderContainer: UIView!
-    private lazy var placeholderView = PlaceholderView.loadedFromNib()
+    private lazy var placeholderView = ScreenPlaceholderView()
     
     private var selectedHintButton: UIButton?
     var hintPopover: HintPopoverView? {
@@ -36,10 +36,6 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     private let sprintsService = ServicesAssembly.shared.sprintsService
     private let sprintsObserver = ServicesAssembly.shared.sprintsService.sprintsObserver()
     private var sprintsCacheAdapter: CollectionViewCacheAdapter!
-    
-    @IBAction func close() {
-        dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func createNewSprint() {
         showNewSprintCreation(sprint: nil)
@@ -70,7 +66,6 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     override func setupAppearance() {
         super.setupAppearance()
         
-        setupPlaceholderAppearance()
         setupCreateSprintButton()
     }
     
@@ -89,13 +84,15 @@ final class SprintsViewController: BaseViewController, AlertInput, HintViewTrait
     }
     
     private func setupSprintsObserver() {
-        sprintsObserver.setActions(onInitialFetch: nil,
-                                   onItemsCountChange: { [unowned self] count in
-                                       count == 0 ? self.showPlaceholder() : self.hidePlaceholder()
-                                   },
-                                   onItemChange: nil,
-                                   onBatchUpdatesStarted: nil,
-                                   onBatchUpdatesCompleted: nil)
+        sprintsObserver.setActions(
+            onInitialFetch: nil,
+            onItemsCountChange: { [unowned self] count in
+                count == 0 ? self.showPlaceholder() : self.hidePlaceholder()
+            },
+            onItemChange: nil,
+            onBatchUpdatesStarted: nil,
+            onBatchUpdatesCompleted: nil
+        )
         
         sprintsObserver.setMapping { entity in
             let entity = entity as! SprintEntity
@@ -215,14 +212,16 @@ extension SprintsViewController: SwipableCollectionViewCellActionsProvider {
     }
     
     private func showRemoveSprintConfirmationAlert(completion: @escaping (Bool) -> Void) {
-        showAlert(title: "attention".localized,
-                  message: "are_you_sure_you_want_to_remove_sprint".localized,
-                  actions: [.cancel, .ok("remove".localized)]) { action in
-                      switch action {
-                      case .cancel: completion(false)
-                      case .ok: completion(true)
-                      }
-                  }
+        showAlert(
+            title: "attention".localized,
+            message: "are_you_sure_you_want_to_remove_sprint".localized,
+            actions: [.cancel, .ok("remove".localized)]
+        ) { action in
+            switch action {
+            case .cancel: completion(false)
+            case .ok: completion(true)
+            }
+        }
     }
     
 }
@@ -238,21 +237,18 @@ private extension SprintsViewController {
     func setupPlaceholder() {
         placeholderView.setup(into: placeholderContainer)
         placeholderContainer.isHidden = true
-    }
-    
-    func setupPlaceholderAppearance() {
-        placeholderView.backgroundColor = .clear
-        placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
-        placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
-        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderContainer.backgroundColor = AppTheme.current.colors.middlegroundColor
     }
     
     func showPlaceholder() {
         placeholderContainer.isHidden = false
-        placeholderView.icon = #imageLiteral(resourceName: "calendar")
-        placeholderView.title = "there_is_no_sprints".localized
-        placeholderView.subtitle = nil
+        placeholderView.configure(
+            title: "there_is_no_sprints".localized,
+            message: nil,
+            action: "create_sprint".localized
+        ) { [unowned self] in
+            self.present(SprintCreationViewController(sprint: nil, canBeClosed: true), animated: true, completion: nil)
+        }
     }
     
     func hidePlaceholder() {

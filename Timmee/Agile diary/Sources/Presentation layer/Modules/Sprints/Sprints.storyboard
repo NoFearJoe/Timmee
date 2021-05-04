@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1nb-hm-JwZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1nb-hm-JwZ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,6 +75,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="s94-4C-Vgv"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="65w-8Y-AJV" firstAttribute="top" secondItem="s94-4C-Vgv" secondAttribute="top" id="2Y8-V3-Ct0"/>
@@ -88,16 +89,9 @@
                             <constraint firstItem="Txz-tP-QTR" firstAttribute="top" secondItem="tnM-1v-4ZN" secondAttribute="top" id="j2h-i1-gMU"/>
                             <constraint firstItem="s94-4C-Vgv" firstAttribute="trailing" secondItem="65w-8Y-AJV" secondAttribute="trailing" id="zR2-Tk-lnf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="s94-4C-Vgv"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="qAs-3f-31Q">
-                        <barButtonItem key="leftBarButtonItem" image="cross" id="JrY-Oi-QIt">
-                            <connections>
-                                <action selector="close" destination="jfw-kp-g5K" id="oc5-Li-6lD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="qAs-3f-31Q"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="createSprintButton" destination="7F9-NA-YMe" id="86u-bE-NUL"/>
@@ -120,7 +114,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cross" width="20" height="20"/>
         <image name="plus" width="20" height="20"/>
     </resources>
 </document>

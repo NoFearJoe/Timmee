@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="69q-SW-hYa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="69q-SW-hYa">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,13 +36,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="KJ9-O8-Vbq">
-                                    <rect key="frame" x="0.0" y="515.5" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="509.5" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitle" rowHeight="52" id="LoR-dt-aYA" customClass="SettingsCellWithTitle" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LoR-dt-aYA" id="bYC-qe-lJ8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -76,14 +76,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitle" rowHeight="52" id="wNZ-ug-OuK" customClass="SettingsDetailsCellWithTitle" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="107.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="101.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wNZ-ug-OuK" id="3Zx-gN-sxL">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ht5-we-Vkg">
-                                                    <rect key="frame" x="50" y="15.5" width="283" height="21"/>
+                                                    <rect key="frame" x="50" y="15.5" width="284.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -110,7 +110,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSwitch" rowHeight="52" id="np6-q8-aK7" customClass="SettingsCellWithTitleAndSwitch" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="159.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="153.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="np6-q8-aK7" id="tsl-QA-fOw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -153,7 +153,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCellWithTitleAndSubtitle" rowHeight="52" id="dH1-cc-AIF" customClass="SettingsCellWithTitleAndSubtitle" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dH1-cc-AIF" id="JPW-Q0-CbT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -211,10 +211,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsDetailsCellWithTitleAndSubtitle" rowHeight="52" id="z6D-Cc-fzX" customClass="SettingsDetailsCellWithTitleAndSubtitle" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="263.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="257.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z6D-Cc-fzX" id="R38-z4-wIz">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="52"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="66F-LU-KuG">
@@ -224,16 +224,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaj-JU-Ubt">
-                                                    <rect key="frame" x="50" y="7" width="283" height="38"/>
+                                                    <rect key="frame" x="50" y="7" width="284.5" height="38"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="qIe-hQ-xiU">
-                                                            <rect key="frame" x="0.0" y="23" width="283" height="15"/>
+                                                            <rect key="frame" x="0.0" y="23" width="284.5" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.23529411759999999" green="0.69803921570000005" blue="0.90196078430000004" alpha="1" colorSpace="deviceRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zrl-lQ-2rS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="283" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="284.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -267,7 +267,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionCell" rowHeight="52" id="T1b-Jx-Q0D" customClass="SettingsProVersionCell" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="315.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="309.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T1b-Jx-Q0D" id="wlw-z2-S7c">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -324,7 +324,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsProVersionFeaturesCell" rowHeight="75" id="5Fb-uF-2et" customClass="SettingsProVersionFeaturesCell" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="367.5" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="361.5" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Fb-uF-2et" id="tLk-t6-Yac">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -368,7 +368,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsBackgroundImageCell" rowHeight="52" id="P1V-JN-dlo" customClass="SettingsBackgroundImageCell" customModule="Agile_diary_debug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="442.5" width="375" height="52"/>
+                                        <rect key="frame" x="0.0" y="436.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P1V-JN-dlo" id="L8t-RZ-pJM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
@@ -440,13 +440,7 @@
                             <constraint firstItem="oh4-jT-h53" firstAttribute="top" secondItem="72F-or-BYo" secondAttribute="top" id="vVM-FD-3g1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Настройки" id="CeQ-PI-orA">
-                        <barButtonItem key="leftBarButtonItem" image="cross" id="CR9-7M-MKa">
-                            <connections>
-                                <action selector="close" destination="HAu-kR-eUY" id="HpJ-X6-vq1"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Настройки" id="CeQ-PI-orA"/>
                     <connections>
                         <outlet property="loadingView" destination="5vO-Yd-lgs" id="o82-p1-Rqk"/>
                         <outlet property="tableView" destination="oh4-jT-h53" id="b43-9h-33G"/>
@@ -550,7 +544,6 @@
     </scenes>
     <resources>
         <image name="bgImage0" width="750" height="1000"/>
-        <image name="cross" width="20" height="20"/>
         <image name="cross_small" width="13" height="13"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

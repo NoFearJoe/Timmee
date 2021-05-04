@@ -44,8 +44,10 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         }
     }
     
-    var sprint: Sprint! {
+    var sprint: Sprint? {
         didSet {
+            guard let sprint = sprint else { return }
+            
             hidePlaceholder()
             habitsViewController.sprintID = sprint.id
             habitsViewController.currentDate = currentDate
@@ -136,16 +138,18 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
             segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? GoalCreationViewController else { return }
             let goal = sender as? Goal
-            controller.setGoal(goal, sprintID: sprint.id)
+            controller.setGoal(goal, sprintID: sprint!.id)
             controller.setEditingMode(goal == nil ? .full : .short)
         } else if segue.identifier == "ShowHabitEditor" {
             segue.destination.presentationController?.delegate = self
             guard let controller = segue.destination as? HabitCreationViewController else { return }
             let habit = sender as? Habit
-            controller.setHabit(habit, sprintID: sprint.id, goalID: nil)
+            controller.setHabit(habit, sprintID: sprint!.id, goalID: nil)
             controller.setEditingMode(habit == nil ? .full : .short)
         } else if let viewController = (segue.destination as? UINavigationController)?.topViewController as? HabitsChartViewController {
             viewController.sprint = sprint
+        } else if segue.identifier == "ShowSprints" {
+            segue.destination.presentationController?.delegate = self
         } else if segue.identifier == "ShowSettings" {
             segue.destination.presentationController?.delegate = self
         } else {
@@ -165,6 +169,17 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         setSectionContainersVisible(section: currentSection)
     }
     
+    @objc private func onTapCreateSprintButton() {
+        let vc = SprintCreationViewController(sprint: nil, canBeClosed: true)
+        
+        present(
+            vc,
+            animated: true
+        ) { [unowned vc] in
+            vc.presentationController?.delegate = self
+        }
+    }
+    
     @IBAction private func onTapToPickDayButton() {
         let appColors = AppTheme.current.colors
         let calendarDesign = CalendarDesign(
@@ -181,7 +196,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         let calendar = CalendarViewController(design: calendarDesign)
         calendar.view.backgroundColor = AppTheme.current.colors.middlegroundColor
         calendar.configure(selectedDate: currentDate,
-                           minimumDate: sprint.startDate,
+                           minimumDate: sprint!.startDate,
                            maximumDate: Date.now)
         calendar.onSelectDate = { [unowned self, unowned calendar] date in
             guard let date = date else { return }
@@ -276,13 +291,13 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
 extension TodayViewController: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-        refresh()
         setupAppearance()
+        refresh()
     }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        refresh()
         setupAppearance()
+        refresh()
     }
     
 }
@@ -296,6 +311,7 @@ private extension TodayViewController {
             setSwitcherEnabled(true)
             sprint = currentSprint
         } else if let nextSprint = getNextSprint() {
+            sprint = nil
             pickDayButton.isHidden = true
             createSprintButton.isHidden = true
             setSwitcherEnabled(false)
@@ -304,6 +320,7 @@ private extension TodayViewController {
             showNextSprintPlaceholder(sprintNumber: nextSprint.number, startDate: nextSprint.startDate)
             setSectionContainersVisible(section: nil)
         } else {
+            sprint = nil
             pickDayButton.isHidden = true
             createSprintButton.isHidden = false
             setSwitcherEnabled(false)
@@ -355,7 +372,10 @@ private extension TodayViewController {
         createSprintButton.setTitleColor(.white, for: .normal)
         createSprintButton.layer.cornerRadius = 12
         createSprintButton.clipsToBounds = true
+        createSprintButton.addTarget(self, action: #selector(onTapCreateSprintButton), for: .touchUpInside)
     }
+    
+    
     
 }
 

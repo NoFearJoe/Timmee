@@ -79,15 +79,6 @@ final class SettingsViewController: BaseViewController {
     @IBOutlet private var loadingView: LoadingView!
     
     var settingsItems: [(SettingsSection, [SettingsItem])] = []
-        
-    @IBAction func close() {
-        if #available(iOS 13, *) {
-            (presentingViewController as? BaseViewController)?.refresh()
-            (presentingViewController as? BaseViewController)?.setupAppearance()
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
     
     override func prepare() {
         super.prepare()

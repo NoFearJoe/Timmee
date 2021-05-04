@@ -169,7 +169,7 @@ private extension SprintCreationViewController {
                 duration: sprint.duration,
                 sprintNotifications: sprint.notifications
             ),
-            onTapLeftButton: canBeClosed ? { [unowned self] in self.close() } : nil,
+            onTapLeftButton: modalPresentationStyle != .pageSheet && canBeClosed ? { [unowned self] in self.close() } : nil,
             onTapRightButton: nil
         )
         
