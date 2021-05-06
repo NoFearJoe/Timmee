@@ -117,20 +117,24 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
         buttonsContainer.distribution = .fillEqually
         buttonsContainer.spacing = 15
         buttonsContainer.backgroundColor = .clear
-        let editButton = UIButton(type: .custom)
-        editButton.addTarget(self, action: #selector(onTapToEditButton), for: .touchUpInside)
-        editButton.height(52)
-        editButton.setTitle("edit".localized, for: .normal)
-        editButton.titleLabel?.font = AppTheme.current.fonts.medium(20)
-        editButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .normal)
-        editButton.setTitleColor(.white, for: .normal)
-        editButton.clipsToBounds = true
-        editButton.layer.cornerRadius = 6
-        buttonsContainer.addArrangedSubview(editButton)
+        
+        if !goal.isDone {
+            let editButton = UIButton(type: .custom)
+            editButton.addTarget(self, action: #selector(onTapToEditButton), for: .touchUpInside)
+            editButton.height(52)
+            editButton.setTitle("edit".localized, for: .normal)
+            editButton.titleLabel?.font = AppTheme.current.fonts.medium(20)
+            editButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.inactiveElementColor), for: .normal)
+            editButton.setTitleColor(.white, for: .normal)
+            editButton.clipsToBounds = true
+            editButton.layer.cornerRadius = 6
+            buttonsContainer.addArrangedSubview(editButton)
+        }
         
         if goal.isDone {
             let restoreButton = UIButton(type: .custom)
             restoreButton.addTarget(self, action: #selector(onTapToRestoreButton), for: .touchUpInside)
+            restoreButton.height(52)
             restoreButton.setTitle("restore".localized, for: .normal)
             restoreButton.titleLabel?.font = AppTheme.current.fonts.medium(20)
             restoreButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)
@@ -141,6 +145,7 @@ final class GoalDetailsProvider: NSObject, DetailModuleProvider {
         } else {
             let completeButton = UIButton(type: .custom)
             completeButton.addTarget(self, action: #selector(onTapToCompleteButton), for: .touchUpInside)
+            completeButton.height(52)
             completeButton.setTitle("complete".localized, for: .normal)
             completeButton.titleLabel?.font = AppTheme.current.fonts.medium(20)
             completeButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.mainElementColor), for: .normal)

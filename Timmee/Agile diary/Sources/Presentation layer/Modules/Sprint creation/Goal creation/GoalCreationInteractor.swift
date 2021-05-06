@@ -6,17 +6,17 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
-protocol GoalProvider: class {
+protocol GoalProvider: AnyObject {
     var goal: Goal! { get }
 }
 
-protocol GoalCreationInteractorOutput: class {
+protocol GoalCreationInteractorOutput: AnyObject {
     func stagesInserted(at indexes: [Int])
     func stagesRemoved(at indexes: [Int])
     func stagesUpdated(at indexes: [Int])
 }
 
-protocol GoalCreationDataSource: class {
+protocol GoalCreationDataSource: AnyObject {
     func stagesCount() -> Int
     func stage(at index: Int) -> Stage?
 }
