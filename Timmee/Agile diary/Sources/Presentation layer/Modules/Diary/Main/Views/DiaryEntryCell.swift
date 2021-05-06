@@ -22,8 +22,6 @@ final class DiaryEntryCell: SwipeTableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        transform = CGAffineTransform(scaleX: 1, y: -1)
-        
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         selectionStyle = .none

@@ -35,9 +35,6 @@ final class DiaryEntriesListView: UITableView {
         if #available(iOS 11.0, *) {
             contentInsetAdjustmentBehavior = .never
         }
-        
-        transform = CGAffineTransform(scaleX: 1, y: -1)
-        
     }
     
 }
