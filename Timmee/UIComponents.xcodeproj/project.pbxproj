@@ -243,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				0C14D3E9211C190A004C0559 /* Sources */,
-				0C14D3EA211C1912004C0559 /* Resources */,
 				0C14D3E1211C18AE004C0559 /* UIComponents.h */,
 				0C14D3E2211C18AE004C0559 /* Info.plist */,
 			);
@@ -257,18 +256,9 @@
 				0C9364F1215531EF00B4EB48 /* Extensions */,
 				0C14D3EF211C19F8004C0559 /* Protocol extensions */,
 				0C14D3EE211C19AE004C0559 /* Transitions */,
-				0C14D3ED211C1930004C0559 /* Animations */,
-				0C14D3EC211C192A004C0559 /* Layers */,
 				0C14D3EB211C1923004C0559 /* Views */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		0C14D3EA211C1912004C0559 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		0C14D3EB211C1923004C0559 /* Views */ = {
@@ -302,20 +292,6 @@
 				96A0669B248152EC00111BA2 /* ScreenPlaceholderView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		0C14D3EC211C192A004C0559 /* Layers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Layers;
-			sourceTree = "<group>";
-		};
-		0C14D3ED211C1930004C0559 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Animations;
 			sourceTree = "<group>";
 		};
 		0C14D3EE211C19AE004C0559 /* Transitions */ = {

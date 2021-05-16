@@ -13,6 +13,7 @@ public enum UserProperty: UserPropertyProtocol {
     case isFirstLoad
     case isEducationShown
     case isAppRated
+    case isFreeLaunchPerformed
     
     case isGoalCreationOnboardingShown
     
@@ -30,6 +31,7 @@ public enum UserProperty: UserPropertyProtocol {
         case .isFirstLoad: return "isFirstLoad"
         case .isEducationShown: return "isEducationShown"
         case .isAppRated: return "isAppRated"
+        case .isFreeLaunchPerformed: return "isFreeLaunchPerformed"
         case .isGoalCreationOnboardingShown: return "isGoalCreationOnboardingShown"
         case .pinCode: return "pinCode"
         case .biometricsAuthenticationEnabled: return "biometricsAuthenticationEnabled"

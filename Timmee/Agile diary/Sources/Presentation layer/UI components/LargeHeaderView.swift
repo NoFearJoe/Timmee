@@ -33,6 +33,12 @@ class LargeHeaderView: UIView {
         }
     }
     
+    var drawBottomLine = true {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupAppearance()
@@ -49,6 +55,8 @@ class LargeHeaderView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        guard drawBottomLine else { return }
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
         

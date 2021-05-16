@@ -22,8 +22,8 @@ enum EducationScreen {
     // Экран создания пин кода
     case pinCodeCreation
     
-    // Экран покупки и восстановления PRO версии
-    case proVersion
+    // Экран информации о подписке
+    case subscriptionPromo
     
     // Последний экран обучения
     case final
@@ -39,7 +39,7 @@ final class EducationState {
         if !isEducationShown {
             return [.initial, .immutableSprints,
                     .notificationsSetupSuggestion, .pinCodeSetupSuggestion, .pinCodeCreation,
-                    .proVersion, .final]
+                    .subscriptionPromo, .final]
         }
         return []
     }()

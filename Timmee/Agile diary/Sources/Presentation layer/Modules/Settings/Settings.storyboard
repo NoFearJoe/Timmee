@@ -445,7 +445,6 @@
                         <outlet property="loadingView" destination="5vO-Yd-lgs" id="o82-p1-Rqk"/>
                         <outlet property="tableView" destination="oh4-jT-h53" id="b43-9h-33G"/>
                         <segue destination="bQW-7f-0SV" kind="show" identifier="ShowBackgroundImagePicker" id="AuS-V5-JXC"/>
-                        <segue destination="ll4-CS-8eh" kind="presentation" identifier="ShowProVersionPurchase" modalTransitionStyle="coverVertical" id="YUk-PH-mXT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nau-A3-mzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,14 +531,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b76-bx-Lmb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1213.5999999999999" y="152.47376311844079"/>
-        </scene>
-        <!--ProVersionPurchase-->
-        <scene sceneID="OcO-Kf-dzT">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ProVersionPurchase" id="ll4-CS-8eh" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6fT-yY-L7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="419" y="570"/>
         </scene>
     </scenes>
     <resources>

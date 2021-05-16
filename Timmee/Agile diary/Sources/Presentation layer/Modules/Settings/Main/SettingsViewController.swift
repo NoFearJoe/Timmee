@@ -167,17 +167,11 @@ extension SettingsViewController: UITableViewDelegate {
 fileprivate extension SettingsViewController {
     
     func makeSettingsItems() -> [(SettingsSection, [SettingsItem])] {
-        var settings: [(SettingsSection, [SettingsItem])] = [
+         [
             (.general, makeGeneralSectionItems()),
             (.security, makeSecuritySectionItems()),
             (.about, makeAboutSectionItems())
         ]
-        
-        if !ProVersionPurchase.shared.isPurchased() {
-            settings.insert((.proVersion, makeProVersionSectionItems()), at: 1)
-        }
-        
-        return settings
     }
     
     func makeGeneralSectionItems() -> [SettingsItem] {
@@ -203,67 +197,24 @@ fileprivate extension SettingsViewController {
             generalSectionItems.append(themeItem)
         }
         
-        if ProVersionPurchase.shared.isPurchased() {
-            // MARK: Background image
-            
-            let backgroundImageAction = { [unowned self] in
-                self.performSegue(withIdentifier: "ShowBackgroundImagePicker", sender: nil)
-            }
-            let title = BackgroundImage.current == .noImage ? "no_background_image".localized : "background_image".localized
-            var backgroundImageItem = SettingsItem(title: title,
-                                                   subtitle: nil,
-                                                   icon: BackgroundImage.current.previewImage ?? UIImage(),
-                                                   isDetailed: BackgroundImage.current != .noImage,
-                                                   style: .backgroundImage,
-                                                   action: backgroundImageAction)
-            backgroundImageItem.helpAction = { [unowned self] in
-                UserProperty.backgroundImage.setString(BackgroundImage.noImage.rawValue)
-                self.reloadSettings()
-            }
-            
-            generalSectionItems.append(backgroundImageItem)
+        let backgroundImageAction = { [unowned self] in
+            self.performSegue(withIdentifier: "ShowBackgroundImagePicker", sender: nil)
         }
+        let title = BackgroundImage.current == .noImage ? "no_background_image".localized : "background_image".localized
+        var backgroundImageItem = SettingsItem(title: title,
+                                               subtitle: nil,
+                                               icon: BackgroundImage.current.previewImage ?? UIImage(),
+                                               isDetailed: BackgroundImage.current != .noImage,
+                                               style: .backgroundImage,
+                                               action: backgroundImageAction)
+        backgroundImageItem.helpAction = { [unowned self] in
+            UserProperty.backgroundImage.setString(BackgroundImage.noImage.rawValue)
+            self.reloadSettings()
+        }
+        
+        generalSectionItems.append(backgroundImageItem)
         
         return generalSectionItems
-    }
-    
-    // MARK: - PRO version section
-    
-    func makeProVersionSectionItems() -> [SettingsItem] {
-        var proVersionSectionItems: [SettingsItem] = []
-        
-        let proVersionAction = { [unowned self] in
-            self.performSegue(withIdentifier: "ShowProVersionPurchase", sender: nil)
-        }
-        let proVersionItem = SettingsItem(title: "pro_version".localized,
-                                          icon: #imageLiteral(resourceName: "crown"),
-                                          style: .proVersion,
-                                          action: proVersionAction)
-        
-        proVersionSectionItems.append(proVersionItem)
-        
-        let restoreProVersionAction = { [unowned self] in
-            self.setLoadingVisible(true)
-            ProVersionPurchase.shared.restore { [weak self] success in
-                guard let self = self else { return }
-                
-                self.setLoadingVisible(false)
-                self.reloadSettings()
-                if !success {
-                    self.showErrorAlert(title: "error".localized, message: "restore_error_try_again".localized)
-                } else {
-                    TrackersConfigurator.shared.showProVersionTracker?.disable()
-                }
-            }
-        }
-        let restoreProVersionItem = SettingsItem(title: "restore_pro_version".localized,
-                                                 icon: #imageLiteral(resourceName: "repeat"),
-                                                 style: .title,
-                                                 action: restoreProVersionAction)
-        
-        proVersionSectionItems.append(restoreProVersionItem)
-        
-        return proVersionSectionItems
     }
     
     func makeSecuritySectionItems() -> [SettingsItem] {

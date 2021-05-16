@@ -9,6 +9,7 @@ target 'Agile diary' do
   pod 'Foto'
   pod 'Charts'
   pod 'Dwifft'
+  pod 'SwiftyStoreKit'
 
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
@@ -22,6 +23,7 @@ target 'Agile diary debug' do
   pod 'Foto'
   pod 'Charts'
   pod 'Dwifft'
+  pod 'SwiftyStoreKit'
 
   pod 'Firebase/Core'
   pod 'Firebase/Storage'

@@ -88,6 +88,7 @@
 "add" = "Добавить";
 "no" = "Нет";
 "create" = "Создать";
+"retry" = "Повторить";
 
 "of" = "из";
 
@@ -164,6 +165,17 @@
 "today_targets_section_placeholder_title" = "У вас нет целей";
 "today_habits_section_placeholder_title" = "На сегодня привычек нет";
 
+"subscription_promo_screen_title" = "О подписке";
+"subscription_promo_screen_message" = "Приложение доступно только по подписке, но мы не предлагаем оформить ее сразу. Мы даем вам попробовать приложение и понять – нравится вам оно или нет. После второго запуска будет предложено приобрести подписку.";
+"subscription_expired" = "Подписка истекла";
+"subscription_expired_message" = "Чтобы продолжить использование приложения, продлите прописку";
+"prolongate_subscription" = "Продлить подписку";
+"subscription_purchase_screen_title" = "Подписка";
+"subscription_purchase_description" = "Выберите удобные для вас условия подписки";
+"buy_subscription" = "Оформить";
+"restore_subscription" = "Восстановить";
+"restore_error_try_again" = "Не удалось восстановить подписку. Попробуйте снова";
+
 "pro_version" = "PRO версия";
 "pro_version_price" = "75₽";
 "pro_version_description" = "Приобретая PRO версию, Вы открываете доступ к дополнительным возможностям, а также помогаете развитию приложения.\n\nВам будут доступны:";
@@ -171,7 +183,6 @@
 "pro_version_feature_1" = "Расширенный просмотр прогресса";
 "pro_version_feature_2" = "Выбор фонового изображения";
 "restore_pro_version" = "Восстановить PRO версию";
-"restore_error_try_again" = "Не удалось восстановить PRO версию. Попробуйте снова";
 "pro_version_section" = "PRO версия";
 "version" = "Версия приложения";
 "theme" = "Тема";

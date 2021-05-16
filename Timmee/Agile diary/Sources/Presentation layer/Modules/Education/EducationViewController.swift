@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import SwiftyStoreKit
 
-protocol EducationScreenInput: class {
+protocol EducationScreenInput: AnyObject {
     func setupOutput(_ output: EducationScreenOutput)
 }
 
-protocol EducationScreenOutput: class {
+protocol EducationScreenOutput: AnyObject {
     func didAskToContinueEducation(screen: EducationScreen)
     func didAskToSkipEducation(screen: EducationScreen)
 }
@@ -53,6 +54,12 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
             hideAlert(animated: false)
             showToday()
         }
+        
+        UserProperty.isFreeLaunchPerformed.setBool(true)
+    }
+    
+    private func showSubscriptionPurchase() {
+        InitialScreenPresenter.showSubscriptionPurchaseIfNeeded()
     }
     
     private func showSprintCreation() {
@@ -77,9 +84,9 @@ extension EducationViewController: EducationScreenOutput {
         
         let isLastScreen = currentScreenIndex + 1 >= educationState.screensToShow.count - 1
         
-        if nextScreen == .proVersion, ProVersionPurchase.shared.isPurchased() {
-            // Если PRO версия куплена, то соответствующий экран не показывается
-            didAskToContinueEducation(screen: .proVersion)
+        if nextScreen == .subscriptionPromo, SwiftyStoreKit.isSubscriptionPurchased {
+            // Если подписка куплена, то соответствующий экран не показывается
+            didAskToContinueEducation(screen: .subscriptionPromo)
         } else if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
             // Основной флоу обучения
             pushViewController(viewController(forScreen: nextScreen), animated: true)
@@ -95,8 +102,8 @@ extension EducationViewController: EducationScreenOutput {
             didAskToContinueEducation(screen: .notificationsSetupSuggestion)
         case .pinCodeSetupSuggestion:
             didAskToContinueEducation(screen: .pinCodeCreation)
-        case .proVersion:
-            didAskToContinueEducation(screen: .proVersion)
+        case .subscriptionPromo:
+            didAskToContinueEducation(screen: .subscriptionPromo)
         default:
             showAppropriateScreenAfterEducation()
         }
@@ -125,8 +132,8 @@ fileprivate extension EducationViewController {
             }
             
             viewController = pinCreationViewController
-        case .proVersion:
-            viewController = ViewControllersFactory.proVersionEducationScreen
+        case .subscriptionPromo:
+            viewController = SubscriptionPromoScreen(output: self)
         case .final:
             viewController = ViewControllersFactory.finalEducationScreen
         }

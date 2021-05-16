@@ -6,6 +6,8 @@
 //  Copyright © 2018 Mesterra. All rights reserved.
 //
 
+import SwiftyStoreKit
+
 final class InitialScreenPresenter: SprintInteractorTrait {
     
     let sprintsService = ServicesAssembly.shared.sprintsService
@@ -50,6 +52,8 @@ final class InitialScreenPresenter: SprintInteractorTrait {
                 } else {
                     self.showToday()
                 }
+                
+                Self.showSubscriptionPurchaseIfNeeded()
             }
 
             initialViewController = pinAuthenticationViewController
@@ -60,6 +64,16 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         }
         
         AppWindowRouter.shared.show(screen: initialViewController)
+        
+        Self.showSubscriptionPurchaseIfNeeded()
+    }
+    
+    static func showSubscriptionPurchaseIfNeeded() {
+        guard UserProperty.isFreeLaunchPerformed.bool(), !SwiftyStoreKit.isSubscriptionPurchased else { return }
+        
+        let navigationController = UINavigationController(rootViewController: SubscriptionPurchaseScreen())
+        navigationController.modalPresentationStyle = .fullScreen
+        AppWindowRouter.shared.window?.topViewController?.present(navigationController, animated: false, completion: nil)
     }
     
     private func showSprintCreation() {

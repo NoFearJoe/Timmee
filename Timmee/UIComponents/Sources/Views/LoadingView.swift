@@ -32,7 +32,8 @@ public final class LoadingView: UIView {
     }
     
     fileprivate func initialize() {
-        activityIndicator = UIActivityIndicatorView(style: .white)
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.color = .white
         titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)

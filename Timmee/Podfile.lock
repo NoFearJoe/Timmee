@@ -92,6 +92,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - SwiftyStoreKit (0.16.1)
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
@@ -100,6 +101,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
   - Foto
+  - SwiftyStoreKit
   - SwipeCellKit
 
 SPEC REPOS:
@@ -119,6 +121,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
+    - SwiftyStoreKit
     - SwipeCellKit
 
 SPEC CHECKSUMS:
@@ -137,8 +140,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 1619640dcb4f7a1895d9c89ab8414ade701bfa07
+PODFILE CHECKSUM: 58e3c032233fd9395dcd23dc13433722f058ca31
 
 COCOAPODS: 1.10.1

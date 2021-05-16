@@ -80,9 +80,7 @@ final class TodayViewController: BaseViewController, SprintInteractorTrait, Aler
         goalsViewController.progressListener = self
         
         setupPlaceholder()
-        
-        setupShowProVersionTracker()
-        
+                
         setSectionContainersVisible(section: currentSection)
         
         BackgroundImagesLoader.shared.onLoad = { [weak self] in
@@ -355,11 +353,7 @@ private extension TodayViewController {
     }
     
     func setupBackgroundImage() {
-        if ProVersionPurchase.shared.isPurchased() {
-            backgroundImageView.image = BackgroundImage.current.image
-        } else {
-            backgroundImageView.image = nil
-        }
+        backgroundImageView.image = BackgroundImage.current.image
     }
     
 }
@@ -410,18 +404,6 @@ private extension TodayViewController {
     
     func hidePlaceholder() {
         placeholderContainer.isHidden = true
-    }
-    
-}
-
-private extension TodayViewController {
-    
-    func setupShowProVersionTracker() {
-        guard !ProVersionPurchase.shared.isPurchased() else { return }
-        TrackersConfigurator.shared.showProVersionTracker?.checkpoint = { [weak self] in
-            guard !ProVersionPurchase.shared.isPurchased() else { return }
-            self?.performSegue(withIdentifier: "ShowProVersionPurchase", sender: nil)
-        }
     }
     
 }

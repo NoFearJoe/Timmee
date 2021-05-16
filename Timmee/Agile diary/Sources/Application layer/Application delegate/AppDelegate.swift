@@ -11,6 +11,7 @@ import UserNotifications
 import Firebase
 import Intents
 import TasksKit
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationsConfigurator.removeAppIconBadge()
         
-        ProVersionPurchase.shared.loadStore()
+        SwiftyStoreKit.completeTransactions()
         
         AppThemeApplier.applyTheme()
         
@@ -45,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = Database.localStorage
         
         _ = window
+        
+        if UserProperty.isEducationShown.bool() {
+            UserProperty.isFreeLaunchPerformed.setBool(true)
+        }
         
         initialScreenPresenter.presentPreInitialScreen()
         performPreparingActions {

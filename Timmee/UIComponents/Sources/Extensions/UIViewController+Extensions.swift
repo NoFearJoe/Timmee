@@ -17,3 +17,31 @@ public extension UIViewController {
     }
     
 }
+
+public extension UIWindow {
+    
+    var topViewController: UIViewController? {
+        rootViewController?.topViewController
+    }
+    
+}
+
+private extension UIViewController {
+
+    var topViewController: UIViewController? {
+        if let presented = self.presentedViewController {
+            return presented.topViewController
+        }
+        
+        if let navigation = self as? UINavigationController {
+            return navigation.visibleViewController?.topViewController ?? navigation
+        }
+        
+        if let tab = self as? UITabBarController {
+            return tab.selectedViewController?.topViewController ?? tab
+        }
+        
+        return self
+    }
+
+}

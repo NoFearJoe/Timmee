@@ -88,6 +88,7 @@
 "add" = "Add";
 "no" = "No";
 "create" = "Create";
+"retry" = "Retry";
 
 "of" = "of";
 
@@ -164,6 +165,17 @@
 "today_targets_section_placeholder_title" = "You have no goals";
 "today_habits_section_placeholder_title" = "No habits today";
 
+"subscription_promo_screen_title" = "About subscription";
+"subscription_promo_screen_message" = "The application is available by subscription only. But we don't offer to buy it immediatelly. We give you a chance to try it out and then decide – will you buy it or not.";
+"subscription_expired" = "Your subscription is expired";
+"subscription_expired_message" = "Чтобы продолжить использование приложения, продлите прописку";
+"prolongate_subscription" = "Продлить подписку";
+"subscription_purchase_screen_title" = "Subscription";
+"subscription_purchase_description" = "Choose an appropriate subscription";
+"buy_subscription" = "Subscribe";
+"restore_subscription" = "Restore";
+"restore_error_try_again" = "Failed to restore a subscription. Try again";
+
 "pro_version" = "PRO version";
 "pro_version_price" = "$1";
 "restore_pro_version" = "Restore PRO version";
@@ -171,7 +183,6 @@
 "pro_version_feature_0" = "Synchronization";
 "pro_version_feature_1" = "Advanced progress view";
 "pro_version_feature_2" = "Background image";
-"restore_error_try_again" = "Failed to restore the PRO version. Try again";
 "pro_version_section" = "PRO version";
 "version" = "Version";
 "theme" = "Theme";

@@ -176,7 +176,6 @@
                         <outlet property="sectionSwitcher" destination="Gac-Hz-mav" id="4oY-Yb-dnN"/>
                         <segue destination="m5L-p8-Gva" kind="presentation" identifier="ShowHabitEditor" modalTransitionStyle="coverVertical" id="c90-3s-KUG"/>
                         <segue destination="3ji-X3-ILJ" kind="presentation" identifier="ShowTargetEditor" modalTransitionStyle="coverVertical" id="xpM-BJ-OZs"/>
-                        <segue destination="TMl-nw-iAI" kind="presentation" identifier="ShowProVersionPurchase" id="yvH-YU-0eo"/>
                         <segue destination="slG-Si-CNb" kind="presentation" identifier="ShowCharts" id="7Ha-qJ-Ig6"/>
                         <segue destination="0dA-DY-rZL" kind="presentation" identifier="ShowSprints" id="BbP-Fh-quH"/>
                         <segue destination="nsd-BC-zjE" kind="presentation" identifier="ShowSettings" id="8Jo-sX-8uI"/>
@@ -193,14 +192,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEe-vE-BcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="193" y="648"/>
-        </scene>
-        <!--ProVersionPurchase-->
-        <scene sceneID="Zh2-XR-t1x">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ProVersionPurchase" id="TMl-nw-iAI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qOh-nI-KZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="114" y="707"/>
         </scene>
         <!--Charts-->
         <scene sceneID="fdY-yB-8SB">
