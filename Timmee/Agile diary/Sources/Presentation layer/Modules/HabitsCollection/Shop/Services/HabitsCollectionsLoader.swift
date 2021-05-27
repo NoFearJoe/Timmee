@@ -13,6 +13,7 @@ import FirebaseStorage
 struct HabitsCollection {
     let id: String
     let title: String
+    let emoji: String
     let backgroundImageUrl: String
     let habits: [Habit]
     
@@ -24,6 +25,7 @@ struct HabitsCollection {
         
         self.id = id
         self.title = title
+        self.emoji = json["emoji"] as? String ?? "🔹"
         self.backgroundImageUrl = json["backgroundImageUrl"] as? String ?? ""
         self.habits = habitsJSON.compactMap(Habit.init(json:))
     }

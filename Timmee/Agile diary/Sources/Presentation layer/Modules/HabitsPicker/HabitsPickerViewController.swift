@@ -23,12 +23,12 @@ final class HabitsPickerViewController: BaseViewController {
             }
         }
     }
-    
-    unowned var pickedHabitsState: PickedHabitsState!
-    
+        
     private let tableView = UITableView(frame: .zero, style: .plain)
     
     let placeholderView = PlaceholderView.loadedFromNib()
+    
+    private let addHabitsManager: HabitsCollectionAddHabitsManager
     
     private let habitsService = ServicesAssembly.shared.habitsService
     private lazy var cacheObserver: CacheObserver<Habit> = {
@@ -42,9 +42,17 @@ final class HabitsPickerViewController: BaseViewController {
     private lazy var cacheSubscriber = TableViewCacheAdapter(tableView: tableView)
     
     private let mode: Mode
+    private let pickHabits: ([Habit], @escaping () -> Void) -> Void
     
-    init(mode: Mode) {
+    init(mode: Mode, pickedHabits: [Habit], pickHabits: @escaping ([Habit], @escaping () -> Void) -> Void) {
         self.mode = mode
+        self.pickHabits = pickHabits
+        
+        addHabitsManager = HabitsCollectionAddHabitsManager(
+            sprintID: mode.sprintID,
+            copyHabitsBeforeAdd: false,
+            initiallyPickedHabits: pickedHabits
+        )
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,12 +61,24 @@ final class HabitsPickerViewController: BaseViewController {
     
     override func prepare() {
         super.prepare()
+        
         setupNavigationBar()
         setupTableView()
         setupPlaceholder()
         setupCacheObserver()
+        
         tableView.register(TableHeaderViewWithTitle.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.register(HabitsPickerCell.self, forCellReuseIdentifier: HabitsPickerCell.reuseIdentifier)
+        
+        addHabitsManager.scrollView = tableView
+        addHabitsManager.addHabits = { [weak self] habits, completion in
+            self?.pickHabits(habits, completion)
+        }
+        addHabitsManager.onAddHabits = { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        addHabitsManager.setupAddHabitsButton(view: view)
+        addHabitsManager.setAddHabitsButtonVisible(false, animated: false)
     }
     
     override func refresh() {
@@ -80,12 +100,6 @@ final class HabitsPickerViewController: BaseViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc private func didTapDoneButton() {
-        pickedHabitsState.didCompletePicking(habits: pickedHabitsState.pickedHabits)
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 extension HabitsPickerViewController: UITableViewDataSource {
@@ -101,7 +115,7 @@ extension HabitsPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HabitsPickerCell.reuseIdentifier, for: indexPath) as! HabitsPickerCell
         let habit = cacheObserver.item(at: indexPath)
-        let isPicked = pickedHabitsState.pickedHabits.contains(habit)
+        let isPicked = addHabitsManager.pickedHabits.contains(habit)
         cell.configure(habit: habit, isPicked: isPicked)
         return cell
     }
@@ -112,11 +126,11 @@ extension HabitsPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let habit = cacheObserver.item(at: indexPath)
-        let isPicked = pickedHabitsState.pickedHabits.contains(habit)
+        let isPicked = addHabitsManager.pickedHabits.contains(habit)
         if isPicked {
-            pickedHabitsState.pickedHabits.remove(object: habit)
+            addHabitsManager.remove(habit: habit)
         } else {
-            pickedHabitsState.pickedHabits.append(habit)
+            addHabitsManager.add(habit: habit)
         }
         tableView.reloadData()
     }
@@ -160,7 +174,6 @@ private extension HabitsPickerViewController {
         guard navigationController?.viewControllers.count == 1 else { return }
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(didTapCloseButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "done".localized, style: .done, target: self, action: #selector(didTapDoneButton))
     }
     
     func setupTableView() {
@@ -188,8 +201,8 @@ private extension HabitsPickerViewController {
         placeholderView.backgroundColor = .clear
         placeholderView.titleLabel.font = AppTheme.current.fonts.medium(18)
         placeholderView.subtitleLabel.font = AppTheme.current.fonts.regular(14)
-        placeholderView.titleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
-        placeholderView.subtitleLabel.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
+        placeholderView.titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        placeholderView.subtitleLabel.textColor = AppTheme.current.colors.inactiveElementColor
     }
     
     func updatePlaceholderVisibility() {

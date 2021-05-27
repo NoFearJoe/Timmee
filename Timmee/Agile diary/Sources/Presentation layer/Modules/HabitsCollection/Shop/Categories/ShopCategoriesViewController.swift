@@ -12,10 +12,12 @@ import FirebaseStorage
 final class ShopCategoriesViewController: BaseViewController {
     
     var sprintID: String?
-    
-    unowned var pickedHabitsState: PickedHabitsState!
-    
-    @IBOutlet private var collectionView: UICollectionView!
+        
+    @IBOutlet private var collectionView: UICollectionView! {
+        didSet {
+            collectionView.register(ShopCategoryCell.self, forCellWithReuseIdentifier: ShopCategoryCell.identifier)
+        }
+    }
     
     @IBOutlet private var placeholderContainer: UIView!
     let placeholderView = PlaceholderView.loadedFromNib()
@@ -46,21 +48,15 @@ final class ShopCategoriesViewController: BaseViewController {
         super.setupAppearance()
         setupPlaceholderAppearance()
         collectionView.backgroundColor = AppTheme.current.colors.middlegroundColor
-        loadingView.backgroundColor = AppTheme.current.colors.backgroundColor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let categoryViewController = segue.destination as? ShopCategoryViewController {
             categoryViewController.sprintID = sprintID
             categoryViewController.collection = sender as? HabitsCollection
-            categoryViewController.pickedHabitsState = pickedHabitsState
         } else {
             super.prepare(for: segue, sender: sender)
         }
-    }
-    
-    func changeBottomContentInset(by value: CGFloat) {
-        collectionView.contentInset.bottom = value
     }
     
 }
@@ -72,9 +68,9 @@ extension ShopCategoriesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShopCategoryCell", for: indexPath) as! ShopCategoryCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShopCategoryCell.identifier, for: indexPath) as! ShopCategoryCell
         if let category = categories.item(at: indexPath.item) {
-            cell.configure(title: category.title, backgroundImageUrl: category.backgroundImageUrl)
+            cell.configure(title: category.title, emoji: category.emoji)
         }
         return cell
     }
@@ -97,23 +93,23 @@ extension ShopCategoriesViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let columns: CGFloat
         if UIDevice.current.isIpad {
-            columns = 4
+            columns = 2
         } else if UIScreen.main.nativeBounds.height <= 1136 {
             columns = 1
         } else {
-            columns = 2
+            columns = 1
         }
         
         let width = (collectionView.bounds.width - 30 - 10 * (columns - 1)) / columns
         
-        let height: CGFloat
-        if UIDevice.current.isIpad {
-            height = width
-        } else if UIScreen.main.nativeBounds.height <= 1136 {
-            height = 64
-        } else {
-            height = width * 0.75
-        }
+        let height: CGFloat = 80
+//        if UIDevice.current.isIpad {
+//            height = width
+//        } else if UIScreen.main.nativeBounds.height <= 1136 {
+//            height = 64
+//        } else {
+//            height = width * 0.75
+//        }
         
         return CGSize(width: width, height: height)
     }
@@ -142,23 +138,23 @@ private extension ShopCategoriesViewController {
 
 final class ShopCategoryCell: UICollectionViewCell {
     
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var backgroundImageView: UIImageView!
-    @IBOutlet private var backgroundGradientView: GradientView!
+    static let identifier = "ShopCategoryCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    private let emojiLabel = UILabel()
+    private let titleLabel = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
         setupAppearance()
     }
     
-    func configure(title: String, backgroundImageUrl: String) {
-        titleLabel.text = title
-        backgroundImageView.setImage(firebasePath: backgroundImageUrl)
-    }
+    required init?(coder: NSCoder) { fatalError() }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        backgroundImageView.cancelImageLoadingTask()
+    func configure(title: String, emoji: String) {
+        titleLabel.text = title
+        emojiLabel.text = emoji
     }
     
     func setupAppearance() {
@@ -166,8 +162,24 @@ final class ShopCategoryCell: UICollectionViewCell {
         configureShadow(radius: 4, opacity: 0.1)
         backgroundColor = AppTheme.current.colors.foregroundColor
         titleLabel.textColor = AppTheme.current.colors.activeElementColor
-        backgroundGradientView.startColor = AppTheme.current.colors.foregroundColor
-        backgroundGradientView.endColor = AppTheme.current.colors.foregroundColor.withAlphaComponent(0)
+    }
+    
+    private func setupViews() {
+        contentView.addSubview(emojiLabel)
+        emojiLabel.textAlignment = .center
+        emojiLabel.font = AppTheme.current.fonts.regular(32)
+        [emojiLabel.leading(12), emojiLabel.centerY()].toSuperview()
+        let emojiLabelTop = emojiLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8)
+        emojiLabelTop.priority = .defaultLow
+        emojiLabelTop.isActive = true
+        
+        contentView.addSubview(titleLabel)
+        titleLabel.numberOfLines = 0
+        titleLabel.font = AppTheme.current.fonts.regular(18)
+        titleLabel.textColor = AppTheme.current.colors.activeElementColor
+        titleLabel.leadingToTrailing(12).to(emojiLabel, addTo: contentView)
+        [titleLabel.centerY(), titleLabel.trailing(12)].toSuperview()
+        titleLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 8).isActive = true
     }
     
 }

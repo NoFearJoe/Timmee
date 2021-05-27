@@ -60,9 +60,7 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
     
     private let keyboardManager = KeyboardManager()
     private var contentScrollViewOffset: CGFloat?
-    
-    private var pickedHabitsHandler: PickedHabitsHandler?
-    
+        
     var goal: Goal!
     var sprintID: String!
     
@@ -253,14 +251,33 @@ final class GoalCreationViewController: BaseViewController, GoalProvider {
                 title: "choose_habits_from_current_sprint".localized,
                 action: { [unowned self] in
                     self.dismiss(animated: true) {
-                        self.pickedHabitsHandler = PickedHabitsHandler(
-                            sprintID: self.sprintID,
-                            goalID: self.goal.id,
-                            initialHabits: self.habitsCacheObserver?.items(in: 0) ?? []
-                        )
+                        let initialHabits = self.habitsCacheObserver?.items(in: 0) ?? []
                         
-                        let habitsPicker = HabitsPickerViewController(mode: .sprint(id: self.sprintID))
-                        habitsPicker.pickedHabitsState = self.pickedHabitsHandler
+                        let habitsPicker = HabitsPickerViewController(
+                            mode: .sprint(id: self.sprintID),
+                            pickedHabits: initialHabits,
+                            pickHabits: { [weak self] habits, completion in
+                                guard let self = self, !habits.isEmpty else { return }
+                                
+                                let group = DispatchGroup()
+                                
+                                let addedHabits = habits.filter { !initialHabits.contains($0) }
+                                if !addedHabits.isEmpty {
+                                    group.enter()
+                                    self.habitsService.updateHabits(addedHabits, sprintID: self.sprintID, goalID: self.goal.id, completion: { _ in group.leave() })
+                                }
+                                
+                                let removedHabits = initialHabits.filter { !habits.contains($0) }
+                                if !removedHabits.isEmpty {
+                                    group.enter()
+                                    self.habitsService.updateHabits(removedHabits, sprintID: self.sprintID, goalID: nil, completion: { _ in group.leave() })
+                                }
+                                
+                                group.notify(queue: .main) {
+                                    completion()
+                                }
+                            }
+                        )
                         
                         let navigationController = UINavigationController(rootViewController: habitsPicker)
                         
@@ -607,36 +624,6 @@ private extension GoalCreationViewController {
             return nil
         } else {
             return max(0, focusedViewMaxY - visibleContentHeight)
-        }
-    }
-    
-}
-
-private final class PickedHabitsHandler: PickedHabitsState {
-    
-    private let habitsService = ServicesAssembly.shared.habitsService
-    
-    let sprintID: String
-    let goalID: String
-    let initialHabits: [Habit]
-    var pickedHabits: [Habit]
-    
-    init(sprintID: String, goalID: String, initialHabits: [Habit]) {
-        self.sprintID = sprintID
-        self.goalID = goalID
-        self.initialHabits = initialHabits
-        self.pickedHabits = initialHabits
-    }
-    
-    func didCompletePicking(habits: [Habit]) {
-        let addedHabits = habits.filter { !initialHabits.contains($0) }
-        if !addedHabits.isEmpty {
-            habitsService.updateHabits(addedHabits, sprintID: sprintID, goalID: goalID, completion: { _ in })
-        }
-        
-        let removedHabits = initialHabits.filter { !habits.contains($0) }
-        if !removedHabits.isEmpty {
-            habitsService.updateHabits(removedHabits, sprintID: sprintID, goalID: nil, completion: { _ in })
         }
     }
     

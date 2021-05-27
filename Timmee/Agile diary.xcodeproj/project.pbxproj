@@ -263,6 +263,8 @@
 		9687FDF6264A778F00CB4B1A /* SubscriptionPromoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDF4264A778F00CB4B1A /* SubscriptionPromoScreen.swift */; };
 		9687FDFC264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFB264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift */; };
 		9687FDFD264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFB264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift */; };
+		9687FE002652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */; };
+		9687FE012652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */; };
 		96888C1D2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C1E2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
@@ -505,6 +507,7 @@
 		9687FDEE264A5CEA00CB4B1A /* SwiftyStoreKit+AgileDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftyStoreKit+AgileDiary.swift"; sourceTree = "<group>"; };
 		9687FDF4264A778F00CB4B1A /* SubscriptionPromoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPromoScreen.swift; sourceTree = "<group>"; };
 		9687FDFB264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPurchaseScreen.swift; sourceTree = "<group>"; };
+		9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionAddHabitsManager.swift; sourceTree = "<group>"; };
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
@@ -1019,6 +1022,7 @@
 		0CB02FF42192D619006C5146 /* HabitsCollection */ = {
 			isa = PBXGroup;
 			children = (
+				9687FDFE2652F43600CB4B1A /* Reusable components */,
 				0CB030122195ADF3006C5146 /* HabitsCollection.storyboard */,
 				0CB02FF72192D636006C5146 /* Main */,
 				0CB02FF52192D625006C5146 /* Shop */,
@@ -1268,6 +1272,14 @@
 				9687FDFB264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift */,
 			);
 			path = SubscriptionPurchase;
+			sourceTree = "<group>";
+		};
+		9687FDFE2652F43600CB4B1A /* Reusable components */ = {
+			isa = PBXGroup;
+			children = (
+				9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */,
+			);
+			path = "Reusable components";
 			sourceTree = "<group>";
 		};
 		96888C222217EDE400479667 /* Utils */ = {
@@ -1717,6 +1729,7 @@
 				96DDBDB923BB77C1007AB33B /* ShortHabitCell.swift in Sources */,
 				0CB2EDF0214F971700AA4FB8 /* NumberPadItem.swift in Sources */,
 				0C06E95122EAF8C90099DD3A /* DiaryViewController+State.swift in Sources */,
+				9687FE002652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift in Sources */,
 				0C06E94B22EAD6C50099DD3A /* DiaryEntriesListView.swift in Sources */,
 				0C06E94422E9C1590099DD3A /* DiaryEntryCreationView.swift in Sources */,
 				96888C242217EDF400479667 /* BackgroundImagesLoader.swift in Sources */,
@@ -1852,6 +1865,7 @@
 				0CB673AD21A52C3900178EB1 /* PinAuthenticationViewController.swift in Sources */,
 				96A066A624815E9900111BA2 /* AppThemeApplier.swift in Sources */,
 				0CB673AF21A52C3900178EB1 /* GoalCreationViewController.swift in Sources */,
+				9687FE012652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift in Sources */,
 				96DDBDBD23C9EA2D007AB33B /* HabitCreationValuePickerView.swift in Sources */,
 				0CB673B021A52C3900178EB1 /* DueDatePicker.swift in Sources */,
 				0CB673B121A52C3900178EB1 /* Date+Today.swift in Sources */,

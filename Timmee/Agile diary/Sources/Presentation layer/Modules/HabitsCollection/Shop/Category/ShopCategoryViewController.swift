@@ -12,14 +12,18 @@ final class ShopCategoryViewController: BaseViewController {
     
     var collection: HabitsCollection?
     var sprintID: String?
-    
-    unowned var pickedHabitsState: PickedHabitsState!
-    
+        
     @IBOutlet private var headerView: LargeHeaderView!
     @IBOutlet private var tableView: UITableView!
     
     @IBOutlet private var placeholderContainer: UIView!
     let placeholderView = PlaceholderView.loadedFromNib()
+    
+    private lazy var addHabitsManager = HabitsCollectionAddHabitsManager(
+        sprintID: sprintID ?? "",
+        copyHabitsBeforeAdd: true,
+        initiallyPickedHabits: []
+    )
     
     private let habitsService = ServicesAssembly.shared.habitsService
     
@@ -34,9 +38,18 @@ final class ShopCategoryViewController: BaseViewController {
     override func prepare() {
         super.prepare()
         
+        isModalInPresentation = true
+        
         setupPlaceholder()
         
         tableView.register(HabitsPickerCell.self, forCellReuseIdentifier: HabitsPickerCell.reuseIdentifier)
+        
+        addHabitsManager.scrollView = tableView
+        addHabitsManager.onAddHabits = { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        addHabitsManager.setupAddHabitsButton(view: view)
+        addHabitsManager.setAddHabitsButtonVisible(false, animated: false)
     }
     
     override func refresh() {
@@ -63,7 +76,7 @@ extension ShopCategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HabitsPickerCell.reuseIdentifier, for: indexPath) as! HabitsPickerCell
         if let habit = collection?.habits.item(at: indexPath.row) {
-            let isPicked = pickedHabitsState.pickedHabits.contains(habit)
+            let isPicked = addHabitsManager.pickedHabits.contains(habit)
             cell.configure(habit: habit, isPicked: isPicked)
         }
         return cell
@@ -75,11 +88,11 @@ extension ShopCategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let habit = collection?.habits.item(at: indexPath.row) else { return }
-        let isPicked = pickedHabitsState.pickedHabits.contains(habit)
+        let isPicked = addHabitsManager.pickedHabits.contains(habit)
         if isPicked {
-            pickedHabitsState.pickedHabits.remove(object: habit)
+            addHabitsManager.remove(habit: habit)
         } else {
-            pickedHabitsState.pickedHabits.append(habit)
+            addHabitsManager.add(habit: habit)
         }
         tableView.reloadData()
     }
