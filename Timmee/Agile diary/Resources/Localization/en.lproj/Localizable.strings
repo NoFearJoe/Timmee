@@ -247,6 +247,8 @@
 "choose_habits_from_collection" = "Choose from collection";
 "choose_habits_from_current_sprint" = "Choose from the sprint";
 
+"all_habits" = "All habits";
+
 "Collection" = "Collection";
 "habits_collection_shop_section_title" = "Shop";
 "habits_collection_history_section_title" = "History";

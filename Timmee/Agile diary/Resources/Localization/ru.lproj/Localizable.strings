@@ -247,6 +247,8 @@
 "choose_habits_from_collection" = "Выбрать из коллекции";
 "choose_habits_from_current_sprint" = "Выбрать из спринта";
 
+"all_habits" = "Все привычки";
+
 "Collection" = "Коллекция";
 "habits_collection_shop_section_title" = "Магазин";
 "habits_collection_history_section_title" = "История";

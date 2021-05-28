@@ -53,6 +53,10 @@ final class TodayContentViewController: UIViewController, AlertInput {
     private let habitsCollectionMenuButton = AddMenuButton()
     private let dimmedBackgroundView = UIView()
     
+    // MARK: All habits button
+    
+    private let allHabitsButton = UIButton(type: .system)
+    
     // MARK: Placeholder
     
     private let placeholderView = ScreenPlaceholderView()
@@ -94,6 +98,9 @@ final class TodayContentViewController: UIViewController, AlertInput {
         setupContentView()
         
         setupCreateButton()
+        if section == .habits {
+            setupAllHabitsButton()
+        }
         setupAddHabitMenu()
         
         setupPlaceholder()
@@ -432,7 +439,7 @@ private extension TodayContentViewController {
             return !habit.link.trimmed.isEmpty
         }
         habitCellActionsProvider.shouldShowEditAction = { _ in false }
-        habitCellActionsProvider.shouldShowDeleteAction = { _ in true }
+        habitCellActionsProvider.shouldShowDeleteAction = { _ in false }
         
         habitCellActionsProvider.onLink = { [unowned self] indexPath in
             guard let habit = self.habitsCacheObserver?.item(at: indexPath) else { return }
@@ -557,11 +564,26 @@ private extension TodayContentViewController {
         createButton.width(52)
         createButton.height(52)
         createButton.centerX().toSuperview()
-        if #available(iOS 11.0, *) {
-            createButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
-        } else {
-            createButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8).isActive = true
-        }
+        createButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+    }
+    
+    func setupAllHabitsButton() {
+        view.insertSubview(allHabitsButton, belowSubview: createButton)
+        allHabitsButton.setTitle("all_habits".localized, for: .normal)
+        allHabitsButton.setTitleColor(AppTheme.current.colors.activeElementColor, for: .normal)
+        allHabitsButton.addTarget(self, action: #selector(didTapAllHabitsButton), for: .touchUpInside)
+        allHabitsButton.backgroundColor = AppTheme.current.colors.middlegroundColor
+        allHabitsButton.setBackgroundImage(UIImage.plain(color: AppTheme.current.colors.foregroundColor), for: .normal)
+        allHabitsButton.layer.cornerRadius = 8
+        allHabitsButton.clipsToBounds = true
+        allHabitsButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        allHabitsButton.titleLabel?.font = AppTheme.current.fonts.regular(16)
+        allHabitsButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        
+        allHabitsButton.height(32)
+        allHabitsButton.leading(15).toSuperview()
+        allHabitsButton.centerY().to(createButton, addTo: view)
+        allHabitsButton.trailingAnchor.constraint(lessThanOrEqualTo: createButton.leadingAnchor, constant: -8).isActive = true
     }
     
     @objc func onTapCreateButton() {
@@ -571,6 +593,10 @@ private extension TodayContentViewController {
         case .goals:
             showTaskEditor()
         }
+    }
+    
+    @objc func didTapAllHabitsButton() {
+        transitionHandler?.present(AllHabitsViewController(sprintID: sprintID), animated: true, completion: nil)
     }
     
 }

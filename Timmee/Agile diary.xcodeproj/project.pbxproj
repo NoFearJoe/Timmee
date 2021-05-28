@@ -265,6 +265,10 @@
 		9687FDFD264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFB264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift */; };
 		9687FE002652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */; };
 		9687FE012652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */; };
+		9687FE04265F784C00CB4B1A /* AllHabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FE03265F784C00CB4B1A /* AllHabitsViewController.swift */; };
+		9687FE05265F784C00CB4B1A /* AllHabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FE03265F784C00CB4B1A /* AllHabitsViewController.swift */; };
+		9687FE072661474A00CB4B1A /* AllHabitsViewController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FE062661474A00CB4B1A /* AllHabitsViewController+Cell.swift */; };
+		9687FE082661474A00CB4B1A /* AllHabitsViewController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9687FE062661474A00CB4B1A /* AllHabitsViewController+Cell.swift */; };
 		96888C1D2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C1E2217DFE800479667 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1C2217DFE800479667 /* AddButton.swift */; };
 		96888C202217E1BD00479667 /* AddMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96888C1F2217E1BD00479667 /* AddMenuButton.swift */; };
@@ -508,6 +512,8 @@
 		9687FDF4264A778F00CB4B1A /* SubscriptionPromoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPromoScreen.swift; sourceTree = "<group>"; };
 		9687FDFB264A9D3100CB4B1A /* SubscriptionPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPurchaseScreen.swift; sourceTree = "<group>"; };
 		9687FDFF2652F46600CB4B1A /* HabitsCollectionAddHabitsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsCollectionAddHabitsManager.swift; sourceTree = "<group>"; };
+		9687FE03265F784C00CB4B1A /* AllHabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHabitsViewController.swift; sourceTree = "<group>"; };
+		9687FE062661474A00CB4B1A /* AllHabitsViewController+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllHabitsViewController+Cell.swift"; sourceTree = "<group>"; };
 		96888C1C2217DFE800479667 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		96888C1F2217E1BD00479667 /* AddMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuButton.swift; sourceTree = "<group>"; };
 		96888C232217EDF400479667 /* BackgroundImagesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImagesLoader.swift; sourceTree = "<group>"; };
@@ -736,6 +742,7 @@
 				0CB02FF42192D619006C5146 /* HabitsCollection */,
 				0CB02FF62192D62E006C5146 /* HabitsPicker */,
 				0CF7E51B214669520071DABD /* Today */,
+				9687FE02265F782400CB4B1A /* AllHabits */,
 				0C3DA4DB21525EAA00CAE635 /* Charts */,
 				0C2B9D15220DA9900038F11D /* Sprints */,
 				0C4082DC22E6DEE200D899A9 /* Diary */,
@@ -1282,6 +1289,15 @@
 			path = "Reusable components";
 			sourceTree = "<group>";
 		};
+		9687FE02265F782400CB4B1A /* AllHabits */ = {
+			isa = PBXGroup;
+			children = (
+				9687FE03265F784C00CB4B1A /* AllHabitsViewController.swift */,
+				9687FE062661474A00CB4B1A /* AllHabitsViewController+Cell.swift */,
+			);
+			path = AllHabits;
+			sourceTree = "<group>";
+		};
 		96888C222217EDE400479667 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1642,6 +1658,7 @@
 				0C5C46992140FDF900390F85 /* CalendarDayCell.swift in Sources */,
 				96346F02248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */,
 				0CDF8D6121246975001A2F70 /* HabitCreationInteractor.swift in Sources */,
+				9687FE072661474A00CB4B1A /* AllHabitsViewController+Cell.swift in Sources */,
 				0C14D55E2124423A004C0559 /* GoalCreationInteractor.swift in Sources */,
 				96888C1D2217DFE800479667 /* AddButton.swift in Sources */,
 				0C14D4E4212183A9004C0559 /* AppDelegate.swift in Sources */,
@@ -1722,6 +1739,7 @@
 				0C3DA52B2153C0D800CAE635 /* BackgroundImagePickerViewController.swift in Sources */,
 				0CACF2D322241FAF00EE97E4 /* ShopCategoryViewController.swift in Sources */,
 				0C14D4DC21218186004C0559 /* InitialScreenPresenter.swift in Sources */,
+				9687FE04265F784C00CB4B1A /* AllHabitsViewController.swift in Sources */,
 				96F469B42637078900D5751C /* HabitsChartTotalProgressView.swift in Sources */,
 				0C06E94E22EAD8EA0099DD3A /* DiaryEntryCell.swift in Sources */,
 				0C86E4E122DC6B4F00DA7B15 /* HabitDetailsProvider.swift in Sources */,
@@ -1776,6 +1794,7 @@
 				0CB6737521A52C3900178EB1 /* ContinueEducationButton.swift in Sources */,
 				0CC405F821EF27930069C6C5 /* FocusableTextField.swift in Sources */,
 				0CB6737621A52C3900178EB1 /* PinCreationViewController.swift in Sources */,
+				9687FE05265F784C00CB4B1A /* AllHabitsViewController.swift in Sources */,
 				96346F03248A972F00A815F2 /* HabitCreationNotificationsListView.swift in Sources */,
 				0C47EE87223A84B500593AA3 /* SprintDurationPicker.swift in Sources */,
 				0CB6737721A52C3900178EB1 /* UIFont+Avenir.swift in Sources */,
@@ -1799,6 +1818,7 @@
 				0CB6738621A52C3900178EB1 /* BiometricsActivationController.swift in Sources */,
 				0C737A97221AD6F200D741C6 /* HabitsCollectionsLoader.swift in Sources */,
 				0CB6738721A52C3900178EB1 /* EducationViewController.swift in Sources */,
+				9687FE082661474A00CB4B1A /* AllHabitsViewController+Cell.swift in Sources */,
 				964C694821B3AB84000FBAD1 /* MocksConfigurator.swift in Sources */,
 				0C06E97E22F185730099DD3A /* DiaryEntriesSubmoduleListCell.swift in Sources */,
 				0CB6738821A52C3900178EB1 /* ExtendedBarChartView.swift in Sources */,
