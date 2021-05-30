@@ -14,8 +14,7 @@
 "reminder" = "Напоминание";
 "reminders" = "Напоминания";
 "due_days" = "Дни выполнения";
-"link" = "Ссылка";
-"link_hint" = "В качестве ссылки можно указать любой интернет ресурс";
+"description" = "Заметка";
 "stages" = "Этапы";
 "stages_hint" = "Этапы - это небольшие задачи, необходимые для достижения цели";
 
@@ -48,11 +47,11 @@
 "sun" = "вс";
 
 "no_reminder" = "Не напоминать";
-"remind_just_in_time" = "Напомнить точно в срок";
-"remind_10_minutes_before" = "Напомнить за 10 минут";
-"remind_30_minutes_before" = "Напомнить за 30 минут";
-"remind_1_hour_before" = "Напомнить за час";
-"remind_1_day_before" = "Напомнить за день";
+"remind_just_in_time" = "Точно в срок";
+"remind_10_minutes_before" = "За 10 минут";
+"remind_30_minutes_before" = "За 30 минут";
+"remind_1_hour_before" = "За час";
+"remind_1_day_before" = "За день";
 
 "settings" = "Настройки";
 "background_color" = "Цвет фона";
@@ -202,16 +201,8 @@
 "habits_chart_total_progress_title" = "Процент выполненых привычек";
 "empty_progress_placeholder_title" = "Начните выполнять привычки, чтобы видеть прогресс";
 
-"notifications" = "Напоминания";
-"notifications_interval" = "Интервал напоминаний";
-"notifications_enabled" = "Включены";
-"notifications_disabled" = "Выключены";
-"notifications_interval_start" = "Начало";
-"notifications_interval_finish" = "Конец";
-"1h" = "1ч";
-"2h" = "2ч";
-"3h" = "3ч";
-"4h" = "4ч";
+"select_time" = "Выбрать время";
+"notification" = "Напоминание";
 "no_data" = "Нет данных";
 
 "education_initial_title" = "Что такое Agile ежедневник?";
@@ -330,7 +321,7 @@
 
 "error_while_loading_habits_collections" = "При загрузке коллекций произошла ошибка. Проверьте интернет-соединение или повторите попытку позже";
 
-"day_time" = "Время суток";
+"due_time" = "Время";
 "morning" = "Утро";
 "afternoon" = "День";
 "evening" = "Вечер";

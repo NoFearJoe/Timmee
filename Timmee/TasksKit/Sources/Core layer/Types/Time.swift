@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Workset
 
 public struct Time {
     public let hours: Int
@@ -66,4 +67,20 @@ extension Array where Element == Time {
         map { $0.string }.joined(separator: ", ")
     }
     
+}
+
+public func - (lhs: Time, rhs: Minutes) -> Time {
+    if lhs.minutes < rhs.value {
+        let diff = lhs.minutes - rhs.value
+        let hours = Int(ceil(Double(abs(diff)) / 60.0))
+        
+        if lhs.hours - hours < 0 {
+            return Time(0, 0)
+        } else {
+            let minutes = diff == 0 ? 0 : 60 + (diff % 60)
+            return Time(lhs.hours - hours, minutes)
+        }
+    } else {
+        return Time(lhs.hours, lhs.minutes - rhs.value)
+    }
 }

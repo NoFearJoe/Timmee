@@ -314,7 +314,7 @@ extension HabitsService: HabitsObserverProvider {
         let observer = CachedEntitiesObserver<HabitEntity, Habit>(
             context: context,
             baseRequest: request,
-            grouping: { $0.calculatedDayTime.sortID },
+            grouping: nil, // TODO
             mapping: { Habit(habit: $0) },
             sorting: { $0 < $1 }
         )

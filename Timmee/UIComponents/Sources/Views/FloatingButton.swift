@@ -28,6 +28,8 @@ public final class FloatingButton: UIButton {
         }
     }
     
+    private(set) public var floatingState: FloatingState = .default
+    
     public var colors: Colors = Colors(tintColor: .black,
                                        backgroundColor: .black,
                                        secondaryBackgroundColor: .black) {
@@ -52,6 +54,8 @@ public final class FloatingButton: UIButton {
     }
     
     public func setState(_ state: FloatingState) {
+        self.floatingState = state
+        
         switch state {
         case .default:
             isSelected = false

@@ -22,14 +22,15 @@
     </entity>
     <entity name="HabitEntity" representedClassName="HabitEntity" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dayTime" optional="YES" attributeType="String"/>
         <attribute name="doneDates" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="NSArray"/>
         <attribute name="dueDays" optional="YES" attributeType="String"/>
+        <attribute name="dueTime" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isSynced" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="link" optional="YES" attributeType="String"/>
         <attribute name="modificationDate" attributeType="Date" defaultDateTimeInterval="-978318000" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="notification" optional="YES" attributeType="String"/>
         <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notificationsTime" optional="YES" attributeType="String"/>
         <attribute name="repeatEndingDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -65,7 +66,7 @@
     <elements>
         <element name="DiaryEntryEntity" positionX="18" positionY="63" width="128" height="119"/>
         <element name="GoalEntity" positionX="54" positionY="99" width="128" height="179"/>
-        <element name="HabitEntity" positionX="18" positionY="63" width="128" height="269"/>
+        <element name="HabitEntity" positionX="18" positionY="63" width="128" height="284"/>
         <element name="SprintEntity" positionX="27" positionY="72" width="128" height="209"/>
         <element name="StageEntity" positionX="-27" positionY="18" width="128" height="149"/>
     </elements>

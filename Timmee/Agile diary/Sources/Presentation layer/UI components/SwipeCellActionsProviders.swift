@@ -62,11 +62,9 @@ extension CellDeleteSwipeActionProvider: SwipeTableViewCellDelegate {
 
 final class TodayHabitCellSwipeActionsProvider {
     
-    var shouldShowLinkAction: ((IndexPath) -> Bool)?
     var shouldShowEditAction: ((IndexPath) -> Bool)?
     var shouldShowDeleteAction: ((IndexPath) -> Bool)?
     
-    var onLink: ((IndexPath) -> Void)?
     var onEdit: ((IndexPath) -> Void)?
     var onDelete: ((IndexPath) -> Void)?
     
@@ -80,22 +78,6 @@ final class TodayHabitCellSwipeActionsProvider {
         options.transitionStyle = SwipeTransitionStyle.drag
         options.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
         return options
-    }()
-    
-    private lazy var swipeLinkAction: SwipeAction = {
-        let action = SwipeAction(style: .default,
-                                 title: "open_link".localized,
-                                 handler:
-            { [weak self] (action, indexPath) in
-                self?.onLink?(indexPath)
-                action.fulfill(with: .reset)
-        })
-        action.image = #imageLiteral(resourceName: "link")
-        action.textColor = AppTheme.current.colors.mainElementColor
-        action.title = nil
-        action.backgroundColor = TodayHabitCellSwipeActionsProvider.backgroundColor
-        action.transitionDelegate = nil
-        return action
     }()
     
     private lazy var swipeEditAction: SwipeAction = {
@@ -144,9 +126,6 @@ extension TodayHabitCellSwipeActionsProvider: SwipeTableViewCellDelegate {
             if shouldShowEditAction?(indexPath) == true {
                 swipeEditAction.textColor = AppTheme.current.textColorForTodayLabelsOnBackground
                 actions.append(swipeEditAction)
-            }
-            if shouldShowLinkAction?(indexPath) == true {
-                actions.append(swipeLinkAction)
             }
             return actions
         }

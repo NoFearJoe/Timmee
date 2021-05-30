@@ -14,8 +14,7 @@
 "reminder" = "Reminder";
 "reminders" = "Reminders";
 "due_days" = "Due days";
-"link" = "Link";
-"link_hint" = "As a link, you can specify any online resource";
+"description" = "Note";
 "stages" = "Stages";
 "stages_hint" = "Stages are small tasks necessary to achieve a goal";
 
@@ -48,11 +47,11 @@
 "sun" = "sun";
 
 "no_reminder" = "Don't remind";
-"remind_just_in_time" = "Remind just in time";
-"remind_10_minutes_before" = "Remind 10 minutes before";
-"remind_30_minutes_before" = "Remind 30 minutes before";
-"remind_1_hour_before" = "Remind a hour before";
-"remind_1_day_before" = "Remind a day before";
+"remind_just_in_time" = "Just in time";
+"remind_10_minutes_before" = "10 minutes before";
+"remind_30_minutes_before" = "30 minutes before";
+"remind_1_hour_before" = "A hour before";
+"remind_1_day_before" = "A day before";
 
 "settings" = "Settings";
 "background_color" = "Background color";
@@ -202,16 +201,8 @@
 "habits_chart_total_progress_title" = "Completed habits percent";
 "empty_progress_placeholder_title" = "Complete your first habit to see the progress";
 
-"notifications" = "Reminders";
-"notifications_interval" = "Reminders interval";
-"notifications_enabled" = "Enabled";
-"notifications_disabled" = "Disabled";
-"notifications_interval_start" = "Start";
-"notifications_interval_finish" = "End";
-"1h" = "1h";
-"2h" = "2h";
-"3h" = "3h";
-"4h" = "4h";
+"select_time" = "Select time";
+"notification" = "Reminder";
 "no_data" = "No data";
 
 "education_initial_title" = "What is an Agile diary?";
@@ -330,7 +321,7 @@
 
 "error_while_loading_habits_collections" = "An error occurred while loading collections. Check your internet connection or try again later.";
 
-"day_time" = "Time of day";
+"due_time" = "Time";
 "morning" = "Morning";
 "afternoon" = "Afternoon";
 "evening" = "Evening";

@@ -21,7 +21,7 @@ public final class HabitsSchedulerService: BaseSchedulerService {
     }
     
     private func scheduleNewHabit(_ habit: Habit) {
-        guard !habit.notificationsTime.isEmpty else { return }
+        guard let notificationTime = habit.notificationTime else { return }
         guard let endDate = habit.repeatEndingDate else { return }
         
         let now = Date()
@@ -37,29 +37,27 @@ public final class HabitsSchedulerService: BaseSchedulerService {
                 continue
             }
             
-            habit.notificationsTime.forEach { time in
-                var fireDate = notificationDate.startOfMinute
-                fireDate => time.hours.asHours
-                fireDate => time.minutes.asMinutes
-                
-                let userInfo = HabitsSchedulerService.makeUserInfo(
-                    habitID: habit.id,
-                    isDeferred: false,
-                    endDate: habit.repeatEndingDate
-                )
-                
-                debugPrint("::: Habit notification registered at \(fireDate)")
-                
-                scheduleLocalNotification(
-                    withID: habit.id + "\(fireDate.timeIntervalSince1970)",
-                    title: habit.title,
-                    message: HabitsSchedulerService.makeNotificationMessage(for: habit),
-                    at: fireDate,
-                    repeatUnit: nil,
-                    category: "habit",
-                    userInfo: userInfo
-                )
-            }
+            var fireDate = notificationDate.startOfMinute
+            fireDate => notificationTime.hours.asHours
+            fireDate => notificationTime.minutes.asMinutes
+            
+            let userInfo = HabitsSchedulerService.makeUserInfo(
+                habitID: habit.id,
+                isDeferred: false,
+                endDate: habit.repeatEndingDate
+            )
+            
+            debugPrint("::: Habit notification registered at \(fireDate)")
+            
+            scheduleLocalNotification(
+                withID: habit.id + "\(fireDate.timeIntervalSince1970)",
+                title: habit.title,
+                message: HabitsSchedulerService.makeNotificationMessage(for: habit),
+                at: fireDate,
+                repeatUnit: nil,
+                category: "habit",
+                userInfo: userInfo
+            )
             
             notificationDate = notificationDate + 1.asDays
         }
@@ -146,13 +144,7 @@ public final class HabitsSchedulerService: BaseSchedulerService {
 private extension HabitsSchedulerService {
     
     static func makeNotificationMessage(for habit: Habit) -> String {
-        if let value = habit.value {
-            return value.localized
-        } else if !habit.link.isEmpty {
-            return habit.link
-        } else {
-            return habit.note
-        }
+        habit.value?.localized ?? ""
     }
     
     static func makeUserInfo(habitID: String, isDeferred: Bool, endDate: Date?) -> [String: Any] {

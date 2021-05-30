@@ -58,11 +58,11 @@ class TodayExtensionViewController: UIViewController, NCWidgetProviding, SprintI
 extension TodayExtensionViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habits.count
+        habits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +71,7 @@ extension TodayExtensionViewController: UITableViewDataSource, UITableViewDelega
             cell.configure(habit: habit)
             cell.onChangeCheckedState = { [unowned self] isChecked in
                 habit.setDone(isChecked, at: Date.now)
-                guard let sprint = self.sprint else { return }
+
                 self.habitsService.updateHabit(habit, completion: { [weak self] _ in
                     self?.reloadHabits()
                 })
@@ -81,7 +81,7 @@ extension TodayExtensionViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 68
+        68
     }
     
 }

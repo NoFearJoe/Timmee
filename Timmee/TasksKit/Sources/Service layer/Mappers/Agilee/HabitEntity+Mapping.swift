@@ -13,11 +13,10 @@ public extension HabitEntity {
     func map(from entity: Habit) {
         id = entity.id
         title = entity.title
-        note = entity.note
-        link = entity.link
+        link = entity.description
         value = entity.value?.asString
-        dayTime = entity.dayTime?.rawValue
-        notificationsTime = entity.notificationsTime.map { $0.string }.joined(separator: ",")
+        dueTime = entity.dueTime?.string
+        notification = entity.notification.string
         repeatEndingDate = entity.repeatEndingDate
         dueDays = entity.dueDays.map { $0.string }.joined(separator: ",")
         doneDates = entity.doneDates as NSArray

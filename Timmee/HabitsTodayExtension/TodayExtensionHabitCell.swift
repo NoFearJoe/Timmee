@@ -38,18 +38,13 @@ final class TodayExtensionHabitCell: UITableViewCell {
         titleLabel.text = habit.title
         
         let attributedSubtitle = NSMutableAttributedString()
-        if !habit.notificationsTime.isEmpty {
-            attributedSubtitle.append(NSAttributedString(string: habit.notificationsTime.readableString,
+        if let dueTime = habit.dueTime {
+            attributedSubtitle.append(NSAttributedString(string: "at".localized + " ",
                                                          attributes: [.foregroundColor: UIColor(rgba: "AAAAAA")]))
+            attributedSubtitle.append(NSAttributedString(string: dueTime.string + " ",
+                                                         attributes: [.foregroundColor: UIColor(rgba: "3333EE")]))
         }
-        if !habit.link.trimmed.isEmpty {
-            if !habit.notificationsTime.isEmpty {
-                attributedSubtitle.append(NSAttributedString(string: ", ",
-                                                             attributes: [.foregroundColor: UIColor(rgba: "AAAAAA")]))
-            }
-            attributedSubtitle.append(NSAttributedString(string: habit.link.trimmed,
-                                                         attributes: [.foregroundColor: UIColor(rgba: "29C3FE")]))
-        }
+
         subtitleLabel.attributedText = attributedSubtitle
     }
     

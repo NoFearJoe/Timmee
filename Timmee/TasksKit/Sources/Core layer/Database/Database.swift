@@ -15,7 +15,7 @@ public final class Database {
     
 }
 
-public protocol Storage: class {
+public protocol Storage: AnyObject {
     var readContext: NSManagedObjectContext { get }
     var writeContext: NSManagedObjectContext { get }
     
@@ -26,7 +26,7 @@ public protocol Storage: class {
 
 private final class CoreDataStorage: Storage {
     
-    private lazy var persistentContainer = Self.makePersistentContainer(name: storeName, model: model)
+    private let persistentContainer = makePersistentContainer(name: storeName, model: model)
     
     lazy var readContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -45,16 +45,6 @@ private final class CoreDataStorage: Storage {
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
-    
-    init() {
-        guard let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) else { return }
-        
-        addPersistentStore(
-            at: sharedStoreURL,
-            configuration: storeConfiguration,
-            coordinator: persistentContainer.persistentStoreCoordinator
-        )
-    }
     
 }
 
@@ -104,11 +94,11 @@ private extension CoreDataStorage {
 
 private extension CoreDataStorage {
     
-    var modelName: String {
+    static var modelName: String {
         DatabaseConfiguration.shared.properties["database_model_name"] as! String
     }
     
-    var storeName: String {
+    static var storeName: String {
         DatabaseConfiguration.shared.properties["database_name"] as! String
     }
     
@@ -116,7 +106,7 @@ private extension CoreDataStorage {
         DatabaseConfiguration.shared.properties["database_configuration"] as? String
     }
     
-    var sharedGroup: String? {
+    static var sharedGroup: String? {
         DatabaseConfiguration.shared.properties["database_shared_group"] as? String
     }
     
@@ -124,57 +114,30 @@ private extension CoreDataStorage {
         FilesService.URLs.documents!.appendingPathComponent(name)
     }
     
-    func sharedStoreURL(group: String) -> URL? {
+    static func sharedStoreURL(group: String) -> URL? {
         FilesService.URLs.shared(group: group)?.appendingPathComponent(storeName)
     }
     
-    var model: NSManagedObjectModel {
+    static var model: NSManagedObjectModel {
         let url = Bundle(for: CoreDataStorage.self).url(forResource: modelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: url)!
     }
     
     static func makePersistentContainer(name: String, model: NSManagedObjectModel) -> NSPersistentCloudKitContainer {
         let container = NSPersistentCloudKitContainer(name: name, managedObjectModel: model)
+        
+        if let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) {
+            container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: sharedStoreURL.appendingPathExtension("sqlite"))]
+        }
+        
         container.loadPersistentStores { _, error in
             if let error = error { assertionFailure(error.localizedDescription) }
         }
+        
         return container
     }
-    
-//    var coordinator: NSPersistentStoreCoordinator {
-//        let coordinator = persistentContainer.persistentStoreCoordinator
-//        if let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) {
-//            migrateOldPersistentStore(to: sharedStoreURL, coordinator: coordinator)
-//            addPersistentStore(at: sharedStoreURL, configuration: storeConfiguration, coordinator: coordinator)
-//        } else {
-//            addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator)
-//        }
-//        return coordinator
-//    }
-//
-    @discardableResult
-    private func addPersistentStore(at url: URL, configuration: String?, coordinator: NSPersistentStoreCoordinator) -> NSPersistentStore? {
-        try? coordinator.addPersistentStore(
-            ofType: NSSQLiteStoreType,
-            configurationName: nil,
-            at: url,
-            options: makePersistentStoreOptions()
-        )
-    }
-//
-//    private func migrateOldPersistentStore(to url: URL, coordinator: NSPersistentStoreCoordinator) {
-//        guard FileManager.default.fileExists(atPath: storeURL(name: storeName).path) else { return }
-//        if let oldPersistentStore = addPersistentStore(at: storeURL(name: storeName), configuration: storeConfiguration, coordinator: coordinator) {
-//            let migratedPersistentStore = try? coordinator.migratePersistentStore(oldPersistentStore,
-//                                                                                  to: url,
-//                                                                                  options: makePersistentStoreOptions(),
-//                                                                                  withType: NSSQLiteStoreType)
-//            migratedPersistentStore.map { try? coordinator.remove($0) }
-//            try? FileManager.default.removeItem(at: storeURL(name: storeName))
-//        }
-//    }
-//
-    private func makePersistentStoreOptions() -> [String: Any] {
+
+    private static func makePersistentStoreOptions() -> [String: Any] {
         return [NSMigratePersistentStoresAutomaticallyOption: true,
                 NSInferMappingModelAutomaticallyOption: true,
                 NSSQLitePragmasOption: ["journal_mode": "DELETE"]]

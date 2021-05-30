@@ -449,7 +449,7 @@ public extension Date {
 // MARK: - Date units
 
 public class DateUnit<ValueType> {
-    let value: ValueType
+    public let value: ValueType
     
     init(value: ValueType) {
         self.value = value

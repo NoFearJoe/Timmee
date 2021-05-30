@@ -14,31 +14,31 @@ final class ViewControllersFactory {
     // Sprints
     
     static var notificationTimePicker: NotificationTimePicker {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "NotificationTimePicker") as! NotificationTimePicker
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "NotificationTimePicker") as! NotificationTimePicker
     }
     
     static var editorContainer: EditorContainer {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "EditorContainer") as! EditorContainer
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "EditorContainer") as! EditorContainer
     }
     
     static var dueDatePicker: DueDatePicker {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "DueDatePicker") as! DueDatePicker
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "DueDatePicker") as! DueDatePicker
     }
     
     static var sprintNotificationTimePicker: SprintNotificationTimePicker {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "SprintNotificationTimePicker") as! SprintNotificationTimePicker
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "SprintNotificationTimePicker") as! SprintNotificationTimePicker
     }
     
     static var sprintDurationPicker: SprintDurationPicker {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "SprintDurationPicker") as! SprintDurationPicker
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "SprintDurationPicker") as! SprintDurationPicker
     }
     
     static var habitEditor: HabitCreationViewController {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "HabitCreationViewController") as! HabitCreationViewController
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "HabitCreationViewController") as! HabitCreationViewController
     }
     
     static var goalEditor: GoalCreationViewController {
-        UIStoryboard(name: "SprintCreation", bundle: nil).instantiateViewController(withIdentifier: "TargetCreationViewController") as! GoalCreationViewController
+        UIStoryboard(name: "Editors", bundle: nil).instantiateViewController(withIdentifier: "TargetCreationViewController") as! GoalCreationViewController
     }
     
     static var habitsCollectionViewController: HabitsCollectionViewController {
