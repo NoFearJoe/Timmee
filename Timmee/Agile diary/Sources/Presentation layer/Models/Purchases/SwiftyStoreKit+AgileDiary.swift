@@ -12,31 +12,12 @@ import SwiftyStoreKit
 extension SwiftyStoreKit {
     
     static func completeTransactions() {
-        completeTransactions(atomically: true) { purchases in
-            for purchase in purchases {
-                switch purchase.transaction.transactionState {
-                case .purchased, .restored:
-                    if purchase.needsFinishTransaction {
-                        SwiftyStoreKit.finishTransaction(purchase.transaction)
-                    }
-                    
-                    UserDefaults.standard.set(true, forKey: purchase.productId)
-                case .failed, .purchasing, .deferred:
-                    break
-                @unknown default:
-                    break
-                }
-            }
-        }
+        completeTransactions(atomically: true, completion: { _ in })
     }
     
     enum Subscription: String, CaseIterable {
         case monthly = "com.mesterra.AgileDiary.monthly.subscription"
         case annual = "com.mesterra.AgileDiary.annual.subscription"
-    }
-    
-    static var isSubscriptionPurchased: Bool {
-        ProVersionPurchase.shared.isPurchased() || Subscription.allCases.contains(where: { UserDefaults.standard.bool(forKey: $0.rawValue) })
     }
     
     static func retrieveSubscriptions(completion: @escaping (Result<[SKProduct], Error>) -> Void) {
@@ -51,7 +32,37 @@ extension SwiftyStoreKit {
     
     static func purchase(subscription: Subscription, completion: @escaping (PurchaseResult) -> Void) {
         purchaseProduct(subscription.rawValue) { result in
-            completion(result)
+            verifySubscriptions { _ in
+                completion(result)
+            }
+        }
+    }
+
+    static var hasUnexpiredSubscription: Bool {
+        if let date = subscriptionExpirationDate, date.isGreater(than: .now) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func isSubscriptionPurchased(completion: @escaping (Bool) -> Void) {
+        if ProVersionPurchase.shared.isPurchased() || hasUnexpiredSubscription {
+            return completion(true)
+        }
+        
+        SwiftyStoreKit.verifySubscriptions { result in
+            switch result {
+            case let .success(r):
+                switch r {
+                case .notPurchased, .expired:
+                    completion(false)
+                case .purchased:
+                    completion(true)
+                }
+            case .failure:
+                completion(false)
+            }
         }
     }
     
@@ -59,8 +70,9 @@ extension SwiftyStoreKit {
         verifyReceipt(using: AppleReceiptValidator(service: .production, sharedSecret: "383395f7d82b493cacac438d8298490c")) { result in
             switch result {
             case let .success(receipt):
-                let purchaseState = verifySubscriptions(productIds: Set(Subscription.allCases.map({ $0.rawValue })), inReceipt: receipt)
-                completion(.success(purchaseState))
+                let purchaseResult = verifySubscriptions(productIds: Set(Subscription.allCases.map({ $0.rawValue })), inReceipt: receipt)
+                saveExpirationDate(result: purchaseResult)
+                completion(.success(purchaseResult))
             case let .error(error):
                 completion(.failure(error))
             }
@@ -69,11 +81,27 @@ extension SwiftyStoreKit {
     
     static func restoreSubscription(completion: @escaping (Bool) -> Void) {
         SwiftyStoreKit.restorePurchases { result in
-            result.restoredPurchases.forEach {
-                UserDefaults.standard.set(true, forKey: $0.productId)
-            }
-            
             completion(result.restoreFailedPurchases.isEmpty)
+        }
+    }
+    
+    private static var subscriptionExpirationDate: Date? {
+        get {
+            UserDefaults.standard.object(forKey: "subscriptionExpirationDate") as? Date
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "subscriptionExpirationDate")
+        }
+    }
+    
+    private static func saveExpirationDate(result: VerifySubscriptionResult) {
+        switch result {
+        case let .purchased(expiryDate, _):
+            subscriptionExpirationDate = expiryDate
+        case let .expired(expiryDate, _):
+            subscriptionExpirationDate = expiryDate
+        case .notPurchased:
+            subscriptionExpirationDate = nil
         }
     }
     

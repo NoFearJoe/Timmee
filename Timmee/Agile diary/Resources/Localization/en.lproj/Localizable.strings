@@ -167,10 +167,10 @@
 "subscription_promo_screen_title" = "About subscription";
 "subscription_promo_screen_message" = "The application is available by subscription only. But we don't offer to buy it immediatelly. We give you a chance to try it out and then decide – will you buy it or not.";
 "subscription_expired" = "Your subscription is expired";
-"subscription_expired_message" = "Чтобы продолжить использование приложения, продлите прописку";
-"prolongate_subscription" = "Продлить подписку";
+"subscription_expired_message" = "To continue using the application, renew your registration";
+"prolongate_subscription" = "Renew subscription";
 "subscription_purchase_screen_title" = "Subscription";
-"subscription_purchase_description" = "Choose an appropriate subscription";
+"subscription_purchase_description" = "Subscribing for you is the motivation to keep going. Subscription for us is a sign of the presence of users for whom the application needs to be supported, and also the ability not to spoil the application with advertising.\nChoose the subscription terms that are convenient for you and start the journey to the best version of yourself!";
 "buy_subscription" = "Subscribe";
 "restore_subscription" = "Restore";
 "restore_error_try_again" = "Failed to restore a subscription. Try again";

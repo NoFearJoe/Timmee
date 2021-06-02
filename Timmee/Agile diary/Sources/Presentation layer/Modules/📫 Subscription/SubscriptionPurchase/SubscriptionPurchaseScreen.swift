@@ -12,6 +12,8 @@ import SwiftyStoreKit
 
 final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
     
+    let onFinish: () -> Void
+    
     private let loadingBackgroundView = UIView()
     private let loadingView = LoadingView()
     
@@ -23,6 +25,14 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
     private let restoreButton = ContinueEducationButton()
     
     private var selectedSubscription = SwiftyStoreKit.Subscription.annual
+    
+    init(onFinish: @escaping () -> Void) {
+        self.onFinish = onFinish
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
     
     override func prepare() {
         super.prepare()
@@ -43,11 +53,14 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
     }
     
     @objc private func didTapBuyButton() {
-        SwiftyStoreKit.purchase(subscription: selectedSubscription) { result in
+        setLoading(true, dimmBackground: false)
+        SwiftyStoreKit.purchase(subscription: selectedSubscription) { result in            
             switch result {
             case .success:
+                self.onFinish()
                 self.dismiss(animated: true, completion: nil)
             case let .error(error):
+                self.setLoading(false)
                 self.showAlert(
                     title: "error".localized,
                     message: error.localizedDescription,
@@ -59,10 +72,13 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
     }
     
     @objc private func didTapRestoreButton() {
+        setLoading(true, dimmBackground: false)
         SwiftyStoreKit.restoreSubscription { success in
             if success {
+                self.onFinish()
                 self.dismiss(animated: true, completion: nil)
             } else {
+                self.setLoading(false)
                 self.showAlert(
                     title: "error".localized,
                     message: "restore_error_try_again".localized,
@@ -96,6 +112,7 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
         descriptionLabel.font = AppTheme.current.fonts.regular(17)
         descriptionLabel.textColor = AppTheme.current.colors.activeElementColor
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.minimumScaleFactor = 0.75
         descriptionLabel.top(15).to(view.safeAreaLayoutGuide)
         [descriptionLabel.leading(15), descriptionLabel.trailing(15)].toSuperview()
         
@@ -109,6 +126,7 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
         buttonsContainer.axis = .vertical
         buttonsContainer.spacing = 8
         view.addSubview(buttonsContainer)
+        buttonsContainer.topAnchor.constraint(greaterThanOrEqualTo: subscriptionsContainer.bottomAnchor, constant: 8).isActive = true
         [buttonsContainer.leading(15), buttonsContainer.trailing(15)].toSuperview()
         buttonsContainer.bottom(8).to(view.safeAreaLayoutGuide)
         
@@ -161,8 +179,11 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
         }
     }
     
-    private func setLoading(_ isLoading: Bool) {
+    private func setLoading(_ isLoading: Bool, dimmBackground: Bool = true) {
         loadingBackgroundView.isHidden = !isLoading
+        loadingBackgroundView.backgroundColor = dimmBackground
+            ? AppTheme.current.colors.middlegroundColor
+            : AppTheme.current.colors.middlegroundColor.withAlphaComponent(0.5)
         loadingView.isHidden = !isLoading
         
         if isLoading {

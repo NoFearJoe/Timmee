@@ -58,10 +58,6 @@ final class EducationViewController: UINavigationController, SprintInteractorTra
         UserProperty.isFreeLaunchPerformed.setBool(true)
     }
     
-    private func showSubscriptionPurchase() {
-        InitialScreenPresenter.showSubscriptionPurchaseIfNeeded()
-    }
-    
     private func showSprintCreation() {
         AppWindowRouter.shared.show(screen: SprintCreationViewController(sprint: nil, canBeClosed: false))
     }
@@ -84,15 +80,27 @@ extension EducationViewController: EducationScreenOutput {
         
         let isLastScreen = currentScreenIndex + 1 >= educationState.screensToShow.count - 1
         
-        if nextScreen == .subscriptionPromo, SwiftyStoreKit.isSubscriptionPurchased {
+        func next() {
+            if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
+                // Основной флоу обучения
+                pushViewController(viewController(forScreen: nextScreen), animated: true)
+            } else {
+                // Если находимся на последнем экране и после него не надо показать экран создания спринта
+                showAppropriateScreenAfterEducation()
+            }
+        }
+        
+        if nextScreen == .subscriptionPromo {
             // Если подписка куплена, то соответствующий экран не показывается
-            didAskToContinueEducation(screen: .subscriptionPromo)
-        } else if !isLastScreen || (isLastScreen && shouldShowSprintCreationAfterEducation) {
-            // Основной флоу обучения
-            pushViewController(viewController(forScreen: nextScreen), animated: true)
+            SwiftyStoreKit.isSubscriptionPurchased { purchased in
+                if purchased {
+                    self.didAskToContinueEducation(screen: .subscriptionPromo)
+                } else {
+                    next()
+                }
+            }
         } else {
-            // Если находимся на последнем экране и после него не надо показать экран создания спринта
-            showAppropriateScreenAfterEducation()
+            next()
         }
     }
     

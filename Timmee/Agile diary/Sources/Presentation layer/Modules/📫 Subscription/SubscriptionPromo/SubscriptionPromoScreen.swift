@@ -133,14 +133,23 @@ final class SubscriptionPromoScreen: BaseViewController, AlertInput {
         }
         placeholderView.setVisible(true, animated: false)
     }
-    
+
     private func showSubscriptionExpiredPlaceholder() {
         placeholderView.configure(
             title: "subscription_expired".localized,
             message: "subscription_expired_message".localized,
             action: "prolongate_subscription".localized
         ) { [unowned self] in
-            self.present(SubscriptionPurchaseScreen(), animated: true, completion: nil)
+            let s = SubscriptionPurchaseScreen(onFinish: {
+                self.output.didAskToContinueEducation(screen: .subscriptionPromo)
+            })
+            let vc = UINavigationController(rootViewController: s)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(
+                vc,
+                animated: true,
+                completion: nil
+            )
         }
         placeholderView.setVisible(true, animated: false)
     }

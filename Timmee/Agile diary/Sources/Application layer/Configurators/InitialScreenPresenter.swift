@@ -18,12 +18,15 @@ final class InitialScreenPresenter: SprintInteractorTrait {
     
     func presentInitialScreen(completion: @escaping () -> Void) {
         #if MOCKS
-//        PastSprintMocksConfigurator.prepareMocks { [weak self] in
-//            UserProperty.isEducationShown.setBool(true)
-            self.presentRealInitialScreen(in: window)
-            completion()
-//            self?.presentMockInitialScreen(in: window)
-//        }
+        PastSprintMocksConfigurator.prepareMocks { [weak self] in
+            RuMocksConfigurator.prepareMocks { [weak self] in
+                UserProperty.isEducationShown.setBool(true)
+    //            self.presentRealInitialScreen(in: window)
+    //            completion()
+                self?.presentMockInitialScreen()
+                completion()
+            }
+        }
         #else
         presentRealInitialScreen()
         completion()
@@ -52,8 +55,6 @@ final class InitialScreenPresenter: SprintInteractorTrait {
                 } else {
                     self.showToday()
                 }
-                
-                Self.showSubscriptionPurchaseIfNeeded()
             }
 
             initialViewController = pinAuthenticationViewController
@@ -64,16 +65,13 @@ final class InitialScreenPresenter: SprintInteractorTrait {
         }
         
         AppWindowRouter.shared.show(screen: initialViewController)
-        
-        Self.showSubscriptionPurchaseIfNeeded()
     }
     
-    static func showSubscriptionPurchaseIfNeeded() {
-        guard UserProperty.isFreeLaunchPerformed.bool(), !SwiftyStoreKit.isSubscriptionPurchased else { return }
-        
-        let navigationController = UINavigationController(rootViewController: SubscriptionPurchaseScreen())
+    static func showSubscriptionPurchase(animated: Bool, completion: @escaping () -> Void) {
+        let screen = SubscriptionPurchaseScreen(onFinish: completion)
+        let navigationController = UINavigationController(rootViewController: screen)
         navigationController.modalPresentationStyle = .fullScreen
-        AppWindowRouter.shared.window?.topViewController?.present(navigationController, animated: false, completion: nil)
+        AppWindowRouter.shared.window?.topViewController?.present(navigationController, animated: animated, completion: nil)
     }
     
     private func showSprintCreation() {
@@ -97,8 +95,8 @@ final class AppWindowRouter {
         
         screen.loadViewIfNeeded()
         screen.view.frame = window.bounds
-        screen.view.setNeedsLayout()
-        screen.view.layoutIfNeeded()
+//        screen.view.setNeedsLayout()
+//        screen.view.layoutIfNeeded()
         
         if window.rootViewController != nil {
             window.subviews.forEach { $0.removeFromSuperview() }

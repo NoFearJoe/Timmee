@@ -53,7 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         initialScreenPresenter.presentPreInitialScreen()
         performPreparingActions {
-            self.initialScreenPresenter.presentInitialScreen {}
+            SwiftyStoreKit.isSubscriptionPurchased { purchased in
+                if !purchased && UserProperty.isFreeLaunchPerformed.bool() {
+                    InitialScreenPresenter.showSubscriptionPurchase(animated: false) {
+                        self.initialScreenPresenter.presentInitialScreen {}
+                    }
+                } else {
+                    self.initialScreenPresenter.presentInitialScreen {}
+                }
+            }
         }
         
         BackgroundImagesLoader.shared.load()
@@ -71,37 +79,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
-    func performPreparingActions(completion: @escaping () -> Void) {
-        self.performOtherPreparingActions {
-            print("Preparing: other preparing actions are finished")
-            DispatchQueue.main.async {
-                completion()
-            }
-        }
-    }
     
-    private func performOtherPreparingActions(completion: @escaping () -> Void) {
-        let dispatchGroup = DispatchGroup()
-        
-        dispatchGroup.enter()
-        ServicesAssembly.shared.habitsService.setRepeatEndingDateForAllHabitsIfNeeded {
-            self.rescheduleAllNotifications()
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.notify(queue: .main, execute: completion)
+    func performPreparingActions(completion: @escaping () -> Void) {
+        rescheduleAllNotifications()
+        completion()
     }
     
     @objc func onThemeChanged() {
         AppThemeApplier.applyTheme()
     }
+    
 }
 
 private extension AppDelegate {
     func rescheduleAllNotifications() {
-        let allHabits = EntityServicesAssembly.shared.habitsService.fetchAllHabitsInBackground().map { Habit(habit: $0) }
-        allHabits.forEach { habit in
-            HabitsSchedulerService.shared.scheduleHabit(habit)
+        DispatchQueue.global().async {
+            let allHabits = EntityServicesAssembly.shared.habitsService.fetchAllHabitsInBackground().map { Habit(habit: $0) }
+            allHabits.forEach { habit in
+                HabitsSchedulerService.shared.scheduleHabit(habit)
+            }
         }
     }
 }

@@ -127,7 +127,9 @@ private extension CoreDataStorage {
         let container = NSPersistentCloudKitContainer(name: name, managedObjectModel: model)
         
         if let group = sharedGroup, let sharedStoreURL = sharedStoreURL(group: group) {
-            container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: sharedStoreURL.appendingPathExtension("sqlite"))]
+            let desc = NSPersistentStoreDescription(url: sharedStoreURL)
+            desc.cloudKitContainerOptions = .init(containerIdentifier: "iCloud.com.mesterra.AgileDiary")
+            container.persistentStoreDescriptions = [desc]
         }
         
         container.loadPersistentStores { _, error in
