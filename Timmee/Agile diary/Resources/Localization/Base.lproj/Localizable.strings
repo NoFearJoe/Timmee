@@ -303,6 +303,7 @@
 
 "wait_until_sync_is_complete" = "Wait until the end of synchronization";
 
+"loading_subscriptions_error" = "Could not load subscriptions. Try again.";
 "purchase_pro_version_error_try_again" = "Could not buy PRO version. Try again";
 
 "my_sprints" = "My sprints";

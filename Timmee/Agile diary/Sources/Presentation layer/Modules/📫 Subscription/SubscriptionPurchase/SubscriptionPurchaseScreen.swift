@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import SafariServices
 import SwiftyStoreKit
 
 final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
@@ -21,6 +22,8 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
     
     private let descriptionLabel = UILabel()
     private let subscriptionsContainer = UIStackView()
+    private let termsOfUseButton = UIButton()
+    private let privacyPolicyButton = UIButton()
     private let buyButton = ContinueEducationButton()
     private let restoreButton = ContinueEducationButton()
     
@@ -89,6 +92,19 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
         }
     }
     
+    @objc private func didTapTermsOfUseButton() {
+        guard let url = URL(string: "https://drive.google.com/file/d/13Nr3mQRrrFm1ekDZ4K7YfgfGSrwnxjep/view?usp=sharing") else { return }
+        
+        present(SFSafariViewController(url: url), animated: true, completion: nil)
+    }
+    
+    @objc private func didTapPrivacyPolicyButton() {
+        let path = "https://www.freeprivacypolicy.com/privacy/view/0a35c243ececb4ada59e1b1db6cc1a9d"
+        guard let url = URL(string: path) else { return }
+        
+        present(SFSafariViewController(url: url), animated: true, completion: nil)
+    }
+    
     private func setupViews() {
         navigationItem.title = "subscription_purchase_screen_title".localized
         navigationItem.largeTitleDisplayMode = .always
@@ -119,14 +135,33 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
         view.addSubview(subscriptionsContainer)
         subscriptionsContainer.axis = .vertical
         subscriptionsContainer.spacing = 8
+        subscriptionsContainer.setContentCompressionResistancePriority(.required, for: .vertical)
         subscriptionsContainer.topToBottom(30).to(descriptionLabel, addTo: view)
         [subscriptionsContainer.leading(15), subscriptionsContainer.trailing(15)].toSuperview()
+        
+        let linksContainer = UIStackView(arrangedSubviews: [termsOfUseButton, privacyPolicyButton])
+        linksContainer.axis = .horizontal
+        linksContainer.distribution = .fillEqually
+        view.addSubview(linksContainer)
+        linksContainer.topAnchor.constraint(equalTo: subscriptionsContainer.bottomAnchor, constant: 8).isActive = true
+        [linksContainer.leading(15), linksContainer.trailing(15)].toSuperview()
+        linksContainer.height(24)
+        
+        termsOfUseButton.setTitle("Terms of Use", for: .normal)
+        termsOfUseButton.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
+        termsOfUseButton.titleLabel?.font = AppTheme.current.fonts.medium(15)
+        termsOfUseButton.addTarget(self, action: #selector(didTapTermsOfUseButton), for: .touchUpInside)
+        
+        privacyPolicyButton.setTitle("Privacy Policy", for: .normal)
+        privacyPolicyButton.setTitleColor(AppTheme.current.colors.mainElementColor, for: .normal)
+        privacyPolicyButton.titleLabel?.font = AppTheme.current.fonts.medium(15)
+        privacyPolicyButton.addTarget(self, action: #selector(didTapPrivacyPolicyButton), for: .touchUpInside)
         
         let buttonsContainer = UIStackView(arrangedSubviews: [buyButton, restoreButton])
         buttonsContainer.axis = .vertical
         buttonsContainer.spacing = 8
         view.addSubview(buttonsContainer)
-        buttonsContainer.topAnchor.constraint(greaterThanOrEqualTo: subscriptionsContainer.bottomAnchor, constant: 8).isActive = true
+        buttonsContainer.topAnchor.constraint(greaterThanOrEqualTo: linksContainer.bottomAnchor, constant: 8).isActive = true
         [buttonsContainer.leading(15), buttonsContainer.trailing(15)].toSuperview()
         buttonsContainer.bottom(8).to(view.safeAreaLayoutGuide)
         
@@ -164,6 +199,8 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
         }
         
         products.forEach { product in
+            guard !product.localizedTitle.isEmpty else { return }
+            
             let view = SubscriptionView()
             view.configure(
                 title: product.localizedTitle,
@@ -176,6 +213,10 @@ final class SubscriptionPurchaseScreen: BaseViewController, AlertInput {
                 self.updateSubscriptions(products: products)
             }
             subscriptionsContainer.addArrangedSubview(view)
+        }
+        
+        if subscriptionsContainer.arrangedSubviews.isEmpty {
+            showErrorPlaceholder(message: "loading_subscriptions_error".localized)
         }
     }
     
